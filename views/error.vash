@@ -1,0 +1,6 @@
+@if (model.error) {
+	<div>@model.error</div>
+}
+@if (model.flash) {
+	<div>@model.flash.error</div>	
+}

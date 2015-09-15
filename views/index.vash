@@ -1,0 +1,151 @@
+@html.extend("layout", function(model) { 
+	@html.block("body", function(model) {
+		<script>
+			$('.button-collapse').sideNav({
+					menuWidth: 240, // Default is 240
+					edge: 'right', // Choose the horizontal origin
+					closeOnClick: true
+				}
+			);
+		</script>
+		
+		<div class="">
+			<a class="hide-on-med-and-up fixed-btn-buy waves-effect waves-light light-green white-text center">
+				Buy Now!
+			</a>
+		</div>
+		
+		<div class="container">
+			<br />
+			<div class="row flex-s">
+				
+				<div id="main" class="col s12 m8 l8 box-1 center">
+		
+					<div id="wick" class="progress amber lighten-3">
+						<div id="wick-bar" class="determinate light-green accent-4" style="width: @model.progress%;">
+							<span class="white-text text-progress">@model.progress%</span>
+						</div>
+					</div>
+		
+					<div class="card">
+						<div class="card-image">
+							<img src="/images/hero01.jpg" class="" alt="" />
+						</div>
+						<div class="card-content">
+							<p>Welcome to my sheet hut. It's made of sheets so you know it's not just a clever name. Come on in, have a seat on a pile of sheets. Can I get you a glass of sheet. Haha, I'm just kidding, I don't have any glasses. Here, feel free to just gnaw on this sheet. It's green so I tell myself it's salad.</p>
+						</div>
+						<div class="card-action">
+							<a href="#">Facebook</a>
+							<a href="#">Kakao</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- time -->
+				<div class="col s12 m4 l4 center box-2">
+		<!-- 			<div class="card green darken-3"> -->
+					<div class="card light-green">
+						<div id="timer" class="card-content white-text">
+							<p class="card-title hide-on-med-and-down">Time Left</p>
+		<!-- 					<p class="card-title"><b><?=$time_left?></b></p> -->
+							<p class="card-title"><b></b></p>
+						</div>
+					</div>
+				</div>
+				<br />
+				<!-- item -->
+				<div class="col s12 m4 l4 center box-3">
+					<div class="card light-blue white-text">
+						<div class="card-content">
+							<span class="item-name"></span>
+							<hr />
+							<span class="price">₩49000</span>
+						</div>
+					</div><!-- /.card -->
+					
+					<a id="buy" class="hide-on-small-only waves-effect waves-light btn-floating green">
+						<h2 class="btn-center">Buy Now!</h2>
+					</a>
+				</div>
+			</div> <!-- .row -->
+			
+			<br />
+			
+			<div class="row">
+				<div class="col s12 m12 l12">
+					<h3>Past items</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12 m8 l8">
+					<div id="db-past" class="owl-carousel owl-theme">
+		
+						<?php for ($i=0; $i<12; $i++){?>
+							<div class="col s12">
+								<div class="card blue-grey darken-1">
+									<div class="card-image">
+										<img class="" src="/images/hero02.jpg" alt="" />
+									</div>
+									<div class="card-content white-text">
+										<p>Welcome to my sheet hut. It's made of sheets so you know it's not just a clever name.</p>
+									</div>
+									<div class="card-action center">
+										<a href="#">Bring it back! <span class="badge white-text">5</span></a>
+									</div>
+								</div>
+							</div>
+						<?}?>
+						<div class="customNavigation">
+							<a class="btn prev">Previous</a>
+							<a class="btn next">Next</a>
+						</div>
+		
+					</div><!-- /.owl-carousel -->
+					
+				</div><!-- /.col s12 m9 l9 -->
+		
+				<div class="col s12 m4 l4 hide-on-med-and-down">
+		<!-- 			<div class="pro-right" style="background-image: url('/images/hero03.jpg')"> -->
+		<!-- 				<img class="ad-img" src="/images/hero03.jpg" alt="" /> -->
+		
+					<div class="card">
+						<div class="card-image">
+							<img src="/images/a01.jpg" class="img-right" />
+						</div>
+					</div>
+				</div>
+				
+				<script>
+					$(document).ready(function() {
+		
+					var owl = $("#db-past");
+					
+					owl.owlCarousel({
+						items : 2,
+						itemsDesktop : [1000,4],
+						itemsDesktopSmall : [900,2],
+						itemsTablet: [600,1],
+						itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
+						navigation: false,
+						pagination: false,
+						responsive: true,
+						rewindNav: false
+						
+					});
+					
+					// Custom Navigation Events
+					$(".next").click(function(){
+						owl.trigger('owl.next');
+					})
+					$(".prev").click(function(){
+						owl.trigger('owl.prev');
+					})
+					
+					});
+				</script>
+		
+			</div><!-- /.row -->
+		
+		</div> <!-- .container -->
+	})
+})
