@@ -18,6 +18,13 @@
 	  order: 3;
   }
 }
+
+/* Navbar */
+.nav-logo {
+	margin-top: 3px;
+	height: 60px;
+}
+
 #wick-2 {
 	height: 40px;
 	top: 0;
