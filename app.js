@@ -8,11 +8,14 @@ var flash = require('connect-flash');
 var passport = require('passport');
 var session = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/dailyboom');
 var User = require('./models/user');
 //var materialize = require('materialize-css');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var products = require('./routes/products');
 
 var app = express();
 
@@ -27,14 +30,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ cookie: { maxAge: 60000 }, secret: '{secret}', name: 'session_id', saveUninitialized: true, resave: true }));
+app.use(session({ secret: '{secret}', name: 'session_id', saveUninitialized: true, resave: true }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-app.use('/', users);
 app.use('/', routes);
+app.use('/', users);
+app.use('/', products);
 
 passport.use(new LocalStrategy(
   function (username, password, done) {
@@ -45,6 +49,7 @@ passport.use(new LocalStrategy(
         return done(null, false, { message: 'Incorrect username.' });
       }
       user.comparePassword(password, function(err, isMatch) {
+        console.log(isMatch);
         if (err) { return done(err); }
         if (isMatch === false) {
           return done(null, false, { message: 'Incorrect password.' });
