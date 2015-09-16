@@ -4,8 +4,6 @@ var bcrypt = require("bcrypt");
 var Schema = mongoose.Schema;
 var SALT_WORK_FACTOR = 10;
 
-mongoose.connect('mongodb://localhost/dailyboom');
-
 // create a schema
 var userSchema = new Schema({
   name: String,
@@ -18,7 +16,7 @@ var userSchema = new Schema({
     city: String,
     zipcode: Number,
   },
-  created_at: Date,
+  created_at: { type : Date, default : Date.now },
   updated_at: Date
 });
 
@@ -46,7 +44,6 @@ userSchema.pre('save', function(next) {
 userSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return cb(err);
-        console.log("isMatch:" + isMatch);
         return cb(null, isMatch);
     });
 };
