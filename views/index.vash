@@ -19,35 +19,108 @@
 			<br />
 			<div class="row flex-s">
 				
-				<div id="main" class="col s12 m8 l8 box-1 center">
-		
-					<div id="wick" class="progress amber lighten-3">
-						<div id="wick-bar" class="determinate light-green accent-4" style="width: @model.progress%;">
-							<span class="white-text text-progress">@model.progress%</span>
-						</div>
-					</div>
-		
+				<div id="main" class="col s12 m8 l8 box-1">
+					
 					<div class="card">
-						<div class="card-image">
-							<img src="/images/hero01.jpg" class="" alt="" />
-						</div>
+
+						<div class="card-image waves-effect waves-block waves-light">
+			<!-- wick -->
+							<div id="wick-2" class="progress amber lighten-3 z-depth-1">
+								<div id="wick-bar" class="determinate amber darken-1" style="width: @model.progress%;">
+									<span class="white-text text-progress">@model.progress%</span>
+								</div>
+							</div>
+			<!-- slider -->
+							<div class="slider">
+								<ul class="slides">
+									<li>
+										<img class="" src="images/comb01.jpg" alt="" />
+									</li>
+									<li>
+										<img class="" src="images/comb02.jpg" alt="" />
+									</li>
+									<li>
+										<img class="" src="images/comb03.jpg" alt="" />
+									</li>
+								</ul>
+							</div>
+						</div><!-- /.card-image -->
 						<div class="card-content">
-							<p>Welcome to my sheet hut. It's made of sheets so you know it's not just a clever name. Come on in, have a seat on a pile of sheets. Can I get you a glass of sheet. Haha, I'm just kidding, I don't have any glasses. Here, feel free to just gnaw on this sheet. It's green so I tell myself it's salad.</p>
+							<span class="card-title activator grey-text text-darken-4">
+								W3 Set
+								<i class="fa fa-info-circle right"></i>
+							</span>
+							<p>이제 헤어컬러 시술이 쉬워 집니다...</p>
+						</div><!-- /.card-content -->
+						<div class="card-reveal">
+							<span class="card-title grey-text text-darken-4">
+								<i class="fa fa-times-circle right"></i>
+							</span>
+							<ul class="details">
+								<li>
+									<img class="details-img circle z-depth-1" src="images/zone01.png" alt="{BRAND NAME LOGO}" />
+									<div class="details-box">
+										<p class="details-title">Zonecode</p>
+										
+										<!-- Dropdown Trigger -->
+										<a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
+										
+										<!-- Dropdown Structure -->
+										<ul id='dropdown1' class='dropdown-content'>
+										<li><a href="#!">one</a></li>
+										<li><a href="#!">two</a></li>
+										<li class="divider"></li>
+										<li><a href="#!">three</a></li>
+										</ul>
+  
+										<span class="details-subtitle">
+											<a class="social-link" href="{BRAND HOMEPAGE URL}"><i class="fa fa-link fa-2x"></i></a>
+											<a class="social-link" href="{BRAND FACEBOOK URL}"><i class="fa fa-facebook-official fa-2x"></i></a>
+											<a class="social-link" href="{BRAND TWITTER URL}"><i class="fa fa-twitter fa-2x"></i></a>
+											<a class="social-link" href="{BRAND INSTAGRAM URL}"><i class="fa fa-instagram fa-2x"></i></a>
+										</span>
+									</div>
+								</li>
+							</ul><!-- /.details -->
+							
+							<span class="card-title grey-text text-darken-4">
+								W3 Set
+							</span>
+							<p>이제 헤어컬러 시술이 쉬워 집니다. 크리에이티브 컬러 작업을 위한 새로운 테크놀로지 전문가들의 익숙한 빗의 그립감과 작업자의 시 술시 도구로 인한 심리적인 스트레스를 최대한 받지 않도록 물리적 기능의 완성도를 높였으며 초보자 또한 전문가 못지않은 헤어 컬러 표현을 할 수 있습니다. 그리고 신생모 연결 작업 또한 쉽게 진행과 2인 작업의 시술시 빠르게 헤어 컬러를 완성할 수 있으며 왼손잡이와 오른손잡이도 사용이 용이하게 설계되었습니다.</p>
 						</div>
+
+<!-- Share
 						<div class="card-action">
+							<a href="javascript: noscript()">Share</a>
 							<a href="#">Facebook</a>
 							<a href="#">Kakao</a>
 						</div>
-					</div>
+-->
+					</div><!-- /.card -->
+					<script>
+						$(document).ready(function(){
+							$('.slider').slider({full_width: true, indicators: true});
+						});
+					</script>
+					<script>
+						$('.dropdown-button').dropdown({
+							inDuration: 300,
+							outDuration: 225,
+							constrain_width: false, // Does not change width of dropdown to that of the activator
+							hover: true, // Activate on hover
+							gutter: 0, // Spacing from edge
+							belowOrigin: false, // Displays dropdown below the button
+							alignment: 'left' // Displays dropdown with edge aligned to the left of button
+						});
+					</script>
+					
 				</div>
 				
 				<!-- time -->
 				<div class="col s12 m4 l4 center box-2">
-		<!-- 			<div class="card green darken-3"> -->
-					<div class="card light-green">
+					<div class="card cyan darken-3">
 						<div id="timer" class="card-content white-text">
-							<p class="card-title hide-on-med-and-down">Time Left</p>
-		<!-- 					<p class="card-title"><b><?=$time_left?></b></p> -->
+							<p class="card-title hide-on-med-and-down">Time</p>
 							<p class="card-title"><b></b></p>
 						</div>
 					</div>
@@ -57,9 +130,9 @@
 				<div class="col s12 m4 l4 center box-3">
 					<div class="card light-blue white-text">
 						<div class="card-content">
-							<span class="item-name"></span>
+							<span class="item-name">W3 Set</span>
 							<hr />
-							<span class="price">₩49000</span>
+							<span class="price">₩35,000</span>
 						</div>
 					</div><!-- /.card -->
 					
