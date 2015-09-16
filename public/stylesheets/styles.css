@@ -19,10 +19,28 @@
   }
 }
 
+/* Font */
+.fa-1-5x {
+	font-size: 1.5em;
+}
+
 /* Navbar */
 .nav-logo {
 	margin-top: 3px;
 	height: 60px;
+}
+
+/* Share Modal */
+.share-social {
+	display: inline-block;
+}
+.share-img {
+	z-index: 10;
+	margin: 25px 20px 0 0;
+	font-size: 1.5em;
+}
+.social-link {
+	padding: 10px;
 }
 
 #wick-2 {
@@ -88,9 +106,6 @@
 }
 .details-subtitle {
 	margin: 10px 0;
-}
-.social-link {
-	padding-right: 5px;
 }
 .details, .details-img {
 	display: inline-block;

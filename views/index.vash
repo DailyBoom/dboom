@@ -9,6 +9,28 @@
 			);
 		</script>
 		
+<!-- Share Modal Structure -->
+		<div id="modal-share" class="modal cyan darken-3 bottom-sheet center">
+			<div class="modal-content">
+				<span class="share-social">
+					<a class="social-link white-text" href="{BRAND HOMEPAGE URL}" target="_blank"><i class="fa fa-globe fa-4x"></i></a>
+					<a class="social-link white-text" href="{BRAND FACEBOOK URL}" target="_blank"><i class="fa fa-facebook-official fa-4x"></i></a>
+					<a class="social-link white-text" href="{BRAND TWITTER URL}" target="_blank"><i class="fa fa-twitter fa-4x"></i></a>
+				</span>
+			</div>
+		</div>
+		
+<!-- Login Modal Structure -->
+		<div id="modal-login" class="modal">
+			<div class="modal-content">
+				<h4>Modal Header</h4>
+				<p>A bunch of text</p>
+			</div>
+			<div class="modal-footer">
+				<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+			</div>
+		</div>
+		
 		<div class="">
 			<a class="hide-on-med-and-up fixed-btn-buy waves-effect waves-light light-green white-text center">
 				Buy Now!
@@ -30,6 +52,8 @@
 									<span class="white-text text-progress">@model.progress%</span>
 								</div>
 							</div>
+			<!-- Share Modal Trigger -->
+							<a class="share-img waves-effect waves-light white-text modal-trigger right" href="#modal-share"><i class="fa fa-share-square-o fa-1-5x right"></i></a>
 			<!-- slider -->
 							<div class="slider">
 								<ul class="slides">
@@ -48,37 +72,20 @@
 						<div class="card-content">
 							<span class="card-title activator grey-text text-darken-4">
 								W3 Set
-								<i class="fa fa-info-circle right"></i>
+								<i class="fa fa-info-circle fa-1-5x right"></i>
 							</span>
 							<p>이제 헤어컬러 시술이 쉬워 집니다...</p>
 						</div><!-- /.card-content -->
 						<div class="card-reveal">
 							<span class="card-title grey-text text-darken-4">
-								<i class="fa fa-times-circle right"></i>
+								<i class="fa fa-times-circle fa-1-5x right"></i>
 							</span>
 							<ul class="details">
 								<li>
 									<img class="details-img circle z-depth-1" src="images/zone01.png" alt="{BRAND NAME LOGO}" />
 									<div class="details-box">
 										<p class="details-title">Zonecode</p>
-										
-										<!-- Dropdown Trigger -->
-										<a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
-										
-										<!-- Dropdown Structure -->
-										<ul id='dropdown1' class='dropdown-content'>
-										<li><a href="#!">one</a></li>
-										<li><a href="#!">two</a></li>
-										<li class="divider"></li>
-										<li><a href="#!">three</a></li>
-										</ul>
   
-										<span class="details-subtitle">
-											<a class="social-link" href="{BRAND HOMEPAGE URL}"><i class="fa fa-link fa-2x"></i></a>
-											<a class="social-link" href="{BRAND FACEBOOK URL}"><i class="fa fa-facebook-official fa-2x"></i></a>
-											<a class="social-link" href="{BRAND TWITTER URL}"><i class="fa fa-twitter fa-2x"></i></a>
-											<a class="social-link" href="{BRAND INSTAGRAM URL}"><i class="fa fa-instagram fa-2x"></i></a>
-										</span>
 									</div>
 								</li>
 							</ul><!-- /.details -->
@@ -102,16 +109,24 @@
 							$('.slider').slider({full_width: true, indicators: true});
 						});
 					</script>
+<!-- Login Modal JS -->
 					<script>
-						$('.dropdown-button').dropdown({
-							inDuration: 300,
-							outDuration: 225,
-							constrain_width: false, // Does not change width of dropdown to that of the activator
-							hover: true, // Activate on hover
-							gutter: 0, // Spacing from edge
-							belowOrigin: false, // Displays dropdown below the button
-							alignment: 'left' // Displays dropdown with edge aligned to the left of button
-						});
+						$('#modal-trigger').leanModal({
+						      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+						      opacity: .5, // Opacity of modal background
+						      in_duration: 300, // Transition in duration
+						      out_duration: 200, // Transition out duration
+						    }
+						  );
+					</script>
+					<script>
+						$('.modal-trigger').leanModal({
+						      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+						      opacity: .5, // Opacity of modal background
+						      in_duration: 300, // Transition in duration
+						      out_duration: 200, // Transition out duration
+						    }
+						  );
 					</script>
 					
 				</div>
