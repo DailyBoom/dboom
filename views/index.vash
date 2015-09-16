@@ -168,10 +168,12 @@
 								</div>
 							</div>
 						<?}?>
+<!--						
 						<div class="customNavigation">
 							<a class="btn prev">Previous</a>
 							<a class="btn next">Next</a>
 						</div>
+-->
 		
 					</div><!-- /.owl-carousel -->
 					
