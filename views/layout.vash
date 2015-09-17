@@ -36,6 +36,8 @@
 		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>-->
 		<script src="/javascripts/materialize.min.js"></script>
 		
+		<script src="/javascripts/formatCurrency/jquery.formatCurrency-1.4.0.min.js"></script>
+		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.ko-KR.js"></script>
 		<!-- Custom JS -->
 		<script src="/javascripts/app.js"></script>
     </head>

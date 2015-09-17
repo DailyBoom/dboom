@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require("mongoose");
 
 var User = require('../models/user');
+var Product = require('../models/product');
 
 // As with any middleware it is quintessential to call next()
 // if the user is authenticated
@@ -15,7 +16,9 @@ var isAuthenticated = function (req, res, next) {
 /* GET Home Page */
 router.get('/', function(req, res, next) {
   req.flash('info', 'Login succesful!');
-  res.render('index', { user: req.user, progress: 75 });
+  Product.findOne({}, {}, { sort: { 'created_at' : -1 }}, function (err, product) {
+    res.render('index', { user: req.user, progress: 75, product: product });
+  });  
 });
 
 router.post('/', function(req, res, next) {
