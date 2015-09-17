@@ -9,7 +9,7 @@
 			);
 		</script>
 		
-<!-- Share Modal Structure -->
+<!-- Share Modal Structure 
 		<div id="modal-share" class="modal cyan darken-3 bottom-sheet center">
 			<div class="modal-content">
 				<span class="share-social">
@@ -19,25 +19,102 @@
 				</span>
 			</div>
 		</div>
-		
+-->
+
 <!-- Login Modal Structure -->
-		<div id="modal-login" class="modal">
+		<div id="modal-check" class="modal">
 			<div class="modal-content">
-				<h4>Modal Header</h4>
-				<p>A bunch of text</p>
-			</div>
-			<div class="modal-footer">
-				<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-			</div>
+<!-- Login Tab -->
+				<div class="row">
+					<div class="col s12 m12 l12">
+						<ul class="tabs">
+							<li class="tab btn-flat col s6 border"><a class="cyan-text text-darken-3 active" href="#tab-login">Login</a></li>
+							<li class="tab btn-flat col s6"><a class="cyan-text text-darken-3" href="#tab-signup">Signup</a></li>
+						</ul>
+					</div>
+					<div id="tab-login" class="col s12">
+						<form class="form-padding" method="post" action="/login">
+			        		<div class="row">
+				        		<br />
+				            	<div class="input-field">
+									<input id="username" type="text" class="validate" name="username">
+									<label for="username">Username</label>
+								</div>
+							</div>
+							<div class="row">
+				            	<div class="input-field">
+					              	<input id="password" type="password" class="validate" name="password">
+								  	<label for="password">Password</label>
+								</div>
+							</div>
+							<div class="row">
+					        	<div class="center">
+					            	<button class="col s12 btn-large waves-effect waves-light cyan darken-3 left" type="submit" name="action">
+					            		&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;
+					            	</button>
+					            	&nbsp;
+					            	<a class="col s12 btn-large waves-effect waves-light blue darken-3 right" href="!#">
+										<i class="fa fa-facebook-official"></i>&nbsp;&nbsp;Facebook
+									</a>
+				            	</div>
+							</div>
+				        </form>
+					</div>
+					<div id="tab-signup" class="col s12">
+						<form class="form-padding" method="post" action="/login">
+			        		<div class="row">
+			        			<br />
+				            	<div class="input-field">
+									<input id="firstname" type="text" class="validate" name="firstname">
+									<label for="firstname">First Name</label>
+								</div>
+							</div>
+							<div class="row">
+				            	<div class="input-field">
+					              	<input id="lastname" type="text" class="validate" name="lastname">
+								  	<label for="lastname">Last Name</label>
+								</div>
+							</div>
+							<div class="row">
+				            	<div class="input-field">
+					              	<input id="username" type="text" class="validate" name="username">
+								  	<label for="username">Username</label>
+								</div>
+							</div>
+							<div class="row">
+				            	<div class="input-field">
+					              	<input id="password" type="password" class="validate" name="password">
+								  	<label for="password">Password</label>
+								</div>
+							</div>
+							<div class="row">
+					        	<div class="center">
+						        	<div class="blank-block">&nbsp;
+				            		</div>
+					            	<button class="col s12 btn-large waves-effect waves-light cyan darken-3 white-text" type="submit" name="action">
+					            		&nbsp;&nbsp;&nbsp;가입하기&nbsp;&nbsp;&nbsp;
+					            	</button>
+				            	</div>
+							</div>
+				        </form>
+					</div>
+				</div>
+			</div><!-- .modal-content -->
 		</div>
+		<script>
+			$(document).ready(function(){
+				$('ul.tabs').tabs();
+			});
+		</script>
 		
 		<div class="">
-			<a class="hide-on-med-and-up fixed-btn-buy waves-effect waves-light light-green white-text center">
+			<a class="hide-on-med-and-up fixed-btn-buy waves-effect waves-light light-green white-text center modal-trigger" href="#modal-check">
 				Buy Now!
 			</a>
 		</div>
 		
 		<div class="container">
+			<br />
 			<br />
 			<div class="row flex-s">
 				
@@ -52,14 +129,15 @@
 									<span class="white-text text-progress">@model.progress%</span>
 								</div>
 							</div>
-			<!-- Share Modal Trigger -->
+			<!-- Share Modal Trigger 
 							<a class="share-img waves-effect waves-light white-text modal-trigger right" href="#modal-share"><i class="fa fa-share-square-o fa-1-5x right"></i></a>
+			-->
 			<!-- slider -->
 							<div class="slider">
 								<ul class="slides">
 									@model.product.images.forEach(function(img) {
 										<li>
-											<img class="" src="@img" alt="" />
+ 											<img class="" src="@img" alt="" />
 										</li>
 									})
 								</ul>
@@ -67,13 +145,9 @@
 						</div><!-- /.card-image -->
 						<div class="card-content">
 							<span class="card-title activator grey-text text-darken-4">
-<<<<<<< HEAD
 								W3 Set
 								<i class="fa fa-info-circle fa-1-5x right"></i>
-=======
 								@model.product.name
-								<i class="fa fa-info-circle right"></i>
->>>>>>> master
 							</span>
 							<p>이제 헤어컬러 시술이 쉬워 집니다...</p>
 						</div><!-- /.card-content -->
@@ -110,34 +184,13 @@
 							$('.slider').slider({full_width: true, indicators: true});
 						});
 					</script>
-<!-- Login Modal JS -->
-					<script>
-						$('#modal-trigger').leanModal({
-						      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-						      opacity: .5, // Opacity of modal background
-						      in_duration: 300, // Transition in duration
-						      out_duration: 200, // Transition out duration
-						    }
-						  );
-					</script>
-					<script>
-						$('.modal-trigger').leanModal({
-						      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-						      opacity: .5, // Opacity of modal background
-						      in_duration: 300, // Transition in duration
-						      out_duration: 200, // Transition out duration
-						    }
-						  );
-					</script>
-					
 				</div>
 				
 				<!-- time -->
 				<div class="col s12 m4 l4 center box-2">
 					<div class="card cyan darken-3">
 						<div id="timer" class="card-content white-text">
-							<p class="card-title hide-on-med-and-down">Time</p>
-							<p class="card-title"><b></b></p>
+							<p class="card-title">Time</p>
 						</div>
 					</div>
 				</div>
@@ -151,10 +204,23 @@
 							<span class="price" id="product_price">₩@model.product.price</span>
 						</div>
 					</div><!-- /.card -->
-					
-					<a id="buy" class="hide-on-small-only waves-effect waves-light btn-floating green">
+<!-- Buy Modal -->
+					<a class="hide-on-small-only waves-effect waves-light waves-effect waves-light btn-floating green btn-buy modal-trigger" href="#modal-check">
 						<h2 class="btn-center">Buy Now!</h2>
 					</a>
+<!-- Buy -> Login Modal JS -->
+					<script>
+						$(document).ready(function(){
+							$('.modal-trigger').leanModal({
+									dismissible: true, // Modal can be dismissed by clicking outside of the modal
+									opacity: .5, // Opacity of modal background
+									in_duration: 300, // Transition in duration
+									out_duration: 200, // Transition out duration
+								}
+							);
+						});
+					</script>
+					
 				</div>
 			</div> <!-- .row -->
 			
@@ -182,11 +248,8 @@
 									</div>
 								</div>
 							</div>
-<<<<<<< HEAD
 						<?}?>
 <!--						
-=======
->>>>>>> master
 						<div class="customNavigation">
 							<a class="btn prev">Previous</a>
 							<a class="btn next">Next</a>

@@ -25,11 +25,17 @@
 }
 
 /* Navbar */
+.top-margin {
+	padding: 25px 0;
+}
 .nav-logo {
 	margin-top: 3px;
 	height: 60px;
 }
-
+.nav-logo2 {
+	margin-top: -45px;
+	height: 150px;
+}
 /* Share Modal */
 .share-social {
 	display: inline-block;
@@ -67,7 +73,7 @@
     margin: auto 0;
     font-size: 2em;
 }
-#buy {
+.btn-buy {
 	width: 200px;
 	height: 200px;
 }
@@ -141,4 +147,12 @@
 }
 .img-right {
 	max-height: 340px;
+}
+
+/* Login */
+.form-padding {
+	padding: 0 20px;
+}
+.border-right {
+	border-right: 1px solid #ffffff;
 }
