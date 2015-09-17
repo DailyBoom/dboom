@@ -33,21 +33,17 @@
 			<!-- slider -->
 							<div class="slider">
 								<ul class="slides">
-									<li>
-										<img class="" src="images/comb01.jpg" alt="" />
-									</li>
-									<li>
-										<img class="" src="images/comb02.jpg" alt="" />
-									</li>
-									<li>
-										<img class="" src="images/comb03.jpg" alt="" />
-									</li>
+									@model.product.images.forEach(function(img) {
+										<li>
+											<img class="" src="@img" alt="" />
+										</li>
+									})
 								</ul>
 							</div>
 						</div><!-- /.card-image -->
 						<div class="card-content">
 							<span class="card-title activator grey-text text-darken-4">
-								W3 Set
+								@model.product.name
 								<i class="fa fa-info-circle right"></i>
 							</span>
 							<p>이제 헤어컬러 시술이 쉬워 집니다...</p>
@@ -84,9 +80,9 @@
 							</ul><!-- /.details -->
 							
 							<span class="card-title grey-text text-darken-4">
-								W3 Set
+								@model.product.name
 							</span>
-							<p>이제 헤어컬러 시술이 쉬워 집니다. 크리에이티브 컬러 작업을 위한 새로운 테크놀로지 전문가들의 익숙한 빗의 그립감과 작업자의 시 술시 도구로 인한 심리적인 스트레스를 최대한 받지 않도록 물리적 기능의 완성도를 높였으며 초보자 또한 전문가 못지않은 헤어 컬러 표현을 할 수 있습니다. 그리고 신생모 연결 작업 또한 쉽게 진행과 2인 작업의 시술시 빠르게 헤어 컬러를 완성할 수 있으며 왼손잡이와 오른손잡이도 사용이 용이하게 설계되었습니다.</p>
+							<p>@model.product.description</p>
 						</div>
 
 <!-- Share
@@ -130,9 +126,9 @@
 				<div class="col s12 m4 l4 center box-3">
 					<div class="card light-blue white-text">
 						<div class="card-content">
-							<span class="item-name">W3 Set</span>
+							<span class="item-name">@model.product.name</span>
 							<hr />
-							<span class="price">₩35,000</span>
+							<span class="price" id="product_price">₩@model.product.price</span>
 						</div>
 					</div><!-- /.card -->
 					
@@ -153,7 +149,6 @@
 				<div class="col s12 m8 l8">
 					<div id="db-past" class="owl-carousel owl-theme">
 		
-						<?php for ($i=0; $i<12; $i++){?>
 							<div class="col s12">
 								<div class="card blue-grey darken-1">
 									<div class="card-image">
@@ -167,7 +162,6 @@
 									</div>
 								</div>
 							</div>
-						<?}?>
 						<div class="customNavigation">
 							<a class="btn prev">Previous</a>
 							<a class="btn next">Next</a>
@@ -190,6 +184,8 @@
 				
 				<script>
 					$(document).ready(function() {
+		
+					$("#product_price").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
 		
 					var owl = $("#db-past");
 					
