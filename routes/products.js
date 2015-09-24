@@ -26,7 +26,7 @@ router.post('/products/new', isAdmin, upload.array('photos', 4), function(req, r
     quantity: req.body.quantity,
     current_quantity: req.body.quantity,
     images: paths
-  })
+  });
   
   console.log(product);
   product.save(function(err) {

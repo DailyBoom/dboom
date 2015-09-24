@@ -4,9 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var flash = require('connect-flash');
 var passport = require('passport');
+
+var app = express();
+
 var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/dailyboom');
@@ -16,8 +19,7 @@ var User = require('./models/user');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var products = require('./routes/products');
-
-var app = express();
+var orders = require('./routes/orders');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,20 +28,20 @@ app.set('view engine', 'vash');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser('keyboard cat'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ secret: 'keyboard cat', name: 'session_id', saveUninitialized: true, resave: true })); // store: new RedisStore({ host: '127.0.0.1',  port: 6379 }),
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use(session({ secret: '{secret}', name: 'session_id', saveUninitialized: true, resave: true }));
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
 
 app.use('/', routes);
 app.use('/', users);
 app.use('/', products);
+app.use('/', orders);
 
 passport.use(new LocalStrategy(
   function (username, password, done) {
@@ -64,11 +66,14 @@ passport.use(new LocalStrategy(
 ));
 
 passport.serializeUser(function(user, done) {
+  console.log("serialize User: " + user);
   done(null, user._id);
 });
  
 passport.deserializeUser(function(id, done) {
+  console.log("deserialize User: ");
   User.findById(id, function(err, user) {
+    console.log(user);
     done(err, user);
   });
 });

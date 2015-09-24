@@ -134,6 +134,9 @@
 					
 					<a id="buy" class="hide-on-small-only waves-effect waves-light btn-floating green">
 						<h2 class="btn-center">Buy Now!</h2>
+						<form method="post" action="/orders/new" id="new_order">
+							<input type="hidden" value="@model.product.id" name="product_id" />
+						</form>
 					</a>
 				</div>
 			</div> <!-- .row -->
@@ -186,6 +189,10 @@
 					$(document).ready(function() {
 		
 					$("#product_price").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
+		
+					$("#buy").click(function() {
+						$("#new_order").submit();
+					});
 		
 					var owl = $("#db-past");
 					

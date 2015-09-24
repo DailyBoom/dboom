@@ -15,7 +15,7 @@ var isAuthenticated = function (req, res, next) {
 
 /* GET Home Page */
 router.get('/', function(req, res, next) {
-  req.flash('info', 'Login succesful!');
+  console.log(req.isAuthenticated());
   Product.findOne({}, {}, { sort: { 'created_at' : -1 }}, function (err, product) {
     res.render('index', { user: req.user, progress: 75, product: product });
   });  
@@ -30,7 +30,7 @@ router.post('/', function(req, res, next) {
     if (err) res.render('index', { title: 'Index', error: err.errmsg });
     User.find().exec(function (err, users) {
       if (err) { next(err) }
-      res.render('index', { title: 'Express', users: users });
+      res.render('index', { title: 'Express' });
     });
   });
 });

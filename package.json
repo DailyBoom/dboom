@@ -20,6 +20,7 @@
     "passport-local": "~1.0.0",
     "connect-flash": "~0.1.1",
     "express-session": "~1.11.3",
-    "multer": "~1.0.3"
+    "multer": "~1.0.3",
+    "connect-redis": "~2.5.1"
   }
 }
