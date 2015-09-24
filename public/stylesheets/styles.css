@@ -1,22 +1,35 @@
 /*  Daily Boom, Inc. All rights reserved.  */
 
+/* Fonts */
+@import url(https://fonts.googleapis.com/css?family=Candal);
+@font-face {
+  font-family: '256bytes';
+  src: url('/fonts/bulkypix.ttf'); /* IE9 Compat Modes */
+  src: url('/fonts/bulkypix.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
 /*	Colors	*/
 
 /*  Grid  */
-@media (max-width: 768px) {
-  .flex-s {
-    display: flex;
-    flex-direction: column; /* Stack on top */
-  }
-  .box-1 {
-    order: 2; /* Go down, bring Box B up */
-  }
-  .box-2 {
-	  order: 1;
-  }
-  .box-3 {
-	  order: 3;
-  }
+@media (max-width: 600px) {
+	.flex-s {
+		display: flex;
+		flex-direction: row; /* Stack on top */
+	}
+	.box-1 {
+		order: 2; /* Go down, bring Box B up */
+	}
+	.box-2 {
+		order: 1;
+	}
+	.box-3 {
+		order: 3;
+	}
+	.nav-logo2 {
+		margin-top: -30px;
+		margin-left: -15px;
+		height: 120px;
+	}
 }
 
 /* Font */
@@ -25,6 +38,63 @@
 }
 
 /* Navbar */
+@media only screen and (min-width: 601px) {
+	nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i{
+		height: 120px;
+		line-height: 120px;
+	}
+	#btn-profile {
+	    height: 100px;
+	    width: 100px;
+	    line-height: 100px;
+	}
+	#btn-profile.btn-floating i.fa.fa-user.fa-4x {
+		font-size: 4rem;
+		line-height: 3rem;
+		vertical-align: middle;
+	}
+	.nav-logo2 {
+		margin-top: -50px;
+		margin-left: -70px;
+		height: 220px;
+	}
+}
+#dropdown-profile {
+	top: 170px !important;
+	border-radius: 5px;
+}
+.d-clock-2 {
+	margin-top: 10px;
+	padding: 0 20px;
+	height: 100px;
+	line-height: 90px;
+	vertical-align: middle;
+	border: 7px solid #666;
+	border-radius: 4px;
+	font-size: 5rem;
+	font-family: '256bytes', sans-serif;
+}
+@media only screen and (min-width: 768px) {
+  .d-clock {
+  	margin-top: 15px;
+  	padding: 0 40px 0 0;
+  	line-height: 100%;
+  	vertical-align: middle;
+  	font-size: 5rem;
+  	font-family: '256bytes', sans-serif;
+  }
+}
+@media only screen and (min-width: 601px), (max-width: 768px) {
+  .d-clock {
+  	margin-top: 15px;
+  	padding: 0 50px 0 0;
+  	line-height: 100%;
+  	vertical-align: middle;
+  	font-size: 4rem;
+  	font-family: '256bytes', sans-serif;
+  }
+}
+
 .top-margin {
 	padding: 25px 0;
 }
@@ -32,9 +102,15 @@
 	margin-top: 3px;
 	height: 60px;
 }
-.nav-logo2 {
-	margin-top: -45px;
-	height: 150px;
+
+.img-profile {
+	height: 40px;
+}
+
+/* Buttons */
+.btn-large {
+	height: 70px;
+	line-height: 70px;
 }
 /* Share Modal */
 .share-social {
@@ -49,46 +125,172 @@
 	padding: 10px;
 }
 
-#wick-2 {
-	height: 40px;
-	top: 0;
-	margin: 0;
-	padding: 0;
-	border: none;
-	border-radius: 0;
-	z-index: 10;
+/* Images */
+@media only screen and (min-width: 601px) {
+
 }
-#wick {
-	height: 40px;
-	position: absolute;
-	bottom: -15px;
+@media only screen and (max-width: 600px) {
+  .slider, .slides {
+    height: 300px !important;
+  }
 }
-#wick.progress {
-	border-radius: 0;
+
+/* Custom Progress Bar Med and Up */
+@media only screen and (min-width: 769px) {
+  .progress-v {
+    position: relative;
+    height: 346px;
+    width: 100%;
+    margin: 0.5rem 0 1rem 0;
+    overflow: hidden;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+	}
+	.determinate-v {
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+		outline-top: 2px solid #ffffff;
+	}
+	.text-progress-v {
+		position: absolute;
+    width: 100%;
+    left: 0;
+    font-size: 2.6rem;
+    height: 346px;
+    line-height: 346px;
+    z-index: 10;
+	}
 }
-#wick-bar { height: 40px; }
-.text-progress {
-    float: right;
-    padding: 0 10px;
-    margin: auto 0;
-    font-size: 2em;
+@media only screen and (min-width: 601px), only screen and (max-width: 768px) {
+	.progress-v {
+    position: relative;
+    height: 346px;
+    width: 100%;
+    margin: 0.5rem 0 1rem 0;
+    overflow: hidden;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+	}
+	.determinate-v {
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+		outline-top: 2px solid #fff;
+	}
+	.text-progress-v {
+		position: absolute;
+	    width: 100%;
+	    left: 0;
+	    font-size: 2.6rem;
+	    height: 346px;
+	    line-height: 346px;
+	    z-index: 10;
+	}
 }
-.btn-buy {
-	width: 200px;
-	height: 200px;
+@media only screen and (max-width: 600px) {
+	.progress-v {
+	    position: relative;
+	    height: 300px;
+	    width: 100%;
+	    margin: 0.5rem 0 1rem 0;
+	    overflow: hidden;
+	    border-top-left-radius: 25px;
+	    border-top-right-radius: 25px;
+	    border-bottom-left-radius: 25px;
+	    border-bottom-right-radius: 25px;
+	}
+	.determinate-v {
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+		outline-top: 2px solid #fff;
+	}
+	.text-progress-v {
+		position: absolute;
+	    width: 100%;
+	    left: 0;
+	    font-size: 2.6rem;
+	    height: 346px;
+	    line-height: 346px;
+	    z-index: 10;
+	}
 }
-#timer { padding: 10px; }
-.btn-center { margin-top: 44px; }
-.item-name { font-size: 3em; }
-.price { font-size: 2.6em; }
+
+/* Custom Progress Bar Mobile */
+.progress-h {
+  width: 100%;
+  height: 25px;
+}
+.determinate-h {
+  position: absolute;
+  width: 100%;
+  height: 25px;
+  border-right: 2px solid #ffffff;
+}
+.text-progress-h {
+  position: absolute;
+  font-family: sans-serif;
+  font-size: 1.4rem !important;
+  color: #ffffff;
+  z-index: 10;
+}
+
+/* Mobile Buttons */
+@media only screen and (min-width: 993px) {
+  .btn-buy-txt {
+    font-size: 2rem;
+    font-family: Candal, sans-serif;
+    height: 150px;
+    width: 150px;
+    line-height: 150px;
+    vertical-align: middle;
+  }
+}
+@media only screen and (min-width: 601px), (max-width: 768px) {
+  .btn-buy-txt {
+  	font-size: 2rem;
+  	font-family: Candal, sans-serif;
+  	height: 150px;
+  	width: 150px;
+  	line-height: 150px;
+  	vertical-align: middle;
+  }
+}
+@media only screen and (max-width: 600px) {
+
+}
 
 .fixed-btn-buy {
 	bottom: 0;
-	height: 50px;
 	width: 100%;
 	position: fixed;
+  font-size: 3rem;
 	z-index: 1000;
-	font-size: 2.3em;
+}
+.d-clock-mobile {
+	width: 100%;
+  padding-top: 7px;
+	font-size: 2.4rem;
+  font-family: '256bytes', sans-serif;
+}
+.btn-buy-mobile {
+	width: 100%;
+	height: 70px;
+	line-height: 70px;
+	vertical-align: middle;
+	margin: 0;
+	font-size: 2.4rem;
+	font-family: Candal, sans-serif;
+}
+
+/* Blank Spaces */
+.section-blank {
+	padding: 25px 0;
 }
 
 /* details */
@@ -100,12 +302,12 @@
 	background-color: rgba(255,255,255,0.7);
 }
 .details {
-	
+
 }
 .details-box {
 	float: right;
 	clear: both;
-	margin-left: 30px; 
+	margin-left: 30px;
 }
 .details-title {
 	margin: 7px 0;
@@ -146,7 +348,7 @@
 	background-size: cover;
 }
 .img-right {
-	max-height: 340px;
+	height: 380px;
 }
 
 /* Login */

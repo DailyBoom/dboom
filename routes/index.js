@@ -17,8 +17,8 @@ var isAuthenticated = function (req, res, next) {
 router.get('/', function(req, res, next) {
   req.flash('info', 'Login succesful!');
   Product.findOne({}, {}, { sort: { 'created_at' : -1 }}, function (err, product) {
-    res.render('index', { user: req.user, progress: 75, product: product });
-  });  
+    res.render('index', { user: req.user, progress: 70, product: product });
+  });
 });
 
 router.post('/', function(req, res, next) {

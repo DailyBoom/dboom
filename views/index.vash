@@ -1,4 +1,4 @@
-@html.extend("layout", function(model) { 
+@html.extend("layout", function(model) {
 	@html.block("body", function(model) {
 		<script>
 			$('.button-collapse').sideNav({
@@ -8,8 +8,8 @@
 				}
 			);
 		</script>
-		
-<!-- Share Modal Structure 
+
+<!-- Share Modal Structure
 		<div id="modal-share" class="modal cyan darken-3 bottom-sheet center">
 			<div class="modal-content">
 				<span class="share-social">
@@ -34,16 +34,16 @@
 					</div>
 					<div id="tab-login" class="col s12">
 						<form class="form-padding" method="post" action="/login">
-			        		<div class="row">
-				        		<br />
-				            	<div class="input-field">
+	        		<div class="row">
+		        		<br />
+		            	<div class="input-field">
 									<input id="username" type="text" class="validate" name="username">
 									<label for="username">Username</label>
 								</div>
 							</div>
 							<div class="row">
-				            	<div class="input-field">
-					              	<input id="password" type="password" class="validate" name="password">
+	            	<div class="input-field">
+		              	<input id="password" type="password" class="validate" name="password">
 								  	<label for="password">Password</label>
 								</div>
 							</div>
@@ -58,45 +58,45 @@
 									</a>
 				            	</div>
 							</div>
-				        </form>
+		        </form>
 					</div>
 					<div id="tab-signup" class="col s12">
 						<form class="form-padding" method="post" action="/login">
-			        		<div class="row">
-			        			<br />
-				            	<div class="input-field">
+	        		<div class="row">
+	        			<br />
+		            	<div class="input-field">
 									<input id="firstname" type="text" class="validate" name="firstname">
 									<label for="firstname">First Name</label>
 								</div>
 							</div>
 							<div class="row">
-				            	<div class="input-field">
-					              	<input id="lastname" type="text" class="validate" name="lastname">
+	            	<div class="input-field">
+		              	<input id="lastname" type="text" class="validate" name="lastname">
 								  	<label for="lastname">Last Name</label>
 								</div>
 							</div>
 							<div class="row">
-				            	<div class="input-field">
-					              	<input id="username" type="text" class="validate" name="username">
+	            	<div class="input-field">
+		              	<input id="username" type="text" class="validate" name="username">
 								  	<label for="username">Username</label>
 								</div>
 							</div>
 							<div class="row">
-				            	<div class="input-field">
-					              	<input id="password" type="password" class="validate" name="password">
+	            	<div class="input-field">
+		              	<input id="password" type="password" class="validate" name="password">
 								  	<label for="password">Password</label>
 								</div>
 							</div>
 							<div class="row">
-					        	<div class="center">
-						        	<div class="blank-block">&nbsp;
-				            		</div>
-					            	<button class="col s12 btn-large waves-effect waves-light cyan darken-3 white-text" type="submit" name="action">
-					            		&nbsp;&nbsp;&nbsp;가입하기&nbsp;&nbsp;&nbsp;
-					            	</button>
-				            	</div>
+			        	<div class="center">
+				        	<div class="blank-block">&nbsp;
+	            		</div>
+		            	<button class="col s12 btn-large waves-effect waves-light cyan darken-3 white-text" type="submit" name="action">
+		            		&nbsp;&nbsp;&nbsp;가입하기&nbsp;&nbsp;&nbsp;
+		            	</button>
+	            	</div>
 							</div>
-				        </form>
+		        </form>
 					</div>
 				</div>
 			</div><!-- .modal-content -->
@@ -106,32 +106,26 @@
 				$('ul.tabs').tabs();
 			});
 		</script>
-		
-		<div class="">
-			<a class="hide-on-med-and-up fixed-btn-buy waves-effect waves-light light-green white-text center modal-trigger" href="#modal-check">
-				Buy Now!
-			</a>
+
+		<div class="hide-on-med-and-up fixed-btn-buy z-depth-1 center">
+			<div class="progress-h amber lighten-3">
+				<span class="text-progress-h">@model.progress%</span>
+				<div class="determinate-h amber darken-1" style="width: @model.progress%;">
+				</div>
+			</div>
+			<div id="time-left-mobile" class="d-clock-mobile red white-text"></div>
 		</div>
-		
+
 		<div class="container">
 			<br />
 			<br />
 			<div class="row flex-s">
-				
-				<div id="main" class="col s12 m8 l8 box-1">
-					
+
+				<div id="main" class="col s12 m10 l10 box-1">
+
 					<div class="card">
 
 						<div class="card-image waves-effect waves-block waves-light">
-			<!-- wick -->
-							<div id="wick-2" class="progress amber lighten-3 z-depth-1">
-								<div id="wick-bar" class="determinate amber darken-1" style="width: @model.progress%;">
-									<span class="white-text text-progress">@model.progress%</span>
-								</div>
-							</div>
-			<!-- Share Modal Trigger 
-							<a class="share-img waves-effect waves-light white-text modal-trigger right" href="#modal-share"><i class="fa fa-share-square-o fa-1-5x right"></i></a>
-			-->
 			<!-- slider -->
 							<div class="slider">
 								<ul class="slides">
@@ -160,54 +154,40 @@
 									<img class="details-img circle z-depth-1" src="images/zone01.png" alt="{BRAND NAME LOGO}" />
 									<div class="details-box">
 										<p class="details-title">Zonecode</p>
-  
 									</div>
 								</li>
 							</ul><!-- /.details -->
-							
+
 							<span class="card-title grey-text text-darken-4">
 								@model.product.name
 							</span>
 							<p>@model.product.description</p>
 						</div>
-
-<!-- Share
-						<div class="card-action">
-							<a href="javascript: noscript()">Share</a>
-							<a href="#">Facebook</a>
-							<a href="#">Kakao</a>
-						</div>
--->
 					</div><!-- /.card -->
+					<div class="hide-on-med-and-up">
+						<a class="waves-effect waves-light btn btn-buy-mobile green modal-trigger" href="modal-check">Buy Now</a>
+					</div><!-- /.hide-on-med-and-up -->
 					<script>
 						$(document).ready(function(){
 							$('.slider').slider({full_width: true, indicators: true});
 						});
 					</script>
 				</div>
-				
-				<!-- time -->
-				<div class="col s12 m4 l4 center box-2">
-					<div class="card cyan darken-3">
-						<div id="timer" class="card-content white-text">
-							<p class="card-title">Time</p>
+
+				<!-- item -->
+				<div class="hide-on-small-only col m2 l2 center box-3">
+<!-- progress bar -->
+					<div class="progress-v amber lighten-3 z-depth-1 center">
+						<span class="white-text text-progress-v">@model.progress%</span>
+						<div class="determinate-v amber darken-1" style="height: @model.progress%;">
 						</div>
 					</div>
-				</div>
-				<br />
-				<!-- item -->
-				<div class="col s12 m4 l4 center box-3">
-					<div class="card light-blue white-text">
-						<div class="card-content">
-							<span class="item-name">@model.product.name</span>
-							<hr />
-							<span class="price" id="product_price">₩@model.product.price</span>
-						</div>
-					</div><!-- /.card -->
+
 <!-- Buy Modal -->
-					<a class="hide-on-small-only waves-effect waves-light waves-effect waves-light btn-floating green btn-buy modal-trigger" href="#modal-check">
-						<h2 class="btn-center">Buy Now!</h2>
+					<a id="btn-buy" class="hide-on-small-only btn-buy-txt waves-effect waves-light btn-floating green modal-trigger" href="#modal-check">
+						Buy Now!
 					</a>
+
 <!-- Buy -> Login Modal JS -->
 					<script>
 						$(document).ready(function(){
@@ -220,12 +200,12 @@
 							);
 						});
 					</script>
-					
+
 				</div>
 			</div> <!-- .row -->
-			
+
 			<br />
-			
+
 			<div class="row">
 				<div class="col s12 m12 l12">
 					<h3>Past items</h3>
@@ -234,7 +214,7 @@
 			<div class="row">
 				<div class="col s12 m8 l8">
 					<div id="db-past" class="owl-carousel owl-theme">
-		
+
 							<div class="col s12">
 								<div class="card blue-grey darken-1">
 									<div class="card-image">
@@ -249,35 +229,35 @@
 								</div>
 							</div>
 						<?}?>
-<!--						
+<!--
 						<div class="customNavigation">
 							<a class="btn prev">Previous</a>
 							<a class="btn next">Next</a>
 						</div>
 -->
-		
+
 					</div><!-- /.owl-carousel -->
-					
+
 				</div><!-- /.col s12 m9 l9 -->
-		
+
 				<div class="col s12 m4 l4 hide-on-med-and-down">
 		<!-- 			<div class="pro-right" style="background-image: url('/images/hero03.jpg')"> -->
 		<!-- 				<img class="ad-img" src="/images/hero03.jpg" alt="" /> -->
-		
+
 					<div class="card">
 						<div class="card-image">
-							<img src="/images/a01.jpg" class="img-right" />
+							<img src="/images/adpic.jpg" class="img-right" />
 						</div>
 					</div>
 				</div>
-				
+
 				<script>
 					$(document).ready(function() {
-		
+
 					$("#product_price").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
-		
+
 					var owl = $("#db-past");
-					
+
 					owl.owlCarousel({
 						items : 2,
 						itemsDesktop : [1000,4],
@@ -288,9 +268,9 @@
 						pagination: false,
 						responsive: true,
 						rewindNav: false
-						
+
 					});
-					
+
 					// Custom Navigation Events
 					$(".next").click(function(){
 						owl.trigger('owl.next');
@@ -298,12 +278,12 @@
 					$(".prev").click(function(){
 						owl.trigger('owl.prev');
 					})
-					
+
 					});
 				</script>
-		
+
 			</div><!-- /.row -->
-		
+
 		</div> <!-- .container -->
 	})
 })
