@@ -28,4 +28,8 @@ router.post('/orders/new', isAuthenticated, function(req, res) {
   });
 });
 
+router.get('/checkout', function(req, res) {
+  res.render('checkout');
+});
+
 module.exports = router;
