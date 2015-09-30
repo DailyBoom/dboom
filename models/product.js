@@ -6,9 +6,9 @@ var Schema = mongoose.Schema;
 var productSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
-  company: { type: String, required: true },
-  company_logo: { type: String, required: true },
-  company_url: { type: String, required: true },
+  company: { type: String, required: false },
+  company_logo: { type: String, required: false },
+  company_url: { type: String, required: false },
   price: Number,
   quantity: Number,
   current_quantity: Number,
