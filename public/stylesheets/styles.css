@@ -288,6 +288,13 @@
 	font-family: Candal, sans-serif;
 }
 
+/* Forms */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 /* Blank Spaces */
 .section-blank {
 	padding: 25px 0;

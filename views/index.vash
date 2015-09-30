@@ -39,9 +39,13 @@
 			        </div>
 			      </div>
 						<div class="row">
-			        <div class="input-field col s12">
+			        <div class="input-field col s12 m10 l10">
 			          <input id="address1" type="text" class="validate">
-			          <label for="address1">주소</label>
+			          <label for="address1">배송지 주소</label>
+			        </div>
+							<div class="input-field col s12 m2 l2">
+			          <input id="zipcode" type="number" class="validate">
+			          <label for="zipcode">우편번호</label>
 			        </div>
 						</div>
 			      <div class="row">
