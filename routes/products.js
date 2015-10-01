@@ -30,7 +30,7 @@ router.post('/products/new', isAdmin, upload.array('photos', 4), function(req, r
   
   console.log(product);
   product.save(function(err) {
-    if (err) res.render('/products/new', { title: 'Index', error: err.errmsg });
+    if (err) console.log(err), res.render('/products/new', { title: 'Index', error: err.errmsg });
     else res.redirect('/');
   });
 });
