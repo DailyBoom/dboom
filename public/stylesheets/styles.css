@@ -112,18 +112,6 @@
 	height: 70px;
 	line-height: 70px;
 }
-/* Share Modal */
-.share-social {
-	display: inline-block;
-}
-.share-img {
-	z-index: 10;
-	margin: 25px 20px 0 0;
-	font-size: 1.5em;
-}
-.social-link {
-	padding: 10px;
-}
 
 /* Images */
 @media only screen and (min-width: 601px) {

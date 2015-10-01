@@ -9,81 +9,41 @@
 			);
 		</script>
 
-<!-- Share Modal Structure
-		<div id="modal-share" class="modal cyan darken-3 bottom-sheet center">
-			<div class="modal-content">
-				<span class="share-social">
-					<a class="social-link white-text" href="{BRAND HOMEPAGE URL}" target="_blank"><i class="fa fa-globe fa-4x"></i></a>
-					<a class="social-link white-text" href="{BRAND FACEBOOK URL}" target="_blank"><i class="fa fa-facebook-official fa-4x"></i></a>
-					<a class="social-link white-text" href="{BRAND TWITTER URL}" target="_blank"><i class="fa fa-twitter fa-4x"></i></a>
-				</span>
-			</div>
-		</div>
--->
-
 <!-- Login Modal Structure -->
 		<div id="modal-check" class="modal">
-			<div class="modal-content">
-<!-- Login modal -->
+			<div class="modal-content center">
+<!-- Login Modal -->
 				<div class="row">
-			    <form class="col s12">
-						<h3>주문</h3>
-			      <div class="row">
-			        <div class="input-field col s12 m6 l6">
-			          <input id="full_name" type="text" class="validate">
-			          <label for="full_name">받는분</label>
-			        </div>
-			        <div class="input-field col s12 m6 l6">
-			          <input id="phone_number" type="tel" class="validate">
-			          <label for="phone_number">전화번호</label>
-			        </div>
-			      </div>
+					<form class="col s12" action="">
+						<h4>Login</h4>
 						<div class="row">
-			        <div class="input-field col s12 m10 l10">
-			          <input id="address1" type="text" class="validate">
-			          <label for="address1">배송지 주소</label>
-			        </div>
-							<div class="input-field col s12 m2 l2">
-			          <input id="zipcode" type="number" class="validate">
-			          <label for="zipcode">우편번호</label>
-			        </div>
-						</div>
-			      <div class="row">
 							<div class="input-field col s12">
-						    <select>>
-						      <option value="1">대한민국</option>
-						      <option value="2">미국</option>
-						      <option value="3">중국</option>
-						      <option value="4">일본</option>
-						    </select>
-						    <label>배송 국가</label>
-						  </div>
-			      </div>
-			      <div class="row">
-			        <div class="input-field col s12">
-			          <input id="email" type="email" class="validate">
-			          <label for="email">Email</label>
-			        </div>
-			      </div>
-						<div class="col s12">
-							<p>
-					      <input type="checkbox" class="filled-in" id="filled-in-box" checked="unchecked" />
-					      <label for="filled-in-box">정보 저장하기</label>
-					    </p>
-							<button class="btn waves-effect waves-light" type="submit" name="action">주문 하기
-						    <i class="fa fa-send right"></i>
-						  </button>
+								<input id="user_id" type="text" class="validate">
+								<label for="user_id">아이디</label>
+							</div>
 						</div>
-			    </form>
-			  </div><!-- .row -->
+						<div class="row">
+							<div class="input-field col s12">
+								<input id="password" type="password" class="validate">
+								<label for="password">비밀번호</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col s12">
+								<button class="waves-effect waves-light btn cyan darken-3" type="submit" name="">
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								</button>
+								&nbsp;&nbsp;|&nbsp;&nbsp;
+								<a class="waves-effect waves-light btn amber darken-3" href="#!">
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;즉시 구매&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								</a>
+							</div>
+						</div>
+					</form>
+				</div>
 
 			</div><!-- .modal-content -->
 		</div>
-		<script>
-			$(document).ready(function() {
-				$('select').material_select();
-			});
-		</script>
 
 		<div class="hide-on-med-and-up fixed-btn-buy z-depth-1 center">
 			<div class="progress-h amber lighten-3">

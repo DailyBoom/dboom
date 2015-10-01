@@ -1,5 +1,68 @@
-@html.extend("layout", function(model) { 
+@html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-	
+		<div class="container">
+			<div class="row">
+				<form class="col s12">
+					<h3>주문</h3>
+					<div class="row">
+						<div class="input-field col s12 m6 l6">
+							<input id="full_name" type="text" class="validate" placeholder="홍길동">
+							<label for="full_name">받는분</label>
+						</div>
+						<div class="input-field col s12 m6 l6">
+							<input id="phone_number" type="tel" class="validate" placeholder="01021345678">
+							<label for="phone_number">전화번호</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12 m9 l9">
+							<input id="address1" type="text" class="validate" placeholder="시 . 구 . 동 . ">
+							<label for="address1">배송지 주소</label>
+						</div>
+						<div class="input-field col s12 m3 l3">
+							<input id="zipcode" type="number" class="validate" placeholder="123456">
+							<label for="zipcode">우편번호</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<select>>
+								<option value="1">대한민국</option>
+								<option value="2">미국</option>
+								<option value="3">중국</option>
+								<option value="4">일본</option>
+							</select>
+							<label>배송 국가</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input id="email" type="email" class="validate">
+							<label for="email">이메일</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12">
+							<p>
+								<input type="checkbox" class="filled-in" id="filled-in-box" checked="unchecked" />
+								<label for="filled-in-box">정보 저장하기</label>
+							</p>
+							<p>
+								* By clicking on "주문하기" you hereby agree to the <a class="" href="#">Terms of Service</a>.
+							</p>
+							<br>
+							<button class="btn waves-effect waves-light" type="submit" name="action">주문 하기
+								<i class="fa fa-send right"></i>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div><!-- .row -->
+		</div>
+		<script>
+			$(document).ready(function() {
+				$('select').material_select();
+			});
+		</script>
 	})
 })
