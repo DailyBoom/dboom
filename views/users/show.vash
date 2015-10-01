@@ -1,5 +1,119 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-	
+		<div class="row">
+			<div class="container">
+				<div class="col s12">
+					<ul class="tabs">
+						<li class="tab col s3"><a class="active" href="#mypage1">주문 내역</a></li>
+						<li class="tab col s3"><a href="#mypage2">정보 설정</a></li>
+						<li class="tab col s3"><a href="#mypage3">나의 설정</a></li>
+					</ul>
+				</div>
+<!-- mypage1 = Basic user info -->
+				<div id="mypage1" class="col s12 m12 l12 set-min-h">
+					<br>
+					<br>
+					<div class="row">
+						<ul class="collapsible popout" data-collapsible="accordion">
+<!-- loop foreach -->
+							<li>
+								<div class="collapsible-header grey lighten-5">
+									<b>
+										<span class="order-date">
+											2015-10-01
+										</span>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<span class="">W3 Ultimate Set</span>
+										<span class="right">배송 완료</span>
+									</b>
+								</div>
+								<div class="collapsible-body">
+									<div class="table-padding">
+										<table class="responsive-table">
+											<tbody>
+												<tr>
+													<td style="width: 20%;">[order number]</td>
+													<td style="width: 60%;" class="truncate">[item name]</td>
+													<td style="width: 20%;" class="right-align">35,000 원</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</li>
+<!-- end foreach -->
+							<li>
+								<div class="collapsible-header grey lighten-5">Second</div>
+								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+							</li>
+							<li>
+								<div class="collapsible-header grey lighten-5">Third</div>
+								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+							</li>
+							<li>
+								<div class="collapsible-header grey lighten-5">Fourth</div>
+								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+							</li>
+							<li>
+								<div class="collapsible-header grey lighten-5">Fifth</div>
+								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+							</li>
+						</ul>
+					</div>
+					<!-- pagination goes here -->
+					<br>
+					<div class="col s12">
+						<div class="row">
+							<ul class="pagination">
+						    <li class="disabled"><a href="#!"><i class="fa fa-chevron-left"></i></a></li>
+						    <li class="active"><a href="#!">1</a></li>
+						    <li class="waves-effect"><a href="#!">2</a></li>
+						    <li class="waves-effect"><a href="#!">3</a></li>
+						    <li class="waves-effect"><a href="#!">4</a></li>
+						    <li class="waves-effect"><a href="#!">5</a></li>
+						    <li class="waves-effect"><a href="#!"><i class="fa fa-chevron-right"></i></a></li>
+						  </ul>
+						</div>
+					</div>
+					<br>
+				</div><!-- #mypage1 -->
+<!-- mypage2 = User + Shipping Info -->
+				<div id="mypage2" class="col s12 m12 l12 set-min-h">
+					<br>
+					<br>
+					<span class="form-text-lg">주소지</span>
+					<br>
+					<div class="row">
+						<div class="col s12 m6 l6">
+							<p>받는분&nbsp;:&nbsp;</p>
+							<p class="form-bold form-text">@model.user.name</p>
+						</div>
+						<div class="col s12 m6 l6">
+							<p>전화번호&nbsp;:&nbsp;</p>
+							<p class="form-bold form-text">01012345678</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12 m9 l9">
+							<p>배송지 주소&nbsp;:&nbsp;</p>
+							<p class="form-bold form-text">서울특별시 용산구 이태원동 123-1 101호</p>
+						</div>
+						<div class="col s12 m3 l3">
+							<p>우편번호&nbsp;:&nbsp;</p>
+							<p class="form-bold form-text">123456</p>
+						</div>
+					</div>
+					<a class="waves-effect waves-light btn cyan darken-3" href="#!">수정하기</a><!-- edit form page -->
+				</div>
+				<div id="mypage3" class="col s12 m12 l12 set-min-h">
+					mypage 3
+				</div>
+			</div>
+		</div>
+		<script>
+		$(document).ready(function(){
+			$('ul.tabs').tabs();
+		});
+		</script>
 	})
 })

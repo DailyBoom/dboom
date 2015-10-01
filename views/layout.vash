@@ -43,13 +43,13 @@
   		<script src="/javascripts/app.js"></script>
     </head>
     <body>
-    	<div class="top-margin cyan darken-3">
-    	</div>
   		<div class="navbar">
   			<nav class="cyan darken-3">
+          <div class="top-margin">
+          </div>
   				<div class="container center">
-  					<a href="/" class=""><img class="nav-logo2 left" src="/images/db_logo01.png" /></a>
-  					<span id="time-left" class="d-clock hide-on-small-only"></span>
+  					<a href="/" class=""><img class="nav-logo left" src="/images/db_logo01.png" /></a>
+  					<span id="time-left" class="d-clock navbar-align hide-on-small-only"></span>
   					<script>
   						$(document).ready(function() {
   						    var interval = setInterval(function() {
@@ -62,19 +62,19 @@
 
   <!--					<a href="/" class="brand-logo">Daily Boom!</a>-->
   					@if (model.user) {
-  						<ul class="right hide-on-med-and-down">
+  						<ul class="right navbar-align profile-align hide-on-med-and-down">
   							<li>
   								<!-- Dropdown Trigger -->
   								<a id="btn-profile" class='dropdown-button btn-floating cyan z-depth-1' href='#' data-activates='dropdown-profile'>
   <!--									<img class="img-profile" src="/images/nobody.jpg" alt="" />-->
-  									<i class="fa fa-user fa-4x"></i>
+  									<i class="fa fa-user fa-3x"></i>
   								</a>
 
   								<!-- Dropdown Structure -->
   								<ul id="dropdown-profile" class="dropdown-content">
   									<li><a class="waves-effect waves-light" href="#!">@model.user.name</a></li>
   									<li class="divider"></li>
-  									<li><a class="waves-effect waves-light" href="!#">My Page</a></li>
+  									<li><a class="waves-effect waves-light" href="/mypage">My Page</a></li>
   									<li><a class="waves-effect waves-light" href="!#">Settings</a></li>
   									<li><a class="waves-effect waves-light" href="/logout">Log Out</a></li>
   								</ul>
@@ -86,9 +86,9 @@
   						</ul>
   					}
   					else {
-  						<ul class="right hide-on-med-and-down">
-  							<li><a class="waves-effect waves-light" href="/login">Login</a></li>
-  							<li><a class="waves-effect waves-light" href="#!">Signup</a></li>
+  						<ul class="right navbar-align hide-on-med-and-down">
+  							<li><a class="waves-effect waves-light btn-align" href="/login">Login</a></li>
+  							<li><a class="waves-effect waves-light btn-align" href="#!">Signup</a></li>
   						</ul>
   						<ul id="slide-out" class="side-nav">
   							<li><a class="waves-effect waves-light" href="/login">Login</a></li>
