@@ -43,10 +43,10 @@
   		<script src="/javascripts/app.js"></script>
     </head>
     <body>
-    	<div class="top-margin">
+    	<div class="top-margin cyan darken-3">
     	</div>
   		<div class="navbar">
-  			<nav class="blue-grey">
+  			<nav class="cyan darken-3">
   				<div class="container center">
   					<a href="/" class=""><img class="nav-logo2 left" src="/images/db_logo01.png" /></a>
   					<span id="time-left" class="d-clock hide-on-small-only"></span>
@@ -74,8 +74,8 @@
   								<ul id="dropdown-profile" class="dropdown-content">
   									<li><a class="waves-effect waves-light" href="#!">@model.user.name</a></li>
   									<li class="divider"></li>
-  									<li><a class="waves-effect waves-light" href="!#">Orders</a></li>
-  									<li><a class="waves-effect waves-light" href="!#">Account</a></li>
+  									<li><a class="waves-effect waves-light" href="!#">My Page</a></li>
+  									<li><a class="waves-effect waves-light" href="!#">Settings</a></li>
   									<li><a class="waves-effect waves-light" href="/logout">Log Out</a></li>
   								</ul>
   							</li>

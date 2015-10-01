@@ -34,7 +34,7 @@
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								</button>
 								&nbsp;&nbsp;|&nbsp;&nbsp;
-								<a class="waves-effect waves-light btn amber darken-3" href="#!">
+								<a class="waves-effect waves-light btn amber darken-3" href="/checkout">
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;즉시 구매&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								</a>
 							</div>
