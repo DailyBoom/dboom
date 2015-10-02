@@ -28,9 +28,6 @@
 						<div class="input-field col s12">
 							<select>>
 								<option value="1">대한민국</option>
-								<option value="2">미국</option>
-								<option value="3">중국</option>
-								<option value="4">일본</option>
 							</select>
 							<label>배송 국가</label>
 						</div>
@@ -47,8 +44,10 @@
 								<input type="checkbox" class="filled-in" id="filled-in-box" checked="unchecked" />
 								<label for="filled-in-box">정보 저장하기</label>
 							</p>
-							<p>
-								* By clicking on "주문하기" you hereby agree to the <a class="" href="#">Terms of Service</a>.
+							<p class="grey-text">
+								* 정보 저장시 이메일로 회원가입이 쉽게 가능합니다.
+								<br>
+								** By clicking on "주문하기" you hereby agree to the <a class="" href="#">Terms of Service</a>.
 							</p>
 							<br>
 							<button class="btn waves-effect waves-light" type="submit" name="action">주문 하기
