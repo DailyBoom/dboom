@@ -29,12 +29,12 @@
 						</div>
 						<div class="row">
 							<div class="col s12">
-								<button class="waves-effect waves-light btn cyan darken-3" type="submit" name="">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<button class="waves-effect waves-light btn cyan darken-3 btn-mod-md" type="submit" name="login">
+									Login
 								</button>
 								<p class="hide-on-med-and-up">
 								</p>
-								<button class="waves-effect waves-light btn blue darken-4" type="button" name="facebook">
+								<button class="waves-effect waves-light btn blue darken-4 btn-mod-md" type="button" name="facebook">
 									<i class="fa fa-facebook-official"></i>&nbsp;Facebook
 								</button>
 								<span class="hide-on-med-and-down">
@@ -42,8 +42,8 @@
 								</span>
 								<p class="hide-on-med-and-up">
 								</p>
-								<a class="waves-effect waves-light btn amber darken-3" href="/checkout">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;즉시 구매&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a class="waves-effect waves-light btn amber darken-3 btn-mod-md" href="/checkout">
+									즉시 구매
 								</a>
 							</div>
 						</div>
@@ -89,24 +89,26 @@
 							</span>
 							<p>이제 헤어컬러 시술이 쉬워 집니다...</p>
 						</div><!-- /.card-content -->
-						<div class="card-reveal">
+						<div class="card-reveal grey lighten-5">
 							<span class="card-title grey-text text-darken-4">
 								<i class="fa fa-times-circle fa-1-5x right"></i>
 							</span>
-							<ul class="details">
-								<li>
-									<img class="details-img circle z-depth-1" src="images/zone01.png" alt="{BRAND NAME LOGO}" />
-									<div class="details-box">
-										<p class="details-title">Zonecode</p>
-									</div>
-								</li>
-							</ul><!-- /.details -->
-
-							<span class="card-title grey-text text-darken-4">
-								@model.product.name
-							</span>
-							<p>@model.product.description</p>
-						</div>
+							<div class="details-box center">
+								<img class="details-img circle z-depth-1" src="images/zone01.png" alt="{BRAND NAME LOGO}" />
+								<br>
+								<span class="text-lg">Zonecode</span>
+								<!-- open when needed
+								<div class="row cyan-text text-darken-3">
+									<span><a href="http://www.zonecode.com/" target="_blank"><i class="fa fa-globe fa-3x brandlink"></i></a></span>
+									<span><a href="http://www.fb.com/zonecode/" target="_blank"><i class="fa fa-facebook-official fa-3x brandlink"></i></a></span>
+								</div>
+							-->
+								<span class="card-title grey-text text-darken-4">
+									@model.product.name
+								</span>
+								<p class="text-md">@model.product.description</p>
+							</div><!-- .details-bottom -->
+						</div><!-- .card-reveal -->
 					</div><!-- /.card -->
 					<div class="hide-on-med-and-up">
 						<a class="waves-effect waves-light btn btn-buy-mobile green modal-trigger" href="#modal-check">Buy Now</a>
@@ -151,41 +153,41 @@
 				</div>
 			</div> <!-- .row -->
 			<br>
-			<div class="row">
-				<div class="col s12 m12 l12">
-					<h3>Past items</h3>
-				</div>
+			<div class="col s12 m12 l12">
+				<span class="text-lg">Past items</span>
 			</div>
 			<div class="row">
 				<div class="col s12 m8 l8">
-					<div id="db-past" class="owl-carousel owl-theme">
-							@if (model.pastProducts) {
-								@model.pastProducts.forEach(function(product) {
-									<div class="col s12">
-										<div class="card blue-grey darken-1">
-											<div class="card-image">
-												<img class="" src="@product.images[0]" alt="" />
-											</div>
-											<div class="card-content white-text">
-												<p class="truncate">@product.description</p>
-											</div>
-											<div class="card-action center">
-												<a href="#">Bring it back! <span class="badge white-text">5</span></a>
+					<div class="row">
+						<div id="db-past" class="owl-carousel owl-theme">
+								@if (model.pastProducts) {
+									@model.pastProducts.forEach(function(product) {
+										<div class="col s12">
+											<div class="card blue-grey darken-1">
+												<div class="card-image">
+													<img class="" src="@product.images[0]" alt="" />
+												</div>
+												<div class="card-content white-text">
+													<p class="truncate">@product.description</p>
+												</div>
+												<div class="card-action">
+													<a href="#">Bring it back! <span class="badge white-text">5</span></a>
+												</div>
 											</div>
 										</div>
-									</div>
-								})
-							}
-						<?}?>
+									})
+								}
+							<?}?>
+						</div>
 					</div><!-- /.owl-carousel -->
 				</div><!-- /.col s12 m9 l9 -->
 
 				<div class="col s12 m4 l4 hide-on-med-and-down">
-					<div class="card">
-						<div class="card-image">
-							<img src="/images/adpic.jpg" class="img-right" />
+					<!-- <div class="card"> -->
+						<div class="card-image add-padding-xs">
+							<img src="/images/adpic.jpg" class="img-right add-border-radius-sm" />
 						</div>
-					</div>
+					<!-- </div> -->
 				</div>
 
 				<script>

@@ -30,7 +30,7 @@
 									</b>
 								</div>
 								<div class="collapsible-body">
-									<div class="table-padding">
+									<div class="add-padding-sm">
 										<table class="responsive-table">
 											<tbody>
 												<tr>
@@ -187,8 +187,8 @@
 									</b>
 								</div>
 								<div class="collapsible-body">
-									<div class="table-padding">
-										<div class="table-padding">
+									<div class="add-padding-sm">
+										<div class="add-padding-sm">
 											<span class="form-lighten">주문 번호&nbsp;:&nbsp;</span>
 											<span class="form-bold">[order number]</span><br><br>
 											<span class="form-lighten">받는분&nbsp;:&nbsp;</span>
