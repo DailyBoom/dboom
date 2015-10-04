@@ -4,15 +4,17 @@
 			<div class="container">
 				<div class="col s12">
 					<ul class="tabs">
-						<li class="tab col s3"><a class="active" href="#mypage1">주문 내역</a></li>
-						<li class="tab col s3"><a href="#mypage2">정보 설정</a></li>
-						<li class="tab col s3"><a href="#mypage3">나의 설정</a></li>
+						<li class="tab col s3"><a class="active" href="#mypage1">주문내역</a></li>
+						<li class="tab col s3"><a href="#mypage2">정보설정</a></li>
+						<!-- Merchants Only -->
+						<li class="tab col s3"><a href="#mypage3">Orders</a></li>
 					</ul>
 				</div>
 <!-- mypage1 = Basic user info -->
 				<div id="mypage1" class="col s12 m12 l12 set-min-h">
-					<br>
-					<br>
+					<br><br>
+					<span class="form-text-lg">나의 주문 내역</span>
+					<br><br>
 					<div class="row">
 						<ul class="collapsible popout" data-collapsible="accordion">
 <!-- loop foreach -->
@@ -28,7 +30,7 @@
 									</b>
 								</div>
 								<div class="collapsible-body">
-									<div class="table-padding">
+									<div class="add-padding-sm">
 										<table class="responsive-table">
 											<tbody>
 												<tr>
@@ -77,39 +79,192 @@
 					</div>
 					<br>
 				</div><!-- #mypage1 -->
-<!-- mypage2 = User + Shipping Info -->
+<!-- #mypage2 = User Account Info -->
 				<div id="mypage2" class="col s12 m12 l12 set-min-h">
 					<br>
 					<br>
-					<span class="form-text-lg">주소지</span>
+					<span class="form-text-lg">나의 정보</span>
 					<br>
 					<div class="row">
-						<div class="col s12 m6 l6">
-							<p>받는분&nbsp;:&nbsp;</p>
-							<p class="form-bold form-text">@model.user.name</p>
-						</div>
-						<div class="col s12 m6 l6">
-							<p>전화번호&nbsp;:&nbsp;</p>
-							<p class="form-bold form-text">01012345678</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col s12 m9 l9">
-							<p>배송지 주소&nbsp;:&nbsp;</p>
-							<p class="form-bold form-text">서울특별시 용산구 이태원동 123-1 101호</p>
-						</div>
-						<div class="col s12 m3 l3">
-							<p>우편번호&nbsp;:&nbsp;</p>
-							<p class="form-bold form-text">123456</p>
-						</div>
-					</div>
-					<a class="waves-effect waves-light btn cyan darken-3" href="#!">수정하기</a><!-- edit form page -->
-				</div>
+						<!-- Left -->
+						<div class="col s12 m7 l7">
+							<div class="card">
+								<div class="card-content">
+									<span class="card-title black-text">기본 정보</span>
+									<br>
+									<div class="row">
+										<div class="col s12 m6 l6">
+											<span>
+												<p class="form-lighten">이름&nbsp;:&nbsp;</p>
+												<p class="form-bold form-text">@model.user.name</p>
+											</span>
+										</div>
+										<div class="col s12 m6 l6">
+											<span>
+												<p class="form-lighten">User ID&nbsp;:&nbsp;</p>
+												<p class="form-bold form-text">@model.user.username</p>
+											</span>
+										</div>
+									</div>
+									<p class="form-lighten">이메일&nbsp;:&nbsp;</p>
+									<p class="form-bold form-text">customer@dailyboom.co</p>
+									<br>
+									<br>
+									<span class="card-title black-text">주소지</span>
+									<br>
+
+									<div class="row">
+										<div class="col s12 m6 l6">
+											<span>
+												<p class="form-lighten">받는분&nbsp;:&nbsp;</p>
+												<p class="form-bold form-text">@model.user.name</p>
+											</span>
+										</div>
+										<div class="col s12 m6 l6">
+											<span>
+												<p class="form-lighten">전화번호&nbsp;:&nbsp;</p>
+												<p class="form-bold form-text">01012345678</p>
+											</span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col s12 m12 l12">
+											<p class="form-lighten">배송지 주소&nbsp;:&nbsp;</p>
+											<p class="form-bold form-text">서울특별시 용산구 이태원동 123-1 한나아파트 100동 101호</p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col s12 m12 l12">
+											<p class="form-lighten">우편번호&nbsp;:&nbsp;</p>
+											<p class="form-bold form-text">123-456</p>
+										</div>
+									</div>
+									<br>
+									<!-- edit form page -->
+									<a class="waves-effect waves-light btn cyan darken-3 white-text" href="#!">정보 수정</a>
+								</div>
+							</div><!-- .card -->
+						</div><!-- Left Card -->
+						<!-- Right -->
+						<div class="col s12 m5 l5">
+							<div class="card">
+								<div class="card-content">
+									<span class="card-title black-text">비밀번호 변경</span>
+									<div class="row">
+								    <form class="col s12 m12 l12">
+											<div class="row">
+												<div class="input-field col s12 m12 l12">
+								          <input id="password_1" type="password" class="validate">
+								          <label for="password_1">새 비밀본호</label>
+												</div>
+												<div class="input-field col s12 m12 l12">
+								          <input id="password_2" type="password" class="validate">
+								          <label for="password_2">새 비밀본호 확인</label>
+									      </div>
+											</div>
+											<button class="waves-effect waves-light btn amber darken-3" type="submit" name="button">변경하기</button>
+										</form>
+									</div>
+								</div>
+							</div><!-- .card -->
+						</div><!-- Right Card -->
+					</div><!-- .row -->
+				</div><!-- #mypage2 -->
+<!-- #mypage3 Merchant Info -->
 				<div id="mypage3" class="col s12 m12 l12 set-min-h">
-					mypage 3
-				</div>
-			</div>
-		</div>
+					<br><br>
+					<span class="form-text-lg">주문 내역</span>
+					<br><br>
+					<div class="row">
+						<ul class="collapsible popout" data-collapsible="accordion">
+<!-- loop foreach -->
+							<li>
+								<div class="collapsible-header grey lighten-5">
+									<b>
+										<span class="order-date">2015-10-01</span>
+										<span class="order-space">@model.user.name</span>
+										<span class="order-space right">[결제 완료]</span>
+									</b>
+								</div>
+								<div class="collapsible-body">
+									<div class="add-padding-sm">
+										<div class="add-padding-sm">
+											<span class="form-lighten">주문 번호&nbsp;:&nbsp;</span>
+											<span class="form-bold">[order number]</span><br><br>
+											<span class="form-lighten">받는분&nbsp;:&nbsp;</span>
+											<span class="form-bold">홍길동</span><br><br>
+											<span class="form-lighten">받는분 주소&nbsp;:&nbsp;</span><span class="hide-on-med-and-up"><br></span>
+											<span class="form-bold">서울특별시 용산구 한강로2가 아파트명 100동 100호</span><br>
+											<span class="form-lighten hide-on-small-only">우편번호&nbsp;:&nbsp;</span>
+											<span class="form-bold"><span class="hide-on-med-and-up">(우)</span>100-123</span><br><br>
+											<span class="form-lighten">주문 상품&nbsp;:&nbsp;</span>
+											<span class="form-bold">W3 Ultimate Set</span><br><br>
+											<span class="form-lighten">주문 수량&nbsp;:&nbsp;</span>
+											<span class="form-bold">[10]</span><br><br>
+											<span class="form-lighten">배송 상태&nbsp;:&nbsp;</span>
+											<span class="form-bold">[준비 중 . 배송 완료]</span>
+										</div>
+									</div>
+								</div>
+							</li>
+<!-- end foreach . delete samples below -->
+							<li>
+								<div class="collapsible-header grey lighten-5">Second</div>
+								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+							</li>
+							<li>
+								<div class="collapsible-header grey lighten-5">Third</div>
+								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+							</li>
+							<li>
+								<div class="collapsible-header grey lighten-5">Fourth</div>
+								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+							</li>
+							<li>
+								<div class="collapsible-header grey lighten-5">Fifth</div>
+								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+							</li>
+							<li>
+								<div class="collapsible-header grey lighten-5">Sixth</div>
+								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+							</li>
+							<li>
+								<div class="collapsible-header grey lighten-5">Seventh</div>
+								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+							</li>
+							<li>
+								<div class="collapsible-header grey lighten-5">Eighth</div>
+								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+							</li>
+							<li>
+								<div class="collapsible-header grey lighten-5">Nineth</div>
+								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+							</li>
+							<li>
+								<div class="collapsible-header grey lighten-5">Tenth</div>
+								<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+							</li>
+						</ul>
+					</div>
+					<!-- pagination goes here -->
+					<br>
+					<div class="col s12">
+						<div class="row">
+							<ul class="pagination">
+						    <li class="disabled"><a href="#!"><i class="fa fa-chevron-left"></i></a></li>
+						    <li class="active"><a href="#!">1</a></li>
+						    <li class="waves-effect"><a href="#!">2</a></li>
+						    <li class="waves-effect"><a href="#!">3</a></li>
+						    <li class="waves-effect"><a href="#!">4</a></li>
+						    <li class="waves-effect"><a href="#!">5</a></li>
+						    <li class="waves-effect"><a href="#!"><i class="fa fa-chevron-right"></i></a></li>
+						  </ul>
+						</div>
+					</div>
+					<br>
+				</div><!-- #mypage3 -->
+			</div><!-- .container -->
+		</div><!-- .row -->
 		<script>
 		$(document).ready(function(){
 			$('ul.tabs').tabs();
