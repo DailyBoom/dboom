@@ -28,4 +28,8 @@ router.get('/mypage', isAuthenticated, function(req, res) {
   res.render('users/show', { user : req.user });
 });
 
+router.get('/signup', function(req, res, next) {
+  res.render('signup');
+});
+
 module.exports = router;

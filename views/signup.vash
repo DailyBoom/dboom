@@ -1,0 +1,5 @@
+@html.extend("layout", function(model) { 
+	@html.block("body", function(model) {
+
+  })
+})
