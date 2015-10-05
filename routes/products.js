@@ -11,6 +11,12 @@ var isAdmin = function (req, res, next) {
   res.redirect('/login');
 }
 
+router.get('/products', isAdmin, function(req, res) {
+  Product.find({}).sort({ 'created_at' : -1 }).exec(function (err, Products) {
+      res.render('products/index', { Products: Products });
+    });
+});
+
 router.get('/products/new', isAdmin, function(req, res) {
   res.render("products/new");
 });
