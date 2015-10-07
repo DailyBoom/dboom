@@ -12,8 +12,7 @@
 /*	Colors	*/
 
 /* Settings */
-.section-blank { padding: 25px 0; }
-
+.section-blank        { padding: 25px 0; }
 .set-min-h            { min-height: 420px; }
 .set-margin-sm        { margin: 15px 5px; }
 .set-margin-xl        { margin-top: 60px; }
@@ -22,8 +21,7 @@
 .add-padding-sm       { padding: 10px; }
 .remove-padding       { padding: 0; }
 .add-border-radius-sm { border-radius: 2px; }
-
-.btn-mod-md { width: 12.2rem; }
+.btn-mod-md           { width: 12.2rem; }
 .btn-mod-lg {
   width: 15rem;
   height: 4rem;
@@ -201,12 +199,11 @@
 	}
 	.text-progress-v {
 		position: absolute;
-	    width: 100%;
-	    left: 0;
-	    font-size: 2.6rem;
-	    height: 346px;
-	    line-height: 346px;
-	    z-index: 10;
+    width: 100%;
+    left: 0;
+    top: 36%;
+    font-size: 2.6rem;
+    z-index: 10;
 	}
 }
 @media only screen and (max-width: 600px) {

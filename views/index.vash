@@ -134,11 +134,10 @@
 				</div>
 
 				<!-- item -->
-				<div class="hide-on-small-only col m2 l2 right center box-3">
+				<div class="hide-on-small-only col m2 l2 center box-3">
 <!-- progress bar -->
 					<div class="progress-v cyan lighten-3 z-depth-1 center">
-						<span class="white-text text-progress-v">@model.progress%</span>
-						<span>팔림</span>
+						<span class="white-text text-progress-v">@model.progress%<br>팔림</span>
 						<div class="determinate-v cyan darken-3" style="height: @model.progress%;">
 						</div>
 					</div>
