@@ -2,6 +2,7 @@
 
 /* Fonts */
 @import url(https://fonts.googleapis.com/css?family=Candal);
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
 @font-face {
   font-family: '256bytes';
   src: url('/fonts/bulkypix.ttf'); /* IE9 Compat Modes */
@@ -11,12 +12,15 @@
 /*	Colors	*/
 
 /* Settings */
+.section-blank { padding: 25px 0; }
+
 .set-min-h            { min-height: 420px; }
 .set-margin-sm        { margin: 15px 5px; }
 .set-margin-xl        { margin-top: 60px; }
 .add-margin-bottom-md { margin-bottom: 2rem; }
 .add-padding-xs       { padding: 5px; }
 .add-padding-sm       { padding: 10px; }
+.remove-padding       { padding: 0; }
 .add-border-radius-sm { border-radius: 2px; }
 
 .btn-mod-md { width: 12.2rem; }
@@ -30,22 +34,24 @@
 /*  Grid  */
 @media (max-width: 600px) {
   .flex-s { flex-direction: row; /* Stack on top */ }
-  .box-1 { order: 2; /* Go down, bring Box B up */ }
+  .box-1 { order: 2; /* Go down, bring Box 2 up */ }
   .box-2 { order: 1; }
   .box-3 { order: 3; }
 }
 
 /* Text */
+.text-sm { font-size: 1rem; }
 .text-md { font-size: 1.2rem; }
 .text-lg { font-size: 2rem; }
 .fa-1-5x { font-size: 1.5em; }
-.form-bold { font-weight: 700; }
+.fa-2-5x { font-size: 2.5em; }
+.form-bold { font-weight: 600; }
 .form-text { font-size: 1.2rem; }
+.form-text-sm { font-size: 1.2rem; }
+.form-text-md { font-size: 1.8rem; }
 .form-text-lg { font-size: 2.4rem; }
 
-.card .card-content p.form-lighten {
-  color: #999;
-}
+.card .card-content p.form-lighten { color: #999; }
 
 /* Navbar */
 @media only screen and (min-width: 601px) {
@@ -85,27 +91,17 @@
   .nav-logo {
 		margin-top: -50px;
 		margin-left: -15px;
-		height: 80px;
+		height: 70px;
 	}
   .top-margin {
     height: 50px;
     background-color: rgba(51,51,51,0.08);
   }
 }
-.d-clock-2 {
-	margin-top: 10px;
-	padding: 0 20px;
-	height: 100px;
-	line-height: 90px;
-	vertical-align: middle;
-	border: 7px solid #666;
-	border-radius: 4px;
-	font-size: 5rem;
-	font-family: '256bytes', sans-serif;
-}
 @media only screen and (min-width: 601px) {
   .d-clock {
     margin-top: -20px;
+    margin-left: -5rem;
   	vertical-align: middle;
     line-height: 4rem;
   	font-size: 4rem;
@@ -127,6 +123,18 @@
   }
 }
 @media only screen and (max-width: 600px) {
+  .d-clock {
+    margin-top: -20px;
+    margin-left: -1rem;
+  	vertical-align: middle;
+  	font-size: 2rem;
+  	font-family: '256bytes', sans-serif;
+  }
+  .navbar-align {
+    display: inline-block;
+    position: relative;
+    margin-top: -92px;
+  }
   .profile-align {
     margin-top: -50px;
     padding: 0;
@@ -134,11 +142,18 @@
   #dropdown-profile {
   	border-radius: 5px;
   }
+  .mobile-share {
+    height: 4rem;
+  }
+  .mobile-share a img.social {
+    position: relative;
+    padding: 5px 0 0 0;
+    height: 3rem;
+  }
 }
+.clock-font { font-family: 'Hanna', sans-serif; }
 
-.img-profile {
-	height: 40px;
-}
+.img-profile { height: 40px; }
 
 /* Buttons */
 .btn-large {
@@ -162,47 +177,21 @@
     height: 300px;
   }
 }
-
-/* Custom Progress Bar Med and Up */
-@media only screen and (min-width: 769px) {
-  .progress-v {
-    position: relative;
-    height: 346px;
-    width: 100%;
-    margin: 0.5rem 0 1rem 0;
-    overflow: hidden;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-	}
-	.determinate-v {
-		position: absolute;
-		width: 100%;
-		bottom: 0;
-		outline-top: 2px solid #ffffff;
-	}
-	.text-progress-v {
-		position: absolute;
-    width: 100%;
-    left: 0;
-    font-size: 2.6rem;
-    height: 346px;
-    line-height: 346px;
-    z-index: 10;
-	}
+/* Mobile */
+@media only screen and (max-width: 600px) {
+  #main {
+    margin-top: -2rem;
+    padding: 0;
+  }
 }
-@media only screen and (min-width: 601px), only screen and (max-width: 768px) {
+/* Custom Progress Bar Med and Up */
+@media only screen and (min-width: 601px) {
 	.progress-v {
     position: relative;
     height: 346px;
     width: 100%;
     margin: 0.5rem 0 1rem 0;
     overflow: hidden;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
 	}
 	.determinate-v {
 		position: absolute;
@@ -279,7 +268,7 @@
     vertical-align: middle;
   }
 }
-@media only screen and (min-width: 601px), (max-width: 768px) {
+@media only screen and (min-width: 601px) {
   .btn-buy-txt {
   	font-size: 2rem;
   	font-family: Candal, sans-serif;
@@ -323,11 +312,6 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
 }
 
-/* Blank Spaces */
-.section-blank {
-	padding: 25px 0;
-}
-
 /* details */
 .slider .indicators {
 	bottom: 10px;
@@ -351,6 +335,10 @@ input[type=number]::-webkit-outer-spin-button {
   .brandlink {
     padding: 0 4px;
   }
+  .social {
+  	height: 2.1rem;
+    padding: 0 5px;
+  }
 }
 @media only screen and (max-width: 600px) {
   .details-box {
@@ -366,11 +354,13 @@ input[type=number]::-webkit-outer-spin-button {
   .brandlink {
     padding: 0 4px;
   }
+  .social {
+  	height: 2rem;
+    padding: 0 4px;
+  }
 }
 
-.social {
-	height: 30px;
-}
+
 .customNavigation{
   text-align: center;
 }
@@ -404,7 +394,49 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /* Checkout Page*/
-
+.btn-order {
+  width: 100%;
+  height: 4rem;
+  line-height: 4rem;
+  vertical-align: middle;
+  font-size: 1.4rem;
+}
+#add-id,
+#add-address {
+  -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+         -moz-animation: fadein 1s; /* Firefox < 16 */
+          -ms-animation: fadein 1s; /* Internet Explorer */
+           -o-animation: fadein 1s; /* Opera < 12.1 */
+              animation: fadein 1s;
+}
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
 
 /* My Page */
 .order-space { padding: 0 10px; }
+.edit-order {
+  display: inline-block;
+  width: 100%;
+}
