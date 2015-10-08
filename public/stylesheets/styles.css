@@ -140,6 +140,11 @@
   #dropdown-profile {
   	border-radius: 5px;
   }
+  ul#dropdown-profile.dropdown-content,
+  ul#dropdown-profile.dropdown-content.active {
+    margin-top: 3rem;
+    right: 0 !important;
+  }
   .mobile-share {
     height: 4rem;
   }
@@ -150,7 +155,6 @@
   }
 }
 .clock-font { font-family: 'Hanna', sans-serif; }
-
 .img-profile { height: 40px; }
 
 /* Buttons */
@@ -356,7 +360,6 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 0 4px;
   }
 }
-
 
 .customNavigation{
   text-align: center;

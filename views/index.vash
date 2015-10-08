@@ -13,35 +13,31 @@
 			<div class="modal-content center">
 <!-- Login Modal -->
 				<div class="row">
-					<form class="col s12" action="">
+					<form class="col s12" method="post" action="/login">
 						<h5>Login</h5>
 						<div class="row">
 							<div class="input-field col s12 m10 offset-m1 l10 offset-l1">
 								<input id="user_id" type="text" class="validate">
 								<label for="user_id">아이디</label>
 							</div>
-						</div>
-						<div class="row">
 							<div class="input-field col s12 m10 offset-m1 l10 offset-l1">
 								<input id="password" type="password" class="validate">
 								<label for="password">비밀번호</label>
 							</div>
 						</div>
 						<div class="row">
-							<div class="col s12">
 								<button class="waves-effect waves-light btn cyan darken-3 btn-mod-md" type="submit" name="login">
 									Login
 								</button>
 								<p class="hide-on-med-and-up"></p>
-								<button class="waves-effect waves-light btn blue darken-4 btn-mod-md" type="button" name="facebook">
+								<a class="waves-effect waves-light btn blue darken-4 btn-mod-md" href="#!facebook">
 									<i class="fa fa-facebook-official"></i>&nbsp;Facebook
-								</button>
+								</a>
 								<span class="hide-on-med-and-down">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
 								<p class="hide-on-med-and-up"></p>
 								<a class="waves-effect waves-light btn amber darken-3 btn-mod-md" href="/checkout">
 									즉시 구매
 								</a>
-							</div>
 						</div>
 						<div class="row">
 							<a class="waves-effect waves-light btn-flat cyan-text text-darken-3 btn-mod-md" href="/signup">
@@ -71,7 +67,7 @@
 			<div class="row flex-s">
 				<div id="main" class="col s12 m10 l10 left box-1">
 					<div class="card">
-						<div class="card-image waves-effect waves-block waves-light">
+						<div class="card-image">
 			<!-- Image Slider -->
 							<div class="slider">
 								<ul class="slides">
