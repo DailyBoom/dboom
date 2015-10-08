@@ -68,7 +68,8 @@
           <div class="top-margin">
           </div>
   				<div class="container center">
-  					<a href="/" class=""><img class="nav-logo left" src="/images/dbkorea02.png" /></a>
+  					<a href="/" class="logo-d"><img class="nav-logo left" src="/images/dbkorea02.png" /></a>
+  					<a href="/" class="logo-m"><img class="nav-logo left" src="/images/dbkorea01.png" /></a>
   					<span id="time-left-label" class="d-clock navbar-align clock-font">남은시간</span>
             <span id="time-left" class="d-clock navbar-align"></span>
   					<script>

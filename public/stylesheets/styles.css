@@ -10,37 +10,47 @@
 }
 
 /*	Colors	*/
+.facebook, .facebook:hover, .facebook:active  { background-color: #3b5998; }
+.kakao, .kakao:hover, .kakao:active           { background-color: #ffeb00; color: #3c1e1e; }
 
 /* Settings */
 .section-blank        { padding: 25px 0; }
 .set-min-h            { min-height: 420px; }
 .set-margin-sm        { margin: 15px 5px; }
 .set-margin-xl        { margin-top: 60px; }
+.add-margin-bottom-xs { margin-bottom: .5rem; }
+.add-margin-bottom-sm { margin-bottom: 1rem; }
 .add-margin-bottom-md { margin-bottom: 2rem; }
+.add-margin-sm        { margin: 1rem; }
+.add-margin-tb        { margin: 0.5rem 0; }
 .add-padding-xs       { padding: 5px; }
 .add-padding-sm       { padding: 10px; }
 .remove-padding       { padding: 0; }
 .remove-margin-bottom { margin-bottom: 0; }
 .add-border-radius-sm { border-radius: 2px; }
-.btn-mod-md           { width: 12.2rem; }
+.btn-mod-md           { width: 11rem; margin: 0; }
 .btn-mod-lg {
   width: 15rem;
   height: 4rem;
   line-height: 4rem;
   font-size: 1.5rem;
 }
+div.col.s12.set-padding       { padding: 0; }
+form.col.s12.set-form-padding { padding: 0 0.5rem; }
 
 /*  Grid  */
 @media (max-width: 600px) {
   .flex-s { flex-direction: row; /* Stack on top */ }
-  .box-1 { order: 2; /* Go down, bring Box 2 up */ }
-  .box-2 { order: 1; }
+  .box-1 { order: 1; /* Go down, bring Box 2 up */ }
+  .box-2 { order: 2; }
   .box-3 { order: 3; }
+  .box-4 { order: 4; }
 }
 
 /* Text */
 .text-sm { font-size: 1rem; }
 .text-md { font-size: 1.2rem; }
+.text-sl { font-size: 1.6rem; }
 .text-lg { font-size: 2rem; }
 .fa-1-5x { font-size: 1.5em; }
 .fa-2-5x { font-size: 2.5em; }
@@ -53,7 +63,9 @@
 .card .card-content p.form-lighten { color: #999; }
 
 /* Navbar */
-@media only screen and (min-width: 601px) {
+@media only screen and (min-width: 601px){
+  .logo-d { display: block; }
+  .logo-m { display: none; }
 	nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i{
 		height: 136px;
 		line-height: 136px;
@@ -75,7 +87,7 @@
 	}
 	.nav-logo {
 		margin-top: -44px;
-		margin-left: -70px;
+		margin-left: -45px;
 		height: 180px;
 	}
   .top-margin {
@@ -87,8 +99,10 @@
   }
 }
 @media only screen and (max-width: 600px) {
+  .logo-d { display: none; }
+  .logo-m { display: block; }
   .nav-logo {
-		margin-top: -50px;
+		margin-top: -46px;
 		margin-left: -15px;
 		height: 70px;
 	}
@@ -159,10 +173,74 @@
 .img-profile { height: 40px; }
 
 /* Login Modal */
-@media only screen and (min-width: 601px) {}
+@media only screen and (min-width: 601px) {
+  .btn-login {
+    width: 8rem;
+  }
+  .btn-fb {
+    width: 100%;
+    height: 56px;
+    margin-top: .4rem;
+    border-radius: 2px;
+    padding: 0;
+    vertical-align: middle;
+    line-height: 56px;
+    font-size: 1.15rem;
+  }
+  .social-login-facebook {
+    height: 1.6rem;
+    padding: 0;
+    margin-top: -3px;
+    margin-right: 3.5rem;
+    margin-left: -2.5rem;
+    line-height: 1.5rem;
+    vertical-align: middle;
+  }
+  .social-login-kakao {
+    width: 100%;
+  }
+  .or-wrapper {
+    line-height: 15rem;
+    font-size: 1.25rem;
+  }
+  .vline {
+    position: absolute;
+    width: 1px;
+    height: 67%;
+    top: 16.5%;
+    left: 46.2%;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+}
 @media only screen and (max-width: 600px) {
   #modal-check.modal div.modal-content {
     padding: 0;
+  }
+  .btn-login {
+    width: 92%;
+    height: 46px;
+    font-size: 1.15rem;
+  }
+  .social-login-facebook {
+    height: 1.6rem;
+    padding: 0;
+    margin-top: -3px;
+    line-height: 1.5rem;
+    vertical-align: middle;
+  }
+  .social-login-kakao {
+    width: 95%;
+  }
+  .btn-fb {
+    width: 46%;
+    height: 46px;
+    margin-top: -6px;
+    border-radius: 5px;
+    padding: 0;
+    vertical-align: middle;
+    line-height: 47px;
+    font-size: 1.15rem;
   }
 }
 

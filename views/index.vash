@@ -13,37 +13,70 @@
 			<div class="modal-content center">
 <!-- Login Modal -->
 				<div class="row">
-					<form class="col s12" method="post" action="/login">
-						<div class="col s10 offset-s1">
-							<p class="text-md">Login</p>
+					<form class="col s12 set-form-padding" method="post" action="/login">
+						<!-- <div class="col s12 m10 offset-m1 l10 offset-l1">
+							<p class="text-lg">Login</p>
+						</div> -->
+						<br>
+						<div class="col s12 set-padding m5 l5">
+							<div class="row set-padding remove-margin-bottom">
+								<div class="input-field col s12">
+									<input id="user_id" type="text" class="validate">
+									<label for="user_id">아이디</label>
+								</div>
+								<div class="input-field col s12">
+									<input id="password" type="password" class="validate">
+									<label for="password">비밀번호</label>
+								</div>
+							</div>
+							<div class="col s12 m12 l12 add-margin-bottom-xs">
+								<p style="font-size: .49rem;">&nbsp;</p>
+								<span class="left">
+									<input type="checkbox" id="saveid" />
+									<label for="saveid">아이디 저장하기</label>
+								</span>
+								<span class="right">
+									<button class="hide-on-small-only waves-effect waves-light btn cyan darken-3 btn-" type="submit" name="login">
+										로그인
+									</button>
+								</span>
+							</div>
 						</div>
-						<div class="row">
-							<div class="input-field col s10 offset-s1 m10 offset-m1 l10 offset-l1">
-								<input id="user_id" type="text" class="validate">
-								<label for="user_id">아이디</label>
-							</div>
-							<div class="input-field col s10 offset-s1 m10 offset-m1 l10 offset-l1">
-								<input id="password" type="password" class="validate">
-								<label for="password">비밀번호</label>
-							</div>
+						<div class="hide-on-small-only col m1 l1 or-wrapper">
+							<div class="vline"></div>
+							<span class="grey lighten-5 add-padding-sm">or</span>
+						</div>
+						<div class="hide-on-small-only col m6 l6">
+							<a class="waves-effect waves-light btn-flat white-text facebook btn-fb" href="#!facebook">
+								<img class="social-login-facebook" src="/images/facebook.png" />페이스북계정으로 로그인
+							</a>
+							<a class="waves-effect waves-light" href="#!kakao" style="margin-top: 1.4rem;">
+								<img class="social-login-kakao" src="/images/kakao_account_login_btn_large_wide.png" />
+							</a>
+							<a class="waves-effect waves-light btn-flat white-text amber darken-3 btn-fb" href="#!buynow" style="margin-top: 1rem;">
+								<!-- <img class="social-login-facebook" src="/images/facebook.png" />-->
+								<i class="fa fa-shopping-cart fa-3x" style="margin-left: -2rem;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;로그인 안하고 바로구매
+							</a>
 						</div>
 						<div class="row remove-margin-bottom">
-								<button class="waves-effect waves-light btn cyan darken-3 btn-mod-md" type="submit" name="login">
-									Login
+							<div class="hide-on-med-and-up row">
+								<button class="waves-effect waves-light btn cyan darken-3 btn-login" type="submit" name="login">
+									로그인
 								</button>
-								<p class="hide-on-med-and-up"></p>
-								<a class="waves-effect waves-light btn blue darken-4 btn-mod-md" href="#!facebook">
-									<i class="fa fa-facebook-official"></i>&nbsp;Facebook
+								<br><span class="text-md center">- or -</span><br>
+								<a class="waves-effect waves-light btn-flat white-text facebook btn-fb" href="#!facebook">
+									<img class="social-login-facebook" src="/images/facebook.png" />&nbsp;&nbsp;&nbsp;로그인
 								</a>
-								<span class="hide-on-med-and-down">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-								<p class="hide-on-med-and-up"></p>
+								<a class="waves-effect waves-light" href="#!kakao">
+									<img class="social-login-kakao" src="/images/kakao_login_btn_medium.png" />
+								</a>
 								<a class="waves-effect waves-light btn amber darken-3 btn-mod-md" href="/checkout">
 									즉시 구매
 								</a>
-								<p class="hide-on-med-and-up"></p>
 								<a class="waves-effect waves-light btn-flat cyan-text text-darken-3 btn-mod-md" href="/signup">
 									회원가입
 								</a>
+							</div>
 						</div>
 					</form>
 				</div>
