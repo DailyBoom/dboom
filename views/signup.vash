@@ -1,5 +1,100 @@
-@html.extend("layout", function(model) { 
+@html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-
+		<div class="container">
+			<div class="row">
+				<form class="col s12">
+					<h3>회원가입</h3>
+					<div class="row">
+						<div class="input-field col s12 m6 l6">
+							<input id="userid" type="text" class="validate">
+							<label for="userid">아이디</label>
+						</div>
+						<div class="input-field col s12 m6 l6">
+							<input id="email" type="email" class="validate">
+							<label for="email">이메일</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12 m6 l6">
+							<input id="password" type="password" class="validate">
+							<label for="password">비밀번호</label>
+						</div>
+						<div class="input-field col s12 m6 l6">
+							<input id="confirmpassword" type="password" class="validate">
+							<label for="confirmpassword">비밀번호 확인</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12">
+							<p>
+								<input type="checkbox" id="agree-add-address" />
+								<label for="agree-add-address">배송 정보 추가</label>
+							</p>
+							<div id="add-address" class="hide">
+								<br>
+								<div class="row">
+									<div class="input-field col s12 m6 l6">
+										<input id="full_name" type="text" class="validate">
+										<label for="full_name">받는분 이름</label>
+									</div>
+									<div class="input-field col s12 m6 l6">
+										<input id="phone_number" type="tel" class="validate">
+										<label for="phone_number">전화번호</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12 m9 l9">
+										<input id="address1" type="text" class="validate" placeholder="시 . 구 . 동 . ">
+										<label for="address1">배송지 주소</label>
+									</div>
+									<div class="input-field col s12 m3 l3">
+										<input id="zipcode" type="number" class="validate" placeholder="123456">
+										<label for="zipcode">우편번호</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<select>>
+											<option value="1">대한민국</option>
+										</select>
+										<label>배송 국가</label>
+									</div>
+								</div>
+							</div>
+							<script>
+								$("#agree-add-address").on("change", function() {
+									$('#add-address').toggleClass('hide');
+								});
+							</script>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12">
+							<span class="red-text">필수 동의항목</span>
+							<p class="grey-text">
+								<input type="checkbox" id="agree-terms-1" />
+								<label for="agree-terms-1"><a class="" href="#!">Daily Boom 구매회원원 이용약관.</a></label>
+							</p>
+							<p class="grey-text">
+								<input type="checkbox" id="agree-terms-2" />
+								<label for="agree-terms-2"><a class="" href="#!">전자금웅서비스 이용약관.</a></label>
+							</p>
+							<p class="grey-text">
+								<input type="checkbox" id="agree-terms-3" />
+								<label for="agree-terms-3"><a class="" href="#!">개인정보 수집 및 이용.</a></label>
+							</p>
+							<br>
+							<button class="btn waves-effect waves-light btn-order cyan darken-3" type="submit" name="action">가입 하기
+							</button>
+						</div>
+					</div>
+				</form>
+			</div><!-- .row -->
+		</div>
+		<script>
+			$(document).ready(function() {
+				$('select').material_select();
+			});
+		</script>
   })
 })
