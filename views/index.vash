@@ -34,7 +34,7 @@
 								</button>
 								<p class="hide-on-med-and-up">
 								</p>
-								<button class="waves-effect waves-light btn blue darken-4 btn-mod-md" type="button" name="facebook">
+								<button class="waves-effect waves-light btn blue darken-4 btn-mod-md" type="button" name="facebook" id="facebook">
 									<i class="fa fa-facebook-official"></i>&nbsp;Facebook
 								</button>
 								<span class="hide-on-med-and-down">
@@ -192,6 +192,12 @@
 
 				<script>
 					$(document).ready(function() {
+
+					$("#facebook").on("click", function(){
+						var winTop = (screen.height / 2) - (350 / 2);
+						var winLeft = (screen.width / 2) - (600 / 2);
+						window.open("/auth/facebook", 'facebook', 'top=' + winTop + ',left=' + winLeft +',toolbar=0,status=1,width=600,height=350');
+					});
 
 					$("#product_price").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
 

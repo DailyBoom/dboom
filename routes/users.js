@@ -32,4 +32,18 @@ router.get('/signup', function(req, res, next) {
   res.render('signup');
 });
 
+router.get('/auth/facebook',
+  passport.authenticate('facebook',
+    { display: 'popup'},
+    { scope: ['email', 'public_profile'] },
+    { profileFields: ["id", "birthday", "email", "first_name", "gender", "last_name"] }
+  ));
+
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.render('callback');
+  });
+
 module.exports = router;

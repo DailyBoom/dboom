@@ -7,8 +7,9 @@ var SALT_WORK_FACTOR = 10;
 // create a schema
 var userSchema = new Schema({
   name: String,
+  email: { type: String, required: true, unique: true },
   username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  password: { type: String },
   admin: Boolean,
   location: {
     address: String,
@@ -16,9 +17,10 @@ var userSchema = new Schema({
     city: String,
     zipcode: Number,
   },
-  role: { type: String, required: true, unique: true },
+  role: { type: String, required: true },
   created_at: { type : Date, default : Date.now },
-  updated_at: Date
+  updated_at: Date,
+  facebookId: Number
 });
 
 userSchema.pre('save', function(next) {

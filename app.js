@@ -11,6 +11,7 @@ var app = express();
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/dailyboom');
 var User = require('./models/user');
@@ -65,13 +66,48 @@ passport.use(new LocalStrategy(
   }
 ));
 
+passport.use(new FacebookStrategy({
+    clientID: "636096523200038",
+    clientSecret: "9980ae2e967b246bef211729d57d4e5f",
+    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    enableProof: false
+  },
+  function(accessToken, refreshToken, profile, done) {
+     //check user table for anyone with a facebook ID of profile.id
+      User.findOne({
+          'facebookId': profile.id 
+      }, function(err, user) {
+          if (err) {
+              return done(err);
+          }
+          //No user was found... so create a new user with values from Facebook (all the profile. stuff)
+          if (!user) {
+              console.log(profile);
+              user = new User({
+                  name: profile.displayName,
+                  email: profile.email,
+                  username: 'DBU'+profile.id,
+                  role: 'user',
+                  //now in the future searching on User.findOne({'facebook.id': profile.id } will match because of this next line
+                  facebookId: profile.id
+              });
+              user.save(function(err) {
+                  if (err) console.log(err);
+                  return done(err, user);
+              });
+          } else {
+              //found user. Return
+              return done(err, user);
+          }
+      });
+  }
+));
+
 passport.serializeUser(function(user, done) {
-  console.log("serialize User: " + user);
   done(null, user._id);
 });
  
 passport.deserializeUser(function(id, done) {
-  console.log("deserialize User: ");
   User.findById(id, function(err, user) {
     console.log(user);
     done(err, user);
