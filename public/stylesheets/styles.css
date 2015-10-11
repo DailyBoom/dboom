@@ -9,11 +9,11 @@
   src: url('/fonts/bulkypix.ttf')  format('truetype'), /* Safari, Android, iOS */
 }
 
-/*	Colors	*/
+/* Colors	*/
 .facebook, .facebook:hover, .facebook:active  { background-color: #3b5998; }
 .kakao, .kakao:hover, .kakao:active           { background-color: #ffeb00; color: #3c1e1e; }
 
-/* Settings */
+/* Global Settings */
 .section-blank        { padding: 25px 0; }
 .set-min-h            { min-height: 420px; }
 .set-margin-sm        { margin: 15px 5px; }
@@ -29,36 +29,23 @@
 .remove-margin-bottom { margin-bottom: 0; }
 .add-border-radius-sm { border-radius: 2px; }
 .btn-mod-md           { width: 11rem; margin: 0; }
-.btn-mod-lg {
-  width: 15rem;
-  height: 4rem;
-  line-height: 4rem;
-  font-size: 1.5rem;
-}
+.btn-mod-lg           { width: 15rem; height: 4rem; line-height: 4rem; font-size: 1.5rem; }
+
 div.col.s12.set-padding       { padding: 0; }
 form.col.s12.set-form-padding { padding: 0 0.5rem; }
 
-/*  Grid  */
-@media (max-width: 600px) {
-  .flex-s { flex-direction: row; /* Stack on top */ }
-  .box-1 { order: 1; /* Go down, bring Box 2 up */ }
-  .box-2 { order: 2; }
-  .box-3 { order: 3; }
-  .box-4 { order: 4; }
-}
+/* Grid */
 
 /* Text */
 .text-sm { font-size: 1rem; }
 .text-md { font-size: 1.2rem; }
 .text-sl { font-size: 1.6rem; }
 .text-lg { font-size: 2rem; }
+.text-xl { font-size: 2.4rem; }
 .fa-1-5x { font-size: 1.5em; }
 .fa-2-5x { font-size: 2.5em; }
 .form-bold { font-weight: 600; }
-.form-text { font-size: 1.2rem; }
-.form-text-sm { font-size: 1.2rem; }
 .form-text-md { font-size: 1.8rem; }
-.form-text-lg { font-size: 2.4rem; }
 
 .card .card-content p.form-lighten { color: #999; }
 
@@ -172,46 +159,14 @@ form.col.s12.set-form-padding { padding: 0 0.5rem; }
 .clock-font { font-family: 'Hanna', sans-serif; }
 .img-profile { height: 40px; }
 
-/* Login Modal */
+/* Home Page */
+/** Login Modal **/
 @media only screen and (min-width: 601px) {
-  .btn-login {
-    width: 8rem;
-  }
-  .btn-fb {
-    width: 100%;
-    height: 56px;
-    margin-top: .4rem;
-    border-radius: 2px;
-    padding: 0;
-    vertical-align: middle;
-    line-height: 56px;
-    font-size: 1.15rem;
-  }
-  .social-login-facebook {
-    height: 1.6rem;
-    padding: 0;
-    margin-top: -3px;
-    margin-right: 3.5rem;
-    margin-left: -2.5rem;
-    line-height: 1.5rem;
-    vertical-align: middle;
-  }
-  .social-login-kakao {
-    width: 100%;
-  }
-  .or-wrapper {
-    line-height: 15rem;
-    font-size: 1.25rem;
-  }
-  .vline {
-    position: absolute;
-    width: 1px;
-    height: 67%;
-    top: 16.5%;
-    left: 46.2%;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    z-index: -1;
-  }
+  .btn-login { width: 8rem; }
+  .btn-fb { width: 100%; height: 56px; margin-top: .4rem; border-radius: 2px; padding: 0; vertical-align: middle; line-height: 56px; font-size: 1.15rem; }
+  .social-login-facebook { height: 1.6rem; padding: 0; margin-top: -3px; margin-right: 3.5rem; margin-left: -2.5rem; line-height: 1.5rem; vertical-align: middle; }
+  .social-login-kakao { width: 100%; }
+  .or-wrapper { line-height: 15rem; font-size: 1.25rem; }
 }
 @media only screen and (max-width: 600px) {
   #modal-check.modal div.modal-content {

@@ -98,8 +98,8 @@
 		<div class="section-blank">
 		</div>
 		<div class="container">
-			<div class="row flex-s">
-				<div id="main" class="col s12 m10 l10 left box-1">
+			<div class="row">
+				<div id="main" class="col s12 m10 l10 left">
 					<div class="card">
 						<div class="card-image">
 			<!-- Image Slider -->
@@ -164,7 +164,7 @@
 				</div>
 
 				<!-- item -->
-				<div class="hide-on-small-only col m2 l2 center box-3">
+				<div class="hide-on-small-only col m2 l2 center">
 <!-- progress bar -->
 					<div class="progress-v cyan lighten-3 z-depth-1 center">
 						<span class="white-text text-progress-v">@model.progress%<br>팔림</span>
