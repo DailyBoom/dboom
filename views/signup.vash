@@ -72,16 +72,20 @@
 						<div class="col s12">
 							<span class="red-text">필수 동의항목</span>
 							<p class="grey-text">
-								<input type="checkbox" id="agree-terms-1" />
-								<label for="agree-terms-1"><a class="" href="#!">Daily Boom 구매회원원 이용약관.</a></label>
+								<input type="checkbox" id="agree-all" />
+								<label for="agree-all">전체동의</label>
 							</p>
 							<p class="grey-text">
-								<input type="checkbox" id="agree-terms-2" />
-								<label for="agree-terms-2"><a class="" href="#!">전자금웅서비스 이용약관.</a></label>
+								<input class="agree-check" type="checkbox" id="agree-terms-1" />
+								<label for="agree-terms-1">Daily Boom 구매회원원 이용약관.</label><a class="right" href="#!terms1">보기</a>
 							</p>
 							<p class="grey-text">
-								<input type="checkbox" id="agree-terms-3" />
-								<label for="agree-terms-3"><a class="" href="#!">개인정보 수집 및 이용.</a></label>
+								<input class="agree-check" type="checkbox" id="agree-terms-2" />
+								<label for="agree-terms-2">전자금웅서비스 이용약관.</label><a class="right" href="#!terms2">보기</a>
+							</p>
+							<p class="grey-text">
+								<input class="agree-check" type="checkbox" id="agree-terms-3" />
+								<label for="agree-terms-3">개인정보 수집 및 이용.</label><a class="right" href="#!terms3">보기</a>
 							</p>
 							<br>
 							<button class="btn waves-effect waves-light btn-order cyan darken-3" type="submit" name="action">가입 하기
@@ -94,6 +98,17 @@
 		<script>
 			$(document).ready(function() {
 				$('select').material_select();
+				$('#agree-all').click(function(event) {
+					if(this.checked) {
+						$('.agree-check').each(function() {
+							this.checked = true;
+						});
+					} else {
+						$('.agree-check').each(function() {
+							this.checked = false;
+						});
+					}
+				});
 			});
 		</script>
   })
