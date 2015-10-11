@@ -1,8 +1,17 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 var User = require("../models/user");
+
+var transporter = nodemailer.createTransport(smtpTransport({
+    service: 'gmail',
+    auth: {
+        user: 'captainmaumau@gmail.com',
+        pass: '4t/pk.r3'
+    }
+}));
 
 var isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
@@ -30,6 +39,27 @@ router.get('/mypage', isAuthenticated, function(req, res) {
 
 router.get('/signup', function(req, res, next) {
   res.render('signup');
+});
+
+router.post('/signup', function(req, res, next) {
+  var user = new User({
+    username: req.body.username,
+    password: req.body.password,
+    email: req.body.email
+  });
+  user.save(function(err) {
+    if (err) res.render('signup', { error: err.errmsg });
+    transporter.sendMail({
+      from: 'captainmaumau@gmail.com',
+      to: user.email,
+      subject: 'Welcome to DailyBoom',
+      text: 'Thank you for registering on DailyBoom!'
+    }, function (err, info) {
+      if (err) { console.log(err); res.render('signup', { error: err.errmsg }); }
+      //console.log('Message sent: ' + info.response);
+      res.redirect('/');
+    });
+  });
 });
 
 router.get('/auth/facebook',

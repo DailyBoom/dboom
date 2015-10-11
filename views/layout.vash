@@ -74,14 +74,15 @@
   					<script>
             $(window).load(function() {
                 $('#time-left-label').fadeOut(2500, function(){
-                  var momentNow = moment();
+                  var momentTom = moment().add(1, 'days').hours(0).minutes(0).seconds(0);
+                  var timeLeft = moment.duration(momentTom.diff(moment()), 'milliseconds');
                   $('#time-left').hide();
-                  $('#time-left').html(momentNow.format('hh:mm:ss'));
+                  $('#time-left').html(timeLeft.hours() + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
                   $('#time-left').fadeIn(1000);
                   var interval = setInterval(function() {
-                      var momentNow = moment();
-                      $('#time-left').html(momentNow.format('hh:mm:ss'));
-                  }, 100);
+                      timeLeft = moment.duration(momentTom.diff(moment()), 'milliseconds');
+                      $('#time-left').html(timeLeft.hours() + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+                  }, 1000);
                 });
   						});
   					</script>
