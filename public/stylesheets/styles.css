@@ -410,6 +410,13 @@ input[type=number]::-webkit-outer-spin-button {
   	height: 2rem;
     padding: 0 4px;
   }
+  .social-footer {
+  	height: 2rem;
+    margin-right: 5px;
+  }
+  .footer-copyright {
+    font-size: .9rem;
+  }
 }
 
 .customNavigation{
