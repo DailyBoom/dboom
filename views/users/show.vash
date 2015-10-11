@@ -11,15 +11,15 @@
 <!-- mypage1 = Basic user info -->
 				<div id="mypage1" class="col s12 m12 l12 set-min-h">
 					<br><br>
-					<span class="form-text-lg">나의 주문 내역</span>
+					<span class="text-xl">나의 주문 내역</span>
 					<br><br>
 
 					<!-- show for merchants -->
 					<div class="row">
-						<div class="col s12 m3 l3 form-text-sm">
+						<div class="col s12 m3 l3 text-md">
 							<span class="form-bold">2015-10-01</span>
 						</div>
-						<div class="col s12 m3 l3 form-text-sm">
+						<div class="col s12 m3 l3 text-md">
 							<span class="form-lighten">총금액&nbsp;:&nbsp;</span>
 							<span class="form-bold">5,000,000 원</span>
 						</div>
@@ -121,7 +121,7 @@
 				<div id="mypage2" class="col s12 m12 l12 set-min-h">
 					<br>
 					<br>
-					<span class="form-text-lg">나의 정보</span>
+					<span class="text-xl">나의 정보</span>
 					<br>
 					<div class="row">
 						<!-- Left -->
@@ -134,18 +134,18 @@
 										<div class="col s12 m6 l6">
 											<span>
 												<p class="form-lighten">이름&nbsp;:&nbsp;</p>
-												<p class="form-bold form-text">@model.user.name</p>
+												<p class="form-bold text-md">@model.user.name</p>
 											</span>
 										</div>
 										<div class="col s12 m6 l6">
 											<span>
 												<p class="form-lighten">User ID&nbsp;:&nbsp;</p>
-												<p class="form-bold form-text">@model.user.username</p>
+												<p class="form-bold text-md">@model.user.username</p>
 											</span>
 										</div>
 									</div>
 									<p class="form-lighten">이메일&nbsp;:&nbsp;</p>
-									<p class="form-bold form-text">customer@dailyboom.co</p>
+									<p class="form-bold text-md">customer@dailyboom.co</p>
 									<br>
 									<br>
 									<span class="card-title black-text">주소지</span>
@@ -155,26 +155,26 @@
 										<div class="col s12 m6 l6">
 											<span>
 												<p class="form-lighten">받는분&nbsp;:&nbsp;</p>
-												<p class="form-bold form-text">@model.user.name</p>
+												<p class="form-bold text-md">@model.user.name</p>
 											</span>
 										</div>
 										<div class="col s12 m6 l6">
 											<span>
 												<p class="form-lighten">전화번호&nbsp;:&nbsp;</p>
-												<p class="form-bold form-text">01012345678</p>
+												<p class="form-bold text-md">01012345678</p>
 											</span>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col s12 m12 l12">
 											<p class="form-lighten">배송지 주소&nbsp;:&nbsp;</p>
-											<p class="form-bold form-text">서울특별시 용산구 이태원동 123-1 한나아파트 100동 101호</p>
+											<p class="form-bold text-md">서울특별시 용산구 이태원동 123-1 한나아파트 100동 101호</p>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col s12 m12 l12">
 											<p class="form-lighten">우편번호&nbsp;:&nbsp;</p>
-											<p class="form-bold form-text">123-456</p>
+											<p class="form-bold text-md">123-456</p>
 										</div>
 									</div>
 									<br>

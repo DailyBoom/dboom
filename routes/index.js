@@ -17,7 +17,7 @@ var isAuthenticated = function (req, res, next) {
 router.get('/', function(req, res, next) {
   console.log(req.isAuthenticated());
   Product.findOne({}, {}, { sort: { 'created_at' : -1 }}, function (err, product) {
-    Product.find({}).where('_id').ne(product._id).limit(4).sort({ 'created_at' : -1 }).exec(function (err, pastProducts) {
+    Product.find({}).where('_id').ne(product._id).limit(6).sort({ 'created_at' : -1 }).exec(function (err, pastProducts) {
       res.render('index', { user: req.user, progress: 70, product: product, pastProducts: pastProducts });
     });
   });
