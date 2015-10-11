@@ -3,19 +3,28 @@
     <div class="container">
 	    <div class="set-margin-xl">
 	    </div>
-	    <h4>Register New Item</h4>
+	    <h4>상품 등록</h4>
 	    <div class="row">
 	      <form class="col s12" method="post" action="/products/new" enctype="multipart/form-data">
+          <input id="merchantid" type="text" name="merchantid" hidden>
+          <input id="uploaddate" type="date" name="uploaddate" hidden>
+					<div class="row">
+						<br>
+						<div class="input-field col s12 m12 l12">
+	            <input id="selldate" type="date" class="validate" name="selldate">
+	            <label for="selldate" style="margin-top: -1.75rem;">판매 날짜</label>
+	          </div>
+					</div>
 	        <div class="row">
 	          <div class="input-field col s12 m8 l8">
 	            <input id="brandname" type="text" class="validate" name="brandname">
-	            <label for="brandname">Brand Name</label>
+	            <label for="brandname">브랜드 명</label>
 	          </div>
 						<div class="file-field input-field col s12 m4 l4">
 							<span class="hide-on-med-and-up"><br></span>
-							<span for="brandlogo" class="input-file-mod grey-text right">Brand Logo</span>
+							<span for="brandlogo" class="input-file-mod grey-text right">브랜드 로고</span>
 				      <div class="btn">
-				        <span>Select</span>
+				        <span><i class="fa fa-image left"></i>산택</span>
 				        <input type="file" id="brandlogo" name="brandlogo" placeholder="Brand Logo Image">
 				      </div>
 				      <div class="file-path-wrapper">
@@ -26,20 +35,34 @@
 	        <div class="row">
 	          <div class="input-field col s12">
 	            <input id="name" type="text" class="validate" name="name">
-	            <label for="name">Item Name</label>
+	            <label for="name">상품 이름</label>
 	          </div>
 	        </div><!-- .row -->
 	        <div class="row">
 	          <div class="input-field col s12">
 	            <textarea id="description" type="text" class="validate materialize-textarea" name="description"></textarea>
-	            <label for="description">Item Description</label>
+	            <label for="description">상품 정보</label>
 	          </div>
+	        </div><!-- .row -->
+					<div class="row">
+	          <div class="input-field col s12 m6 l6">
+	            <input id="option" type="text" class="validate" name="option">
+	            <label for="option">옾션</label>
+	          </div>
+	          <div class="input-field col s12 m6 l6">
+	            <input id="o_quatity" type="number" class="validate" name="o_quantity">
+	            <label for="o_quantity">옾션 수량</label>
+	          </div>
+						<!-- add more options button -->
+						<div class="col s12 m12 l12">
+							<a class="waves-effect waves-light btn" href="#!"><i class="fa fa-plus left"></i>옾션 추가</a>
+						</div>
 	        </div><!-- .row -->
 	        <div class="row">
 	          <div class="input-field col s12 m6 l6">
-	            <!-- <i class="fa fa-krw prefix"></i> -->
+	            <i class="fa fa-krw prefix"></i>
 	            <input id="price" type="number" class="validate" name="price">
-	            <label for="price">Item Price</label>
+	            <label for="price">상품 가격</label>
 	          </div>
 	          <div class="input-field col s12 m6 l6">
 	            <input id="quantity" type="number" class="validate" name="quantity">
@@ -49,9 +72,9 @@
 	        <div class="file-field input-field">
 						<br>
 						<span class="hide-on-small-only"><br></span>
-						<span for="photos" class="input-file-mod grey-text">Item Photos</span>
+						<span for="photos" class="input-file-mod grey-text">상품 사진 (Max: 4)</span>
 	          <div class="btn">
-	            <span>Select</span>
+	            <span><i class="fa fa-image left"></i>산택</span>
 	            <input id="photos" type="file" class="validate" name="photos" multiple>
 	          </div>
 	          <div class="file-path-wrapper">
@@ -61,21 +84,26 @@
 					<div class="row">
 		        <div class="input-field col s12">
 		          <input id="videoURL" type="url" class="validate">
-		          <label for="videoURL">Video URL</label>
+		          <label for="videoURL">Video</label>
 		        </div>
 		      </div>
 					<div class="row">
-		        <div class="input-field col s12 m6 l6 add-margin-bottom-md">
+		        <div class="input-field col s12 m12 l12">
 		          <input id="webURL" type="url" class="validate">
 		          <label for="webURL">Website</label>
 		        </div>
-						<div class="input-field col s12 m6 l6 add-margin-bottom-md">
-		          <input id="fbURL" type="url" class="validate" value="www.fb.com/">
-		          <label for="fbURL">Facebook</label>
+						<div class="input-field col s12 m12 l12">
+		          <input id="fbURL" type="url" class="validate">
+		          <label for="fbURL">Facebook Page</label>
+		        </div>
+						<div class="input-field col s12 m12 l12">
+		          <input id="kakaoURL" type="text" class="validate">
+		          <label for="kakaoURL">Kakao Story Channel</label>
 		        </div>
 		      </div>
-	        <button class="btn btn-mod-lg waves-effect waves-light amber darken-3 add-margin-bottom-md" type="submit" name="action">Register
-	          <i class="fa fa-send right"></i>
+					<br>
+	        <button class="btn btn-mod-lg waves-effect waves-light amber darken-3 add-margin-bottom-md" type="submit" name="action">
+						등록 하기 <i class="fa fa-send right"></i>
 	        </button>
 	      </form>
 	    </div><!-- .row -->
