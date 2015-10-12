@@ -206,7 +206,7 @@
 								@if (model.pastProducts) {
 									@model.pastProducts.forEach(function(product) {
 										<div class="col s12 m12 l12">
-											<div class="card blue-grey darken-1">
+											<div class="card cyan darken-3">
 												<div class="card-image">
 													<img class="" src="@product.images[0]" alt="" />
 												</div>
@@ -215,7 +215,7 @@
 													<p class="truncate">@product.description</p>
 												</div>
 												<div class="card-action">
-													<a href="#"><i class="fa fa-history"></i>&nbsp;&nbsp;Bring it back! <span class="badge white-text">5</span></a>
+													<a class="amber-text text-lighten-1" href="#"><i class="fa fa-history"></i>&nbsp;&nbsp;Bring it back! <span class="badge white-text">5</span></a>
 												</div>
 											</div>
 										</div>

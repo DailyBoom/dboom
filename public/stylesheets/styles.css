@@ -435,6 +435,8 @@ input[type=number]::-webkit-outer-spin-button {
   height: 180px;
   line-height: 180px;
   vertical-align: middle;
+  border-radius: .25rem;
+  overflow: hidden;
 }
 
 /* Login */
