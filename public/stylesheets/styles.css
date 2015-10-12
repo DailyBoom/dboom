@@ -37,16 +37,17 @@ form.col.s12.set-form-padding { padding: 0 0.5rem; }
 /* Grid */
 
 /* Text */
-.text-xs { font-size: 0.75rem; }
-.text-sm { font-size: 1rem; }
-.text-md { font-size: 1.2rem; }
-.text-sl { font-size: 1.6rem; }
-.text-lg { font-size: 2rem; }
-.text-xl { font-size: 2.4rem; }
-.fa-1-5x { font-size: 1.5em; }
-.fa-2-5x { font-size: 2.5em; }
-.form-bold { font-weight: 600; }
-.form-text-md { font-size: 1.8rem; }
+.text-xs { font-size: 0.75rem !important; }
+.text-sm { font-size: 1rem !important; }
+.text-md { font-size: 1.2rem !important; }
+.text-sl { font-size: 1.6rem !important; }
+.text-lg { font-size: 2rem !important; }
+.text-xl { font-size: 2.4rem !important; }
+.fa-1-5x { font-size: 1.5em !important; }
+.fa-1-2x { font-size: 1.2em !important; }
+.fa-2-5x { font-size: 2.5em !important; }
+.form-bold { font-weight: 600 !important; }
+.form-text-md { font-size: 1.8rem !important; }
 
 .card .card-content p.form-lighten { color: #999; }
 
@@ -153,8 +154,10 @@ form.col.s12.set-form-padding { padding: 0 0.5rem; }
   }
   .mobile-share a img.social {
     position: relative;
-    padding: 5px 0 0 0;
+    margin-top: 8px;
+    padding: 0;
     height: 3rem;
+    border-radius: 15%;
   }
 }
 .clock-font { font-family: 'Hanna', sans-serif; }
@@ -168,11 +171,10 @@ form.col.s12.set-form-padding { padding: 0 0.5rem; }
   .social-login-facebook { height: 1.6rem; padding: 0; margin-top: -3px; margin-right: 3.5rem; margin-left: -2.5rem; line-height: 1.5rem; vertical-align: middle; }
   .social-login-kakao { width: 100%; }
   .or-wrapper { line-height: 15rem; font-size: 1.25rem; }
+  .btn-nologin { margin-left: -2.5rem; margin-right: 4rem; font-size: 2rem !important; vertical-align: middle; }
 }
 @media only screen and (max-width: 600px) {
-  #modal-check.modal div.modal-content {
-    padding: 0;
-  }
+  #modal-check.modal div.modal-content { padding: 0; }
   .btn-login {
     width: 92%;
     height: 46px;
@@ -185,9 +187,7 @@ form.col.s12.set-form-padding { padding: 0 0.5rem; }
     line-height: 1.5rem;
     vertical-align: middle;
   }
-  .social-login-kakao {
-    width: 95%;
-  }
+  .social-login-kakao { width: 95%; }
   .btn-fb {
     width: 46%;
     height: 46px;
@@ -197,6 +197,12 @@ form.col.s12.set-form-padding { padding: 0 0.5rem; }
     vertical-align: middle;
     line-height: 47px;
     font-size: 1.15rem;
+  }
+  .btn-mod-shop {
+    width: 11rem;
+    height: 3rem;
+    margin: .5rem 0;
+    font-size: 1.25rem;
   }
 }
 

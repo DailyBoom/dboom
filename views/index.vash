@@ -14,9 +14,6 @@
 <!-- Login Modal -->
 				<div class="row">
 					<form class="col s12 set-form-padding" method="post" action="/login">
-						<!-- <div class="col s12 m10 offset-m1 l10 offset-l1">
-							<p class="text-lg">Login</p>
-						</div> -->
 						<br>
 						<div class="col s12 set-padding m5 l5">
 							<div class="row set-padding remove-margin-bottom">
@@ -54,8 +51,7 @@
 								<img class="social-login-kakao" src="/images/kakao_account_login_btn_large_wide.png" />
 							</a>
 							<a class="waves-effect waves-light btn-flat white-text amber darken-3 btn-fb" href="#!buynow" style="margin-top: 1rem;">
-								<!-- <img class="social-login-facebook" src="/images/facebook.png" />-->
-								<i class="fa fa-shopping-cart fa-3x" style="margin-left: -2rem;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;로그인 안하고 바로구매
+								<i class="fa fa-shopping-cart fa-3x btn-nologin"></i>로그인 안하고 바로구매
 							</a>
 						</div>
 						<div class="row remove-margin-bottom">
@@ -70,8 +66,8 @@
 								<a class="waves-effect waves-light" href="#!kakao">
 									<img class="social-login-kakao" src="/images/kakao_login_btn_medium.png" />
 								</a>
-								<a class="waves-effect waves-light btn amber darken-3 btn-mod-md" href="/checkout">
-									즉시 구매
+								<a class="waves-effect waves-light btn amber darken-3 btn-mod-shop" href="/checkout">
+									<i class="fa fa-shopping-cart fa-1-2x"></i>&nbsp;&nbsp;&nbsp;바로구매
 								</a>
 								<a class="waves-effect waves-light btn-flat cyan-text text-darken-3 btn-mod-md" href="/signup">
 									회원가입
@@ -91,6 +87,7 @@
 			</div>
 			<!-- <div id="time-left-mobile" class="d-clock-mobile red white-text"></div> -->
 			<div class="mobile-share grey lighten-4">
+				<a href="#shareurl"><img class="social" src="/images/link_icon.png" /></a>
 				<a href="#sharefb"><img class="social" src="/images/facebook_o.png" /></a>
 				<a href="#sharekakao"><img class="social" src="/images/kakaostory_logo_o.png" /></a>
 			</div>
