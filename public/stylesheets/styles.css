@@ -410,6 +410,13 @@ input[type=number]::-webkit-outer-spin-button {
   	height: 2rem;
     padding: 0 4px;
   }
+  .social-footer {
+  	height: 2rem;
+    margin-right: 5px;
+  }
+  .footer-copyright {
+    font-size: .9rem;
+  }
 }
 
 .customNavigation{
@@ -428,6 +435,8 @@ input[type=number]::-webkit-outer-spin-button {
   height: 180px;
   line-height: 180px;
   vertical-align: middle;
+  border-radius: .25rem;
+  overflow: hidden;
 }
 
 /* Login */
