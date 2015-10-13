@@ -38,6 +38,7 @@ form.col.s12.set-form-padding { padding: 0 0.5rem; }
 
 /* Text */
 .text-xs { font-size: 0.75rem !important; }
+.text-ss { font-size: .9rem !important; }
 .text-sm { font-size: 1rem !important; }
 .text-md { font-size: 1.2rem !important; }
 .text-sl { font-size: 1.6rem !important; }
@@ -48,7 +49,10 @@ form.col.s12.set-form-padding { padding: 0 0.5rem; }
 .fa-2-5x { font-size: 2.5em !important; }
 .form-bold { font-weight: 600 !important; }
 .form-text-md { font-size: 1.8rem !important; }
-
+.text-left { text-align: left !important; }
+.text-center { text-align: center !important; }
+.text-right { text-align: right !important; }
+.valign-top { vertical-align: top !important; }
 .card .card-content p.form-lighten { color: #999; }
 
 /* Navbar */
@@ -239,18 +243,21 @@ form.col.s12.set-form-padding { padding: 0 0.5rem; }
 @media only screen and (min-width: 601px) {
 	.progress-v {
     position: relative;
-    height: 346px;
+    height: 430px;
     width: 100%;
     margin: 0.5rem 0 1rem 0;
+    border-radius: .25rem;
+    /*border-radius: 30% 30% 100% 100% / 10% 10% 100% 100%;*/
     overflow: hidden;
 	}
 	.determinate-v {
 		position: absolute;
 		width: 100%;
 		bottom: 0;
-		outline-top: 2px solid #fff;
+		outline: 2px solid #fff;
 	}
 	.text-progress-v {
+    display: block;
 		position: absolute;
     width: 100%;
     left: 0;
@@ -301,6 +308,7 @@ form.col.s12.set-form-padding { padding: 0 0.5rem; }
 }
 .text-progress-h {
   position: absolute;
+  margin-left: -20px;
   font-family: sans-serif;
   font-size: 1.4rem !important;
   color: #ffffff;
@@ -366,68 +374,53 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /* details */
-.slider .indicators {
-	bottom: 10px;
-	z-index: 1000;
-}
-.slider .indicators .indicator-item {
-	background-color: rgba(255,255,255,0.7);
-}
-.card .card-reveal { z-index: 1000; }
+.slider .indicators { bottom: 10px; z-index: 100; }
+.slider .indicators .indicator-item { background-color: rgba(255,255,255,0.7); }
+.card .card-reveal { z-index: 200; }
 
 @media only screen and (min-width: 601px) {
-  .details-box {
-    width: 100%;
-    clear: both;
+  .details-box      { width: 100%; clear: both; }
+  .details-img      { height: 120px; }
+  .details-title    { font-size: 2rem; }
+  .brandlink        { padding: 0 4px; }
+  .social           { height: 2.1rem; margin-right: 5px; border-radius: 2rem; }
+  .social-footer    { height: 2.5rem; margin-right: 5px; }
+  .price-align      { text-align: right; }
+  .img-pro {
+    width: 1000px;
+    height: 300px;
+    line-height: 300px;
+    vertical-align: middle;
+    border-radius: .25rem;
+    margin: 0 auto;
+    overflow: hidden;
   }
-  .details-img {
-  	height: 120px;
+  table.table-sm tbody tr th,
+  table.table-sm tbody tr td {
+    padding: 5px 5px;
   }
-  .details-title {
-    font-size: 2rem;
-  }
-  .brandlink {
-    padding: 0 4px;
-  }
-  .social {
-  	height: 2.1rem;
-    margin-right: 5px;
-  }
-  .social-footer {
-  	height: 2.5rem;
-    margin-right: 5px;
-  }
+  .footer-link { font-size: .9rem; padding: .2rem 0 .2rem 3rem; text-align: right; }
 }
 @media only screen and (max-width: 600px) {
-  .details-box {
+  .details-box      { width: 100%; clear: both; }
+  .details-img      { height: 100px; }
+  .details-title    { font-size: 2rem; }
+  .brandlink        { padding: 0 4px; }
+  .social           { height: 2rem; padding: 0 4px; }
+  .social-footer    { height: 2rem; margin-right: 5px; }
+  .footer-copyright { font-size: .9rem; }
+  .price-align      { text-align: center; }
+  .img-pro {
     width: 100%;
-    clear: both;
-  }
-  .details-img {
-  	height: 100px;
-  }
-  .details-title {
-    font-size: 2rem;
-  }
-  .brandlink {
-    padding: 0 4px;
-  }
-  .social {
-  	height: 2rem;
-    padding: 0 4px;
-  }
-  .social-footer {
-  	height: 2rem;
-    margin-right: 5px;
-  }
-  .footer-copyright {
-    font-size: .9rem;
+    height: 100px;
+    line-height: 100px;
+    vertical-align: middle;
+    border-radius: .25rem;
+    overflow: hidden;
   }
 }
 
-.customNavigation{
-  text-align: center;
-}
+.customNavigation{ text-align: center; }
 .customNavigation a{
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -435,14 +428,6 @@ input[type=number]::-webkit-outer-spin-button {
   -ms-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-.img-pro {
-  width: 100%;
-  height: 180px;
-  line-height: 180px;
-  vertical-align: middle;
-  border-radius: .25rem;
-  overflow: hidden;
 }
 
 /* Login */

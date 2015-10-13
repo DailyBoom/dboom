@@ -8,7 +8,7 @@
 		<div class="col s12 m6 l6">
 			<div class="card">
 				<div class="card-image">
-					<div class="past-date-box cyan darken-3 white-text text-md">
+					<div class="past-date-box grey-text text-darken-1 text-md">
 						10/01/2015
 					</div>
 					<!-- Image Slider -->
@@ -50,7 +50,7 @@
 		<div class="col s12 m6 l6">
 			<div class="card">
 				<div class="card-image">
-					<div class="past-date-box cyan darken-3 white-text text-md">
+					<div class="past-date-box grey-text text-darken-1 text-md">
 						10/01/2015
 					</div>
 					<!-- Image Slider -->
@@ -89,7 +89,7 @@
 		<div class="col s12 m6 l6">
 			<div class="card">
 				<div class="card-image">
-					<div class="past-date-box cyan darken-3 white-text text-md">
+					<div class="past-date-box grey-text text-darken-1 text-md">
 						10/01/2015
 					</div>
 					<!-- Image Slider -->
@@ -128,7 +128,7 @@
 		<div class="col s12 m6 l6">
 			<div class="card">
 				<div class="card-image">
-					<div class="past-date-box cyan darken-3 white-text text-md">
+					<div class="past-date-box grey-text text-darken-1 text-md">
 						10/01/2015
 					</div>
 					<!-- Image Slider -->
@@ -167,7 +167,7 @@
 		<div class="col s12 m6 l6">
 			<div class="card">
 				<div class="card-image">
-					<div class="past-date-box cyan darken-3 white-text text-md">
+					<div class="past-date-box grey-text text-darken-1 text-md">
 						10/01/2015
 					</div>
 					<!-- Image Slider -->
@@ -206,7 +206,7 @@
 		<div class="col s12 m6 l6">
 			<div class="card">
 				<div class="card-image">
-					<div class="past-date-box cyan darken-3 white-text text-md">
+					<div class="past-date-box grey-text text-darken-1 text-md">
 						10/01/2015
 					</div>
 					<!-- Image Slider -->

@@ -81,30 +81,21 @@
 
 		<div class="hide-on-med-and-up fixed-btn-buy z-depth-1 center">
 			<div class="progress-h cyan lighten-4">
-				<span class="text-progress-h">@model.progress%</span>
+				<span class="text-progress-h center">@model.progress%</span>
 				<div class="determinate-h cyan darken-4" style="width: @model.progress%;">
 				</div>
 			</div>
 			<!-- <div id="time-left-mobile" class="d-clock-mobile red white-text"></div> -->
 			<div class="mobile-share grey lighten-4">
 				<a href="#shareurl"><img class="social" src="/images/link_icon.png" /></a>
+				<a href="#sharemail"><img class="social" src="/images/icon_email.png" /></a>
+				<a href="#sharekakao"><img class="social" src="/images/icon_kakao.png" /></a>
 				<a href="#sharefb"><img class="social" src="/images/facebook_o.png" /></a>
-				<a href="#sharekakao"><img class="social" src="/images/kakaostory_logo_o.png" /></a>
 			</div>
 		</div>
 		<div class="section-blank">
 		</div>
 		<div class="container">
-
-			<!-- visible to merchant/admin only -->
-			<div class="row">
-				<div class="col s12">
-					<a class="waves-effect waves-lighten btn cyan darken-3 right" href="#!">
-						<i class="fa fa-pencil left"></i> 상품 정보 수정
-					</a>
-				</div>
-			</div>
-
 			<div class="row">
 				<div id="main" class="col s12 m10 l10 left">
 					<div class="card">
@@ -130,7 +121,9 @@
 							</span>
 							<span class="hide-on-small-only">
 								<a href="#sharefb"><img class="social right" src="/images/facebook_o.png" /></a>
-								<a href="#sharekakao"><img class="social right" src="/images/kakaostory_logo_o.png" /></a>
+								<a href="#sharekakao"><img class="social right" src="/images/icon_kakao.png" /></a>
+								<a href="#sharemail"><img class="social right" src="/images/icon_email.png" /></a>
+								<a href="#shareurl"><img class="social right" src="/images/link_icon.png" /></a>
 							</span>
 							<p class="activator grey-text text-darken-1">이제 헤어컬러 시술이 쉬워 집니다...</p>
 						</div><!-- /.card-content -->
@@ -145,9 +138,60 @@
 								<span class="card-title grey-text text-darken-4">
 									@model.product.name
 								</span>
-								<p class="text-sm">@model.product.description</p>
+								<div class="row">
+							    <div class="col s12">
+							      <ul class="tabs">
+							        <li class="tab col s6 m4 l4 ext-left"><a class="active" href="#itemdetails">상품 정보</a></li>
+							        <li class="tab col s6 m4 l4 ext-left"><a href="#itempolicy">배송/반품품/교환 안내</a></li>
+							      </ul>
+							    </div>
+							    <div id="itemdetails" class="col s12">
+										<p class="text-sm">@model.product.description</p>
+									</div><!-- #itemdetails -->
+							    <div id="itempolicy" class="col s12">
+										<p class="text-sm">
+											<b>배송/반품/교환 문의정보</b>
+											<ul class="info-list text-ss">
+												<li><b>판매자 지정택배사</b>&nbsp;&nbsp;&nbsp;우체국택배</li>
+												<li><b>반품배송비</b>&nbsp;&nbsp;&nbsp;반품/교환 배송비(편도) :2,500원</li>
+												<li><b>보내실 곳</b>&nbsp;&nbsp;&nbsp;431-058 경기도 안양시 동안구 비산동 1110  2층 소포실 (주)세다</li>
+											</ul>
+										</p>
+										<p class="text-sm">
+											<b>거래조건에 대한 정보</b>
+											<table class="highlight responsive table-sm text-ss">
+								        <tbody>
+								          <tr>
+								            <th class="valign-top">1</th>
+								            <td>소화물 택배의 배송은 발송일로부터 1~2 영업일이 소요되나, 지역/대형 화물/설치/예약/발송지체 등의 특이사항에 따라 배송기간은 달라질 수 있습니다.</td>
+								          </tr>
+								          <tr>
+								            <th class="valign-top">2</th>
+								            <td>상품의 특성과 거래조건에 따라 청약철회(변심반품/취소)가 일부 제한되거나 청약철회에 소요되는 비용이 다르게 책정될 수 있습니다. </td>
+								          </tr>
+								          <tr>
+								            <th class="valign-top">3</th>
+								            <td>청약철회는 상품 수령일로부터 7일 이내에 신청하실 수 있으며, 판매자는 ‘전자상거래등에서의소비자보호에관한법률’이 정하는 바에 따른 지연이자</td>
+								          </tr>
+													<tr>
+								            <th class="valign-top">4</th>
+								            <td>제품 사용 상 불만과 피해보상에 관하여는 제조사, 수입원, 판매자 등에게 문의하여주시기 바라며, 당사의 고객센터로 문의 주시면 관계법령과 규정에 부합하는</td>
+								          </tr>
+													<tr>
+								            <th class="valign-top">5</th>
+								            <td>거래에 관한 약관은 판매자의 상품 상세설명 화면과 당사 이용약관(링크)에서 확인하실 수 있습니다.</td>
+								          </tr>
+								        </tbody>
+								      </table>
+										</p>
+									</div><!-- #itempolicy -->
+							  </div><!-- .row -->
+
 							</div><!-- .details-bottom -->
 						</div><!-- .card-reveal -->
+						<div class="card-action price-align">
+							<span class="text-lg"><i class="fa fa-krw"></i> 35,000</span>
+						</div>
 					</div><!-- /.card -->
 					<div class="hide-on-med-and-up">
 						<a class="waves-effect waves-light btn btn-buy-mobile green modal-trigger" href="#modal-check">Buy Now</a>
@@ -159,6 +203,7 @@
 								indicators: true,
 								interval: 60000
 							});
+							$('ul.tabs').tabs();
 						});
 					</script>
 				</div>
@@ -203,16 +248,19 @@
 								@if (model.pastProducts) {
 									@model.pastProducts.forEach(function(product) {
 										<div class="col s12 m12 l12">
-											<div class="card cyan darken-3">
+											<div class="card gre darken-">
 												<div class="card-image">
+													<div class="past-date-box grey-text text-darken-1 text-md">
+														10/01/2015
+													</div>
 													<img class="" src="@product.images[0]" alt="" />
 												</div>
-												<div class="card-content white-text">
-													<p class="truncate">@product.name</p>
-													<p class="truncate">@product.description</p>
+												<div class="card-content">
+													<p class="grey-text text-darken-1 truncate">@product.name</p>
+													<!-- <p class="truncate">@product.description</p> -->
 												</div>
 												<div class="card-action">
-													<a class="amber-text text-lighten-1" href="#"><i class="fa fa-history"></i>&nbsp;&nbsp;Bring it back! <span class="badge white-text">5</span></a>
+													<a href="#"><i class="fa fa-history"></i>&nbsp;&nbsp;Bring it back! <span class="badge">5</span></a>
 												</div>
 											</div>
 										</div>
@@ -223,38 +271,30 @@
 					</div><!-- .row -->
 				</div><!-- /.col s12 m9 l9 -->
 			</div><!-- .row -->
-			<!-- <div class="row"> -->
-				<!-- <div class="col s12 m12 l12 hide-on-med-and-down">
-					<div class="card">
-						<div class="card-image add-padding-xs">
-							<img class="img-pro add-border-radius-sm" src="/images/adpic.jpg" />
-						</div>
-					</div> -->
-				<div class="img-pro grey darken-4 white-text center text-xl">
-					AD Here
-				</div>
-				<br>
-				<script>
-					$(document).ready(function() {
-					$("#product_price").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
-						var owl = $("#db-past");
-						owl.owlCarousel({
-							items : 3,
-							itemsDesktop : [1000,3],
-							itemsDesktopSmall : [900,3],
-							itemsTablet: [600,1],
-							itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
-							navigation: false,
-							pagination: false,
-							responsive: true,
-							rewindNav: false
-						});
-						// Custom Navigation Events
-						$(".next").click(function(){owl.trigger('owl.next');});
-						$(".prev").click(function(){owl.trigger('owl.prev');});
+			<div class="img-pro grey darken-4 white-text center text-xl">
+				AD Here
+			</div>
+			<br>
+			<script>
+				$(document).ready(function() {
+				$("#product_price").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
+					var owl = $("#db-past");
+					owl.owlCarousel({
+						items : 3,
+						itemsDesktop : [1000,3],
+						itemsDesktopSmall : [900,3],
+						itemsTablet: [600,1],
+						itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
+						navigation: false,
+						pagination: false,
+						responsive: true,
+						rewindNav: false
 					});
-				</script>
-			<!-- </div><!-- /.row -->
+					// Custom Navigation Events
+					$(".next").click(function(){owl.trigger('owl.next');});
+					$(".prev").click(function(){owl.trigger('owl.prev');});
+				});
+			</script>
 		</div> <!-- .container -->
 	})
 })
