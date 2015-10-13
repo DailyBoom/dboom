@@ -142,7 +142,7 @@
   		<footer class="page-footer cyan darken-3">
   			<div class="container">
           <div class="row">
-            <div class="col s12 m3 l3 center">
+            <div class="col s12 m2 l2 center">
               <p class="grey-text text-lighten-4">
                 <p class="white-text text-md">Follow Us</p>
       					<span>
@@ -151,14 +151,25 @@
       					</span>
       				</p>
             </div>
-            <div class="col s12 m9 l9">
+            <div class="col s12 m10 l10 price-align">
+              <a class="footer-link white-text" href="#!">우리소개</a>
+              <a class="footer-link white-text" href="#!">제휴·광고</a>
+              <a class="footer-link white-text" href="#!">개인정보취급방침</a>
+              <a class="footer-link white-text" href="#!">이용약관</a>
+              <a class="footer-link white-text" href="#!">판매자</a>
+            </div>
+            <div class="col s12 m5 l5">
               <p class="text-xs" style="color: rgba(255,255,255,0.8);">
                 폭스트론 (주)<br/>
                 서울특별시 성북구 삼양로 22, 103<br/>
                 사업자등록번호: 206-86-90012<br/>
                 통신판매업신고: 2015-서울성북-00524호<br/>
                 Fax: 02-985-1257<br/>
-                <br>(주) 폭스트론 사전 서면 동의 없이 Daily Boom사이트의 일체의 정보, 콘텐츠 및 UI등을 상업적 목적으로 전재, 전송, 스크래핑 등 무단 사용할 수 없습니다.
+              </p>
+            </div>
+            <div class="col s12 m5 l5">
+              <p class="text-xs" style="color: rgba(255,255,255,0.8);">
+                (주) 폭스트론 사전 서면 동의 없이 Daily Boom사이트의 일체의 정보, 콘텐츠 및 UI등을 상업적 목적으로 전재, 전송, 스크래핑 등 무단 사용할 수 없습니다.
                 <br>Daily Boom은 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 Daily Boom은 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.
               </p>
             </div>
