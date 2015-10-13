@@ -47,13 +47,13 @@
 							<span class="grey lighten-5 add-padding-sm">or</span>
 						</div>
 						<div class="hide-on-small-only col m6 l6">
-							<a class="waves-effect waves-light btn-flat white-text facebook btn-fb" href="#!facebook" id="facebook">
+							<a class="waves-effect waves-light btn-flat white-text facebook btn-fb" id="facebook">
 								<img class="social-login-facebook" src="/images/facebook.png" />페이스북계정으로 로그인
 							</a>
 							<a class="waves-effect waves-light" href="#!kakao" style="margin-top: 1.4rem;">
 								<img class="social-login-kakao" src="/images/kakao_account_login_btn_large_wide.png" />
 							</a>
-							<a class="waves-effect waves-light btn-flat white-text amber darken-3 btn-fb" href="#!buynow" style="margin-top: 1rem;">
+							<a class="waves-effect waves-light btn-flat white-text amber darken-3 btn-fb" href="/checkout" style="margin-top: 1rem;">
 								<!-- <img class="social-login-facebook" src="/images/facebook.png" />-->
 								<i class="fa fa-shopping-cart fa-3x" style="margin-left: -2rem;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;로그인 안하고 바로구매
 							</a>
@@ -64,7 +64,7 @@
 									로그인
 								</button>
 								<br><span class="text-md center">- or -</span><br>
-								<a class="waves-effect waves-light btn-flat white-text facebook btn-fb" href="#!facebook" id="facebook">
+								<a class="waves-effect waves-light btn-flat white-text facebook btn-fb" id="facebook">
 									<img class="social-login-facebook" src="/images/facebook.png" />&nbsp;&nbsp;&nbsp;로그인
 								</a>
 								<a class="waves-effect waves-light" href="#!kakao">
@@ -175,9 +175,16 @@
 						</div>
 					</div>
 <!-- Buy Modal -->
-					<a id="btn-buy" class="hide-on-small-only btn-buy-txt waves-effect waves-light btn-floating green modal-trigger" href="#modal-check">
-						Buy Now!
-					</a>
+					@if (model.user) {
+						<a id="btn-buy" class="hide-on-small-only btn-buy-txt waves-effect waves-light btn-floating green" href="/checkout?product_id=@model.product.id">
+							Buy Now!
+						</a>
+					}
+					else {
+						<a id="btn-buy" class="hide-on-small-only btn-buy-txt waves-effect waves-light btn-floating green modal-trigger" href="#modal-check">
+							Buy Now!
+						</a>
+					}
 <!-- Buy -> Login Modal JS -->
 					<script>
 						$(document).ready(function(){
@@ -239,18 +246,6 @@
 				<br>
 				<script>
 					$(document).ready(function() {
-
-					$("#facebook").on("click", function(){
-						var winTop = (screen.height / 2) - (350 / 2);
-						var winLeft = (screen.width / 2) - (600 / 2);
-						var login = window.open("/auth/facebook", 'facebook', 'top=' + winTop + ',left=' + winLeft +',toolbar=0,status=1,width=600,height=350');
-						var pollTimer = window.setInterval(function() {
-							if (login.closed !== false) {
-								window.clearInterval(pollTimer);
-								location.reload();
-							}
-						}, 200);
-					});
 
 					$("#product_price").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
 						var owl = $("#db-past");

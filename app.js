@@ -5,7 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
-
+var validate = require('form-validate');
+var i18n = require('i18n');
+i18n.configure({
+    defaultLocale: 'ko',
+    directory: path.join(__dirname, 'locales')
+});
 var app = express();
 
 var session = require('express-session');
@@ -28,6 +33,12 @@ app.set('view engine', 'vash');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+var validateOptions = {
+  i18n: {
+    defaultLocale: 'ko',
+    directory: path.join(__dirname, 'locales')
+  }
+}
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser('keyboard cat'));
@@ -35,10 +46,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: 'keyboard cat', name: 'session_id', saveUninitialized: true, resave: true })); // store: new RedisStore({ host: '127.0.0.1',  port: 6379 }),
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
+app.use(validate(app, validateOptions))
+//app.use(i18n.middleware());
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(function(req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
 app.use('/', routes);
 app.use('/', users);
 app.use('/', products);

@@ -4,12 +4,14 @@ var passport = require('passport');
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 var User = require("../models/user");
+var config = require('config');
+var i18n = require("i18n");
 
 var transporter = nodemailer.createTransport(smtpTransport({
-    service: 'gmail',
+    host: config.get('Nodemailer.host'),
     auth: {
-        user: 'captainmaumau@gmail.com',
-        pass: '4t/pk.r3'
+        user: config.get('Nodemailer.auth.user'),
+        pass: config.get('Nodemailer.auth.pass')
     }
 }));
 
@@ -34,31 +36,68 @@ router.get('/logout', function(req, res){
 });
 
 router.get('/mypage', isAuthenticated, function(req, res) {
-  res.render('users/show', { user : req.user });
+  res.render('users/show');
 });
 
 router.get('/signup', function(req, res, next) {
   res.render('signup');
 });
 
-router.post('/signup', function(req, res, next) {
-  var user = new User({
-    username: req.body.username,
-    password: req.body.password,
-    email: req.body.email
+router.post('/signup', function(req, res) {
+  req.Validator.validate('username', i18n.__('user.username'), {
+    length: {
+      min: 3,
+      max: 20
+    },
+    isUnique: function(field, fieldName, value, fn) {
+      var errors = [];
+      if (value != 'unique') {
+        errors.push(i18n.__('notUnique', fieldName));
+      }
+      fn(errors);
+    }
+  })
+  .validate('email', i18n.__('user.email'), {
+    isUnique: function(field, fieldName, value, fn) {
+      var errors = [];
+      if (value != 'unique') {
+        errors.push(i18n.__('notUnique', fieldName));
+      }
+      fn(errors);
+    }
   });
-  user.save(function(err) {
-    if (err) res.render('signup', { error: err.errmsg });
-    transporter.sendMail({
-      from: 'captainmaumau@gmail.com',
-      to: user.email,
-      subject: 'Welcome to DailyBoom',
-      text: 'Thank you for registering on DailyBoom!'
-    }, function (err, info) {
-      if (err) { console.log(err); res.render('signup', { error: err.errmsg }); }
-      //console.log('Message sent: ' + info.response);
-      res.redirect('/');
-    });
+  
+  req.Validator.getErrors(function(errors){
+    if (errors) {
+      console.log(typeof errors)
+      res.render('signup', { errors: errors });
+    }
+    else {
+      var user = new User({
+        username: req.body.username,
+        password: req.body.password,
+        email: req.body.email,
+        role: 'user'
+      });
+      user.save(function(err) {
+        if (err) {
+          res.render('signup', { errors: err });
+        }
+        else {
+          transporter.sendMail({
+            from: 'DailyBoom <contact@dailyboom.co>',
+            to: user.email,
+            subject: 'Welcome to DailyBoom',
+            text: 'Thank you for registering on DailyBoom!'
+          }, function (err, info) {
+              if (err) { console.log(err); res.render('signup', { error: err.errmsg }); }
+              console.log('Message sent: ' + info.response);
+              transporter.close();
+              res.redirect('/');
+          });
+        }
+      });
+    }
   });
 });
 

@@ -26,7 +26,7 @@
 							</button>
 							<div class="blank-block">&nbsp;
 							</div>
-							<a class="col s12 btn-large waves-effect waves-light blue darken-3 right" href="!#">
+							<a class="col s12 btn-large waves-effect waves-light blue darken-3 right" id="facebook">
 								<i class="fa fa-facebook-official"></i>&nbsp;&nbsp;Facebook
 							</a>
 							<div class="blank-block">&nbsp;
@@ -39,3 +39,4 @@
 		</div><!-- .container -->
   })
 })
+

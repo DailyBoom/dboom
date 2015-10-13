@@ -1,0 +1,7 @@
+{
+	"user.username": "아이디",
+	"user.email": "이메일",
+	"user.password": "비밀번호",
+	"length.tooShort": "%s length.tooShort",
+	"notUnique": "%s is not unique"
+}
