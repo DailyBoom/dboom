@@ -10,6 +10,7 @@
 }
 
 /* Colors	*/
+body { background-color: #ffffff; }
 .facebook, .facebook:hover, .facebook:active  { background-color: #3b5998; }
 .kakao, .kakao:hover, .kakao:active           { background-color: #ffeb00; color: #3c1e1e; }
 
@@ -556,8 +557,22 @@ input[type=number]::-webkit-outer-spin-button {
     position: absolute;
     left: 1%;
     bottom: 0;
-    font-size: 4rem;
-    line-height: 4rem;
+    font-size: 3rem;
+    line-height: 3rem;
     margin-bottom: -9px;
   }
+  .parallax-title-right {
+    color: #fff;
+    position: absolute;
+    right: 1%;
+    bottom: 0;
+    font-size: 3rem;
+    line-height: 3rem;
+    margin-bottom: -7px;
+  }
+  .info-title { font-size: 2rem; }
+  .info-details { font-size: 1rem; }
+  .info { list-style: none; }
+  ul.info-terms li,
+  ul.info-details li { margin: 0 0 20px 0; }
 }
