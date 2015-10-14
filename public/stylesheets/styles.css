@@ -223,6 +223,7 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
   .iframe-video {
     width: 100%;
     height: 400px;
+    background: url(#);
   }
 }
 @media only screen and (max-width: 600px) {
@@ -232,6 +233,7 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
   .iframe-video {
     width: 100%;
     height: 300px;
+    background: url(#);
   }
 }
 /* Mobile */
