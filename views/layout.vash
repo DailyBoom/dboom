@@ -73,22 +73,6 @@
   					<a href="/" class="logo-m"><img class="nav-logo left" src="/images/dbkorea01.png" /></a>
   					<span id="time-left-label" class="d-clock navbar-align clock-font">남은시간</span>
             <span id="time-left" class="d-clock navbar-align"></span>
-  					<script>
-            $(window).load(function() {
-                $('#time-left-label').fadeOut(2500, function(){
-                  var momentTom = moment().add(1, 'days').hours(0).minutes(0).seconds(0);
-                  var timeLeft = moment.duration(momentTom.diff(moment()), 'milliseconds');
-                  $('#time-left').hide();
-                  $('#time-left').html(timeLeft.hours() + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-                  $('#time-left').fadeIn(1000);
-                  var interval = setInterval(function() {
-                      timeLeft = moment.duration(momentTom.diff(moment()), 'milliseconds');
-                      $('#time-left').html(timeLeft.hours() + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-                  }, 1000);
-                });
-  						});
-  					</script>
-
   <!--					<a href="/" class="brand-logo">Daily Boom!</a>-->
   					@if (model.user) {
   						<ul class="right navbar-align profile-align">
@@ -125,18 +109,6 @@
   				</div>
   			</nav>
   		</div>
-  		<script>
-  			$('.dropdown-button').dropdown({
-  					inDuration: 300,
-  					outDuration: 225,
-  					constrain_width: false, // Does not change width of dropdown to that of the activator
-  					hover: false, // Activate on hover
-  					gutter: 0, // Spacing from edge
-  					belowOrigin: true, // Displays dropdown below the button
-  					alignment: 'left' // Displays dropdown with edge aligned to the left of button
-  				}
-  			);
-  		</script>
         @html.include("error", model)
         @html.block("body")
   		<footer class="page-footer cyan darken-3">
@@ -152,11 +124,12 @@
       				</p>
             </div>
             <div class="col s12 m10 l10 price-align">
-              <a class="footer-link white-text" href="#!">우리소개</a>
-              <a class="footer-link white-text" href="#!">제휴·광고</a>
-              <a class="footer-link white-text" href="#!">개인정보취급방침</a>
-              <a class="footer-link white-text" href="#!">이용약관</a>
-              <a class="footer-link white-text" href="#!">판매자</a>
+              <span class="hide-on-med-and-up white-text">|</span>
+              <a class="footer-link white-text" href="/about">우리소개</a><span class="hide-on-med-and-up white-text">&nbsp;|</span>
+              <a class="footer-link white-text" href="/advertise">제휴·광고</a><span class="hide-on-med-and-up white-text">&nbsp;|</span>
+              <a class="footer-link white-text" href="/privacy">개인정보취급방침</a><span class="hide-on-med-and-up white-text">&nbsp;|</span>
+              <a class="footer-link white-text" href="/terms">이용약관</a><span class="hide-on-med-and-up white-text">&nbsp;|</span>
+              <a class="footer-link white-text" href="/merchant">판매자</a><span class="hide-on-med-and-up white-text">|</span>
             </div>
             <div class="col s12 m5 l5">
               <p class="text-xs" style="color: rgba(255,255,255,0.8);">
@@ -164,7 +137,7 @@
                 서울특별시 성북구 삼양로 22, 103<br/>
                 사업자등록번호: 206-86-90012<br/>
                 통신판매업신고: 2015-서울성북-00524호<br/>
-                Fax: 02-985-1257<br/>
+                Fax: 02-985-1257
               </p>
             </div>
             <div class="col s12 m5 l5">
@@ -185,5 +158,29 @@
   				<p class="section-blank"></p>
   			</div>
   		</footer>
+      <script>
+        $('.dropdown-button').dropdown({
+  					inDuration: 300,
+  					outDuration: 225,
+  					constrain_width: false, // Does not change width of dropdown to that of the activator
+  					hover: false, // Activate on hover
+  					gutter: 0, // Spacing from edge
+  					belowOrigin: true, // Displays dropdown below the button
+  					alignment: 'left' // Displays dropdown with edge aligned to the left of button
+  				}
+  			);
+        $(window).load(function() {
+          $('#time-left-label').fadeOut(2500, function(){
+            var momentNow = moment();
+            $('#time-left').hide();
+            $('#time-left').html(momentNow.format('hh:mm:ss'));
+            $('#time-left').fadeIn(1000);
+            var interval = setInterval(function() {
+              var momentNow = moment();
+              $('#time-left').html(momentNow.format('hh:mm:ss'));
+            }, 100);
+          });
+        });
+      </script>
     </body>
 </html>
