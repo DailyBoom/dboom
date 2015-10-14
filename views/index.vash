@@ -1,13 +1,5 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-		<script>
-			$('.button-collapse').sideNav({
-					menuWidth: 240, // Default is 240
-					edge: 'right', // Choose the horizontal origin
-					closeOnClick: true
-				}
-			);
-		</script>
 <!-- Login Modal Structure -->
 		<div id="modal-check" class="modal">
 			<div class="modal-content center">
@@ -62,51 +54,46 @@
 			<div class="modal-content center">
 				<!-- Login Modal -->
 				<div class="row">
-					<form class="col s12 set-form-padding-xs" method="post" action="/login">
-						<div class="col s12 set-padding-xs">
-							<div class="row set-padding remove-margin-bottom">
-								<div class="input-field col s12">
-									<input id="username" type="text" class="validate" name="username">
-									<label for="username">아이디</label>
-								</div>
-								<div class="input-field col s12">
-									<input id="password" type="password" class="validate" name="password">
-									<label for="password">비밀번호</label>
-								</div>
+					<form class="col s12 m12 l12" method="post" action="/login">
+						<div class="row">
+							<div class="input-field col s12 m6 l6">
+								<input id="username" type="text" class="validate" name="username">
+								<label for="username">아이디</label>
 							</div>
-							<div class="col s12 m12 l12 add-margin-bottom-xs">
-								<p style="font-size: .49rem;">&nbsp;</p>
-								<span class="left">
-									<input type="checkbox" id="saveid" />
-									<label for="saveid">아이디 저장하기</label>
-								</span>
+							<div class="input-field col s12 m6 l6">
+								<input id="password" type="password" class="validate" name="password">
+								<label for="password">비밀번호</label>
 							</div>
 						</div>
-						<div class="row remove-margin-bottom">
-							<div class="row">
-								<button class="waves-effect waves-light btn cyan darken-3 btn-login" type="submit" name="action">
-									로그인
-								</button>
-								<br><span class="text-md center">- or -</span><br>
-								<a class="waves-effect waves-light btn-flat white-text facebook btn-fb" href="#!facebook">
-									<img class="social-login-facebook" src="/images/facebook.png" />&nbsp;&nbsp;&nbsp;로그인
-								</a>
-								<a class="waves-effect waves-light" href="#!kakao">
-									<img class="social-login-kakao" src="/images/kakao_login_btn_medium.png" />
-								</a>
-								<a class="waves-effect waves-light btn amber darken-3 btn-mod-shop" href="/checkout">
-									<i class="fa fa-shopping-cart fa-1-2x"></i>&nbsp;&nbsp;&nbsp;바로구매
-								</a>
-								<a class="waves-effect waves-light btn-flat cyan-text text-darken-3 btn-mod-md" href="/signup">
-									회원가입
-								</a>
+						<div class="col s12 m12 l12" style="margin: -1rem 0 .5rem 0;">
+							<p class="left">
+								<input type="checkbox" id="saveid" name="saveid"/>
+								<label for="saveid">아이디 저장하기</label>
+							</p>
+						</div>
+						<div class="row">
+							<button class="waves-effect waves-light btn cyan darken-3 btn-login" type="submit" name="action">
+								로그인
+							</button>
+							<span class="text-md center or-mobile">- or -</span>
+							<a href="#!facebook">
+								<img class="social-login" src="/images/fb_login_btn_medium.png" />
+							</a>
+							<a href="#!kakao">
+								<img class="social-login" src="/images/kakao_login_btn_medium.png" />
+							</a>
+							<a class="btn btn-mod-shop amber darken-3" href="/checkout">
+								<i class="fa fa-shopping-cart fa-1-2x"></i>&nbsp;&nbsp;&nbsp;바로구매
+							</a>
+							<div class="signup-box">
+								<a class="cyan-text text-darken-3 right" href="/signup">회원가입</a>
+								<a class="cyan-text text-darken-3 left" href="/reset">비밀번호를 잊으셨나요?</a>
 							</div>
 						</div>
 					</form>
 				</div>
 			</div><!-- .modal-content -->
 		</div><!-- #modal-check-mobile -->
-
 		<div class="hide-on-med-and-up fixed-btn-buy z-depth-1 center">
 			<div class="progress-h cyan lighten-4">
 				<span class="text-progress-h center">@model.progress%</span>
@@ -214,7 +201,6 @@
 										</p>
 									</div><!-- #itempolicy -->
 							  </div><!-- .row -->
-
 							</div><!-- .details-bottom -->
 						</div><!-- .card-reveal -->
 						<div class="card-action price-align">
@@ -224,18 +210,7 @@
 					<div class="hide-on-med-and-up">
 						<a class="waves-effect waves-light btn btn-buy-mobile green modal-trigger" href="#modal-check-mobile">Buy Now</a>
 					</div><!-- /.hide-on-med-and-up -->
-					<script>
-						$(document).ready(function(){
-							$('.slider').slider({
-								full_width: true,
-								indicators: true,
-								interval: 60000
-							});
-							$('ul.tabs').tabs();
-						});
-					</script>
 				</div>
-
 				<!-- item -->
 				<div class="hide-on-small-only col m2 l2 center">
 <!-- progress bar -->
@@ -248,18 +223,6 @@
 					<a id="btn-buy" class="hide-on-small-only btn-buy-txt waves-effect waves-light btn-floating green modal-trigger" href="#modal-check">
 						Buy Now!
 					</a>
-<!-- Buy -> Login Modal JS -->
-					<script>
-						$(document).ready(function(){
-							$('.modal-trigger').leanModal({
-									dismissible: true, // Modal can be dismissed by clicking outside of the modal
-									opacity: .5, // Opacity of modal background
-									in_duration: 300, // Transition in duration
-									out_duration: 200, // Transition out duration
-								}
-							);
-						});
-					</script>
 				</div>
 			</div> <!-- .row -->
 			<br>
@@ -303,8 +266,21 @@
 				AD Here
 			</div>
 			<br>
-			<script>
-				$(document).ready(function() {
+		</div> <!-- .container -->
+		<script>
+			$(document).ready(function(){
+				$('.slider').slider({
+					full_width: true,
+					indicators: true,
+					interval: 60000
+				});
+				$('ul.tabs').tabs();
+				$('.modal-trigger').leanModal({
+					dismissible: true, // Modal can be dismissed by clicking outside of the modal
+					opacity: .5, // Opacity of modal background
+					in_duration: 300, // Transition in duration
+					out_duration: 200, // Transition out duration
+				});
 				$("#product_price").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
 					var owl = $("#db-past");
 					owl.owlCarousel({
@@ -322,7 +298,6 @@
 					$(".next").click(function(){owl.trigger('owl.next');});
 					$(".prev").click(function(){owl.trigger('owl.prev');});
 				});
-			</script>
-		</div> <!-- .container -->
+		</script>
 	})
 })

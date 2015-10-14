@@ -181,20 +181,15 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
   .btn-nologin { margin-left: -2.5rem; margin-right: 4rem; font-size: 2rem !important; vertical-align: middle; }
 }
 @media only screen and (max-width: 600px) {
-  #modal-check.modal div.modal-content { padding: 0; }
+  #modal-check.modal div.modal-content,
+  #modal-check-mobile.modal div.modal-content { padding: .75rem 0 0 0; }
+  .signup-box { padding: .75rem 1rem; }
   .btn-login {
     width: 92%;
     height: 46px;
     font-size: 1.15rem;
   }
-  .social-login-facebook {
-    height: 1.6rem;
-    padding: 0;
-    margin-top: -3px;
-    line-height: 1.5rem;
-    vertical-align: middle;
-  }
-  .social-login-kakao { width: 95%; }
+  .social-login { height: 50px; }
   .btn-fb {
     width: 46%;
     height: 46px;
@@ -206,10 +201,14 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
     font-size: 1.15rem;
   }
   .btn-mod-shop {
-    width: 11rem;
-    height: 3rem;
+    width: 90%;
+    height: 2.8rem;
     margin: .5rem 0;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
+  }
+  .or-mobile {
+    display: block;
+    margin: 5px 0;
   }
 }
 
@@ -271,15 +270,15 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
 }
 @media only screen and (max-width: 600px) {
 	.progress-v {
-	    position: relative;
-	    height: 300px;
-	    width: 100%;
-	    margin: 0.5rem 0 1rem 0;
-	    overflow: hidden;
-	    border-top-left-radius: 25px;
-	    border-top-right-radius: 25px;
-	    border-bottom-left-radius: 25px;
-	    border-bottom-right-radius: 25px;
+    position: relative;
+    height: 300px;
+    width: 100%;
+    margin: 0.5rem 0 1rem 0;
+    overflow: hidden;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 	}
 	.determinate-v {
 		position: absolute;

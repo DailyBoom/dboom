@@ -72,22 +72,6 @@
   					<a href="/" class="logo-m"><img class="nav-logo left" src="/images/dbkorea01.png" /></a>
   					<span id="time-left-label" class="d-clock navbar-align clock-font">남은시간</span>
             <span id="time-left" class="d-clock navbar-align"></span>
-  					<script>
-            $(window).load(function() {
-                $('#time-left-label').fadeOut(2500, function(){
-                  var momentNow = moment();
-                  $('#time-left').hide();
-                  $('#time-left').html(momentNow.format('hh:mm:ss'));
-                  $('#time-left').fadeIn(1000);
-                  var interval = setInterval(function() {
-                      var momentNow = moment();
-                      $('#time-left').html(momentNow.format('hh:mm:ss'));
-                  }, 100);
-                });
-  						});
-  					</script>
-
-  <!--					<a href="/" class="brand-logo">Daily Boom!</a>-->
   					@if (model.user) {
   						<ul class="right navbar-align profile-align">
   							<li>
@@ -159,16 +143,16 @@
             </div>
             <div class="col s12 m5 l5">
               <p class="text-xs" style="color: rgba(255,255,255,0.8);">
-                (주) 폭스트론
-                <br>서울특별시 노원구 길음동 123 (국민대학)
-                <br>대표이사 : 김민기
-                <br>사업자등록번호 : 123-00-11111 사업자정보확인
-                <br>통신판매업신고 : 길음 11111호 Fax : 02-123-4567
+                폭스트론 (주)<br/>
+                서울특별시 성북구 삼양로 22, 103<br/>
+                사업자등록번호: 206-86-90012<br/>
+                통신판매업신고: 2015-서울성북-00524호<br/>
+                Fax: 02-985-1257
               </p>
             </div>
             <div class="col s12 m5 l5">
               <p class="text-xs" style="color: rgba(255,255,255,0.8);">
-                (주) 메모아의 사전 서면 동의 없이 Daily Boom사이트의 일체의 정보, 콘텐츠 및 UI등을 상업적 목적으로 전재, 전송, 스크래핑 등 무단 사용할 수 없습니다.
+                (주) 폭스트론 사전 서면 동의 없이 Daily Boom사이트의 일체의 정보, 콘텐츠 및 UI등을 상업적 목적으로 전재, 전송, 스크래핑 등 무단 사용할 수 없습니다.
                 <br>Daily Boom은 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 Daily Boom은 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.
               </p>
             </div>
@@ -184,5 +168,19 @@
   				<p class="section-blank"></p>
   			</div>
   		</footer>
+      <script>
+        $(window).load(function() {
+          $('#time-left-label').fadeOut(2500, function(){
+            var momentNow = moment();
+            $('#time-left').hide();
+            $('#time-left').html(momentNow.format('hh:mm:ss'));
+            $('#time-left').fadeIn(1000);
+            var interval = setInterval(function() {
+              var momentNow = moment();
+              $('#time-left').html(momentNow.format('hh:mm:ss'));
+            }, 100);
+          });
+        });
+      </script>
     </body>
 </html>
