@@ -44,32 +44,75 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/signup', function(req, res) {
+  // form validation rules
   req.Validator.validate('username', i18n.__('user.username'), {
     length: {
       min: 3,
       max: 20
     },
-    isUnique: function(field, fieldName, value, fn) {
-      var errors = [];
-      if (value != 'unique') {
-        errors.push(i18n.__('notUnique', fieldName));
-      }
-      fn(errors);
-    }
+    required: true
   })
   .validate('email', i18n.__('user.email'), {
-    isUnique: function(field, fieldName, value, fn) {
-      var errors = [];
-      if (value != 'unique') {
-        errors.push(i18n.__('notUnique', fieldName));
+    required: true
+  })
+  .validate('password', i18n.__('user.password'), {
+    length: {
+      min: 8,
+      max: 15
+    },
+    required: true
+  })
+  .validate('confirmpassword', i18n.__('user.confirmPassword'), {
+    length: {
+      min: 8,
+      max: 15
+    },
+    isConfirm: function(field, fieldName, value, fn) {
+      var errors;
+      if (value != req.password) {
+        errors = i18n.__('passNotConfirmed', fieldName, i18n.__('user.password'));
       }
       fn(errors);
-    }
+    },
+    required: true
+  })
+  .validate('agree-terms-1', i18n.__('user.agreeTerms1'), {
+    required: true
+  })
+  .validate('agree-terms-2', i18n.__('user.agreeTerms2'), {
+    required: true
+  })
+  .validate('agree-terms-3', i18n.__('user.agreeTerms3'), {
+    required: true
   });
   
+  if (req.body.add_address) {
+    req.Validator.validate('full_name', i18n.__('user.fullName'), {
+      required: true,
+      alpha: true
+    })
+    .validate('phone_number', i18n.__('user.phoneNumber'), {
+      required: true,
+      numeric: true
+    })
+    .validate('address1', i18n.__('user.address1'), {
+      required: true,
+      alphaNumeric: true
+    })
+    .validate('zipcode', i18n.__('user.zipcode'), {
+      required: true,
+      numeric: true
+    })
+    .validate('country', i18n.__('user.country'), {
+      required: true,
+      alpha: true
+    });
+  }
+  
+  // form validation
   req.Validator.getErrors(function(errors){
     if (errors) {
-      console.log(typeof errors)
+      console.log(errors)
       res.render('signup', { errors: errors });
     }
     else {

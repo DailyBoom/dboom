@@ -5,7 +5,11 @@
 				<form class="col s12" method="post" action="/signup">
 					<h3>회원가입</h3>
 					@if (model.errors) {
-						<div>@model.errors</div>
+						<ul class="red-text">
+						@model.errors.forEach(function(error) {
+							<li>@error</li>
+						})
+						</ul>
 					}
 					<div class="row">
 						<div class="input-field col s12 m6 l6">
@@ -30,7 +34,7 @@
 					<div class="row">
 						<div class="col s12">
 							<p>
-								<input type="checkbox" id="agree-add-address" name="add_adress"/>
+								<input type="checkbox" id="agree-add-address" name="add_address"/>
 								<label for="agree-add-address">배송 정보 추가</label>
 							</p>
 							<div id="add-address" class="hide">
@@ -64,11 +68,6 @@
 									</div>
 								</div>
 							</div>
-							<script>
-								$("#agree-add-address").on("change", function() {
-									$('#add-address').toggleClass('hide');
-								});
-							</script>
 						</div>
 					</div>
 					<div class="row">
@@ -102,15 +101,14 @@
 			$(document).ready(function() {
 				$('select').material_select();
 				$('#agree-all').click(function(event) {
-					if(this.checked) {
-						$('.agree-check').each(function() {
-							this.checked = true;
-						});
-					} else {
-						$('.agree-check').each(function() {
-							this.checked = false;
-						});
-					}
+					var checked = this.checked;
+					$('.agree-check').each(function() {
+						this.checked = checked;
+					});
+				});
+				$("#agree-add-address").on("change", function() {
+					$('#add-address').toggleClass('hide');
+					$('#add-address input').prop('required', this.checked);
 				});
 			});
 		</script>

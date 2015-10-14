@@ -15,7 +15,6 @@ var isAuthenticated = function (req, res, next) {
 
 /* GET Home Page */
 router.get('/', function(req, res, next) {
-  console.log(req.isAuthenticated());
   Product.findOne({}, {}, { sort: { 'created_at' : -1 }}, function (err, product) {
     Product.find({}).where('_id').ne(product._id).limit(6).sort({ 'created_at' : -1 }).exec(function (err, pastProducts) {
       res.render('index', { progress: 70, product: product, pastProducts: pastProducts });
@@ -23,20 +22,25 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.post('/', function(req, res, next) {
-  var user = new User({
-    username: req.body.username,
-    password: req.body.password
-  });
-  user.save(function(err) {
-    if (err) res.render('index', { title: 'Index', error: err.errmsg });
-    User.find().exec(function (err, users) {
-      if (err) { next(err) }
-      res.render('index', { title: 'Express' });
-    });
-  });
+router.get('/about', function(req, res, next) {
+  res.render('about');
 });
 
+router.get('/advertise', function(req, res, next) {
+  res.render('advertise');
+});
+
+router.get('/privacy', function(req, res, next) {
+  res.render('privacy');
+});
+
+router.get('/terms', function(req, res, next) {
+  res.render('terms');
+});
+
+router.get('/merchant', function(req, res, next) {
+  res.render('merchant');
+});
 
 
 module.exports = router;

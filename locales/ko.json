@@ -2,6 +2,21 @@
 	"user.username": "아이디",
 	"user.email": "이메일",
 	"user.password": "비밀번호",
+	"user.confirmPassword": "비밀번호 확인",
+	"user.fullName": "받는분 이름",
+	"user.phoneNumber": "전화번호",
+	"user.address1": "배송지 주소",
+	"user.zipcode": "우편번호",
+	"user.country": "배송 국가",
+	"user.agreeTerms1": "Daily Boom 구매회원원 이용약관",
+	"user.agreeTerms2": "전자금웅서비스 이용약관",
+	"user.agreeTerms3": "개인정보 수집 및 이용",
 	"length.tooShort": "%s length.tooShort",
-	"notUnique": "%s is not unique"
+	"notUnique": "%s is not unique",
+	"passNotConfirmed": "%s is not the same as %s",
+	"length.tooLong": "%s length.tooLong",
+	"required.missing": "%s required.missing",
+	"alpha.isNotAlpha": "%s alpha.isNotAlpha",
+	"numeric.isNotNumeric": "%s numeric.isNotNumeric",
+	"alphaNumeric.isNotAlphaNumeric": "%s alphaNumeric.isNotAlphaNumeric"
 }

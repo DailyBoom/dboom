@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var validate = require('form-validate');
+var config = require("config");
 var i18n = require('i18n');
 i18n.configure({
     defaultLocale: 'ko',
@@ -50,6 +51,9 @@ app.use(validate(app, validateOptions))
 //app.use(i18n.middleware());
 app.use(passport.initialize());
 app.use(passport.session());
+if (app.get('env') === 'production') {
+  app.listen(3000);
+}
 app.use(function(req, res, next) {
   res.locals.user = req.user;
   next();
@@ -82,9 +86,9 @@ passport.use(new LocalStrategy(
 ));
 
 passport.use(new FacebookStrategy({
-    clientID: "636096523200038",
-    clientSecret: "9980ae2e967b246bef211729d57d4e5f",
-    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    clientID: config.get("Facebook.clientID"),
+    clientSecret: config.get("Facebook.clientSecret"),
+    callbackURL: config.get("Facebook.callbackURL"),
     enableProof: false
   },
   function(accessToken, refreshToken, profile, done) {
