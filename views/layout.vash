@@ -150,11 +150,12 @@
       				</p>
             </div>
             <div class="col s12 m10 l10 price-align">
-              <a class="footer-link white-text" href="#!">우리소개</a>
-              <a class="footer-link white-text" href="#!">제휴·광고</a>
-              <a class="footer-link white-text" href="#!">개인정보취급방침</a>
-              <a class="footer-link white-text" href="#!">이용약관</a>
-              <a class="footer-link white-text" href="#!">판매자</a>
+              <span class="white-text">|</span>
+              <a class="footer-link white-text" href="/about">우리소개</a><span class="white-text">&nbsp;|</span>
+              <a class="footer-link white-text" href="/advertise">제휴·광고</a><span class="white-text">&nbsp;|</span>
+              <a class="footer-link white-text" href="/privacy">개인정보취급방침</a><span class="white-text">&nbsp;|</span>
+              <a class="footer-link white-text" href="/terms">이용약관</a><span class="white-text">&nbsp;|</span>
+              <a class="footer-link white-text" href="/merchant">판매자</a><span class="white-text">|</span>
             </div>
             <div class="col s12 m5 l5">
               <p class="text-xs" style="color: rgba(255,255,255,0.8);">
