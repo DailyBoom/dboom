@@ -71,10 +71,10 @@
 								</p>
 							}
 							<p class="grey-text">
-								** By clicking on "주문하기" you hereby agree to the <a href="#">Terms of Service</a>.
+								* By clicking on "주문하기" you hereby agree to the <a href="#">Terms of Service</a>.
 							</p>
 							<br>
-							<button class="btn waves-effect waves-light btn-order cyan darken-3" type="submit" name="action">주문 하기
+							<button class="btn waves-effect waves-light btn-order cyan darken-3" type="submit" name="action">결제 하기
 								&nbsp;<i class="fa fa-send"></i>
 							</button>
 						</div>

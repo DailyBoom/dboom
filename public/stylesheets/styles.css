@@ -38,6 +38,13 @@ form.col.s12.set-form-padding     { padding: 0 0.25rem; }
 form.col.s12.set-form-padding-xs  { padding: 0; }
 
 /* Grid */
+@media only screen and (max-width: 600px) {
+  .flex-s { display: flex; flex-direction: column; }
+  .box-1 { order: 1; }
+  .box-2 { order: 2; }
+  .box-3 { order: 3; }
+  .box-4 { order: 4; }
+}
 
 /* Text */
 .text-xs { font-size: 0.75rem !important; }
@@ -262,7 +269,7 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
 		outline: 2px solid #fff;
 	}
 	.text-progress-v {
-    display: block;
+    display: none;
 		position: absolute;
     width: 100%;
     left: 0;
@@ -387,6 +394,7 @@ input[type=number]::-webkit-outer-spin-button {
   .details-box      { width: 100%; clear: both; }
   .details-img      { height: 120px; }
   .details-title    { font-size: 2rem; }
+  .info-label       { margin-right: 20px; font-weight: bold; }
   .brandlink        { padding: 0 4px; }
   .social           { height: 2.1rem; margin-right: 5px; border-radius: 2rem; }
   .social-footer    { height: 2.5rem; margin-right: 5px; }
@@ -404,12 +412,14 @@ input[type=number]::-webkit-outer-spin-button {
   table.table-sm tbody tr td {
     padding: 5px 5px;
   }
-  .footer-link { font-size: .9rem; padding: .2rem 0 .2rem 3rem; text-align: right; }
+  .footer-link,
+  .footer-link-lg { font-size: .9rem; padding: .2rem 0 .2rem 3rem; }
 }
 @media only screen and (max-width: 600px) {
   .details-box      { width: 100%; clear: both; }
   .details-img      { height: 100px; }
   .details-title    { font-size: 2rem; }
+  .info-label       { margin-right: 10px; font-weight: bold; }
   .brandlink        { padding: 0 4px; }
   .social           { height: 2rem; padding: 0 4px; }
   .social-footer    { height: 2rem; margin-right: 5px; }
@@ -423,10 +433,20 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: .25rem;
     overflow: hidden;
   }
+  .footer-box {
+    padding: 0 !important;
+  }
   .footer-link {
+    display: inline-block;
+    width: 15%;
     font-size: .8rem;
-    padding: 0 3px;
-    text-align: justify !important;
+    text-align: center;
+  }
+  .footer-link-lg {
+    display: inline-block;
+    width: 26%;
+    font-size: .8rem;
+    text-align: center;
   }
 }
 

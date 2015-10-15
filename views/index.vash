@@ -43,7 +43,6 @@
 								<img class="social-login-kakao" src="/images/kakao_account_login_btn_large_wide.png" />
 							</a>
 							<a class="waves-effect waves-light btn-flat white-text amber darken-3 btn-fb" href="/checkout" style="margin-top: 1rem;">
-<<<<<<< HEAD
 								<!-- <img class="social-login-facebook" src="/images/facebook.png" />-->
 								<i class="fa fa-shopping-cart fa-3x btn-nologin"></i>로그인 안하고 바로구매
 							</a>
@@ -66,7 +65,6 @@
 								<a class="waves-effect waves-light btn-flat cyan-text text-darken-3 btn-mod-md" href="/signup">
 									회원가입
 								</a>
-=======
 								<i class="fa fa-shopping-cart fa-3x btn-nologin"></i>로그인 안하고 바로구매
 							</a>
 						</div>
@@ -112,7 +110,6 @@
 							<div class="signup-box">
 								<a class="cyan-text text-darken-3 right" href="/signup">회원가입</a>
 								<a class="cyan-text text-darken-3 left" href="/reset">비밀번호를 잊으셨나요?</a>
->>>>>>> origin/charles
 							</div>
 						</div>
 					</form>
@@ -192,9 +189,9 @@
 										<p class="text-sm">
 											<b>배송/반품/교환 문의정보</b>
 											<ul class="info-list text-ss">
-												<li><b>판매자 지정택배사</b>&nbsp;&nbsp;&nbsp;우체국택배</li>
-												<li><b>반품배송비</b>&nbsp;&nbsp;&nbsp;반품/교환 배송비(편도) :2,500원</li>
-												<li><b>보내실 곳</b>&nbsp;&nbsp;&nbsp;431-058 경기도 안양시 동안구 비산동 1110  2층 소포실 (주)세다</li>
+												<li><span class="info-label">판매자 지정택배사</span>우체국택배</li>
+												<li><span class="info-label">반품배송비</span>반품/교환 배송비(편도) :2,500원</li>
+												<li><span class="info-label">보내실 곳</span>431-058 경기도 안양시 동안구 비산동 1110  2층 소포실 (주)세다</li>
 											</ul>
 										</p>
 										<p class="text-sm">
@@ -241,9 +238,17 @@
 <!-- progress bar -->
 					<div class="progress-v cyan lighten-3 z-depth-1 center">
 						<span class="white-text text-progress-v">@model.progress%<br>팔림</span>
-						<div class="determinate-v cyan darken-3" style="height: @model.progress%;">
+						<div class="determinate-v cyan darken-3" style="">
 						</div>
 					</div>
+					<script>
+						$(window).load(function(){
+							var progress = @model.progress + "%";
+							$('.text-progress-v').hide();
+							$('.determinate-v').animate({height: progress}, 1500);
+							$('.text-progress-v').delay(1250).fadeIn();
+						});
+					</script>
 <!-- Buy Modal -->
 					@if (model.user) {
 						<a id="btn-buy" class="hide-on-small-only btn-buy-txt waves-effect waves-light btn-floating green" href="/checkout?product_id=@model.product.id">
@@ -324,7 +329,8 @@
 				   }
 				   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
 				   document.write ("'></scr"+"ipt>");
-				//]]>--></script>
+				//]]>-->
+				</script>
 			</div>
 			<br>
 		</div> <!-- .container -->
