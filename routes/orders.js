@@ -29,7 +29,7 @@ router.post('/orders/new', isAuthenticated, function(req, res) {
 });
 
 router.get('/checkout', function(req, res) {
-  if (req.user && req.user.shipping != {}) {
+  if (req.user && Object.getOwnPropertyNames(req.user.shipping).length != 0) {
     if (!req.session.order) {
         var order = new Order({
         user: req.user.id,
