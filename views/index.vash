@@ -39,34 +39,10 @@
 							<a class="waves-effect waves-light btn-flat white-text facebook btn-fb" id="facebook">
 								<img class="social-login-facebook" src="/images/facebook.png" />페이스북계정으로 로그인
 							</a>
-							<a class="waves-effect waves-light" href="#!kakao" style="margin-top: 1.4rem;">
+							<a class="waves-effect waves-light" style="margin-top: 1.4rem;" id="kakao">
 								<img class="social-login-kakao" src="/images/kakao_account_login_btn_large_wide.png" />
 							</a>
 							<a class="waves-effect waves-light btn-flat white-text amber darken-3 btn-fb" href="/checkout" style="margin-top: 1rem;">
-<<<<<<< HEAD
-								<!-- <img class="social-login-facebook" src="/images/facebook.png" />-->
-								<i class="fa fa-shopping-cart fa-3x btn-nologin"></i>로그인 안하고 바로구매
-							</a>
-						</div>
-						<div class="row remove-margin-bottom">
-							<div class="hide-on-med-and-up row">
-								<button class="waves-effect waves-light btn cyan darken-3 btn-login" type="submit" name="login">
-									로그인
-								</button>
-								<br><span class="text-md center">- or -</span><br>
-								<a class="waves-effect waves-light btn-flat white-text facebook btn-fb" id="facebook">
-									<img class="social-login-facebook" src="/images/facebook.png" />&nbsp;&nbsp;&nbsp;로그인
-								</a>
-								<a class="waves-effect waves-light" href="#!kakao">
-									<img class="social-login-kakao" src="/images/kakao_login_btn_medium.png" />
-								</a>
-								<a class="waves-effect waves-light btn amber darken-3 btn-mod-shop" href="/checkout">
-									<i class="fa fa-shopping-cart fa-1-2x"></i>&nbsp;&nbsp;&nbsp;바로구매
-								</a>
-								<a class="waves-effect waves-light btn-flat cyan-text text-darken-3 btn-mod-md" href="/signup">
-									회원가입
-								</a>
-=======
 								<i class="fa fa-shopping-cart fa-3x btn-nologin"></i>로그인 안하고 바로구매
 							</a>
 						</div>
@@ -112,7 +88,6 @@
 							<div class="signup-box">
 								<a class="cyan-text text-darken-3 right" href="/signup">회원가입</a>
 								<a class="cyan-text text-darken-3 left" href="/reset">비밀번호를 잊으셨나요?</a>
->>>>>>> origin/charles
 							</div>
 						</div>
 					</form>

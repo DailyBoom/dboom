@@ -31,7 +31,7 @@
 							</a>
 							<div class="blank-block">&nbsp;
 							</div>
-							<a class="col s12 waves-effect waves-cyan white btn-flat btn-large cyan-text text-darken-3" href="!#">회원가입</a>
+							<a class="col s12 waves-effect waves-cyan white btn-flat btn-large cyan-text text-darken-3" href="/signup">회원가입</a>
 						</div>
 					</div>
 				</form>

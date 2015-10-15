@@ -7,7 +7,15 @@ var orderSChema = new Schema({
 	product: { type: Schema.Types.ObjectId, ref: 'Product' },
 	status: String,
 	trackLink: String,
-	created_at: { type : Date, default : Date.now }
+	created_at: { type : Date, default : Date.now },
+	shipping: {
+		full_name: String,
+		address: String,
+		address_extra: String,
+		country: String,
+		zipcode: Number,
+		phone_number: Number
+  	},
 });
 
 var Order = mongoose.model("Order", orderSChema);

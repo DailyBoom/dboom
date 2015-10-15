@@ -7,15 +7,17 @@ var SALT_WORK_FACTOR = 10;
 // create a schema
 var userSchema = new Schema({
   name: String,
-  email: { type: String, required: true, unique: true },
+  email: { type: String, unique: true },
   username: { type: String, required: true, unique: true },
   password: { type: String },
   admin: Boolean,
-  location: {
+  shipping: {
+    full_name: String,
     address: String,
     address_extra: String,
-    city: String,
+    country: String,
     zipcode: Number,
+    phone_number: Number
   },
   role: { type: String, required: true },
   created_at: { type : Date, default : Date.now },

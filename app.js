@@ -18,6 +18,7 @@ var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var KakaoStrategy = require('passport-kakao').Strategy;
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/dailyboom');
 var User = require('./models/user');
@@ -66,13 +67,11 @@ app.use('/', orders);
 passport.use(new LocalStrategy(
   function (username, password, done) {
     User.findOne({ username: username }, function (err, user) {
-      console.log(username + '/' + password);
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
       user.comparePassword(password, function(err, isMatch) {
-        console.log(isMatch);
         if (err) { return done(err); }
         if (isMatch === false) {
           return done(null, false, { message: 'Incorrect password.' });
@@ -109,6 +108,40 @@ passport.use(new FacebookStrategy({
                   role: 'user',
                   //now in the future searching on User.findOne({'facebook.id': profile.id } will match because of this next line
                   facebookId: profile.id
+              });
+              user.save(function(err) {
+                  if (err) console.log(err);
+                  return done(err, user);
+              });
+          } else {
+              //found user. Return
+              return done(err, user);
+          }
+      });
+  }
+));
+
+passport.use(new KakaoStrategy({
+    clientID : config.get("Kakao.clientID"),
+    callbackURL : config.get("Kakao.callbackURL")
+  },
+  function(accessToken, refreshToken, profile, done){
+     //check user table for anyone with a facebook ID of profile.id
+      User.findOne({
+          'kakaoId': profile.id 
+      }, function(err, user) {
+          if (err) {
+              return done(err);
+          }
+          //No user was found... so create a new user with values from Facebook (all the profile. stuff)
+          if (!user) {
+              console.log(profile);
+              user = new User({
+                  name: profile.username,
+                  username: 'DBU'+profile.id,
+                  role: 'user',
+                  //now in the future searching on User.findOne({'facebook.id': profile.id } will match because of this next line
+                  kakaoId: profile.id
               });
               user.save(function(err) {
                   if (err) console.log(err);

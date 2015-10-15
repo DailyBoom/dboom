@@ -1,0 +1,93 @@
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+		<div class="container">
+			<div class="row">
+				<form class="col s12">
+					<h3>배송지 정보</h3>
+					<div class="row">
+						<div class="input-field col s12 m6 l6">
+							<input id="full_name" name="full_name" type="text" class="validate" placeholder="홍길동" value="@(model.user ? model.user.shipping.full_name : '')">
+							<label for="full_name">받는분 이름</label>
+						</div>
+						<div class="input-field col s12 m6 l6">
+							<input id="phone_number" name="phone_number" type="tel" class="validate" placeholder="01021345678" value="@(model.user ? model.user.shipping.phone_number : '')">
+							<label for="phone_number">전화번호</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12 m9 l9">
+							<input id="address1" name="address1" type="text" class="validate" placeholder="시 . 구 . 동 . " value="@(model.user ? model.user.shipping.address : '')">
+							<label for="address1">배송지 주소</label>
+						</div>
+						<div class="input-field col s12 m3 l3">
+							<input id="zipcode" name="zipcode" type="number" class="validate" placeholder="123456" value="@(model.user ? model.user.shipping.zipcode : '')">
+							<label for="zipcode">우편번호</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<select id="country" name="country">
+								<option value="1">대한민국</option>
+							</select>
+							<label>배송 국가</label>
+						</div>
+					</div>
+					@if (!model.user || !model.user.email) {
+						<div class="row">
+							<div class="input-field col s12">
+								<input id="email" type="email" class="validate" placeholder="someone@dailyboom.co">
+								<label for="email">이메일</label>
+							</div>
+						</div>
+					}
+					<div class="row">
+						<div class="col s12">
+							@if (!model.user) {
+								<p>
+									<input type="checkbox" id="agree-add-id" />
+									<label for="agree-add-id">정보 저장하기</label>
+								</p>
+								<div id="add-id" class="hide">
+								<div class="row">
+									<div class="input-field col s12 m4 l4">
+										<input id="username" name="username" type="text" class="validate">
+										<label for="username">아이디</label>
+									</div>
+									<div class="input-field col s12 m4 l4">
+										<input id="password" name="password" type="password" class="validate">
+										<label for="password">비밀번호</label>
+									</div>
+									<div class="input-field col s12 m4 l4">
+										<input id="confirmpassword" type="password" class="validate">
+										<label for="confirmpassword">비밀번호 확인</label>
+									</div>
+								</div>
+								</div>
+								<script>
+									$("#agree-add-id").on("change", function() {
+										$('#add-id').toggleClass('hide');
+									});
+								</script>
+								<p class="grey-text">
+									* 정보 저장시 이메일로 회원가입이 쉽게 가능합니다.
+								</p>
+							}
+							<p class="grey-text">
+								** By clicking on "주문하기" you hereby agree to the <a class="" href="#">Terms of Service</a>.
+							</p>
+							<br>
+							<button class="btn waves-effect waves-light btn-order cyan darken-3" type="submit" name="action">주문 하기
+								&nbsp;<i class="fa fa-send"></i>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div><!-- .row -->
+		</div>
+		<script>
+			$(document).ready(function() {
+				$('select').material_select({name:"country"});
+			});
+		</script>
+	})
+})

@@ -69,7 +69,7 @@ router.post('/signup', function(req, res) {
     },
     isConfirm: function(field, fieldName, value, fn) {
       var errors;
-      if (value != req.password) {
+      if (value !== req.body.password) {
         errors = i18n.__('passNotConfirmed', fieldName, i18n.__('user.password'));
       }
       fn(errors);
@@ -88,30 +88,27 @@ router.post('/signup', function(req, res) {
   
   if (req.body.add_address) {
     req.Validator.validate('full_name', i18n.__('user.fullName'), {
-      required: true,
-      alpha: true
+      required: true
     })
     .validate('phone_number', i18n.__('user.phoneNumber'), {
       required: true,
       numeric: true
     })
     .validate('address1', i18n.__('user.address1'), {
-      required: true,
-      alphaNumeric: true
+      required: true
     })
     .validate('zipcode', i18n.__('user.zipcode'), {
       required: true,
       numeric: true
     })
     .validate('country', i18n.__('user.country'), {
-      required: true,
-      alpha: true
+      required: true
     });
   }
   
   // form validation
   req.Validator.getErrors(function(errors){
-    if (errors) {
+    if (errors.length > 0) {
       console.log(errors)
       res.render('signup', { errors: errors });
     }
@@ -122,6 +119,16 @@ router.post('/signup', function(req, res) {
         email: req.body.email,
         role: 'user'
       });
+      
+      if (req.body.add_address) {
+        user.shipping = {
+          full_name: req.body.full_name,
+          address: req.body.address1,
+          country: req.body.country,
+          zipcode: req.body.zipcode,
+          phone_number: req.body.phone_number
+        }
+      }
       user.save(function(err) {
         if (err) {
           res.render('signup', { errors: err });
@@ -136,7 +143,12 @@ router.post('/signup', function(req, res) {
               if (err) { console.log(err); res.render('signup', { error: err.errmsg }); }
               console.log('Message sent: ' + info.response);
               transporter.close();
-              res.redirect('/');
+              req.login(user, function(err) {
+                if (err) {
+                  console.log(err);
+                }
+                return res.redirect('/');
+              });
           });
         }
       });
@@ -149,13 +161,25 @@ router.get('/auth/facebook',
     { display: 'popup'},
     { scope: ['email', 'public_profile'] },
     { profileFields: ["id", "birthday", "email", "first_name", "gender", "last_name"] }
-  ));
+));
 
 router.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
     res.render('callback');
-  });
+});
+
+router.get('/auth/kakao',
+  passport.authenticate('kakao')
+);
+
+router.get('/auth/kakao/callback',
+  passport.authenticate('kakao', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.render('callback');
+});
+
 
 module.exports = router;

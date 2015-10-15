@@ -61,7 +61,7 @@
 								</div>
 								<div class="row">
 									<div class="input-field col s12">
-										<select>>
+										<select name="country">
 											<option value="1">대한민국</option>
 										</select>
 										<label>배송 국가</label>
@@ -99,6 +99,11 @@
 		</div>
 		<script>
 			$(document).ready(function() {
+				if ($("#agree-add-address").is(":checked") === true) {
+					console.log("checked");
+					$('#add-address').toggleClass('hide');
+					$('#add-address input').prop('required', true);
+				}
 				$('select').material_select();
 				$('#agree-all').click(function(event) {
 					var checked = this.checked;
