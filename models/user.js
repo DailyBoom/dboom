@@ -22,7 +22,8 @@ var userSchema = new Schema({
   role: { type: String, required: true },
   created_at: { type : Date, default : Date.now },
   updated_at: Date,
-  facebookId: Number
+  facebookId: Number,
+  kakaoId: Number
 });
 
 userSchema.pre('save', function(next) {

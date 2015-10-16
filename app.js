@@ -135,7 +135,6 @@ passport.use(new KakaoStrategy({
           }
           //No user was found... so create a new user with values from Facebook (all the profile. stuff)
           if (!user) {
-              console.log(profile);
               user = new User({
                   name: profile.username,
                   username: 'DBU'+profile.id,

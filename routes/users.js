@@ -22,15 +22,23 @@ var isAuthenticated = function (req, res, next) {
 }
 
 router.get('/login', function(req, res, next) {
+  if (req.user)
+    res.redirect('/');
   res.render('login', { title: 'Login' });
 });
 
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
     failureRedirect: '/login'
-}));
+}), function(req, res) {
+  if (req.query.product_id)
+    res.redirect('/checkout?product_id=' + req.query.product_id);
+  else
+    res.redirect('/');
+});
 
 router.get('/logout', function(req, res){
+  if (req.session.order)
+    req.session.order = null;
   req.logout();
   res.redirect('/');
 });
@@ -40,6 +48,8 @@ router.get('/mypage', isAuthenticated, function(req, res) {
 });
 
 router.get('/signup', function(req, res, next) {
+  if (req.user)
+    res.redirect('/');
   res.render('signup');
 });
 
@@ -109,7 +119,6 @@ router.post('/signup', function(req, res) {
   // form validation
   req.Validator.getErrors(function(errors){
     if (errors.length > 0) {
-      console.log(errors)
       res.render('signup', { errors: errors });
     }
     else {

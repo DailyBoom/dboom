@@ -5,7 +5,7 @@
 			<div class="modal-content center">
 				<!-- Login Modal -->
 				<div class="row">
-					<form class="col set-form-padding" method="post" action="/login">
+					<form class="col set-form-padding" method="post" action="/login?product_id=@model.product.id">
 						<br>
 						<div class="col set-padding m5 l5">
 							<div class="row set-padding remove-margin-bottom">
@@ -36,13 +36,13 @@
 							<span class="grey lighten-5 add-padding-sm">or</span>
 						</div>
 						<div class="hide-on-small-only col m6 l6">
-							<a class="waves-effect waves-light btn-flat white-text facebook btn-fb" id="facebook">
+							<a class="waves-effect waves-light btn-flat white-text facebook btn-fb" id="facebook" data-product="@model.product.id">
 								<img class="social-login-facebook" src="/images/facebook.png" />페이스북계정으로 로그인
 							</a>
-							<a class="waves-effect waves-light" style="margin-top: 1.4rem;" id="kakao">
+							<a class="waves-effect waves-light" style="margin-top: 1.4rem;" id="kakao" data-product="@model.product.id">
 								<img class="social-login-kakao" src="/images/kakao_account_login_btn_large_wide.png" />
 							</a>
-							<a class="waves-effect waves-light btn-flat white-text amber darken-3 btn-fb" href="/checkout" style="margin-top: 1rem;">
+							<a class="waves-effect waves-light btn-flat white-text amber darken-3 btn-fb" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;">
 								<i class="fa fa-shopping-cart fa-3x btn-nologin"></i>로그인 안하고 바로구매
 							</a>
 						</div>
@@ -82,7 +82,7 @@
 							<a href="#!kakao">
 								<img class="social-login" src="/images/kakao_login_btn_medium.png" />
 							</a>
-							<a class="btn btn-mod-shop amber darken-3" href="/checkout">
+							<a class="btn btn-mod-shop amber darken-3" href="/checkout?product_id=@model.product.id">
 								<i class="fa fa-shopping-cart fa-1-2x"></i>&nbsp;&nbsp;&nbsp;바로구매
 							</a>
 							<div class="signup-box">
@@ -281,8 +281,25 @@
 					</div><!-- .row -->
 				</div><!-- /.col s12 m9 l9 -->
 			</div><!-- .row -->
-			<div class="img-pro grey darken-4 white-text center text-xl">
-				AD Here
+			<div class="ad">
+				<script type='text/javascript'>
+				<!--//<![CDATA[
+				   document.MAX_ct0 ='';
+				   var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
+				   var m3_r = Math.floor(Math.random()*99999999999);
+				   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+				   document.write ("zoneid=292195");document.write("&amp;nodis=1");
+				   document.write ('&amp;cb=' + m3_r);
+				   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+				   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+				   document.write ("&amp;loc=" + escape(window.location).substring(0,1600));
+				   if (document.context) document.write ("&context=" + escape(document.context));
+				   if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
+				       document.write ("&amp;ct0=" + escape(document.MAX_ct0));
+				   }
+				   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+				   document.write ("'></scr"+"ipt>");
+				//]]>--></script>
 			</div>
 			<br>
 		</div> <!-- .container -->
