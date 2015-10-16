@@ -135,7 +135,7 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
   }
   #navbar-preview .brand-logo { font-size: 1rem; left: 20%; }
   .btn-publish,
-  .btn-edit { width: 100px; font-weight: 600; }
+  .btn-edit { width: 80px; font-weight: 600; }
   .preview-fa { margin-top: -9px; padding: 0 5px 0 0; }
 }
 @media only screen and (min-width: 601px) {
