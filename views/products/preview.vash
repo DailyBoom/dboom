@@ -7,12 +7,12 @@
 	        <ul class="right hide-on-med-and-down">
 	          <li>
 							<a class="waves-effect waves-green btn-publish center" href="#!">
-								PUBLISH <i class="fa fa-send text-md right" style="margin-top: -18px; padding: 0 30px 0 0;"></i>
+								PUBLISH <i class="fa fa-send preview-fa text-md right"></i>
 							</a>
 						</li>
 	          <li>
 							<a class="waves-effect waves-yellow btn-edit center" href="#!">
-								EDIT <i class="fa fa-pencil text-md right" style="margin-top: -18px; padding: 0 30px 0 0;"></i>
+								EDIT <i class="fa fa-pencil preview-fa text-md right"></i>
 							</a>
 						</li>
 	        </ul>
