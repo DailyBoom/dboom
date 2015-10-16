@@ -101,6 +101,16 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
   #time-left {
     padding-top: 10px;
   }
+  #navbar-preview {
+    position: fixed;
+    bottom: 0;
+    height: 100px;
+    line-height: 100px;
+    z-index: 300;
+    background-color: rgba(0,0,0,0.75);
+  }
+  .btn-publish,
+  .btn-edit { width: 200px; font-weight: 600; }
 }
 @media only screen and (max-width: 600px) {
   .logo-d { display: none; }
@@ -134,7 +144,6 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
     padding: 0;
   }
   #dropdown-profile {
-  	top: 85px !important;
   	border-radius: 5px;
   }
 }

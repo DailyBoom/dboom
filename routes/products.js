@@ -21,6 +21,10 @@ router.get('/products/new', isAdmin, function(req, res) {
   res.render("products/new");
 });
 
+router.get('/products/preview', isAdmin, function(req, res) {
+  res.render("products/preview");
+});
+
 router.post('/products/new', isAdmin, upload.array('photos', 4), function(req, res) {
   var paths = req.files.map(function(item) {
     return item.path;
@@ -33,7 +37,7 @@ router.post('/products/new', isAdmin, upload.array('photos', 4), function(req, r
     current_quantity: req.body.quantity,
     images: paths
   });
-  
+
   console.log(product);
   product.save(function(err) {
     if (err) console.log(err), res.render('/products/new', { title: 'Index', error: err.errmsg });
