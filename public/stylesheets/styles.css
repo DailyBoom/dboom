@@ -6,7 +6,7 @@
 @font-face {
   font-family: '256bytes';
   src: url('/fonts/bulkypix.ttf'); /* IE9 Compat Modes */
-  src: url('/fonts/bulkypix.ttf')  format('truetype'), /* Safari, Android, iOS */
+  src: url('/fonts/bulkypix.ttf') format('truetype'); /* Safari, Android, iOS */
 }
 
 /* Colors	*/
@@ -38,6 +38,13 @@ form.col.s12.set-form-padding     { padding: 0 0.25rem; }
 form.col.s12.set-form-padding-xs  { padding: 0; }
 
 /* Grid */
+@media only screen and (max-width: 600px) {
+  .flex-s { display: flex; flex-direction: column; }
+  .box-1 { order: 1; }
+  .box-2 { order: 2; }
+  .box-3 { order: 3; }
+  .box-4 { order: 4; }
+}
 
 /* Text */
 .text-xs { font-size: 0.75rem !important; }
@@ -94,6 +101,17 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
   #time-left {
     padding-top: 10px;
   }
+  #navbar-preview {
+    position: fixed;
+    bottom: 0;
+    height: 100px;
+    line-height: 100px;
+    z-index: 300;
+    background-color: rgba(0,0,0,0.75);
+  }
+  .btn-publish,
+  .btn-edit { width: 200px; font-weight: 600; }
+  .preview-fa { margin-top: -18px; padding: 0 30px 0 0; }
 }
 @media only screen and (max-width: 600px) {
   .logo-d { display: none; }
@@ -107,6 +125,18 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
     height: 50px;
     background-color: rgba(51,51,51,0.08);
   }
+  #navbar-preview {
+    position: fixed;
+    bottom: 80px;
+    height: 60px;
+    line-height: 60px;
+    z-index: 300;
+    background-color: rgba(0,0,0,0.75);
+  }
+  #navbar-preview .brand-logo { font-size: 1rem; left: 20%; }
+  .btn-publish,
+  .btn-edit { width: 80px; font-weight: 600; }
+  .preview-fa { margin-top: -9px; padding: 0 5px 0 0; }
 }
 @media only screen and (min-width: 601px) {
   .d-clock {
@@ -115,7 +145,6 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
   	vertical-align: middle;
     line-height: 4rem;
   	font-size: 4rem;
-  	font-family: '256bytes', sans-serif;
   }
   .navbar-align {
     display: inline-block;
@@ -128,7 +157,6 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
     padding: 0;
   }
   #dropdown-profile {
-  	top: 85px !important;
   	border-radius: 5px;
   }
 }
@@ -138,7 +166,6 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
     margin-left: -1rem;
   	vertical-align: middle;
   	font-size: 2rem;
-  	font-family: '256bytes', sans-serif;
   }
   .navbar-align {
     display: inline-block;
@@ -168,7 +195,8 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
     border-radius: 15%;
   }
 }
-.clock-font { font-family: 'Hanna', sans-serif; }
+.clock-left-font { font-family: 'Hanna', sans-serif; }
+.clock-font { font-family: '256bytes', 'Open sans' sans-serif; }
 .img-profile { height: 40px; }
 
 /* Home Page */
@@ -262,7 +290,7 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
 		outline: 2px solid #fff;
 	}
 	.text-progress-v {
-    display: block;
+    display: none;
 		position: absolute;
     width: 100%;
     left: 0;
@@ -387,6 +415,7 @@ input[type=number]::-webkit-outer-spin-button {
   .details-box      { width: 100%; clear: both; }
   .details-img      { height: 120px; }
   .details-title    { font-size: 2rem; }
+  .info-label       { margin-right: 20px; font-weight: bold; }
   .brandlink        { padding: 0 4px; }
   .social           { height: 2.1rem; margin-right: 5px; border-radius: 2rem; }
   .social-footer    { height: 2.5rem; margin-right: 5px; }
@@ -404,12 +433,14 @@ input[type=number]::-webkit-outer-spin-button {
   table.table-sm tbody tr td {
     padding: 5px 5px;
   }
-  .footer-link { font-size: .9rem; padding: .2rem 0 .2rem 3rem; text-align: right; }
+  .footer-link,
+  .footer-link-lg { font-size: .9rem; padding: .2rem 0 .2rem 3rem; }
 }
 @media only screen and (max-width: 600px) {
   .details-box      { width: 100%; clear: both; }
   .details-img      { height: 100px; }
   .details-title    { font-size: 2rem; }
+  .info-label       { margin-right: 10px; font-weight: bold; }
   .brandlink        { padding: 0 4px; }
   .social           { height: 2rem; padding: 0 4px; }
   .social-footer    { height: 2rem; margin-right: 5px; }
@@ -423,10 +454,20 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: .25rem;
     overflow: hidden;
   }
+  .footer-box {
+    padding: 0 !important;
+  }
   .footer-link {
+    display: inline-block;
+    width: 15%;
     font-size: .8rem;
-    padding: 0 3px;
-    text-align: justify !important;
+    text-align: center;
+  }
+  .footer-link-lg {
+    display: inline-block;
+    width: 26%;
+    font-size: .8rem;
+    text-align: center;
   }
 }
 

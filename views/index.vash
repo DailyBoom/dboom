@@ -21,14 +21,14 @@
 							<div class="col s12 m12 l12 add-margin-bottom-xs">
 								<p style="font-size: .49rem;">&nbsp;</p>
 								<span class="left">
-									<input type="checkbox" id="saveid" name="saveid"/>
-									<label for="saveid">아이디 저장하기</label>
-								</span>
+											<input type="checkbox" id="saveid" name="saveid"/>
+											<label for="saveid">아이디 저장하기</label>
+										</span>
 								<span class="right">
-									<button class="waves-effect waves-light btn cyan darken-3" type="submit" name="action">
-										로그인
-									</button>
-								</span>
+											<button class="waves-effect waves-light btn cyan darken-3" type="submit" name="action">
+												로그인
+											</button>
+										</span>
 							</div>
 						</div>
 						<div class="col s1 m1 l1 or-wrapper">
@@ -42,13 +42,15 @@
 							<a class="waves-effect waves-light" style="margin-top: 1.4rem;" id="kakao" data-product="@model.product.id">
 								<img class="social-login-kakao" src="/images/kakao_account_login_btn_large_wide.png" />
 							</a>
-							<a class="waves-effect waves-light btn-flat white-text amber darken-3 btn-fb" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;">
+							<a class="waves-effect waves-light btn-flat white-text amber darken-3 btn-fb" href="/checkout?product_id=@model.product.id"
+							style="margin-top: 1rem;">
 								<i class="fa fa-shopping-cart fa-3x btn-nologin"></i>로그인 안하고 바로구매
 							</a>
 						</div>
 					</form>
 				</div>
-			</div><!-- .modal-content -->
+			</div>
+			<!-- .modal-content -->
 		</div><!-- #modal-check -->
 		<div id="modal-check-mobile" class="modal">
 			<div class="modal-content center">
@@ -155,53 +157,13 @@
 								</span>
 								<div class="row">
 							    <div class="col s12">
-							      <ul class="tabs">
-							        <li class="tab col s6 m4 l4 ext-left"><a class="active" href="#itemdetails">상품 정보</a></li>
-							        <li class="tab col s6 m4 l4 ext-left"><a href="#itempolicy">배송/반품품/교환 안내</a></li>
-							      </ul>
-							    </div>
-							    <div id="itemdetails" class="col s12">
 										<p class="text-sm">@model.product.description</p>
-									</div><!-- #itemdetails -->
-							    <div id="itempolicy" class="col s12">
-										<p class="text-sm">
-											<b>배송/반품/교환 문의정보</b>
-											<ul class="info-list text-ss">
-												<li><b>판매자 지정택배사</b>&nbsp;&nbsp;&nbsp;우체국택배</li>
-												<li><b>반품배송비</b>&nbsp;&nbsp;&nbsp;반품/교환 배송비(편도) :2,500원</li>
-												<li><b>보내실 곳</b>&nbsp;&nbsp;&nbsp;431-058 경기도 안양시 동안구 비산동 1110  2층 소포실 (주)세다</li>
-											</ul>
-										</p>
-										<p class="text-sm">
-											<b>거래조건에 대한 정보</b>
-											<table class="highlight responsive table-sm text-ss">
-								        <tbody>
-								          <tr>
-								            <th class="valign-top">1</th>
-								            <td>소화물 택배의 배송은 발송일로부터 1~2 영업일이 소요되나, 지역/대형 화물/설치/예약/발송지체 등의 특이사항에 따라 배송기간은 달라질 수 있습니다.</td>
-								          </tr>
-								          <tr>
-								            <th class="valign-top">2</th>
-								            <td>상품의 특성과 거래조건에 따라 청약철회(변심반품/취소)가 일부 제한되거나 청약철회에 소요되는 비용이 다르게 책정될 수 있습니다. </td>
-								          </tr>
-								          <tr>
-								            <th class="valign-top">3</th>
-								            <td>청약철회는 상품 수령일로부터 7일 이내에 신청하실 수 있으며, 판매자는 ‘전자상거래등에서의소비자보호에관한법률’이 정하는 바에 따른 지연이자</td>
-								          </tr>
-													<tr>
-								            <th class="valign-top">4</th>
-								            <td>제품 사용 상 불만과 피해보상에 관하여는 제조사, 수입원, 판매자 등에게 문의하여주시기 바라며, 당사의 고객센터로 문의 주시면 관계법령과 규정에 부합하는</td>
-								          </tr>
-													<tr>
-								            <th class="valign-top">5</th>
-								            <td>거래에 관한 약관은 판매자의 상품 상세설명 화면과 당사 이용약관(링크)에서 확인하실 수 있습니다.</td>
-								          </tr>
-								        </tbody>
-								      </table>
-										</p>
-									</div><!-- #itempolicy -->
+									</div>
 							  </div><!-- .row -->
 							</div><!-- .details-bottom -->
+							<div class="card">
+								<a class href="#!"></a>
+							</div>
 						</div><!-- .card-reveal -->
 						<div class="card-action price-align">
 							<span class="text-lg"><i class="fa fa-krw"></i> 35,000</span>
@@ -216,9 +178,18 @@
 <!-- progress bar -->
 					<div class="progress-v cyan lighten-3 z-depth-1 center">
 						<span class="white-text text-progress-v">@model.progress%<br>팔림</span>
-						<div class="determinate-v cyan darken-3" style="height: @model.progress%;">
+						<div class="determinate-v cyan darken-3" style="">
 						</div>
 					</div>
+					<script>
+						$(window).load(function(){
+							var progress = @model.progress + "%";
+							$('.text-progress-v').hide();
+							$('.determinate-v').animate({height: progress}, 1500, function() {
+								$('.text-progress-v').fadeIn();
+							});
+						});
+					</script>
 <!-- Buy Modal -->
 					@if (model.user) {
 						<a id="btn-buy" class="hide-on-small-only btn-buy-txt waves-effect waves-light btn-floating green" href="/checkout?product_id=@model.product.id">
@@ -232,14 +203,11 @@
 					}
 <!-- Buy -> Login Modal JS -->
 					<script>
-						$(document).ready(function(){
-							$('.modal-trigger').leanModal({
-									dismissible: true, // Modal can be dismissed by clicking outside of the modal
-									opacity: .5, // Opacity of modal background
-									in_duration: 300, // Transition in duration
-									out_duration: 200, // Transition out duration
-								}
-							);
+						$(document).ready(function (){
+						    $('iframe').each(function(){
+						        var url = $(this).attr("src");
+						        $(this).attr("src",url+"?wmode=transparent");
+						    });
 						});
 					</script>
 				</div>
@@ -299,7 +267,8 @@
 				   }
 				   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
 				   document.write ("'></scr"+"ipt>");
-				//]]>--></script>
+				//]]>-->
+				</script>
 			</div>
 			<br>
 		</div> <!-- .container -->

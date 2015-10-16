@@ -5,11 +5,10 @@
   		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  		<!--<link rel="canonical" href="<?=$canonical?>" />
-  		<meta name="description" content="<?=$description?>">
-  		<meta itemprop="name" content="<?=$ip_name?>" />
-  		<meta itemprop="description" content="<?=$ip_description?>" />
-  		<meta itemprop="image" content="<?=$ip_image?>" />-->
+  		<!-- <link rel="canonical" href="http://www.dailyboom.co" />
+  		<meta itemprop="name" content="" />
+  		<meta itemprop="description" content="" />
+  		<meta itemprop="image" content="" /> -->
 
   		<!-- favicon -->
       <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png">
@@ -32,7 +31,6 @@
 
   		<!-- Materialize CSS -->
   		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-  		<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" /> -->
   		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
   		<!-- Owl CSS -->
@@ -48,7 +46,6 @@
   		<script src="/javascripts/owl.carousel.min.js"></script>
 
   		<!-- Materialize CSS JS -->
-  		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>-->
   		<script src="/javascripts/materialize.min.js"></script>
 
   		<script src="/javascripts/formatCurrency/jquery.formatCurrency-1.4.0.min.js"></script>
@@ -72,8 +69,8 @@
   				<div class="container center">
   					<a href="/" class="logo-d"><img class="nav-logo left" src="/images/dbkorea02.png" /></a>
   					<a href="/" class="logo-m"><img class="nav-logo left" src="/images/dbkorea01.png" /></a>
-  					<span id="time-left-label" class="d-clock navbar-align clock-font">남은시간</span>
-            <span id="time-left" class="d-clock navbar-align"></span>
+  					<span id="time-left-label" class="d-clock navbar-align clock-left-font">남은시간</span>
+            <span id="time-left" class="d-clock navbar-align clock-font"></span>
   <!--					<a href="/" class="brand-logo">Daily Boom!</a>-->
   					@if (model.user) {
   						<ul class="right navbar-align profile-align">
@@ -114,8 +111,8 @@
         @html.block("body")
   		<footer class="page-footer cyan darken-3">
   			<div class="container">
-          <div class="row">
-            <div class="col s12 m2 l2 center">
+          <div class="row flex-s">
+            <div class="col s12 m3 l3 box-2">
               <p class="grey-text text-lighten-4">
                 <p class="white-text text-md">Follow Us</p>
       					<span>
@@ -124,15 +121,14 @@
       					</span>
       				</p>
             </div>
-            <div class="col s12 m10 l10 price-align">
-              <span class="hide-on-med-and-up white-text">|</span>
-              <a class="footer-link white-text" href="/about">우리소개</a><span class="hide-on-med-and-up white-text">&nbsp;|</span>
-              <a class="footer-link white-text" href="/advertise">제휴·광고</a><span class="hide-on-med-and-up white-text">&nbsp;|</span>
-              <a class="footer-link white-text" href="/privacy">개인정보취급방침</a><span class="hide-on-med-and-up white-text">&nbsp;|</span>
-              <a class="footer-link white-text" href="/terms">이용약관</a><span class="hide-on-med-and-up white-text">&nbsp;|</span>
-              <a class="footer-link white-text" href="/merchant">판매자</a><span class="hide-on-med-and-up white-text">|</span>
+            <div class="col s12 m9 l9 price-align footer-box">
+              <a class="footer-link white-text" href="/about">우리소개</a><span class="hide-on-med-and-up white-text">&nbsp;.</span>
+              <a class="footer-link white-text" href="/advertise">제휴·광고</a><span class="hide-on-med-and-up white-text">&nbsp;.</span>
+              <a class="footer-link-lg white-text" href="/privacy">개인정보취급방침</a><span class="hide-on-med-and-up white-text">&nbsp;.</span>
+              <a class="footer-link white-text" href="/terms">이용약관</a><span class="hide-on-med-and-up white-text">&nbsp;.</span>
+              <a class="footer-link white-text" href="/merchant">판매자</a>
             </div>
-            <div class="col s12 m5 l5">
+            <div class="col s12 m4 l4 box-3">
               <p class="text-xs" style="color: rgba(255,255,255,0.8);">
                 폭스트론 (주)<br/>
                 서울특별시 성북구 삼양로 22, 103<br/>
@@ -141,7 +137,7 @@
                 Fax: 02-985-1257
               </p>
             </div>
-            <div class="col s12 m5 l5">
+            <div class="col s12 m5 l5 box-4">
               <p class="text-xs" style="color: rgba(255,255,255,0.8);">
                 (주) 폭스트론 사전 서면 동의 없이 Daily Boom사이트의 일체의 정보, 콘텐츠 및 UI등을 상업적 목적으로 전재, 전송, 스크래핑 등 무단 사용할 수 없습니다.
                 <br>Daily Boom은 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 Daily Boom은 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.
@@ -160,16 +156,6 @@
   			</div>
   		</footer>
       <script>
-        $('.dropdown-button').dropdown({
-  					inDuration: 300,
-  					outDuration: 225,
-  					constrain_width: false, // Does not change width of dropdown to that of the activator
-  					hover: false, // Activate on hover
-  					gutter: 0, // Spacing from edge
-  					belowOrigin: true, // Displays dropdown below the button
-  					alignment: 'left' // Displays dropdown with edge aligned to the left of button
-  				}
-  			);
         $(window).load(function() {
           $('#time-left-label').fadeOut(2500, function(){
             var momentTom = moment().add(1, 'days').hours(0).minutes(0).seconds(0);
@@ -182,6 +168,16 @@
               $('#time-left').html(timeLeft.hours() + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
             }, 1000);
           });
+          $('.dropdown-button').dropdown({
+    					inDuration: 300,
+    					outDuration: 225,
+    					constrain_width: false, // Does not change width of dropdown to that of the activator
+    					hover: false, // Activate on hover
+    					gutter: 0, // Spacing from edge
+    					belowOrigin: true, // Displays dropdown below the button
+    					alignment: 'left' // Displays dropdown with edge aligned to the left of button
+    				}
+    			);
         });
       </script>
     </body>

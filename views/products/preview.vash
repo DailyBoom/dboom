@@ -1,0 +1,219 @@
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+    <nav id="navbar-preview">
+			<div class="container">
+	      <div class="nav-wrapper">
+	        <a href="#!" class="brand-logo">PREVIEW MODE</a>
+	        <ul class="right">
+	          <li>
+							<a class="waves-effect waves-green btn-publish center" href="#!">
+								PUBLISH <i class="hide-on-small-only fa fa-send preview-fa text-md right"></i>
+							</a>
+						</li>
+	          <li>
+							<a class="waves-effect waves-yellow btn-edit center" href="#!">
+								EDIT <i class="hide-on-small-only fa fa-pencil preview-fa text-md right"></i>
+							</a>
+						</li>
+	        </ul>
+				</div>
+      </div>
+    </nav>
+		<div class="hide-on-med-and-up fixed-btn-buy z-depth-1 center">
+			<div class="progress-h cyan lighten-4">
+				<span class="text-progress-h center">75%</span>
+				<div class="determinate-h cyan darken-4" style="width: 75%;">
+				</div>
+			</div>
+			<!-- <div id="time-left-mobile" class="d-clock-mobile red white-text"></div> -->
+			<div class="mobile-share grey lighten-4">
+				<a href="#shareurl"><img class="social" src="/images/link_icon.png" /></a>
+				<a href="#sharemail"><img class="social" src="/images/icon_email.png" /></a>
+				<a href="#sharekakao"><img class="social" src="/images/icon_kakao.png" /></a>
+				<a href="#sharefb"><img class="social" src="/images/icon_fb.png" /></a>
+			</div>
+		</div>
+		<div class="section-blank">
+		</div>
+		<div class="container">
+			<div class="row">
+				<div id="main" class="col s12 m10 l10 left">
+					<div class="card">
+						<div class="card-image">
+							<!-- Image Slider -->
+							<div class="slider">
+								<ul class="slides">
+									<!-- model.product.images.forEach(function(img) { -->
+										<li>
+ 											<img class="" src="/images/hero01.jpg" alt="model.product.name | Daily Boom" />
+										</li>
+									<!-- }) -->
+									<li>
+										<iframe id="iframe-video" class="iframe-video" src="https://www.youtube.com/embed/CLViADWy-1U" frameborder="0" allowfullscreen></iframe>
+									</li>
+								</ul>
+							</div>
+						</div><!-- /.card-image -->
+						<div class="card-content">
+							<span class="card-title activator grey-text text-darken-4">
+								<a href="#!"><i class="fa fa-info-circle fa-1-5x right" style="margin-top: -2px;"></i></a>
+								model.product.name
+							</span>
+							<span class="hide-on-small-only">
+								<a href="#sharefb"><img class="social right" src="/images/icon_fb.png" /></a>
+								<a href="#sharekakao"><img class="social right" src="/images/icon_kakao.png" /></a>
+								<a href="#sharemail"><img class="social right" src="/images/icon_email.png" /></a>
+								<a href="#shareurl"><img class="social right" src="/images/link_icon.png" /></a>
+							</span>
+							<p class="activator grey-text text-darken-1">이제 헤어컬러 시술이 쉬워 집니다...</p>
+						</div><!-- /.card-content -->
+						<div class="card-reveal">
+							<span class="card-title grey-text text-darken-4">
+								<i class="fa fa-times-circle fa-1-5x right"></i>
+							</span>
+							<div class="details-box">
+								<img class="details-img circle z-depth-1" src="/images/zone01.png" alt="{BRAND NAME LOGO}" />
+								<br>
+								<span class="text-lg">Zonecode</span>
+								<span class="card-title grey-text text-darken-4">
+									model.product.name
+								</span>
+								<div class="row">
+							    <div class="col s12">
+										<p class="text-sm">model.product.description</p>
+									</div>
+							  </div><!-- .row -->
+							</div><!-- .details-bottom -->
+							<div class="card">
+								<a class href="#!"></a>
+							</div>
+						</div><!-- .card-reveal -->
+						<div class="card-action price-align">
+							<span class="text-lg"><i class="fa fa-krw"></i> 35,000</span>
+						</div>
+					</div><!-- /.card -->
+					<div class="hide-on-med-and-up">
+						<a class="waves-effect waves-light btn btn-buy-mobile green modal-trigger" href="#modal-check-mobile">Buy Now</a>
+					</div><!-- /.hide-on-med-and-up -->
+				</div>
+				<!-- item -->
+				<div class="hide-on-small-only col m2 l2 center">
+<!-- progress bar -->
+					<div class="progress-v cyan lighten-3 z-depth-1 center">
+						<span class="white-text text-progress-v">75%<br>팔림</span>
+						<div class="determinate-v cyan darken-3" style="">
+						</div>
+					</div>
+					<script>
+						$(window).load(function(){
+							var progress = 75 + "%";
+							$('.text-progress-v').hide();
+							$('.determinate-v').animate({height: progress}, 1500);
+							$('.text-progress-v').delay(1250).fadeIn();
+						});
+					</script>
+<!-- Buy Modal -->
+					@if (model.user) {
+						<a id="btn-buy" class="hide-on-small-only btn-buy-txt waves-effect waves-light btn-floating green" href="#!">
+							Buy Now!
+						</a>
+					}
+					else {
+						<a id="btn-buy" class="hide-on-small-only btn-buy-txt waves-effect waves-light btn-floating green modal-trigger" href="#!">
+							Buy Now!
+						</a>
+					}
+<!-- Buy -> Login Modal JS -->
+					<script>
+						$(document).ready(function (){
+					    $('iframe').each(function(){
+				        var url = $(this).attr("src");
+				        $(this).attr("src",url+"?wmode=transparent");
+					    });
+						});
+					</script>
+				</div>
+			</div> <!-- .row -->
+			<br>
+			<br>
+			<div class="col s12 m12 l12">
+				<span class="text-lg">지난 상품</span>
+				<a class="text-md right see-more" href="/products/">더보기 <i class="fa fa-chevron-right"></i></a>
+				<hr>
+			</div>
+			<div class="row">
+				<div class="col s12 m12 l12">
+					<div class="row">
+						<div id="db-past" class="owl-carousel owl-theme">
+							@for(x=0;x<6;x++ ){
+							<div class="col s12 m12 l12">
+								<div class="card gre darken-">
+									<div class="card-image">
+										<div class="past-date-box grey-text text-darken-1 text-md">
+											10/01/2015
+										</div>
+										<img class="" src="/images/hero02.jpg" alt="" />
+									</div>
+									<div class="card-content">
+										<p class="grey-text text-darken-1 truncate">product.name</p>
+									</div>
+									<div class="card-action">
+										<a href="#"><i class="fa fa-history"></i>&nbsp;&nbsp;Bring it back! <span class="badge">5</span></a>
+									</div>
+								</div>
+							</div>
+							}
+						</div><!-- /.owl-carousel -->
+					</div><!-- .row -->
+				</div><!-- /.col s12 m9 l9 -->
+			</div><!-- .row -->
+			<div class="ad">
+				<script type='text/javascript'>
+				<!--//<![CDATA[
+				   document.MAX_ct0 ='';
+				   var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
+				   var m3_r = Math.floor(Math.random()*99999999999);
+				   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+				   document.write ("zoneid=292195");document.write("&amp;nodis=1");
+				   document.write ('&amp;cb=' + m3_r);
+				   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+				   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+				   document.write ("&amp;loc=" + escape(window.location).substring(0,1600));
+				   if (document.context) document.write ("&context=" + escape(document.context));
+				   if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
+				       document.write ("&amp;ct0=" + escape(document.MAX_ct0));
+				   }
+				   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+				   document.write ("'></scr"+"ipt>");
+				//]]>-->
+				</script>
+			</div>
+			<br>
+		</div> <!-- .container -->
+		<script>
+			$(document).ready(function(){
+				$('.slider').slider({
+					full_width: true,
+					indicators: true,
+					interval: 60000
+				});
+				$("#product_price").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
+					var owl = $("#db-past");
+					owl.owlCarousel({
+						items : 3,
+						itemsDesktop : [1000,3],
+						itemsDesktopSmall : [900,3],
+						itemsTablet: [600,1],
+						itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
+						navigation: false,
+						pagination: false,
+						responsive: true,
+						rewindNav: false
+					});
+					// Custom Navigation Events
+					$(".next").click(function(){owl.trigger('owl.next');});
+					$(".prev").click(function(){owl.trigger('owl.prev');});
+				});
+		</script>
+	})
+})

@@ -11,7 +11,7 @@
 					<div class="row">
 						<br>
 						<div class="input-field col s12 m12 l12">
-	            <input id="selldate" type="date" class="validate" name="selldate">
+	            <input id="selldate" type="date" class="datepicker" name="selldate">
 	            <label for="selldate" style="margin-top: -1.75rem;">판매 희망 날짜 *</label>
 	          </div>
 					</div>
@@ -90,12 +90,10 @@
 	          </div>
 	        </div>
 					<div class="row">
-		        <div class="input-field col s12">
+		        <div class="input-field col s12 m12 l12">
 		          <input id="videoURL" type="url" class="validate">
 		          <label for="videoURL">동영상 링크 (YouTube 추천)</label>
 		        </div>
-		      </div>
-					<div class="row">
 		        <div class="input-field col s12 m12 l12">
 		          <input id="webURL" type="url" class="validate">
 		          <label for="webURL">Website 링크</label>
@@ -109,6 +107,12 @@
 		          <label for="kakaoURL">Kakao Story 링크</label>
 		        </div>
 		      </div>
+					<div class="row">
+	          <div class="input-field col s12">
+	            <input id="shippinginfo" type="text" class="validate">
+	            <label for="shippinginfo">배송/반품/교환 문의정보 링크</label>
+	          </div>
+	        </div><!-- .row -->
 					<br>
 	        <button class="btn btn-mod-lg waves-effect waves-light amber darken-3 add-margin-bottom-md" type="submit" name="action">
 						미리보기 <i class="fa fa-eye right"></i>
@@ -119,5 +123,17 @@
 	      </form>
 	    </div><!-- .row -->
     </div><!-- .container -->
+		<script>
+		$(document).ready(function() {
+			$('.datepicker').pickadate({
+		    selectMonths: true, // Creates a dropdown to control month
+		    selectYears: 15, // Creates a dropdown of 15 years to control year
+				disable: [
+					[2015,9,17],
+					[2015,9,20]
+				]
+		  });
+		});
+		</script>
   })
 })
