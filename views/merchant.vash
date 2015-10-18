@@ -2,7 +2,7 @@
 	@html.block("body", function(model) {
 		<div class="parallax-container">
       <div class="parallax">
-				<img src="/images/hero05.jpg">
+				<img class="ie-fix" src="/images/hero05.jpg">
 					<div class="parallax-title">
 						Merchants
 					</div>

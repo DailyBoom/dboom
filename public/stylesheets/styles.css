@@ -195,8 +195,8 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
     border-radius: 15%;
   }
 }
-.clock-left-font { font-family: 'Hanna', sans-serif; }
-.clock-font { font-family: '256bytes', 'Open sans' sans-serif; }
+.clock-left-font { font-family: 'Hanna', sans-serif !important; }
+.clock-font { font-family: '256bytes', 'Open sans' sans-serif !important; }
 .img-profile { height: 40px; }
 
 /* Home Page */

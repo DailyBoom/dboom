@@ -2,7 +2,7 @@
 	@html.block("body", function(model) {
 		<div class="parallax-container">
 			<div class="parallax">
-				<img src="/images/hero03.jpg">
+				<img class="ie-fix" src="/images/hero03.jpg">
 					<div class="parallax-title">
 						Privacy Policy
 					</div>
