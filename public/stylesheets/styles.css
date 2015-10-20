@@ -17,6 +17,7 @@ body { background-color: #ffffff; }
 /* Global Settings */
 .section-blank        { padding: 25px 0; }
 .set-min-h            { min-height: 420px; }
+.set-min-h-lg         { min-height: 500px; }
 .set-margin-sm        { margin: 15px 5px; }
 .set-margin-xl        { margin-top: 60px; }
 .add-margin-bottom-xs { margin-bottom: .5rem; }
@@ -26,6 +27,7 @@ body { background-color: #ffffff; }
 .add-margin-tb        { margin: 0.5rem 0; }
 .add-padding-xs       { padding: 5px; }
 .add-padding-sm       { padding: 10px; }
+.remove-border        { border: none; }
 .remove-padding       { padding: 0; }
 .remove-margin-bottom { margin-bottom: 0; }
 .add-border-radius-sm { border-radius: 2px; }
@@ -206,7 +208,7 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
   .btn-fb { width: 100%; height: 56px; margin-top: .4rem; border-radius: 2px; padding: 0; vertical-align: middle; line-height: 56px; font-size: 1.15rem; }
   .social-login-facebook { height: 1.6rem; padding: 0; margin-top: -3px; margin-right: 3.5rem; margin-left: -2.5rem; line-height: 1.5rem; vertical-align: middle; }
   .social-login-kakao { width: 100%; }
-  .or-wrapper { line-height: 15rem; font-size: 1.25rem; }
+  .or-wrapper { line-height: 15rem; font-size: 1.25rem; }}
   .btn-nologin { margin-left: -2.5rem; margin-right: 4rem; font-size: 2rem !important; vertical-align: middle; }
 }
 @media only screen and (max-width: 600px) {
@@ -447,6 +449,32 @@ input[type=number]::-webkit-outer-spin-button {
   table.table-sm tbody tr td {
     padding: 5px 5px;
   }
+  .box-fade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: -3rem;
+    width: 100%;
+    height: 3rem;
+    background-image: url('/images/box-fade.png');
+    background-repeat: repeat-x;
+    background-size: contain;
+  }
+  .card-bottom {
+    position: absolute;
+    left: 0;
+    bottom: 15px;
+  }
+  #shipping-info {
+    margin: 0 -1.375rem 0 -1.375rem;
+    background-color: #fff;
+  }
+  .item-shipping-info {
+    padding: 0 1rem;
+  }
+  .item-shipping-info > li{
+    list-style: decimal;
+  }
   .footer-link,
   .footer-link-lg { font-size: .9rem; padding: .2rem 0 .2rem 3rem; }
 }
@@ -504,6 +532,14 @@ input[type=number]::-webkit-outer-spin-button {
 /* Login */
 .form-padding { padding: 0 20px; }
 .border-right { border-right: 1px solid #ffffff; }
+@media only screen and (min-width: 601px) {
+  .img-btn-login {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .card { margin-top: .49rem; }
+}
 
 /* Register Item Page */
 .input-file-mod {
