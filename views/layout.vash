@@ -48,7 +48,6 @@
   		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.ko-KR.js"></script>
   		<!-- Custom JS -->
   		<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
-  		<script src="/javascripts/app.js"></script>
       <script src="/javascripts/popOut.js"></script>
 
       <!-- Modernizr -->
@@ -78,7 +77,7 @@
   						<ul class="right navbar-align profile-align">
   							<li>
   								<!-- Dropdown Trigger -->
-  								<a id="btn-profile" class='dropdown-button btn-floating cyan z-depth-1' href='#' data-activates='dropdown-profile'>
+  								<a id="btn-profile" class='dropdown-button btn-floating green z-depth-1' href='#' data-activates='dropdown-profile'>
   									<i class="fa fa-user fa-3x"></i>
   								</a>
   								<!-- Dropdown Structure -->

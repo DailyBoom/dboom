@@ -126,7 +126,7 @@
 										</li>
 									})
 									<li>
-										<iframe id="iframe-video" class="iframe-video" src="https://www.youtube.com/embed/CLViADWy-1U" frameborder="0" allowfullscreen></iframe>
+										<iframe class="iframe-video" src="https://www.youtube.com/embed/CLViADWy-1U" frameborder="0" scrolling="no" allowfullscreen></iframe>
 									</li>
 								</ul>
 							</div>
@@ -151,8 +151,8 @@
 							<div class="details-box">
 								<img class="details-img circle z-depth-1" src="images/zone01.png" alt="{BRAND NAME LOGO}" />
 								<br>
-								<span class="text-lg">Zonecode</span>
 								<span class="card-title grey-text text-darken-4">
+									<span class="text-lg">Zonecode</span><br>
 									@model.product.name
 								</span>
 								<div class="row">
@@ -192,24 +192,16 @@
 					</script>
 <!-- Buy Modal -->
 					@if (model.user) {
-						<a id="btn-buy" class="hide-on-small-only btn-buy-txt waves-effect waves-light btn-floating green" href="/checkout?product_id=@model.product.id">
-							Buy Now!
+						<a id="btn-buy" class="hide-on-small-only" href="/checkout?product_id=@model.product.id">
+							<img class="img-btn-buy" src="/images/btn-buy-md.png" />
 						</a>
 					}
 					else {
-						<a id="btn-buy" class="hide-on-small-only btn-buy-txt waves-effect waves-light btn-floating green modal-trigger" href="#modal-check">
-							Buy Now!
+						<a id="btn-buy" class="hide-on-small-only waves-block waves-light modal-trigger" href="#modal-check">
+							<img class="img-btn-buy" src="/images/btn-buy-md.png" />
 						</a>
 					}
 <!-- Buy -> Login Modal JS -->
-					<script>
-						$(document).ready(function (){
-						    $('iframe').each(function(){
-						        var url = $(this).attr("src");
-						        $(this).attr("src",url+"?wmode=transparent");
-						    });
-						});
-					</script>
 				</div>
 			</div> <!-- .row -->
 			<br>
@@ -279,7 +271,10 @@
 					indicators: true,
 					interval: 60000
 				});
-				$('ul.tabs').tabs();
+				$('iframe').each(function(){
+					var url = $(this).attr("src");
+					$(this).attr("src",url+"?wmode=transparent");
+				});
 				$('.modal-trigger').leanModal({
 					dismissible: true, // Modal can be dismissed by clicking outside of the modal
 					opacity: .5, // Opacity of modal background

@@ -181,7 +181,7 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
   }
   ul#dropdown-profile.dropdown-content,
   ul#dropdown-profile.dropdown-content.active {
-    margin-top: 3rem;
+    margin-top: 0 !important;
     right: 0 !important;
   }
   .mobile-share {
@@ -326,6 +326,20 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
 	    line-height: 346px;
 	    z-index: 10;
 	}
+}
+
+/* Buy Button */
+@media only screen and (min-width: 601px) {
+  .img-btn-buy {
+    width: 100%;
+    -webkit-filter: drop-shadow(0px 3px 2px rgba(0,0,0,.25));
+    filter: drop-shadow(0px 3px 2px rgba(0,0,0,.25));
+    -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=5, Color='#999')";
+    filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=5, OffY=5, Color='#999')";
+  }
+}
+@media only screen and (max-width: 600px) {
+
 }
 
 /* Custom Progress Bar Mobile */
