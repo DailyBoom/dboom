@@ -21,14 +21,14 @@
 							<div class="col s12 m12 l12 add-margin-bottom-xs">
 								<p style="font-size: .49rem;">&nbsp;</p>
 								<span class="left">
-											<input type="checkbox" id="saveid" name="saveid"/>
-											<label for="saveid">아이디 저장하기</label>
-										</span>
+									<input type="checkbox" id="saveid" name="saveid"/>
+									<label for="saveid">아이디 저장하기</label>
+								</span>
 								<span class="right">
-											<button class="waves-effect waves-light btn cyan darken-3" type="submit" name="action">
-												로그인
-											</button>
-										</span>
+									<button class="waves-effect waves-light btn cyan darken-3" type="submit" name="action">
+										로그인
+									</button>
+								</span>
 							</div>
 						</div>
 						<div class="col s1 m1 l1 or-wrapper">
@@ -36,8 +36,8 @@
 							<span class="grey lighten-5 add-padding-sm">or</span>
 						</div>
 						<div class="hide-on-small-only col m6 l6">
-							<a class="waves-effect waves-light btn-flat white-text facebook btn-fb" id="facebook" data-product="@model.product.id">
-								<img class="social-login-facebook" src="/images/facebook.png" />페이스북계정으로 로그인
+							<a class="waves-effect waves-light" id="facebook" href="#!">
+								<img class="social-login-kakao" src="/images/fb_login_btn_large.png" />
 							</a>
 							<a class="waves-effect waves-light" style="margin-top: 1.4rem;" id="kakao" data-product="@model.product.id">
 								<img class="social-login-kakao" src="/images/kakao_account_login_btn_large_wide.png" />
@@ -126,7 +126,7 @@
 										</li>
 									})
 									<li>
-										<iframe id="iframe-video" class="iframe-video" src="https://www.youtube.com/embed/CLViADWy-1U" frameborder="0" allowfullscreen></iframe>
+										<iframe class="iframe-video" src="https://www.youtube.com/embed/CLViADWy-1U" frameborder="0" scrolling="no" allowfullscreen></iframe>
 									</li>
 								</ul>
 							</div>
@@ -151,8 +151,8 @@
 							<div class="details-box">
 								<img class="details-img circle z-depth-1" src="images/zone01.png" alt="{BRAND NAME LOGO}" />
 								<br>
-								<span class="text-lg">Zonecode</span>
 								<span class="card-title grey-text text-darken-4">
+									<span class="text-lg">Zonecode</span><br>
 									@model.product.name
 								</span>
 								<div class="row">
@@ -161,8 +161,32 @@
 									</div>
 							  </div><!-- .row -->
 							</div><!-- .details-bottom -->
-							<div class="card">
-								<a class href="#!"></a>
+							<div class="card-bottom col s12">
+								<div class="remove-margin-bottom">
+									<ul id="shipping-info" class="collapsible z-depth-0 remove-border grey-text" data-collapsible="accordion">
+								    <li>
+								      <div class="collapsible-header text-ss remove-border" style="padding: 0 2rem;">
+												<div class="box-fade"></div>
+												<b>배송/반품/교환 정보</b>
+											</div>
+								      <div class="collapsible-body text-ss remove-border" style="padding: 0 2rem;">
+												<b>판매자 지정택배사 :</b>&nbsp;&nbsp;<span>KGB택배</span>
+												<br><b>반품배송비 :</b>&nbsp;&nbsp;<span>반품/교환 배송비(편도) :2,500원</span>
+												<br><b>보내실 곳 :</b>&nbsp;&nbsp;<span>133-832 서울 성동구 성수2가3동 277-35번지 영진디지탈타워 지하2층(구 태신빌딩)</span>
+												<br><br>
+												<b>거래조건에 대한 정보</b>
+												<br>
+												<ul class="item-shipping-info text-xs">
+													<li>소화물 택배의 배송은 발송일로부터 1~2 영업일이 소요되나, 지역/대형 화물/설치/예약/발송지체 등의 특이사항에 따라 배송기간은 달라질 수 있습니다.</li>
+													<li>상품의 특성과 거래조건에 따라 청약철회(변심반품/취소)가 일부 제한되거나 청약철회에 소요되는 비용이 다르게 책정될 수 있습니다.</li>
+													<li>청약철회는 상품 수령일로부터 7일 이내에 신청하실 수 있으며, 판매자는 ‘전자상거래등에서의소비자보호에관한법률’이 정하는 바에 따른 지연이자 지급의 책임이 있습니다.</li>
+													<li>제품 사용 상 불만과 피해보상에 관하여는 제조사, 수입원, 판매자 등에게 문의하여주시기 바라며, 당사의 고객센터로 문의 주시면 관계법령과 규정에 부합하는 기준에 따라 문제 해결에 도움을 드리겠습니다.</li>
+													<li>거래에 관한 약관은 판매자의 상품 상세설명 화면과 당사 이용약관(링크)에서 확인하실 수 있습니다.</li>
+												</ul>
+											</div>
+								    </li>
+									</ul>
+								</div>
 							</div>
 						</div><!-- .card-reveal -->
 						<div class="card-action price-align">
@@ -170,7 +194,10 @@
 						</div>
 					</div><!-- /.card -->
 					<div class="hide-on-med-and-up">
-						<a class="waves-effect waves-light btn btn-buy-mobile green modal-trigger" href="#modal-check-mobile">Buy Now</a>
+						<!-- <a class="waves-effect waves-light btn btn-buy-mobile green modal-trigger" href="#modal-check-mobile">Buy Now</a> -->
+						<a href="#modal-check-mobile">
+							<img class="img-btn-buy-mobile" src="/images/btn-buy-mobile.png" alt="" />
+						</a>
 					</div><!-- /.hide-on-med-and-up -->
 				</div>
 				<!-- item -->
@@ -192,24 +219,16 @@
 					</script>
 <!-- Buy Modal -->
 					@if (model.user) {
-						<a id="btn-buy" class="hide-on-small-only btn-buy-txt waves-effect waves-light btn-floating green" href="/checkout?product_id=@model.product.id">
-							Buy Now!
+						<a id="btn-buy" class="hide-on-small-only" href="/checkout?product_id=@model.product.id">
+							<img class="img-btn-buy" src="/images/btn-buy-md.png" />
 						</a>
 					}
 					else {
-						<a id="btn-buy" class="hide-on-small-only btn-buy-txt waves-effect waves-light btn-floating green modal-trigger" href="#modal-check">
-							Buy Now!
+						<a id="btn-buy" class="hide-on-small-only waves-block waves-light modal-trigger" href="#modal-check">
+							<img class="img-btn-buy" src="/images/btn-buy-md.png" />
 						</a>
 					}
 <!-- Buy -> Login Modal JS -->
-					<script>
-						$(document).ready(function (){
-						    $('iframe').each(function(){
-						        var url = $(this).attr("src");
-						        $(this).attr("src",url+"?wmode=transparent");
-						    });
-						});
-					</script>
 				</div>
 			</div> <!-- .row -->
 			<br>
@@ -279,13 +298,19 @@
 					indicators: true,
 					interval: 60000
 				});
-				$('ul.tabs').tabs();
+				$('iframe').each(function(){
+					var url = $(this).attr("src");
+					$(this).attr("src",url+"?wmode=transparent");
+				});
 				$('.modal-trigger').leanModal({
 					dismissible: true, // Modal can be dismissed by clicking outside of the modal
 					opacity: .5, // Opacity of modal background
 					in_duration: 300, // Transition in duration
 					out_duration: 200, // Transition out duration
 				});
+				$('.collapsible').collapsible({
+		      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+		    });
 				$("#product_price").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
 					var owl = $("#db-past");
 					owl.owlCarousel({
