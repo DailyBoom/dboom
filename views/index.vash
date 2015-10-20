@@ -98,10 +98,18 @@
 		</div><!-- #modal-check-mobile -->
 		<div class="hide-on-med-and-up fixed-btn-buy z-depth-1 center">
 			<div class="progress-h cyan lighten-4">
-				<span class="text-progress-h center">@model.progress%</span>
-				<div class="determinate-h cyan darken-4" style="width: @model.progress%;">
+				<span class="text-progress-h hide">@model.progress%</span>
+				<div class="determinate-h cyan darken-4">
 				</div>
 			</div>
+			<script>
+				$(window).load(function(){
+					var progress_h = @model.progress + "%";
+					$('.determinate-h').animate({width: progress_h}, 1500, function() {
+						$('.text-progress-h').fadeIn().removeClass('hide');
+					});
+				});
+			</script>
 			<!-- <div id="time-left-mobile" class="d-clock-mobile red white-text"></div> -->
 			<div class="mobile-share grey lighten-4">
 				<a href="#shareurl"><img class="social" src="/images/link_icon.png" /></a>
