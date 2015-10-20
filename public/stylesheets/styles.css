@@ -256,6 +256,17 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
     height: 400px;
     background: url(#);
   }
+  .sold-out {
+    position: absolute;
+    width: 80%;
+    height: 400px;
+    left: 10%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: .8;
+    z-index: 10;
+  }
 }
 @media only screen and (max-width: 600px) {
   .slider, .slides {
@@ -265,6 +276,18 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
     width: 100%;
     height: 300px;
     background: url(#);
+  }
+  .sold-out {
+    position: absolute;
+    width: 90%;
+    height: 180px;
+    left: 5%;
+    top: 15%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: .8;
+    z-index: 10;
   }
 }
 /* Mobile */
