@@ -13,7 +13,6 @@
 					<br><br>
 					<span class="text-xl">나의 주문 내역</span>
 					<br><br>
-
 					<!-- show for merchants -->
 					<div class="row">
 						<div class="col s12 m3 l3 text-md">
@@ -27,8 +26,7 @@
 					<!-- end show for merchants -->
 
 					<div class="row">
-						<div class="row">
-							<ul class="collapsible popout" data-collapsible="accordion">
+							<ul class="collapsible" data-collapsible="expandable">
 		<!-- loop foreach -->
 								<li class="orange lighten-4">
 									<div class="collapsible-header orange lighten-3">
@@ -68,11 +66,6 @@
 													    </select>
 													    <label>주문 상태</label>
 													  </div>
-														<script type="text/javascript">
-															$(document).ready(function() {
-																$('select').material_select();
-															});
-														</script>
 													</div>
 												</form>
 											</div>
@@ -98,7 +91,6 @@
 								</li>
 		<!-- end loop -->
 							</ul>
-						</div><!-- .row -->
 						<!-- pagination goes here -->
 						<br>
 						<div class="col s12">
@@ -212,6 +204,7 @@
 		</div><!-- .row -->
 		<script>
 		$(document).ready(function(){
+			$('select').material_select();
 			$('ul.tabs').tabs();
 		});
 		</script>
