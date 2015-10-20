@@ -1,0 +1,44 @@
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+		<div class="container">
+			<div class="row">
+				<form class="col s12 m6 offset-m1 l6 offset-l1" method="post" action="/login">
+					<div class="row">
+						<h4>Login</h4>
+						<br />
+						<div class="input-field">
+							<input id="username" type="text" class="validate" name="username">
+							<label for="username">Username</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field">
+							<input id="password" type="password" class="validate" name="password">
+							<label for="password">Password</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="center">
+							<div class="blank-block">&nbsp;
+							</div>
+							<button class="col s12 btn-large waves-effect waves-light cyan darken-3 left" type="submit" name="action">
+								&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;
+							</button>
+							<div class="blank-block">&nbsp;
+							</div>
+							<btn class="col s12" href="#!">
+								<img class="img-btn-login" src="/images/fb_login_btn_large.png" alt="" />
+							</a>
+							<a class="col s12" href="#!">
+								<img class="img-btn-login" src="/images/kakao_account_login_btn_large_wide.png" alt="Login with Kakao" />
+							</a>
+							<div class="blank-block">&nbsp;
+							</div>
+							<a class="col s12 waves-effect waves-cyan white btn-flat btn-large cyan-text text-darken-3" href="/signup">회원가입</a>
+						</div>
+					</div>
+				</form>
+			</div><!-- .row -->
+		</div><!-- .container -->
+  })
+})
