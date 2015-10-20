@@ -2,7 +2,7 @@
 	@html.block("body", function(model) {
 		<div class="parallax-container">
       <div class="parallax">
-				<img src="/images/hero05.jpg">
+				<img class="ie-fix" src="/images/hero05.jpg">
 					<div class="parallax-title">
 						Merchants
 					</div>
@@ -31,11 +31,11 @@
 		          <input id="email" type="text" class="validate" name="email" required>
 		          <label for="email">이메일</label>
 		        </div>
-						<div class="input-field col s12 m8 offset-m2 l8 offset-l2">
+						<!-- <div class="input-field col s12 m8 offset-m2 l8 offset-l2">
 							<i class="fa fa-globe prefix"></i>
 		          <input id="country" type="text" class="validate" name="country">
 		          <label for="country">구가</label>
-		        </div>
+		        </div> -->
 						<div class="input-field col s12 m8 offset-m2 l8 offset-l2">
 							<i class="fa fa-pencil-square-o prefix"></i>
 		          <textarea id="details" class="materialize-textarea" name="details"></textarea>
