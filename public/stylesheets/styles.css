@@ -26,7 +26,7 @@ body { background-color: #ffffff; }
 .add-margin-sm        { margin: 1rem; }
 .add-margin-tb        { margin: 0.5rem 0; }
 .add-padding-xs       { padding: 5px; }
-.add-padding-sm       { padding: 10px; }
+.add-padding-sm       { padding: 10px !important; }
 .remove-border        { border: none; }
 .remove-padding       { padding: 0; }
 .remove-margin-bottom { margin-bottom: 0; }
@@ -231,10 +231,11 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
     line-height: 47px;
     font-size: 1.15rem;
   }
-  .btn-mod-shop {
+  .btn-buynow {
     width: 90%;
     height: 2.8rem;
     margin: .5rem 0;
+    border-radius: .25rem;
     font-size: 1.1rem;
   }
   .or-mobile {
@@ -256,16 +257,16 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
     height: 400px;
     background: url(#);
   }
-  .sold-out {
-    position: absolute;
-    width: 80%;
-    height: 400px;
-    left: 10%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    opacity: .8;
+  .img-sold-out {
+    position: absolute !important;
     z-index: 10;
+    height: auto;
+    max-height: 400px;
+    max-width: 640px;
+    margin: 0 auto;
+    display: block;
+    padding: 2rem;
+    opacity: .8;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -277,17 +278,13 @@ form.col.s12.set-form-padding-xs  { padding: 0; }
     height: 300px;
     background: url(#);
   }
-  .sold-out {
-    position: absolute;
-    width: 90%;
-    height: 180px;
-    left: 5%;
-    top: 15%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    opacity: .8;
+  .img-sold-out {
+    position: absolute !important;
     z-index: 10;
+    height: auto;
+    width: 100%;
+    padding: 1rem;
+    opacity: .8;
   }
 }
 /* Mobile */
@@ -461,6 +458,9 @@ input[type=number]::-webkit-outer-spin-button {
   .details-box      { width: 100%; clear: both; }
   .details-img      { height: 120px; }
   .details-title    { font-size: 2rem; }
+  .details-head {
+    margin: 1.5rem 0 0 2rem;
+  }
   .info-label       { margin-right: 20px; font-weight: bold; }
   .brandlink        { padding: 0 4px; }
   .social           { height: 2.1rem; margin-right: 5px; border-radius: 2rem; }
@@ -499,12 +499,8 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0 -1.375rem 0 -1.375rem;
     background-color: #fff;
   }
-  .item-shipping-info {
-    padding: 0 1rem;
-  }
-  .item-shipping-info > li{
-    list-style: decimal;
-  }
+  .item-shipping-info { padding: 0 1rem; }
+  .item-shipping-info > li{ list-style: decimal; }
   .footer-link,
   .footer-link-lg { font-size: .9rem; padding: .2rem 0 .2rem 3rem; }
 }
@@ -526,6 +522,28 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: .25rem;
     overflow: hidden;
   }
+  .box-fade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin-top: -2rem;
+    height: 2rem;
+    background-image: url('/images/box-fade.png');
+    background-repeat: repeat-x;
+    background-size: contain;
+  }
+  .card-bottom {
+    position: absolute;
+    left: 0;
+    /*bottom: 15px;*/
+  }
+  #shipping-info {
+    margin: 0 -1.375rem 0 -1.375rem;
+    background-color: #fff;
+  }
+  .item-shipping-info { padding: 0 1rem; }
+  .item-shipping-info > li{ list-style: decimal; }
   .footer-box {
     padding: 0 !important;
   }
@@ -546,10 +564,10 @@ input[type=number]::-webkit-outer-spin-button {
 .customNavigation{ text-align: center; }
 .customNavigation a{
   -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+   -khtml-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 /* ad */
@@ -594,10 +612,10 @@ input[type=number]::-webkit-outer-spin-button {
 #add-id,
 #add-address {
   -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
-         -moz-animation: fadein 1s; /* Firefox < 16 */
-          -ms-animation: fadein 1s; /* Internet Explorer */
-           -o-animation: fadein 1s; /* Opera < 12.1 */
-              animation: fadein 1s;
+     -moz-animation: fadein 1s; /* Firefox < 16 */
+      -ms-animation: fadein 1s; /* Internet Explorer */
+       -o-animation: fadein 1s; /* Opera < 12.1 */
+          animation: fadein 1s;
 }
 @keyframes fadein {
     from { opacity: 0; }

@@ -4,7 +4,7 @@
 		<div id="modal-check" class="modal">
 			<div class="modal-content center">
 				<!-- Login Modal -->
-				<div class="row">
+				<div class="row remove-margin-bottom">
 					<form class="col set-form-padding" method="post" action="/login?product_id=@model.product.id">
 						<br>
 						<div class="col set-padding m5 l5">
@@ -53,38 +53,38 @@
 			<!-- .modal-content -->
 		</div><!-- #modal-check -->
 		<div id="modal-check-mobile" class="modal">
-			<div class="modal-content center">
+			<div class="modal-content add-padding-sm center">
 				<!-- Login Modal -->
 				<div class="row">
 					<form class="col s12 m12 l12" method="post" action="/login">
 						<div class="row">
-							<div class="input-field col s12 m6 l6">
+							<div class="input-field col s12">
 								<input id="username" type="text" class="validate" name="username">
 								<label for="username">아이디</label>
 							</div>
-							<div class="input-field col s12 m6 l6">
+							<div class="input-field col s12">
 								<input id="password" type="password" class="validate" name="password">
 								<label for="password">비밀번호</label>
 							</div>
 						</div>
-						<div class="col s12 m12 l12" style="margin: -1rem 0 .5rem 0;">
+						<div class="col s12" style="margin: -1rem 0 0 0;">
 							<p class="left">
 								<input type="checkbox" id="saveid" name="saveid"/>
 								<label for="saveid">아이디 저장하기</label>
 							</p>
-						</div>
-						<div class="row">
-							<button class="waves-effect waves-light btn cyan darken-3 btn-login" type="submit" name="action">
+							<button class="waves-effect waves-light btn cyan darken-3 right" type="submit" name="action">
 								로그인
 							</button>
-							<span class="text-md center or-mobile">- or -</span>
+						</div>
+						<div class="row">
+							<span class="text-md center or-mobile">- or -</span><br>
 							<a href="#!facebook">
 								<img class="social-login" src="/images/fb_login_btn_medium.png" />
 							</a>
 							<a href="#!kakao">
 								<img class="social-login" src="/images/kakao_login_btn_medium.png" />
 							</a>
-							<a class="btn btn-mod-shop amber darken-3" href="/checkout?product_id=@model.product.id">
+							<a class="waves-effect waves-light btn btn-buynow amber darken-3" href="/checkout?product_id=@model.product.id">
 								<i class="fa fa-shopping-cart fa-1-2x"></i>&nbsp;&nbsp;&nbsp;바로구매
 							</a>
 							<div class="signup-box">
@@ -125,8 +125,9 @@
 				<div id="main" class="col s12 m10 l10 left">
 					<div class="card">
 						<div class="card-image">
-							<div class="sold-out" style="background-image: url('/images/sold-out.png');">
-							</div>
+							<!-- <div class="sold-out" style="background-image: url('/images/sold-out.png');">
+							</div> -->
+							<img class="img-sold-out" src="/images/sold-out.png" alt="" />
 							<!-- Image Slider -->
 							<div class="slider">
 								<ul class="slides">
@@ -159,15 +160,17 @@
 								<i class="fa fa-times-circle fa-1-5x right"></i>
 							</span>
 							<div class="details-box">
-								<img class="details-img circle z-depth-1" src="images/zone01.png" alt="{BRAND NAME LOGO}" />
-								<br>
-								<span class="card-title grey-text text-darken-4">
+								<img class="details-img circle z-depth-1 left" src="images/zone01.png" alt="{BRAND NAME LOGO}" />
+								<span class="card-title grey-text text-darken-4 details-head left">
 									<span class="text-lg">Zonecode</span><br>
 									@model.product.name
 								</span>
 								<div class="row">
 							    <div class="col s12">
-										<p class="text-sm">@model.product.description</p>
+										<p class="text-sm">
+											<b>상품 정보</b><br>
+											@model.product.description
+										</p>
 									</div>
 							  </div><!-- .row -->
 							</div><!-- .details-bottom -->
@@ -205,7 +208,7 @@
 					</div><!-- /.card -->
 					<div class="hide-on-med-and-up">
 						<!-- <a class="waves-effect waves-light btn btn-buy-mobile green modal-trigger" href="#modal-check-mobile">Buy Now</a> -->
-						<a href="#modal-check-mobile">
+						<a class="modal-trigger" href="#modal-check-mobile">
 							<img class="img-btn-buy-mobile" src="/images/btn-buy-mobile.png" alt="" />
 						</a>
 					</div><!-- /.hide-on-med-and-up -->
