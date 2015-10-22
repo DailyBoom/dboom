@@ -1,46 +1,55 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-		<div class="container">
+		<div class="container set-min-h-lg">
 			<div class="row">
-				<form class="col s12 m6 offset-m1 l6 offset-l1" method="post" action="/login">
-					<div class="row">
-						<h4>Login</h4>
-						<br />
-						<div class="input-field">
-							<input id="username" type="text" class="validate" name="username">
-							<label for="username">Username</label>
+				<form class="col set-form-padding" method="post" action="/login">
+					<br>
+					<div class="col s12 m10 offset-m1 l10 offset-l1">
+						<div class="row">
+							<h3>Login</h3>
 						</div>
 					</div>
-					<div class="row">
-						<div class="input-field">
-							<input id="password" type="password" class="validate" name="password">
-							<label for="password">Password</label>
+					<div class="col s12 m5 offset-m1 l5 offset-l1 set-padding">
+						<div class="row set-padding remove-margin-bottom">
+							<div class="input-field col s12">
+								<input id="username" type="text" class="validate" name="username">
+								<label for="username">아이디</label>
+							</div>
+							<div class="input-field col s12">
+								<input id="password" type="password" class="validate" name="password">
+								<label for="password">비밀번호</label>
+							</div>
+						</div>
+						<div class="col s12 m12 l12 add-margin-bottom-xs">
+							<p style="font-size: .49rem;">&nbsp;</p>
+							<span class="left">
+								<input type="checkbox" id="saveid" name="saveid"/>
+								<label for="saveid">아이디 저장하기</label>
+							</span>
+							<span class="right">
+								<button class="waves-effect waves-light btn cyan darken-3" type="submit" name="action">
+									로그인
+								</button>
+							</span>
 						</div>
 					</div>
-					<div class="row">
-						<span class="left">
-							<input type="checkbox" id="remember-me" name="remember_me"/>
-							<label for="remember-me">아이디 저장하기</label>
-						</span>
-						<div class="center">
-							<div class="blank-block">&nbsp;
-							</div>
-							<button class="col s12 btn-large waves-effect waves-light cyan darken-3 left" type="submit" name="action">
-								&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;
-							</button>
-							<div class="blank-block">&nbsp;
-							</div>
-							<a class="col s12 btn-large waves-effect waves-light blue darken-3 right" id="facebook">
-								<i class="fa fa-facebook-official"></i>&nbsp;&nbsp;Facebook
-							</a>
-							<div class="blank-block">&nbsp;
-							</div>
-							<a class="col s12 waves-effect waves-cyan white btn-flat btn-large cyan-text text-darken-3" href="/signup">회원가입</a>
-						</div>
+					<div class="col s1 m1 l1 or-wrapper center">
+						<div class="vline"></div>
+						<span class="add-padding-sm">or</span>
+					</div>
+					<div class="col s12 m5 l5">
+						<a class="waves-effect waves-light" id="facebook" href="#!">
+							<img class="social-login-kakao" src="/images/fb_login_btn_large.png" />
+						</a>
+						<a class="waves-effect waves-light" style="margin-top: 1rem;" id="kakao" href="#!">
+							<img class="social-login-kakao" src="/images/kakao_account_login_btn_large_wide.png" />
+						</a>
+						<a class="waves-effect waves-light btn-flat cyan-text text-darken-3 white btn-fb center" href="/signup" style="margin-top: 1rem;">
+							회원가입
+						</a>
 					</div>
 				</form>
 			</div><!-- .row -->
 		</div><!-- .container -->
   })
 })
-
