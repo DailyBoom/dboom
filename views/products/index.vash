@@ -5,47 +5,8 @@
 	</div>
 	<h4>지난 상품</h4>
 	<div class="row">
-		<div class="col s12 m6 l6">
-			<div class="card">
-				<div class="card-image">
-					<div class="past-date-box grey-text text-darken-1 text-md">
-						10/01/2015
-					</div>
-					<!-- Image Slider -->
-					<div class="slider">
-						<ul class="slides">
-							<!-- model.product.images.forEach(function(img) { -->
-								<li><img class="" src="/images/item01.jpg" alt="model.product.name | Daily Boom" /></li>
-							<!-- }) -->
-							<li><iframe id="iframe-video" class="iframe-video" src="https://www.youtube.com/embed/CLViADWy-1U" frameborder="0" allowfullscreen></iframe></li>
-						</ul>
-					</div>
-				</div><!-- /.card-image -->
-				<div class="card-content">
-					<span class="card-title activator grey-text text-darken-4">
-						<a href="#!"><i class="fa fa-info-circle fa-1-5x right" style="margin-top: -2px;"></i></a>
-						model.product.name
-					</span>
-					<p class="activator grey-text text-darken-1">model.product.date</p>
-				</div><!-- /.card-content -->
-				<div class="card-reveal">
-					<span class="card-title grey-text text-darken-4">
-						<i class="fa fa-times-circle fa-1-5x right"></i>
-					</span>
-					<div class="details-box">
-						<img class="details-img circle z-depth-1" src="/images/zone01.png" alt="{BRAND NAME LOGO}" />
-						<br>
-						<span class="text-lg">Zonecode</span>
-						<span class="card-title grey-text text-darken-4">
-							model.product.name
-						</span>
-						<p class="text-sm">model.product.description</p>
-					</div><!-- .details-bottom -->
-				</div><!-- .card-reveal -->
-			</div><!-- /.card -->
-		</div><!-- .col -->
 
-		<!-- LOOP -->
+		@for(x=0;x<6;x++){
 
 		<div class="col s12 m6 l6">
 			<div class="card">
@@ -84,166 +45,14 @@
 						<p class="text-sm">model.product.description</p>
 					</div><!-- .details-bottom -->
 				</div><!-- .card-reveal -->
-			</div><!-- /.card -->
-		</div><!-- .col -->
-		<div class="col s12 m6 l6">
-			<div class="card">
-				<div class="card-image">
-					<div class="past-date-box grey-text text-darken-1 text-md">
-						10/01/2015
-					</div>
-					<!-- Image Slider -->
-					<div class="slider">
-						<ul class="slides">
-							<!-- model.product.images.forEach(function(img) { -->
-								<li><img class="" src="/images/item01.jpg" alt="model.product.name | Daily Boom" /></li>
-							<!-- }) -->
-							<li><iframe id="iframe-video" class="iframe-video" src="https://www.youtube.com/embed/CLViADWy-1U" frameborder="0" allowfullscreen></iframe></li>
-						</ul>
-					</div>
-				</div><!-- /.card-image -->
-				<div class="card-content">
-					<span class="card-title activator grey-text text-darken-4">
-						<a href="#!"><i class="fa fa-info-circle fa-1-5x right" style="margin-top: -2px;"></i></a>
-						model.product.name
-					</span>
-					<p class="activator grey-text text-darken-1">model.product.date</p>
-				</div><!-- /.card-content -->
-				<div class="card-reveal">
-					<span class="card-title grey-text text-darken-4">
-						<i class="fa fa-times-circle fa-1-5x right"></i>
-					</span>
-					<div class="details-box">
-						<img class="details-img circle z-depth-1" src="/images/zone01.png" alt="{BRAND NAME LOGO}" />
-						<br>
-						<span class="text-lg">Zonecode</span>
-						<span class="card-title grey-text text-darken-4">
-							model.product.name
-						</span>
-						<p class="text-sm">model.product.description</p>
-					</div><!-- .details-bottom -->
-				</div><!-- .card-reveal -->
-			</div><!-- /.card -->
-		</div><!-- .col -->
-		<div class="col s12 m6 l6">
-			<div class="card">
-				<div class="card-image">
-					<div class="past-date-box grey-text text-darken-1 text-md">
-						10/01/2015
-					</div>
-					<!-- Image Slider -->
-					<div class="slider">
-						<ul class="slides">
-							<!-- model.product.images.forEach(function(img) { -->
-								<li><img class="" src="/images/item01.jpg" alt="model.product.name | Daily Boom" /></li>
-							<!-- }) -->
-							<li><iframe id="iframe-video" class="iframe-video" src="https://www.youtube.com/embed/CLViADWy-1U" frameborder="0" allowfullscreen></iframe></li>
-						</ul>
-					</div>
-				</div><!-- /.card-image -->
-				<div class="card-content">
-					<span class="card-title activator grey-text text-darken-4">
-						<a href="#!"><i class="fa fa-info-circle fa-1-5x right" style="margin-top: -2px;"></i></a>
-						model.product.name
-					</span>
-					<p class="activator grey-text text-darken-1">model.product.date</p>
-				</div><!-- /.card-content -->
-				<div class="card-reveal">
-					<span class="card-title grey-text text-darken-4">
-						<i class="fa fa-times-circle fa-1-5x right"></i>
-					</span>
-					<div class="details-box">
-						<img class="details-img circle z-depth-1" src="/images/zone01.png" alt="{BRAND NAME LOGO}" />
-						<br>
-						<span class="text-lg">Zonecode</span>
-						<span class="card-title grey-text text-darken-4">
-							model.product.name
-						</span>
-						<p class="text-sm">model.product.description</p>
-					</div><!-- .details-bottom -->
-				</div><!-- .card-reveal -->
-			</div><!-- /.card -->
-		</div><!-- .col -->
-		<div class="col s12 m6 l6">
-			<div class="card">
-				<div class="card-image">
-					<div class="past-date-box grey-text text-darken-1 text-md">
-						10/01/2015
-					</div>
-					<!-- Image Slider -->
-					<div class="slider">
-						<ul class="slides">
-							<!-- model.product.images.forEach(function(img) { -->
-								<li><img class="" src="/images/item01.jpg" alt="model.product.name | Daily Boom" /></li>
-							<!-- }) -->
-							<li><iframe id="iframe-video" class="iframe-video" src="https://www.youtube.com/embed/CLViADWy-1U" frameborder="0" allowfullscreen></iframe></li>
-						</ul>
-					</div>
-				</div><!-- /.card-image -->
-				<div class="card-content">
-					<span class="card-title activator grey-text text-darken-4">
-						<a href="#!"><i class="fa fa-info-circle fa-1-5x right" style="margin-top: -2px;"></i></a>
-						model.product.name
-					</span>
-					<p class="activator grey-text text-darken-1">model.product.date</p>
-				</div><!-- /.card-content -->
-				<div class="card-reveal">
-					<span class="card-title grey-text text-darken-4">
-						<i class="fa fa-times-circle fa-1-5x right"></i>
-					</span>
-					<div class="details-box">
-						<img class="details-img circle z-depth-1" src="/images/zone01.png" alt="{BRAND NAME LOGO}" />
-						<br>
-						<span class="text-lg">Zonecode</span>
-						<span class="card-title grey-text text-darken-4">
-							model.product.name
-						</span>
-						<p class="text-sm">model.product.description</p>
-					</div><!-- .details-bottom -->
-				</div><!-- .card-reveal -->
-			</div><!-- /.card -->
-		</div><!-- .col -->
-		<div class="col s12 m6 l6">
-			<div class="card">
-				<div class="card-image">
-					<div class="past-date-box grey-text text-darken-1 text-md">
-						10/01/2015
-					</div>
-					<!-- Image Slider -->
-					<div class="slider">
-						<ul class="slides">
-							<!-- model.product.images.forEach(function(img) { -->
-								<li><img class="" src="/images/item01.jpg" alt="model.product.name | Daily Boom" /></li>
-							<!-- }) -->
-							<li><iframe id="iframe-video" class="iframe-video" src="https://www.youtube.com/embed/CLViADWy-1U" frameborder="0" allowfullscreen></iframe></li>
-						</ul>
-					</div>
-				</div><!-- /.card-image -->
-				<div class="card-content">
-					<span class="card-title activator grey-text text-darken-4">
-						<a href="#!"><i class="fa fa-info-circle fa-1-5x right" style="margin-top: -2px;"></i></a>
-						model.product.name
-					</span>
-					<p class="activator grey-text text-darken-1">model.product.date</p>
-				</div><!-- /.card-content -->
-				<div class="card-reveal">
-					<span class="card-title grey-text text-darken-4">
-						<i class="fa fa-times-circle fa-1-5x right"></i>
-					</span>
-					<div class="details-box">
-						<img class="details-img circle z-depth-1" src="/images/zone01.png" alt="{BRAND NAME LOGO}" />
-						<br>
-						<span class="text-lg">Zonecode</span>
-						<span class="card-title grey-text text-darken-4">
-							model.product.name
-						</span>
-						<p class="text-sm">model.product.description</p>
-					</div><!-- .details-bottom -->
-				</div><!-- .card-reveal -->
+				<div class="card-action">
+					<a href="#"><i class="fa fa-history"></i>&nbsp;&nbsp;Bring it back! <span class="badge">5</span></a>
+				</div>
 			</div><!-- /.card -->
 		</div><!-- .col -->
 
-		<!-- END -->
+		}
+
 		<script>
 			$(document).ready(function(){
 				$('.slider').slider({
