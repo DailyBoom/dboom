@@ -18,6 +18,10 @@
 						</div>
 					</div>
 					<div class="row">
+						<span class="left">
+							<input type="checkbox" id="remember-me" name="remember_me"/>
+							<label for="remember-me">아이디 저장하기</label>
+						</span>
 						<div class="center">
 							<div class="blank-block">&nbsp;
 							</div>
