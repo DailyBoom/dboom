@@ -1,0 +1,26 @@
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+		<div class="row">
+			<div class="container">
+				<form class="col s12 m6 offset-m1 l6 offset-l1" method="post" action="/forgot">
+					@if (model.message) {
+						<div>@model.message</div>
+					}
+					<div class="row">
+						<h4>Forgot password</h4>
+						<br />
+						<div class="input-field">
+							<input id="email" type="email" class="validate" name="email">
+							<label for="email">Email</label>
+						</div>
+						<div class="row">
+							<button class="col s12 btn-large waves-effect waves-light cyan darken-3 left" type="submit" name="action">
+								&nbsp;&nbsp;&nbsp;Reset&nbsp;&nbsp;&nbsp;
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	})
+})
