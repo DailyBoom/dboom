@@ -72,7 +72,6 @@
   					<a href="/" class="logo-m"><img class="nav-logo left" src="/images/dbkorea01.png" /></a>
   					<span id="time-left-label" class="d-clock navbar-align clock-left-font">남은시간</span>
             <span id="time-left" class="d-clock navbar-align clock-font"></span>
-  <!--					<a href="/" class="brand-logo">Daily Boom!</a>-->
   					@if (model.user) {
   						<ul class="right navbar-align profile-align">
   							<li>
@@ -117,7 +116,7 @@
               <p class="grey-text text-lighten-4">
                 <p class="white-text text-md">Follow Us</p>
       					<span>
-      						<a class="grey-text text-lighten-4" href="#"><img class="social-footer" src="/images/facebook.png" /></a>
+      						<a class="grey-text text-lighten-4" href="https://www.facebook.com/dailyboomkorea" target="_blank"><img class="social-footer" src="/images/facebook.png" /></a>
       						<a class="grey-text text-lighten-4" href="#"><img class="social-footer" src="/images/kakaostory_logo.png" /></a>
       					</span>
       				</p>
