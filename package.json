@@ -28,7 +28,9 @@
     "config": "~1.16.0",
     "form-validate": "0.0.7",
     "i18n": "~0.5.0",
-    "passport-kakao": "0.0.2"
+    "passport-kakao": "0.0.2",
+    "passport-remember-me": "0.0.1",
+    "crypto": "0.0.3"
   },
   "description": "",
   "main": "app.js",

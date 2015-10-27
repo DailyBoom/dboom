@@ -23,7 +23,9 @@ var userSchema = new Schema({
   created_at: { type : Date, default : Date.now },
   updated_at: Date,
   facebookId: Number,
-  kakaoId: Number
+  kakaoId: Number,
+  resetPasswordToken: String,
+  resetPasswordExpires: Date
 });
 
 userSchema.pre('save', function(next) {

@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var validate = require('form-validate');
 var config = require("config");
+var crypto = require('crypto');
 var i18n = require('i18n');
 i18n.configure({
     defaultLocale: 'ko',
@@ -19,9 +20,11 @@ var RedisStore = require('connect-redis')(session);
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var KakaoStrategy = require('passport-kakao').Strategy;
+var RememberMeStrategy = require('passport-remember-me').Strategy;
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/dailyboom');
 var User = require('./models/user');
+var Token = require('./models/token');
 //var materialize = require('materialize-css');
 
 var routes = require('./routes/index');
@@ -50,8 +53,34 @@ app.use(session({ secret: 'keyboard cat', name: 'session_id', saveUninitialized:
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(validate(app, validateOptions))
 //app.use(i18n.middleware());
+
+passport.use(new RememberMeStrategy(
+  function (token, done) {
+    Token.findOne({ token: token }, function(err, token) {
+      if (err) return done(err);
+      if (!token) { return done(null, false); }
+      token.consume(token.token, function (err, user) {
+        if (err) { return done(err); }
+        if (!user) { return done(null, false); }
+        return done(null, user);
+      });
+    });
+  },
+  function(user, done) {
+    var token = new Token({
+      token: crypto.randomBytes(64).toString('hex'),
+      userId: user._id
+    })
+    token.save(function(err) {
+      if (err) { return done(err); }
+      return done(null, token);
+    });
+  }
+));
+
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(passport.authenticate('remember-me'));
 if (app.get('env') === 'production') {
   app.listen(3000);
 }
@@ -160,7 +189,6 @@ passport.serializeUser(function(user, done) {
  
 passport.deserializeUser(function(id, done) {
   User.findById(id, function(err, user) {
-    console.log(user);
     done(err, user);
   });
 });

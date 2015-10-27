@@ -1,0 +1,27 @@
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+		<div class="row">
+			<div class="container">
+				<form class="col s12 m6 offset-m1 l6 offset-l1" method="post" action="/reset/@model.token">
+					<div class="row">
+						<h4>Reset password</h4>
+						<br />
+						<div class="input-field">
+							<input id="password" type="password" class="validate" name="password">
+							<label for="password">Password</label>
+						</div>
+						<div class="input-field">
+							<input id="confirmpassword" type="password" class="validate" name="confirmpassword">
+							<label for="confirmpassword">Password</label>
+						</div>
+						<div class="row">
+							<button class="col s12 btn-large waves-effect waves-light cyan darken-3 left" type="submit" name="action">
+								&nbsp;&nbsp;&nbsp;Reset&nbsp;&nbsp;&nbsp;
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	})
+})

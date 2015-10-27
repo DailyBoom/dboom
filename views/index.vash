@@ -21,8 +21,8 @@
 							<div class="col s12 m12 l12 add-margin-bottom-xs">
 								<p style="font-size: .49rem;">&nbsp;</p>
 								<span class="left">
-									<input type="checkbox" id="saveid" name="saveid"/>
-									<label for="saveid">아이디 저장하기</label>
+									<input type="checkbox" id="remember-me" name="remember_me"/>
+									<label for="remember-me">아이디 저장하기</label>
 								</span>
 								<span class="right">
 									<button class="waves-effect waves-light btn cyan darken-3" type="submit" name="action">
