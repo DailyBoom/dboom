@@ -62,7 +62,7 @@
 													    <select>
 													      <option value="1" selected>미 결제</option>
 													      <option value="2">결제완료</option>
-													      <option value="3">배송완료</option>
+													      <option value="3">배송</option>
 													    </select>
 													    <label>주문 상태</label>
 													  </div>
@@ -85,7 +85,7 @@
 									<div class="collapsible-header cyan darken-3 white-text">
 										<span class="form-bold order-date">2015-10-01</span>
 										<span class="form-bold order-space">@model.user.name</span>
-										<span class="form-bold order-space right">배송완료</span>
+										<span class="form-bold order-space right">배송</span>
 									</div>
 									<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
 								</li>
