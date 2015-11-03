@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+    <head>
+      <title>데일리 Boom @model.title</title>
+  		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  		<!-- <link rel="canonical" href="http://www.dailyboom.co" />
+  		<meta itemprop="name" content="" />
+  		<meta itemprop="description" content="" />
+  		<meta itemprop="image" content="" /> -->
+
+  		<!-- favicon -->
+      <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png">
+      <link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-icon-60x60.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/apple-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon/apple-icon-76x76.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="/images/favicon/apple-icon-114x114.png">
+      <link rel="apple-touch-icon" sizes="120x120" href="/images/favicon/apple-icon-120x120.png">
+      <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/apple-icon-144x144.png">
+      <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-icon-152x152.png">
+      <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-icon-180x180.png">
+      <link rel="icon" type="image/png" sizes="192x192"  href="/images/favicon/android-icon-192x192.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+      <link rel="manifest" href="/images/favicon/manifest.json">
+      <meta name="msapplication-TileColor" content="#ffffff">
+      <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png">
+      <meta name="theme-color" content="#ffffff">
+
+  		<!-- Materialize CSS -->
+  		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  		<!-- Owl CSS -->
+  		<link rel="stylesheet" href="/stylesheets/owl.carousel.css" />
+  		<!-- Custom CSS -->
+  		<link rel="stylesheet" href="/stylesheets/styles.css">
+
+  		<!-- jQuery -->
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  		<!-- Materialize CSS JS -->
+  		<script src="/javascripts/materialize.min.js"></script>
+      <!-- Owl JS -->
+  		<script src="/javascripts/owl.carousel.min.js"></script>
+
+  		<script src="/javascripts/formatCurrency/jquery.formatCurrency-1.4.0.min.js"></script>
+  		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.ko-KR.js"></script>
+  		<!-- Custom JS -->
+  		<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+      <script src="/javascripts/popOut.js"></script>
+
+      <!-- Modernizr -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+      <!--[if IE 9]>
+        <style>
+        .ie-fix { left: 0 !important; top: 0 !important; }
+        </style>
+      <![endif]-->
+      <!--[if lt IE 9]>
+        <script src="/javascripts/html5shiv.min.js"></script>
+        <script src="/javascripts/respond.js"></script>
+      <![endif]-->
+      <style>
+        .hero-img {
+          position: fixed;
+          width: 100%;
+          height: 700px;
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          z-index: -1;
+        }
+      </style>
+    </head>
+    <body>
+  		@html.include("error", model)
+      @html.block("body")
+    </body>
+</html>

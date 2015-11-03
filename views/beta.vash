@@ -1,0 +1,19 @@
+@html.extend("layout-beta", function(model) {
+	@html.block("body", function(model) {
+    <div class="hero-img" style="background-image: url(/images/item01.jpg);"></div>
+    <div class="container-fluid white" style="position:absolute; width: 100%; top: 700px;">
+      <div class="faded"></div>
+      <div class="container">
+        <p id="loop" class="center"></p>
+      </div>
+      <script>
+        var text = '';
+        var i;
+        for (i = 0; i < 50; i++) {
+          text += "Shopping is awesome<br>";
+        }
+        document.getElementById("loop").innerHTML = text;
+      </script>
+    </div>
+  })
+})
