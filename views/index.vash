@@ -208,9 +208,16 @@
 					</div><!-- /.card -->
 					<div class="hide-on-med-and-up">
 						<!-- <a class="waves-effect waves-light btn btn-buy-mobile green modal-trigger" href="#modal-check-mobile">Buy Now</a> -->
-						<a class="modal-trigger" href="#modal-check-mobile">
-							<img class="img-btn-buy-mobile" src="/images/btn-buy-mobile.png" alt="" />
-						</a>
+						@if (model.user) {
+							<a class="modal-trigger" href="/checkout?product_id=@model.product.id">
+								<img class="img-btn-buy-mobile" src="/images/btn-buy-mobile.png" />
+							</a>
+						}
+						else {
+							<a class="modal-trigger" href="#modal-check-mobile">
+								<img class="img-btn-buy-mobile" src="/images/btn-buy-mobile.png" alt="" />
+							</a>
+						}
 					</div><!-- /.hide-on-med-and-up -->
 				</div>
 				<!-- item -->
