@@ -58,8 +58,8 @@
         </style>
       <![endif]-->
       <!--[if lt IE 9]>
-        <script src="/javascripts/respond.js"></script>
         <script src="/javascripts/html5shiv.min.js"></script>
+        <script src="/javascripts/respond.js"></script>
       <![endif]-->
     </head>
     <body>
@@ -142,7 +142,8 @@
             <div class="col s12 m5 l5 box-4">
               <p class="text-xs" style="color: rgba(255,255,255,0.8);">
                 (주) 폭스트론 사전 서면 동의 없이 Daily Boom사이트의 일체의 정보, 콘텐츠 및 UI등을 상업적 목적으로 전재, 전송, 스크래핑 등 무단 사용할 수 없습니다.
-                <br>Daily Boom은 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 Daily Boom은 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.
+                <br><br>
+                Daily Boom은 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 Daily Boom은 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.
               </p>
             </div>
           </div><!-- .row -->

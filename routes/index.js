@@ -42,5 +42,13 @@ router.get('/merchant', function(req, res, next) {
   res.render('merchant');
 });
 
+router.get('/beta', function(req, res, next) {
+  Product.findOne({}, {}, { sort: { 'created_at' : -1 }}, function (err, product) {
+    Product.find({}).where('_id').ne(product._id).limit(6).sort({ 'created_at' : -1 }).exec(function (err, pastProducts) {
+      res.render('beta', { progress: 75, product: product, pastProducts: pastProducts });
+    });
+  });
+});
+
 
 module.exports = router;
