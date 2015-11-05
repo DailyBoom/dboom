@@ -117,7 +117,7 @@ router.get('/checkout', function(req, res) {
             "totalOrderAmt": orderPop.product.price,
             "totalDeliveryFeeAmt": 0,
             "totalPaymentAmt": orderPop.product.price,
-            "returnUrl": "http://localhost:3000/success",
+            "returnUrl": "http://dailyboom.co/success",
             "returnUrlParam" : "{\"order_id\":\""+order._id+"\",\"returnUrlParam2\":300}",
             "orderMethod": "EASYPAY_F",
             "orderProducts": [
