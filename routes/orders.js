@@ -75,10 +75,11 @@ router.get('/checkout', function(req, res) {
             "totalDeliveryFeeAmt": "0",
             "totalPaymentAmt": orderPop.product.price,
             "serviceUrl": "http://dailyboom.co/success",
-            "serviceUrlParam" : "{\"order_id\":\""+order._id+"\",\"returnUrlParam2\":300}",     
+            "serviceUrlParam" : "{\"order_id\":\""+order._id+"\",\"returnUrlParam2\":300}",
             "returnUrl": "http://dailyboom.co/success",
             "returnUrlParam" : "{\"order_id\":\""+order._id+"\",\"returnUrlParam2\":300}",
             "orderMethod": "EASYPAY_F",
+            "payMode": "PAY2",
             "orderProducts": [
                 {
                   "cpId": "PARTNERTEST",
