@@ -4,6 +4,7 @@ var passport = require('passport');
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 var User = require("../models/user");
+var Order = require("../models/order");
 var config = require('config');
 var i18n = require("i18n");
 var Token = require("../models/token");
@@ -58,7 +59,9 @@ router.get('/logout', function(req, res){
 });
 
 router.get('/mypage', isAuthenticated, function(req, res) {
-  res.render('users/show');
+  Order.find({ 'user': req.user._id }).populate('product').exec(function(err, orders) {
+    res.render('users/show', { orders: orders });
+  });
 });
 
 router.get('/signup', function(req, res, next) {
