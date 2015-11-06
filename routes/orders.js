@@ -76,7 +76,7 @@ router.get('/checkout', function(req, res) {
             "totalPaymentAmt": orderPop.product.price,
             "returnUrl": "http://dailyboom.co/success",
             "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
-            "orderMethod": "EASYPAY_F",
+            "orderMethod": "EASYPAY",
             "payMode": "PAY2",
             "orderProducts": [
                 {
@@ -120,7 +120,7 @@ router.get('/checkout', function(req, res) {
             "totalPaymentAmt": orderPop.product.price,         
             "returnUrl": "http://dailyboom.co/success",
             "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
-            "orderMethod": "EASYPAY_F",
+            "orderMethod": "EASYPAY",
             "payMode": "PAY2",
             "orderProducts": [
                 {
