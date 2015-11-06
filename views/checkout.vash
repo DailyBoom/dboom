@@ -31,7 +31,7 @@
          Payco.Button.register({
 			SELLER_KEY : 'S0FSJE' , 
 			ORDER_METHOD : "CHECKOUT",        // 주문유형 : CHECKOUT. 체크아웃 타입 / EASYPAY. 간편결제형
-			BUTTON_TYPE : "C4",                  // 버튼타입 선택 (A1,A2)
+			BUTTON_TYPE : "C4",                 // 버튼타입 선택 (A1,A2)
 			BUTTON_HANDLER : order,            // 구매하기 버튼 이벤트 Handler 함수 등록
 			DISPLAY_PROMOTION : "Y",            // 이벤트 문구 출력 여부
 			DISPLAY_ELEMENT_ID : "payco_btn_type_A1",  // 노출될 element id

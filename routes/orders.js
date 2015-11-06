@@ -74,10 +74,10 @@ router.get('/checkout', function(req, res) {
             "totalOrderAmt": orderPop.product.price,
             "totalDeliveryFeeAmt": "0",
             "totalPaymentAmt": orderPop.product.price,
-            "serviceUrl": "http://dailyboom.co/success",
-            "serviceUrlParam" : "{\"order_id\":\""+order._id+"\",\"returnUrlParam2\":300}",
-            "returnUrl": "http://dailyboom.co/success",
-            "returnUrlParam" : "{\"order_id\":\""+order._id+"\",\"returnUrlParam2\":300}",
+            "serviceUrl": "http://localhost:3000/success",
+            "serviceUrlParam" : "{\"order_id\":\""+order._id+"\"}",
+            "returnUrl": "http://localhost:3000/success",
+            "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
             "orderMethod": "EASYPAY_F",
             "payMode": "PAY2",
             "orderProducts": [
@@ -120,11 +120,12 @@ router.get('/checkout', function(req, res) {
             "totalOrderAmt": orderPop.product.price,
             "totalDeliveryFeeAmt": 0,
             "totalPaymentAmt": orderPop.product.price,
-            "serviceUrl": "http://dailyboom.co/success",
-            "serviceUrlParam" : "{\"order_id\":\""+order._id+"\",\"returnUrlParam2\":300}",            
-            "returnUrl": "http://dailyboom.co/success",
-            "returnUrlParam" : "{\"order_id\":\""+order._id+"\",\"returnUrlParam2\":300}",
+            "serviceUrl": "http://localhost:3000/success",
+            "serviceUrlParam" : "{\"order_id\":\""+order._id+"\"}",            
+            "returnUrl": "http://localhost:3000/success",
+            "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
             "orderMethod": "EASYPAY_F",
+            "payMode": "PAY2",
             "orderProducts": [
                 {
                   "cpId": "PARTNERTEST",
@@ -159,7 +160,20 @@ router.get('/checkout', function(req, res) {
 
 router.get('/success', function(req, res) {
   console.log(req.query);
-  res.render('success');
+  if (req.query.code == 0) {
+    Order.findOne({ _id: req.query.order_id }, function(err, order) {
+      order.payco.reserveOrderNo = req.query.reserveOrderNo;
+      order.payco.sellerOrderReferenceKey = req.query.sellerOrderReferenceKey;
+      order.payco.paymentCertifyToken = req.query.paymentCertifyToken;
+      order.payco.totalPaymentAmt = req.query.totalPaymentAmt;
+      order.save(function(err) {
+        res.render('success', { msg: "SUCCESS", code: req.query.code });        
+      })
+    });
+  }
+  else {
+    res.render('success', { msg: "ERROR", code: req.query.code });
+  }
 });
 
 router.get('/shipping', function(req, res) {

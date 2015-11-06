@@ -16,7 +16,13 @@ var orderSChema = new Schema({
 		zipcode: Number,
 		phone_number: Number
   	},
-	email: String
+	email: String,
+	payco: {
+		reserveOrderNo: String,
+		sellerOrderReferenceKey: String,
+		paymentCertifyToken: String,
+		totalPaymentAmt: Number,
+	}
 });
 
 var Order = mongoose.model("Order", orderSChema);

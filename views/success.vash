@@ -1,5 +1,5 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-	<p>SUCCESS</p>
+	<p>@model.msg</p>
 	})
 })

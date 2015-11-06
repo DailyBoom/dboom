@@ -31,7 +31,8 @@
     "passport-kakao": "0.0.2",
     "passport-remember-me": "0.0.1",
     "crypto": "0.0.3",
-    "request": "~2.65.0"
+    "request": "~2.65.0",
+    "express-device": "~0.4.2"
   },
   "description": "",
   "main": "app.js",
