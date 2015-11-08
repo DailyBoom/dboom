@@ -23,10 +23,17 @@
 						</div><!-- .top-nav -->
 					</div><!-- .row -->
 				</div><!-- .container -->
-				<div class="img-item" style="background-image: url('/images/headphones.jpg')"></div>
+				<div class="img-item" style="background-image: url('/images/headphones.jpg')">
+				</div><!-- .img-item -->
 
 				<div class="container">
 					<div class="row">
+						<div class="pro-v">
+							<div class="pro-d"></div><!-- .pro-v -->
+							<div class="pro-label">
+								50% 남음
+							</div>
+						</div><!-- .pro-v -->
 						<div class="pagination"></div>
 						<div class="pagination fade"></div>
 						<div class="pagination fade"></div>
@@ -59,14 +66,7 @@
 					<div id="info" class="buy-box scrollspy">
 						<div class="container">
 							<div class="row">
-								<div class="center">
-									<img class="brand-logo" src="images/zone01.png" alt="" />
-								</div>
-								<div class="col s8 offset-s2 center">
-									<!-- <div class="item-brand">Zonecode</div> -->
-									<div class="item-name">@model.product.name</div>
-									<div class="item-info">@model.product.description</div>
-								</div>
+
 							</div><!-- .row -->
 						</div><!-- .container -->
 					</div><!-- .info-box -->
