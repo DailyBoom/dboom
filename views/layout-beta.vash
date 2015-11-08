@@ -29,28 +29,20 @@
       <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png">
       <meta name="theme-color" content="#ffffff">
 
-  		<!-- Materialize CSS -->
-  		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  		<!-- Owl CSS -->
+  		<!-- <link rel="stylesheet" href="/stylesheets/materialize.min.css" /> -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
   		<link rel="stylesheet" href="/stylesheets/owl.carousel.css" />
-  		<!-- Custom CSS -->
-  		<link rel="stylesheet" href="/stylesheets/styles.css">
+  		<link rel="stylesheet" href="/stylesheets/beta.css" />
 
-  		<!-- jQuery -->
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  		<!-- Materialize CSS JS -->
   		<script src="/javascripts/materialize.min.js"></script>
-      <!-- Owl JS -->
   		<script src="/javascripts/owl.carousel.min.js"></script>
-
   		<script src="/javascripts/formatCurrency/jquery.formatCurrency-1.4.0.min.js"></script>
   		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.ko-KR.js"></script>
-  		<!-- Custom JS -->
   		<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
       <script src="/javascripts/popOut.js"></script>
 
-      <!-- Modernizr -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
       <!--[if IE 9]>
         <style>
@@ -73,7 +65,7 @@
         }
       </style>
     </head>
-    <body>
+    <body class="blue-grey lighten-4">
   		@html.include("error", model)
       @html.block("body")
     </body>

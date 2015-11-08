@@ -1,0 +1,135 @@
+/*  Daily Boom, Inc. All rights reserved.  */
+@import url(https://fonts.googleapis.com/css?family=Candal);
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+@font-face {
+  font-family: '256bytes';
+  src: url('/fonts/bulkypix.ttf'); /* IE9 Compat Modes */
+  src: url('/fonts/bulkypix.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+/* Top Nav */
+.top-nav {
+  margin: 10px 0;
+}
+.db-logo {
+  height: 70px;
+  width: auto;
+}
+.slogan {
+  font-size: 1em;
+}
+.clock {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  height: 70px;
+  width: 360px;
+  border: 5px solid #fff;
+  line-height: 70px;
+  vertical-align: middle;
+  font-family: '256bytes',sans-serif;
+  font-size: 3em;
+  color: #fff;
+}
+.btn-profile {
+  display: inline-block;
+  height: 70px;
+  width: 70px;
+  background-color: transparent;
+  border: 5px solid #fff;
+}
+.profile-box {
+  line-height: 85px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* Main Page */
+.img-item {
+  position: fixed;
+  margin-top: -115px;
+  width: 100%;
+  min-height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+.info-box {
+  position: relative;
+  height: 600px;
+  width: 100%;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  color: #fff;
+  background-color: rgba(38, 50, 56, 0.8);
+}
+.btn-info {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 4em;
+  width: 4em;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  line-height: 4em;
+  vertical-align: middle;
+  color: #fff;
+}
+.pagination {
+  display: inline-block;
+  position: relative;
+  margin-right: 7px;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: .99;
+  cursor: pointer;
+}
+.pagination.fade {
+  opacity: .5;
+}
+.buy-now {
+  width: 140px;
+  height: 60px;
+  line-height: 50px;
+  vertical-align: middle;
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  border: 5px solid #fff;
+}
+.brand-logo {
+  margin: 5em 0 0 0;
+  height: auto;
+  width: 165px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  padding: 7px;
+}
+.item-brand {
+  margin: 1em 0;
+  font-size: 2em;
+}
+.item-name {
+  margin: .5em 0;
+  font-size: 3em;
+}
+.item-info {
+  margin: 0;
+  font-size: 1.25em;
+}
+.buy-box {
+  position: relative;
+  height: 600px;
+  width: 100%;
+  border-top: 2px solid #455a64;
+  border-bottom: 2px solid #455a64;
+  color: #455a64;
+  background-color: rgba(255, 255, 255, 0.8);
+}
