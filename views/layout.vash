@@ -52,6 +52,8 @@
 
       <!-- Modernizr -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+      <!-- PAyco -->
+      <script type="text/javascript" src="https://static-bill.nhnent.com/payco/checkout/js/payco.js" charset="UTF-8"></script>
       <!--[if IE 9]>
         <style>
         .ie-fix { left: 0 !important; top: 0 !important; }

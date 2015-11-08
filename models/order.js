@@ -7,6 +7,7 @@ var orderSChema = new Schema({
 	status: String,
 	trackLink: String,
 	created_at: { type : Date, default : Date.now },
+	quantity: Number,
 	shipping: {
 		full_name: String,
 		address: String,
@@ -15,7 +16,13 @@ var orderSChema = new Schema({
 		zipcode: Number,
 		phone_number: Number
   	},
-	email: String
+	email: String,
+	payco: {
+		reserveOrderNo: String,
+		sellerOrderReferenceKey: String,
+		paymentCertifyToken: String,
+		totalPaymentAmt: Number,
+	}
 });
 
 var Order = mongoose.model("Order", orderSChema);

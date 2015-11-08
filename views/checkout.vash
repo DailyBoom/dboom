@@ -1,5 +1,43 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-
+		<div id="payco_btn_type_A1" class=""></div>
+	
+		<script type="text/javascript">
+		function order() {
+             
+             // ==== 1. 선택 박스 필수 옵션을 체크 함 =====/
+              
+            //  if (document.getElementById('frm').option.value == "") {
+            //      alert('옵션을 선택해주세요');
+            //      return false;
+            //  }
+  
+            //  if (document.getElementById('frm').buy_cnt.value == 0) {
+            //      alert('구매수량을 선택해주세요');
+            //      return false;
+            //  }
+  
+             /*
+                1. payco로 주문 정보를 등록 처리를 하는 가맹점 페이지로 이동
+               2. 해당 페이지에서 페이코 주문 예약 API를 이용하여 주문 정보를 등록
+               3. 리턴받은 주문서 페이지로 이동 처리한다.
+              */
+  
+             // 성공 시 주문서 URL 팝업   ( 모바일의 경우 redirect )
+            var orderurl = '@model.orderSheetUrl';
+            window.open(orderurl, 'popupPayco','top=100, left=300, width=727px, height=512px, resizable=no, scrollbars=yes');
+         }
+         //<![CDATA[
+         Payco.Button.register({
+			SELLER_KEY : 'S0FSJE' , 
+			ORDER_METHOD : "CHECKOUT",        // 주문유형 : CHECKOUT. 체크아웃 타입 / EASYPAY. 간편결제형
+			BUTTON_TYPE : "C4",                 // 버튼타입 선택 (A1,A2)
+			BUTTON_HANDLER : order,            // 구매하기 버튼 이벤트 Handler 함수 등록
+			DISPLAY_PROMOTION : "Y",            // 이벤트 문구 출력 여부
+			DISPLAY_ELEMENT_ID : "payco_btn_type_A1",  // 노출될 element id
+			"" : ""
+         });
+         //]]>
+     </script>
 	})
 })

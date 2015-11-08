@@ -27,28 +27,29 @@
 
 					<div class="row">
 							<ul class="collapsible" data-collapsible="expandable">
-		<!-- loop foreach -->
+								@if (model.orders) {
+								@model.orders.forEach(function(order) {
 								<li class="orange lighten-4">
 									<div class="collapsible-header orange lighten-3">
-										<span class="form-bold order-date">2015-10-01</span>
+										<span class="form-bold order-date">@order.created_at</span>
 										<span class="form-bold order-space">@model.user.name</span>
-										<span class="form-bold order-space right">미 결제</span>
+										<span class="form-bold order-space right">@order.status</span>
 									</div>
 									<div class="collapsible-body">
 										<div class="add-padding-sm">
 											<div class="add-padding-sm">
 												<span class="form-lighten">주문 번호&nbsp;:&nbsp;</span>
-												<span class="form-bold">[order number]</span><br><br>
+												<span class="form-bold">@order._id</span><br><br>
 												<span class="form-lighten">결제금액&nbsp;:&nbsp;</span>
-												<span class="form-bold">35,000원</span><br><br>
+												<span class="form-bold">@order.product.price 원</span><br><br>
 												<span class="form-lighten">받는분&nbsp;:&nbsp;</span>
-												<span class="form-bold">홍길동</span><br><br>
+												<span class="form-bold">@model.user.shipping.full_name</span><br><br>
 												<span class="form-lighten">받는분 주소&nbsp;:&nbsp;</span><span class="hide-on-med-and-up"><br></span>
-												<span class="form-bold">서울특별시 용산구 한강로2가 아파트명 100동 100호</span><br>
+												<span class="form-bold">@model.user.shipping.address</span><br><br/>
 												<span class="form-lighten hide-on-small-only">우편번호&nbsp;:&nbsp;</span>
-												<span class="form-bold"><span class="hide-on-med-and-up">(우)</span>100-123</span><br><br>
+												<span class="form-bold"><span class="hide-on-med-and-up">(우)</span>@model.user.shipping.zipcode</span><br><br>
 												<span class="form-lighten">주문 상품&nbsp;:&nbsp;</span>
-												<span class="form-bold">W3 Ultimate Set</span><br><br>
+												<span class="form-bold">@order.product.name</span><br><br>
 												<span class="form-lighten">주문 수량&nbsp;:&nbsp;</span>
 												<span class="form-bold">[10]</span><br><br>
 												<span class="form-lighten">배송 상태&nbsp;:&nbsp;</span>
@@ -72,6 +73,7 @@
 										</div>
 									</div>
 								</li>
+								}) }
 		<!-- end foreach . delete samples below -->
 								<li class="green lighten-4">
 									<div class="collapsible-header green lighten-3">
