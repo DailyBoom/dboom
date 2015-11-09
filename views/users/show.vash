@@ -70,7 +70,7 @@
 													</div>
 												</form>
 												@if(order.payco.orderNo) {
-												<div class="payco"><button class="btn receipt" data-orderNo="@order.payco.orderNo" >PAYCO 영수증</button></div>
+												<div class="payco"><button class="btn receipt" data-orderno="@order.payco.orderNo" >PAYCO 영수증</button></div>
 												}
 											</div>
 										</div>
@@ -213,7 +213,7 @@
 			$('ul.tabs').tabs();
 		});
 		$(".payco .receipt").on("click", function() {
-			window.open('https://alpha-bill.payco.com/outseller/receipt/'+$(this).data('orderNo')+'?receiptKind=card', 'popupPayco','top=100, left=300, width=727px, height=512px, resizable=no, scrollbars=yes');
+			window.open('https://alpha-bill.payco.com/outseller/receipt/'+$(this).data('orderno')+'?receiptKind=card', 'popupPayco','top=100, left=300, width=727px, height=512px, resizable=no, scrollbars=yes');
 		});
 		</script>
 	})
