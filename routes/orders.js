@@ -162,6 +162,9 @@ router.get('/success', function(req, res) {
                   if (!error && body.code == 0) {
                     res.render('success', { msg: "SUCCESS", code: req.query.code });        
                   }
+                    else {
+                    res.render('success', { msg: body.message, code: req.query.code });
+                  }
               }
           );
       })
