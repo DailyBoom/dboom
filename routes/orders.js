@@ -147,7 +147,23 @@ router.get('/success', function(req, res) {
       order.payco.totalPaymentAmt = req.query.totalPaymentAmt;
       order.status = "Payed";
       order.save(function(err) {
-        res.render('success', { msg: "SUCCESS", code: req.query.code });        
+        var payco = {
+          "sellerKey" : config.get("Payco.sellerKey"),
+          "reserveOrderNo" : order.payco.reserveOrderNo,
+          "sellerOrderReferenceKey": order.payco.sellerOrderReferenceKey,
+          "paymentCertifyToken" : order.payco.paymentCertifyToken,
+          "totalPaymentAmt": order.payco.totalPaymentAmt
+        }
+        request.post(
+              'https://alpha-api-bill.payco.com/outseller/payment/approval',
+              { json: payco },
+              function (error, response, body) {
+                  console.log(body)
+                  if (!error && body.code == 0) {
+                    res.render('success', { msg: "SUCCESS", code: req.query.code });        
+                  }
+              }
+          );
       })
     });
   }
