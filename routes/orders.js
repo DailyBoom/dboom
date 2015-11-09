@@ -35,6 +35,35 @@ var hasShipping = function(obj) {
   return false;
 }
 
+var reservePayco = function(order) {
+  var payco = {
+    "sellerKey": config.get("Payco.sellerKey"),
+    "sellerOrderReferenceKey": order._id,
+    "totalOrderAmt": order.product.price,
+    "totalDeliveryFeeAmt": 0,
+    "totalPaymentAmt": order.product.price,         
+    "returnUrl": config.get("Payco.returnUrl"),
+    "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
+    "orderMethod": "EASYPAY",
+    "payMode": "PAY2",
+    "orderProducts": [
+        {
+          "cpId": config.get("Payco.cpId"),
+          "productId": config.get("Payco.productId"),
+          "productAmt": order.product.price,
+          "productPaymentAmt": order.product.price,
+          "sortOrdering": 1,
+          "productName": order.product.name,
+          "orderQuantity": 1,
+          "sellerOrderProductReferenceKey": order._id,
+          //"productImageUrl": "http://dailyboom.co/uploads/"+order.product.images[0]
+        }
+    ]
+  };
+  
+  return payco;
+}
+
 router.post('/orders/new', isAuthenticated, function(req, res) {
   var order = new Order({
     user: req.user.id,
@@ -68,30 +97,7 @@ router.get('/checkout', function(req, res) {
       req.session.order = order.id;
       if ((req.user && hasShipping(req.user))) {
         order.populate('product', function(err, orderPop) {
-          var payco = {
-            "sellerKey": "S0FSJE",
-            "sellerOrderReferenceKey": order._id,
-            "totalOrderAmt": orderPop.product.price,
-            "totalDeliveryFeeAmt": "0",
-            "totalPaymentAmt": orderPop.product.price,
-            "returnUrl": "http://dailyboom.co/success",
-            "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
-            "orderMethod": "EASYPAY",
-            "payMode": "PAY2",
-            "orderProducts": [
-                {
-                  "cpId": "PARTNERTEST",
-                  "productId": "PROD_EASY",
-                  "productAmt": orderPop.product.price,
-                  "productPaymentAmt": orderPop.product.price,
-                  "sortOrdering": 1,
-                  "productName": orderPop.product.name,
-                  "orderQuantity": 1,
-                  "sellerOrderProductReferenceKey": order._id,
-                  //"productImageUrl": "http://dailyboom.co/uploads/"+order.product.images[0]
-                }
-            ]
-          };
+          var payco = reservePayco(orderPop);
           request.post(
               'https://alpha-api-bill.payco.com/outseller/order/reserve',
               { json: payco },
@@ -112,30 +118,7 @@ router.get('/checkout', function(req, res) {
     Order.findOne({ '_id': req.session.order }, function(err, order) {
       if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
         order.populate('product', function(err, orderPop) {
-          var payco = {
-            "sellerKey": "S0FSJE",
-            "sellerOrderReferenceKey": order._id,
-            "totalOrderAmt": orderPop.product.price,
-            "totalDeliveryFeeAmt": 0,
-            "totalPaymentAmt": orderPop.product.price,         
-            "returnUrl": "http://dailyboom.co/success",
-            "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
-            "orderMethod": "EASYPAY",
-            "payMode": "PAY2",
-            "orderProducts": [
-                {
-                  "cpId": "PARTNERTEST",
-                  "productId": "PROD_EASY",
-                  "productAmt": orderPop.product.price,
-                  "productPaymentAmt": orderPop.product.price,
-                  "sortOrdering": 1,
-                  "productName": orderPop.product.name,
-                  "orderQuantity": 1,
-                  "sellerOrderProductReferenceKey": order._id,
-                  //"productImageUrl": "http://dailyboom.co/uploads/"+order.product.images[0]
-                }
-            ]
-          };
+          var payco = reservePayco(orderPop);
           request.post(
               'https://alpha-api-bill.payco.com/outseller/order/reserve',
               { json: payco },
@@ -162,6 +145,7 @@ router.get('/success', function(req, res) {
       order.payco.sellerOrderReferenceKey = req.query.sellerOrderReferenceKey;
       order.payco.paymentCertifyToken = req.query.paymentCertifyToken;
       order.payco.totalPaymentAmt = req.query.totalPaymentAmt;
+      order.status = "Payed";
       order.save(function(err) {
         res.render('success', { msg: "SUCCESS", code: req.query.code });        
       })
