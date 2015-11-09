@@ -140,19 +140,12 @@ router.get('/checkout', function(req, res) {
 router.get('/success', function(req, res) {
   console.log(req.query);
   if (req.query.code == 0) {
-    Order.findOne({ _id: req.query.order_id }, function(err, order) {
-      order.payco.reserveOrderNo = req.query.reserveOrderNo;
-      order.payco.sellerOrderReferenceKey = req.query.sellerOrderReferenceKey;
-      order.payco.paymentCertifyToken = req.query.paymentCertifyToken;
-      order.payco.totalPaymentAmt = req.query.totalPaymentAmt;
-      order.status = "Payed";
-      order.save(function(err) {
         var payco = {
           "sellerKey" : config.get("Payco.sellerKey"),
-          "reserveOrderNo" : order.payco.reserveOrderNo,
-          "sellerOrderReferenceKey": order.payco.sellerOrderReferenceKey,
-          "paymentCertifyToken" : order.payco.paymentCertifyToken,
-          "totalPaymentAmt": order.payco.totalPaymentAmt
+          "reserveOrderNo" : req.query.reserveOrderNo,
+          "sellerOrderReferenceKey": req.query.sellerOrderReferenceKey,
+          "paymentCertifyToken" : req.query.paymentCertifyToken,
+          "totalPaymentAmt": req.query.totalPaymentAmt
         }
         request.post(
               'https://alpha-api-bill.payco.com/outseller/payment/approval',
@@ -160,15 +153,23 @@ router.get('/success', function(req, res) {
               function (error, response, body) {
                   console.log(body)
                   if (!error && body.code == 0) {
-                    res.render('success', { msg: "SUCCESS", code: req.query.code });        
+                    Order.findOne({ _id: req.query.order_id }, function(err, order) {
+                      order.payco.orderNo = body.result.orderNo;
+                      order.payco.sellerOrderReferenceKey = body.result.sellerOrderReferenceKey;
+                      order.payco.orderCertifyKey = body.result.orderCertifyKey;
+                      order.payco.totalOrderAmt = body.result.totalOrderAmt;
+                      order.payco.paymentDetails = body.result.paymentDetails;
+                      order.status = "Payed";
+                      order.save(function(err) {
+                        res.render('success', { msg: "SUCCESS", code: req.query.code });        
+                      });
+                    });
                   }
-                    else {
+                  else {
                     res.render('success', { msg: body.message, code: req.query.code });
                   }
               }
           );
-      })
-    });
   }
   else {
     res.render('success', { msg: "ERROR", code: req.query.code });
