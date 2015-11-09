@@ -1,19 +1,105 @@
 @html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
-    <div class="hero-img" style="background-image: url(/images/item01.jpg);"></div>
-    <div class="container-fluid white" style="position:absolute; width: 100%; top: 700px;">
-      <div class="faded"></div>
-      <div class="container">
-        <p id="loop" class="center"></p>
-      </div>
-      <script>
-        var text = '';
-        var i;
-        for (i = 0; i < 50; i++) {
-          text += "Shopping is awesome<br>";
-        }
-        document.getElementById("loop").innerHTML = text;
-      </script>
-    </div>
+    <div class="container-fluid">
+			<div class="row">
+				<div class="container">
+					<div class="row">
+						<div class="top-nav">
+							<a href="/beta">
+								<img class="db-logo" src="/images/favicon/apple-icon.png" alt="데일리 붐 로고" />
+							</a>
+							<!-- Dropdown Trigger -->
+						  <a class="dropdown-button waves-effect waves-light btn-profile white-text right" href="#" data-activates="mydrop">
+								<div class="profile-box"><i class="fa fa-user fa-3x"></i></div>
+							</a>
+						  <!-- Dropdown Structure -->
+						  <ul id='mydrop' class="dropdown-content blue-grey lighten-3">
+						    <li><a class="blue-grey-text text-darken-2" href="#!">Login</a></li>
+						    <li><a class="blue-grey-text text-darken-2" href="#!">Signup</a></li>
+						  </ul>
+							<div class="clock center">
+								<span>23:59:59</span>
+							</div>
+						</div><!-- .top-nav -->
+					</div><!-- .row -->
+				</div><!-- .container -->
+				<div class="img-item" style="background-image: url('/images/headphones.jpg')">
+				</div><!-- .img-item -->
+
+				<div class="container">
+					<div class="row">
+						<div class="pro-v">
+							<div class="pro-d"></div><!-- .pro-v -->
+							<div class="pro-label">
+								50% 남음
+							</div>
+						</div><!-- .pro-v -->
+						<div class="pagination"></div>
+						<div class="pagination fade"></div>
+						<div class="pagination fade"></div>
+						<a class="waves-effect waves-light center btn-info white-text" href="#info">
+							<i class="fa fa-info fa-2x"></i>
+						</a>
+						<a href="#">
+							<div class="buy-now right">
+								Buy Now
+							</div>
+						</a>
+					</div><!-- .row -->
+				</div><!-- .container -->
+				<div class="wrapper">
+					<div id="info" class="info-box scrollspy">
+						<div class="container">
+							<div class="row">
+								<div class="center">
+									<img class="brand-logo" src="images/zone01.png" alt="" />
+								</div>
+								<div class="col s8 offset-s2 center">
+									<!-- <div class="item-brand">Zonecode</div> -->
+									<div class="item-name">@model.product.name</div>
+									<div class="item-info">@model.product.description</div>
+								</div>
+							</div><!-- .row -->
+						</div><!-- .container -->
+					</div><!-- .info-box -->
+
+					<div id="info" class="buy-box scrollspy">
+						<div class="container">
+							<div class="row">
+
+							</div><!-- .row -->
+						</div><!-- .container -->
+					</div><!-- .info-box -->
+
+				</div><!-- .wrapper -->
+
+
+			</div><!-- .row -->
+    </div><!-- .container-fluid -->
+		<script type="text/javascript">
+		$(document).ready(function() {
+			var h = $(window).height();
+			var i = h - 80;
+			var j = h - 55;
+			console.log(h);
+			console.log(i);
+			$('.wrapper').offset({top:h});
+			$('.pagination').offset({top:j});
+			$('.btn-info').offset({top:i});
+			$('.buy-now').offset({top:i});
+
+	    $('.scrollspy').scrollSpy();
+
+			$('.dropdown-button').dropdown({
+				inDuration: 300,
+				outDuration: 225,
+				constrain_width: false, // Does not change width of dropdown to that of the activator
+				hover: false, // Activate on hover
+				gutter: 0, // Spacing from edge
+				belowOrigin: false, // Displays dropdown below the button
+				alignment: 'right' // Displays dropdown with edge aligned to the left of button
+			});
+		});
+		</script>
   })
 })
