@@ -22,7 +22,9 @@ var orderSChema = new Schema({
 		sellerOrderReferenceKey: String,
 		orderCertifyKey: String,
 		totalOrderAmt: Number,
-		paymentDetails: Object
+		paymentDetails: Object,
+		cancelTradeSeq: Number,
+		cancelPaymentDetails: Object
 	}
 });
 

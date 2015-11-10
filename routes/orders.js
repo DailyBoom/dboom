@@ -176,6 +176,35 @@ router.get('/success', function(req, res) {
   }
 });
 
+router.get('/orders/cancel/:id', function(req, res) {
+  Order.findOne({ _id: req.params.id }, function(err, order) {
+    var payco = {
+      "sellerKey" : config.get("Payco.sellerKey"),
+      "orderNo" : order.payco.orderNo,
+      "sellerOrderReferenceKey": order.payco.sellerOrderReferenceKey,
+      "paymentCertifyToken" : order.payco.orderCertifyToken,
+      "cancelTotalAmt": order.price
+    }
+    request.post(
+      'https://alpha-api-bill.payco.com/outseller/order/cancel/request',
+      { json: payco },
+      function (error, response, body) {
+          console.log(body)
+          if (!error && body.code == 0) {
+            order.status = "Cancelled";
+            order.payco.cancelTradeSeq = body.result.cancelTradeSeq;
+            order.payco.cancelPaymentDetails = body.result.cancelPaymentDetails;
+            order.save(function(err) {
+              if (err)
+                console.log(err);
+              res.redirect('mypage');
+            });
+          }
+      }
+  );
+  });
+});
+
 router.get('/shipping', function(req, res) {
   if (!req.session.order)
     res.redirect('/');

@@ -70,7 +70,7 @@
 													</div>
 												</form>
 												@if(order.payco.orderNo) {
-												<div class="payco"><button class="btn receipt" data-orderno="@order.payco.orderNo" >PAYCO 영수증</button></div>
+												<div class="payco"><button class="btn receipt" data-orderno="@order.payco.orderNo" >PAYCO 영수증</button><a class="btn cancel" href="/orders/cancel/@order.id">결제 취소</a></div>
 												}
 											</div>
 										</div>
