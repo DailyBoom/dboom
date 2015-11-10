@@ -178,13 +178,17 @@ router.get('/success', function(req, res) {
 
 router.get('/orders/cancel/:id', function(req, res) {
   Order.findOne({ _id: req.params.id }, function(err, order) {
+    if (err)
+      console.log(err);
+    if (!order)
+      res.redirect('/mypage');
     var payco = {
       "sellerKey" : config.get("Payco.sellerKey"),
       "orderNo" : order.payco.orderNo,
       "sellerOrderReferenceKey": order.payco.sellerOrderReferenceKey,
       "paymentCertifyToken" : order.payco.orderCertifyToken,
       "cancelTotalAmt": order.payco.totalOrderAmt
-    }
+    };
     request.post(
       'https://alpha-api-bill.payco.com/outseller/order/cancel/request',
       { json: payco },
@@ -197,7 +201,7 @@ router.get('/orders/cancel/:id', function(req, res) {
             order.save(function(err) {
               if (err)
                 console.log(err);
-              res.redirect('mypage');
+              res.redirect('/mypage');
             });
           }
       }
