@@ -183,7 +183,7 @@ router.get('/orders/cancel/:id', function(req, res) {
       "orderNo" : order.payco.orderNo,
       "sellerOrderReferenceKey": order.payco.sellerOrderReferenceKey,
       "paymentCertifyToken" : order.payco.orderCertifyToken,
-      "cancelTotalAmt": order.product.price
+      "cancelTotalAmt": order.payco.totalOrderAmt
     }
     request.post(
       'https://alpha-api-bill.payco.com/outseller/order/cancel/request',
