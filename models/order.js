@@ -18,10 +18,13 @@ var orderSChema = new Schema({
   	},
 	email: String,
 	payco: {
-		reserveOrderNo: String,
+		orderNo: String,
 		sellerOrderReferenceKey: String,
-		paymentCertifyToken: String,
-		totalPaymentAmt: Number,
+		orderCertifyKey: String,
+		totalOrderAmt: Number,
+		paymentDetails: Object,
+		cancelTradeSeq: Number,
+		cancelPaymentDetails: Object
 	}
 });
 

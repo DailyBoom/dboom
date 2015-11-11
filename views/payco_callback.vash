@@ -1,0 +1,18 @@
+<html>
+<body>
+@if(model.is_mobile) {
+<script>
+	var code = @model.code;
+	if (code == 0)
+		window.location = "/success";
+	else
+		alert('Error in payment');
+</script>
+} else {
+<script>
+	window.opener['code'] = @model.code;
+	window.close();
+</script>
+}
+</body>
+</html>

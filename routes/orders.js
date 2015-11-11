@@ -1,4 +1,5 @@
 var express = require('express');
+var app = express();
 var router = express.Router();
 var mongoose = require("mongoose");
 var nodemailer = require('nodemailer');
@@ -10,6 +11,8 @@ var i18n = require('i18n');
 var config = require('config');
 var extend = require('util')._extend;
 var request = require("request");
+var slack = require('slack-notify')(config.get("Slack.webhookUrl"));
+
 
 var transporter = nodemailer.createTransport(smtpTransport({
     host: config.get('Nodemailer.host'),
@@ -33,6 +36,35 @@ var hasShipping = function(obj) {
   if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.country && obj.shipping.address && obj.shipping.zipcode)
     return true;
   return false;
+}
+
+var reservePayco = function(order) {
+  var payco = {
+    "sellerKey": config.get("Payco.sellerKey"),
+    "sellerOrderReferenceKey": order._id,
+    "totalOrderAmt": order.product.price,
+    "totalDeliveryFeeAmt": 0,
+    "totalPaymentAmt": order.product.price,         
+    "returnUrl": config.get("Payco.returnUrl"),
+    "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
+    "orderMethod": "EASYPAY",
+    "payMode": "PAY2",
+    "orderProducts": [
+        {
+          "cpId": config.get("Payco.cpId"),
+          "productId": config.get("Payco.productId"),
+          "productAmt": order.product.price,
+          "productPaymentAmt": order.product.price,
+          "sortOrdering": 1,
+          "productName": order.product.name,
+          "orderQuantity": 1,
+          "sellerOrderProductReferenceKey": order._id,
+          //"productImageUrl": "http://dailyboom.co/uploads/"+order.product.images[0]
+        }
+    ]
+  };
+  
+  return payco;
 }
 
 router.post('/orders/new', isAuthenticated, function(req, res) {
@@ -68,30 +100,7 @@ router.get('/checkout', function(req, res) {
       req.session.order = order.id;
       if ((req.user && hasShipping(req.user))) {
         order.populate('product', function(err, orderPop) {
-          var payco = {
-            "sellerKey": "S0FSJE",
-            "sellerOrderReferenceKey": order._id,
-            "totalOrderAmt": orderPop.product.price,
-            "totalDeliveryFeeAmt": "0",
-            "totalPaymentAmt": orderPop.product.price,
-            "returnUrl": "http://dailyboom.co/success",
-            "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
-            "orderMethod": "EASYPAY",
-            "payMode": "PAY2",
-            "orderProducts": [
-                {
-                  "cpId": "PARTNERTEST",
-                  "productId": "PROD_EASY",
-                  "productAmt": orderPop.product.price,
-                  "productPaymentAmt": orderPop.product.price,
-                  "sortOrdering": 1,
-                  "productName": orderPop.product.name,
-                  "orderQuantity": 1,
-                  "sellerOrderProductReferenceKey": order._id,
-                  //"productImageUrl": "http://dailyboom.co/uploads/"+order.product.images[0]
-                }
-            ]
-          };
+          var payco = reservePayco(orderPop);
           request.post(
               'https://alpha-api-bill.payco.com/outseller/order/reserve',
               { json: payco },
@@ -112,30 +121,7 @@ router.get('/checkout', function(req, res) {
     Order.findOne({ '_id': req.session.order }, function(err, order) {
       if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
         order.populate('product', function(err, orderPop) {
-          var payco = {
-            "sellerKey": "S0FSJE",
-            "sellerOrderReferenceKey": order._id,
-            "totalOrderAmt": orderPop.product.price,
-            "totalDeliveryFeeAmt": 0,
-            "totalPaymentAmt": orderPop.product.price,         
-            "returnUrl": "http://dailyboom.co/success",
-            "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
-            "orderMethod": "EASYPAY",
-            "payMode": "PAY2",
-            "orderProducts": [
-                {
-                  "cpId": "PARTNERTEST",
-                  "productId": "PROD_EASY",
-                  "productAmt": orderPop.product.price,
-                  "productPaymentAmt": orderPop.product.price,
-                  "sortOrdering": 1,
-                  "productName": orderPop.product.name,
-                  "orderQuantity": 1,
-                  "sellerOrderProductReferenceKey": order._id,
-                  //"productImageUrl": "http://dailyboom.co/uploads/"+order.product.images[0]
-                }
-            ]
-          };
+          var payco = reservePayco(orderPop);
           request.post(
               'https://alpha-api-bill.payco.com/outseller/order/reserve',
               { json: payco },
@@ -154,22 +140,97 @@ router.get('/checkout', function(req, res) {
   }
 });
 
-router.get('/success', function(req, res) {
+router.get('/payco_callback', function(req, res) {
   console.log(req.query);
   if (req.query.code == 0) {
-    Order.findOne({ _id: req.query.order_id }, function(err, order) {
-      order.payco.reserveOrderNo = req.query.reserveOrderNo;
-      order.payco.sellerOrderReferenceKey = req.query.sellerOrderReferenceKey;
-      order.payco.paymentCertifyToken = req.query.paymentCertifyToken;
-      order.payco.totalPaymentAmt = req.query.totalPaymentAmt;
-      order.save(function(err) {
-        res.render('success', { msg: "SUCCESS", code: req.query.code });        
-      })
-    });
+        var payco = {
+          "sellerKey" : config.get("Payco.sellerKey"),
+          "reserveOrderNo" : req.query.reserveOrderNo,
+          "sellerOrderReferenceKey": req.query.sellerOrderReferenceKey,
+          "paymentCertifyToken" : req.query.paymentCertifyToken,
+          "totalPaymentAmt": req.query.totalPaymentAmt
+        }
+        request.post(
+              'https://alpha-api-bill.payco.com/outseller/payment/approval',
+              { json: payco },
+              function (error, response, body) {
+                  console.log(body)
+                  if (!error && body.code == 0) {
+                    Order.findOne({ _id: req.query.order_id }, function(err, order) {
+                      order.payco.orderNo = body.result.orderNo;
+                      order.payco.sellerOrderReferenceKey = body.result.sellerOrderReferenceKey;
+                      order.payco.orderCertifyKey = body.result.orderCertifyKey;
+                      order.payco.totalOrderAmt = body.result.totalOrderAmt;
+                      order.payco.paymentDetails = body.result.paymentDetails;
+                      order.status = "Payed";
+                      order.save(function(err) {
+                        Product.findOne({ _id: order.product }, function(err, product) {
+                          product.current_quantity -= 1;
+                          product.save(function(err) {
+                            if (app.get("env") === "production") {
+                              slack.send({
+                                channel: '#dailyboom-new-order',
+                                icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
+                                text: 'New order #'+order._id,
+                                unfurl_links: 1,
+                                username: 'DailyBoom-bot'
+                              });
+                            }
+                            res.render('payco_callback', {code: req.query.code});
+                          });
+                        });
+                      });
+                    });
+                  }
+                  else {
+                    res.render('payco_callback', { msg: body.message, code: req.query.code });
+                  }
+              }
+          );
   }
   else {
-    res.render('success', { msg: "ERROR", code: req.query.code });
+    res.render('payco_callback', { msg: "ERROR", code: req.query.code });
   }
+});
+
+router.get('/success', function(req, res) {
+  if (!req.session.order)
+    res.redirect('/');
+  delete req.session.order;
+  res.render('success', { msg: "고객님, 결제가 완료되었습니다. 데일리 붐에서 상품 구매해주셔서 감사합니다.  좋은 하루 되세요!", code: req.query.code });
+});
+
+router.get('/orders/cancel/:id', function(req, res) {
+  Order.findOne({ _id: req.params.id }, function(err, order) {
+    if (err)
+      console.log(err);
+    if (!order)
+      res.redirect('/mypage');
+    var payco = {
+      "sellerKey" : config.get("Payco.sellerKey"),
+      "orderNo" : order.payco.orderNo,
+      "sellerOrderReferenceKey": order.payco.sellerOrderReferenceKey,
+      "paymentCertifyToken" : order.payco.orderCertifyToken,
+      "cancelTotalAmt": order.payco.totalOrderAmt
+    };
+    request.post(
+      'https://alpha-api-bill.payco.com/outseller/order/cancel/request',
+      { json: payco },
+      function (error, response, body) {
+          console.log(body)
+          if (!error && body.code == 0) {
+            order.status = "Cancelled";
+            order.payco.cancelTradeSeq = body.result.cancelTradeSeq;
+            order.payco.cancelPaymentDetails = body.result.cancelPaymentDetails;
+            order.save(function(err) {
+              if (err)
+                console.log(err);
+              res.redirect('/mypage');
+            });
+          }
+      }
+  );
+  });
 });
 
 router.get('/shipping', function(req, res) {

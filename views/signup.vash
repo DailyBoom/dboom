@@ -13,11 +13,11 @@
 					}
 					<div class="row">
 						<div class="input-field col s12 m6 l6">
-							<input id="username" type="text" class="validate" name="username" required>
+							<input id="username" type="text" class="validate" name="username" value="@model.Validator.getValue('username')" required>
 							<label for="username">아이디</label>
 						</div>
 						<div class="input-field col s12 m6 l6">
-							<input id="email" type="email" class="validate" name="email" required>
+							<input id="email" type="email" class="validate" name="email" value="@model.Validator.getValue('email')" required>
 							<label for="email">이메일</label>
 						</div>
 					</div>
@@ -41,21 +41,21 @@
 								<br>
 								<div class="row">
 									<div class="input-field col s12 m6 l6">
-										<input id="full_name" type="text" class="validate" name="full_name">
+										<input id="full_name" type="text" class="validate" name="full_name" value="@model.Validator.getValue('full_name')">
 										<label for="full_name">받는분 이름</label>
 									</div>
 									<div class="input-field col s12 m6 l6">
-										<input id="phone_number" type="tel" class="validate" name="phone_number">
+										<input id="phone_number" type="tel" class="validate" name="phone_number" value="@model.Validator.getValue('phone_number')">
 										<label for="phone_number">전화번호</label>
 									</div>
 								</div>
 								<div class="row">
 									<div class="input-field col s12 m9 l9">
-										<input id="address1" type="text" class="validate" placeholder="시 . 구 . 동 . " name="address1">
+										<input id="address1" type="text" class="validate" placeholder="시 . 구 . 동 . " name="address1" value="@model.Validator.getValue('address1')">
 										<label for="address1">배송지 주소</label>
 									</div>
 									<div class="input-field col s12 m3 l3">
-										<input id="zipcode" type="number" class="validate" placeholder="123456" name="zipcode">
+										<input id="zipcode" type="number" class="validate" placeholder="123456" name="zipcode" value="@model.Validator.getValue('zipcode')">
 										<label for="zipcode">우편번호</label>
 									</div>
 								</div>
@@ -101,9 +101,8 @@
 		<script>
 			$(document).ready(function() {
 				if ($("#agree-add-address").is(":checked") === true) {
-					console.log("checked");
 					$('#add-address').toggleClass('hide');
-					$('#add-address input').prop('required', true);
+					$('#add-address input').not("#zipcode").prop('required', true);
 				}
 				$('select').material_select();
 				$('#agree-all').click(function(event) {
@@ -114,7 +113,7 @@
 				});
 				$("#agree-add-address").on("change", function() {
 					$('#add-address').toggleClass('hide');
-					$('#add-address input').prop('required', this.checked);
+					$('#add-address input').not("#zipcode").prop('required', this.checked);
 				});
 			});
 		</script>

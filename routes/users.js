@@ -67,7 +67,7 @@ router.get('/mypage', isAuthenticated, function(req, res) {
 router.get('/signup', function(req, res, next) {
   if (req.user)
     res.redirect('/');
-  res.render('signup');
+    req.Validator.getErrors(function() { res.render('signup'); });
 });
 
 router.post('/signup', function(req, res) {
@@ -125,7 +125,6 @@ router.post('/signup', function(req, res) {
       required: true
     })
     .validate('zipcode', i18n.__('user.zipcode'), {
-      required: true,
       numeric: true
     })
     .validate('country', i18n.__('user.country'), {
