@@ -1,4 +1,5 @@
 var express = require('express');
+var app = express();
 var router = express.Router();
 var mongoose = require("mongoose");
 var nodemailer = require('nodemailer');
@@ -10,6 +11,8 @@ var i18n = require('i18n');
 var config = require('config');
 var extend = require('util')._extend;
 var request = require("request");
+var slack = require('slack-notify')(config.get("Slack.webhookUrl"));
+
 
 var transporter = nodemailer.createTransport(smtpTransport({
     host: config.get('Nodemailer.host'),
@@ -164,6 +167,15 @@ router.get('/payco_callback', function(req, res) {
                         Product.findOne({ _id: order.product }, function(err, product) {
                           product.current_quantity -= 1;
                           product.save(function(err) {
+                            if (app.get("env") === "production") {
+                              slack.send({
+                                channel: '#dailyboom-new-order',
+                                icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
+                                text: 'New order #'+order._id,
+                                unfurl_links: 1,
+                                username: 'DailyBoom-bot'
+                              });
+                            }
                             res.render('payco_callback', {code: req.query.code});
                           });
                         });

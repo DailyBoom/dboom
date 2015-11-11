@@ -1,6 +1,12 @@
+<html>
+<body>
 @if(model.is_mobile) {
 <script>
-	window.location = "/success"
+	var code = @model.code;
+	if (code == 0)
+		window.location = "/success";
+	else
+		alert('Error in payment');
 </script>
 } else {
 <script>
@@ -8,3 +14,5 @@
 	window.close();
 </script>
 }
+</body>
+</html>
