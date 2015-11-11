@@ -197,7 +197,7 @@ router.get('/success', function(req, res) {
   if (!req.session.order)
     res.redirect('/');
   delete req.session.order;
-  res.render('success', { msg: "SUCCESS", code: req.query.code });
+  res.render('success', { msg: "고객님, 결제가 완료되었습니다. 데일리 붐에서 상품 구매해주셔서 감사합니다.  좋은 하루 되세요!", code: req.query.code });
 });
 
 router.get('/orders/cancel/:id', function(req, res) {
