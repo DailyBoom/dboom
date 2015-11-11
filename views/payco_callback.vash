@@ -1,0 +1,10 @@
+@if(model.is_mobile) {
+<script>
+	window.location = "/success"
+</script>
+} else {
+<script>
+	window.opener['code'] = @model.code;
+	window.close();
+</script>
+}
