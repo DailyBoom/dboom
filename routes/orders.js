@@ -137,7 +137,7 @@ router.get('/checkout', function(req, res) {
   }
 });
 
-router.get('/success', function(req, res) {
+router.get('/payco_callback', function(req, res) {
   console.log(req.query);
   if (req.query.code == 0) {
         var payco = {
@@ -161,19 +161,31 @@ router.get('/success', function(req, res) {
                       order.payco.paymentDetails = body.result.paymentDetails;
                       order.status = "Payed";
                       order.save(function(err) {
-                        res.render('success', { msg: "SUCCESS", code: req.query.code });        
+                        Product.findOne({ _id: order.product }, function(err, product) {
+                          product.current_quantity -= 1;
+                          product.save(function(err) {
+                            res.render('payco_callback', {code: req.query.code});
+                          });
+                        });
                       });
                     });
                   }
                   else {
-                    res.render('success', { msg: body.message, code: req.query.code });
+                    res.render('payco_callback', { msg: body.message, code: req.query.code });
                   }
               }
           );
   }
   else {
-    res.render('success', { msg: "ERROR", code: req.query.code });
+    res.render('payco_callback', { msg: "ERROR", code: req.query.code });
   }
+});
+
+router.get('/success', function(req, res) {
+  if (!req.session.order)
+    res.redirect('/');
+  delete req.session.order;
+  res.render('success', { msg: "SUCCESS", code: req.query.code });
 });
 
 router.get('/orders/cancel/:id', function(req, res) {

@@ -18,14 +18,25 @@
             //  }
   
              /*
-                1. payco로 주문 정보를 등록 처리를 하는 가맹점 페이지로 이동
+               1. payco로 주문 정보를 등록 처리를 하는 가맹점 페이지로 이동
                2. 해당 페이지에서 페이코 주문 예약 API를 이용하여 주문 정보를 등록
                3. 리턴받은 주문서 페이지로 이동 처리한다.
               */
   
              // 성공 시 주문서 URL 팝업   ( 모바일의 경우 redirect )
             var orderurl = '@model.orderSheetUrl';
-            window.open(orderurl, 'popupPayco','top=100, left=300, width=727px, height=512px, resizable=no, scrollbars=yes');
+            var popout = window.open(orderurl, 'popupPayco','top=100, left=300, width=727px, height=512px, resizable=no, scrollbars=yes');
+            var pollTimer = window.setInterval(function() {
+                if (popout.closed !== false) {
+                    window.clearInterval(pollTimer);
+                    if (window['code'] == 0) {
+                        window.location = '/success';
+                    }
+                    else {
+                        alert('Error in payment');
+                    }
+                }
+            }, 200);
          }
          //<![CDATA[
          Payco.Button.register({
