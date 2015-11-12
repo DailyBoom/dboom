@@ -79,6 +79,7 @@ router.get('/orders/:id', isAdmin, function(req, res) {
       console.log(err);
     if (!order)
       res.redirect('/');
+    res.render('orders/view', { order: order });
   });
 });
 

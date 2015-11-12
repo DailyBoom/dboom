@@ -195,8 +195,8 @@ body {
   .footer-link {
     width: ;
     margin: 0;
-    padding: 0px 4px;
-    font-size: 0.8em;
+    padding: 0px 2px;
+    font-size: 0.75em;
   }
 }
 @media only screen and (min-width: 601px) {
