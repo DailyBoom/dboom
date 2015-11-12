@@ -1,6 +1,142 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
 <!-- Login Modal Structure -->
+<!-- #1 -->
+<div id="modal-check-1" class="modal">
+	<div class="modal-header blue-grey darken-2 white-text center">
+		로그인
+	</div>
+	<div class="modal-content">
+		<div class="row">
+			<form method="post" action="/login?product_id=@model.pastProducts[1].id">
+				<div class="input-field col s12">
+					<input id="username" type="text" class="validate" name="username">
+					<label for="username">아이디</label>
+				</div>
+				<div class="input-field col s12">
+					<input id="password" type="password" class="validate" name="password">
+					<label for="password">비밀번호</label>
+				</div>
+				<div class="col s12">
+					<span class="left">
+						<input type="checkbox" id="remember-me" name="remember_me"/>
+						<label for="remember-me">아이디 저장</label>
+					</span>
+					<span class="right">
+						<button class="waves-effect waves-light btn blue-grey darken-2" type="submit" name="action">로그인</button>
+					</span>
+				</div><!-- .col -->
+				<div class="col s12">
+					<div class="or-wrapper">
+						<img class="responsive-img" src="/images/or_2.png" alt="" />
+					</div>
+				</div>
+				<div class="col s12 center">
+					<div class="social-login-wrapper">
+						<a class="btn-social-login" href="#!"><img class="circle z-depth-1" src="/images/icon_fb_social.png" /></a>
+						<a class="btn-social-login" href="#!"><img class="circle z-depth-1" src="/images/icon_kakao_social.png" /></a>
+						<a class="btn-social-login" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;"><img class="circle z-depth-1" src="/images/icon_buy.png" /></a>
+					</div>
+				</div>
+			</form>
+		</div><!-- .row -->
+	</div><!-- .modal-content -->
+	<div class="modal-footer blue-grey lighten-5 blue-grey-text text-darken-3">
+		<a class="blue-grey-text text-darken-3 left" href="/reset">비밀번호를 잊으셨나요?</a>
+		<a class="blue-grey-text text-darken-3 right" href="/signup">회원가입</a>
+	</div>
+</div><!-- #modal-check -->
+<!-- #2 -->
+<div id="modal-check-2" class="modal">
+	<div class="modal-header blue-grey darken-2 white-text center">
+		로그인
+	</div>
+	<div class="modal-content">
+		<div class="row">
+			<form method="post" action="/login?product_id=@model.pastProducts[0].id">
+				<div class="input-field col s12">
+					<input id="username" type="text" class="validate" name="username">
+					<label for="username">아이디</label>
+				</div>
+				<div class="input-field col s12">
+					<input id="password" type="password" class="validate" name="password">
+					<label for="password">비밀번호</label>
+				</div>
+				<div class="col s12">
+					<span class="left">
+						<input type="checkbox" id="remember-me" name="remember_me"/>
+						<label for="remember-me">아이디 저장</label>
+					</span>
+					<span class="right">
+						<button class="waves-effect waves-light btn blue-grey darken-2" type="submit" name="action">로그인</button>
+					</span>
+				</div><!-- .col -->
+				<div class="col s12">
+					<div class="or-wrapper">
+						<img class="responsive-img" src="/images/or_2.png" alt="" />
+					</div>
+				</div>
+				<div class="col s12 center">
+					<div class="social-login-wrapper">
+						<a class="btn-social-login" href="#!"><img class="circle z-depth-1" src="/images/icon_fb_social.png" /></a>
+						<a class="btn-social-login" href="#!"><img class="circle z-depth-1" src="/images/icon_kakao_social.png" /></a>
+						<a class="btn-social-login" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;"><img class="circle z-depth-1" src="/images/icon_buy.png" /></a>
+					</div>
+				</div>
+			</form>
+		</div><!-- .row -->
+	</div><!-- .modal-content -->
+	<div class="modal-footer blue-grey lighten-5 blue-grey-text text-darken-3">
+		<a class="blue-grey-text text-darken-3 left" href="/reset">비밀번호를 잊으셨나요?</a>
+		<a class="blue-grey-text text-darken-3 right" href="/signup">회원가입</a>
+	</div>
+</div><!-- #modal-check -->
+<!-- #1 -->
+<div id="modal-check-3" class="modal">
+	<div class="modal-header blue-grey darken-2 white-text center">
+		로그인
+	</div>
+	<div class="modal-content">
+		<div class="row">
+			<form method="post" action="/login?product_id=@model.pastProducts[2].id">
+				<div class="input-field col s12">
+					<input id="username" type="text" class="validate" name="username">
+					<label for="username">아이디</label>
+				</div>
+				<div class="input-field col s12">
+					<input id="password" type="password" class="validate" name="password">
+					<label for="password">비밀번호</label>
+				</div>
+				<div class="col s12">
+					<span class="left">
+						<input type="checkbox" id="remember-me" name="remember_me"/>
+						<label for="remember-me">아이디 저장</label>
+					</span>
+					<span class="right">
+						<button class="waves-effect waves-light btn blue-grey darken-2" type="submit" name="action">로그인</button>
+					</span>
+				</div><!-- .col -->
+				<div class="col s12">
+					<div class="or-wrapper">
+						<img class="responsive-img" src="/images/or_2.png" alt="" />
+					</div>
+				</div>
+				<div class="col s12 center">
+					<div class="social-login-wrapper">
+						<a class="btn-social-login" href="#!"><img class="circle z-depth-1" src="/images/icon_fb_social.png" /></a>
+						<a class="btn-social-login" href="#!"><img class="circle z-depth-1" src="/images/icon_kakao_social.png" /></a>
+						<a class="btn-social-login" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;"><img class="circle z-depth-1" src="/images/icon_buy.png" /></a>
+					</div>
+				</div>
+			</form>
+		</div><!-- .row -->
+	</div><!-- .modal-content -->
+	<div class="modal-footer blue-grey lighten-5 blue-grey-text text-darken-3">
+		<a class="blue-grey-text text-darken-3 left" href="/reset">비밀번호를 잊으셨나요?</a>
+		<a class="blue-grey-text text-darken-3 right" href="/signup">회원가입</a>
+	</div>
+</div><!-- #modal-check -->
+<!-- main -->
 <div id="modal-check" class="modal">
 	<div class="modal-header blue-grey darken-2 white-text center">
 		로그인
@@ -156,12 +292,12 @@
 		<div class="card-action mod">
 			<div class="right">
 				@if (model.user) {
-					<a class="hide-on-small-only past-buy-btn-a" href="/checkout?product_id=@model.product.id">
+					<a class="hide-on-small-only past-buy-btn-a" href="/checkout?product_id=@model.pastProducts[1].id">
 						<img class="past-buy-btn" src="/images/btn-buy-a.png" />
 					</a>
 				}
 				else {
-					<a class="hide-on-small-only past-buy-btn-a modal-trigger" href="#modal-check">
+					<a class="hide-on-small-only past-buy-btn-a modal-trigger" href="#modal-check-1">
 						<img class="past-buy-btn" src="/images/btn-buy-a.png" />
 					</a>
 				}
@@ -191,12 +327,12 @@
 		<div class="card-action mod">
 			<div class="right">
 				@if (model.user) {
-					<a class="hide-on-small-only past-buy-btn-a" href="/checkout?product_id=@model.product.id">
+					<a class="hide-on-small-only past-buy-btn-a" href="/checkout?product_id=@model.pastProducts[0].id">
 						<img class="past-buy-btn" src="/images/btn-buy-a.png" />
 					</a>
 				}
 				else {
-					<a class="hide-on-small-only past-buy-btn-a modal-trigger" href="#modal-check">
+					<a class="hide-on-small-only past-buy-btn-a modal-trigger" href="#modal-check-2">
 						<img class="past-buy-btn" src="/images/btn-buy-a.png" />
 					</a>
 				}
@@ -226,12 +362,12 @@
 		<div class="card-action mod">
 			<div class="right">
 				@if (model.user) {
-					<a class="hide-on-small-only past-buy-btn-a" href="/checkout?product_id=@model.product.id">
+					<a class="hide-on-small-only past-buy-btn-a" href="/checkout?product_id=@model.pastProducts[2].id">
 						<img class="past-buy-btn" src="/images/btn-buy-a.png" />
 					</a>
 				}
 				else {
-					<a class="hide-on-small-only past-buy-btn-a modal-trigger" href="#modal-check">
+					<a class="hide-on-small-only past-buy-btn-a modal-trigger" href="#modal-check-3">
 						<img class="past-buy-btn" src="/images/btn-buy-a.png" />
 					</a>
 				}
