@@ -25,9 +25,10 @@ router.get('/products/preview', isAdmin, function(req, res) {
   res.render("products/preview");
 });
 
-router.post('/products/new', isAdmin, upload.array('photos', 4), function(req, res) {
+router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCount: 1}, {name: "photosmore", maxCount: 3}, {name: "brandlogo", maxCount: 1}]), function(req, res) {
   var paths = req.files.map(function(item) {
-    return item.path;
+    if (item.fieldname != 'brandlogo')
+      return item.path;
   });
   var product = new Product({
     name: req.body.name,
@@ -35,7 +36,14 @@ router.post('/products/new', isAdmin, upload.array('photos', 4), function(req, r
     price: req.body.price,
     quantity: req.body.quantity,
     current_quantity: req.body.quantity,
-    images: paths
+    images: paths,
+    scheduled_at: req.body.selldate,
+    brand: req.body.brandname,
+    brand_logo: req.files['brandlogo'].path,
+    video: req.body.videoUrl,
+    company_url: req.body.webUrl,
+    company_facebook: req.body.fbUrl,
+    company_kakaostory: req.body.kakaoUrl
   });
 
   console.log(product);

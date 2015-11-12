@@ -31,7 +31,7 @@
 								@model.orders.forEach(function(order) {
 								<li class="orange lighten-4">
 									<div class="collapsible-header orange lighten-3">
-										<span class="form-bold order-date">@order.created_at</span>
+										<span class="form-bold order-date">@order.created_at.toLocaleDateString('ko-KR')</span>
 										<span class="form-bold order-space">@model.user.name</span>
 										<span class="form-bold order-space right">@order.status</span>
 									</div>
@@ -142,7 +142,7 @@
 										</div>
 									</div>
 									<p class="form-lighten">이메일&nbsp;:&nbsp;</p>
-									<p class="form-bold text-md">customer@dailyboom.co</p>
+									<p class="form-bold text-md">@model.user.email</p>
 									<br>
 									<br>
 									<span class="card-title black-text">주소지</span>
@@ -152,26 +152,26 @@
 										<div class="col s12 m6 l6">
 											<span>
 												<p class="form-lighten">받는분&nbsp;:&nbsp;</p>
-												<p class="form-bold text-md">@model.user.name</p>
+												<p class="form-bold text-md">@model.user.shipping.full_name</p>
 											</span>
 										</div>
 										<div class="col s12 m6 l6">
 											<span>
 												<p class="form-lighten">전화번호&nbsp;:&nbsp;</p>
-												<p class="form-bold text-md">01012345678</p>
+												<p class="form-bold text-md">@model.user.shipping.phone</p>
 											</span>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col s12 m12 l12">
 											<p class="form-lighten">배송지 주소&nbsp;:&nbsp;</p>
-											<p class="form-bold text-md">서울특별시 용산구 이태원동 123-1 한나아파트 100동 101호</p>
+											<p class="form-bold text-md">@model.user.shipping.address</p>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col s12 m12 l12">
 											<p class="form-lighten">우편번호&nbsp;:&nbsp;</p>
-											<p class="form-bold text-md">123-456</p>
+											<p class="form-bold text-md">@model.user.shipping.zipcode</p>
 										</div>
 									</div>
 									<br>
