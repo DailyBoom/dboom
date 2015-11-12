@@ -53,6 +53,7 @@
 					@model.product.images.forEach(function(img) {
 						<div class="slide" style="background-image: url(@img);"></div>
 					})
+					<iframe class="iframe-video" src="https://www.youtube.com/embed/CLViADWy-1U?enablejsapi=1&rel=0&showinfo=0&iv_load_policy=3&modestbranding=1" frameborder="0" allowfullscreen data-autoplay="0"></iframe>
 	    </div><!-- #main-slider -->
 			<div class="pro-v-wrapper">
 				<div class="pro-v indigo lighten-5 center valign-wrapper"><div class="pro-v-text valign">@model.progress%<br>팔림</div></div>
@@ -70,12 +71,10 @@
 						<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
 					}
 				<div class="hide-on-small-only item-price right"><i class="fa fa-krw"></i>35,000</div>
-				<div class="hide-on-small-only item-price-o blue-grey-text text-lighten-2 right"><i class="fa fa-krw"></i>45,000</div>
 			</div>
 			<div class="buy-box-info blue-grey lighten-5 blue-grey-text text-darken-2">
 				<div class="item-info">@model.product.description</div>
 			</div>
-			<!-- <iframe class="iframe-video" src="https://www.youtube.com/embed/CLViADWy-1U" frameborder="0" allowfullscreen></iframe> -->
 			<div class="buy-box-footer blue-grey lighten-3">
 				<div class="center">
 					<!-- <span class="share-text white-text">share</span> -->
@@ -109,8 +108,7 @@
 
 			<!-- Mobile -->
 			<div class="hide-on-med-and-up mobile-buy blue-grey darken-3">
-				<div class="item-price-o blue-grey-text text-lighten-2"><i class="fa fa-krw"></i> 45,000</div>
-				<div class="item-price white-text"><i class="fa fa-krw"></i> 35,000</div>
+				<div class="item-price white-text center"><i class="fa fa-krw"></i> 35,000</div>
 				@if (model.user) {
 					<div class="hide-on-med-and-up">
 						<a class="modal-trigger" href="/checkout?product_id=@model.product.id">
@@ -128,104 +126,47 @@
 			</div>
 
 			<div class="past-box-wrapper white-text">
-				특별 상품
-				<!-- <a class="seemore white-text right" href="/products/">더보기&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></a> -->
+				지난 상품
+				<a class="seemore white-text right" href="/products/">더보기&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></a>
 			</div>
 			<div class="row">
 				<div class="col s12 m12 l12">
 					<div class="row">
 						<div id="db-past" class="owl-carousel owl-theme">
-
-<!-- item -->
-<div class="col s12 m12 l12">
-	<div class="card">
-		<div class="card-image">
-			<div class="past-date-box blue-grey darken-1 white-text">
-				악세사리
-			</div>
-			<img class="" src="/images/specials/craft.jpg" alt="" />
-		</div>
-		<div class="card-content">
-			<p class="past-brand blue-grey-text text-darken-1 truncate"><b>크래프트 링크</b></p>
-			<p class="past-name blue-grey-text text-darken-2">100% 핸드메이드 팔찌 세트</p>
-			<p class="past-info blue-grey-text text-darken-1">
-				이 팔찌는 지구 반대편 과테말라에서 만든 수공예 팔찌입니다.  수백 년에 걸쳐 전해져 내려온 과테말라의 유산과도 같은
-수공예 기술에 사랑을 담아 당신에게 전합니다.
-			</p>
-		</div>
-		<div class="card-action mod">
-			<div class="right">
-				<a class="past-buy-btn-a" href="/checkout?product_id=@model.product.id">
-					<img class="past-buy-btn" src="/images/btn-buy-a.png" alt="" />
-				</a>
-			</div>
-			<div class="past-price-o grey-text"><i class="fa fa-krw"></i> 45,000</div>
-			<div class="past-price-n blue-grey-text text-darken-2"><i class="fa fa-krw"></i> 40,000</div>
-		</div>
-	</div>
-</div>
-
-<!-- item -->
-<div class="col s12 m12 l12">
-	<div class="card">
-		<div class="card-image">
-			<div class="past-date-box blue-grey darken-1 white-text">
-				악세사리
-			</div>
-			<img class="" src="/images/specials/lust.jpg" alt="" />
-		</div>
-		<div class="card-content">
-			<p class="past-brand blue-grey-text text-darken-1 truncate"><b>러스트리아</b></p>
-			<p class="past-name blue-grey-text text-darken-2">로만 엠프레스 타투스티커 컬렉션</p>
-			<p class="past-info blue-grey-text text-darken-1">
-				"남을 의식하지 않는 진정한 아름다움"을 모토로 뉴욕출신 디자이너 KiKi Han이 전 세계의 도시와 문화를 경험하면서 받은 영감의 주얼리 타투 디자인입니다.
-			</p>
-		</div>
-		<div class="card-action mod">
-			<div class="right">
-				<a class="past-buy-btn-a" href="/checkout?product_id=@model.product.id">
-					<img class="past-buy-btn" src="/images/btn-buy-a.png" alt="" />
-				</a>
-			</div>
-			<div class="past-price-o grey-text"><i class="fa fa-krw"></i> 10,000</div>
-			<div class="past-price-n blue-grey-text text-darken-2"><i class="fa fa-krw"></i> 8,000</div>
-		</div>
-	</div>
-</div>
-
-<!-- item -->
-<div class="col s12 m12 l12">
-	<div class="card">
-		<div class="card-image">
-			<div class="past-date-box blue-grey darken-1 white-text">
-				생활용품
-			</div>
-			<img class="" src="/images/specials/ddam.jpg" alt="" />
-		</div>
-		<div class="card-content">
-			<p class="past-brand blue-grey-text text-darken-1 truncate"><b>땀 리빙</b></p>
-			<p class="past-name blue-grey-text text-darken-2 truncate">핸드메이드 테이블 매트 (Fall Edition)</p>
-			<p class="past-info blue-grey-text text-darken-1">
-				단정한 스트라이프와 차분한 위싱코든으로 어디에 나 잘 어울리는 기본 테이블 매트입니다.  양면으로 사용하거나 반씩 접어서 테이블에 포인트를 줄 수 있습니다.
-			</p>
-		</div>
-		<div class="card-action mod">
-			<div class="right">
-				<a class="past-buy-btn-a" href="/checkout?product_id=@model.product.id">
-					<img class="past-buy-btn" src="/images/btn-buy-a.png" alt="" />
-				</a>
-			</div>
-			<div class="past-price-o grey-text"><i class="fa fa-krw"></i> 20,000</div>
-			<div class="past-price-n blue-grey-text text-darken-2"><i class="fa fa-krw"></i> 15,000</div>
-		</div>
-	</div>
-</div>
-
+								@if (model.pastProducts) {
+									@model.pastProducts.forEach(function(product) {
+										<div class="col s12 m12 l12">
+											<div class="card">
+												<div class="card-image">
+													<div class="past-date-box blue-grey darken-1 white-text">
+														10/01/2015
+													</div>
+													<img class="" src="/images/craftlink/01.jpg" alt="" />
+												</div>
+												<div class="card-content">
+													<p class="blue-grey-text text-darken-1 truncate">@product.name</p>
+													<p class="blue-grey-text text-darken-1">
+														크래프트 링크는 소셜 임팩트를 전달하는
+														100% 핸드메이드 남미 수공예품 정기 구독 서비스입니다
+													</p>
+													<p class="blue-grey-text text-darken-1">
+														이 팔찌는 지구 반대편 과테말라에서 만든 수공예 팔찌입니다.
+														수백 년에 걸쳐 전해져 내려온 과테말라의 유산과도 같은
+														수공예 기술에 사랑을 담아 당신에게 전합니다.
+													</p>
+												</div>
+												<div class="card-action">
+													<a href="#"><i class="fa fa-history"></i>&nbsp;&nbsp;Bring it back! <span class="badge">5</span></a>
+												</div>
+											</div>
+										</div>
+									})
+								}
+							<?}?>
 						</div><!-- /.owl-carousel -->
 					</div><!-- .row -->
 				</div><!-- /.col s12 m9 l9 -->
 			</div><!-- .row -->
-
 			<div>
 				<script type='text/javascript'>
 				<!--//<![CDATA[
@@ -255,7 +196,7 @@
 	$(document).ready(function() {
 		$("#main-slider").bxSlider({
 			mode:'horizontal',
-			infiniteLoop:true,
+			infiniteLoop:false,
 			easing:'ease-in-out',
 			auto:true,
 			autoHover:true
@@ -279,7 +220,7 @@
 	$(document).ready(function(){
 		$('.iframe-video').each(function(){
 			var url = $(this).attr("src");
-			$(this).attr("src",url+"?&rel=0&theme=light&hd=1&autohide=1&wmode=transparent");
+			$(this).attr("src",url+"&wmode=transparent");
 		});
 		$('.modal-trigger').leanModal({
 			dismissible: true, // Modal can be dismissed by clicking outside of the modal

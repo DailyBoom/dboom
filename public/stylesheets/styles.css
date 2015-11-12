@@ -385,9 +385,9 @@ body {
     background-size: cover;
   }
   iframe.iframe-video {
-    height: 300px;
+    height: 180px;
     width: 100%;
-    padding: 25px 0;
+    margin: 0;
     background-color: #000;
   }
   .bx-wrapper .bx-pager {
@@ -429,7 +429,6 @@ body {
   iframe.iframe-video {
     height: 400px;
     width: 100%;
-    padding: 25px 0;
     background-color: #000;
   }
   .bx-wrapper .bx-pager {
@@ -469,10 +468,8 @@ body {
     background-size: cover;
   }
   iframe.iframe-video {
-    height: 600px;
+    height: 500px;
     width: 100%;
-    padding: 25px 0;
-    background-color: #000;
   }
   .bx-wrapper .bx-pager {
   	text-align: center;
@@ -529,7 +526,7 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 60px;
+    height: 62px;
     padding: 0 20px;
     border-top: 2px solid #fff;
     border-bottom: 2px solid #fff;
@@ -606,24 +603,19 @@ body {
     font-size: 1.4em;
   }
   .item-price {
-    display: inline-block;
-    font-size: 1.4em;
+    font-size: 0.95em;
+    margin-top: -7px;
+    padding-top: 0;
+  }
+  .item-price-o {
+    text-decoration: line-through;
+    font-size: 0.6em;
+    margin-bottom: 0;
+    padding-top: 0;
   }
   .item-info {
     text-align: justify;
     font-size: 1em;
-  }
-  .shipping-info-box {
-    position: relative;
-    border-top: 2px solid #b0bec5;
-    border-bottom: 2px solid #b0bec5;
-    padding: 20px;
-    font-size: 0.75em;
-    text-align: justify;
-  }
-  .item-shipping-info {
-    list-style: decimal !important;
-    margin-left: -25px;
   }
   .past-box-wrapper {
     height: 60px;
@@ -642,6 +634,25 @@ body {
   .past-date-box {
     padding: 5px 20px;
     font-size: 1.4em;
+  }
+  /* custom card */
+  .card .card-action.mod {
+    padding: 10px 20px;
+  }
+  .past-price-o {
+    position: relative;
+    font-size: 1em;
+    text-decoration: line-through;
+  }
+  .past-price-n {
+    font-size: 2.2em;
+  }
+  .past-buy-btn-a {
+    margin-right: 0 !important;
+  }
+  .past-buy-btn {
+    height: 70px;
+    width: auto;
   }
 }
 @media only screen and (min-width: 601px)  {
@@ -713,21 +724,14 @@ body {
     font-size: 1.4em;
     margin-right: 90px
   }
+  .item-price-o {
+    margin-right: 20px;
+    text-decoration: line-through;
+    font-size: 1.4em;
+  }
   .item-info {
     text-align: justify;
     font-size: 1em;
-  }
-  .shipping-info-box {
-    position: relative;
-    border-top: 2px solid #b0bec5;
-    border-bottom: 2px solid #b0bec5;
-    padding: 20px;
-    font-size: 0.75em;
-    text-align: justify;
-  }
-  .item-shipping-info {
-    list-style: decimal !important;
-    margin-left: -25px;
   }
   .past-box-wrapper {
     height: 60px;
@@ -746,6 +750,25 @@ body {
   .past-date-box {
     padding: 5px 20px;
     font-size: 1.4em;
+  }
+  /* custom card */
+  .card .card-action.mod {
+    padding: 10px 20px;
+  }
+  .past-price-o {
+    position: relative;
+    font-size: 1.2em;
+    text-decoration: line-through;
+  }
+  .past-price-n {
+    font-size: 2.5em;
+  }
+  .past-buy-btn-a {
+    margin-right: 0 !important;
+  }
+  .past-buy-btn {
+    height: 80px;
+    width: auto;
   }
 }
 @media only screen and (min-width: 992px)  {
@@ -821,17 +844,6 @@ body {
     clear: both;
     font-size: 1.2em;
   }
-  .shipping-info-box {
-    position: relative;
-    border-top: 2px solid #b0bec5;
-    border-bottom: 2px solid #b0bec5;
-    padding: 30px 20px 20px 20px;
-    font-size: 0.9em;
-  }
-  .item-shipping-info {
-    list-style: decimal !important;
-    margin-left: -20px;
-  }
   .past-box-wrapper {
     height: 60px;
     line-height: 60px;
@@ -847,8 +859,95 @@ body {
     font-size: 0.6em !important;
   }
   .past-date-box {
-    padding: 5px 20px;
+    padding: 0px 20px 0px 20px;
     font-size: 1.4em;
+  }
+  /* custom card */
+  .card .card-action.mod {
+    padding: 10px 20px;
+  }
+  .past-price-o {
+    position: relative;
+    font-size: 1.2em;
+    text-decoration: line-through;
+  }
+  .past-price-n {
+    font-size: 2.5em;
+  }
+  .past-buy-btn-a {
+    margin-right: 0 !important;
+  }
+  .past-buy-btn {
+    height: 80px;
+    width: auto;
+  }
+  .past-brand { font-size: 1.5em; }
+  .past-name { font-size: 1em; font-weight: bold; }
+  .past-info {
+    height: 120px;
+    overflow-y: scroll;
+    font-size: 0.9em;
+    padding-top: 7px;
+  }
+}
+@media only screen and (min-width: 1200px) {}
+
+/** Shipping xInfo **/
+@media only screen and (min-width: 0)      {
+  .collapsible.mod {
+    margin: -1px;
+  }
+  .collapsible-header { padding: 0 20px; }
+  .collapsible.mod .collapsible-body {
+    padding: 10px 20px;
+    font-size: 0.8em;
+    text-align: justify;
+  }
+  ol.item-shipping-info li {
+    list-style: decimal !important;
+    margin-left: -20px;
+  }
+  .collapsible-body p {
+    margin: 0;
+    padding: 10px 0;
+  }
+}
+@media only screen and (min-width: 601px)  {
+  .collapsible.mod {
+    margin: -1px;
+  }
+  .collapsible-header { padding: 0 20px; }
+  .collapsible.mod .collapsible-body {
+    padding: 10px 20px;
+    font-size: 0.8em;
+    text-align: justify;
+  }
+  ol.item-shipping-info li {
+    list-style: decimal !important;
+    margin-left: -20px;
+  }
+  .collapsible-body p {
+    margin: 0;
+    padding: 10px 0;
+  }
+}
+@media only screen and (min-width: 992px)  {
+  .collapsible.mod {
+    margin: -1px;
+  }
+  .collapsible-header { padding: 0 20px; }
+  .collapsible.mod .collapsible-body {
+    padding: 10px 20px;
+    font-size: 0.8em;
+    text-align: justify;
+  }
+  ol.item-shipping-info li {
+    list-style: decimal !important;
+    margin-left: -20px;
+  }
+  .collapsible-body p {
+    margin: 0;
+    padding: 10px 0;
   }
 }
 @media only screen and (min-width: 1200px) {}
@@ -958,5 +1057,62 @@ body {
   }
   .info-title { font-size: 3rem; }
   .info-details { font-size: 1.4rem; }
+}
+@media only screen and (min-width: 1200px) {}
+
+/** Checkout **/
+@media only screen and (min-width: 0)      {
+
+}
+@media only screen and (min-width: 601px)  {
+
+}
+@media only screen and (min-width: 992px)  {
+  .summary-box {
+    width: 296px;
+  }
+  .check-name {
+    font-size: 2em;
+    font-weight: bold;
+  }
+  .check-number {
+    font-size: 1.5em;
+    font-weight: 400;
+  }
+  .check-address {
+    font-size: 1.5em;
+    font-weight: 400;
+  }
+  .check-item-name {
+    font-size: 1.1em;
+  }
+  .check-price-box {
+    height: 120px;
+  }
+  .check-price {
+    font-size: 2.5em;
+    font-weight: bold;
+  }
+  .payco-info {
+    font-size: 1.2em;
+    font-weight: 400;
+  }
+  .success-text {
+    font-size: 3em;
+  }
+  .showoff {
+    margin-left: 40px;
+    line-height: 2em;
+    vertical-align: middle;
+    font-size: 2em;
+    font-weight: 400;
+  }
+  .s-social {
+    height: 55px;
+    width: 55px;
+    margin: 0 5px;
+    border-radius: 50%;
+    float: right;
+  }
 }
 @media only screen and (min-width: 1200px) {}

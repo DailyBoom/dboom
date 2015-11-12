@@ -4,7 +4,7 @@
 			<div class="row">
 				<form class="col s12" method="post" action="/shipping">
 					<h3>배송지 정보</h3>
-					@if (model.errors) {
+					@if (model.errors && model.errors.length > 0) {
 						<ul class="red-text">
 						@model.errors.forEach(function(error) {
 							<li>@error</li>
@@ -102,7 +102,7 @@
 								** By clicking on "주문하기" you hereby agree to the <a class="" href="#">Terms of Service</a>.
 							</p>
 							<br>
-							<button class="btn waves-effect waves-light btn-order cyan darken-3" type="submit" name="action">다음
+							<button class="btn btn-large waves-effect waves-light blue-grey darken-3" type="submit" name="action">다음
 								&nbsp;<i class="fa fa-chevron-right"></i>
 							</button>
 						</div>
