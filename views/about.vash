@@ -3,9 +3,9 @@
 		<div class="parallax-container">
       <div class="parallax">
 				<img class="ie-fix" src="/images/hero01.jpg">
-					<div class="parallax-title">
-						About Us
-					</div>
+				<div class="parallax-title">
+					About Us
+				</div>
 			</div>
     </div>
 		<div class="container">

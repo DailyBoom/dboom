@@ -1,54 +1,95 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-		<div id="payco_btn_type_A1" class=""></div>
-	
+		<div class="container">
+			<div class="row">
+				<h3 class="blue-grey-text text-darken-4">주문결제</h3>
+
+				<div class="col s12 m8 l8">
+					<div class="row blue-grey-text text-darken-3">
+						<h5>배송정보</h5>
+						<span class="check-name">김민기</span>
+						<br><span class="check-number">010-6489-4926</span>
+						<br><span class="check-address">서웅특별시 용산구 한강로2가 벽산메가트리움 104동 210호</span>
+						<br><span class="check-address">(우)140-081</span>
+						<br>
+						<br><span class="check-address">대한민국</span>
+						<br>
+						<br>
+						<ul class="payco-info"><b>PAYCO 결제 순서</b>
+							<li>1. 우측 하단에 있는 <b>"PAYCO 구매하기"</b> 버튼을 클릭해주세요.</li>
+							<li>2. 주문정보내역 확인 후 구매하기 버튼 클릭 시 <b>'PAYCO'</b> 결제 인증창이 뜹니다.</li>
+							<li>3. <b>'PAYCO'</b> 결제 인증창에서 정보를 입력하신 후 결제해주세요.</li>
+						</ul>
+					</div><!-- .row -->
+				</div><!-- .col -->
+
+				<div class="col s12 m4 l4">
+					<div class="row">
+						<div class="summary-box white z-depth-1 right">
+							<img class="responsive-img" src="/images/specials/ddam.jpg" alt="" />
+							<div class="check-price-box center">
+								<span class="check-item-name blue-grey-text text-darken-1 truncate"><b>땀 리빙</b></span>
+								<span class="check-item-name blue-grey-text text-darken-2 truncate">핸드메이드 테이블 매트 (Fall Edition)</span>
+								<!-- <span class="past-price-o grey-text"><i class="fa fa-krw"></i> 40,000</span><br> -->
+								<span class="check-price blue-grey-text text-darken-3"><i class="fa fa-krw"></i> 35,000</span>
+							</div>
+							<div id="payco_btn_type_A1" class=""></div>
+						</div>
+					</div><!-- .row -->
+				</div><!-- .col -->
+
+			</div><!-- .row -->
+		</div><!-- .container -->
+
+
+
 		<script type="text/javascript">
 		function order() {
-             
-             // ==== 1. 선택 박스 필수 옵션을 체크 함 =====/
-              
-            //  if (document.getElementById('frm').option.value == "") {
-            //      alert('옵션을 선택해주세요');
-            //      return false;
-            //  }
-  
-            //  if (document.getElementById('frm').buy_cnt.value == 0) {
-            //      alert('구매수량을 선택해주세요');
-            //      return false;
-            //  }
-  
-             /*
-               1. payco로 주문 정보를 등록 처리를 하는 가맹점 페이지로 이동
-               2. 해당 페이지에서 페이코 주문 예약 API를 이용하여 주문 정보를 등록
-               3. 리턴받은 주문서 페이지로 이동 처리한다.
-              */
-  
-             // 성공 시 주문서 URL 팝업   ( 모바일의 경우 redirect )
-            var orderurl = '@model.orderSheetUrl';
-            var popout = window.open(orderurl, 'popupPayco','top=100, left=300, width=727px, height=512px, resizable=no, scrollbars=yes');
-            var pollTimer = window.setInterval(function() {
-                if (popout.closed !== false) {
-                    window.clearInterval(pollTimer);
-                    if (window['code'] == 0) {
-                        window.location = '/success';
-                    }
-                    else {
-                        alert('Error in payment');
-                    }
-                }
-            }, 200);
-         }
-         //<![CDATA[
-         Payco.Button.register({
-			SELLER_KEY : 'S0FSJE' , 
+
+			 // ==== 1. 선택 박스 필수 옵션을 체크 함 =====/
+
+			//  if (document.getElementById('frm').option.value == "") {
+			//      alert('옵션을 선택해주세요');
+			//      return false;
+			//  }
+
+			//  if (document.getElementById('frm').buy_cnt.value == 0) {
+			//      alert('구매수량을 선택해주세요');
+			//      return false;
+			//  }
+
+			 /*
+			   1. payco로 주문 정보를 등록 처리를 하는 가맹점 페이지로 이동
+			   2. 해당 페이지에서 페이코 주문 예약 API를 이용하여 주문 정보를 등록
+			   3. 리턴받은 주문서 페이지로 이동 처리한다.
+			  */
+
+			 // 성공 시 주문서 URL 팝업   ( 모바일의 경우 redirect )
+			var orderurl = '@model.orderSheetUrl';
+			var popout = window.open(orderurl, 'popupPayco','top=100, left=300, width=727px, height=512px, resizable=no, scrollbars=yes');
+			var pollTimer = window.setInterval(function() {
+		    if (popout.closed !== false) {
+		        window.clearInterval(pollTimer);
+		        if (window['code'] == 0) {
+		            window.location = '/success';
+		        }
+		        else {
+		            alert('Error in payment');
+		        }
+		    }
+			}, 200);
+		}
+		//<![CDATA[
+		Payco.Button.register({
+			SELLER_KEY : 'S0FSJE' ,
 			ORDER_METHOD : "CHECKOUT",        // 주문유형 : CHECKOUT. 체크아웃 타입 / EASYPAY. 간편결제형
 			BUTTON_TYPE : "C4",                 // 버튼타입 선택 (A1,A2)
 			BUTTON_HANDLER : order,            // 구매하기 버튼 이벤트 Handler 함수 등록
 			DISPLAY_PROMOTION : "Y",            // 이벤트 문구 출력 여부
 			DISPLAY_ELEMENT_ID : "payco_btn_type_A1",  // 노출될 element id
 			"" : ""
-         });
-         //]]>
-     </script>
+		});
+		//]]>
+		</script>
 	})
 })

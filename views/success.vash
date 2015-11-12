@@ -1,5 +1,33 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-	<p>@model.msg</p>
+		<div class="parallax-container" style="height: 900px;">
+			<div class="parallax">
+				<img class="ie-fix" src="/images/success/01.jpg">
+				<div class="parallax-title">
+					CHEERS
+				</div>
+			</div><!-- parallax -->
+		</div><!-- .parallax-container -->
+		<div class="container">
+			<div class="row">
+				<p class="success-text blue-grey-text text-darken-3">
+					고객님, 결제가 완료되었습니다.
+					<br>데일리 붐에서 상품 구매해주셔서 감사합니다.
+					<br>
+					<br>좋은 하루 되세요!
+				</p>
+				<a class="waves-effect waves-light btn btn-large blue-grey darken-2" href="/mypage">주문보기 <i class="fa fa-list right"></i></a>
+				<!-- <span class="showoff">자랑하기 </span> -->
+				<a href="#sharefb"><img class="s-social" src="/images/icon_fb.png" /></a>
+				<a href="#sharekakao"><img class="s-social" src="/images/icon_kakao.png" /></a>
+				<a href="#sharemail"><img class="s-social" src="/images/icon_email.png" /></a>
+				<a href="#shareurl"><img class="s-social" src="/images/link_icon.png" /></a>
+			</div><!-- .row -->
+		</div><!-- .container -->
+		<script>
+		$(document).ready(function(){
+			$('.parallax').parallax();
+		});
+		</script>
 	})
 })
