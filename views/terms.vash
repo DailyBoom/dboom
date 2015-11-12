@@ -1,13 +1,25 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-		<div class="parallax-container">
-			<div class="parallax">
-				<img class="ie-fix" src="/images/hero01.jpg">
+		@if(!model.is_phone) {
+			<div class="parallax-container">
+	      <div class="parallax">
+					<img class="ie-fix" src="/images/hero01.jpg">
 					<div class="parallax-title">
 						Terms of Service
 					</div>
-			</div>
-		</div>
+				</div>
+	    </div>
+		}
+		else {
+			<div class="parallax-container">
+	      <div class="parallax">
+					<img class="ie-fix" src="/images/hero01m.jpg">
+					<div class="parallax-title">
+						Terms of Service
+					</div>
+				</div>
+	    </div>
+		}
 		<div class="container">
 			<div class="info-terms text-ss text-justify grey-text text-darken-2">
 <b>제1조(목적)</b>

@@ -1,13 +1,25 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-		<div class="parallax-container">
-      <div class="parallax">
-				<img class="ie-fix" src="/images/hero05.jpg">
+		@if(!model.is_phone) {
+			<div class="parallax-container">
+	      <div class="parallax">
+					<img class="ie-fix" src="/images/hero05.jpg">
 					<div class="parallax-title">
 						Merchants
 					</div>
-			</div>
-    </div>
+				</div>
+	    </div>
+		}
+		else {
+			<div class="parallax-container">
+	      <div class="parallax">
+					<img class="ie-fix" src="/images/hero05m.jpg">
+					<div class="parallax-title">
+						Merchants
+					</div>
+				</div>
+	    </div>
+		}
 		<div class="container">
 			<div class="row">
 				<form class="col s12 m12 l12 add-margin-bottom-md">
