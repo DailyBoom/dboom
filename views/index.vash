@@ -70,6 +70,7 @@
 						<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
 					}
 				<div class="hide-on-small-only item-price right"><i class="fa fa-krw"></i>35,000</div>
+				<div class="hide-on-small-only item-price-o blue-grey-text text-lighten-2 right"><i class="fa fa-krw"></i>45,000</div>
 			</div>
 			<div class="buy-box-info blue-grey lighten-5 blue-grey-text text-darken-2">
 				<div class="item-info">@model.product.description</div>
@@ -108,7 +109,8 @@
 
 			<!-- Mobile -->
 			<div class="hide-on-med-and-up mobile-buy blue-grey darken-3">
-				<div class="item-price white-text center"><i class="fa fa-krw"></i> 35,000</div>
+				<div class="item-price-o blue-grey-text text-lighten-2"><i class="fa fa-krw"></i> 45,000</div>
+				<div class="item-price white-text"><i class="fa fa-krw"></i> 35,000</div>
 				@if (model.user) {
 					<div class="hide-on-med-and-up">
 						<a class="modal-trigger" href="/checkout?product_id=@model.product.id">

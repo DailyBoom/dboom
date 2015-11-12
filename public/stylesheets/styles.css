@@ -526,7 +526,7 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 60px;
+    height: 62px;
     padding: 0 20px;
     border-top: 2px solid #fff;
     border-bottom: 2px solid #fff;
@@ -603,8 +603,15 @@ body {
     font-size: 1.4em;
   }
   .item-price {
-    display: inline-block;
-    font-size: 1.4em;
+    font-size: 0.95em;
+    margin-top: -7px;
+    padding-top: 0;
+  }
+  .item-price-o {
+    text-decoration: line-through;
+    font-size: 0.6em;
+    margin-bottom: 0;
+    padding-top: 0;
   }
   .item-info {
     text-align: justify;
@@ -716,6 +723,11 @@ body {
     display: inline-block;
     font-size: 1.4em;
     margin-right: 90px
+  }
+  .item-price-o {
+    margin-right: 20px;
+    text-decoration: line-through;
+    font-size: 1.4em;
   }
   .item-info {
     text-align: justify;

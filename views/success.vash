@@ -1,6 +1,6 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-		<div class="parallax-container" style="height: 900px;">
+		<div class="parallax-container" style="height: 600px;">
 			<div class="parallax">
 				<img class="ie-fix" src="/images/success/01.jpg">
 				<div class="parallax-title">
