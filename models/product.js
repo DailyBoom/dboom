@@ -5,9 +5,11 @@ var Schema = mongoose.Schema;
 var productSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
-  company: { type: String, required: false },
-  company_logo: { type: String, required: false },
+  brand: { type: String, required: false },
+  brand_logo: { type: String, required: false },
   company_url: { type: String, required: false },
+  company_facebook: String,
+  company_kakaostory: String,
   price: Number,
   quantity: Number,
   current_quantity: Number,
