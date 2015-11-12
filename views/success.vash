@@ -2,7 +2,7 @@
 	@html.block("body", function(model) {
 		<div class="parallax-container" style="height: 600px;">
 			<div class="parallax">
-				<img class="ie-fix" src="/images/success/01.jpg">
+				<img class="ie-fix" src="/images/success/02.jpg">
 				<div class="parallax-title">
 					CHEERS
 				</div>
@@ -17,11 +17,13 @@
 					<br>좋은 하루 되세요!
 				</p>
 				<a class="waves-effect waves-light btn btn-large blue-grey darken-2" href="/mypage">주문보기 <i class="fa fa-list right"></i></a>
+				<a class="waves-effect waves-light btn btn-large blue-grey lighten-5 blue-grey-text text-darken-3" href="/">홈으로 <i class="fa fa-home right"></i></a>
 				<!-- <span class="showoff">자랑하기 </span> -->
 				<a href="#sharefb"><img class="s-social" src="/images/icon_fb.png" /></a>
 				<a href="#sharekakao"><img class="s-social" src="/images/icon_kakao.png" /></a>
 				<a href="#sharemail"><img class="s-social" src="/images/icon_email.png" /></a>
 				<a href="#shareurl"><img class="s-social" src="/images/link_icon.png" /></a>
+				<div class="section-sm"></div>
 			</div><!-- .row -->
 		</div><!-- .container -->
 		<script>

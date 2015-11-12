@@ -1,13 +1,25 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-		<div class="parallax-container">
-			<div class="parallax">
-				<img class="ie-fix" src="/images/hero03.jpg">
+		@if(!model.is_phone) {
+			<div class="parallax-container">
+	      <div class="parallax">
+					<img class="ie-fix" src="/images/hero03.jpg">
 					<div class="parallax-title">
 						Privacy Policy
 					</div>
-			</div>
-		</div>
+				</div>
+	    </div>
+		}
+		else {
+			<div class="parallax-container">
+	      <div class="parallax">
+					<img class="ie-fix" src="/images/hero03m.jpg">
+					<div class="parallax-title">
+						Privacy Policy
+					</div>
+				</div>
+	    </div>
+		}
 		<div class="container">
 			<div class="info-terms text-ss text-justify grey-text text-darken-2">
 <ol class="terms-o">
@@ -165,13 +177,13 @@
 		<table class="bordered responsive-table small-table">
         <thead>
           <tr>
-              <th>수탁자</th>
+              <!-- <th>수탁자</th> -->
               <th>위탁업무</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td rowspan="8">파트너 회사이름</td>
+            <!-- <td rowspan="8">파트너 회사이름</td> -->
             <td>배송 업무</td>
           </tr>
           <tr>
@@ -282,21 +294,21 @@
         <th>구분</th>
         <th>담당자</th>
         <th>이메일</th>
-        <th>전화번호</th>
+        <!-- <th>전화번호</th> -->
     </tr>
   </thead>
   <tbody>
     <tr>
 			<th>고객서비스 담당 부서</th>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>Jason Kim</td>
+      <td>contact@dailyboom.co</td>
+      <!-- <td></td> -->
     </tr>
     <tr>
 			<th>개인정보보호 최고책임자</th>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>Jason Kim</td>
+      <td>contact@dailyboom.co</td>
+      <!-- <td></td> -->
     </tr>
   </tbody>
 </table>

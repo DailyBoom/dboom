@@ -1,27 +1,50 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-		<div class="parallax-container">
-      <div class="parallax">
-				<img class="ie-fix" src="/images/hero01.jpg">
-				<div class="parallax-title">
-					About Us
+		@if(!model.is_phone) {
+			<div class="parallax-container">
+	      <div class="parallax">
+					<img class="ie-fix" src="/images/hero01.jpg">
+					<div class="parallax-title">
+						About Us
+					</div>
 				</div>
-			</div>
-    </div>
+	    </div>
+		}
+		else {
+			<div class="parallax-container">
+	      <div class="parallax">
+					<img class="ie-fix" src="/images/hero01m.jpg">
+					<div class="parallax-title">
+						About Us
+					</div>
+				</div>
+	    </div>
+		}
 		<div class="container">
 			<div>
 				<p class="info-title amber-text text-darken-3">오늘 뭐 사지?</p>
-				<ul class="info-details text-justify cyan-text text-darken-3">
-					<li>데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로 매일 한개 상품만 24시간이라는 한정된 시간 내에 특가로 진행되는 웹사이트이다.</li>
-					<li>상품이 전시 된 후부터 ‘24시간 카운트 다운’으로 진행되기에 고객들은 특가 제품의 남은 할인 시간과 현재 시각까지 구매한 구매도를 확인할 수 있다.</li>
-					<li>데일리 붐 웹사이트의 특성은 상품을 360도로 배치된 이미지와 상품을 근접 촬영한 동영상으로 보여주기에 구매자이 정확한 상품 평가를 내릴 수 있도록 도와준다!</li>
-					<li>데일리 붐에서 전시 되었던 지난 제품을 인기도에 따라 재 판매할 수 있으며 고객들은 제품에 대한 관심도를 ‘좋아요’와‘공유’ 아이콘으로 표현한다. 당연히 ‘좋아요’가 많을 수 록 제품 구매로 이어지는 액션도 많아진다.</li>
+				<ul class="info-details text-justify blue-grey-text text-darken-2">
+					<li><b>데일리 붐</b>은 <b>‘매일 폭탄 가격’</b>이라는 뜻으로 매일 한개 상품만 24시간이라는 한정 된 시간 내에 판매되는 웹사이트입니다.</li>
+					<li><b>데일리 붐</b>은 <b>‘오늘 뭐 사지?’</b>라는 고객 심리를 통해 매일 참신한 제품을 소개하여 제품에 큰 마케팅 효과를 줍니다.</li>
+					<li>상품이 전시 된 후부터 <b>‘24시간 카운트 다운’</b>으로 진행되기에 고객들은 특가 제품의 남은 할인 시간과 현재 시각까지 구매한 구매도를 확인할 수 있습니다.</li>
+					<li><b>데일리 붐</b> 웹사이트의 특성은 상품을 360도로 배치된 이미지와 상품을 근접 촬영한 동영상으로 보여주기에 구매자이 정확한 상품 평가를 내릴 수 있도록 도와줍니다.</li>
+					<li><b>데일리 붐</b>에서 전시 되었던 지난 제품을 인기도에 따라 재 판매할 수 있으며 고객들은 제품에 대한 관심도를 <b>‘좋아요’</b>와<b>‘share’</b> 아이콘으로 공유할 수 있습니다. 당연히 <b>‘좋아요’</b>가 많을 수 록 제품 구매도가 올라가게 됩니다.</li>
 				</ul>
 				<p class="info-title amber-text text-darken-3">Happy Shopping! <i class="fa fa-smile-o"></i></p>
 			</div>
 			<br>
 			<br>
 		</div><!-- .container -->
+		@if(!model.is_phone) {
+			<div class="parallax-container">
+	      <div class="parallax">
+					<img class="ie-fix" src="/images/db_cover.jpg">
+				</div>
+	    </div>
+		}
+		else {
+			<img class="responsive-img" src="/images/db_cover.jpg">
+		}
 		<script>
 			$(document).ready(function(){
 				$('.parallax').parallax();
