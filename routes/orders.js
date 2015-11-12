@@ -50,7 +50,7 @@ var reservePayco = function(order) {
     "sellerOrderReferenceKey": order._id,
     "totalOrderAmt": order.product.price,
     "totalDeliveryFeeAmt": 0,
-    "totalPaymentAmt": order.product.price,         
+    "totalPaymentAmt": order.product.price,
     "returnUrl": config.get("Payco.returnUrl"),
     "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
     "orderMethod": "EASYPAY",
@@ -69,7 +69,7 @@ var reservePayco = function(order) {
         }
     ]
   };
-  
+
   return payco;
 }
 
@@ -88,7 +88,7 @@ router.post('/orders/new', isAuthenticated, function(req, res) {
     product: req.query.product_id,
     status: "Submitted"
   })
-  
+
   order.save(function(err) {
     if (err) res.redirect("/");
     else res.redirect("/");
@@ -99,17 +99,17 @@ router.post('/orders/new', isAuthenticated, function(req, res) {
 router.get('/checkout', function(req, res) {
   if (!req.query.product_id && !req.session.product && !req.session.order)
     return res.redirect('/');
-    
+
   if (!req.session.order) {
     var order = new Order({
       product: req.query.product_id ? req.query.product_id : req.session.product,
       status: "Submitted"
     })
-    
+
     if (req.user) {
       order.user = req.user.id;
     }
-    
+
     order.save(function(err) {
       if (err) res.redirect("/");
       req.session.order = order.id;
@@ -125,7 +125,7 @@ router.get('/checkout', function(req, res) {
                       res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl });
                   }
               }
-          );   
+          );
         })
       }
       else
@@ -146,7 +146,7 @@ router.get('/checkout', function(req, res) {
                       res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl });
                   }
               }
-          ); 
+          );
         })
       }
       else
@@ -212,7 +212,7 @@ router.get('/success', function(req, res) {
   if (!req.session.order)
     res.redirect('/');
   delete req.session.order;
-  res.render('success', { msg: "고객님, 결제가 완료되었습니다. 데일리 붐에서 상품 구매해주셔서 감사합니다.  좋은 하루 되세요!", code: req.query.code });
+  res.render('success', { msg: " ", code: req.query.code });
 });
 
 router.get('/orders/cancel/:id', function(req, res) {
@@ -280,7 +280,7 @@ router.post('/shipping', function(req, res) {
       .validate('country', i18n.__('user.country'), {
         required: true
       });
-      
+
       if (req.body.add_id && !req.user) {
           req.Validator.validate('username', i18n.__('user.username'), {
             length: {
@@ -322,7 +322,7 @@ router.post('/shipping', function(req, res) {
           .validate('agree-terms-3', i18n.__('user.agreeTerms3'), {
             required: true
           });
-          
+
           req.Validator.getErrors(function(errors){
             if (errors.length > 0) {
               res.render('shipping', { errors: errors });
@@ -377,7 +377,7 @@ router.post('/shipping', function(req, res) {
           }
           else {
             var user = req.user;
-            
+
             user.shipping = {
               full_name: req.body.full_name,
               address: req.body.address1,
@@ -408,7 +408,7 @@ router.post('/shipping', function(req, res) {
         req.Validator.validate('email', i18n.__('user.email'), {
             required: true
         });
-        
+
         req.Validator.getErrors(function(errors){
           if (errors.length > 0) {
             res.render('shipping', { errors: errors });
@@ -427,7 +427,7 @@ router.post('/shipping', function(req, res) {
                 res.render('shipping', { errors: err });
               }
               else {
-                  res.redirect('/checkout');                
+                  res.redirect('/checkout');
               }
             });
           }
