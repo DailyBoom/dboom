@@ -59,7 +59,7 @@ router.get('/logout', function(req, res){
 });
 
 router.get('/mypage', isAuthenticated, function(req, res) {
-  Order.find({ 'user': req.user._id }).populate('product').exec(function(err, orders) {
+  Order.find({ 'user': req.user._id }).where('status').ne('Submitted').populate('product').exec(function(err, orders) {
     res.render('users/show', { orders: orders });
   });
 });
