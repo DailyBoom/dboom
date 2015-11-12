@@ -30,6 +30,12 @@ var isAuthenticated = function (req, res, next) {
   res.redirect('/login');
 }
 
+var isAdmin = function (req, res, next) {
+  if (req.isAuthenticated() && req.user.admin === true)
+    return next();
+  res.redirect('/login');
+}
+
 var hasShipping = function(obj) {
   if (!obj.shipping)
     return false;
@@ -66,6 +72,15 @@ var reservePayco = function(order) {
   
   return payco;
 }
+
+router.get('/order/:id', isAdmin, function(req, res) {
+  Order.findOne({ _id: req.params.id }).populate('product').exec(function(err, order) {
+    if (err)
+      console.log(err);
+    if (!order)
+      res.redirect('/');
+  });
+});
 
 router.post('/orders/new', isAuthenticated, function(req, res) {
   var order = new Order({
