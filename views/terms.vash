@@ -301,9 +301,9 @@
 	<li>회원이 구매한 물품 등을 환불하는 경우, 적립금은 취소 또는 복원됩니다. 적립금으로 구매 후 물품 등을 환불하는 경우 적립금이 마이너스(-)가 될 수 있습니다. 마이너스(-)인 상태에서 회원탈퇴 또는 이용계약 해지가 되는 경우에는 "몰"은 회원에게 마이너스 액수에 상응하는 금액을 청구할 수 있습니다.</li>
 	<li>회원이 상품이나 서비스를 구매하지 않고 회사 전산 프로그램 오류 등의 사유에 의하여 적립 또는 차감이 된 적립금은 별도의 통보 없이 "몰"이 정정할 수 있습니다. 이러한 정정에 부당한 사유가 있는 경우, 회원은 "몰"에게 이의를 제기할 수 있습니다.</li>
 </ol>
-			<div class="section-blank">
-				<a class="waves-effect waves-light btn cyan darken-3" href="/">Home <i class="fa fa-home right"></i></a>
-			</div>
+				<div class="section-blank right-align">
+					<a class="waves-effect waves-light btn btn-large blue-grey darken-3" href="/">Home <i class="fa fa-home right"></i></a>
+				</div>
 			</div><!-- .info-terms -->
 		</div><!-- .container -->
 		<script>

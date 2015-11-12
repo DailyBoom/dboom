@@ -90,7 +90,8 @@
 								<label for="agree-terms-3">개인정보 수집 및 이용.</label><a class="right" href="#!terms3">보기</a>
 							</p>
 							<br>
-							<button class="btn waves-effect waves-light btn-order cyan darken-3" type="submit" name="action">가입 하기
+							<button class="btn btn-large waves-effect waves-light btn-order blue-grey darken-3 right" type="submit" name="action">
+								가입 하기 <i class="fa fa-pencil-square-o right"></i>
 							</button>
 						</div>
 					</div>
