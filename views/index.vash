@@ -155,7 +155,7 @@
 		</div>
 		<div class="card-action mod">
 			<div class="right">
-				<a class="past-buy-btn-a" href="/checkout?product_id=@model.product.id">
+				<a class="past-buy-btn-a" href="/checkout?product_id=@model.pastProducts[1].id">
 					<img class="past-buy-btn" src="/images/btn-buy-a.png" alt="" />
 				</a>
 			</div>
@@ -183,7 +183,7 @@
 		</div>
 		<div class="card-action mod">
 			<div class="right">
-				<a class="past-buy-btn-a" href="/checkout?product_id=@model.product.id">
+				<a class="past-buy-btn-a" href="/checkout?product_id=@model.pastProducts[0].id">
 					<img class="past-buy-btn" src="/images/btn-buy-a.png" alt="" />
 				</a>
 			</div>
@@ -211,7 +211,7 @@
 		</div>
 		<div class="card-action mod">
 			<div class="right">
-				<a class="past-buy-btn-a" href="/checkout?product_id=@model.product.id">
+				<a class="past-buy-btn-a" href="/checkout?product_id=@model.pastProducts[2].id">
 					<img class="past-buy-btn" src="/images/btn-buy-a.png" alt="" />
 				</a>
 			</div>

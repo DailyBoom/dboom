@@ -73,7 +73,7 @@ var reservePayco = function(order) {
   return payco;
 }
 
-router.get('/order/:id', isAdmin, function(req, res) {
+router.get('/orders/:id', isAdmin, function(req, res) {
   Order.findOne({ _id: req.params.id }).populate('product').exec(function(err, order) {
     if (err)
       console.log(err);
@@ -99,7 +99,11 @@ router.post('/orders/new', isAuthenticated, function(req, res) {
 router.get('/checkout', function(req, res) {
   if (!req.query.product_id && !req.session.product && !req.session.order)
     return res.redirect('/');
-
+    
+  if (req.session.product && (req.session.product != req.query.product_id)) {
+    delete req.session.order;
+    delete req.session.product;
+  }
   if (!req.session.order) {
     var order = new Order({
       product: req.query.product_id ? req.query.product_id : req.session.product,
@@ -113,6 +117,8 @@ router.get('/checkout', function(req, res) {
     order.save(function(err) {
       if (err) res.redirect("/");
       req.session.order = order.id;
+      if (!req.session.product)
+        req.session.product = req.query.product_id;
       if ((req.user && hasShipping(req.user))) {
         order.populate('product', function(err, orderPop) {
           var payco = reservePayco(orderPop);
@@ -136,6 +142,8 @@ router.get('/checkout', function(req, res) {
     Order.findOne({ '_id': req.session.order }, function(err, order) {
       if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
         order.populate('product', function(err, orderPop) {
+          if (!req.session.product)
+            req.session.product = orderPop.product.id;
           var payco = reservePayco(orderPop);
           request.post(
               'https://alpha-api-bill.payco.com/outseller/order/reserve',
