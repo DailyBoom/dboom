@@ -26,10 +26,12 @@ router.get('/products/preview', isAdmin, function(req, res) {
 });
 
 router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCount: 1}, {name: "photosmore", maxCount: 3}, {name: "brandlogo", maxCount: 1}]), function(req, res) {
-  var paths = req.files.map(function(item) {
-    if (item.fieldname != 'brandlogo')
-      return item.path;
-  });
+  console.log(req.files.photosmain[0]);
+  // var paths = req.files['photosmore'].map(function(item) {
+  //   if (item.fieldname != 'brandlogo')
+  //     return item.path;
+  // });
+  var paths = req.files.photosmain[0].path;
   var product = new Product({
     name: req.body.name,
     description: req.body.description,
@@ -39,7 +41,7 @@ router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCou
     images: paths,
     scheduled_at: req.body.selldate,
     brand: req.body.brandname,
-    brand_logo: req.files['brandlogo'].path,
+    //brand_logo: req.files['brandlogo'].path,
     video: req.body.videoUrl,
     company_url: req.body.webUrl,
     company_facebook: req.body.fbUrl,
