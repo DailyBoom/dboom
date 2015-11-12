@@ -1,262 +1,129 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
 <!-- Login Modal Structure -->
-		<div id="modal-check" class="modal">
-			<div class="modal-content center">
-				<!-- Login Modal -->
-				<div class="row remove-margin-bottom">
-					<form class="col set-form-padding" method="post" action="/login?product_id=@model.product.id">
-						<br>
-						<div class="col set-padding m5 l5">
-							<div class="row set-padding remove-margin-bottom">
-								<div class="input-field col s12">
-									<input id="username" type="text" class="validate" name="username">
-									<label for="username">아이디</label>
-								</div>
-								<div class="input-field col s12">
-									<input id="password" type="password" class="validate" name="password">
-									<label for="password">비밀번호</label>
-								</div>
-							</div>
-							<div class="col s12 m12 l12 add-margin-bottom-xs">
-								<p style="font-size: .49rem;">&nbsp;</p>
-								<span class="left">
-									<input type="checkbox" id="remember-me" name="remember_me"/>
-									<label for="remember-me">아이디 저장하기</label>
-								</span>
-								<span class="right">
-									<button class="waves-effect waves-light btn cyan darken-3" type="submit" name="action">
-										로그인
-									</button>
-								</span>
-							</div>
-						</div>
-						<div class="col s1 m1 l1 or-wrapper">
-							<div class="vline"></div>
-							<span class="grey lighten-5 add-padding-sm">or</span>
-						</div>
-						<div class="hide-on-small-only col m6 l6">
-							<a class="waves-effect waves-light" id="facebook" href="#!">
-								<img class="social-login-kakao" src="/images/fb_login_btn_large.png" />
-							</a>
-							<a class="waves-effect waves-light" style="margin-top: 1.4rem;" id="kakao" data-product="@model.product.id">
-								<img class="social-login-kakao" src="/images/kakao_account_login_btn_large_wide.png" />
-							</a>
-							<a class="waves-effect waves-light btn-flat white-text amber darken-3 btn-fb" href="/checkout?product_id=@model.product.id"
-							style="margin-top: 1rem;">
-								<i class="fa fa-shopping-cart fa-3x btn-nologin"></i>로그인 안하고 바로구매
-							</a>
-						</div>
-					</form>
+<div id="modal-check" class="modal">
+	<div class="modal-header blue-grey darken-2 white-text center">
+		로그인
+	</div>
+	<div class="modal-content">
+		<div class="row">
+			<form method="post" action="/login?product_id=@model.product.id">
+				<div class="input-field col s12">
+					<input id="username" type="text" class="validate" name="username">
+					<label for="username">아이디</label>
 				</div>
-			</div>
-			<!-- .modal-content -->
-		</div><!-- #modal-check -->
-		<div id="modal-check-mobile" class="modal">
-			<div class="modal-content add-padding-sm center">
-				<!-- Login Modal -->
-				<div class="row">
-					<form class="col s12 m12 l12" method="post" action="/login">
-						<div class="row">
-							<div class="input-field col s12">
-								<input id="username" type="text" class="validate" name="username">
-								<label for="username">아이디</label>
-							</div>
-							<div class="input-field col s12">
-								<input id="password" type="password" class="validate" name="password">
-								<label for="password">비밀번호</label>
-							</div>
-						</div>
-						<div class="col s12" style="margin: -1rem 0 0 0;">
-							<p class="left">
-								<input type="checkbox" id="saveid" name="saveid"/>
-								<label for="saveid">아이디 저장하기</label>
-							</p>
-							<button class="waves-effect waves-light btn cyan darken-3 right" type="submit" name="action">
-								로그인
-							</button>
-						</div>
-						<div class="row">
-							<span class="text-md center or-mobile">- or -</span><br>
-							<a href="#!facebook">
-								<img class="social-login" src="/images/fb_login_btn_medium.png" />
-							</a>
-							<a href="#!kakao">
-								<img class="social-login" src="/images/kakao_login_btn_medium.png" />
-							</a>
-							<a class="waves-effect waves-light btn btn-buynow amber darken-3" href="/checkout?product_id=@model.product.id">
-								<i class="fa fa-shopping-cart fa-1-2x"></i>&nbsp;&nbsp;&nbsp;바로구매
-							</a>
-							<div class="signup-box">
-								<a class="cyan-text text-darken-3 right" href="/signup">회원가입</a>
-								<a class="cyan-text text-darken-3 left" href="/reset">비밀번호를 잊으셨나요?</a>
-							</div>
-						</div>
-					</form>
+				<div class="input-field col s12">
+					<input id="password" type="password" class="validate" name="password">
+					<label for="password">비밀번호</label>
 				</div>
-			</div><!-- .modal-content -->
-		</div><!-- #modal-check-mobile -->
-		<div class="hide-on-med-and-up fixed-btn-buy z-depth-1 center">
-			<div class="progress-h cyan lighten-4">
-				<span class="text-progress-h hide">@model.progress%</span>
-				<div class="determinate-h cyan darken-4">
-				</div>
-			</div>
-			<script>
-				$(window).load(function(){
-					var progress_h = @model.progress + "%";
-					$('.determinate-h').animate({width: progress_h}, 1500, function() {
-						$('.text-progress-h').fadeIn().removeClass('hide');
-					});
-				});
-			</script>
-			<!-- <div id="time-left-mobile" class="d-clock-mobile red white-text"></div> -->
-			<div class="mobile-share grey lighten-4">
-				<a href="#shareurl"><img class="social" src="/images/link_icon.png" /></a>
-				<a href="#sharemail"><img class="social" src="/images/icon_email.png" /></a>
-				<a href="#sharekakao"><img class="social" src="/images/icon_kakao.png" /></a>
-				<a href="#sharefb"><img class="social" src="/images/icon_fb.png" /></a>
-			</div>
-		</div>
-		<div class="section-blank">
-		</div>
-		<div class="container">
-			<div class="row">
-				<div id="main" class="col s12 m10 l10 left">
-					<div class="card">
-						<div class="card-image">
-							<!-- <div class="sold-out" style="background-image: url('/images/sold-out.png');">
-							</div> -->
-							<img class="img-sold-out" src="/images/sold-out.png" alt="" />
-							<!-- Image Slider -->
-							<div class="slider">
-								<ul class="slides">
-									@model.product.images.forEach(function(img) {
-										<li>
- 											<img class="" src="@img" alt="@model.product.name | Daily Boom" />
-										</li>
-									})
-									<li>
-										<iframe class="iframe-video" src="https://www.youtube.com/embed/CLViADWy-1U" frameborder="0" scrolling="no" allowfullscreen></iframe>
-									</li>
-								</ul>
-							</div>
-						</div><!-- /.card-image -->
-						<div class="card-content">
-							<span class="card-title activator grey-text text-darken-4">
-								<a href="#!"><i class="fa fa-info-circle fa-1-5x right" style="margin-top: -2px;"></i></a>
-								@model.product.name
-							</span>
-							<span class="hide-on-small-only">
-								<a href="#sharefb"><img class="social right" src="/images/icon_fb.png" /></a>
-								<a href="#sharekakao"><img class="social right" src="/images/icon_kakao.png" /></a>
-								<a href="#sharemail"><img class="social right" src="/images/icon_email.png" /></a>
-								<a href="#shareurl"><img class="social right" src="/images/link_icon.png" /></a>
-							</span>
-							<p class="activator grey-text text-darken-1">이제 헤어컬러 시술이 쉬워 집니다...</p>
-						</div><!-- /.card-content -->
-						<div class="card-reveal">
-							<span class="card-title grey-text text-darken-4">
-								<i class="fa fa-times-circle fa-1-5x right"></i>
-							</span>
-							<div class="details-box">
-								<img class="details-img circle z-depth-1 left" src="images/zone01.png" alt="{BRAND NAME LOGO}" />
-								<span class="card-title grey-text text-darken-4 details-head left">
-									<span class="text-lg">Zonecode</span><br>
-									@model.product.name
-								</span>
-								<div class="row">
-							    <div class="col s12">
-										<p class="text-sm">
-											<b>상품 정보</b><br>
-											@model.product.description
-										</p>
-									</div>
-							  </div><!-- .row -->
-							</div><!-- .details-bottom -->
-							<div class="card-bottom col s12">
-								<div class="remove-margin-bottom">
-									<ul id="shipping-info" class="collapsible z-depth-0 remove-border grey-text" data-collapsible="accordion">
-								    <li>
-								      <div class="collapsible-header text-ss remove-border" style="padding: 0 2rem;">
-												<div class="box-fade"></div>
-												<b>배송/반품/교환 정보</b>
-											</div>
-								      <div class="collapsible-body text-ss remove-border" style="padding: 0 2rem;">
-												<b>판매자 지정택배사 :</b>&nbsp;&nbsp;<span>KGB택배</span>
-												<br><b>반품배송비 :</b>&nbsp;&nbsp;<span>반품/교환 배송비(편도) :2,500원</span>
-												<br><b>보내실 곳 :</b>&nbsp;&nbsp;<span>133-832 서울 성동구 성수2가3동 277-35번지 영진디지탈타워 지하2층(구 태신빌딩)</span>
-												<br><br>
-												<b>거래조건에 대한 정보</b>
-												<br>
-												<ul class="item-shipping-info text-xs">
-													<li>소화물 택배의 배송은 발송일로부터 1~2 영업일이 소요되나, 지역/대형 화물/설치/예약/발송지체 등의 특이사항에 따라 배송기간은 달라질 수 있습니다.</li>
-													<li>상품의 특성과 거래조건에 따라 청약철회(변심반품/취소)가 일부 제한되거나 청약철회에 소요되는 비용이 다르게 책정될 수 있습니다.</li>
-													<li>청약철회는 상품 수령일로부터 7일 이내에 신청하실 수 있으며, 판매자는 ‘전자상거래등에서의소비자보호에관한법률’이 정하는 바에 따른 지연이자 지급의 책임이 있습니다.</li>
-													<li>제품 사용 상 불만과 피해보상에 관하여는 제조사, 수입원, 판매자 등에게 문의하여주시기 바라며, 당사의 고객센터로 문의 주시면 관계법령과 규정에 부합하는 기준에 따라 문제 해결에 도움을 드리겠습니다.</li>
-													<li>거래에 관한 약관은 판매자의 상품 상세설명 화면과 당사 이용약관(링크)에서 확인하실 수 있습니다.</li>
-												</ul>
-											</div>
-								    </li>
-									</ul>
-								</div>
-							</div>
-						</div><!-- .card-reveal -->
-						<div class="card-action price-align">
-							<span class="text-lg"><i class="fa fa-krw"></i> 35,000</span>
-						</div>
-					</div><!-- /.card -->
-					<div class="hide-on-med-and-up">
-						<!-- <a class="waves-effect waves-light btn btn-buy-mobile green modal-trigger" href="#modal-check-mobile">Buy Now</a> -->
-						@if (model.user) {
-							<a class="modal-trigger" href="/checkout?product_id=@model.product.id">
-								<img class="img-btn-buy-mobile" src="/images/btn-buy-mobile.png" />
-							</a>
-						}
-						else {
-							<a class="modal-trigger" href="#modal-check-mobile">
-								<img class="img-btn-buy-mobile" src="/images/btn-buy-mobile.png" alt="" />
-							</a>
-						}
-					</div><!-- /.hide-on-med-and-up -->
-				</div>
-				<!-- item -->
-				<div class="hide-on-small-only col m2 l2 center">
-<!-- progress bar -->
-					<div class="progress-v cyan lighten-3 z-depth-1 center">
-						<span class="white-text text-progress-v">@model.progress%<br>팔림</span>
-						<div class="determinate-v cyan darken-3" style="">
-						</div>
+				<div class="col s12">
+					<span class="left">
+						<input type="checkbox" id="remember-me" name="remember_me"/>
+						<label for="remember-me">아이디 저장</label>
+					</span>
+					<span class="right">
+						<button class="waves-effect waves-light btn blue-grey darken-2" type="submit" name="action">로그인</button>
+					</span>
+				</div><!-- .col -->
+				<div class="col s12">
+					<div class="or-wrapper">
+						<img class="responsive-img" src="/images/or_2.png" alt="" />
 					</div>
-					<script>
-						$(window).load(function(){
-							var progress = @model.progress + "%";
-							$('.text-progress-v').hide();
-							$('.determinate-v').animate({height: progress}, 1500, function() {
-								$('.text-progress-v').fadeIn();
-							});
-						});
-					</script>
-<!-- Buy Modal -->
+				</div>
+				<div class="col s12 center">
+					<div class="social-login-wrapper">
+						<a class="btn-social-login" href="#!"><img class="circle z-depth-1" src="/images/icon_fb_social.png" /></a>
+						<a class="btn-social-login" href="#!"><img class="circle z-depth-1" src="/images/icon_kakao_social.png" /></a>
+						<a class="btn-social-login" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;"><img class="circle z-depth-1" src="/images/icon_buy.png" /></a>
+					</div>
+				</div>
+			</form>
+		</div><!-- .row -->
+	</div><!-- .modal-content -->
+	<div class="modal-footer blue-grey lighten-5 blue-grey-text text-darken-3">
+		<a class="blue-grey-text text-darken-3 left" href="/reset">비밀번호를 잊으셨나요?</a>
+		<a class="blue-grey-text text-darken-3 right" href="/signup">회원가입</a>
+	</div>
+</div><!-- #modal-check -->
+<!-- End Login Modal -->
+<div class="container">
+	<div class="row">
+		<div class="col s12">
+			<div id="main-slider" class="slider-wrapper z-depth-1">
+					@model.product.images.forEach(function(img) {
+						<div class="slide" style="background-image: url(@img);"></div>
+					})
+					<iframe class="iframe-video" src="https://www.youtube.com/embed/CLViADWy-1U?enablejsapi=1&rel=0&showinfo=0&iv_load_policy=3&modestbranding=1" frameborder="0" allowfullscreen data-autoplay="0"></iframe>
+	    </div><!-- #main-slider -->
+			<div class="pro-v-wrapper">
+				<div class="pro-v indigo lighten-5 center valign-wrapper"><div class="pro-v-text valign">@model.progress%<br>팔림</div></div>
+				<div class="pro-v-d amber darken-1" style="height: @model.progress%;"></div>
+			</div><!-- .pro-v-wrapper -->
+		</div><!-- .col -->
+		<div class="col s12">
+			<div class="buy-box-wrapper white-text">
+				<img class="brand-img" src="images/zone01.png" alt="" />
+				<div class="item-name">@model.product.name</div>
 					@if (model.user) {
-						<a id="btn-buy" class="hide-on-small-only" href="/checkout?product_id=@model.product.id">
-							<img class="img-btn-buy" src="/images/btn-buy-md.png" />
-						</a>
+						<a class="hide-on-small-only btn-buy-wrapper right" href="/checkout?product_id=@model.product.id"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
 					}
 					else {
-						<a id="btn-buy" class="hide-on-small-only waves-block waves-light modal-trigger" href="#modal-check">
-							<img class="img-btn-buy" src="/images/btn-buy-md.png" />
-						</a>
+						<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
 					}
-<!-- Buy -> Login Modal JS -->
+				<div class="hide-on-small-only item-price right"><i class="fa fa-krw"></i>35,000</div>
+			</div>
+			<div class="buy-box-info blue-grey lighten-5 blue-grey-text text-darken-2">
+				<div class="item-info">@model.product.description</div>
+			</div>
+			<div class="buy-box-footer blue-grey lighten-3">
+				<div class="center">
+					<!-- <span class="share-text white-text">share</span> -->
+					<a href="#sharefb"><img class="social" src="/images/icon_fb.png" /></a>
+					<a href="#sharekakao"><img class="social" src="/images/icon_kakao.png" /></a>
+					<a href="#sharemail"><img class="social" src="/images/icon_email.png" /></a>
+					<a href="#shareurl"><img class="social" src="/images/link_icon.png" /></a>
 				</div>
-			</div> <!-- .row -->
-			<br>
-			<br>
-			<div class="col s12 m12 l12">
-				<span class="text-lg">지난 상품</span>
-				<a class="text-md right see-more" href="/products/">더보기 <i class="fa fa-chevron-right"></i></a>
-				<hr>
+			</div><!-- .buy-box-footer -->
+			<div class="shipping-info-box blue-grey lighten-5 blue-grey-text text-darken-2">
+				<b>배송/반품/교환 정보</b>
+				<b>판매자 지정택배사 :</b>&nbsp;&nbsp;<span>KGB택배</span>
+				<br><b>반품배송비 :</b>&nbsp;&nbsp;<span>반품/교환 배송비(편도) : 2,500원</span>
+				<br><b>보내실 곳 :</b>&nbsp;&nbsp;<span>133-832 서울 성동구 성수2가3동 277-35번지 영진디지탈타워 지하2층(구 태신빌딩)</span>
+				<br><br>
+				<b>거래조건에 대한 정보</b>
+				<br>
+				<ol class="item-shipping-info">
+					<li>소화물 택배의 배송은 발송일로부터 1~2 영업일이 소요되나, 지역/대형 화물/설치/예약/발송지체 등의 특이사항에 따라 배송기간은 달라질 수 있습니다.</li>
+					<li>상품의 특성과 거래조건에 따라 청약철회(변심반품/취소)가 일부 제한되거나 청약철회에 소요되는 비용이 다르게 책정될 수 있습니다.</li>
+					<li>청약철회는 상품 수령일로부터 7일 이내에 신청하실 수 있으며, 판매자는 ‘전자상거래등에서의소비자보호에관한법률’이 정하는 바에 따른 지연이자 지급의 책임이 있습니다.</li>
+					<li>제품 사용 상 불만과 피해보상에 관하여는 제조사, 수입원, 판매자 등에게 문의하여주시기 바라며, 당사의 고객센터로 문의 주시면 관계법령과 규정에 부합하는 기준에 따라 문제 해결에 도움을 드리겠습니다.</li>
+					<li>거래에 관한 약관은 판매자의 상품 상세설명 화면과 당사 이용약관(링크)에서 확인하실 수 있습니다.</li>
+				</ol>
+			</div>
+
+
+			<!-- Mobile -->
+			<div class="hide-on-med-and-up mobile-buy blue-grey darken-3">
+				<div class="item-price white-text center"><i class="fa fa-krw"></i> 35,000</div>
+				@if (model.user) {
+					<div class="hide-on-med-and-up">
+						<a class="modal-trigger" href="/checkout?product_id=@model.product.id">
+							<img class="btn-buy-mobile" src="/images/btn-buy-mobile_2.png" />
+						</a>
+					</div>
+				}
+				else {
+					<div class="hide-on-med-and-up">
+						<a class="modal-trigger" href="#modal-check">
+							<img class="btn-buy-mobile" src="/images/btn-buy-mobile_2.png" alt="" style="width:100%;"/>
+						</a>
+					</div>
+				}
+			</div>
+
+			<div class="past-box-wrapper white-text">
+				지난 상품
+				<a class="seemore white-text right" href="/products/">더보기&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></a>
 			</div>
 			<div class="row">
 				<div class="col s12 m12 l12">
@@ -265,16 +132,16 @@
 								@if (model.pastProducts) {
 									@model.pastProducts.forEach(function(product) {
 										<div class="col s12 m12 l12">
-											<div class="card gre darken-">
+											<div class="card">
 												<div class="card-image">
-													<div class="past-date-box grey-text text-darken-1 text-md">
+													<div class="past-date-box blue-grey darken-1 white-text">
 														10/01/2015
 													</div>
 													<img class="" src="@product.images[0]" alt="" />
 												</div>
 												<div class="card-content">
 													<p class="grey-text text-darken-1 truncate">@product.name</p>
-													<!-- <p class="truncate">@product.description</p> -->
+													<p class="truncate">@product.description</p>
 												</div>
 												<div class="card-action">
 													<a href="#"><i class="fa fa-history"></i>&nbsp;&nbsp;Bring it back! <span class="badge">5</span></a>
@@ -288,7 +155,7 @@
 					</div><!-- .row -->
 				</div><!-- /.col s12 m9 l9 -->
 			</div><!-- .row -->
-			<div class="ad">
+			<div>
 				<script type='text/javascript'>
 				<!--//<![CDATA[
 				   document.MAX_ct0 ='';
@@ -309,45 +176,66 @@
 				//]]>-->
 				</script>
 			</div>
-			<br>
-		</div> <!-- .container -->
-		<script>
-			$(document).ready(function(){
-				$('.slider').slider({
-					full_width: true,
-					indicators: true,
-					interval: 60000
-				});
-				$('iframe').each(function(){
-					var url = $(this).attr("src");
-					$(this).attr("src",url+"?wmode=transparent");
-				});
-				$('.modal-trigger').leanModal({
-					dismissible: true, // Modal can be dismissed by clicking outside of the modal
-					opacity: .5, // Opacity of modal background
-					in_duration: 300, // Transition in duration
-					out_duration: 200, // Transition out duration
-				});
-				$('.collapsible').collapsible({
-		      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-		    });
-				$("#product_price").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
-					var owl = $("#db-past");
-					owl.owlCarousel({
-						items : 3,
-						itemsDesktop : [1000,3],
-						itemsDesktopSmall : [900,3],
-						itemsTablet: [600,1],
-						itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
-						navigation: false,
-						pagination: false,
-						responsive: true,
-						rewindNav: false
-					});
-					// Custom Navigation Events
-					$(".next").click(function(){owl.trigger('owl.next');});
-					$(".prev").click(function(){owl.trigger('owl.prev');});
-				});
-		</script>
+
+		</div><!-- .col -->
+	</div><!-- .row -->
+</div><!-- .container -->
+<script>
+	$(document).ready(function() {
+		$("#main-slider").bxSlider({
+			mode:'horizontal',
+			infiniteLoop:false,
+			easing:'ease-in-out',
+			auto:true,
+			autoHover:true
+		});
+	});
+</script>
+<script>
+	$(window).load(function() {
+	var progress_h = @model.progress + "%";
+	$('.determinate-h').animate({width: progress_h}, 1500, function() {
+		$('.text-progress-h').fadeIn().removeClass('hide');
+	});
+	var progress = @model.progress + "%";
+	$('.text-progress-v').hide();
+		$('.determinate-v').animate({height: progress}, 1500, function() {
+			$('.text-progress-v').fadeIn();
+		});
+	});
+</script>
+<script>
+	$(document).ready(function(){
+		$('.iframe-video').each(function(){
+			var url = $(this).attr("src");
+			$(this).attr("src",url+"&wmode=transparent");
+		});
+		$('.modal-trigger').leanModal({
+			dismissible: true, // Modal can be dismissed by clicking outside of the modal
+			opacity: .5, // Opacity of modal background
+			in_duration: 300, // Transition in duration
+			out_duration: 200, // Transition out duration
+		});
+		$('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
+		$("#product_price").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
+		var owl = $("#db-past");
+		owl.owlCarousel({
+			items : 3,
+			itemsDesktop : [1200,3],
+			itemsDesktopSmall : [992,3],
+			itemsTablet: [600,1],
+			itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
+			navigation: false,
+			pagination: false,
+			responsive: true,
+			rewindNav: false
+		});
+		// Custom Navigation Events
+		$(".next").click(function(){owl.trigger('owl.next');});
+		$(".prev").click(function(){owl.trigger('owl.prev');});
+	});
+</script>
 	})
 })

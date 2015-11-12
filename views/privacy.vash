@@ -311,9 +311,9 @@
 	<li>대검찰청 사이버범죄수사단(www.spo.go.kr/국번 없이 1301)</li>
 	<li>경찰청 사이버테러대응센터(www.netan.go.kr/1566-0112)</li>
 </ol>
-			<div class="section-blank">
-				<a class="waves-effect waves-light btn cyan darken-3" href="/">Home <i class="fa fa-home right"></i></a>
-			</div>
+				<div class="section-blank right-align">
+					<a class="waves-effect waves-light btn btn-large blue-grey darken-3" href="/">Home <i class="fa fa-home right"></i></a>
+				</div>
 			</div>
 		</div><!-- .container -->
 		<script>
