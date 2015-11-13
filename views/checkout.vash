@@ -12,20 +12,25 @@
 						<br><span class="check-address">@model.user.shipping.address</span>
 						<br><span class="check-address">(우)@model.user.shipping.zipcode</span>
 						<br>
-						<br><span class="check-address">@model.user.shipping.country</span>
+						<!-- <br><span class="check-address">@model.user.shipping.country</span> -->
+						<br><span class="check-address">대한민국</span>
 						<br>
-						<br>
-						<ul class="payco-info"><b>PAYCO 결제 순서</b>
-							<li>1. 우측 하단에 있는 <b>"PAYCO 구매하기"</b> 버튼을 클릭해주세요.</li>
-							<li>2. 주문정보내역 확인 후 구매하기 버튼 클릭 시 <b>'PAYCO'</b> 결제 인증창이 뜹니다.</li>
-							<li>3. <b>'PAYCO'</b> 결제 인증창에서 정보를 입력하신 후 결제해주세요.</li>
-						</ul>
+						@if(!model.is_phone) {
+							<br><b style="font-size: 1.2em;">PAYCO 결제 순서</b>
+							<ul class="payco-info">
+								<li>우측 하단에 있는 <b>"PAYCO 구매하기"</b> 버튼을 클릭해주세요.</li>
+								<li>주문정보내역 확인 후 구매하기 버튼 클릭 시 <b>'PAYCO'</b> 결제 인증창이 뜹니다.</li>
+								<li><b>'PAYCO'</b> 결제 인증창에서 정보를 입력하신 후 결제해주세요.</li>
+							</ul>
+						}
+
 					</div><!-- .row -->
 				</div><!-- .col -->
 
 				<div class="col s12 m4 l4">
-					<div class="row">
-						<div class="summary-box white z-depth-1 right">
+					<div class="row blue-grey-text text-darken-3">
+						@if(model.is_phone) {<h5>상품정보</h5>}
+						<div class="summary-box white z-depth-1 right center-align">
 							<img class="responsive-img" src="@model.order.product.images[0]" alt="" />
 							<div class="check-price-box center">
 								<span class="check-item-name blue-grey-text text-darken-1 truncate"><b>@model.order.product.brand</b></span>
@@ -33,9 +38,19 @@
 								<!-- <span class="past-price-o grey-text"><i class="fa fa-krw"></i> 40,000</span><br> -->
 								<span class="check-price blue-grey-text text-darken-3"><i class="fa fa-krw"></i> @model.order.product.price</span>
 							</div>
-							<div id="payco_btn_type_A1" class=""></div>
+							<div id="payco_btn_type_A1" class="btn-payco center"></div>
 						</div>
 					</div><!-- .row -->
+					@if(model.is_phone) {
+						<div class="row">
+							<br><b style="font-size: 1.2em;">PAYCO 결제 순서</b>
+							<ol class="payco-info">
+								<li>아래 하단에 있는 <b>"PAYCO 구매하기"</b> 버튼을 클릭해주세요.</li>
+								<li>주문정보내역 확인 후 구매하기 버튼 클릭 시 <b>'PAYCO'</b> 결제 인증페이지로 이동됩니다.</li>
+								<li><b>'PAYCO'</b> 결제 인증창에서 정보를 입력하신 후 결제해주세요.</li>
+							</ol>
+						</div>
+					}
 				</div><!-- .col -->
 
 			</div><!-- .row -->
