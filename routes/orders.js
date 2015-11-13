@@ -100,7 +100,7 @@ router.post('/orders/new', isAuthenticated, function(req, res) {
 router.get('/checkout', function(req, res) {
   if (!req.query.product_id && !req.session.product && !req.session.order)
     return res.redirect('/');
-    
+
   if (req.session.product && (req.session.product != req.query.product_id)) {
     delete req.session.order;
     delete req.session.product;

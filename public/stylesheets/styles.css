@@ -1082,7 +1082,62 @@ body {
 
 /** Checkout **/
 @media only screen and (min-width: 0)      {
-
+  .summary-box {
+    width: 100%;
+  }
+  .check-name {
+    font-size: 2em;
+    font-weight: bold;
+  }
+  .check-number {
+    font-size: 1.5em;
+    font-weight: 400;
+  }
+  .check-address {
+    font-size: 1.25em;
+    font-weight: 400;
+  }
+  .check-item-name {
+    font-size: 1.5em;
+  }
+  .check-price-box {
+    height: 120px;
+  }
+  .check-price {
+    font-size: 2.5em;
+    font-weight: bold;
+  }
+  .payco-info {
+    margin-top: 4px;
+    margin-left: -20px;
+    text-align: justify;
+    font-size: 1em;
+    font-weight: 400;
+  }
+  .payco-info li {
+    list-style: decimal;
+  }
+  .btn-payco {
+    margin-bottom: 20px;
+  }
+  .success-text {
+    font-size: 3em;
+  }
+  .showoff {
+    margin-left: 40px;
+    line-height: 2em;
+    vertical-align: middle;
+    font-size: 2em;
+    font-weight: 400;
+  }
+  .s-social {
+    display: inline-block;
+    height: 55px;
+    width: 55px;
+    margin: 0 5px;
+    border-radius: 50%;
+    float: right;
+  }
 }
 @media only screen and (min-width: 601px)  {
 
@@ -1114,8 +1169,14 @@ body {
     font-weight: bold;
   }
   .payco-info {
+    margin-top: 4px;
+    margin-left: 25px;
+    text-align: justify;
     font-size: 1.2em;
     font-weight: 400;
+  }
+  .payco-info li {
+    list-style: decimal;
   }
   .success-text {
     font-size: 3em;
@@ -1136,3 +1197,17 @@ body {
   }
 }
 @media only screen and (min-width: 1200px) {}
+
+/** Orders **/
+@media only screen and (min-width: 0)     {
+
+}
+@media only screen and (min-width: 601px) {
+
+}
+@media only screen and (min-width: 992px) {
+  .order-label {
+    margin: 5px 0;
+    font-size: 1.4em;
+  }
+}

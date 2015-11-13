@@ -4,15 +4,45 @@
 		 <div class="row">
 
 			 <h3 class="blue-grey-text text-darken-4">주문정보</h3>
-
+			 <br>
 			 <div class="col s12 m8 l8">
 			 	<div class="row blue-grey-text text-darken-3">
-					<span class="col s3 ">주문번호</span><span class="col s9">&nbsp;@model.order.id</span>
-					<span class="col s3 ">받는분 </span><span class="col s9">&nbsp;@model.user.shipping.full_name</span>
-					<span class="col s3 ">전화번호</span><span class="col s9">&nbsp;@model.user.shipping.phone_number</span>
-					<span class="col s3 ">주소지 </span><span class="col s9">&nbsp;@model.user.shipping.address</span>
-					<span class="col s3 ">우편번호</span><span class="col s9">&nbsp;@model.user.shipping.zipcode</span>
-					<span class="col s3 ">배송국가</span><span class="col s9">&nbsp;대한민국</span>
+					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
+						주문번호 :
+					</span>
+					<span class="col s9 order-label">
+						&nbsp;@model.order.id
+					</span>
+					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
+						받는 분 :
+					</span>
+					<span class="col s9 order-label">
+						&nbsp;@model.user.shipping.full_name
+					</span>
+					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
+						전화번호 :
+					</span>
+					<span class="col s9 order-label">
+						&nbsp;@model.user.shipping.phone_number
+					</span>
+					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
+						배송주소 :
+					</span>
+					<span class="col s9 order-label">
+						&nbsp;@model.user.shipping.address
+					</span>
+					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
+						우편번호 :
+					</span>
+					<span class="col s9 order-label">
+						&nbsp;@model.user.shipping.zipcode
+					</span>
+					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
+						배송국가 :
+					</span>
+					<span class="col s9 order-label">
+						&nbsp;대한민국
+					</span>
 
 
 			 	</div><!-- .row -->
@@ -20,7 +50,7 @@
 
 			 <div class="col s12 m4 l4">
 			 	<div class="row">
-			 		<div class="summary-box white z-depth-1 right">
+			 		<div class="white z-depth-1">
 			 			<img class="responsive-img" src="@model.order.product.images[0]" alt="" />
 			 			<div class="check-price-box center">
 			 				<span class="check-item-name blue-grey-text text-darken-1 truncate"><b></b></span>
