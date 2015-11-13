@@ -109,18 +109,19 @@ router.get('/checkout', function(req, res) {
     var order = new Order({
       product: req.query.product_id ? req.query.product_id : req.session.product,
       status: "Submitted"
-    })
+    });
 
     if (req.user) {
       order.user = req.user.id;
     }
 
     order.save(function(err) {
-      if (err) res.redirect("/");
+      if (err) 
+        res.redirect("/");
       req.session.order = order.id;
       if (!req.session.product)
         req.session.product = req.query.product_id;
-      if ((req.user && hasShipping(req.user))) {
+      if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
         order.populate('product', function(err, orderPop) {
           var payco = reservePayco(orderPop);
           request.post(
