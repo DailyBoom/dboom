@@ -1,0 +1,8 @@
+# Copyright 2015 DailyBoom. All rights reserved.
+# http://dailyboom.co/robots.txt
+# January 01, 2015
+
+User-agent: *
+#Disallow: /
+
+Sitemap: http://dailyboom.co/sitemap/sitemap.xml

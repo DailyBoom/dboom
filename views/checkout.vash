@@ -4,7 +4,7 @@
 			<div class="row">
 				<h3 class="blue-grey-text text-darken-4">주문결제</h3>
 
-				<div class="col s12 m8 l8">
+				<div class="col s12 m6 l8">
 					<div class="row blue-grey-text text-darken-3">
 						<h5>배송정보</h5>
 						<span class="check-name">@model.user.shipping.full_name</span>
@@ -27,9 +27,9 @@
 					</div><!-- .row -->
 				</div><!-- .col -->
 
-				<div class="col s12 m4 l4">
+				<div class="col s12 m6 l4">
 					<div class="row blue-grey-text text-darken-3">
-						@if(model.is_phone) {<h5>상품정보</h5>}
+						<h5 class="summary-title">상품정보</h5>
 						<div class="summary-box white z-depth-1 right center-align">
 							<img class="responsive-img" src="@model.order.product.images[0]" alt="" />
 							<div class="check-price-box center">
