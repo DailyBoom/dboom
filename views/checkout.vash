@@ -66,18 +66,24 @@
 
 			 // 성공 시 주문서 URL 팝업   ( 모바일의 경우 redirect )
 			var orderurl = '@model.orderSheetUrl';
-			var popout = window.open(orderurl, 'popupPayco','top=100, left=300, width=727px, height=512px, resizable=no, scrollbars=yes');
-			var pollTimer = window.setInterval(function() {
-		    if (popout.closed !== false) {
-		        window.clearInterval(pollTimer);
-		        if (window['code'] == 0) {
-		            window.location = '/success';
-		        }
-		        else {
-		            alert('Error in payment');
-		        }
-		    }
-			}, 200);
+			var is_mobile = @model.is_mobile;
+			if(!is_mobile){
+				var popout = window.open(orderurl, 'popupPayco','top=100, left=300, width=727px, height=512px, resizable=no, scrollbars=yes');
+				var pollTimer = window.setInterval(function() {
+					if (popout.closed !== false) {
+						window.clearInterval(pollTimer);
+						if (window['code'] == 0) {
+							window.location = '/success';
+						}
+						else {
+							alert('Error in payment');
+						}
+					}
+				}, 200);
+			}
+			else {
+				window.location = orderurl;
+			}
 		}
 		//<![CDATA[
 		Payco.Button.register({

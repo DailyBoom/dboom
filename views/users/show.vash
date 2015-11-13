@@ -158,7 +158,7 @@
 										<div class="col s12 m6 l6">
 											<span>
 												<p class="form-lighten">전화번호&nbsp;:&nbsp;</p>
-												<p class="form-bold text-md">@model.user.shipping.phone</p>
+												<p class="form-bold text-md">@model.user.shipping.phone_number</p>
 											</span>
 										</div>
 									</div>
