@@ -473,7 +473,7 @@
 		owl.owlCarousel({
 			items : 3,
 			itemsDesktop : [1200,3],
-			itemsDesktopSmall : [992,3],
+			itemsDesktopSmall : [992,2],
 			itemsTablet: [600,1],
 			itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
 			navigation: false,

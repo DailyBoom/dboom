@@ -4,9 +4,6 @@
 			<div class="parallax-container">
 	      <div class="parallax">
 					<img class="ie-fix" src="/images/hero01.jpg">
-					<div class="parallax-title">
-						About Us
-					</div>
 				</div>
 	    </div>
 		}
@@ -14,13 +11,13 @@
 			<div class="parallax-container">
 	      <div class="parallax">
 					<img class="ie-fix" src="/images/hero01m.jpg">
-					<div class="parallax-title">
-						About Us
-					</div>
 				</div>
 	    </div>
 		}
 		<div class="container">
+			<div class="parallax-title">
+				About Us
+			</div>
 			<div>
 				<p class="info-title amber-text text-darken-3">오늘 뭐 사지?</p>
 				<ul class="info-details text-justify blue-grey-text text-darken-2">
