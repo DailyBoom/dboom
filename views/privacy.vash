@@ -4,9 +4,6 @@
 			<div class="parallax-container">
 	      <div class="parallax">
 					<img class="ie-fix" src="/images/hero03.jpg">
-					<div class="parallax-title">
-						Privacy Policy
-					</div>
 				</div>
 	    </div>
 		}
@@ -14,13 +11,13 @@
 			<div class="parallax-container">
 	      <div class="parallax">
 					<img class="ie-fix" src="/images/hero03m.jpg">
-					<div class="parallax-title">
-						Privacy Policy
-					</div>
 				</div>
 	    </div>
 		}
 		<div class="container">
+			<div class="parallax-title">
+				Privacy Policy
+			</div>
 			<div class="info-terms text-ss text-justify grey-text text-darken-2">
 				<br>
 <ol class="terms-o">
@@ -59,7 +56,7 @@
 				<ol class="terms-sub-sub">
 					<li>고객 편의 및 개성 연출을 위한 정보 : 사진, 주소(선택사항)</li>
 					<li>서비스 이용과정에서 자동 수집 정보 : IP Address, 쿠키, 방문 일시, 서비스 이용 기록, 불량 이용 기록, 기기정보</li>
-					<li>* 해외 배송 상품의 경우, 관세법에 의거하여 구매하는 사용자에 한해 주민등록번호 혹은 개인통관고유 부호를 수집합니다.</li>
+					<li>해외 배송 상품의 경우, 관세법에 의거하여 구매하는 사용자에 한해 주민등록번호 혹은 개인통관고유 부호를 수집합니다.</li>
 				</ol>
 			</li>
 			<li>구독회원
@@ -268,19 +265,19 @@
 <br>회사는 회원님의 개인정보를 보호하기 위하여 다음과 같은 보호 대책을 시행하고 있습니다.
 <ol class="terms">
 	<li>비밀번호의 암호화
-		<ol class="terms-sub">
+		<ul class="terms-sub">
 			<li>회원님의 비밀번호는 암호화되어 저장 및 관리되고 있습니다. 비밀번호는 오직 회원 본인만이 알 수 있으며 개인정보를 확인 및 변경할 경우에도 비밀번호를 알고 있는 본인에 의해서만 가능합니다. 따라서 회원님의 비밀번호가 타인에게 알려지지 않도록 각별히 주의하시기 바랍니다.</li>
-		</ol>
+		</ul>
 	</li>
 	<li>해킹 및 컴퓨터 바이러스 등에 대비
-		<ol class="terms-sub">
+		<ul class="terms-sub">
 			<li>회사는 해킹이나 컴퓨터 바이러스에 의하여 회원님들의 개인정보가 유출되거나 훼손되는 것을 막기 위하여 필요한 보안조치를 이용하고 있으며, 더욱 향상된 보안조치를 확보할 수 있도록 가능한 모든 기술적 방법을 구비하기 위하여 노력하고 있습니다.</li>
-		</ol>
+		</ul>
 	</li>
 	<li>개인정보 취급자의 제한 및 교육
-		<ol class="terms-sub">
+		<ul class="terms-sub">
 			<li>회사는 개인정보를 취급하는 직원을 최소한으로 제한하고 있으며, 관련 직원들에 대한 교육을 수시로 실시하여 본 방침의 이행 및 준수여부를 확인하고 있습니다.</li>
-		</ol>
+		</u>
 	</li>
 </ol>
 
