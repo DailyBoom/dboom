@@ -125,7 +125,7 @@ passport.use(new FacebookStrategy({
   function(accessToken, refreshToken, profile, done) {
      //check user table for anyone with a facebook ID of profile.id
       User.findOne({
-          'facebookId': profile.id 
+          'facebookId': profile.id
       }, function(err, user) {
           if (err) {
               return done(err);
@@ -160,7 +160,7 @@ passport.use(new KakaoStrategy({
   function(accessToken, refreshToken, profile, done){
      //check user table for anyone with a facebook ID of profile.id
       User.findOne({
-          'kakaoId': profile.id 
+          'kakaoId': profile.id
       }, function(err, user) {
           if (err) {
               return done(err);
@@ -189,7 +189,7 @@ passport.use(new KakaoStrategy({
 passport.serializeUser(function(user, done) {
   done(null, user._id);
 });
- 
+
 passport.deserializeUser(function(id, done) {
   User.findById(id, function(err, user) {
     done(err, user);
@@ -200,7 +200,7 @@ passport.deserializeUser(function(id, done) {
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
-  next(err);
+  res.render('error_404');
 });
 
 // error handlers

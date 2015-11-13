@@ -1,0 +1,29 @@
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+<div class="container-fluid" id="notfound">
+	<div class="row">
+		<div class="container">
+			<div class="row">
+				<div class="col s12 center">
+					<div class="error-template white-text">
+						<h2>Uh Oh...</h2>
+						<div class="error-details">
+							Sorry, the requested page was not found...
+						</div>
+						<div class="error-actions">
+							<a href="/" class="waves-effect waves-light btn btn-large blue-grey darken-2">
+								<i class="fa fa-home left"></i>
+								Take Me Home
+							</a>
+							<a href="mailto:contact@dailyboom.co" class="waves-effect waves-light btn btn-large blue-grey lighten-5 blue-grey-text text-darken-2">
+								<i class="fa fa-envelope left"></i> Contact Support
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- .container -->
+	</div><!-- .row -->
+</div><!-- .container-fluid -->
+	})
+})
