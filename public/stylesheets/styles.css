@@ -655,6 +655,11 @@ body {
     height: 70px;
     width: auto;
   }
+  .past-info {
+    height: 64px;
+    font-size: 0.9em;
+    padding-top: 7px;
+  }
 }
 @media only screen and (min-width: 601px)  {
   .buy-box-wrapper {
@@ -985,12 +990,11 @@ body {
   }
   .parallax-title {
     color: #fff;
-    position: absolute;
-    left: 15%;
-    bottom: 0;
+    position: relative;
+    left: 0;
+    margin-top: -35px;
     font-size: 3rem;
     line-height: 3rem;
-    margin-bottom: -7px;
   }
   .info-title { font-size: 2.2rem; }
   .info-details { font-size: 1rem; }
@@ -1040,12 +1044,11 @@ body {
   }
   .parallax-title {
     color: #fff;
-    position: absolute;
-    left: 15%;
-    bottom: 0;
-    font-size: 3rem;
-    line-height: 3rem;
-    margin-bottom: -7px;
+    position: relative;
+    left: 0;
+    margin-top: -70px;
+    font-size: 6rem;
+    line-height: 6rem;
   }
   .info-title { font-size: 3rem; }
   .info-details { font-size: 1.4rem; }
@@ -1082,7 +1085,7 @@ body {
     color: #fff;
     position: relative;
     left: 0;
-    margin-top: -88px;
+    margin-top: -84px;
     font-size: 7rem;
     line-height: 7rem;
   }
