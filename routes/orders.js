@@ -235,7 +235,7 @@ router.get('/orders/cancel/:id', function(req, res) {
       "sellerKey" : config.get("Payco.sellerKey"),
       "orderNo" : order.payco.orderNo,
       "sellerOrderReferenceKey": order.payco.sellerOrderReferenceKey,
-      "paymentCertifyToken" : order.payco.orderCertifyToken,
+      "orderCertifyKey" : order.payco.orderCertifyKey,
       "cancelTotalAmt": order.payco.totalOrderAmt
     };
     request.post(
