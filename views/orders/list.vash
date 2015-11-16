@@ -1,6 +1,6 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-   <div class="container">
+   <div class="container min-h-lg">
 		 <div class="row">
 			 <h3 class="blue-grey-text text-darken-3">주문내역</h3>
 			 <br>
@@ -9,6 +9,7 @@
 				<br>
 				<span class="red-text right">Cancel Order <i class="fa fa-times fa-fw fa-1-5x"></i></span>
 			 </div>
+			 <br>
 			 <table class="bordered highlight table-sm">
 			 	<thead>
 			 		<tr>
@@ -30,13 +31,25 @@
 			 			<td>model.order.total</td>
 			 			<td>
 			 				<a class="users-link blue-grey-text text-darken-2" href="/orders/view/model.order.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
-			 				<!-- <a class="users-link blue-grey-text" href="/orders/edit/model.order.id"><i class="fa fa-pencil fa-1-5x"></i></a> -->
 			 				<a class="users-link red-text" href="/orders/cancel/model.order.id"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
 			 			</td>
 			 		</tr>
 			 	</tbody>
 			 </table>
 		 </div><!-- .row -->
+		 <br>
+		 <div class="row">
+			 <ul class="pagination">
+		     <li class="disabled"><a href="#!"><i class="fa fa-chevron-left"></i></a></li>
+		     <li class="active"><a href="#!">1</a></li>
+		     <li class="waves-effect"><a href="#!">2</a></li>
+		     <li class="waves-effect"><a href="#!">3</a></li>
+		     <li class="waves-effect"><a href="#!">4</a></li>
+		     <li class="waves-effect"><a href="#!">5</a></li>
+		     <li class="waves-effect"><a href="#!"><i class="fa fa-chevron-right"></i></a></li>
+		   </ul>
+		 </div><!-- .row -->
+		 <br>
    </div><!-- .container -->
   })
 })
