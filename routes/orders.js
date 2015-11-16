@@ -125,7 +125,7 @@ router.get('/checkout', function(req, res) {
         order.populate('product', function(err, orderPop) {
           var payco = reservePayco(orderPop);
           request.post(
-              'https://alpha-api-bill.payco.com/outseller/order/reserve',
+              config.get("Payco.host")+'/outseller/order/reserve',
               { json: payco },
               function (error, response, body) {
                   console.log(body)
@@ -148,7 +148,7 @@ router.get('/checkout', function(req, res) {
             req.session.product = orderPop.product.id;
           var payco = reservePayco(orderPop);
           request.post(
-              'https://alpha-api-bill.payco.com/outseller/order/reserve',
+              config.get("Payco.host")+'/outseller/order/reserve',
               { json: payco },
               function (error, response, body) {
                   console.log(body)
@@ -176,7 +176,7 @@ router.get('/payco_callback', function(req, res) {
           "totalPaymentAmt": req.query.totalPaymentAmt
         }
         request.post(
-              'https://alpha-api-bill.payco.com/outseller/payment/approval',
+              config.get("Payco.host")+'/outseller/payment/approval',
               { json: payco },
               function (error, response, body) {
                   console.log(body)
@@ -239,7 +239,7 @@ router.get('/orders/cancel/:id', function(req, res) {
       "cancelTotalAmt": order.payco.totalOrderAmt
     };
     request.post(
-      'https://alpha-api-bill.payco.com/outseller/order/cancel/request',
+      config.get("Payco.host")+'/outseller/order/cancel/request',
       { json: payco },
       function (error, response, body) {
           console.log(body)
