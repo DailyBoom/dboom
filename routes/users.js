@@ -64,6 +64,19 @@ router.get('/mypage', isAuthenticated, function(req, res) {
   });
 });
 
+router.get('/users/view', function(req, res){
+  res.render('users/show');
+});
+
+router.get('/users/edit', function(req, res){
+  res.render('users/edit');
+});
+
+// for Admin Only
+router.get('/users/list', function(req, res){
+  res.render('users/list');
+});
+
 router.get('/signup', function(req, res, next) {
   if (req.user)
     res.redirect('/');
@@ -112,7 +125,7 @@ router.post('/signup', function(req, res) {
   .validate('agree-terms-3', i18n.__('user.agreeTerms3'), {
     required: true
   });
-  
+
   if (req.body.add_address) {
     req.Validator.validate('full_name', i18n.__('user.fullName'), {
       required: true
@@ -131,7 +144,7 @@ router.post('/signup', function(req, res) {
       required: true
     });
   }
-  
+
   // form validation
   req.Validator.getErrors(function(errors){
     if (errors.length > 0) {
@@ -144,7 +157,7 @@ router.post('/signup', function(req, res) {
         email: req.body.email,
         role: 'user'
       });
-      
+
       if (req.body.add_address) {
         user.shipping = {
           full_name: req.body.full_name,
@@ -212,7 +225,7 @@ router.get('/forgot', function(req, res, next) {
 
 router.post('/forgot', function(req, res, next) {
   var token = crypto.randomBytes(64).toString('hex');
-  
+
   User.findOne({ email: req.body.email }, function(err, user) {
     if (!user) {
       console.log("test");

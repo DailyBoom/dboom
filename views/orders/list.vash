@@ -1,0 +1,13 @@
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+   <div class="container">
+		 <div class="row">
+
+			 <h3 class="blue-grey-text text-darken-4">주문내역</h3>
+			 <br>
+
+
+		 </div><!-- .row -->
+   </div><!-- .container -->
+  })
+})

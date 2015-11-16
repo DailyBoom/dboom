@@ -1283,6 +1283,18 @@ body {
 }
 @media only screen and (min-width: 1200px) {}
 
+/** Users **/
+/*** List ***/
+.users-link {
+  margin-right: 10px;
+}
+.users-link:last-of-type {
+  margin-right: 0;
+}
+.fa.fa-1-5x {
+  font-size: 1.5em;
+}
+
 /** Orders **/
 @media only screen and (min-width: 0)     {
 
