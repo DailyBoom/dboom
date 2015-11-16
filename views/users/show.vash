@@ -151,7 +151,7 @@
 									</div>
 									<br>
 									<!-- edit form page -->
-									<a class="waves-effect waves-light btn cyan darken-3 white-text" href="#!">정보 수정</a>
+									<a class="waves-effect waves-light btn cyan darken-3 white-text" href="/users/edit">정보 수정</a>
 								</div>
 							</div><!-- .card -->
 						</div><!-- Left Card -->

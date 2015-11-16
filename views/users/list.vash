@@ -1,0 +1,35 @@
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+		<div class="container">
+			<div class="row">
+				<h3 class="blue-grey-text text-darken-3">Users List</h3>
+				<br>
+				<table class="bordered highlight table-sm">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>ID</th>
+							<th>Email</th>
+							<th>Name</th>
+							<th>Admin</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>@model.user.id</td>
+							<td>@model.user.username</td>
+							<td>@model.user.email</td>
+							<td>@model.user.name</td>
+							<td>
+								<a class="users-link blue-grey-text" href="/users/view/@model.user.id"><i class="fa fa-user fa-1-5x"></i></a>
+								<a class="users-link blue-grey-text" href="/users/edit/@model.user.id"><i class="fa fa-pencil fa-1-5x"></i></a>
+								<a class="users-link red-text" href="/users/delete/@model.user.id"><i class="fa fa-times fa-1-5x"></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div><!-- .row -->
+		</div><!-- .container -->
+	})
+})
