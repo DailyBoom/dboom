@@ -4,9 +4,6 @@
 			<div class="parallax-container">
 	      <div class="parallax">
 					<img class="ie-fix" src="/images/hero01.jpg">
-					<div class="parallax-title">
-						Terms of Service
-					</div>
 				</div>
 	    </div>
 		}
@@ -14,18 +11,18 @@
 			<div class="parallax-container">
 	      <div class="parallax">
 					<img class="ie-fix" src="/images/hero01m.jpg">
-					<div class="parallax-title">
-						Terms of Service
-					</div>
 				</div>
 	    </div>
 		}
 		<div class="container">
+			<div class="parallax-title">
+				Terms of Service
+			</div>
 			<div class="info-terms text-ss text-justify grey-text text-darken-2">
+				<br>
 <b>제1조(목적)</b>
 <ol class="terms">
 	<li>이 약관은 Daily Boom (전자상거래 사업자)이 운영하는 T.P.O 제공하는 인터넷 관련 서비스(이하 "서비스"라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.</li>
-	<li>※「PC통신, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다」</li>
 </ol>
 
 <br>

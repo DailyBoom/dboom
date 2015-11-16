@@ -4,9 +4,6 @@
 			<div class="parallax-container">
 	      <div class="parallax">
 					<img class="ie-fix" src="/images/hero01.jpg">
-					<div class="parallax-title">
-						About Us
-					</div>
 				</div>
 	    </div>
 		}
@@ -14,21 +11,20 @@
 			<div class="parallax-container">
 	      <div class="parallax">
 					<img class="ie-fix" src="/images/hero01m.jpg">
-					<div class="parallax-title">
-						About Us
-					</div>
 				</div>
 	    </div>
 		}
 		<div class="container">
+			<div class="parallax-title">
+				About Us
+			</div>
 			<div>
 				<p class="info-title amber-text text-darken-3">오늘 뭐 사지?</p>
 				<ul class="info-details text-justify blue-grey-text text-darken-2">
-					<li><b>데일리 붐</b>은 <b>‘매일 폭탄 가격’</b>이라는 뜻으로 매일 한개 상품만 24시간이라는 한정 된 시간 내에 판매되는 웹사이트입니다.</li>
-					<li><b>데일리 붐</b>은 <b>‘오늘 뭐 사지?’</b>라는 고객 심리를 통해 매일 참신한 제품을 소개하여 제품에 큰 마케팅 효과를 줍니다.</li>
-					<li>상품이 전시 된 후부터 <b>‘24시간 카운트 다운’</b>으로 진행되기에 고객들은 특가 제품의 남은 할인 시간과 현재 시각까지 구매한 구매도를 확인할 수 있습니다.</li>
-					<li><b>데일리 붐</b> 웹사이트의 특성은 상품을 360도로 배치된 이미지와 상품을 근접 촬영한 동영상으로 보여주기에 구매자이 정확한 상품 평가를 내릴 수 있도록 도와줍니다.</li>
-					<li><b>데일리 붐</b>에서 전시 되었던 지난 제품을 인기도에 따라 재 판매할 수 있으며 고객들은 제품에 대한 관심도를 <b>‘좋아요’</b>와<b>‘share’</b> 아이콘으로 공유할 수 있습니다. 당연히 <b>‘좋아요’</b>가 많을 수 록 제품 구매도가 올라가게 됩니다.</li>
+					<li><b>데일리 붐</b>은 <b>‘매일 폭탄 가격’</b>이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다.</li>
+					<li>상품이 공개된 후부터 <b>‘24시간 카운트 다운’</b>으로 진행되기 때문에 고객들은 실시간으로 남은 할인가격 시간과 구매율(%)을 확인할 수 있습니다.</li>
+					<li><b>데일리 붐</b>은 상품을 근접 촬영한 동영상과 360도로 배치된 이미지를 통해 상품에 대한 정보를 제공함으로써 구매자들이 정확하게 상품 평가를 할 수 있도록 도와줍니다.</li>
+					<li>고객들은 제품에 대한 관심도를 <b>‘좋아요’</b>와 <b>‘공유’</b> 아이콘으로 표현하며, <b>데일리 붐</b>에서 이미 판매되었던 제품이라도 인기도에 따라 재판매 할 수 있습니다. <b>‘좋아요’</b>가 많을 경우, 당연히 제품 구매로 이어질 확률이 높아집니다.</li>
 				</ul>
 				<p class="info-title amber-text text-darken-3">Happy Shopping! <i class="fa fa-smile-o"></i></p>
 			</div>

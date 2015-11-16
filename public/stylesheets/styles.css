@@ -842,6 +842,7 @@ body {
     display: inline-block;
     margin-right: 120px;
     font-size: 2.5em;
+    margin-top: 0;
   }
   .item-info {
     clear: both;
@@ -996,7 +997,20 @@ body {
   .info-details li { margin: 10px 0; }
   .info-terms { font-size: .6em; }
   .terms-o { margin-left: -25px; }
-  .terms li { margin-left: -30px; }
+  .terms li {
+    list-style: decimal;
+    margin-left: -30px;
+  }
+  ol.terms-sub li {
+    list-style: lower-alpha;
+  }
+  ol.terms-sub-sub li {
+    list-style: lower-roman;
+  }
+  ul.terms-sub li {
+    list-style: none;
+    margin-left: 0;
+  }
 }
 @media only screen and (min-width: 601px)  {
   .section { padding: 20px 0; }
@@ -1066,17 +1080,36 @@ body {
   }
   .parallax-title {
     color: #fff;
-    position: absolute;
-    left: 15%;
-    bottom: 0;
+    position: relative;
+    left: 0;
+    margin-top: -88px;
     font-size: 7rem;
     line-height: 7rem;
-    margin-bottom: -17px;
   }
   .info-title { font-size: 3rem; }
   .info-details { font-size: 1.4rem; }
   .info-details li { margin: 10px 0; }
-
+  ul.m-info li {
+    font-size: 1.8em;
+    margin: 10px 0;
+  }
+  .relative {
+    position: relative;
+  }
+  .m-info-circle-1 {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+  }
+  .m-info-circle-1-text {
+    position: absolute;
+    top: 0;
+    left: 100px;
+    height: 200px;
+    line-height: 1.5;
+    vertical-align: middle;
+  }
 }
 @media only screen and (min-width: 1200px) {}
 
@@ -1101,7 +1134,7 @@ body {
     font-size: 1.5em;
   }
   .check-price-box {
-    height: 120px;
+    height: 90px;
   }
   .check-price {
     font-size: 2.5em;
@@ -1121,6 +1154,59 @@ body {
     margin-bottom: 20px;
   }
   .success-text {
+    padding: 10px 0;
+    text-align: center;
+    font-size: 1.3em;
+  }
+  .s-social {
+    display: inline-block;
+    height: 55px;
+    width: 55px;
+    margin: 0 5px;
+    border-radius: 50%;
+  }
+}
+@media only screen and (min-width: 601px)  {
+  .summary-box {
+    width: 296px;
+  }
+  .summary-title {
+    width: 296px;
+    float: right;
+  }
+  .check-name {
+    font-size: 2em;
+    font-weight: bold;
+  }
+  .check-number {
+    font-size: 1.5em;
+    font-weight: 400;
+  }
+  .check-address {
+    font-size: 1.5em;
+    font-weight: 400;
+  }
+  .check-item-name {
+    font-size: 1.1em;
+  }
+  .check-price-box {
+    height: 90px;
+  }
+  .check-price {
+    font-size: 2.5em;
+    font-weight: bold;
+  }
+  .payco-info {
+    margin-top: 4px;
+    margin-left: 25px;
+    text-align: justify;
+    font-size: 1.2em;
+    font-weight: 400;
+  }
+  .payco-info li {
+    list-style: decimal;
+  }
+  .success-text {
     font-size: 3em;
   }
   .showoff {
@@ -1131,16 +1217,12 @@ body {
     font-weight: 400;
   }
   .s-social {
-    display: inline-block;
     height: 55px;
     width: 55px;
     margin: 0 5px;
     border-radius: 50%;
     float: right;
   }
-}
-@media only screen and (min-width: 601px)  {
-
 }
 @media only screen and (min-width: 992px)  {
   .summary-box {
@@ -1162,7 +1244,7 @@ body {
     font-size: 1.1em;
   }
   .check-price-box {
-    height: 120px;
+    height: 90px;
   }
   .check-price {
     font-size: 2.5em;
@@ -1210,4 +1292,36 @@ body {
     margin: 5px 0;
     font-size: 1.4em;
   }
+}
+.error-template {
+  display: block;
+  position: relative;
+  height: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 0;
+  padding: 40px 15px;
+  text-align: center;
+}
+.error-template h2 {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  padding-top: 0px;
+}
+.error-details {
+  font-size: 2em;
+}
+.error-actions {
+  display: block;
+  margin-top: 450px;
+}
+.error-actions .btn {
+  margin-right:10px;
+}
+#notfound {
+  min-height: 700px;
+  background-image: url(/images/404a.jpg);
+  background-position: 0 -120px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

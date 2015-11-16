@@ -4,9 +4,6 @@
 			<div class="parallax-container">
 	      <div class="parallax">
 					<img class="ie-fix" src="/images/hero04.jpg">
-					<div class="parallax-title">
-						Advertise
-					</div>
 				</div>
 	    </div>
 		}
@@ -14,13 +11,13 @@
 			<div class="parallax-container">
 	      <div class="parallax">
 					<img class="ie-fix" src="/images/hero04m.jpg">
-					<div class="parallax-title">
-						Advertise
-					</div>
 				</div>
 	    </div>
 		}
 		<div class="container">
+			<div class="parallax-title">
+				Advertise
+			</div>
 			<div class="row">
 				<form class="col s12 m12 l12 add-margin-bottom-md">
 		      <div class="row grey-text text-darken-3">
