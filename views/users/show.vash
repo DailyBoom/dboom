@@ -69,23 +69,6 @@
 									</div>
 								</li>
 								}) }
-		<!-- end foreach . delete samples below -->
-								<li class="green lighten-4">
-									<div class="collapsible-header green lighten-3">
-										<span class="form-bold order-date">2015-10-01</span>
-										<span class="form-bold order-space">@model.user.name</span>
-										<span class="form-bold order-space right">결제완료</span>
-									</div>
-									<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-								</li>
-								<li class="cyan darken-2 white-text">
-									<div class="collapsible-header cyan darken-3 white-text">
-										<span class="form-bold order-date">2015-10-01</span>
-										<span class="form-bold order-space">@model.user.name</span>
-										<span class="form-bold order-space right">배송</span>
-									</div>
-									<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-								</li>
 		<!-- end loop -->
 							</ul>
 						<!-- pagination goes here -->
