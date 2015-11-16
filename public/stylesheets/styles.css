@@ -1340,3 +1340,6 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+#sharekakao, #sharefb {
+  cursor: pointer;
+}

@@ -215,9 +215,9 @@
 			<div class="buy-box-footer blue-grey lighten-3">
 				<div class="center">
 					<!-- <span class="share-text white-text">share</span> -->
-					<a href="#sharefb"><img class="social" src="/images/icon_fb.png" /></a>
-					<a href="#sharekakao"><img class="social" src="/images/icon_kakao.png" /></a>
-					<a href="#sharemail"><img class="social" src="/images/icon_email.png" /></a>
+					<img class="social" src="/images/icon_fb.png" id="sharefb" />
+					<img class="social" src="/images/icon_kakao.png" id="sharekakao" />
+					<a href="mailto:?subject=데일리 붐: 오늘 뭐 사지?&body=http://dailyboom.co"><img class="social" src="/images/icon_email.png" /></a>
 					<a href="#shareurl"><img class="social" src="/images/link_icon.png" /></a>
 				</div>
 			</div><!-- .buy-box-footer -->
