@@ -28,4 +28,10 @@ $(document).ready(function() {
 			}
 		}, 200);
 	});
+	
+	$('#sharefb').on("click", function() {
+		var winTop = (screen.height / 2) - (350 / 2);
+		var winLeft = (screen.width / 2) - (600 / 2);	
+		window.open("https://www.facebook.com/dialog/share?app_id=636096523200038&display=popup&href="+location.href+"&redirect_uri="+location.href, 'facebook', 'top=' + winTop + ',left=' + winLeft +',toolbar=0,status=1,width=600,height=350');
+	});
 });
