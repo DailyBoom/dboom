@@ -1286,7 +1286,7 @@ body {
 /** Users **/
 /*** List ***/
 .users-link {
-  margin-right: 10px;
+  margin-right: 4px;
 }
 .users-link:last-of-type {
   margin-right: 0;

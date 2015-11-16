@@ -2,11 +2,40 @@
 	@html.block("body", function(model) {
    <div class="container">
 		 <div class="row">
-
-			 <h3 class="blue-grey-text text-darken-4">주문내역</h3>
+			 <h3 class="blue-grey-text text-darken-3">주문내역</h3>
 			 <br>
+			 <div class="right">
+			 	<span class="blue-grey-text text-darken-2 right">View Order <i class="fa fa-eye fa-fw fa-1-5x"></i></span>
+				<br>
+				<span class="red-text right">Cancel Order <i class="fa fa-times fa-fw fa-1-5x"></i></span>
+			 </div>
+			 <table class="bordered highlight table-sm">
+			 	<thead>
+			 		<tr>
+			 			<th>주문번호</th>
+			 			<th>주문날짜</th>
+			 			<th>상품 명</th>
+			 			<th>수량</th>
+			 			<th>합계</th>
+			 			<th>관리</th>
+			 		</tr>
+			 	</thead>
 
-
+			 	<tbody>
+			 		<tr>
+			 			<td>model.order.id</td>
+			 			<td>model.order.date</td>
+			 			<td>model.order.product.name</td>
+			 			<td>model.order.quantity</td>
+			 			<td>model.order.total</td>
+			 			<td>
+			 				<a class="users-link blue-grey-text text-darken-2" href="/orders/view/model.order.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
+			 				<!-- <a class="users-link blue-grey-text" href="/orders/edit/model.order.id"><i class="fa fa-pencil fa-1-5x"></i></a> -->
+			 				<a class="users-link red-text" href="/orders/cancel/model.order.id"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
+			 			</td>
+			 		</tr>
+			 	</tbody>
+			 </table>
 		 </div><!-- .row -->
    </div><!-- .container -->
   })
