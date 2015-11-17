@@ -25,6 +25,8 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.min-h-lg { min-height: 500px; }
+
 /* Grid */
 @media only screen and (min-width: 0) {
   .flex-s { display: flex; flex-direction: column; }
@@ -1284,6 +1286,50 @@ body {
 @media only screen and (min-width: 1200px) {}
 
 /** Users **/
+/*** My Page ***/
+@media only screen and (min-width: 0) {
+  .user-title {
+    padding: 6px 20px;
+    margin-top: -20px;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+  }
+  .collapsible-body {
+    padding: 12px 20px;
+  }
+  .collapsible-body .o-label {
+    display: inline-block;
+    width: 80px;
+    margin-bottom: 5px;
+    color: #455a64;
+    text-align: right;
+  }
+  .collapsible-body .o-name {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+}
+@media only screen and (min-width: 601px) {}
+@media only screen and (min-width: 992px) {
+  .collapsible-body {
+    padding: 12px 20px;
+  }
+  .collapsible-body .o-label {
+    display: inline-block;
+    width: 80px;
+    margin-bottom: 10px;
+    color: #455a64;
+    text-align: left;
+  }
+  .collapsible-body .o-name {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  .text-md { font-size: 1.4em; }
+}
+@media only screen and (min-width: 1200px) {}
+
 /*** List ***/
 .users-link {
   margin-right: 4px;
