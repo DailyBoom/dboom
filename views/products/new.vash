@@ -22,9 +22,9 @@
 	          </div>
 						<div class="file-field input-field col s12 m4 l4">
 							<span class="hide-on-med-and-up"><br></span>
-							<span for="brandlogo" class="input-file-mod grey-text right">브랜드 로고</span>
-				      <div class="btn">
-				        <span><i class="fa fa-image left"></i>선택</span>
+							<span for="brandlogo" class="input-file grey-text right">브랜드 로고</span>
+				      <div class="btn blue-grey darken-2">
+				        선택 <i class="fa fa-image right"></i>
 				        <input type="file" id="brandlogo" name="brandlogo" placeholder="Brand Logo Image">
 				      </div>
 				      <div class="file-path-wrapper">
