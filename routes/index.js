@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require("mongoose");
-
+var moment = require('moment');
 var User = require('../models/user');
 var Product = require('../models/product');
 
@@ -15,7 +15,8 @@ var isAuthenticated = function (req, res, next) {
 
 /* GET Home Page */
 router.get('/', function(req, res, next) {
-  Product.findOne({}, {}, { sort: { 'created_at' : 1 }}, function (err, product) {
+  var now = moment().format("MM/DD/YYYY");
+  Product.findOne({scheduled_at: now}, {}, { sort: { 'created_at' : 1 }}, function (err, product) {
     Product.find({}).where('_id').in(['5644751af9f479794bee0ca4', '5644765bf9f479794bee0ca6', '564476bcf9f479794bee0ca7']).limit(6).sort({ 'created_at' : -1 }).exec(function (err, pastProducts) {
       res.render('index', { progress: 70, product: product, pastProducts: pastProducts });
     });

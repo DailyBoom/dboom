@@ -13,7 +13,6 @@ var extend = require('util')._extend;
 var request = require("request");
 var slack = require('slack-notify')(config.get("Slack.webhookUrl"));
 
-
 var transporter = nodemailer.createTransport(smtpTransport({
     host: config.get('Nodemailer.host'),
     auth: {
@@ -87,28 +86,16 @@ router.get('/orders/:id', isAdmin, function(req, res) {
   });
 });
 
-router.post('/orders/new', isAuthenticated, function(req, res) {
-  var order = new Order({
-    user: req.user.id,
-    product: req.query.product_id,
-    status: "Submitted"
-  })
-
-  order.save(function(err) {
-    if (err) res.redirect("/");
-    else res.redirect("/");
-  });
-});
-
 router.get('/checkout', function(req, res) {
   if (!req.query.product_id && !req.session.product && !req.session.order)
     return res.redirect('/');
-
-  if (req.session.product && (req.session.product != req.query.product_id)) {
+  if (req.session.product && req.query.product_id && (req.session.product != req.query.product_id)) {
     delete req.session.order;
     delete req.session.product;
   }
-  if (!req.session.order) {
+  console.log(typeof req.session.order);
+  if (typeof req.session.order === 'undefined') {
+    console.log("test");
     var order = new Order({
       product: req.query.product_id ? req.query.product_id : req.session.product,
       status: "Submitted"

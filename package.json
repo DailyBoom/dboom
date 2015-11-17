@@ -33,7 +33,8 @@
     "crypto": "0.0.3",
     "request": "~2.65.0",
     "express-device": "~0.4.2",
-    "slack-notify": "~0.1.4"
+    "slack-notify": "~0.1.4",
+    "moment": "~2.10.6"
   },
   "description": "",
   "main": "app.js",
