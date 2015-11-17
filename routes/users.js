@@ -64,6 +64,10 @@ router.get('/mypage', isAuthenticated, function(req, res) {
   });
 });
 
+router.get('/signup/success', function(req, res){
+  res.render('mailer/signup');
+});
+
 router.get('/users/view', function(req, res){
   res.render('users/show');
 });
@@ -117,9 +121,6 @@ router.post('/signup', function(req, res) {
     required: true
   })
   .validate('agree-terms-1', i18n.__('user.agreeTerms1'), {
-    required: true
-  })
-  .validate('agree-terms-2', i18n.__('user.agreeTerms2'), {
     required: true
   })
   .validate('agree-terms-3', i18n.__('user.agreeTerms3'), {

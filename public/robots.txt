@@ -3,6 +3,6 @@
 # January 01, 2015
 
 User-agent: *
-#Disallow: /
+Disallow: /mypage
 
 Sitemap: http://dailyboom.co/sitemap/sitemap.xml

@@ -4,9 +4,6 @@
 			<div class="parallax-container">
 	      <div class="parallax">
 					<img class="ie-fix" src="/images/success/02.jpg">
-					<div class="parallax-title">
-						CHEERS
-					</div>
 				</div>
 	    </div>
 		}
@@ -14,13 +11,13 @@
 			<div class="parallax-container">
 	      <div class="parallax">
 					<img class="ie-fix" src="/images/success/02m.jpg">
-					<div class="parallax-title">
-						CHEERS
-					</div>
 				</div>
 	    </div>
 		}
 		<div class="container">
+			<div class="parallax-title">
+				CHEERS
+			</div>
 			<div class="row">
 				<p class="success-text blue-grey-text text-darken-3">
 					고객님, 결제가 완료되었습니다.
