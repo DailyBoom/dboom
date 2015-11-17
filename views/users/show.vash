@@ -191,7 +191,7 @@
 			$('ul.tabs').tabs();
 		});
 		$(".payco .receipt").on("click", function() {
-			window.open('https://alpha-bill.payco.com/outseller/receipt/'+$(this).data('orderno')+'?receiptKind=card', 'popupPayco','top=100, left=300, width=727px, height=512px, resizable=no, scrollbars=yes');
+			window.open('https://bill.payco.com/outseller/receipt/'+$(this).data('orderno')+'?receiptKind=card', 'popupPayco','top=100, left=300, width=727px, height=512px, resizable=no, scrollbars=yes');
 		});
 		</script>
 	})

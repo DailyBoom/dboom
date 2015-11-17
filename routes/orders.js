@@ -198,7 +198,7 @@ router.get('/payco_callback', function(req, res) {
                       order.payco.orderCertifyKey = body.result.orderCertifyKey;
                       order.payco.totalOrderAmt = body.result.totalOrderAmt;
                       order.payco.paymentDetails = body.result.paymentDetails;
-                      order.status = "Payed";
+                      order.status = "Paid";
                       order.save(function(err) {
                         Product.findOne({ _id: order.product }, function(err, product) {
                           product.current_quantity -= 1;
@@ -246,11 +246,11 @@ router.get('/orders/cancel/:id', function(req, res) {
       "sellerKey" : config.get("Payco.sellerKey"),
       "orderNo" : order.payco.orderNo,
       "sellerOrderReferenceKey": order.payco.sellerOrderReferenceKey,
-      "paymentCertifyToken" : order.payco.orderCertifyToken,
+      "orderCertifyKey" : order.payco.orderCertifyKey,
       "cancelTotalAmt": order.payco.totalOrderAmt
     };
     request.post(
-      config.get("Payco.host")+'/outseller/order/cancel/request',
+      config.get("Payco.host")+'/outseller/order/cancel',
       { json: payco },
       function (error, response, body) {
           console.log(body)
