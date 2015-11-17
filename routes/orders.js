@@ -73,6 +73,14 @@ var reservePayco = function(order) {
   return payco;
 }
 
+router.get('/orders/success', isAdmin, function(req, res) {
+  res.render('mailer/buy_success');
+});
+
+router.get('/orders/shipped', isAdmin, function(req, res) {
+  res.render('mailer/shipped');
+});
+
 router.get('/orders/list', isAdmin, function(req, res) {
   res.render('orders/list');
 });
@@ -327,9 +335,6 @@ router.post('/shipping', function(req, res) {
             required: true
           })
           .validate('agree-terms-1', i18n.__('user.agreeTerms1'), {
-            required: true
-          })
-          .validate('agree-terms-2', i18n.__('user.agreeTerms2'), {
             required: true
           })
           .validate('agree-terms-3', i18n.__('user.agreeTerms3'), {

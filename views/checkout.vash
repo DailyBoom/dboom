@@ -14,7 +14,9 @@
 						<br>
 						<!-- <br><span class="check-address">@model.user.shipping.country</span> -->
 						<br><span class="check-address">대한민국</span>
-						<br>
+						<div class="btn-shipping-edit">
+							<a class="waves-effect waves-light btn blue-grey darken-2" href="/shipping">배송정보 수정</a>
+						</div>
 						@if(!model.is_phone) {
 							<br><b style="font-size: 1.2em;">PAYCO 결제 순서</b>
 							<ul class="payco-info">

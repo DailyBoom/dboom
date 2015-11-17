@@ -18,7 +18,7 @@
 						</div>
 						<div class="input-field col s12 m6 l6">
 							<input id="phone_number" name="phone_number" type="text" class="validate" placeholder="01021345678" value="@(model.user ? model.user.shipping.phone_number : model.Validator.getValue('phone_number'))">
-							<label for="phone_number">전화번호</label>
+							<label for="phone_number"><span class="signup-info red-text"><i class="fa fa-exclamation-circle"></i> "-" 없는 숫자 형식으로 입력해 주세요.</span></label>
 						</div>
 					</div>
 					<div class="row">
@@ -69,27 +69,6 @@
 											<label for="confirmpassword">비밀번호 확인</label>
 										</div>
 									</div>
-									<div class="row">
-										<div class="col s12">
-											<span class="red-text">필수 동의항목</span>
-											<p class="grey-text">
-												<input type="checkbox" id="agree-all" />
-												<label for="agree-all">전체동의</label>
-											</p>
-											<p class="grey-text">
-												<input class="agree-check" type="checkbox" id="agree-terms-1" name="agree-terms-1" />
-												<label for="agree-terms-1">Daily Boom 구매회원원 이용약관.</label><a class="right" href="#!terms1">보기</a>
-											</p>
-											<p class="grey-text">
-												<input class="agree-check" type="checkbox" id="agree-terms-2" name="agree-terms-2" />
-												<label for="agree-terms-2">전자금웅서비스 이용약관.</label><a class="right" href="#!terms2">보기</a>
-											</p>
-											<p class="grey-text">
-												<input class="agree-check" type="checkbox" id="agree-terms-3" name="agree-terms-3" />
-												<label for="agree-terms-3">개인정보 수집 및 이용.</label><a class="right" href="#!terms3">보기</a>
-											</p>
-										</div>
-									</div>
 								</div>
 								<script>
 
@@ -98,12 +77,32 @@
 									* 정보 저장시 이메일로 회원가입이 쉽게 가능합니다.
 								</p>
 							}
-							<p class="grey-text">
-								** By clicking on "주문하기" you hereby agree to the <a class="" href="#">Terms of Service</a>.
-							</p>
 							<br>
-							<button class="btn btn-large waves-effect waves-light blue-grey darken-3" type="submit" name="action">다음
-								&nbsp;<i class="fa fa-chevron-right"></i>
+							<br>
+							<div class="row">
+								<div class="col s12">
+									<span class="red-text">필수 동의항목</span>
+									<p class="grey-text">
+										<input type="checkbox" id="agree-all" />
+										<label for="agree-all">전체동의</label>
+									</p>
+									<p class="grey-text">
+										<input class="agree-check" type="checkbox" id="agree-terms-1" name="agree-terms-1" />
+										<label for="agree-terms-1">데일리 붐 이용약관</label><a class="right" href="/terms" target="_blank">보기</a>
+									</p>
+									<!-- <p class="grey-text">
+										<input class="agree-check" type="checkbox" id="agree-terms-2" name="agree-terms-2" />
+										<label for="agree-terms-2">전자금웅서비스 이용약관.</label><a class="right" href="#!terms2">보기</a>
+									</p> -->
+									<p class="grey-text">
+										<input class="agree-check" type="checkbox" id="agree-terms-3" name="agree-terms-3" />
+										<label for="agree-terms-3">개인정보 수집 및 이용</label><a class="right" href="/privacy" target="_blank">보기</a>
+									</p>
+								</div>
+							</div><!-- .row -->
+							<br>
+							<button class="waves-effect waves-light btn btn-large blue-grey darken-3 right" type="submit" name="action">
+								다음 <i class="fa fa-chevron-right right"></i>
 							</button>
 						</div>
 					</div>

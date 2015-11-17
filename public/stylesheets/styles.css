@@ -1087,7 +1087,7 @@ body {
     color: #fff;
     position: relative;
     left: 0;
-    margin-top: -84px;
+    margin-top: -88px;
     font-size: 7rem;
     line-height: 7rem;
   }
@@ -1144,6 +1144,9 @@ body {
   .check-price {
     font-size: 2.5em;
     font-weight: bold;
+  }
+  .btn-shipping-edit {
+    margin: 20px 0;
   }
   .payco-info {
     margin-top: 4px;
@@ -1286,6 +1289,11 @@ body {
 @media only screen and (min-width: 1200px) {}
 
 /** Users **/
+/*** Signup Page ***/
+.signup-info {
+
+}
+
 /*** My Page ***/
 @media only screen and (min-width: 0) {
   .user-title {

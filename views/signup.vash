@@ -45,8 +45,8 @@
 										<label for="full_name">받는분 이름</label>
 									</div>
 									<div class="input-field col s12 m6 l6">
-										<input id="phone_number" type="tel" class="validate" name="phone_number" value="@model.Validator.getValue('phone_number')">
-										<label for="phone_number">전화번호</label>
+										<input id="phone_number" type="tel" class="validate" name="phone_number" value="@model.Validator.getValue('phone_number')" maxlength="11">
+										<label for="phone_number"><span class="signup-info red-text"><i class="fa fa-exclamation-circle"></i> "-" 없는 숫자 형식으로 입력해 주세요.</span></label>
 									</div>
 								</div>
 								<div class="row">
@@ -70,6 +70,7 @@
 							</div>
 						</div>
 					</div>
+					<br>
 					<div class="row">
 						<div class="col s12">
 							<span class="red-text">필수 동의항목</span>
@@ -79,15 +80,15 @@
 							</p>
 							<p class="grey-text">
 								<input class="agree-check" type="checkbox" id="agree-terms-1" name="agree-terms-1" required/>
-								<label for="agree-terms-1">Daily Boom 구매회원원 이용약관.</label><a class="right" href="#!terms1">보기</a>
+								<label for="agree-terms-1">데일리 붐 이용약관.</label><a class="right" href="/terms" target="_blank">보기</a>
 							</p>
-							<p class="grey-text">
+							<!-- <p class="grey-text">
 								<input class="agree-check" type="checkbox" id="agree-terms-2" name="agree-terms-2" required/>
 								<label for="agree-terms-2">전자금웅서비스 이용약관.</label><a class="right" href="#!terms2">보기</a>
-							</p>
+							</p> -->
 							<p class="grey-text">
 								<input class="agree-check" type="checkbox" id="agree-terms-3" name="agree-terms-3" required/>
-								<label for="agree-terms-3">개인정보 수집 및 이용.</label><a class="right" href="#!terms3">보기</a>
+								<label for="agree-terms-3">개인정보 수집 및 이용.</label><a class="right" href="/privacy" target="_blank">보기</a>
 							</p>
 							<br>
 							<button class="btn btn-large waves-effect waves-light btn-order blue-grey darken-3 right" type="submit" name="action">
@@ -100,11 +101,11 @@
 		</div>
 		<script>
 			$(document).ready(function() {
+				$('select').material_select();
 				if ($("#agree-add-address").is(":checked") === true) {
 					$('#add-address').toggleClass('hide');
 					$('#add-address input').not("#zipcode").prop('required', true);
 				}
-				$('select').material_select();
 				$('#agree-all').click(function(event) {
 					var checked = this.checked;
 					$('.agree-check').each(function() {
