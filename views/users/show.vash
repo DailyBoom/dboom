@@ -1,104 +1,107 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-		<div class="row">
-			<div class="container">
-				<div class="col s12">
-					<ul class="tabs">
-						<li class="tab col s3"><a class="active" href="#mypage1">주문내역</a></li>
-						<li class="tab col s3"><a href="#mypage2">정보설정</a></li>
-					</ul>
-				</div>
+		<div class="container">
+			<div class="row">
+				<ul class="tabs z-depth-1">
+					<li class="tab col s6 m3"><a class="blue-grey-text text-darken-2 active" href="#mypage1">주문내역 <i class="fa fa-truck fa-fw"></i></a></li>
+					<li class="tab col s6 m3"><a class="blue-grey-text text-darken-2" href="#mypage2">정보설정 <i class="fa fa-cog fa-fw"></i></a></li>
+				</ul>
+			</div><!-- .row -->
 <!-- mypage1 = Basic user info -->
-				<div id="mypage1" class="col s12 m12 l12 set-min-h">
-					<br><br>
-					<span class="text-xl">나의 주문 내역</span>
-					<br><br>
-					<!-- show for merchants -->
+			<div id="mypage1" class="col s12 m12 l12">
+				<div class="row">
+					<div class="user-title blue-grey darken-2 white-text z-depth-1">
+						주문 내역
+					</div>
+						<ul class="collapsible" data-collapsible="expandable">
+							@if (model.orders) {
+							@model.orders.forEach(function(order) {
+							<li class="lighten-4">
+								<div class="collapsible-header">
+									<span class="">@order.created_at.toLocaleDateString('ko-KR')</span>
+									<span class="">@model.user.name</span>
+									<span class="right">@order.status <i class="fa fa-check-circle fa-fw green-text right"></i></span>
+								</div>
+								<div class="collapsible-body">
+									<div class="row">
+										<div class="col s12 m8 l8">
+											<div class="o-label">주문 번호&nbsp;:&nbsp;</div>
+											<div class="o-name">@order._id</div><br>
 
-					<!-- end show for merchants -->
+											<div class="o-label">주문 상품&nbsp;:&nbsp;</div>
+											<div class="o-name">@order.product.name</div><br>
 
-					<div class="row">
-							<ul class="collapsible" data-collapsible="expandable">
-								@if (model.orders) {
-								@model.orders.forEach(function(order) {
-								<li class="orange lighten-4">
-									<div class="collapsible-header orange lighten-3">
-										<span class="form-bold order-date">@order.created_at.toLocaleDateString('ko-KR')</span>
-										<span class="form-bold order-space">@model.user.name</span>
-										<span class="form-bold order-space right">@order.status</span>
-									</div>
-									<div class="collapsible-body">
-										<div class="add-padding-sm">
-											<div class="add-padding-sm">
-												<span class="form-lighten">주문 번호&nbsp;:&nbsp;</span>
-												<span class="form-bold">@order._id</span><br><br>
-												<span class="form-lighten">결제금액&nbsp;:&nbsp;</span>
-												<span class="form-bold">@order.product.price 원</span><br><br>
-												<span class="form-lighten">받는분&nbsp;:&nbsp;</span>
-												<span class="form-bold">@model.user.shipping.full_name</span><br><br>
-												<span class="form-lighten">받는분 주소&nbsp;:&nbsp;</span><span class="hide-on-med-and-up"><br></span>
-												<span class="form-bold">@model.user.shipping.address</span><br><br/>
-												<span class="form-lighten hide-on-small-only">우편번호&nbsp;:&nbsp;</span>
-												<span class="form-bold"><span class="hide-on-med-and-up">(우)</span>@model.user.shipping.zipcode</span><br><br>
-												<span class="form-lighten">주문 상품&nbsp;:&nbsp;</span>
-												<span class="form-bold">@order.product.name</span><br><br>
-												<span class="form-lighten">주문 수량&nbsp;:&nbsp;</span>
-												<span class="form-bold">[10]</span><br><br>
-												<span class="form-lighten">배송 상태&nbsp;:&nbsp;</span>
-												<span class="form-bold">[준비 중 . 배송 완료]</span>
-											</div>
-											<div class="edit-order">
+											<div class="o-label">주문 수량&nbsp;:&nbsp;</div>
+											<div class="o-name">10</div><br>
+
+											<div class="o-label">결제 금액&nbsp;:&nbsp;</div>
+											<div class="o-name">@order.product.price 원</div><br>
+
+											<div class="o-label">받는 분&nbsp;:&nbsp;</div>
+											<div class="o-name">@model.user.shipping.full_name</div><br>
+
+											<div class="o-label">받는분 주소&nbsp;:&nbsp;</div>
+											<div class="o-name">@model.user.shipping.address</div><br>
+
+											<div class="o-label">우편번호&nbsp;:&nbsp;</div>
+											<div class="o-name">@model.user.shipping.zipcode</div><br>
+										</div>
+										<div class="col s12 m4 l4">
+											<div class="hide-on-med-and-up">
 												<br>
-												<form class="col s12 m3 l3">
-													<div class="row">
-														<div class="input-field col s12">
-													    <select>
-													      <option value="1" selected>미 결제</option>
-													      <option value="2">결제완료</option>
-													      <option value="3">배송</option>
-													    </select>
-													    <label>주문 상태</label>
-													  </div>
-													</div>
-												</form>
-												@if(order.payco.orderNo) {
-												<div class="payco"><button class="btn receipt" data-orderno="@order.payco.orderNo" >PAYCO 영수증</button>@if(!order.payco.cancelTradeSeq){<a class="btn cancel" href="/orders/cancel/@order.id">결제 취소</a>}</div>
-												}
 											</div>
+											<div class="o-label">배송 상태&nbsp;:&nbsp;</div>
+											<div class="o-name green-text">[준비 중 . 배송 완료]</div>
+											<form>
+												<div class="row">
+													<div class="input-field col s12">
+												    <select>
+												      <option value="1" selected>미 결제</option>
+												      <option value="2">결제완료</option>
+												      <option value="3">배송</option>
+												    </select>
+												    <label>주문 상태</label>
+												  </div>
+												</div>
+											</form>
+											@if(order.payco.orderNo) {
+											<div class="payco"><button class="btn blue-grey darken-2 receipt" data-orderno="@order.payco.orderNo" >PAYCO 영수증</button>@if(!order.payco.cancelTradeSeq){<a class="btn red darken-2 right cancel" href="/orders/cancel/@order.id">결제 취소</a>}</div>
+											}
 										</div>
 									</div>
-								</li>
-								}) }
-		<!-- end loop -->
-							</ul>
-						<!-- pagination goes here -->
-						<br>
-						<div class="col s12">
-							<div class="row">
-								<ul class="pagination">
-							    <li class="disabled"><a href="#!"><i class="fa fa-chevron-left"></i></a></li>
-							    <li class="active"><a href="#!">1</a></li>
-							    <li class="waves-effect"><a href="#!">2</a></li>
-							    <li class="waves-effect"><a href="#!">3</a></li>
-							    <li class="waves-effect"><a href="#!">4</a></li>
-							    <li class="waves-effect"><a href="#!">5</a></li>
-							    <li class="waves-effect"><a href="#!"><i class="fa fa-chevron-right"></i></a></li>
-							  </ul>
-							</div>
+								</div>
+							</li>
+							}) }
+	<!-- end loop -->
+						</ul>
+					<!-- pagination goes here -->
+					<br>
+					<div class="col s12">
+						<div class="row">
+							<ul class="pagination">
+						    <li class="disabled"><a href="#!"><i class="fa fa-chevron-left"></i></a></li>
+						    <li class="active"><a href="#!">1</a></li>
+						    <li class="waves-effect"><a href="#!">2</a></li>
+						    <li class="waves-effect"><a href="#!">3</a></li>
+						    <li class="waves-effect"><a href="#!">4</a></li>
+						    <li class="waves-effect"><a href="#!">5</a></li>
+						    <li class="waves-effect"><a href="#!"><i class="fa fa-chevron-right"></i></a></li>
+						  </ul>
 						</div>
-						<br>
-					</div><!-- .row -->
-				</div><!-- #mypage1 -->
+					</div>
+					<br>
+				</div><!-- .row -->
+			</div><!-- #mypage1 -->
 <!-- #mypage2 = User Account Info -->
-				<div id="mypage2" class="col s12 m12 l12 set-min-h">
-					<br>
-					<br>
-					<span class="text-xl">나의 정보</span>
-					<br>
+			<div id="mypage2" class="col s12 m12 l12 set-min-h">
+				<div class="row">
+					<div class="user-title blue-grey darken-2 white-text z-depth-1">
+						나의 정보
+					</div>
 					<div class="row">
-						<!-- Left -->
+					<!-- Left -->
 						<div class="col s12 m7 l7">
-							<div class="card">
+							<div class="card blue-grey-text text-darken-2">
 								<div class="card-content">
 									<span class="card-title black-text">기본 정보</span>
 									<br>
@@ -106,52 +109,52 @@
 										<div class="col s12 m6 l6">
 											<span>
 												<p class="form-lighten">이름&nbsp;:&nbsp;</p>
-												<p class="form-bold text-md">@model.user.name</p>
+												<p class="text-md">@model.user.name</p>
 											</span>
 										</div>
 										<div class="col s12 m6 l6">
 											<span>
 												<p class="form-lighten">User ID&nbsp;:&nbsp;</p>
-												<p class="form-bold text-md">@model.user.username</p>
+												<p class="text-md">@model.user.username</p>
 											</span>
 										</div>
 									</div>
 									<p class="form-lighten">이메일&nbsp;:&nbsp;</p>
-									<p class="form-bold text-md">@model.user.email</p>
+									<p class="text-md">@model.user.email</p>
 									<br>
 									<br>
-									<span class="card-title black-text">주소지</span>
+									<span class="card-title black-text">주소 정보</span>
 									<br>
 
 									<div class="row">
 										<div class="col s12 m6 l6">
 											<span>
 												<p class="form-lighten">받는분&nbsp;:&nbsp;</p>
-												<p class="form-bold text-md">@model.user.shipping.full_name</p>
+												<p class="text-md">@model.user.shipping.full_name</p>
 											</span>
 										</div>
 										<div class="col s12 m6 l6">
 											<span>
 												<p class="form-lighten">전화번호&nbsp;:&nbsp;</p>
-												<p class="form-bold text-md">@model.user.shipping.phone_number</p>
+												<p class="text-md">@model.user.shipping.phone_number</p>
 											</span>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col s12 m12 l12">
 											<p class="form-lighten">배송지 주소&nbsp;:&nbsp;</p>
-											<p class="form-bold text-md">@model.user.shipping.address</p>
+											<p class="text-md">@model.user.shipping.address</p>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col s12 m12 l12">
 											<p class="form-lighten">우편번호&nbsp;:&nbsp;</p>
-											<p class="form-bold text-md">@model.user.shipping.zipcode</p>
+											<p class="text-md">@model.user.shipping.zipcode</p>
 										</div>
 									</div>
 									<br>
 									<!-- edit form page -->
-									<a class="waves-effect waves-light btn cyan darken-3 white-text" href="/users/edit">정보 수정</a>
+									<a class="waves-effect waves-light btn blue-grey darken-2 white-text" href="/users/edit">정보 수정 <i class="fa fa-pencil-square-o fa-fw right"></i></a>
 								</div>
 							</div><!-- .card -->
 						</div><!-- Left Card -->
@@ -172,16 +175,16 @@
 								          <label for="password_2">새 비밀본호 확인</label>
 									      </div>
 											</div>
-											<button class="waves-effect waves-light btn amber darken-3" type="submit" name="button">변경하기</button>
+											<button class="waves-effect waves-light btn amber darken-3" type="submit" name="button">변경하기 <i class="fa fa-key fa-fw right"></i></button>
 										</form>
 									</div>
 								</div>
 							</div><!-- .card -->
 						</div><!-- Right Card -->
 					</div><!-- .row -->
-				</div><!-- #mypage2 -->
-			</div><!-- .container -->
-		</div><!-- .row -->
+				</div><!-- .row -->
+			</div><!-- #mypage2 -->
+		</div><!-- .container -->
 		<script>
 		$(document).ready(function(){
 			$('select').material_select();
