@@ -195,6 +195,12 @@ router.get('/users/list', isAdmin, function(req, res){
   });
 });
 
+router.get('/users/delete/:id', isAdmin, function(req, res) {
+  User.findOneAndRemove({ _id: req.params.id }, function(err, user) {
+    res.redirect('/users/list');
+  });
+});
+
 router.get('/signup', function(req, res, next) {
   if (req.user)
     res.redirect('/');
@@ -284,7 +290,8 @@ router.post('/signup', function(req, res) {
       }
       user.save(function(err) {
         if (err) {
-          res.render('signup', { errors: err });
+          console.log(err);
+          res.render('signup', { error: err });
         }
         else {
           transporter.sendMail({

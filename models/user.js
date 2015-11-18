@@ -1,6 +1,8 @@
 // grab the things we need
 var mongoose = require('mongoose');
 var bcrypt = require("bcrypt");
+var uniqueValidator = require('mongoose-unique-validator');
+var i18nPlugin = require("mongoose-i18n");
 var Schema = mongoose.Schema;
 var SALT_WORK_FACTOR = 10;
 
@@ -27,6 +29,9 @@ var userSchema = new Schema({
   resetPasswordToken: String,
   resetPasswordExpires: Date
 });
+
+userSchema.plugin(uniqueValidator);
+userSchema.plugin(i18nPlugin, {languages: ['ko'], defaultLanguage: 'ko'});
 
 userSchema.pre('save', function(next) {
   var user = this;

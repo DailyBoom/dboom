@@ -136,7 +136,6 @@
 				</div><!-- .container -->
 			</nav>
 		</div><!-- .navbar -->
-      @html.include("error", model)
       @html.block("body")
 		<footer class="page-footer blue-grey darken-3">
 			<div class="container">
