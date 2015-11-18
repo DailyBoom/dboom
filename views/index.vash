@@ -189,7 +189,7 @@
 	$(document).ready(function() {
 		$("#main-slider").bxSlider({
 			mode:'horizontal',
-			infiniteLoop:false,
+			infiniteLoop:true,
 			easing:'ease-in-out',
 			auto:true,
 			autoHover:true
