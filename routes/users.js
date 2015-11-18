@@ -176,7 +176,7 @@ router.post('/signup', function(req, res) {
           transporter.sendMail({
             from: 'DailyBoom <contact@dailyboom.co>',
             to: user.email,
-            subject: 'Welcome to DailyBoom',
+            subject: user.username+'님 회원가입을 축하드립니다.',
             text: 'Thank you for registering on DailyBoom!'
           }, function (err, info) {
               if (err) { console.log(err); res.render('signup', { error: err.errmsg }); }

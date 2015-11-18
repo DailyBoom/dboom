@@ -87,6 +87,9 @@ app.use(passport.authenticate('remember-me'));
 if (app.get('env') === 'production') {
   app.listen(3000);
 }
+else {
+  mongoose.set('debug', true);
+}
 app.use(function(req, res, next) {
   res.locals.user = req.user;
   next();
