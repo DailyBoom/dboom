@@ -62,6 +62,9 @@ router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCou
 
 router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: "brandlogo", maxCount: 1}]), function(req, res) {
   Product.findOne({_id: req.params.id}, function (err, product) {
+    if (err)
+      console.log(err);
+    
     product.name = req.body.name;
     product.description = req.body.description;
     product.price = req.body.price;
@@ -89,7 +92,7 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
   
     console.log(product);
     product.save(function(err) {
-      if (err) console.log(err), res.render('products/', { title: 'Index', error: err.errmsg });
+      if (err) console.log(err), res.render('products/index', { title: 'Index', error: err.errmsg });
       else res.redirect('/products');
     });
   });
