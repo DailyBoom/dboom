@@ -32,7 +32,7 @@
 											<div class="o-name">@order.product.name</div><br>
 
 											<div class="o-label">주문 수량&nbsp;:&nbsp;</div>
-											<div class="o-name">10</div><br>
+											<div class="o-name">1</div><br>
 
 											<div class="o-label">결제 금액&nbsp;:&nbsp;</div>
 											<div class="o-name">@order.product.price 원</div><br>
