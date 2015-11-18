@@ -23,6 +23,12 @@ var isAuthenticated = function (req, res, next) {
   res.redirect('/login');
 }
 
+var isAdmin = function (req, res, next) {
+  if (req.isAuthenticated() && req.user.admin === true)
+    return next();
+  res.redirect('/login');
+}
+
 router.get('/login', function(req, res, next) {
   if (req.user)
     return res.redirect('/');
@@ -60,31 +66,133 @@ router.get('/logout', function(req, res){
 
 router.get('/mypage', isAuthenticated, function(req, res) {
   Order.find({ 'user': req.user._id }).where('status').ne('Submitted').populate('product').exec(function(err, orders) {
-    res.render('users/show', { orders: orders });
-  });
+      if (typeof req.session.errors !== 'undefined') {
+        var errors = req.session.errors;
+        delete req.session.errors;
+        res.render('users/show', { orders: orders, errors: errors });
+      }
+      res.render('users/show', { orders: orders });    
+    });
 });
 
 router.get('/signup/success', function(req, res){
   res.render('mailer/signup');
 });
 
-router.get('/users/view', function(req, res){
+router.get('/users/view', isAuthenticated, function(req, res){
   res.render('users/show');
 });
 
-router.get('/users/edit', function(req, res){
+router.post('/users/edit_password', isAuthenticated, function(req, res) {
+  var user = req.user;
+  
+  req.Validator.validate('password', i18n.__('user.password'), {
+    length: {
+      min: 8,
+      max: 15
+    },
+    required: true
+  })
+  .validate('confirmpassword', i18n.__('user.confirmPassword'), {
+    length: {
+      min: 8,
+      max: 15
+    },
+    isConfirm: function(field, fieldName, value, fn) {
+      var errors;
+      if (value !== req.body.password) {
+        errors = i18n.__('passNotConfirmed', fieldName, i18n.__('user.password'));
+      }
+      fn(errors);
+    },
+    required: true
+  });
+  
+  req.Validator.getErrors(function(errors) {
+    if (errors.length > 0) {
+        req.session.errors = errors;
+        res.redirect('/mypage#mypage2');
+    }
+    else {
+      user.save(function(err) {
+        if (err)
+          console.log(err);
+        res.redirect('/mypage#mypage2');
+      });
+    }
+  });
+});
+
+router.get('/users/edit', isAuthenticated, function(req, res){
   res.render('users/edit');
 });
 
+router.post('/users/edit', isAuthenticated, function(req, res) {
+  var user = req.user;
+  req.Validator.validate('username', i18n.__('user.username'), {
+    length: {
+      min: 3,
+      max: 20
+    },
+    required: true
+  })
+  .validate('email', i18n.__('user.email'), {
+    required: true
+  })
+  .validate('full_name', i18n.__('user.fullName'), {
+    required: true
+  })
+  .validate('phone_number', i18n.__('user.phoneNumber'), {
+    required: true,
+    numeric: true
+  })
+  .validate('address', i18n.__('user.address1'), {
+    required: true
+  })
+  .validate('zipcode', i18n.__('user.zipcode'), {
+    numeric: true
+  })
+  .validate('country', i18n.__('user.country'), {
+    required: true
+  });
+  
+  req.Validator.getErrors(function(errors){
+    if (errors.length > 0) {
+      res.render('users/edit', { errors: errors });
+    }
+    else {
+      user.username = req.body.username;
+      user.password = req.body.password;
+      user.email = req.body.email;
+      user.shipping = {
+        full_name: req.body.full_name,
+        address: req.body.address1,
+        country: req.body.country,
+        zipcode: req.body.zipcode,
+        phone_number: req.body.phone_number
+      }
+      user.save(function(err) {
+        if (err)
+          console.log(err);
+        res.redirect('/mypage');
+      });
+    }
+  });
+});
+
 // for Admin Only
-router.get('/users/list', function(req, res){
-  res.render('users/list');
+router.get('/users/list', isAdmin, function(req, res){
+  User.find({}, function(err, users) {
+    if (err)
+      console.log(err);
+    res.render('users/list', { users: users });
+  });
 });
 
 router.get('/signup', function(req, res, next) {
   if (req.user)
     res.redirect('/');
-    req.Validator.getErrors(function() { res.render('signup'); });
+  req.Validator.getErrors(function() { res.render('signup'); });
 });
 
 router.post('/signup', function(req, res) {

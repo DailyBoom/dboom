@@ -164,16 +164,23 @@
 								<div class="card-content">
 									<span class="card-title black-text">비밀번호 변경</span>
 									<div class="row">
-								    <form class="col s12 m12 l12">
+								    <form class="col s12 m12 l12" method="post" action="/users/edit_password">
+											@if (model.errors) {
+												<ul class="red-text">
+												@model.errors.forEach(function(error) {
+													<li>@error</li>
+												})
+												</ul>
+											}
 											<div class="row">
 												<div class="input-field col s12 m12 l12">
-								          <input id="password_1" type="password" class="validate">
-								          <label for="password_1">새 비밀본호</label>
+													<input id="password" type="password" class="validate" required>
+													<label for="password">새 비밀본호</label>
 												</div>
 												<div class="input-field col s12 m12 l12">
-								          <input id="password_2" type="password" class="validate">
-								          <label for="password_2">새 비밀본호 확인</label>
-									      </div>
+													<input id="confirmpassword" type="password" class="validate" required>
+													<label for="confirmpassword">새 비밀본호 확인</label>
+									      		</div>
 											</div>
 											<button class="waves-effect waves-light btn amber darken-3" type="submit" name="button">변경하기 <i class="fa fa-key fa-fw right"></i></button>
 										</form>

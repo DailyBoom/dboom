@@ -2,7 +2,7 @@
 	@html.block("body", function(model) {
 		<div class="container">
 			<div class="row">
-				<form class="col s12" method="post" action="/users/edit/@model.user.id">
+				<form class="col s12" method="post" action="/users/edit/">
 					<h3>나의정보 수정</h3>
 					@if (model.errors) {
 						<ul class="red-text">
@@ -13,22 +13,12 @@
 					}
 					<div class="row">
 						<div class="input-field col s12 m6 l6">
-							<input id="username" type="text" class="validate" name="username" value="@model.user.username" disabled required>
+							<input id="username" type="text" class="validate" name="username" value="@model.user.username" readonly required>
 							<label for="username">아이디</label>
 						</div>
 						<div class="input-field col s12 m6 l6">
 							<input id="email" type="email" class="validate" name="email" value="@model.user.email" required>
 							<label for="email">이메일</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12 m6 l6">
-							<input id="password" type="password" class="validate" name="password" required>
-							<label for="password">비밀번호 변경</label>
-						</div>
-						<div class="input-field col s12 m6 l6">
-							<input id="confirmpassword" type="password" class="validate" name="confirmpassword" required>
-							<label for="confirmpassword">비밀번호 변경 확인</label>
 						</div>
 					</div>
 					<div class="row">
@@ -38,21 +28,21 @@
 							<div class="">
 								<div class="row">
 									<div class="input-field col s12 m6 l6">
-										<input id="full_name" type="text" class="validate" name="full_name" value="@model.user.shipping.full_name">
+										<input id="full_name" type="text" class="validate" name="full_name" value="@(model.user.shipping.full_name ? model.user.shipping.full_name : model.Validator.getValue('full_name'))">
 										<label for="full_name">받는분 이름</label>
 									</div>
 									<div class="input-field col s12 m6 l6">
-										<input id="phone_number" type="tel" class="validate" name="phone_number" value="@model.user.shipping.phone_number">
+										<input id="phone_number" type="tel" class="validate" name="phone_number" value="@(model.user.shipping.phone_number ? model.user.shipping.phone_number : model.Validator.getValue('phone_number'))">
 										<label for="phone_number">전화번호</label>
 									</div>
 								</div>
 								<div class="row">
 									<div class="input-field col s12 m9 l9">
-										<input id="address" type="text" class="validate" placeholder="시 . 구 . 동 . " name="address" value="@model.user.shipping.address">
+										<input id="address" type="text" class="validate" placeholder="시 . 구 . 동 . " name="address" value="@(model.user.shipping.address ? model.user.shipping.address : model.Validator.getValue('address1'))">
 										<label for="address">배송지 주소</label>
 									</div>
 									<div class="input-field col s12 m3 l3">
-										<input id="zipcode" type="number" class="validate" placeholder="123456" name="zipcode" value="@model.user.shipping.zipcode">
+										<input id="zipcode" type="number" class="validate" placeholder="123456" name="zipcode" value="@(model.user.shipping.zipcode ? model.user.shipping.zipcode : model.Validator.getValue('zipcode'))">
 										<label for="zipcode">우편번호</label>
 									</div>
 								</div>
