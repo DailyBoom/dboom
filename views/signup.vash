@@ -55,7 +55,7 @@
 										<label for="address1">배송지 주소</label>
 									</div>
 									<div class="input-field col s12 m3 l3">
-										<input id="zipcode" type="number" class="validate" placeholder="123456" name="zipcode" value="@model.Validator.getValue('zipcode')">
+										<input id="zipcode" type="number" class="validate" placeholder="100123" name="zipcode" value="@model.Validator.getValue('zipcode')" maxlength="6">
 										<label for="zipcode">우편번호</label>
 									</div>
 								</div>
