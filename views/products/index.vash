@@ -18,7 +18,7 @@
 					<div class="slider">
 						<ul class="slides">
 							<!-- model.product.images.forEach(function(img) { -->
-								<li><img class="" src="@product.images[0]" alt="model.product.name | Daily Boom" /></li>
+								<li><img class="" src="/@product.images[0]" alt="model.product.name | Daily Boom" /></li>
 							<!-- }) -->
 						</ul>
 					</div>
@@ -35,7 +35,7 @@
 						<i class="fa fa-times-circle fa-1-5x right"></i>
 					</span>
 					<div class="details-box">
-						<img class="details-img circle z-depth-1" src="@product.brand_logo" alt="{BRAND NAME LOGO}" />
+						<img class="details-img circle z-depth-1" src="/@product.brand_logo" alt="{BRAND NAME LOGO}" />
 						<br>
 						<span class="text-lg">@product.brand</span>
 						<span class="card-title grey-text text-darken-4">
@@ -54,6 +54,11 @@
 
 		<script>
 			$(document).ready(function(){
+				$('.slider').slider({
+					full_width: true,
+					indicators: true,
+					interval: 60000
+				});
 			});
 		</script>
 	</div><!-- .row -->

@@ -11,10 +11,10 @@ var isAdmin = function (req, res, next) {
   res.redirect('/login');
 }
 
-router.get('/products', isAdmin, function(req, res) {
-  Product.find({}).sort({ 'created_at' : -1 }).exec(function (err, Products) {
-      res.render('products/index', { products: Products });
-    });
+router.get('/products/list', isAdmin, function(req, res) {
+  Product.find({}, {}, { sort: { 'scheduled_at' : -1 } }, function (err, Products) {
+    res.render('products/index', { products: Products });
+  });
 });
 
 router.get('/products/new', isAdmin, function(req, res) {
