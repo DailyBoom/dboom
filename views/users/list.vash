@@ -22,7 +22,7 @@
 							<td>
 								<a class="users-link blue-grey-text" href="/users/view/@model.user.id"><i class="fa fa-user fa-fw fa-1-5x"></i></a>
 								<a class="users-link blue-grey-text" href="/users/edit/@model.user.id"><i class="fa fa-pencil fa-fw fa-1-5x"></i></a>
-								<a class="users-link blue-grey-text" href="/orders/list/@model.user.id"><i class="fa fa-truck fa-fw fa-1-5x"></i></a>
+								<a class="users-link blue-grey-text" href="/orders/list"><i class="fa fa-truck fa-fw fa-1-5x"></i></a>
 								<a class="users-link red-text" href="/users/delete/@model.user.id"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
 							</td>
 						</tr>
