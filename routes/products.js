@@ -42,6 +42,7 @@ router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCou
     scheduled_at: req.body.selldate,
     brand: req.body.brandname,
     //brand_logo: req.files['brandlogo'].path,
+    options: req.body.options,
     video: req.body.videoUrl,
     company_url: req.body.webUrl,
     company_facebook: req.body.fbUrl,

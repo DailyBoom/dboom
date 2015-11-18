@@ -48,11 +48,11 @@
 			<!-- .row -->
 			<div class="row">
 				<div class="input-field col s12 m6 l6">
-					<input id="option" type="text" class="validate" name="option" placeholder="예) 1. 상품 색성">
-					<label for="option">옵션 *</label>
+					<input id="option_name" type="text" class="validate" name="options[][name]" placeholder="예) 1. 상품 색성">
+					<label for="option_name">옵션 *</label>
 				</div>
 				<div class="input-field col s12 m6 l6">
-					<input id="o_quatity" type="number" class="validate" name="o_quantity">
+					<input id="o_quatity" type="number" class="validate" name="options[][quantity]">
 					<label for="o_quantity">옵션 수량 *</label>
 				</div>
 				<!-- add more options button -->
