@@ -43,7 +43,7 @@
 								</div><!-- .row -->
 							</div><!-- .modal-content -->
 							<div class="modal-footer blue-grey darken-1">
-								<a class="blue-grey-text text-lighten-5 left" href="/reset">비밀번호를 잊으셨나요?</a>
+								<a class="blue-grey-text text-lighten-5 left" href="/forgot">비밀번호를 잊으셨나요?</a>
 								<a class="blue-grey-text text-lighten-5 right" href="/signup">회원가입</a>
 							</div>
 						</div><!-- .login -->

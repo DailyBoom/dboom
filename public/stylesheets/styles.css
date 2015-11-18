@@ -138,31 +138,6 @@ input[type=number]::-webkit-outer-spin-button {
 @media only screen and (min-width: 992px) {
   .logo-m { display: none; }
   .logo-d { display: block; }
-  .logo-img { height: 80px; }
-  nav {
-    height: 80px;
-    background: -webkit-linear-gradient(#37474f, #455a64, #37474f);
-    background: -o-linear-gradient(#37474f, #455a64, #37474f);
-    background: -moz-linear-gradient(#37474f, #455a64, #37474f);
-    background: linear-gradient(#37474f, #455a64, #37474f);
-  }
-  .nav-item { padding: 5px; }
-  .btn-profile {
-    height: 70px;
-    width: 70px;
-    line-height: 5;
-    vertical-align: middle;
-  }
-  .d-clock {
-    font-family: '256bytes', sans-serif;
-    font-size: 3em;
-    line-height: 90px;
-    vertical-align: middle;
-  }
-}
-@media only screen and (min-width: 1200px) {
-  .logo-m { display: none; }
-  .logo-d { display: block; }
   .logo-img { height: 90px; }
   nav {
     height: 90px;
@@ -181,10 +156,19 @@ input[type=number]::-webkit-outer-spin-button {
   .d-clock {
     font-family: '256bytes', sans-serif;
     font-size: 3em;
-    line-height: 90px;
+    line-height: 100px;
     vertical-align: middle;
+    position: absolute;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    left: 0;
+    right: 0;
+    text-align: center;
   }
 }
+@media only screen and (min-width: 1200px) {}
 
 /* Footer */
 .page-footer {

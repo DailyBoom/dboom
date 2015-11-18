@@ -1,0 +1,44 @@
+
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+		@if(!model.is_phone) {
+			<div class="parallax-container">
+	      <div class="parallax">
+					<img class="ie-fix" src="/images/success/02.jpg">
+				</div>
+	    </div>
+		}
+		else {
+			<div class="parallax-container">
+	      <div class="parallax">
+					<img class="ie-fix" src="/images/success/02m.jpg">
+				</div>
+	    </div>
+		}
+		<div class="container">
+			<div class="parallax-title">
+				Welcome
+			</div>
+			<div class="row">
+				<p class="success-text blue-grey-text text-darken-3">
+					고객님, 회원가입 완료되었습니다.
+					<br>매일 데일리 붐에서 신 상품을 찾아볼 수 있습니다.
+					<br>
+					<br>즐거운 쇼핑 되세요!
+				</p>
+				<div class="row center">
+					<a class="waves-effect waves-light btn btn-large blue-grey darken-2" href="/mypage">나의정보 <i class="fa fa-user right"></i></a>
+					<a class="waves-effect waves-light btn btn-large green darken-1 white-text" href="/">쇼핑하기 <i class="fa fa-shopping-cart right"></i></a>
+				</div>
+				<div class="row center">
+					<div class="section-sm"></div>
+				</div>
+			</div><!-- .row -->
+		</div><!-- .container -->
+		<script>
+		$(document).ready(function(){
+			$('.parallax').parallax();
+		});
+		</script>
+	})
+})

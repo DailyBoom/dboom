@@ -1,23 +1,25 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
 		<div class="row">
-			<div class="container">
-				<form class="col s12 m6 offset-m1 l6 offset-l1" method="post" action="/forgot">
+			<div class="container min-h-lg">
+				<form class="col s12 m6 offset-m3 l6 offset-l3" method="post" action="/forgot">
 					@if (model.message) {
 						<div>@model.message</div>
 					}
 					<div class="row">
-						<h4>Forgot password</h4>
+						<br>
+						<h4>비밀번호를 잊으셨나요?</h4>
+						<br />
+						<br />
 						<br />
 						<div class="input-field">
 							<input id="email" type="email" class="validate" name="email">
 							<label for="email">Email</label>
 						</div>
-						<div class="row">
-							<button class="col s12 btn-large waves-effect waves-light cyan darken-3 left" type="submit" name="action">
-								&nbsp;&nbsp;&nbsp;Reset&nbsp;&nbsp;&nbsp;
-							</button>
-						</div>
+						<br>
+						<button class="waves-effect waves-light btn btn-large blue-grey darken-2 right" type="submit" name="action">
+							Reset <i class="fa fa-refresh right"></i>
+						</button>
 					</div>
 				</form>
 			</div>

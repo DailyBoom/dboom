@@ -116,12 +116,30 @@
 					$('#add-id').toggleClass('hide');
 					$('#add-id input').prop('required', this.checked);
 				});
-				$('#agree-all').click(function(event) {
-					var checked = this.checked;
-					$('.agree-check').each(function() {
-						this.checked = checked;
-					});
-				});
+				$("#agree-all").change(function(){
+			    if(this.checked){
+			      $(".agree-check").each(function(){
+			        this.checked=true;
+			      })
+			    }else{
+			      $(".agree-check").each(function(){
+			        this.checked=false;
+			      })
+			    }
+			  });
+			  $(".agree-check").click(function () {
+			    if ($(this).is(":checked")){
+			      var isAllChecked = 0;
+			      $(".agree-check").each(function(){
+			        if(!this.checked)
+			           isAllChecked = 1;
+			      })
+			      if(isAllChecked == 0){ $("#select_all").prop("checked", true); }
+			    }
+			    else {
+			      $("#agree-all").prop("checked", false);
+			    }
+			  });
 			});
 		</script>
 	})
