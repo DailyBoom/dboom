@@ -107,7 +107,7 @@
 
 			<!-- Mobile -->
 			<div class="hide-on-med-and-up mobile-buy blue-grey darken-3">
-				<div class="item-price white-text center" id="product_price">@model.product.price</div>
+				<div class="item-price white-text center" id="product_price_mobile">@model.product.price</div>
 				@if (model.user) {
 					<div class="hide-on-med-and-up">
 						<a class="modal-trigger" href="/checkout?product_id=@model.product.id">
@@ -224,7 +224,7 @@
 		$('.collapsible').collapsible({
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
-		$("#product_price").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
+		$("#product_price, #product_price_mobile").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
 		var owl = $("#db-past");
 		owl.owlCarousel({
 			items : 3,
