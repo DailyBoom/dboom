@@ -192,28 +192,8 @@
 		</div> <!-- .container -->
 		<script>
 			$(document).ready(function(){
-				$('.slider').slider({
-					full_width: true,
-					indicators: true,
-					interval: 60000
-				});
 				$("#product_price").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
-					var owl = $("#db-past");
-					owl.owlCarousel({
-						items : 3,
-						itemsDesktop : [1000,3],
-						itemsDesktopSmall : [900,3],
-						itemsTablet: [600,1],
-						itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
-						navigation: false,
-						pagination: false,
-						responsive: true,
-						rewindNav: false
-					});
-					// Custom Navigation Events
-					$(".next").click(function(){owl.trigger('owl.next');});
-					$(".prev").click(function(){owl.trigger('owl.prev');});
-				});
+			});
 		</script>
 	})
 })
