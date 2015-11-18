@@ -65,6 +65,10 @@ router.get('/mypage', isAuthenticated, function(req, res) {
 });
 
 router.get('/signup/success', function(req, res){
+  res.render('users/success');
+});
+
+router.get('/signup/mail', function(req, res){
   res.render('mailer/signup');
 });
 
