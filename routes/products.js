@@ -21,6 +21,12 @@ router.get('/products/new', isAdmin, function(req, res) {
   res.render("products/new");
 });
 
+router.get('/products/delete/:id', isAdmin, function(req, res) {
+  Product.findOneAndRemove({ _id: req.params.id }, function(err, user) {
+    res.redirect('/products/list');
+  });
+});
+
 router.get('/products/edit/:id', isAdmin, function(req, res) {
   Product.findOne({_id: req.params.id}, function(err, product) {
     res.render("products/edit", { product: product, moment: moment });
@@ -93,7 +99,7 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
     console.log(product);
     product.save(function(err) {
       if (err) console.log(err), res.render('products/index', { title: 'Index', error: err.errmsg });
-      else res.redirect('/products');
+      else res.redirect('/products/list');
     });
   });
 });

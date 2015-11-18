@@ -28,7 +28,7 @@
 						<a href="#!"><i class="fa fa-info-circle fa-1-5x right" style="margin-top: -2px;"></i></a>
 						@product.name
 					</span>
-					<a href="/products/edit/@product.id">Edit</a>
+					<a href="/products/edit/@product.id">Edit</a><a href="/products/delete/@product.id">Delete</a>
 				</div><!-- /.card-content -->
 				<div class="card-reveal">
 					<span class="card-title grey-text text-darken-4">
