@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var router = express.Router();
 var mongoose = require("mongoose");
+var moment = require("moment");
+var fs = require("fs");
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 var User = require('../models/user');
@@ -31,6 +33,12 @@ var isAuthenticated = function (req, res, next) {
 
 var isAdmin = function (req, res, next) {
   if (req.isAuthenticated() && req.user.admin === true)
+    return next();
+  res.redirect('/login');
+}
+
+var isMerchantOrAdmin = function (req, res, next) {
+  if (req.isAuthenticated() && (req.user.admin === true || req.user.role === "merchant"))
     return next();
   res.redirect('/login');
 }
@@ -81,10 +89,12 @@ router.get('/orders/shipped', isAdmin, function(req, res) {
 });
 
 router.get('/orders/list', isAdmin, function(req, res) {
-  res.render('orders/list');
+  Order.find({}, {}, { sort: { 'created_at': -1 } }).populate('product').exec(function(err, orders) {
+    res.render('orders/list', { orders: orders, moment: moment });
+  });
 });
 
-router.get('/orders/:id', isAdmin, function(req, res) {
+router.get('/orders/view/:id', isAdmin, function(req, res) {
   Order.findOne({ _id: req.params.id }).populate('product').exec(function(err, order) {
     if (err)
       console.log(err);
@@ -101,8 +111,8 @@ router.get('/checkout', function(req, res) {
     delete req.session.order;
     delete req.session.product;
   }
-  console.log(typeof req.session.order);
-  if (typeof req.session.order === 'undefined') {
+  console.log(req.session.order);
+  if (typeof req.session.order === 'undefined' || !req.session.order) {
     console.log("test");
     var order = new Order({
       product: req.query.product_id ? req.query.product_id : req.session.product,
@@ -130,6 +140,8 @@ router.get('/checkout', function(req, res) {
                   if (!error && body.code == 0) {
                       res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl });
                   }
+                  else
+                    res.redirect('/');
               }
           );
         })
@@ -140,6 +152,8 @@ router.get('/checkout', function(req, res) {
   }
   else {
     Order.findOne({ '_id': req.session.order }, function(err, order) {
+      if (err)
+        console.log(err);
       if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
         order.populate('product', function(err, orderPop) {
           if (!req.session.product)
@@ -153,6 +167,8 @@ router.get('/checkout', function(req, res) {
                   if (!error && body.code == 0) {
                       res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl });
                   }
+                  else
+                    res.redirect('/');
               }
           );
         })
@@ -179,7 +195,7 @@ router.get('/payco_callback', function(req, res) {
               function (error, response, body) {
                   console.log(body)
                   if (!error && body.code == 0) {
-                    Order.findOne({ _id: req.query.order_id }, function(err, order) {
+                    Order.findOne({ _id: req.query.order_id }).populate('user').exec(function(err, order) {
                       order.payco.orderNo = body.result.orderNo;
                       order.payco.sellerOrderReferenceKey = body.result.sellerOrderReferenceKey;
                       order.payco.orderCertifyKey = body.result.orderCertifyKey;
@@ -199,7 +215,17 @@ router.get('/payco_callback', function(req, res) {
                                 username: 'DailyBoom-bot'
                               });
                             }
-                            res.render('payco_callback', {code: req.query.code});
+                            transporter.sendMail({
+                              from: 'DailyBoom <contact@dailyboom.co>',
+                              to: order.user.email,
+                              subject: '데일리 붐 구매 안내.',
+                              html: fs.readFileSync('./views/mailer/buy_success.vash', "utf8")
+                            }, function (err, info) {
+                                if (err) { console.log(err); res.render('payco_callback', { error: err.errmsg }); }
+                                console.log('Message sent: ' + info.response);
+                                transporter.close();
+                                res.render('payco_callback', {code: req.query.code});
+                            });
                           });
                         });
                       });
@@ -221,6 +247,29 @@ router.get('/success', function(req, res) {
     res.redirect('/');
   delete req.session.order;
   res.render('success', { msg: " ", code: req.query.code });
+});
+
+router.get('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
+  Order.findOne({_id: req.params.id}).populate('user').exec(function(err, order) {
+    if (err)
+      console.log(err);
+    if (!order)
+      res.redirect('/mypage');
+    order.status = "Sent";
+    order.save(function(err) {
+      transporter.sendMail({
+        from: 'DailyBoom <contact@dailyboom.co>',
+        to: order.user.email,
+        subject: '데일리 붐 배송 안내.',
+        html: fs.readFileSync('./views/mailer/shipped.vash', "utf8")
+      }, function (err, info) {
+          if (err) { console.log(err); res.render('signup', { error: err.errmsg }); }
+          console.log('Message sent: ' + info.response);
+          transporter.close();
+          res.redirect('/mypage');
+      });
+    });
+  });
 });
 
 router.get('/orders/cancel/:id', function(req, res) {

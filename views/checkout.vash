@@ -7,12 +7,11 @@
 				<div class="col s12 m6 l8">
 					<div class="row blue-grey-text text-darken-3">
 						<h5>배송정보</h5>
-						<span class="check-name">@model.user.shipping.full_name</span>
-						<br><span class="check-number">@model.user.shipping.phone</span>
-						<br><span class="check-address">@model.user.shipping.address</span>
-						<br><span class="check-address">(우)@model.user.shipping.zipcode</span>
+						<span class="check-name">@(model.user ? model.user.shipping.full_name : model.order.shipping.full_name)</span>
+						<br><span class="check-number">@(model.user? model.user.shipping.phone : model.order.shipping.phone)</span>
+						<br><span class="check-address">@(model.user ? model.user.shipping.address : model.order.shipping.address)</span>
+						<br><span class="check-address">(우)@(model.user ? model.user.shipping.zipcode : model.order.shipping.zipcode)</span>
 						<br>
-						<!-- <br><span class="check-address">@model.user.shipping.country</span> -->
 						<br><span class="check-address">대한민국</span>
 						<div class="btn-shipping-edit">
 							<a class="waves-effect waves-light btn blue-grey darken-2" href="/shipping">배송정보 수정</a>

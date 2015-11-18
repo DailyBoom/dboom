@@ -4,11 +4,16 @@
 			<div class="row">
 				<form class="col s12" method="post" action="/shipping">
 					<h3>배송지 정보</h3>
-					@if (model.errors && model.errors.length > 0) {
+					@if (model.errors) {
 						<ul class="red-text">
-						@model.errors.forEach(function(error) {
-							<li>@error</li>
-						})
+						@if (model.errors.lenght > 0)
+							@model.errors.forEach(function(error) {
+								<li>@error</li>
+							})
+						}
+						else {
+							<li>@model.errors</li>
+						}
 						</ul>
 					}
 					<div class="row">
@@ -39,7 +44,7 @@
 							<label>배송 국가</label>
 						</div>
 					</div>
-					@if (!model.user || !model.user.email) {
+					@if (!model.user) {
 						<div class="row">
 							<div class="input-field col s12">
 								<input id="email" name="email" type="email" class="validate" placeholder="someone@dailyboom.co" value="@model.Validator.getValue('email')">

@@ -6,9 +6,14 @@
 					<h3>회원가입</h3>
 					@if (model.errors) {
 						<ul class="red-text">
-						@model.errors.forEach(function(error) {
-							<li>@error</li>
-						})
+						@if (model.errors.lenght > 0)
+							@model.errors.forEach(function(error) {
+								<li>@error</li>
+							})
+						}
+						else {
+							<li>@model.errors</li>
+						}
 						</ul>
 					}
 					<div class="row">

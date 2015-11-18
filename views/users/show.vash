@@ -51,19 +51,14 @@
 												<br>
 											</div>
 											<div class="o-label">배송 상태&nbsp;:&nbsp;</div>
-											<div class="o-name green-text">[준비 중 . 배송 완료]</div>
-											<form>
-												<div class="row">
-													<div class="input-field col s12">
-												    <select>
-												      <option value="1" selected>미 결제</option>
-												      <option value="2">결제완료</option>
-												      <option value="3">배송</option>
-												    </select>
-												    <label>주문 상태</label>
-												  </div>
-												</div>
-											</form>
+											@if(order.status == "Paid"){
+												<div class="o-name green-text">[준비 중]</div>
+											} else if(order.status == "Sent"){
+												<div class="o-name green-text">[배송 완료]</div>											
+											}
+											@if(order.status == "Paid" && (model.user.admin || model.user.role == "merchant")){
+												<a href="/orders/send/@order.id" class="btn pull-right" >배송</a>
+											}
 											@if(order.payco.orderNo) {
 											<div class="payco"><button class="btn blue-grey darken-2 receipt" data-orderno="@order.payco.orderNo" >PAYCO 영수증</button>@if(!order.payco.cancelTradeSeq){<a class="btn red darken-2 right cancel" href="/orders/cancel/@order.id">결제 취소</a>}</div>
 											}
@@ -174,11 +169,11 @@
 											}
 											<div class="row">
 												<div class="input-field col s12 m12 l12">
-													<input id="password" type="password" class="validate" required>
+													<input id="password" name="password" type="password" class="validate" required>
 													<label for="password">새 비밀본호</label>
 												</div>
 												<div class="input-field col s12 m12 l12">
-													<input id="confirmpassword" type="password" class="validate" required>
+													<input id="confirmpassword" name="confirmpassword" type="password" class="validate" required>
 													<label for="confirmpassword">새 비밀본호 확인</label>
 									      		</div>
 											</div>

@@ -23,17 +23,19 @@
 			 	</thead>
 
 			 	<tbody>
+					@model.orders.forEach(function(order) {
 			 		<tr>
-			 			<td>model.order.id</td>
-			 			<td>model.order.date</td>
-			 			<td>model.order.product.name</td>
-			 			<td>model.order.quantity</td>
-			 			<td>model.order.total</td>
+			 			<td>@order.id</td>
+			 			<td>@model.moment(order.created_at).format('lll')</td>
+			 			<td>@order.product.name</td>
+			 			<td>@order.quantity</td>
+			 			<td>@order.payco.orderTotalAmt</td>
 			 			<td>
-			 				<a class="users-link blue-grey-text text-darken-2" href="/orders/view/model.order.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
-			 				<a class="users-link red-text" href="/orders/cancel/model.order.id"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
+			 				<a class="users-link blue-grey-text text-darken-2" href="/orders/view/@order.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
+			 				<a class="users-link red-text" href="/orders/cancel/@order.id"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
 			 			</td>
 			 		</tr>
+					})
 			 	</tbody>
 			 </table>
 		 </div><!-- .row -->

@@ -9,6 +9,7 @@ var config = require('config');
 var i18n = require("i18n");
 var Token = require("../models/token");
 var crypto = require('crypto');
+var fs = require('fs');
 var transporter = nodemailer.createTransport(smtpTransport({
     host: config.get('Nodemailer.host'),
     auth: {
@@ -114,6 +115,7 @@ router.post('/users/edit_password', isAuthenticated, function(req, res) {
         res.redirect('/mypage#mypage2');
     }
     else {
+      user.password = req.body.password;
       user.save(function(err) {
         if (err)
           console.log(err);
@@ -282,10 +284,10 @@ router.post('/signup', function(req, res) {
         }
         else {
           transporter.sendMail({
-            from: 'DailyBoom <contact@dailyboom.co>',
+            from: 'Daily Boom <contact@dailyboom.co>',
             to: user.email,
             subject: user.username+'님 회원가입을 축하드립니다.',
-            text: 'Thank you for registering on DailyBoom!'
+            html: fs.readFileSync('./views/mailer/signup.vash', "utf8")
           }, function (err, info) {
               if (err) { console.log(err); res.render('signup', { error: err.errmsg }); }
               console.log('Message sent: ' + info.response);
@@ -337,7 +339,6 @@ router.post('/forgot', function(req, res, next) {
 
   User.findOne({ email: req.body.email }, function(err, user) {
     if (!user) {
-      console.log("test");
       res.render('users/forgot', { message: "No account with that email address exists." });
       return res.end();
     }
@@ -349,11 +350,10 @@ router.post('/forgot', function(req, res, next) {
       var mailOptions = {
         to: user.email,
         from: 'contact@dailyboom.co',
-        subject: 'Password Reset',
-        text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
-          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+        subject: '데일리 붐 비밀번호 재신청',
+        text: 'Y데일리 붐 회원님의 비밀번호 변경 요청 메일입니다.\n\n' +
+          '아래의 링크를 클릭하여 회원 님의 비밀번호를 변경하십시오.:\n\n' +
+          'http://' + req.headers.host + '/reset/' + token + '\n\n'
       };
       transporter.sendMail(mailOptions, function(err) {
         if (err) return next(err);

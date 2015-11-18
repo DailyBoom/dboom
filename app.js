@@ -16,7 +16,7 @@ i18n.configure({
 var app = express();
 
 var session = require('express-session');
-var RedisStore = require('connect-redis')(session);
+var MongoStore = require('connect-mongo')(session);
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var KakaoStrategy = require('passport-kakao').Strategy;
@@ -52,7 +52,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(device.capture());
 device.enableDeviceHelpers(app)
-app.use(session({ secret: 'keyboard cat', name: 'session_id', saveUninitialized: true, resave: true })); // store: new RedisStore({ host: '127.0.0.1',  port: 6379 }),
+app.use(session({ store: new MongoStore({ mongooseConnection: mongoose.connection }), secret: 'keyboard cat', name: 'session_id', saveUninitialized: true, resave: true })); // store: new RedisStore({ host: '127.0.0.1',  port: 6379 }),
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(validate(app, validateOptions))
 //app.use(i18n.middleware());
