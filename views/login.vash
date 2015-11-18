@@ -35,8 +35,8 @@
 										</div>
 										<div class="col s12 center">
 											<div class="social-login-wrapper">
-												<a class="btn-social-login" href="#!"><img class="circle z-depth-1" src="/images/icon_fb_social.png" /></a>
-												<a class="btn-social-login" href="#!"><img class="circle z-depth-1" src="/images/icon_kakao_social.png" /></a>
+												<img class="circle z-depth-1" src="/images/icon_fb_social.png" id="facebook"/>
+												<img class="circle z-depth-1" src="/images/icon_kakao_social.png" id="kakao"/>
 											</div>
 										</div>
 									</form>
