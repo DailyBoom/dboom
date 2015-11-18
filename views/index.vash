@@ -69,7 +69,7 @@
 					else {
 						<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
 					}
-				<div class="hide-on-small-only item-price right"><i class="fa fa-krw"></i>35,000</div>
+				<div class="hide-on-small-only item-price right"><i class="fa fa-krw"></i>@model.product.price</div>
 			</div>
 			<div class="buy-box-info blue-grey lighten-5 blue-grey-text text-darken-2">
 				<div class="item-info">@model.product.description</div>
