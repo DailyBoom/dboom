@@ -147,17 +147,17 @@
   						<a class="grey-text text-lighten-4" href="https://www.facebook.com/dailyboomkorea" target="_blank">
                 <img class="footer-social" src="/images/facebook.png" />
               </a>
-  						<a class="grey-text text-lighten-4" href="#">
-                <img class="footer-social" src="/images/kakaostory_logo.png" />
+  						<a class="grey-text text-lighten-4" href="http://instagram.com/dailyboomkorea" target="_blank">
+                <img class="footer-social" src="/images/insta.png" />
               </a>
   					</span>
           </div><!-- .col -->
           <div class="col s12 m9 l9 footer-box white-text box-1">
             &#149;<a class="footer-link white-text" href="/about">데일리 붐소개</a>&#149;
-            <a class="footer-link white-text" href="/advertise">제휴·광고</a>&#149;
+            <a class="footer-link white-text" href="/advertise">광고·제휴</a>&#149;
             <a class="footer-link white-text" href="/privacy">개인정보취급방침</a>&#149;
             <a class="footer-link white-text" href="/terms">이용약관</a>&#149;
-            <a class="footer-link white-text" href="/merchant">판매자</a>&#149;
+            <a class="footer-link white-text" href="/merchant">판매자 문의</a>&#149;
           </div><!-- .col -->
           <div class="col s12 m4 l4 box-3">
             <p class="text-footer">

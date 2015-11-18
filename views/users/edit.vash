@@ -23,11 +23,11 @@
 					</div>
 					<div class="row">
 						<div class="input-field col s12 m6 l6">
-							<input id="password" type="password" class="validate" name="password" required>
+							<input id="password" type="password" class="validate" name="password">
 							<label for="password">비밀번호 변경</label>
 						</div>
 						<div class="input-field col s12 m6 l6">
-							<input id="confirmpassword" type="password" class="validate" name="confirmpassword" required>
+							<input id="confirmpassword" type="password" class="validate" name="confirmpassword">
 							<label for="confirmpassword">비밀번호 변경 확인</label>
 						</div>
 					</div>

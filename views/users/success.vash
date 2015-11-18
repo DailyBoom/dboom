@@ -1,0 +1,49 @@
+
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+		@if(!model.is_phone) {
+			<div class="parallax-container">
+	      <div class="parallax">
+					<img class="ie-fix" src="/images/success/02.jpg">
+				</div>
+	    </div>
+		}
+		else {
+			<div class="parallax-container">
+	      <div class="parallax">
+					<img class="ie-fix" src="/images/success/02m.jpg">
+				</div>
+	    </div>
+		}
+		<div class="container">
+			<div class="parallax-title">
+				CHEERS
+			</div>
+			<div class="row">
+				<p class="success-text blue-grey-text text-darken-3">
+					고객님, 회원가입 완료되었습니다.
+					<br>데일리 붐에서 상품 구매해주셔서 감사합니다.
+					<br>
+					<br>좋은 하루 되세요!
+				</p>
+				<div class="row @if(model.is_phone) { center }">
+					<a class="waves-effect waves-light btn btn-large blue-grey darken-2" href="/mypage">주문보기 <i class="fa fa-list right"></i></a>
+					<a class="waves-effect waves-light btn btn-large blue-grey lighten-5 blue-grey-text text-darken-3" href="/">홈으로 <i class="fa fa-home right"></i></a>
+				</div>
+				<div class="row @if(model.is_phone) { center }">
+					@if(model.is_phone) { <br> }
+					<img class="s-social" src="/images/icon_fb.png" id="sharefb"/>
+					<img class="s-social" src="/images/icon_kakao.png" id="sharekakao" />
+					<a href="mailto:?subject=데일리 붐: 오늘 뭐 사지?&body=http://dailyboom.co"><img class="s-social" src="/images/icon_email.png" /></a>
+					<a href="#shareurl"><img class="s-social" src="/images/link_icon.png" /></a>
+					<div class="section-sm"></div>
+				</div>
+			</div><!-- .row -->
+		</div><!-- .container -->
+		<script>
+		$(document).ready(function(){
+			$('.parallax').parallax();
+		});
+		</script>
+	})
+})
