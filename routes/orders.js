@@ -4,6 +4,7 @@ var router = express.Router();
 var mongoose = require("mongoose");
 var moment = require("moment");
 var fs = require("fs");
+var vash = require("vash");
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 var User = require('../models/user');
@@ -215,16 +216,24 @@ router.get('/payco_callback', function(req, res) {
                                 username: 'DailyBoom-bot'
                               });
                             }
-                            transporter.sendMail({
-                              from: 'DailyBoom <contact@dailyboom.co>',
-                              to: order.user.email,
-                              subject: '데일리 붐 구매 안내.',
-                              html: fs.readFileSync('./views/mailer/buy_success.vash', "utf8")
-                            }, function (err, info) {
-                                if (err) { console.log(err); res.render('payco_callback', { error: err.errmsg }); }
-                                console.log('Message sent: ' + info.response);
-                                transporter.close();
-                                res.render('payco_callback', {code: req.query.code});
+                            fs.readFile('./views/mailer/buy_success.vash', "utf8", function(err, file) {
+                              if(err){
+                                //handle errors
+                                console.log('ERROR!');
+                                return res.send('ERROR!');
+                              }
+                              var html = vash.compile(file);
+                              transporter.sendMail({
+                                from: 'Daily Boom <contact@dailyboom.co>',
+                                to: order.user.email,
+                                subject: '데일리 붐 구매 안내.',
+                                html: html({ user : order.user })
+                              }, function (err, info) {
+                                  if (err) { console.log(err); res.render('payco_callback', { error: err.errmsg }); }
+                                  console.log('Message sent: ' + info.response);
+                                  transporter.close();
+                                  res.render('payco_callback', {code: req.query.code});
+                              });
                             });
                           });
                         });

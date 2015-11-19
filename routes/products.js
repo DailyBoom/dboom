@@ -71,6 +71,7 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
     if (err)
       console.log(err);
     
+    console.log(req.body);
     product.name = req.body.name;
     product.description = req.body.description;
     product.price = req.body.price;

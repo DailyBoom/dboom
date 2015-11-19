@@ -53,7 +53,10 @@
 					@model.product.images.forEach(function(img) {
 						<div class="slide" style="background-image: url(@img);"></div>
 					})
-	    </div><!-- #main-slider -->
+					@if(model.product.video) {
+						<iframe class="iframe-video" width="560" height="315" src="@model.product.video" frameborder="0" allowfullscreen></iframe>
+					}
+	    	</div><!-- #main-slider -->
 			<div class="pro-v-wrapper">
 				<div class="pro-v indigo lighten-5 center valign-wrapper"><div class="pro-v-text valign">@model.progress%<br>팔림</div></div>
 				<div class="pro-v-d amber darken-1" style="height: @model.progress%;"></div>
@@ -78,10 +81,10 @@
 			<div class="buy-box-footer blue-grey lighten-3">
 				<div class="center">
 					<!-- <span class="share-text white-text">share</span> -->
-					<a href="#sharefb"><img class="social" src="/images/icon_fb.png" /></a>
-					<a href="#sharekakao"><img class="social" src="/images/icon_kakao.png" /></a>
-					<a href="#sharemail"><img class="social" src="/images/icon_email.png" /></a>
-					<a href="#shareurl"><img class="social" src="/images/link_icon.png" /></a>
+					<img id="sharefb" class="social" src="/images/icon_fb.png" />
+					<img id="sharekakao" class="social" src="/images/icon_kakao.png" />
+					<a href="mailto:?subject=데일리 붐: 오늘 뭐 사지?&body=http://dailyboom.co"><img id="sharemail"  class="social" src="/images/icon_email.png" /></a>
+					<img id="shareurl" class="social" src="/images/link_icon.png" />
 				</div>
 			</div><!-- .buy-box-footer -->
 			<!-- Merchant xInfo -->
