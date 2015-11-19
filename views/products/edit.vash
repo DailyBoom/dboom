@@ -55,6 +55,7 @@
 						<a id="remove_option" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>옵션 삭제</a>
 					</div>
 				</div>
+				@if(model.product.options) {
 				@{ var i = 0; }
 				@model.product.options.forEach(function(option) {
 					<div class="row options_row">
@@ -69,6 +70,7 @@
 					</div>
 					@{ i++; }
 				})
+				}
 			</div>
 			<!-- #options_wrapper -->
 			<br>
