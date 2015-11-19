@@ -13,7 +13,7 @@
 								@{ var i = 0; }
 								@model.order.product.options.forEach(function(option) {
 									@if(parseInt(option.quantity) > 0) {
-										<option value="@option.name">@option.name</option>
+										<option value="@option.name" @(model.order.option == option.name ? 'selected' : '')>@option.name</option>
 										@{ i++; }
 									}
 								})
@@ -22,7 +22,7 @@
 						<div class="input-field col s12 m4 l3">
 							<select id="order_quantity" name="order_quantity">
 								@for(i = 1; i <= parseInt(model.leftQuantity) && i <= 10 ; i++) {
-									<option value="@i">@i</option>
+									<option value="@i" @(model.order.quantity == i ? 'selected' : '') >@i</option>
 								}
 							</select>
 						</div>

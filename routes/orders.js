@@ -56,9 +56,9 @@ var reservePayco = function(order) {
   var payco = {
     "sellerKey": config.get("Payco.sellerKey"),
     "sellerOrderReferenceKey": order._id,
-    "totalOrderAmt": order.product.price,
+    "totalOrderAmt": order.product.price * order.quantity,
     "totalDeliveryFeeAmt": 0,
-    "totalPaymentAmt": order.product.price,
+    "totalPaymentAmt": order.product.price * order.quantity,
     "returnUrl": config.get("Payco.returnUrl"),
     "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
     "orderMethod": "EASYPAY",
@@ -68,7 +68,7 @@ var reservePayco = function(order) {
           "cpId": config.get("Payco.cpId"),
           "productId": config.get("Payco.productId"),
           "productAmt": order.product.price * order.quantity,
-          "productPaymentAmt": order.product.price,
+          "productPaymentAmt": order.product.price * order.quantity,
           "sortOrdering": 1,
           "productName": order.product.name+"("+order.option+")",
           "orderQuantity": order.quantity,
@@ -203,11 +203,13 @@ router.post('/checkout', function(req, res) {
         if (err)
           console.log(err);
         order.option = req.body.order_option;
-        order.quantity = req.body.order_quantity;
+        order.quantity = parseInt(req.body.order_quantity);
         order.save(function(err, order) {
           if (!req.session.product)
             req.session.product = order.product.id;
+          console.log(order);
           var payco = reservePayco(order);
+          console.log(payco);
           request.post(
               config.get("Payco.host")+'/outseller/order/reserve',
               { json: payco },
