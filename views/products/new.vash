@@ -21,10 +21,10 @@
 				</div>
 				<div class="file-field input-field col s12 m4 l4">
 					<span class="hide-on-med-and-up"><br></span>
-					<span for="brandlogo" class="input-file grey-text right">브랜드 로고</span>
+					<span for="brandlogo" class="input-file-mod grey-text">브랜드 로고 *</span>
 					<div class="btn blue-grey darken-2">
-						선택 <i class="fa fa-image right"></i>
-						<input type="file" id="brandlogo" name="brandlogo" placeholder="Brand Logo Image">
+						<span>선택 <i class="fa fa-image right"></i></span>
+						<input type="file" id="brandlogo" name="brandlogo">
 					</div>
 					<div class="file-path-wrapper">
 						<input class="file-path validate" type="text">
@@ -46,26 +46,38 @@
 				</div>
 			</div>
 			<!-- .row -->
-			<div class="row">
-				<div class="input-field col s12 m6 l6">
-					<input id="option_name" type="text" class="validate" name="options[][name]" placeholder="예) 1. 상품 색성">
-					<label for="option_name">옵션 *</label>
+			<div id="options_wrapper">
+				<br>
+				<div class="row">
+					<!-- options button -->
+					<div class="col s12 m12 l12">
+						<a id="add_option" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>옵션 추가</a>
+						<a id="remove_option" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>옵션 삭제</a>
+					</div>
 				</div>
-				<div class="input-field col s12 m6 l6">
-					<input id="o_quatity" type="number" class="validate" name="options[][quantity]">
-					<label for="o_quantity">옵션 수량 *</label>
-				</div>
-				<!-- add more options button -->
-				<div class="col s12 m12 l12">
-					<a id="add_option" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus left"></i>옵션 추가</a>
+				<div class="row options_row">
+					<div class="input-field col s12 m6 l6">
+						<input id="option_name" type="text" class="validate" name="options[][name]">
+						<label for="option_name">옵션 * 예) 상품 색성</label>
+					</div>
+					<div class="input-field col s12 m6 l6">
+						<input id="o_quatity" type="number" class="validate" name="options[][quantity]">
+						<label for="o_quantity">옵션 수량 *</label>
+					</div>
 				</div>
 			</div>
+			<br>
 			<!-- .row -->
 			<div class="row">
-				<div class="input-field col s12 m12 l12">
+				<div class="input-field col s12 m6 l6">
+					<i class="fa fa-krw prefix"></i>
+					<input id="oldprice" type="number" class="validate" name="oldprice">
+					<label for="oldprice">정상 가격</label>
+				</div>
+				<div class="input-field col s12 m6 l6">
 					<i class="fa fa-krw prefix"></i>
 					<input id="price" type="number" class="validate" name="price">
-					<label for="price">상품 가격 (배송 포함)*</label>
+					<label for="price">데일리 붐 가격 (배송 포함)*</label>
 				</div>
 			</div>
 			<!-- .row -->
@@ -73,7 +85,7 @@
 				<br>
 				<span class="hide-on-small-only"><br></span>
 				<span for="photosmain" class="input-file-mod grey-text">상품 사진 기본 (Max: 4) *</span>
-				<div class="btn">
+				<div class="btn blue-grey darken-2">
 					<span><i class="fa fa-image left"></i>선택</span>
 					<input id="photosmain" type="file" class="validate" name="photosmain" multiple>
 				</div>
@@ -120,15 +132,32 @@
 <!-- .container -->
 <script>
 	$(document).ready(function() {
-			$('.datepicker').pickadate({
-			format: 'mm/dd/yyyy',
-		    selectMonths: true, // Creates a dropdown to control month
-		    selectYears: 15, // Creates a dropdown of 15 years to control year
-				disable: [
-					[2015,9,17],
-					[2015,9,20]
-				]
-		  });
+		$('.datepicker').pickadate({
+		format: 'mm/dd/yyyy',
+	    selectMonths: true, // Creates a dropdown to control month
+	    selectYears: 15, // Creates a dropdown of 15 years to control year
+			disable: [
+				[2015,9,17],
+				[2015,9,20]
+			]
+	  });
+		var max_fields      = 4; //maximum input boxes allowed
+		var wrapper         = $("#options_wrapper"); //Fields wrapper
+		var add_button      = $("#add_option"); //Add button ID
+		var x = 1; //initlal text box count
+		$(add_button).click(function(e){ //on add input button click
+			e.preventDefault();
+			if(x < max_fields) { //max input box allowed
+				x++; //text box increment
+				$(wrapper).append('<div class="row options_row"><div class="input-field col s12 m6 l6"><input id="option_name'+x+'" type="text" class="validate" name="options['+x+'][name]"><label for="option_name'+x+'">옵션 * 예) 상품 색성</label></div><div class="input-field col s12 m6 l6"><input id="o_quatity'+x+'" type="number" class="validate" name="options['+x+'][quantity]"><label for="o_quantity'+x+'">옵션 수량 *</label></div></div>'); //add input box
+			}
 		});
+		$(wrapper).on("click","#remove_option", function(e){ //user click on remove text
+			e.preventDefault();
+			if (x > 1) {
+				$('.options_row').last().remove(); x--;
+			}
+		})
+	});
 </script>
 }) })
