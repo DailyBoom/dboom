@@ -56,9 +56,9 @@ var reservePayco = function(order) {
   var payco = {
     "sellerKey": config.get("Payco.sellerKey"),
     "sellerOrderReferenceKey": order._id,
-    "totalOrderAmt": (order.product.price + order.product.delivery_price) * order.quantity,
+    "totalOrderAmt": order.product.price * order.quantity + order.product.delivery_price,
     "totalDeliveryFeeAmt": 0,
-    "totalPaymentAmt": (order.product.price + order.product.delivery_price) * order.quantity,
+    "totalPaymentAmt": order.product.price * order.quantity + order.product.delivery_price,
     "returnUrl": config.get("Payco.returnUrl"),
     "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
     "orderMethod": "EASYPAY",
@@ -67,8 +67,8 @@ var reservePayco = function(order) {
         {
           "cpId": config.get("Payco.cpId"),
           "productId": config.get("Payco.productId"),
-          "productAmt": (order.product.price + order.product.delivery_price) * order.quantity,
-          "productPaymentAmt": (order.product.price + order.product.delivery_price) * order.quantity,
+          "productAmt": order.product.price * order.quantity + order.product.delivery_price,
+          "productPaymentAmt": order.product.price * order.quantity + order.product.delivery_price,
           "sortOrdering": 1,
           "productName": order.product.name+"("+order.option+")",
           "orderQuantity": order.quantity,
