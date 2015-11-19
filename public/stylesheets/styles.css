@@ -321,6 +321,9 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 @media only screen and (min-width: 601px) {
+  img.responsive-img {
+    width: 100%;
+  }
   .modal {
     width: 480px;
   }
@@ -662,6 +665,7 @@ input[type=number]::-webkit-outer-spin-button {
     z-index: 10;
   }
   .item-name {
+    width: 65%;
     display: inline-block;
     position: absolute;
     margin-left: 10px;
@@ -750,7 +754,7 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 20px;
   }
   .btn-buy-wrapper {
-    margin-top: -20px;
+    margin-top: -10px;
     position: absolute;
     right: 20px;
   }
@@ -787,6 +791,7 @@ input[type=number]::-webkit-outer-spin-button {
     z-index: 10;
   }
   .item-name {
+    width: 30%;
     display: inline-block;
     position: absolute;
     margin-left: 10px;
@@ -794,13 +799,15 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .item-price {
     display: inline-block;
-    font-size: 1.4em;
-    margin-right: 90px
+    font-size: 1.8em;
+    margin-right: 90px;
+    margin-top: -8px;
   }
   .item-price-o {
+    margin-top: 2px;
     margin-right: 20px;
     text-decoration: line-through;
-    font-size: 1.4em;
+    font-size: 1.2em;
   }
   .item-info {
     text-align: justify;
@@ -913,6 +920,7 @@ input[type=number]::-webkit-outer-spin-button {
     z-index: 10;
   }
   .item-name {
+    width: 45%;
     display: inline-block;
     position: absolute;
     margin-left: 20px;
@@ -1269,7 +1277,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-weight: 400;
   }
   .check-address {
-    font-size: 1.5em;
+    font-size: 1.25em;
     font-weight: 400;
   }
   .check-item-name {
@@ -1320,7 +1328,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-weight: 400;
   }
   .check-address {
-    font-size: 1.5em;
+    font-size: 1.25em;
     font-weight: 400;
   }
   .check-item-name {
@@ -1332,7 +1340,8 @@ input[type=number]::-webkit-outer-spin-button {
   .check-price {
     font-size: 2.5em;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
   }
   .payco-info {
     margin-top: 4px;

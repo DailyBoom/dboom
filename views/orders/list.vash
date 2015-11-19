@@ -27,9 +27,9 @@
 					@model.orders.forEach(function(order) {
 			 		<tr>
 			 			<td>@order.id</td>
-			 			<td>@model.moment(order.created_at).format('lll')</td>
+			 			<td>@model.moment(order.created_at).format('l')</td>
 						@if(order.product) {
-			 				<td>@order.product.name</td>
+			 				<td><span class="truncate">@order.product.name</span></td>
 						}
 						else {
 							<td></td>

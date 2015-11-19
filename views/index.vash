@@ -53,9 +53,7 @@
 					@model.product.images.forEach(function(img) {
 						<div class="slide" style="background-image: url(@img);"></div>
 					})
-					@if(model.product.video) {
-						<!-- <iframe class="iframe-video" src="@model.product.video" frameborder="0" allowfullscreen></iframe> -->
-					}
+
 	    	</div><!-- #main-slider -->
 			<div class="pro-v-wrapper">
 				<div class="pro-v indigo lighten-5 center valign-wrapper"><div class="pro-v-text valign">@model.progress%<br>팔림</div></div>
@@ -65,7 +63,7 @@
 		<div class="col s12">
 			<div class="buy-box-wrapper white-text">
 				<img class="brand-img" src="@model.product.brand_logo" alt="@model.product.brand - Logo" />
-				<div class="item-name">@model.product.name</div>
+				<div class="item-name truncate">@model.product.name</div>
 					@if (model.user) {
 						<a class="hide-on-small-only btn-buy-wrapper right" href="/checkout?product_id=@model.product.id"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
 					}
@@ -123,7 +121,7 @@
 
 			<!-- Mobile -->
 			<div class="hide-on-med-and-up mobile-buy blue-grey darken-3">
-				<div class="item-price-o blue-grey-text text-lighten-2" id="product_old_price_mobile">10000</div>
+				<div class="item-price-o blue-grey-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
 				<div class="item-price white-text" id="product_price_mobile">@model.product.price</div>
 				@if (model.user) {
 					<div class="hide-on-med-and-up">
@@ -271,7 +269,7 @@
 		owl.owlCarousel({
 			items : 3,
 			itemsDesktop : [1200,3],
-			itemsDesktopSmall : [992,3],
+			itemsDesktopSmall : [992,2],
 			itemsTablet: [600,1],
 			itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
 			navigation: false,

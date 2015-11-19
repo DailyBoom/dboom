@@ -8,25 +8,25 @@
 					<div class="row blue-grey-text text-darken-3">
 						<h5>옵션 및 수량 선택</h5>
 						<form method="post" id="options">
-						<div class="input-field col s12 m8 l9">
-							<select id="order_option" name="order_option">
-								@{ var i = 0; }
-								@model.order.product.options.forEach(function(option) {
-									@if(parseInt(option.quantity) > 0) {
-										<option value="@option.name" @(model.order.option == option.name ? 'selected' : '')>@option.name</option>
-										@{ i++; }
+							<div class="input-field col s12 m8 l9">
+								<select id="order_option" name="order_option">
+									@{ var i = 0; }
+									@model.order.product.options.forEach(function(option) {
+										@if(parseInt(option.quantity) > 0) {
+											<option value="@option.name" @(model.order.option == option.name ? 'selected' : '')>@option.name</option>
+											@{ i++; }
+										}
+									})
+								</select>
+							</div>
+							<div class="input-field col s12 m4 l3">
+								<select id="order_quantity" name="order_quantity">
+									@for(i = 1; i <= parseInt(model.leftQuantity) && i <= 10 ; i++) {
+										<option value="@i" @(model.order.quantity == i ? 'selected' : '') >@i</option>
 									}
-								})
-							</select>
-						</div>
-						<div class="input-field col s12 m4 l3">
-							<select id="order_quantity" name="order_quantity">
-								@for(i = 1; i <= parseInt(model.leftQuantity) && i <= 10 ; i++) {
-									<option value="@i" @(model.order.quantity == i ? 'selected' : '') >@i</option>
-								}
-							</select>
-						</div>
-						<input type="hidden" value="@model.order.product.id" />
+								</select>
+							</div>
+							<input type="hidden" value="@model.order.product.id" />
 						</form>
 					</div><!-- .row -->
 					<br>
@@ -61,6 +61,7 @@
 							<div class="check-price-box center">
 								<span class="check-item-name blue-grey-text text-darken-1 truncate"><b>@model.order.product.brand</b></span>
 								<span class="check-item-name blue-grey-text text-darken-2 truncate">@model.order.product.name (@model.order.option)</span>
+								<span class="check-item-name blue-grey-text text-darken-2">+ <i class="fa fa-krw fa-fw"></i> 1,500 배송비</span><br>
 								<span class="check-price blue-grey-text text-darken-3" id="product_price"> @(model.order.quantity * model.order.product.price + model.order.product.delivery_price)</span>
 							</div>
 							<div id="payco_btn_type_A1" class="btn-payco center"></div>

@@ -3,6 +3,13 @@
 		<div class="container">
 			<div class="row">
 				<div class="section">
+					@if (model.errors) {
+						<ul class="red-text center">
+							@model.errors.forEach(function(error) {
+								<li>@error</li>
+							})
+						</ul>
+					}
 					<div class="col l6 offset-l3">
 						<div class="modal-c z-depth-1">
 							<div class="modal-header blue-grey darken-2 white-text center">
@@ -10,13 +17,6 @@
 							</div>
 							<div class="modal-content">
 								<div class="row">
-									@if (model.errors) {
-										<ul class="red-text">
-											@model.errors.forEach(function(error) {
-												<li>@error</li>
-											})
-										</ul>
-									}
 									<form method="post" action="/login">
 										<div class="input-field col s12">
 											<input id="username" type="text" class="validate" name="username">
