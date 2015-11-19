@@ -10,6 +10,13 @@
 							</div>
 							<div class="modal-content">
 								<div class="row">
+									@if (model.errors) {
+										<ul class="red-text">
+											@model.errors.forEach(function(error) {
+												<li>@error</li>
+											})
+										</ul>
+									}
 									<form method="post" action="/login">
 										<div class="input-field col s12">
 											<input id="username" type="text" class="validate" name="username">

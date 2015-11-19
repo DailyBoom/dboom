@@ -397,7 +397,12 @@ router.post('/shipping', function(req, res) {
               });
               user.save(function(err) {
                 if (err) {
-                  res.render('shipping', { errors: err });
+                  console.log(err);
+                  var errors = [];
+                  for (var path in err.errors) {
+                    errors.push(i18n.__("unique", i18n.__("user."+path)));
+                  }
+                  res.render('shipping', { errors: errors });
                 }
                 else {
                   order.user = user.id;
@@ -441,7 +446,12 @@ router.post('/shipping', function(req, res) {
             }
             user.save(function(err) {
               if (err) {
-                res.render('shipping', { errors: err });
+                  console.log(err);
+                  var errors = [];
+                  for (var path in err.errors) {
+                    errors.push(i18n.__("unique", i18n.__("user."+path)));
+                  }
+                res.render('shipping', { errors: errors });
               }
               else {
                 order.user = user.id;

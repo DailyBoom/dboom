@@ -1128,9 +1128,6 @@ input[type=number]::-webkit-outer-spin-button {
   .check-item-name {
     font-size: 1.5em;
   }
-  .check-price-box {
-    height: 90px;
-  }
   .check-price {
     font-size: 2.5em;
     font-weight: bold;
@@ -1187,9 +1184,6 @@ input[type=number]::-webkit-outer-spin-button {
   .check-item-name {
     font-size: 1.1em;
   }
-  .check-price-box {
-    height: 90px;
-  }
   .check-price {
     font-size: 2.5em;
     font-weight: bold;
@@ -1242,11 +1236,12 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 1.1em;
   }
   .check-price-box {
-    height: 90px;
+    height: auto;
   }
   .check-price {
     font-size: 2.5em;
     font-weight: bold;
+    margin-bottom: 10px;
   }
   .payco-info {
     margin-top: 4px;

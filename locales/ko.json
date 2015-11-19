@@ -18,5 +18,6 @@
 	"required.missing": "%s 필수 입니다. 입력후 다시 시도해주세요.",
 	"alpha.isNotAlpha": "%s 영문자로 만 가능합니다.",
 	"numeric.isNotNumeric": "%s 숫자로 만 가능합니다.",
-	"alphaNumeric.isNotAlphaNumeric": "%s 숫자와 영문으로 만 가능합니다."
+	"alphaNumeric.isNotAlphaNumeric": "%s 숫자와 영문으로 만 가능합니다.",
+	"unique": "이미 사용중인 %s입니다."
 }

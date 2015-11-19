@@ -126,7 +126,7 @@
 
 			<div class="past-box-wrapper white-text">
 				지난 상품
-				<a class="seemore white-text right" href="/products/">더보기&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></a>
+				<a class="seemore white-text right" href="/products/list">더보기&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></a>
 			</div>
 			<div class="row">
 				<div class="col s12 m12 l12">
