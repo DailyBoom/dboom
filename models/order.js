@@ -7,14 +7,15 @@ var orderSChema = new Schema({
 	status: String,
 	trackLink: String,
 	created_at: { type : Date, default : Date.now },
+	option: String,
 	quantity: Number,
 	shipping: {
 		full_name: String,
 		address: String,
 		address_extra: String,
 		country: String,
-		zipcode: Number,
-		phone_number: Number
+		zipcode: String,
+		phone_number: String
   	},
 	email: String,
 	payco: {

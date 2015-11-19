@@ -67,13 +67,13 @@ var reservePayco = function(order) {
         {
           "cpId": config.get("Payco.cpId"),
           "productId": config.get("Payco.productId"),
-          "productAmt": order.product.price,
+          "productAmt": order.product.price * order.quantity,
           "productPaymentAmt": order.product.price,
           "sortOrdering": 1,
-          "productName": order.product.name,
-          "orderQuantity": 1,
+          "productName": order.product.name+"("+order.option+")",
+          "orderQuantity": order.quantity,
           "sellerOrderProductReferenceKey": order._id,
-          //"productImageUrl": "http://dailyboom.co/uploads/"+order.product.images[0]
+          "productImageUrl": "http://dailyboom.co/"+order.product.images[0]
         }
     ]
   };
@@ -114,10 +114,9 @@ router.get('/checkout', function(req, res) {
   }
   console.log(req.session.order);
   if (typeof req.session.order === 'undefined' || !req.session.order) {
-    console.log("test");
     var order = new Order({
       product: req.query.product_id ? req.query.product_id : req.session.product,
-      status: "Submitted"
+      status: "Submitted",
     });
 
     if (req.user) {
@@ -132,19 +131,29 @@ router.get('/checkout', function(req, res) {
         req.session.product = req.query.product_id;
       if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
         order.populate('product', function(err, orderPop) {
-          var payco = reservePayco(orderPop);
-          request.post(
-              config.get("Payco.host")+'/outseller/order/reserve',
-              { json: payco },
-              function (error, response, body) {
-                  console.log(body)
-                  if (!error && body.code == 0) {
-                      res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl });
-                  }
-                  else
-                    res.redirect('/');
-              }
-          );
+          orderPop.option = Object.keys(orderPop.product.options)[0].name;
+          orderPop.quantity = 1;
+          console.log(orderPop);
+          orderPop.save(function(err) {
+            var payco = reservePayco(orderPop);
+            request.post(
+                config.get("Payco.host")+'/outseller/order/reserve',
+                { json: payco },
+                function (error, response, body) {
+                    console.log(body)
+                    if (!error && body.code == 0) {
+                        var leftQuantity;
+                        orderPop.product.options.forEach(function(option){
+                          if (option.name === orderPop.option)
+                          leftQuantity = option.quantity;
+                        });
+                        res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
+                    }
+                    else
+                      res.redirect('/');
+                }
+            );
+          });
         })
       }
       else
@@ -157,6 +166,7 @@ router.get('/checkout', function(req, res) {
         console.log(err);
       if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
         order.populate('product', function(err, orderPop) {
+          console.log(orderPop.product.options);
           if (!req.session.product)
             req.session.product = orderPop.product.id;
           var payco = reservePayco(orderPop);
@@ -166,7 +176,12 @@ router.get('/checkout', function(req, res) {
               function (error, response, body) {
                   console.log(body)
                   if (!error && body.code == 0) {
-                      res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl });
+                      var leftQuantity;
+                      orderPop.product.options.forEach(function(option){
+                        if (option.name === orderPop.option)
+                         leftQuantity = option.quantity;
+                      });
+                      res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
                   }
                   else
                     res.redirect('/');
@@ -179,6 +194,43 @@ router.get('/checkout', function(req, res) {
     });
   }
 });
+
+router.post('/checkout', function(req, res) {
+  if (req.session.order) {
+    Order.findOne({ '_id': req.session.order }).populate('product').exec(function(err, order) {
+        if (err)
+          console.log(err);
+        order.option = req.body.order_option;
+        order.quantity = req.body.order_quantity;
+        order.save(function(err, order) {
+          if (!req.session.product)
+            req.session.product = order.product.id;
+          var payco = reservePayco(order);
+          request.post(
+              config.get("Payco.host")+'/outseller/order/reserve',
+              { json: payco },
+              function (error, response, body) {
+                  console.log(body)
+                  if (!error && body.code == 0) {
+                      var leftQuantity;
+                      order.product.options.forEach(function(option){
+                        if (option.name === order.option)
+                         leftQuantity = option.quantity;
+                      });
+                      res.render('checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
+                  }
+                  else
+                    res.redirect('/');
+              }
+          );
+        })
+      });
+  }
+  else {
+    res.redirect('/');    
+  }
+});
+
 
 router.get('/payco_callback', function(req, res) {
   console.log(req.query);
@@ -205,7 +257,10 @@ router.get('/payco_callback', function(req, res) {
                       order.status = "Paid";
                       order.save(function(err) {
                         Product.findOne({ _id: order.product }, function(err, product) {
-                          product.current_quantity -= 1;
+                          product.options.forEach(function(option){
+                            if (option.name === order.option)
+                              option.quantity -= 1;
+                          });
                           product.save(function(err) {
                             if (app.get("env") === "production") {
                               slack.send({
@@ -340,7 +395,6 @@ router.post('/shipping', function(req, res) {
         required: true
       })
       .validate('zipcode', i18n.__('user.zipcode'), {
-        required: true,
         numeric: true
       })
       .validate('country', i18n.__('user.country'), {

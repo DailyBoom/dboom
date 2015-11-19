@@ -42,7 +42,7 @@ router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCou
   var paths = req.files['photosmain'].map(function(item) {
       return item.path;
   });
-  console.log(req.body);  
+  
   var product = new Product({
     name: req.body.name,
     description: req.body.description,
@@ -73,7 +73,7 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
     if (err)
       console.log(err);
 
-    console.log(req.body);
+    console.log(req.body.options);
     product.name = req.body.name;
     product.description = req.body.description;
     product.price = req.body.price;
