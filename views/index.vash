@@ -71,7 +71,7 @@
 						<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
 					}
 					<div class="hide-on-small-only item-price right" id="product_price">@model.product.price</div>
-					<div class="hide-on-small-only item-price-o blue-grey-text text-lighten-2 right" id="old_price">35000</div>
+					<div class="hide-on-small-only item-price-o blue-grey-text text-lighten-2 right" id="old_price">@model.product.old_price</div>
 			</div>
 			<div class="buy-box-info blue-grey lighten-5 blue-grey-text text-darken-2">
 				<div class="item-info">@html.raw(model.product.description)</div>
@@ -121,7 +121,7 @@
 
 			<!-- Mobile -->
 			<div class="hide-on-med-and-up mobile-buy blue-grey darken-3">
-				<div class="item-price-o blue-grey-text text-lighten-2" id="product_old_price_mobile">10000</div>
+				<div class="item-price-o blue-grey-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
 				<div class="item-price white-text" id="product_price_mobile">@model.product.price</div>
 				@if (model.user) {
 					<div class="hide-on-med-and-up">
