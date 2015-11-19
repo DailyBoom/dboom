@@ -29,7 +29,12 @@
 											<div class="o-name">@order._id</div><br>
 
 											<div class="o-label">주문 상품&nbsp;:&nbsp;</div>
-											<div class="o-name">@order.product.name</div><br>
+											@if(order.product.name) {
+												<div class="o-name">@order.product.name</div><br>
+											}
+											else {
+												<br>
+											}
 
 											<div class="o-label">주문 수량&nbsp;:&nbsp;</div>
 											<div class="o-name">1</div><br>

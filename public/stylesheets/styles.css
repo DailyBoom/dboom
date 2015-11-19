@@ -1369,6 +1369,7 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0 5px;
     border-radius: 50%;
     float: right;
+    cursor: pointer;
   }
 }
 @media only screen and (min-width: 1200px) {}
