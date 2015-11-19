@@ -6,6 +6,25 @@
 
 				<div class="col s12 m6 l8">
 					<div class="row blue-grey-text text-darken-3">
+						<h5>옵션 및 수량 선택</h5>
+						<div class="input-field col s12 m8 l9">
+							<select name="order_option">
+								<option value="" disabled selected>옵션 선택</option>
+					      <option value="1">Option 1</option>
+					      <option value="2">Option 2</option>
+					      <option value="3">Option 3</option>
+							</select>
+						</div>
+						<div class="input-field col s12 m4 l3">
+							<select name="order_quantity">
+								<option value="" disabled selected>수량 선택</option>
+					      <option value="1">Option 1</option>
+					      <option value="2">Option 2</option>
+					      <option value="3">Option 3</option>
+							</select>
+						</div>
+					</div><!-- .row -->
+					<div class="row blue-grey-text text-darken-3">
 						<h5>배송정보</h5>
 						<span class="check-name">@(model.user ? model.user.shipping.full_name : model.order.shipping.full_name)</span>
 						<br><span class="check-number">@(model.user? model.user.shipping.phone : model.order.shipping.phone)</span>
@@ -59,6 +78,9 @@
 
 
 		<script type="text/javascript">
+		$(document).ready(function() {
+			$('select').material_select();
+		});
 		$("#product_price, #product_price_mobile").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
 
 		function order() {
