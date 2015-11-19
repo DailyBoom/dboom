@@ -64,7 +64,7 @@
 		</div><!-- .col -->
 		<div class="col s12">
 			<div class="buy-box-wrapper white-text">
-				<img class="brand-img" src="@model.product.brand_logo" alt="" />
+				<img class="brand-img" src="@model.product.brand_logo" alt="@model.product.brand - Logo" />
 				<div class="item-name">@model.product.name</div>
 					@if (model.user) {
 						<a class="hide-on-small-only btn-buy-wrapper right" href="/checkout?product_id=@model.product.id"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
@@ -72,8 +72,8 @@
 					else {
 						<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
 					}
-					<div class="hide-on-small-only item-price right" id="product_price">@model.product.price</div>
-					<div class="hide-on-small-only item-price-o blue-grey-text text-lighten-2 right"><i class="fa fa-krw"></i>model.product.oldprice</div>
+					<div class="hide-on-small-only item-price right" id="product_price">@model.product.price 원</div>
+					<div class="hide-on-small-only item-price-o blue-grey-text text-lighten-2 right">model.product.oldprice 원</div>
 			</div>
 			<div class="buy-box-info blue-grey lighten-5 blue-grey-text text-darken-2">
 				<div class="item-info">@model.product.description</div>
