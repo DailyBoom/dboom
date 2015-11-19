@@ -53,7 +53,10 @@
 					@model.product.images.forEach(function(img) {
 						<div class="slide" style="background-image: url(@img);"></div>
 					})
+<<<<<<< HEAD
 					<!-- <iframe class="iframe-video" src="https://www.youtube.com/embed/CLViADWy-1U?enablejsapi=1&rel=0&showinfo=0&iv_load_policy=3&modestbranding=1" frameborder="0" allowfullscreen data-autoplay="0"></iframe> -->
+=======
+>>>>>>> 824a8aa2fb94a6f7dcadd643f85b1b3f574e8340
 	    </div><!-- #main-slider -->
 			<div class="pro-v-wrapper">
 				<div class="pro-v indigo lighten-5 center valign-wrapper"><div class="pro-v-text valign">@model.progress%<br>팔림</div></div>
@@ -62,7 +65,7 @@
 		</div><!-- .col -->
 		<div class="col s12">
 			<div class="buy-box-wrapper white-text">
-				<img class="brand-img" src="images/zone01.png" alt="" />
+				<img class="brand-img" src="@model.product.brand_logo" alt="" />
 				<div class="item-name">@model.product.name</div>
 					@if (model.user) {
 						<a class="hide-on-small-only btn-buy-wrapper right" href="/checkout?product_id=@model.product.id"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
@@ -70,8 +73,12 @@
 					else {
 						<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
 					}
+<<<<<<< HEAD
 					<div class="hide-on-small-only item-price right"><i class="fa fa-krw"></i>35,000</div>
 					<div class="hide-on-small-only item-price-o blue-grey-text text-lighten-2 right"><i class="fa fa-krw"></i>45,000</div>
+=======
+				<div class="hide-on-small-only item-price right" id="product_price">@model.product.price</div>
+>>>>>>> 824a8aa2fb94a6f7dcadd643f85b1b3f574e8340
 			</div>
 			<div class="buy-box-info blue-grey lighten-5 blue-grey-text text-darken-2">
 				<div class="item-info">@model.product.description</div>
@@ -109,7 +116,7 @@
 
 			<!-- Mobile -->
 			<div class="hide-on-med-and-up mobile-buy blue-grey darken-3">
-				<div class="item-price white-text center"><i class="fa fa-krw"></i> 35,000</div>
+				<div class="item-price white-text center" id="product_price_mobile">@model.product.price</div>
 				@if (model.user) {
 					<div class="hide-on-med-and-up">
 						<a class="modal-trigger" href="/checkout?product_id=@model.product.id">
@@ -140,20 +147,14 @@
 											<div class="card">
 												<div class="card-image">
 													<div class="past-date-box blue-grey darken-1 white-text">
-														10/01/2015
+														@model.moment(product.scheduled_at).format("YYYY/MM/DD")
 													</div>
-													<img class="" src="/images/craftlink/01.jpg" alt="" />
+													<img class="" src="@product.images[0]" alt="" />
 												</div>
 												<div class="card-content">
 													<p class="blue-grey-text text-darken-1 truncate">@product.name</p>
 													<p class="blue-grey-text text-darken-1">
-														크래프트 링크는 소셜 임팩트를 전달하는
-														100% 핸드메이드 남미 수공예품 정기 구독 서비스입니다
-													</p>
-													<p class="blue-grey-text text-darken-1">
-														이 팔찌는 지구 반대편 과테말라에서 만든 수공예 팔찌입니다.
-														수백 년에 걸쳐 전해져 내려온 과테말라의 유산과도 같은
-														수공예 기술에 사랑을 담아 당신에게 전합니다.
+														@product.description
 													</p>
 												</div>
 												<div class="card-action">
@@ -197,7 +198,7 @@
 	$(document).ready(function() {
 		$("#main-slider").bxSlider({
 			mode:'horizontal',
-			infiniteLoop:false,
+			infiniteLoop:true,
 			easing:'ease-in-out',
 			auto:true,
 			autoHover:true
@@ -232,7 +233,7 @@
 		$('.collapsible').collapsible({
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
-		$("#product_price").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
+		$("#product_price, #product_price_mobile").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
 		var owl = $("#db-past");
 		owl.owlCarousel({
 			items : 3,

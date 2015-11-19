@@ -13,8 +13,9 @@ var productSchema = new Schema({
   price: Number,
   quantity: Number,
   current_quantity: Number,
-  images: { type: Array, required: true },
+  images: { type: Array },
   scheduled_at: Date,
+  options: Object,
   created_at: { type : Date, default : Date.now },
   updated_at: Date
 });
