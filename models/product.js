@@ -19,6 +19,7 @@ var productSchema = new Schema({
   scheduled_at: Date,
   options: Object,
   video: String,
+  delivery_info: String,
   created_at: { type : Date, default : Date.now },
   updated_at: Date
 });

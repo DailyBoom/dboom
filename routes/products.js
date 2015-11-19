@@ -38,7 +38,7 @@ router.get('/products/preview', isAdmin, function(req, res) {
   res.render("products/preview");
 });
 
-router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: "brandlogo", maxCount: 1}]), function(req, res) {
+router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: "brandlogo", maxCount: 1}, {name: "deliveryinfo", maxCount: 1}]), function(req, res) {
   var paths = req.files['photosmain'].map(function(item) {
       return item.path;
   });
@@ -54,6 +54,7 @@ router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCou
     scheduled_at: req.body.selldate,
     brand: req.body.brandname,
     brand_logo: req.files['brandlogo'] ? req.files['brandlogo'][0].path : '',
+    delivery_info: req.files['deliveryinfo'] ? req.files['deliveryinfo'][0].path : '',
     options: req.body.options,
     video: req.body.videoUrl,
     company_url: req.body.webUrl,
@@ -68,7 +69,7 @@ router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCou
   });
 });
 
-router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: "brandlogo", maxCount: 1}]), function(req, res) {
+router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: "brandlogo", maxCount: 1}, {name: "deliveryinfo", maxCount: 1}]), function(req, res) {
   Product.findOne({_id: req.params.id}, function (err, product) {
     if (err)
       console.log(err);
@@ -97,6 +98,10 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
 
     if (req.files['brandlogo']) {
       product.brand_logo = req.files['brandlogo'][0].path;
+    }
+
+    if (req.files['deliveryinfo']) {
+      product.delivery_info = req.files['deliveryinfo'][0].path;
     }
 
     console.log(product);

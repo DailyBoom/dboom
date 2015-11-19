@@ -132,7 +132,14 @@ router.get('/checkout', function(req, res) {
       if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
         order.populate('product', function(err, orderPop) {
           console.log(orderPop.product.options);
-          orderPop.option = orderPop.product.options[0].name;
+          if (parseInt(orderPop.product.options[0].quantity) > 0){
+            orderPop.option = orderPop.product.options[0].name;
+          }
+          else {
+            orderPop.product.options.forEach(function(option){
+               
+            });
+          }
           orderPop.quantity = 1;
           console.log(orderPop);
           orderPop.save(function(err) {
