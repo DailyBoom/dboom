@@ -1,7 +1,6 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
 <!-- Login Modal Structure -->
-<!-- #1 -->
 <div id="modal-check-1" class="modal">
 	<div class="modal-header blue-grey darken-2 white-text center">
 		로그인

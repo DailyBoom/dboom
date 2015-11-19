@@ -53,7 +53,7 @@
 					@model.product.images.forEach(function(img) {
 						<div class="slide" style="background-image: url(@img);"></div>
 					})
-					<iframe class="iframe-video" src="https://www.youtube.com/embed/CLViADWy-1U?enablejsapi=1&rel=0&showinfo=0&iv_load_policy=3&modestbranding=1" frameborder="0" allowfullscreen data-autoplay="0"></iframe>
+					<!-- <iframe class="iframe-video" src="https://www.youtube.com/embed/CLViADWy-1U?enablejsapi=1&rel=0&showinfo=0&iv_load_policy=3&modestbranding=1" frameborder="0" allowfullscreen data-autoplay="0"></iframe> -->
 	    </div><!-- #main-slider -->
 			<div class="pro-v-wrapper">
 				<div class="pro-v indigo lighten-5 center valign-wrapper"><div class="pro-v-text valign">@model.progress%<br>팔림</div></div>
@@ -70,7 +70,8 @@
 					else {
 						<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
 					}
-				<div class="hide-on-small-only item-price right"><i class="fa fa-krw"></i>35,000</div>
+					<div class="hide-on-small-only item-price right"><i class="fa fa-krw"></i>35,000</div>
+					<div class="hide-on-small-only item-price-o blue-grey-text text-lighten-2 right"><i class="fa fa-krw"></i>45,000</div>
 			</div>
 			<div class="buy-box-info blue-grey lighten-5 blue-grey-text text-darken-2">
 				<div class="item-info">@model.product.description</div>
