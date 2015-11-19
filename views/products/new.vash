@@ -57,11 +57,11 @@
 				</div>
 				<div class="row options_row">
 					<div class="input-field col s12 m6 l6">
-						<input id="option_name" type="text" class="validate" name="options[][name]">
+						<input id="option_name" type="text" class="validate" name="options[0][name]">
 						<label for="option_name">옵션 * 예) 상품 색성</label>
 					</div>
 					<div class="input-field col s12 m6 l6">
-						<input id="o_quatity" type="number" class="validate" name="options[][quantity]">
+						<input id="o_quatity" type="number" class="validate" name="options[0][quantity]">
 						<label for="o_quantity">옵션 수량 *</label>
 					</div>
 				</div>
@@ -145,11 +145,10 @@
 		var max_fields      = 4; //maximum input boxes allowed
 		var wrapper         = $("#options_wrapper"); //Fields wrapper
 		var add_button      = $("#add_option"); //Add button ID
-		var x = 1; //initlal text box count
+		var x = 0; //initlal text box count
 		$(add_button).click(function(e){ //on add input button click
 			e.preventDefault();
-			if(x < max_fields) { //max input box allowed
-				x++; //text box increment
+			if(x++ < max_fields) { //max input box allowed
 				$(wrapper).append('<div class="row options_row"><div class="input-field col s12 m6 l6"><input id="option_name'+x+'" type="text" class="validate" name="options['+x+'][name]"><label for="option_name'+x+'">옵션 * 예) 상품 색성</label></div><div class="input-field col s12 m6 l6"><input id="o_quatity'+x+'" type="number" class="validate" name="options['+x+'][quantity]"><label for="o_quantity'+x+'">옵션 수량 *</label></div></div>'); //add input box
 			}
 		});

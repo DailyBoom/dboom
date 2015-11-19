@@ -41,6 +41,7 @@ router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCou
   var paths = req.files['photosmain'].map(function(item) {
       return item.path;
   });
+  console.log(req.body);  
   var product = new Product({
     name: req.body.name,
     description: req.body.description,
