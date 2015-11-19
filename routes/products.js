@@ -29,6 +29,7 @@ router.get('/products/delete/:id', isAdmin, function(req, res) {
 
 router.get('/products/edit/:id', isAdmin, function(req, res) {
   Product.findOne({_id: req.params.id}, function(err, product) {
+    console.log(product);
     res.render("products/edit", { product: product, moment: moment });
   });
 });
