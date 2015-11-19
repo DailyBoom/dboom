@@ -1277,7 +1277,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-weight: 400;
   }
   .check-address {
-    font-size: 1.5em;
+    font-size: 1.25em;
     font-weight: 400;
   }
   .check-item-name {
@@ -1328,7 +1328,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-weight: 400;
   }
   .check-address {
-    font-size: 1.5em;
+    font-size: 1.25em;
     font-weight: 400;
   }
   .check-item-name {
@@ -1340,7 +1340,8 @@ input[type=number]::-webkit-outer-spin-button {
   .check-price {
     font-size: 2.5em;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
   }
   .payco-info {
     margin-top: 4px;
