@@ -56,9 +56,9 @@ var reservePayco = function(order) {
   var payco = {
     "sellerKey": config.get("Payco.sellerKey"),
     "sellerOrderReferenceKey": order._id,
-    "totalOrderAmt": order.product.price * order.quantity,
+    "totalOrderAmt": (order.product.price + order.product.delivery_price) * order.quantity,
     "totalDeliveryFeeAmt": 0,
-    "totalPaymentAmt": order.product.price * order.quantity,
+    "totalPaymentAmt": (order.product.price + order.product.delivery_price) * order.quantity,
     "returnUrl": config.get("Payco.returnUrl"),
     "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
     "orderMethod": "EASYPAY",
@@ -67,8 +67,8 @@ var reservePayco = function(order) {
         {
           "cpId": config.get("Payco.cpId"),
           "productId": config.get("Payco.productId"),
-          "productAmt": order.product.price * order.quantity,
-          "productPaymentAmt": order.product.price * order.quantity,
+          "productAmt": (order.product.price + order.product.delivery_price) * order.quantity,
+          "productPaymentAmt": (order.product.price + order.product.delivery_price) * order.quantity,
           "sortOrdering": 1,
           "productName": order.product.name+"("+order.option+")",
           "orderQuantity": order.quantity,
@@ -263,7 +263,7 @@ router.get('/payco_callback', function(req, res) {
                         Product.findOne({ _id: order.product }, function(err, product) {
                           product.options.forEach(function(option){
                             if (option.name === order.option)
-                              option.quantity -= 1;
+                              option.quantity -= order.quanity;
                           });
                           product.save(function(err) {
                             if (app.get("env") === "production") {
