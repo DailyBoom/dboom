@@ -489,7 +489,7 @@ input[type=number]::-webkit-outer-spin-button {
     background-size: cover;
   }
   iframe.iframe-video {
-    height: 500px;
+    height: 600px;
     width: 100%;
   }
   .bx-wrapper .bx-pager {
@@ -779,6 +779,9 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 1.4em;
   }
   /* custom card */
+  .card .card-image img {
+    border-radius: 0;
+  }
   .card .card-action.mod {
     padding: 10px 20px;
   }
@@ -1164,9 +1167,6 @@ input[type=number]::-webkit-outer-spin-button {
   .check-item-name {
     font-size: 1.5em;
   }
-  .check-price-box {
-    height: 90px;
-  }
   .check-price {
     font-size: 2.5em;
     font-weight: bold;
@@ -1223,9 +1223,6 @@ input[type=number]::-webkit-outer-spin-button {
   .check-item-name {
     font-size: 1.1em;
   }
-  .check-price-box {
-    height: 90px;
-  }
   .check-price {
     font-size: 2.5em;
     font-weight: bold;
@@ -1278,11 +1275,12 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 1.1em;
   }
   .check-price-box {
-    height: 90px;
+    height: auto;
   }
   .check-price {
     font-size: 2.5em;
     font-weight: bold;
+    margin-bottom: 10px;
   }
   .payco-info {
     margin-top: 4px;
@@ -1422,4 +1420,29 @@ input[type=number]::-webkit-outer-spin-button {
 }
 #sharekakao, #sharefb {
   cursor: pointer;
+}
+
+/* Email */
+.db-mail {
+  border: 1px solid #546e7a;
+  border-collapse: collapse;
+  width: 100%;
+}
+.db-mail th { padding: 0px 20px; }
+.db-mail td { padding: 10px 20px; }
+.db-mail td.db-mail-body { padding: 30px 20px; }
+.db-logo-img {
+  height: 100px;
+  float: left;
+}
+.db-nav {
+  height: 100px;
+  background: -webkit-linear-gradient(#37474f, #455a64, #37474f);
+  background: -o-linear-gradient(#37474f, #455a64, #37474f);
+  background: -moz-linear-gradient(#37474f, #455a64, #37474f);
+  background: linear-gradient(#37474f, #455a64, #37474f);
+}
+.db-mail h1, .db-mail h2, .db-mail h3, .db-mail h4, .db-mail h5, .db-mail h6 {
+  font-family: 'Hanna', sans-serif;
+  margin: 10px;
 }

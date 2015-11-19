@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var vash = require("vash");
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 var User = require("../models/user");
@@ -33,19 +34,22 @@ var isAdmin = function (req, res, next) {
 router.get('/login', function(req, res, next) {
   if (req.user)
     return res.redirect('/');
-  res.render('login', { title: 'Login' });
+  res.render('login', { title: 'Login', errors: req.session.messages || [] });
+  delete req.session.messages;
 });
 
 router.post('/login', passport.authenticate('local', {
-    failureRedirect: '/login'
+    failureRedirect: '/login',
+    failureMessage: '죄송합니다. 로그인에 실패했습니다. 아이디와 비밀번호를 확인하고 다시 로그인해주세요.'
 }), function(req, res, next) {
     // issue a remember me cookie if the option was checked
+    console.log(next);
     if (!req.body.remember_me) { return next(); }
 
     var token = new Token({
       token: crypto.randomBytes(64).toString('hex'),
       userId: req.user._id
-    })
+    });
     token.save(function(err) {
       if (err) { return next(err); }
       res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days
@@ -291,24 +295,36 @@ router.post('/signup', function(req, res) {
       user.save(function(err) {
         if (err) {
           console.log(err);
-          res.render('signup', { error: err });
+          var errors = [];
+          for (var path in err.errors) {
+            errors.push(i18n.__("unique", i18n.__("user."+path)));
+          }
+          res.render('signup', { errors: errors });
         }
         else {
-          transporter.sendMail({
-            from: 'Daily Boom <contact@dailyboom.co>',
-            to: user.email,
-            subject: user.username+'님 회원가입을 축하드립니다.',
-            html: fs.readFileSync('./views/mailer/signup.vash', "utf8")
-          }, function (err, info) {
-              if (err) { console.log(err); res.render('signup', { error: err.errmsg }); }
-              console.log('Message sent: ' + info.response);
-              transporter.close();
-              req.login(user, function(err) {
-                if (err) {
-                  console.log(err);
-                }
-                return res.redirect('/');
-              });
+          fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
+            if(err){
+              //handle errors
+              console.log('ERROR!');
+              return res.send('ERROR!');
+            }
+            var html = vash.compile(file);
+            transporter.sendMail({
+              from: 'Daily Boom <contact@dailyboom.co>',
+              to: user.email,
+              subject: user.username+'님 회원가입을 축하드립니다.',
+              html: html({ user : user })
+            }, function (err, info) {
+                if (err) { console.log(err); res.render('signup', { error: err.errmsg }); }
+                console.log('Message sent: ' + info.response);
+                transporter.close();
+                req.login(user, function(err) {
+                  if (err) {
+                    console.log(err);
+                  }
+                  return res.redirect('/');
+                });
+            });
           });
         }
       });

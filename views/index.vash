@@ -53,7 +53,10 @@
 					@model.product.images.forEach(function(img) {
 						<div class="slide" style="background-image: url(@img);"></div>
 					})
-	    </div><!-- #main-slider -->
+					@if(model.product.video) {
+						<iframe class="iframe-video" src="@model.product.video" frameborder="0" allowfullscreen></iframe>
+					}
+	    	</div><!-- #main-slider -->
 			<div class="pro-v-wrapper">
 				<div class="pro-v indigo lighten-5 center valign-wrapper"><div class="pro-v-text valign">@model.progress%<br>팔림</div></div>
 				<div class="pro-v-d amber darken-1" style="height: @model.progress%;"></div>
@@ -70,7 +73,7 @@
 						<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
 					}
 					<div class="hide-on-small-only item-price right" id="product_price">@model.product.price</div>
-					<div class="hide-on-small-only item-price-o blue-grey-text text-lighten-2 right" id="product_old_price">20,000</div>
+					<div class="hide-on-small-only item-price-o blue-grey-text text-lighten-2 right" id="old_price">@model.product.old_price</div>
 			</div>
 			<div class="buy-box-info blue-grey lighten-5 blue-grey-text text-darken-2">
 				<div class="item-info">@model.product.description</div>
@@ -78,10 +81,10 @@
 			<div class="buy-box-footer blue-grey lighten-3">
 				<div class="center">
 					<!-- <span class="share-text white-text">share</span> -->
-					<a href="#sharefb"><img class="social" src="/images/icon_fb.png" /></a>
-					<a href="#sharekakao"><img class="social" src="/images/icon_kakao.png" /></a>
-					<a href="#sharemail"><img class="social" src="/images/icon_email.png" /></a>
-					<a href="#link"><img class="social" src="/images/link_icon.png" /></a>
+					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
+					<img id="sharekakao" class="social" src="/images/icon_kakao.png" alt="Kakao Logo" />
+					<a href="mailto:?subject=데일리 붐: 오늘 뭐 사지?&body=http://dailyboom.co"><img id="sharemail"  class="social" src="/images/icon_email.png" alt="Email Image" /></a>
+					<img id="shareurl" class="social" src="/images/link_icon.png" alt="Link Image" />
 				</div>
 			</div><!-- .buy-box-footer -->
 			<!-- Merchant xInfo -->
@@ -127,7 +130,7 @@
 
 			<div class="past-box-wrapper white-text">
 				지난 상품
-				<!-- <a class="seemore white-text right" href="/products/">더보기&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></a> -->
+				<!--<a class="seemore white-text right" href="/products/list">더보기&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></a>-->
 			</div>
 			<div class="row">
 				<div class="col s12 m12 l12">
@@ -238,7 +241,7 @@
 	$(document).ready(function(){
 		$('.iframe-video').each(function(){
 			var url = $(this).attr("src");
-			$(this).attr("src",url+"&wmode=transparent");
+			$(this).attr("src",url+"?wmode=transparent");
 		});
 		$('.modal-trigger').leanModal({
 			dismissible: true, // Modal can be dismissed by clicking outside of the modal
@@ -249,7 +252,7 @@
 		$('.collapsible').collapsible({
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
-		$("#product_price, #product_price_mobile, #product_old_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
+		$("#product_price, #product_price_mobile, #old_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
 		var owl = $("#db-past");
 		owl.owlCarousel({
 			items : 3,

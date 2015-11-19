@@ -21,7 +21,7 @@
 				</div>
 				<div class="file-field input-field col s12 m4 l4">
 					<span class="hide-on-med-and-up"><br></span>
-					<span for="brandlogo" class="input-file grey-text right">브랜드 로고</span>
+					<span for="brandlogo" class="input-file-mod grey-text">브랜드 로고 *</span>
 					<div class="btn blue-grey darken-2">
 						<span>선택 <i class="fa fa-image right"></i></span>
 						<input type="file" id="brandlogo" name="brandlogo">
@@ -72,8 +72,8 @@
 			<div class="row">
 				<div class="input-field col s12 m12 l12">
 					<i class="fa fa-krw prefix"></i>
-					<input id="oldprice" type="number" class="validate" name="oldprice" value="@model.product.oldprice">
-					<label for="oldprice">정상 가격 *</label>
+					<input id="oldPrice" type="number" class="validate" name="oldPrice" value="@model.product.old_price">
+					<label for="oldPrice">정상 가격 *</label>
 				</div>
 				<div class="input-field col s12 m6 l6">
 					<i class="fa fa-krw prefix"></i>
@@ -96,19 +96,19 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s12 m12 l12">
-					<input id="videoUrl" type="url" class="validate">
-					<label for="videoUrl">동영상 링크 (YouTube 추천)</label>
+					<input id="videoUrl" name="videoUrl" type="url" class="validate">
+					<label for="videoURL">동영상 링크 (YouTube 추천)</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
-					<input id="webUrl" type="url" class="validate">
+					<input id="webUrl" name="webUrl" type="url" class="validate">
 					<label for="webUrl">Website 링크</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
-					<input id="fbUrl" type="url" class="validate">
+					<input id="fbUrl" name="fbUrl" type="url" class="validate">
 					<label for="fbUrl">Facebook 링크</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
-					<input id="kakaoUrl" type="text" class="validate">
+					<input id="kakaoUrl" name="kakaoUrl" type="text" class="validate">
 					<label for="kakaoUrl">Kakao Story 링크</label>
 				</div>
 			</div>

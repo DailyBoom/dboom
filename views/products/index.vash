@@ -8,51 +8,26 @@
 
 		@model.products.forEach(function(product){
 
-			<div class="card">
-
-			</div>
-
-		<div class="col s12 m6 l6">
-			<div class="card">
-				<div class="card-image">
-					<div class="past-date-box grey-text text-darken-1 text-md">
-						@product.scheduled_at
+			<div class="col s12 m6 l6">
+				<div class="card">
+					<div class="card-image">
+						<div class="past-date-box blue-grey darken-1 white-text">
+							@model.moment(product.scheduled_at).format("YYYY/MM/DD")
+						</div>
+						<img class="" src="/@product.images[0]" alt="@product.name" />
+					</div><!-- .card-image -->
+					<div class="card-content">
+						<p class="blue-grey-text text-darken-1 truncate">@product.name</p>
+						<p class="blue-grey-text text-darken-1">
+							@product.description
+						</p>
+						<a href="/products/edit/@product.id">Edit</a><a href="/products/delete/@product.id">Delete</a>
+					</div><!-- .card-content -->
+					<div class="card-action">
+						<a href="#"><i class="fa fa-history fa-fw"></i> 사고싶다 <!--<span class="badge">5</span>--></a>
 					</div>
-					<!-- Image Slider -->
-					<div class="slider">
-						<ul class="slides">
-							<!-- model.product.images.forEach(function(img) { -->
-								<li><img class="" src="/@product.images[0]" alt="model.product.name | Daily Boom" /></li>
-							<!-- }) -->
-						</ul>
-					</div>
-				</div><!-- /.card-image -->
-				<div class="card-content">
-					<span class="card-title activator grey-text text-darken-4">
-						<a href="#!"><i class="fa fa-info-circle fa-1-5x right" style="margin-top: -2px;"></i></a>
-						@product.name
-					</span>
-					<a href="/products/edit/@product.id">Edit</a><a href="/products/delete/@product.id">Delete</a>
-				</div><!-- /.card-content -->
-				<div class="card-reveal">
-					<span class="card-title grey-text text-darken-4">
-						<i class="fa fa-times-circle fa-1-5x right"></i>
-					</span>
-					<div class="details-box">
-						<img class="details-img circle z-depth-1" src="/@product.brand_logo" alt="{BRAND NAME LOGO}" />
-						<br>
-						<span class="text-lg">@product.brand</span>
-						<span class="card-title grey-text text-darken-4">
-							@product.name
-						</span>
-						<p class="text-sm">@product.description</p>
-					</div><!-- .details-bottom -->
-				</div><!-- .card-reveal -->
-				<div class="card-action">
-					<a href="#"><i class="fa fa-history fa-fw"></i> 사고싶다 <!--<span class="badge">5</span>--></a>
-				</div>
-			</div><!-- /.card -->
-		</div><!-- .col -->
+				</div><!-- .card -->
+			</div><!-- .col -->
 
 		})
 
