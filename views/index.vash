@@ -76,7 +76,7 @@
 					<div class="hide-on-small-only item-price-o blue-grey-text text-lighten-2 right" id="old_price">@model.product.old_price</div>
 			</div>
 			<div class="buy-box-info blue-grey lighten-5 blue-grey-text text-darken-2">
-				<div class="item-info">@model.product.description</div>
+				<div class="item-info">@html.raw(model.product.description)</div>
 			</div>
 			<div class="buy-box-footer blue-grey lighten-3">
 				<div class="center">
