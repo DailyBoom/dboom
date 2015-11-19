@@ -76,7 +76,7 @@ router.get('/mypage', isAuthenticated, function(req, res) {
         delete req.session.errors;
         res.render('users/show', { orders: orders, errors: errors });
       }
-      res.render('users/show', { orders: orders });    
+      res.render('users/show', { orders: orders });
     });
 });
 
@@ -94,7 +94,7 @@ router.get('/users/view', isAuthenticated, function(req, res){
 
 router.post('/users/edit_password', isAuthenticated, function(req, res) {
   var user = req.user;
-  
+
   req.Validator.validate('password', i18n.__('user.password'), {
     length: {
       min: 8,
@@ -116,7 +116,7 @@ router.post('/users/edit_password', isAuthenticated, function(req, res) {
     },
     required: true
   });
-  
+
   req.Validator.getErrors(function(errors) {
     if (errors.length > 0) {
         req.session.errors = errors;
@@ -133,9 +133,9 @@ router.post('/users/edit_password', isAuthenticated, function(req, res) {
   });
 });
 
-router.get('/users/edit', isAuthenticated, function(req, res){
-  res.render('users/edit');
-});
+// router.get('/users/edit', isAuthenticated, function(req, res){
+//   res.render('users/edit');
+// });
 
 router.post('/users/edit', isAuthenticated, function(req, res) {
   var user = req.user;
@@ -165,7 +165,7 @@ router.post('/users/edit', isAuthenticated, function(req, res) {
   .validate('country', i18n.__('user.country'), {
     required: true
   });
-  
+
   req.Validator.getErrors(function(errors){
     if (errors.length > 0) {
       res.render('users/edit', { errors: errors });
