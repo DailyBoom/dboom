@@ -57,7 +57,7 @@
 				</div>
 				<!-- add more options button -->
 				<div class="col s12 m12 l12">
-					<a class="waves-effect waves-light btn" href="#!"><i class="fa fa-plus left"></i>옵션 추가</a>
+					<a id="add_option" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus left"></i>옵션 추가</a>
 				</div>
 			</div>
 			<!-- .row -->
@@ -107,11 +107,11 @@
 			</div>
 			<!-- .row -->
 			<br>
-			<button class="btn btn-mod-lg waves-effect waves-light amber darken-3 add-margin-bottom-md" type="submit" name="action">
-				미리보기 <i class="fa fa-eye right"></i>
+			<button class="btn btn-large waves-effect waves-light amber darken-3 add-margin-bottom-md" type="submit" name="action">
+				미리보기 <i class="fa fa-eye fa-fw right"></i>
 			</button>
-			<button class="btn btn-mod-lg waves-effect waves-light green darken-3 add-margin-bottom-md" type="submit" name="action">
-				등록하기 <i class="fa fa-send right"></i>
+			<button class="btn btn-large waves-effect waves-light green darken-3 add-margin-bottom-md" type="submit" name="action">
+				등록하기 <i class="fa fa-send fa-fw right"></i>
 			</button>
 		</form>
 	</div>
