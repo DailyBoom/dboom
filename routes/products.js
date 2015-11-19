@@ -13,7 +13,7 @@ var isAdmin = function (req, res, next) {
 
 router.get('/products/list', isAdmin, function(req, res) {
   Product.find({}, {}, { sort: { 'scheduled_at' : -1 } }, function (err, Products) {
-    res.render('products/index', { products: Products });
+    res.render('products/index', { products: Products, moment: moment });
   });
 });
 
@@ -72,7 +72,7 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
   Product.findOne({_id: req.params.id}, function (err, product) {
     if (err)
       console.log(err);
-    
+
     console.log(req.body);
     product.name = req.body.name;
     product.description = req.body.description;
@@ -87,18 +87,18 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
     product.company_url = req.body.webUrl;
     product.company_facebook = req.body.fbUrl;
     product.company_kakaostory = req.body.kakaoUrl;
-    
+
     if (req.files['photosmain']) {
       var paths = req.files['photosmain'].map(function(item) {
           return item.path;
       });
       product.images = paths;
     }
-    
+
     if (req.files['brandlogo']) {
       product.brand_logo = req.files['brandlogo'][0].path;
     }
-  
+
     console.log(product);
     product.save(function(err) {
       if (err) console.log(err), res.render('products/index', { title: 'Index', error: err.errmsg });

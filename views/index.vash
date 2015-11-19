@@ -54,7 +54,7 @@
 						<div class="slide" style="background-image: url(@img);"></div>
 					})
 					@if(model.product.video) {
-						<iframe class="iframe-video" width="560" height="315" src="@model.product.video" frameborder="0" allowfullscreen></iframe>
+						<iframe class="iframe-video" src="@model.product.video" frameborder="0" allowfullscreen></iframe>
 					}
 	    	</div><!-- #main-slider -->
 			<div class="pro-v-wrapper">
@@ -81,10 +81,10 @@
 			<div class="buy-box-footer blue-grey lighten-3">
 				<div class="center">
 					<!-- <span class="share-text white-text">share</span> -->
-					<img id="sharefb" class="social" src="/images/icon_fb.png" />
-					<img id="sharekakao" class="social" src="/images/icon_kakao.png" />
-					<a href="mailto:?subject=데일리 붐: 오늘 뭐 사지?&body=http://dailyboom.co"><img id="sharemail"  class="social" src="/images/icon_email.png" /></a>
-					<img id="shareurl" class="social" src="/images/link_icon.png" />
+					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
+					<img id="sharekakao" class="social" src="/images/icon_kakao.png" alt="Kakao Logo" />
+					<a href="mailto:?subject=데일리 붐: 오늘 뭐 사지?&body=http://dailyboom.co"><img id="sharemail"  class="social" src="/images/icon_email.png" alt="Email Image" /></a>
+					<img id="shareurl" class="social" src="/images/link_icon.png" alt="Link Image" />
 				</div>
 			</div><!-- .buy-box-footer -->
 			<!-- Merchant xInfo -->
@@ -153,7 +153,7 @@
 													</p>
 												</div>
 												<div class="card-action">
-													<a href="#"><i class="fa fa-history"></i>&nbsp;&nbsp;Bring it back! <span class="badge">5</span></a>
+													<a href="#"><i class="fa fa-thumbs-up fa-fw"></i> 사고싶다 <!--<span class="badge">5</span>--></a>
 												</div>
 											</div>
 										</div>

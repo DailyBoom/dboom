@@ -489,7 +489,7 @@ input[type=number]::-webkit-outer-spin-button {
     background-size: cover;
   }
   iframe.iframe-video {
-    height: 500px;
+    height: 600px;
     width: 100%;
   }
   .bx-wrapper .bx-pager {
@@ -779,6 +779,9 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 1.4em;
   }
   /* custom card */
+  .card .card-image img {
+    border-radius: 0;
+  }
   .card .card-action.mod {
     padding: 10px 20px;
   }
