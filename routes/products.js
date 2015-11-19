@@ -39,19 +39,19 @@ router.get('/products/preview', isAdmin, function(req, res) {
 
 router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: "brandlogo", maxCount: 1}]), function(req, res) {
   var paths = req.files['photosmain'].map(function(item) {
-    if (item.fieldname != 'brandlogo')
       return item.path;
   });
   var product = new Product({
     name: req.body.name,
     description: req.body.description,
     price: req.body.price,
+    old_price: req.body.oldPrice,
     quantity: req.body.quantity,
     current_quantity: req.body.quantity,
     images: paths,
     scheduled_at: req.body.selldate,
     brand: req.body.brandname,
-    brand_logo: req.files['brandlogo'] ? req.files['brandlogo'].path : '',
+    brand_logo: req.files['brandlogo'] ? req.files['brandlogo'][0].path : '',
     options: req.body.options,
     video: req.body.videoUrl,
     company_url: req.body.webUrl,
@@ -75,6 +75,7 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
     product.name = req.body.name;
     product.description = req.body.description;
     product.price = req.body.price;
+    product.old_price = req.body.oldPrice,
     product.quantity = req.body.quantity;
     product.current_quantity = req.body.quantity;
     product.scheduled_at = req.body.selldate;
@@ -87,7 +88,6 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
     
     if (req.files['photosmain']) {
       var paths = req.files['photosmain'].map(function(item) {
-        if (item.fieldname != 'brandlogo')
           return item.path;
       });
       product.images = paths;

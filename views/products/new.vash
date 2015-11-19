@@ -66,18 +66,19 @@
 					</div>
 				</div>
 			</div>
+			<!-- #options_wrapper -->
 			<br>
 			<!-- .row -->
 			<div class="row">
 				<div class="input-field col s12 m6 l6">
 					<i class="fa fa-krw prefix"></i>
-					<input id="oldprice" type="number" class="validate" name="oldprice">
-					<label for="oldprice">정상 가격</label>
+					<input id="oldPrice" type="number" class="validate" name="oldPrice">
+					<label for="oldPrice">정상 가격 *</label>
 				</div>
 				<div class="input-field col s12 m6 l6">
 					<i class="fa fa-krw prefix"></i>
 					<input id="price" type="number" class="validate" name="price">
-					<label for="price">데일리 붐 가격 (배송 포함)*</label>
+					<label for="price">데일리 붐 가격 (배송 포함) *</label>
 				</div>
 			</div>
 			<!-- .row -->

@@ -35,7 +35,7 @@ router.get('/login', function(req, res, next) {
   if (req.user)
     return res.redirect('/');
   res.render('login', { title: 'Login', errors: req.session.messages || [] });
-  req.session.messages = [];
+  delete req.session.messages;
 });
 
 router.post('/login', passport.authenticate('local', {
