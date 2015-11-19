@@ -66,18 +66,19 @@
 					</div>
 				</div>
 			</div>
+			<!-- #options_wrapper -->
 			<br>
 			<!-- .row -->
 			<div class="row">
 				<div class="input-field col s12 m6 l6">
 					<i class="fa fa-krw prefix"></i>
 					<input id="oldprice" type="number" class="validate" name="oldprice">
-					<label for="oldprice">정상 가격</label>
+					<label for="oldprice">정상 가격 *</label>
 				</div>
 				<div class="input-field col s12 m6 l6">
 					<i class="fa fa-krw prefix"></i>
 					<input id="price" type="number" class="validate" name="price">
-					<label for="price">데일리 붐 가격 (배송 포함)*</label>
+					<label for="price">데일리 붐 가격 (배송 포함) *</label>
 				</div>
 			</div>
 			<!-- .row -->
@@ -95,20 +96,20 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s12 m12 l12">
-					<input id="videoURL" type="url" class="validate">
-					<label for="videoURL">동영상 링크 (YouTube 추천)</label>
+					<input id="videoUrl" type="url" class="validate">
+					<label for="videoUrl">동영상 링크 (YouTube 추천)</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
-					<input id="webURL" type="url" class="validate">
-					<label for="webURL">Website 링크</label>
+					<input id="webUrl" type="url" class="validate">
+					<label for="webUrl">Website 링크</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
-					<input id="fbURL" type="url" class="validate">
-					<label for="fbURL">Facebook 링크</label>
+					<input id="fbUrl" type="url" class="validate">
+					<label for="fbUrl">Facebook 링크</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
-					<input id="kakaoURL" type="text" class="validate">
-					<label for="kakaoURL">Kakao Story 링크</label>
+					<input id="kakaoUrl" type="text" class="validate">
+					<label for="kakaoUrl">Kakao Story 링크</label>
 				</div>
 			</div>
 			<div class="row">
