@@ -11,6 +11,7 @@ var productSchema = new Schema({
   company_facebook: String,
   company_kakaostory: String,
   price: Number,
+  delivery_price: { type: Number, default: 1500 },
   old_price: Number,
   quantity: Number,
   current_quantity: Number,
