@@ -241,7 +241,7 @@
 	$(document).ready(function(){
 		$('.iframe-video').each(function(){
 			var url = $(this).attr("src");
-			$(this).attr("src",url+"&wmode=transparent");
+			$(this).attr("src",url+"?wmode=transparent");
 		});
 		$('.modal-trigger').leanModal({
 			dismissible: true, // Modal can be dismissed by clicking outside of the modal
