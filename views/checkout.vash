@@ -24,10 +24,11 @@
 							</select>
 						</div>
 					</div><!-- .row -->
+					<br>
 					<div class="row blue-grey-text text-darken-3">
 						<h5>배송정보</h5>
 						<span class="check-name">@(model.user ? model.user.shipping.full_name : model.order.shipping.full_name)</span>
-						<br><span class="check-number">@(model.user? model.user.shipping.phone : model.order.shipping.phone)</span>
+						<br><span class="check-number">@(model.user? model.user.shipping.phone_number : model.order.shipping.phone_number)</span>
 						<br><span class="check-address">@(model.user ? model.user.shipping.address : model.order.shipping.address)</span>
 						<br><span class="check-address">(우)@(model.user ? model.user.shipping.zipcode : model.order.shipping.zipcode)</span>
 						<br>

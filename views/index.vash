@@ -42,7 +42,7 @@
 	</div><!-- .modal-content -->
 	<div class="modal-footer blue-grey lighten-5 blue-grey-text text-darken-3">
 		<a class="blue-grey-text text-darken-3 left" href="/forgot">비밀번호를 잊으셨나요?</a>
-		<a class="blue-grey-text text-darken-3 right" href="/signup">회원가입</a>
+		<!-- <a class="blue-grey-text text-darken-3 right" href="/signup">회원가입</a> -->
 	</div>
 </div><!-- #modal-check -->
 <!-- End Login Modal -->
@@ -111,11 +111,12 @@
 
 			<!-- Mobile -->
 			<div class="hide-on-med-and-up mobile-buy blue-grey darken-3">
-				<div class="item-price white-text center" id="product_price_mobile">@model.product.price</div>
+				<div class="item-price-o blue-grey-text text-lighten-2" id="product_old_price_mobile">10000</div>
+				<div class="item-price white-text" id="product_price_mobile">@model.product.price</div>
 				@if (model.user) {
 					<div class="hide-on-med-and-up">
 						<a class="modal-trigger" href="/checkout?product_id=@model.product.id">
-							<img class="btn-buy-mobile" src="/images/btn-buy-mobile_2.png" />
+							<img class="btn-buy-mobile" src="/images/btn-buy-mobile_2.png" alt="데일리 붐 쇼핑 몰"/>
 						</a>
 					</div>
 				}
@@ -152,8 +153,8 @@
 														@product.description
 													</p>
 												</div>
-												<div class="card-action">
-													<a href="#"><i class="fa fa-thumbs-up fa-fw"></i> 사고싶다 <!--<span class="badge">5</span>--></a>
+												<div class="card-action center">
+													<a class="waves-effect waves-light blue-grey-text text-darken-3" href="#"><i class="fa fa-thumbs-up fa-fw"></i> 사고싶다 <!--<span class="badge">5</span>--></a>
 												</div>
 											</div>
 										</div>
@@ -252,7 +253,7 @@
 		$('.collapsible').collapsible({
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
-		$("#product_price, #product_price_mobile, #old_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
+		$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
 		var owl = $("#db-past");
 		owl.owlCarousel({
 			items : 3,

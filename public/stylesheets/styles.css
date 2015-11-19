@@ -4,9 +4,15 @@
 @import url(https://fonts.googleapis.com/css?family=Candal);
 @import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
 @font-face {
-  font-family: '256bytes';
-  src: url('/fonts/bulkypix.ttf'); /* IE9 Compat Modes */
-  src: url('/fonts/bulkypix.ttf') format('truetype'); /* Safari, Android, iOS */
+  font-family: 'BulkyPixels';
+  src: url('/fonts/bulkypix-webfont.eot');
+  src: url('/fonts/bulkypix-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/bulkypix-webfont.woff2') format('woff2'),
+       url('/fonts/bulkypix-webfont.woff') format('woff'),
+       url('/fonts/bulkypix-webfont.ttf') format('truetype'),
+       url('/fonts/bulkypix-webfont.svg#bulky_pixelsregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 @media only screen and (min-width: 0) {} /* mobile portrait */
 @media only screen and (min-width: 601px) {} /* mobile landscape */
@@ -96,6 +102,20 @@ input[type=number]::-webkit-outer-spin-button {
 /* Admin */
 @media only screen and (min-width: 0) {
   .admin-nav {
+    display: none;
+    position: fixed;
+    right: 5px;
+    top: 55px;
+    z-index: 100;
+  }
+  .admin-nav a {
+    display: block;
+    width: 215px;
+    margin-bottom: 4px;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .admin-nav {
     display: block;
     position: fixed;
     right: 10px;
@@ -108,8 +128,20 @@ input[type=number]::-webkit-outer-spin-button {
     margin-bottom: 10px;
   }
 }
-@media only screen and (min-width: 601px) {}
-@media only screen and (min-width: 992px) {}
+@media only screen and (min-width: 992px) {
+  .admin-nav {
+    display: block;
+    position: fixed;
+    right: 10px;
+    top: 100px;
+    z-index: 100;
+  }
+  .admin-nav a {
+    display: block;
+    width: 215px;
+    margin-bottom: 10px;
+  }
+}
 @media only screen and (min-width: 1200px) {}
 
 /* Navbar */
@@ -133,7 +165,7 @@ input[type=number]::-webkit-outer-spin-button {
     vertical-align: middle;
   }
   .d-clock {
-    font-family: '256bytes', sans-serif;
+    font-family: 'BulkyPixels', sans-serif;
     font-size: 2em;
     line-height: 2.2;
     vertical-align: middle;
@@ -159,7 +191,7 @@ input[type=number]::-webkit-outer-spin-button {
     vertical-align: middle;
   }
   .d-clock {
-    font-family: '256bytes', sans-serif;
+    font-family: 'BulkyPixels', sans-serif;
     font-size: 3em;
     line-height: 1.6;
     vertical-align: middle;
@@ -184,7 +216,7 @@ input[type=number]::-webkit-outer-spin-button {
     vertical-align: middle;
   }
   .d-clock {
-    font-family: '256bytes', sans-serif;
+    font-family: 'BulkyPixels', sans-serif;
     font-size: 3em;
     line-height: 100px;
     vertical-align: middle;
@@ -612,7 +644,7 @@ input[type=number]::-webkit-outer-spin-button {
     bottom: 0px;
     margin-top: -15px;
     border: 2px solid #fff;
-    border-radius: 50%;
+    border-radius: 5px;
     padding: 2px;
     background-color: rgba(96, 125, 139, .5);
     z-index: 10;
@@ -624,8 +656,8 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 1.4em;
   }
   .item-price {
-    display: inline-block;
-    font-size: 0.95em;
+    display: block;
+    font-size: 1em;
     margin-top: -7px;
     padding-top: 0;
   }
@@ -735,7 +767,7 @@ input[type=number]::-webkit-outer-spin-button {
     bottom: 0px;
     margin-top: -10px;
     border: 2px solid #fff;
-    border-radius: 50%;
+    border-radius: 5px;
     padding: 2px;
     background-color: rgba(96, 125, 139, .5);
     z-index: 10;
@@ -779,6 +811,10 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 1.4em;
   }
   /* custom card */
+  .card .card-content.past {
+    height: 200px;
+    overflow-y: scroll;
+  }
   .card .card-image img {
     border-radius: 0;
   }
@@ -857,7 +893,7 @@ input[type=number]::-webkit-outer-spin-button {
     bottom: 10px;
     margin-top: -20px;
     border: 2px solid #fff;
-    border-radius: 50%;
+    border-radius: 5px;
     padding: 2px;
     background-color: rgba(96, 125, 139, .5);
     z-index: 10;

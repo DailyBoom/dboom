@@ -16,30 +16,25 @@
 						</div>
 						<img class="" src="/@product.images[0]" alt="@product.name" />
 					</div><!-- .card-image -->
-					<div class="card-content">
+					<div class="card-content past">
 						<p class="blue-grey-text text-darken-1 truncate">@product.name</p>
 						<p class="blue-grey-text text-darken-1">
 							@product.description
 						</p>
-						<a href="/products/edit/@product.id">Edit</a><a href="/products/delete/@product.id">Delete</a>
 					</div><!-- .card-content -->
-					<div class="card-action">
-						<a href="#"><i class="fa fa-history fa-fw"></i> 사고싶다 <!--<span class="badge">5</span>--></a>
+					<div class="card-action blue-grey lighten-5 center">
+						<a class="waves-effect waves-light blue-grey-text text-darken-3" href="#"><i class="fa fa-thumbs-up fa-fw"></i> 사고싶다 <!--<span class="badge">5</span>--></a>
+						@if (model.user) {
+							if (model.user.admin == 1) {
+								<a class="waves-effect waves-light red-text text-darken-3 right" href="/products/delete/@product.id">Delete</a>
+								<a class="waves-effect waves-light amber-text text-darken-3 right" href="/products/edit/@product.id">Edit</a>
+						} }
 					</div>
 				</div><!-- .card -->
 			</div><!-- .col -->
 
 		})
 
-		<script>
-			$(document).ready(function(){
-				$('.slider').slider({
-					full_width: true,
-					indicators: true,
-					interval: 60000
-				});
-			});
-		</script>
 	</div><!-- .row -->
 </div><!-- .container -->
 	})
