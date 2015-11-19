@@ -14,6 +14,18 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Hanna';
+  src: url('/fonts/bm-hanna-webfont.eot');
+  src: url('/fonts/bm-hanna-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/bm-hanna-webfont.woff2') format('woff2'),
+       url('/fonts/bm-hanna-webfont.woff') format('woff'),
+       url('/fonts/bm-hanna-webfont.ttf') format('truetype'),
+       url('/fonts/bm-hanna-webfont.svg#bm_hanna_ttfregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
 @media only screen and (min-width: 0) {} /* mobile portrait */
 @media only screen and (min-width: 601px) {} /* mobile landscape */
 @media only screen and (min-width: 992px) {} /* tablet */
@@ -281,11 +293,11 @@ input[type=number]::-webkit-outer-spin-button {
     width: 80%;
     max-height: 85%;
   }
-  .modal .modal-content {
+  .modal .modal-content-c {
     display: block;
     padding: 10px;
   }
-  .modal-header {
+  .modal-header-c {
     height: 1.8em;
     width: 100%;
     padding: 5px 0;
@@ -293,7 +305,7 @@ input[type=number]::-webkit-outer-spin-button {
     vertical-align: middle;
     font-size: 1.5em;
   }
-  .modal .modal-footer {
+  .modal .modal-footer-c {
     height: 50px;
     width: 100%;
     padding: 10px 20px;
@@ -312,18 +324,18 @@ input[type=number]::-webkit-outer-spin-button {
   .modal {
     width: 480px;
   }
-  .modal .modal-content {
+  .modal .modal-content- {
     display: block;
     padding: 10px 20px;
   }
-  .modal-header {
+  .modal-header-c {
     height: 1.8em;
     width: 100%;
     line-height: 1.8em;
     vertical-align: middle;
     font-size: 1.8em;
   }
-  .modal .modal-footer {
+  .modal .modal-footer-c {
     height: 50px;
     width: 100%;
     padding: 10px 30px;
@@ -362,18 +374,18 @@ input[type=number]::-webkit-outer-spin-button {
   .modal {
     width: 480px;
   }
-  .modal .modal-content {
+  .modal .modal-content- {
     display: block;
     padding: 10px 20px;
   }
-  .modal-header {
+  .modal-header-c {
     height: 1.8em;
     width: 100%;
     line-height: 1.8em;
     vertical-align: middle;
     font-size: 1.8em;
   }
-  .modal .modal-footer {
+  .modal .modal-footer-c {
     height: 50px;
     width: 100%;
     padding: 10px 30px;
@@ -1036,13 +1048,13 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: 4px;
     overflow: hidden;
   }
-  .modal-c .modal-content {
+  .modal-c .modal-content-c {
     padding: 10px 20px;
   }
   .modal-c .social-login-wrapper {
     margin-top: 10px;
   }
-  .modal-c .modal-footer {
+  .modal-c .modal-footer-c {
     padding: 0 20px;
     height: 2.5em;
     line-height: 2.5;
@@ -1096,13 +1108,13 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: 4px;
     overflow: hidden;
   }
-  .modal-c .modal-content {
+  .modal-c .modal-content-c {
     padding: 10px 20px;
   }
   .modal-c .social-login-wrapper {
     margin-top: 10px;
   }
-  .modal-c .modal-footer {
+  .modal-c .modal-footer-c {
     padding: 0 20px;
     height: 2.5em;
     line-height: 2.5;
@@ -1135,13 +1147,13 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: 4px;
     overflow: hidden;
   }
-  .modal-c .modal-content {
+  .modal-c .modal-content-c {
     padding: 10px 20px;
   }
   .modal-c .social-login-wrapper {
     margin-top: 10px;
   }
-  .modal-c .modal-footer {
+  .modal-c .modal-footer-c {
     padding: 0 20px;
     height: 2.5em;
     line-height: 2.5;
