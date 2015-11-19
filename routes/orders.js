@@ -131,7 +131,8 @@ router.get('/checkout', function(req, res) {
         req.session.product = req.query.product_id;
       if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
         order.populate('product', function(err, orderPop) {
-          orderPop.option = Object.keys(orderPop.product.options)[0].name;
+          console.log(orderPop.product.options);
+          orderPop.option = orderPop.product.options[0].name;
           orderPop.quantity = 1;
           console.log(orderPop);
           orderPop.save(function(err) {
