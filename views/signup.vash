@@ -50,7 +50,7 @@
 										<label for="full_name">받는분 이름</label>
 									</div>
 									<div class="input-field col s12 m6 l6">
-										<input id="phone_number" type="tel" class="validate" name="phone_number" value="@model.Validator.getValue('phone_number')" maxlength="11">
+										<input id="phone_number" type="text" class="validate" name="phone_number" value="@model.Validator.getValue('phone_number')" maxlength="11">
 										<label for="phone_number"><span class="signup-info red-text"><i class="fa fa-exclamation-circle"></i> "-" 없는 숫자 형식으로 입력해 주세요.</span></label>
 									</div>
 								</div>
@@ -60,7 +60,7 @@
 										<label for="address1">배송지 주소</label>
 									</div>
 									<div class="input-field col s12 m3 l3">
-										<input id="zipcode" type="number" class="validate" placeholder="100123" name="zipcode" value="@model.Validator.getValue('zipcode')" maxlength="6">
+										<input id="zipcode" type="text" class="validate" placeholder="100123" name="zipcode" value="@model.Validator.getValue('zipcode')" maxlength="6">
 										<label for="zipcode">우편번호</label>
 									</div>
 								</div>
