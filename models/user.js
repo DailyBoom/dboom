@@ -18,8 +18,8 @@ var userSchema = new Schema({
     address: String,
     address_extra: String,
     country: String,
-    zipcode: Number,
-    phone_number: Number
+    zipcode: String,
+    phone_number: String
   },
   role: { type: String, required: true },
   created_at: { type : Date, default : Date.now },
