@@ -297,7 +297,7 @@ input[type=number]::-webkit-outer-spin-button {
     display: block;
     padding: 10px;
   }
-  .modal-header-c {
+  .modal-header {
     height: 1.8em;
     width: 100%;
     padding: 5px 0;
@@ -1048,13 +1048,13 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: 4px;
     overflow: hidden;
   }
-  .modal-c .modal-content-c {
+  .modal-c .modal-content {
     padding: 10px 20px;
   }
   .modal-c .social-login-wrapper {
     margin-top: 10px;
   }
-  .modal-c .modal-footer-c {
+  .modal-c .modal-footer {
     padding: 0 20px;
     height: 2.5em;
     line-height: 2.5;
@@ -1108,13 +1108,13 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: 4px;
     overflow: hidden;
   }
-  .modal-c .modal-content-c {
+  .modal-c .modal-content {
     padding: 10px 20px;
   }
   .modal-c .social-login-wrapper {
     margin-top: 10px;
   }
-  .modal-c .modal-footer-c {
+  .modal-c .modal-footer {
     padding: 0 20px;
     height: 2.5em;
     line-height: 2.5;
@@ -1147,13 +1147,13 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: 4px;
     overflow: hidden;
   }
-  .modal-c .modal-content-c {
+  .modal-c .modal-content {
     padding: 10px 20px;
   }
   .modal-c .social-login-wrapper {
     margin-top: 10px;
   }
-  .modal-c .modal-footer-c {
+  .modal-c .modal-footer {
     padding: 0 20px;
     height: 2.5em;
     line-height: 2.5;
