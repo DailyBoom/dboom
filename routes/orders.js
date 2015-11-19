@@ -178,6 +178,7 @@ router.get('/checkout', function(req, res) {
                   if (!error && body.code == 0) {
                       var leftQuantity;
                       orderPop.product.options.forEach(function(option){
+                        console.log(orderPop.option);
                         if (option.name === orderPop.option)
                          leftQuantity = option.quantity;
                       });

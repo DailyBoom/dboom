@@ -63,8 +63,7 @@ router.post('/login', passport.authenticate('local', {
 });
 
 router.get('/logout', function(req, res){
-  if (req.session.order)
-    req.session.order = null;
+  req.session.destroy();
   req.logout();
   res.redirect('/');
 });

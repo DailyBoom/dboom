@@ -160,7 +160,7 @@
 		});
 		$(wrapper).on("click","#remove_option", function(e){ //user click on remove text
 			e.preventDefault();
-			if (x > 1) {
+			if (x >= 1) {
 				$('.options_row').last().remove(); x--;
 			}
 		})
