@@ -8,6 +8,10 @@
 
 		@model.products.forEach(function(product){
 
+			<div class="card">
+
+			</div>
+
 		<div class="col s12 m6 l6">
 			<div class="card">
 				<div class="card-image">
@@ -45,7 +49,7 @@
 					</div><!-- .details-bottom -->
 				</div><!-- .card-reveal -->
 				<div class="card-action">
-					<a href="#"><i class="fa fa-history"></i>&nbsp;&nbsp;Bring it back! <span class="badge">5</span></a>
+					<a href="#"><i class="fa fa-history fa-fw"></i> 사고싶다 <!--<span class="badge">5</span>--></a>
 				</div>
 			</div><!-- /.card -->
 		</div><!-- .col -->
