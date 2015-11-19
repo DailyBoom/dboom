@@ -146,6 +146,22 @@
 					[2015,9,20]
 				]
 		  });
+		var max_fields      = 4; //maximum input boxes allowed
+		var wrapper         = $("#options_wrapper"); //Fields wrapper
+		var add_button      = $("#add_option"); //Add button ID
+		var x = @(i - 1) //initlal text box count
+		$(add_button).click(function(e){ //on add input button click
+			e.preventDefault();
+			if(x++ < max_fields) { //max input box allowed
+				$(wrapper).append('<div class="row options_row"><div class="input-field col s12 m6 l6"><input id="option_name'+x+'" type="text" class="validate" name="options['+x+'][name]"><label for="option_name'+x+'">옵션 * 예) 상품 색성</label></div><div class="input-field col s12 m6 l6"><input id="o_quatity'+x+'" type="number" class="validate" name="options['+x+'][quantity]"><label for="o_quantity'+x+'">옵션 수량 *</label></div></div>'); //add input box
+			}
+		});
+		$(wrapper).on("click","#remove_option", function(e){ //user click on remove text
+			e.preventDefault();
+			if (x > 1) {
+				$('.options_row').last().remove(); x--;
+			}
+		})
 		});
 </script>
 }) })
