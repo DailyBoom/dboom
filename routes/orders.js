@@ -47,12 +47,13 @@ var isMerchantOrAdmin = function (req, res, next) {
 var hasShipping = function(obj) {
   if (!obj.shipping)
     return false;
-  if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.country && obj.shipping.address && obj.shipping.zipcode)
+  if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.country && obj.shipping.address)
     return true;
   return false;
 }
 
 var reservePayco = function(order) {
+  console.log(order.product.price+"//"+order.quantity+"//"+order.product.delivery_price);
   var payco = {
     "sellerKey": config.get("Payco.sellerKey"),
     "sellerOrderReferenceKey": order._id,
@@ -78,6 +79,7 @@ var reservePayco = function(order) {
     ]
   };
 
+  console.log(payco);
   return payco;
 }
 
@@ -129,43 +131,45 @@ router.get('/checkout', function(req, res) {
       req.session.order = order.id;
       if (!req.session.product)
         req.session.product = req.query.product_id;
-      if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
         order.populate('product', function(err, orderPop) {
-          console.log(orderPop.product.options);
-          if (parseInt(orderPop.product.options[0].quantity) > 0){
+          if (parseInt(orderPop.product.options[0].quantity) > 0) {
             orderPop.option = orderPop.product.options[0].name;
           }
           else {
-            orderPop.product.options.forEach(function(option){
-               
+            orderPop.product.options.some(function(option){
+               if (parseInt(option.quantity) > 0) {
+                   orderPop.option = option.name;
+                   return true;
+               }
             });
           }
           orderPop.quantity = 1;
-          console.log(orderPop);
           orderPop.save(function(err) {
-            var payco = reservePayco(orderPop);
-            request.post(
-                config.get("Payco.host")+'/outseller/order/reserve',
-                { json: payco },
-                function (error, response, body) {
-                    console.log(body)
-                    if (!error && body.code == 0) {
-                        var leftQuantity;
-                        orderPop.product.options.forEach(function(option){
-                          if (option.name === orderPop.option)
-                          leftQuantity = option.quantity;
-                        });
-                        res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
+            if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
+              console.log(orderPop);
+                var payco = reservePayco(orderPop);
+                request.post(
+                    config.get("Payco.host")+'/outseller/order/reserve',
+                    { json: payco },
+                    function (error, response, body) {
+                        console.log(body)
+                        if (!error && body.code == 0) {
+                            var leftQuantity;
+                            orderPop.product.options.forEach(function(option){
+                              if (option.name === orderPop.option)
+                              leftQuantity = option.quantity;
+                            });
+                            res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
+                        }
+                        else
+                          res.redirect('/');
                     }
-                    else
-                      res.redirect('/');
-                }
-            );
-          });
-        })
-      }
-      else
-        res.redirect('/shipping');
+                );
+              }
+              else
+                res.redirect('/shipping');
+        });
+      });
     });
   }
   else {
@@ -216,7 +220,6 @@ router.post('/checkout', function(req, res) {
             req.session.product = order.product.id;
           console.log(order);
           var payco = reservePayco(order);
-          console.log(payco);
           request.post(
               config.get("Payco.host")+'/outseller/order/reserve',
               { json: payco },
