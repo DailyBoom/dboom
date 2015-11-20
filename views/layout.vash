@@ -63,10 +63,11 @@
 		<script src="/javascripts/owl.carousel.min.js"></script>
 		<script src="/javascripts/bxslider.min.js"></script>
 		<script src="/javascripts/fitvids.js"></script>
+		<script src="/javascripts/moment.js"></script>
+		<script src="/javascripts/moment-timezone-with-data.js"></script>
     <!-- Custom JS -->
 		<script src="/javascripts/formatCurrency/jquery.formatCurrency-1.4.0.min.js"></script>
 		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.ko-KR.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
     <script src="/javascripts/popOut.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <!-- Modernizr -->
@@ -199,13 +200,21 @@
     <script>
       $(window).load(function() {
         $('#time-left-label').fadeOut(2500, function(){
-          var momentTom = moment().add(1, 'days').hours(0).minutes(0).seconds(0);
-          var timeLeft = moment.duration(momentTom.diff(moment()), 'milliseconds');
+          var now = moment().tz("Asia/Seoul");
+          var momentTom;
+          if (now.day() == 6)
+            momentTom = moment().add(2, 'days').hours(0).minutes(0).seconds(0);
+          else
+            momentTom = moment().add(1, 'days').hours(0).minutes(0).seconds(0);
+          var timeLeft = moment.duration(momentTom.diff(now), 'milliseconds');
           $('#time-left').hide();
           $('#time-left').html(timeLeft.hours() + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
           $('#time-left').fadeIn(1000);
           var interval = setInterval(function() {
-            timeLeft = moment.duration(momentTom.diff(moment()), 'milliseconds');
+            timeLeft = moment.duration(momentTom.diff(moment().tz("Asia/Seoul").format()), 'milliseconds');
+            if (timeLeft._milliseconds == 0) {
+              window.reload();
+            }
             $('#time-left').html(timeLeft.hours() + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
           }, 1000);
         });
