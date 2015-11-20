@@ -29,7 +29,7 @@
 											<div class="o-name">@order._id</div><br>
 
 											<div class="o-label">주문 상품&nbsp;:&nbsp;</div>
-											@if(order.product.name) {
+											@if(order.product) {
 												<div class="o-name">@order.product.name</div><br>
 											}
 											else {
