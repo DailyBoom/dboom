@@ -1,6 +1,6 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-   <div class="container">
+   <div class="container min-h-lg">
 		 <div class="row">
 
 			 <h3 class="blue-grey-text text-darken-4">주문정보</h3>
@@ -43,27 +43,29 @@
 					<span class="col s9 order-label">
 						&nbsp;대한민국
 					</span>
-
-
 			 	</div><!-- .row -->
 			 </div><!-- .col -->
 
-			 <div class="col s12 m4 l4">
-			 	<div class="row">
-			 		<div class="white z-depth-1">
-			 			<img class="responsive-img" src="@model.order.product.images[0]" alt="" />
-			 			<div class="check-price-box center">
-			 				<span class="check-item-name blue-grey-text text-darken-1 truncate"><b></b></span>
-			 				<span class="check-item-name blue-grey-text text-darken-2 truncate">@model.order.product.name</span>
-			 				<!-- <span class="past-price-o grey-text"><i class="fa fa-krw"></i> 40,000</span><br> -->
-			 				<span class="check-price blue-grey-text text-darken-3"><i class="fa fa-krw"></i> @model.order.product.price</span>
-			 			</div>
-
-			 		</div>
-			 	</div><!-- .row -->
-			 </div><!-- .col -->
+			 <div class="col s12 m6 l4">
+ 				<div class="row blue-grey-text text-darken-3">
+ 					<div class="summary-box white z-depth-1 right center-align">
+ 						<img class="responsive-img" src="/@model.order.product.images[0]" alt="" />
+ 						<div class="check-price-box center">
+ 							<span class="check-item-name blue-grey-text text-darken-1 truncate"><b>@model.order.product.brand</b></span>
+ 							<span class="check-item-name blue-grey-text text-darken-2 truncate">@model.order.product.name<br>@model.order.option</span>
+ 							<span class="check-item-name blue-grey-text text-darken-2">+ <span id="delivery_price">@model.order.product.delivery_price</span> 배송비</span><br>
+ 							<span class="check-price blue-grey-text text-darken-3" id="product_price"> @(model.order.quantity * model.order.product.price + model.order.product.delivery_price)</span>
+ 						</div>
+ 					</div>
+ 				</div><!-- .row -->
+ 			</div><!-- .col -->
 
 		 </div><!-- .row -->
    </div><!-- .container -->
+	 <script>
+	 $(document).ready(function(){
+			$("#product_price, #product_price_mobile, #delivery_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
+	 });
+	 </script>
   })
 })
