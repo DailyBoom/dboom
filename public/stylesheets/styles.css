@@ -1526,7 +1526,10 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 10px;
 }
 
-/** Merchant Timeline **/
+/*
+ * Merchant Timeline
+ *
+ */
 .cd-container {
   /* this class is used to give a max-width to the element it is applied to, and center it horizontally when it reaches that max-width */
   width: 90%;
@@ -1601,6 +1604,16 @@ input[type=number]::-webkit-outer-spin-button {
   height: 40px;
   border-radius: 50%;
   box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+}
+.cd-timeline-img i.fa {
+  display: block;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  margin-left: -20px;
+  margin-top: -22px;
 }
 .cd-timeline-img img {
   display: block;

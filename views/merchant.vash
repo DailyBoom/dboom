@@ -21,10 +21,11 @@
 			<!-- timeline -->
 			<section id="cd-timeline">
 				<div class="cd-timeline-block">
-					<div class="cd-timeline-img">
-						<img src="img/cd-icon-picture.svg" alt="Picture">
+					<div class="cd-timeline-img green blue-grey-text text-darken-2">
+						<!-- <img src="/images/icons/cd-icon-picture.svg" alt="Picture"> -->
+						<!-- <i class="fa fa-clock-o fa-fw fa-3x"></i> -->
 					</div> <!-- cd-timeline-img -->
-					<div class="cd-timeline-content">
+					<div class="cd-timeline-content green-text text-darken-3">
 						<h2>데일리 붐은</h2>
 						<p>하루 24시간 오직 한개의 상품만을 판매함으로써 매출을 획기적으로 증가시켜 드립니다.</p>
 						<!-- <p>데일리 붐은 하루 24시간 오직 한개의 상품만을 판매함으로써 매출을 획기적으로 증가시켜 드립니다.</p> -->
@@ -33,37 +34,41 @@
 					</div> <!-- cd-timeline-content -->
 				</div> <!-- cd-timeline-block -->
 				<div class="cd-timeline-block">
-					<div class="cd-timeline-img">
-						<img src="img/cd-icon-picture.svg" alt="Picture">
+					<div class="cd-timeline-img yellow blue-grey-text text-darken-2">
+						<!-- <img src="/images/icons/cd-icon-picture.svg" alt="Picture"> -->
+						<!-- <i class="fa fa-money fa-fw fa-3x"></i> -->
 					</div> <!-- cd-timeline-img -->
-					<div class="cd-timeline-content">
+					<div class="cd-timeline-content yellow-text text-darken-3">
 						<h2>데일리 붐은</h2>
 						<p>초기 투자비용에 대한 부담없이 새로운 신규 고객을 만나게 해 드립니다.</p>
 					</div> <!-- cd-timeline-content -->
 				</div>
 				<div class="cd-timeline-block">
-					<div class="cd-timeline-img">
-						<img src="img/cd-icon-picture.svg" alt="Picture">
+					<div class="cd-timeline-img blue blue-grey-text text-darken-2">
+						<!-- <img src="/images/icons/cd-icon-picture.svg" alt="Picture"> -->
+						<!-- <i class="fa fa-medkit fa-fw fa-3x"></i> -->
 					</div> <!-- cd-timeline-img -->
-					<div class="cd-timeline-content">
+					<div class="cd-timeline-content blue-text text-darken-3">
 						<h2>데일리 붐은</h2>
 						<p>제휴 업체의 매출 및 브랜드 인지도 상승에 직접적인 도움을 드립니다.</p>
 					</div> <!-- cd-timeline-content -->
 				</div>
 				<div class="cd-timeline-block">
-					<div class="cd-timeline-img">
-						<img src="img/cd-icon-picture.svg" alt="Picture">
+					<div class="cd-timeline-img red blue-grey-text text-darken-2">
+						<!-- <img src="/images/icons/cd-icon-picture.svg" alt="Picture"> -->
+						<!-- <i class="fa fa-users fa-fw fa-3x"></i> -->
 					</div> <!-- cd-timeline-img -->
-					<div class="cd-timeline-content">
+					<div class="cd-timeline-content red-text text-darken-3">
 						<h2>데일리 붐은</h2>
 						<p>One Day 프로모션과 SNS를 활용하여 국내외 고객들에게 새로운 제품을 홍보해 드립니다.</p>
 					</div> <!-- cd-timeline-content -->
 				</div>
 				<div class="cd-timeline-block">
-					<div class="cd-timeline-img">
-						<img src="img/cd-icon-picture.svg" alt="Picture">
+					<div class="cd-timeline-img white blue-grey-text text-darken-2">
+						<!-- <img src="/images/icons/cd-icon-picture.svg" alt="Picture"> -->
+						<!-- <i class="fa fa-smile-o fa-fw fa-3x"></i> -->
 					</div> <!-- cd-timeline-img -->
-					<div class="cd-timeline-content">
+					<div class="cd-timeline-content blue-grey-text text-darken-3">
 						<h2>데일리 붐은</h2>
 						<p>고객의 만족도가 높은 제품을 재판매해 해 드립니다.</p>
 					</div> <!-- cd-timeline-content -->
