@@ -15,6 +15,7 @@ var config = require('config');
 var extend = require('util')._extend;
 var request = require("request");
 var slack = require('slack-notify')(config.get("Slack.webhookUrl"));
+var CSVTransform = require('csv-transform');
 
 var transporter = nodemailer.createTransport(smtpTransport({
     host: config.get('Nodemailer.host'),
@@ -574,6 +575,13 @@ router.post('/shipping', function(req, res) {
           }
         });
       }
+  });
+});
+
+router.get('/orders/extract', isAdmin, function(req, res) {
+  Order.find({}, {}, {$sort: {created_at: -1}}).populate('user').exec().then(function(file) {
+    console.log(file);
+    User.csvReadStream(file).pipe(res).on('error', function() { console.log("error"); });
   });
 });
 

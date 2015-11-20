@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
+var mongooseToCsv = require("mongoose-to-csv");
 var Schema = mongoose.Schema;
 
-var orderSChema = new Schema({
+var orderSchema = new Schema({
 	user: { type: Schema.Types.ObjectId, ref: 'User' },
 	product: { type: Schema.Types.ObjectId, ref: 'Product' },
 	status: String,
@@ -29,6 +30,17 @@ var orderSChema = new Schema({
 	}
 });
 
-var Order = mongoose.model("Order", orderSChema);
+orderSchema.plugin(mongooseToCsv, {
+	headers: 'option quantity fullname address country zipcode phone_number',
+	constraints: {
+		'fullname': 'user.shipping.fullname',
+		'address': 'user.shipping.address',
+		'country': 'user.shipping.country',
+		'zipcode': 'user.shipping.zipcode',
+		'phone_number': 'user.shipping.phone_number',
+	}
+});
+
+var Order = mongoose.model("Order", orderSchema);
 
 module.exports = Order;

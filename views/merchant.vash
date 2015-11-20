@@ -76,7 +76,7 @@
 			</section>
 			<!-- end timeline -->
 			<div class="row">
-				<form class="col s12 m12 l12 add-margin-bottom-md">
+				<form class="col s12 m12 l12 add-margin-bottom-md" method="post">
 		      <div class="row grey-text text-darken-3">
 						<div class="col s12 m8 offset-m2 l8 offset-l2">
 							<p class="info-title amber-text text-darken-3">판매자 문의</p>
