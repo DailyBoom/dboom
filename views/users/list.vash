@@ -30,8 +30,9 @@
 							<td>
 								<a class="users-link blue-grey-text" href="/users/view/@user.id"><i class="fa fa-user fa-fw fa-1-5x"></i></a>
 								<a class="users-link blue-grey-text" href="/users/edit/@user.id"><i class="fa fa-pencil fa-fw fa-1-5x"></i></a>
+								<a class="users-link blue-grey-text" href="/users/is_merchant/@user.id" onclick="return confirm('User is Merchant?')"><i class="fa fa-street-view fa-fw fa-1-5x"></i></a>
 								<a class="users-link blue-grey-text" href="/orders/list/@user.id"><i class="fa fa-truck fa-fw fa-1-5x"></i></a>
-								<a class="users-link red-text" href="/users/delete/@user.id"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
+								<a class="users-link red-text" href="/users/delete/@user.id" onclick="return confirm('Delete User?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
 							</td>
 						</tr>
 						})
