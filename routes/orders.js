@@ -186,7 +186,7 @@ router.get('/checkout', function(req, res) {
               config.get("Payco.host")+'/outseller/order/reserve',
               { json: payco },
               function (error, response, body) {
-                  console.log(body)
+                  console.log(body);
                   if (!error && body.code == 0) {
                       var leftQuantity;
                       orderPop.product.options.forEach(function(option){

@@ -132,9 +132,19 @@ router.post('/users/edit_password', isAuthenticated, function(req, res) {
   });
 });
 
-// router.get('/users/edit', isAuthenticated, function(req, res){
-//   res.render('users/edit');
-// });
+router.get('/users/view/:id', isAdmin, function(req, res) {
+  User.findOne({_id: req.params.id}, function(err, user) {
+    if (err)
+      console.log(err);
+    if (!user)
+      res.redirect('/users/list')
+    res.render('users/view', { user: user });
+  });
+});
+
+router.get('/users/edit', isAuthenticated, function(req, res){
+  res.render('users/edit');
+});
 
 router.post('/users/edit', isAuthenticated, function(req, res) {
   var user = req.user;
@@ -171,7 +181,6 @@ router.post('/users/edit', isAuthenticated, function(req, res) {
     }
     else {
       user.username = req.body.username;
-      user.password = req.body.password;
       user.email = req.body.email;
       user.shipping = {
         full_name: req.body.full_name,
