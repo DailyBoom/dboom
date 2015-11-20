@@ -2,14 +2,13 @@
 	@html.block("body", function(model) {
    <div class="container min-h-lg">
 		 <div class="row">
-			 <h3 class="blue-grey-text text-darken-3">주문내역</h3>
-			 <br>
-			 <div class="right">
-			 	<span class="blue-grey-text text-darken-2 right">View Order <i class="fa fa-eye fa-fw fa-1-5x"></i></span>
-				<br>
-				<span class="red-text text-darken-3 right">Cancel Order <i class="fa fa-times fa-fw fa-1-5x"></i></span>
-			 </div>
-			 <br>
+			 <h3 class="blue-grey-text text-darken-3">주문내역
+				 <div class="legend right">
+				  <span class="blue-grey-text text-darken-2">View Order <i class="fa fa-eye fa-fw fa-1-5x"></i></span>
+				  <span class="red-text text-darken-3">Cancel Order <i class="fa fa-ban fa-fw fa-1-5x"></i></span>
+				  <span class="red-text text-darken-3">Delete Order <i class="fa fa-times fa-fw fa-1-5x"></i></span>
+				 </div>
+			 </h3>
 			 <table class="bordered highlight table-sm">
 			 	<thead>
 			 		<tr>
@@ -39,7 +38,8 @@
 			 			<td>@order.status</td>
 			 			<td>
 			 				<a class="users-link blue-grey-text text-darken-2" href="/orders/view/@order.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
-			 				<a class="users-link red-text text-darken-3" href="/orders/cancel/@order.id"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
+			 				<a class="users-link red-text text-darken-3" href="/orders/cancel/@order.id"><i class="fa fa-ban fa-fw fa-1-5x"></i></a>
+			 				<a class="users-link red-text text-darken-3" href="/orders/delete/@order.id" onclick="return confirm('Are you sure?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
 			 			</td>
 			 		</tr>
 					})
