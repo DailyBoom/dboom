@@ -30,17 +30,8 @@
 			</div>
 			<br>
 			<br>
+			<img class="responsive-img z-depth-1" src="/images/db_cover.jpg">
 		</div><!-- .container -->
-		@if(!model.is_phone) {
-			<div class="parallax-container">
-	      <div class="parallax">
-					<img class="ie-fix" src="/images/db_cover.jpg">
-				</div>
-	    </div>
-		}
-		else {
-			<img class="responsive-img" src="/images/db_cover.jpg">
-		}
 		<script>
 			$(document).ready(function(){
 				$('.parallax').parallax();
