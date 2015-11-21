@@ -25,9 +25,12 @@ var isAuthenticated = function (req, res, next) {
 
 /* GET Home Page */
 router.get('/', function(req, res, next) {
-  var now = moment().format("MM/DD/YYYY");
+  var now
   if (moment().day() == 0)
-    now.substract(1, 'days');
+    now = moment().subtract(1, 'days').format("MM/DD/YYYY");
+  else
+    now = moment().format("MM/DD/YYYY");
+
   Product.findOne({scheduled_at: now}, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
     Product.find({scheduled_at: {$lt: now} }).limit(6).sort({ 'scheduled_at' : -1 }).exec(function (err, pastProducts) {
       res.render('index', { progress: 70, product: product, pastProducts: pastProducts, moment: moment });
