@@ -9,6 +9,14 @@
 				  <span class="red-text text-darken-3">Delete Order <i class="fa fa-times fa-fw fa-1-5x"></i></span>
 				 </div>
 			 </h3>
+			<form action="/orders/get_by_date" method="get">
+				<div class="row">
+					<div class="col s12 m4 l4 ">
+						<label for="order_date">주문 날짜</label>
+						<input type="date" class="datepicker" id="order_date" name="order_date">
+					</div>
+				</div><!-- .col -->
+			</form>
 			 <table class="bordered highlight table-sm">
 			 	<thead>
 			 		<tr>
@@ -35,11 +43,13 @@
 						}
 			 			<td>@order.quantity</td>
 			 			<td>@order.payco.orderTotalAmt</td>
-			 			<td>@order.status</td>
+			 			<td class="@if(order.status=='Paid'){ green-text text-darken-1 }else{ blue-grey-text text-darken-2 }">@order.status</td>
 			 			<td>
 			 				<a class="users-link blue-grey-text text-darken-2" href="/orders/view/@order.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
 			 				<a class="users-link red-text text-darken-3" href="/orders/cancel/@order.id"><i class="fa fa-ban fa-fw fa-1-5x"></i></a>
-			 				<a class="users-link red-text text-darken-3" href="/orders/delete/@order.id" onclick="return confirm('Are you sure?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
+							@if(model.user.admin == 1){
+				 				<a class="users-link red-text text-darken-3" href="/orders/delete/@order.id" onclick="return confirm('Are you sure?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
+							}
 			 			</td>
 			 		</tr>
 					})
@@ -60,5 +70,11 @@
 		 </div><!-- .row -->
 		 <br>
    </div><!-- .container -->
+	 <script>
+	 $('.datepicker').pickadate({
+		 selectMonths: true, // Creates a dropdown to control month
+		 selectYears: 15 // Creates a dropdown of 15 years to control year
+	 });
+	 </script>
   })
 })
