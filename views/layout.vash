@@ -202,20 +202,21 @@
         $('#time-left-label').fadeOut(2500, function(){
           var now = moment().tz("Asia/Seoul");
           var momentTom;
-          if (now.day() == 6)
-            momentTom = moment().add(2, 'days').hours(0).minutes(0).seconds(0);
+          if (now.day() == 6) {
+            momentTom = moment().tz("Asia/Seoul").add(2, 'days').hours(0).minutes(0).seconds(0);
+          }
           else
-            momentTom = moment().add(1, 'days').hours(0).minutes(0).seconds(0);
+            momentTom = moment().tz("Asia/Seoul").add(1, 'days').hours(0).minutes(0).seconds(0);
           var timeLeft = moment.duration(momentTom.diff(now), 'milliseconds');
           $('#time-left').hide();
-          $('#time-left').html(timeLeft.hours() + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+          $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
           $('#time-left').fadeIn(1000);
           var interval = setInterval(function() {
-            timeLeft = moment.duration(momentTom.diff(moment().tz("Asia/Seoul").format()), 'milliseconds');
+            timeLeft = moment.duration(momentTom.diff(moment().tz("Asia/Seoul"), 'milliseconds'));
             if (timeLeft._milliseconds == 0) {
               window.reload();
             }
-            $('#time-left').html(timeLeft.hours() + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+            $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
           }, 1000);
         });
         $('.dropdown-button').dropdown({

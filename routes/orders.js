@@ -579,10 +579,22 @@ router.post('/shipping', function(req, res) {
 });
 
 router.get('/orders/extract', isAdmin, function(req, res) {
-  Order.find({}, {}, {$sort: {created_at: -1}}).populate('user').exec().then(function(file) {
-    console.log(file);
-    User.csvReadStream(file).pipe(res).on('error', function() { console.log("error"); });
-  });
+  var stream = Order.find({}, {}, {$sort: {created_at: -1}}).populate('user').stream();
+
+  stream.on('error', function (err) {
+    console.log(err);
+    res.end();
+  })
+  
+  stream.on('data', function () {
+    res.writeHead(200, {
+      'Content-Type': 'text/csv',
+      'Content-Length': stream.size,
+      'Content-Disposition': 'attachment; filename=orders.csv'
+    });
+    console.log(stream.length);
+    stream.pipe(Order.csvTransformStream()).pipe('res');
+  })
 });
 
 module.exports = router;
