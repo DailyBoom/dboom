@@ -44,7 +44,7 @@
 							<label>배송 국가</label>
 						</div>
 					</div>
-					@if (!model.user) {
+					@if (!model.user || !model.user.email) {
 						<div class="row">
 							<div class="input-field col s12">
 								<input id="email" name="email" type="email" class="validate" placeholder="someone@dailyboom.co" value="@model.Validator.getValue('email')">
