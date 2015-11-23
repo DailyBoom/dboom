@@ -14,18 +14,6 @@
   font-weight: normal;
   font-style: normal;
 }
-@font-face {
-  font-family: 'Hanna';
-  src: url('/fonts/bm-hanna-webfont.eot');
-  src: url('/fonts/bm-hanna-webfont.eot?#iefix') format('embedded-opentype'),
-       url('/fonts/bm-hanna-webfont.woff2') format('woff2'),
-       url('/fonts/bm-hanna-webfont.woff') format('woff'),
-       url('/fonts/bm-hanna-webfont.ttf') format('truetype'),
-       url('/fonts/bm-hanna-webfont.svg#bm_hanna_ttfregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-
-}
 @media only screen and (min-width: 0) {} /* mobile portrait */
 @media only screen and (min-width: 601px) {} /* mobile landscape */
 @media only screen and (min-width: 992px) {} /* tablet */
@@ -35,10 +23,10 @@
 
 /* Global Settings */
 body {
-  background: -webkit-radial-gradient(#ffffff, #b0bec5); /* Safari 5.1 to 6.0 */
-  background: -o-radial-gradient(#ffffff, #b0bec5); /* For Opera 11.6 to 12.0 */
-  background: -moz-radial-gradient(#ffffff, #b0bec5); /* For Firefox 3.6 to 15 */
-  background: radial-gradient(#ffffff, #b0bec5); /* Standard syntax */
+  background: -webkit-radial-gradient(#ffffff, #cfd8dc); /* Safari 5.1 to 6.0 */
+  background: -o-radial-gradient(#ffffff, #cfd8dc); /* For Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(#ffffff, #cfd8dc); /* For Firefox 3.6 to 15 */
+  background: radial-gradient(#ffffff, #cfd8dc); /* Standard syntax */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1270,6 +1258,12 @@ input[type=number]::-webkit-outer-spin-button {
   .btn-payco {
     margin-bottom: 20px;
   }
+  .bank-box {
+    padding: 0 1em 1em 1em;
+  }
+  .btn-block {
+    width: 100%;
+  }
   .success-text {
     padding: 10px 0;
     text-align: center;
@@ -1281,6 +1275,24 @@ input[type=number]::-webkit-outer-spin-button {
     width: 55px;
     margin: 0 5px;
     border-radius: 50%;
+  }
+  #bank_modal {
+    overflow-y: visible;
+  }
+  #bank_modal.modal .modal-content .dropdown-content {
+    max-height: 185px;
+  }
+  #bank_modal.modal .modal-content {
+    padding: 14px;
+  }
+  .bank-title {
+    font-size: 1.4em;
+  }
+  .bank-number {
+    font-size: 1.8em;
+  }
+  .bank-info {
+    font-size: 0.9em;
   }
 }
 @media only screen and (min-width: 601px)  {
@@ -1460,7 +1472,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 /** Orders **/
 @media only screen and (min-width: 0)     {
-
+  .table-orders thead tr th {
+    border-radius: 0;
+  }
+  input#order_date {
+    height: 2rem;
+  }
 }
 @media only screen and (min-width: 601px) {
 
@@ -1617,7 +1634,7 @@ input[type=number]::-webkit-outer-spin-button {
   background: linear-gradient(#37474f, #455a64, #37474f);
 }
 .db-mail h1, .db-mail h2, .db-mail h3, .db-mail h4, .db-mail h5, .db-mail h6 {
-  font-family: 'Hanna', sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 10px;
 }
 

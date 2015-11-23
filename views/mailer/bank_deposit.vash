@@ -5,7 +5,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Hanna:400,300,200,100' rel='stylesheet' type='text/css'>
 		<style>
-			a { text-decoration: none; }
 			h1,h2,h3,h4,h5,h6 {
 				font-family: 'Hanna', sans-serif;
 				margin: 10px;
@@ -28,17 +27,7 @@
 				border-collapse: collapse;
 				width: 100%;
 			}
-		  .db-logo-img {
-				height: 100px;
-				float: left;
-			}
-		  .db-nav {
-		    height: 100px;
-		    background: -webkit-linear-gradient(#37474f, #455a64, #37474f);
-		    background: -o-linear-gradient(#37474f, #455a64, #37474f);
-		    background: -moz-linear-gradient(#37474f, #455a64, #37474f);
-		    background: linear-gradient(#37474f, #455a64, #37474f);
-		  }
+
 		</style>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	</head>
@@ -52,13 +41,15 @@
 			<tbody class="blue-grey lighten-5 blue-grey-text text-darken-3">
 				<tr>
 					<td class="db-mail-body">
-						<h1><span class="amber-text text-darken-3">강연 님</span>의 데일리 붐 배송 안내 메일입니다.</h1>
+						<h1><span class="amber-text text-darken-3">@model.user.username 님</span>의 데일리 붐 구매 안내 메일입니다.</h1>
 						<br>
 						<h3>
-							데일리붐을 이용해 주셔서 진심으로 감사합니다.
+							고객님, 데일리 붐을 이용해 주셔서 감사합니다.
 							<br>
+							<br>2015년 XX월 XX일 (tomorrow's date) 오후 12시까지 이내에 입금을 완료하셔야 신청 처리가 정상적으로 접수됩니다.
+							<br>데일리 붐을 사용해주셔서 감사합니다.
 							<br>
-							배송정보는 <a class="amber-text text-darken-3" href="http://dailyboom.co/mypage">마이페이지 >> 주문내역</a> 에서 확인가능 합니다.
+							<br>주문내역 및 기타정보는 <span class="amber-text text-darken-3">마이페이지 >> 주문내역</span>에서 확인가능 합니다.
 						</h3>
 					</td>
 				</tr>
