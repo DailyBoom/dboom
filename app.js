@@ -123,6 +123,7 @@ passport.use(new FacebookStrategy({
     clientID: config.get("Facebook.clientID"),
     clientSecret: config.get("Facebook.clientSecret"),
     callbackURL: config.get("Facebook.callbackURL"),
+    profileFields: ["id", "birthday", "email", "first_name", "gender", "last_name"],
     enableProof: false
   },
   function(accessToken, refreshToken, profile, done) {
@@ -224,7 +225,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+  res.render('error_500', {
     message: err.message,
     error: {}
   });

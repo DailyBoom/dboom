@@ -99,7 +99,7 @@ router.get('/orders/list', isAdmin, function(req, res) {
 });
 
 router.get('/orders/view/:id', isAdmin, function(req, res) {
-  Order.findOne({ _id: req.params.id }).populate('product').exec(function(err, order) {
+  Order.findOne({ _id: req.params.id }).populate('product').populate('user').exec(function(err, order) {
     if (err)
       console.log(err);
     if (!order)

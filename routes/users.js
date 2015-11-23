@@ -343,8 +343,7 @@ router.post('/signup', function(req, res) {
 router.get('/auth/facebook',
   passport.authenticate('facebook',
     { display: 'popup'},
-    { scope: ['email', 'public_profile'] },
-    { profileFields: ["id", "birthday", "email", "first_name", "gender", "last_name"] }
+    { scope: 'email'}
 ));
 
 router.get('/auth/facebook/callback',
