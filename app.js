@@ -123,8 +123,7 @@ passport.use(new FacebookStrategy({
     clientID: config.get("Facebook.clientID"),
     clientSecret: config.get("Facebook.clientSecret"),
     callbackURL: config.get("Facebook.callbackURL"),
-    profileFields: ["id", "birthday", "email", "first_name", "gender", "last_name"],
-    enableProof: false
+    profileFields: ['id', 'displayName']
   },
   function(accessToken, refreshToken, profile, done) {
      //check user table for anyone with a facebook ID of profile.id

@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var vash = require("vash");
 var nodemailer = require('nodemailer');
+var moment = require('moment');
 var smtpTransport = require('nodemailer-smtp-transport');
 var User = require("../models/user");
 var Order = require("../models/order");
@@ -69,13 +70,13 @@ router.get('/logout', function(req, res){
 });
 
 router.get('/mypage', isAuthenticated, function(req, res) {
-  Order.find({ 'user': req.user._id }).where('status').ne('Submitted').populate('product').exec(function(err, orders) {
+  Order.find({ 'user': req.user._id }, {}, {$sort: { created_at: -1 }}).where('status').ne('Submitted').populate('product').exec(function(err, orders) {
       if (typeof req.session.errors !== 'undefined') {
         var errors = req.session.errors;
         delete req.session.errors;
-        res.render('users/show', { orders: orders, errors: errors });
+        res.render('users/show', { orders: orders, errors: errors, moment: moment });
       }
-      res.render('users/show', { orders: orders });
+      res.render('users/show', { orders: orders, moment: moment });
     });
 });
 
@@ -134,11 +135,13 @@ router.post('/users/edit_password', isAuthenticated, function(req, res) {
 
 router.get('/users/view/:id', isAdmin, function(req, res) {
   User.findOne({_id: req.params.id}, function(err, user) {
-    if (err)
-      console.log(err);
-    if (!user)
-      res.redirect('/users/list')
-    res.render('users/view', { user: user });
+    Order.find({ 'user': user._id }).populate('product').exec(function(err, orders) {
+      if (err)
+        console.log(err);
+      if (!user)
+        res.redirect('/users/list');
+      res.render('users/show', { user: user, orders: orders, moment: moment });
+    });
   });
 });
 
@@ -342,8 +345,7 @@ router.post('/signup', function(req, res) {
 
 router.get('/auth/facebook',
   passport.authenticate('facebook',
-    { display: 'popup'},
-    { scope: 'email'}
+    { display: 'popup'}
 ));
 
 router.get('/auth/facebook/callback',

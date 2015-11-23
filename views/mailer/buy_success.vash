@@ -41,7 +41,7 @@
 			<tbody class="blue-grey lighten-5 blue-grey-text text-darken-3">
 				<tr>
 					<td class="db-mail-body">
-						<h1><span class="amber-text text-darken-3">@model.user.username 님</span>의 데일리 붐 구매 안내 메일입니다.</h1>
+						<h1><span class="amber-text text-darken-3">@model.full_name 님</span>의 데일리 붐 구매 안내 메일입니다.</h1>
 						<br>
 						<h3>
 							데일리붐을 이용해 주셔서 진심으로 감사합니다.

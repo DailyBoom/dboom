@@ -46,10 +46,10 @@
 											}
 
 											<div class="o-label">주문 수량&nbsp;:&nbsp;</div>
-											<div class="o-name">1</div><br>
+											<div class="o-name">@order.quantity</div><br>
 
 											<div class="o-label">결제 금액&nbsp;:&nbsp;</div>
-											<div class="o-name">order.product.price 원</div><br>
+											<div class="o-name">@order.product.price 원</div><br>
 
 											<div class="o-label">받는 분&nbsp;:&nbsp;</div>
 											<div class="o-name">@model.user.shipping.full_name</div><br>
