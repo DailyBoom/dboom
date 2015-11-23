@@ -1495,7 +1495,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 1.2em;
   }
   .error-title {
-    font-size: 1.5em;
+    font-size: 1.4em;
   }
   .error-actions {
     display: block;
@@ -1528,13 +1528,13 @@ input[type=number]::-webkit-outer-spin-button {
     padding-top: 0px;
   }
   .icon-error {
-    font-size: 6em;
+    font-size: 8em;
   }
   .error-details {
-    font-size: 2.2em;
+    font-size: 2em;
   }
   .error-title {
-    font-size: 1.5em;
+    font-size: 1.4em;
   }
   .error-actions {
     display: block;
@@ -1544,7 +1544,7 @@ input[type=number]::-webkit-outer-spin-button {
     margin-right:0px;
   }
   #notfound {
-    min-height: 550px;
+    min-height: 700px;
     background-image: url(/images/404a.jpg);
     background-position: center top;
     background-repeat: no-repeat;
@@ -1574,7 +1574,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 3em;
   }
   .error-title {
-    font-size: 1.5em;
+    font-size: 1.4em;
   }
   .error-actions {
     display: block;
