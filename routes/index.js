@@ -68,7 +68,7 @@ router.post('/merchant', function(req, res, next) {
       if (err) { console.log(err); res.render('signup', { error: err.errmsg }); }
       console.log('Message sent: ' + info.response);
       transporter.close();
-      res.render('merchant');      
+      res.render('merchant');
   });
 });
 
