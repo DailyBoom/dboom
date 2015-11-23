@@ -17,25 +17,25 @@
 						받는 분 :
 					</span>
 					<span class="col s9 order-label">
-						&nbsp;@model.user.shipping.full_name
+						&nbsp;@model.order.user.shipping.full_name
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						전화번호 :
 					</span>
 					<span class="col s9 order-label">
-						&nbsp;@model.user.shipping.phone_number
+						&nbsp;@model.order.user.shipping.phone_number
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						배송주소 :
 					</span>
 					<span class="col s9 order-label">
-						&nbsp;@model.user.shipping.address
+						&nbsp;@model.order.user.shipping.address
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						우편번호 :
 					</span>
 					<span class="col s9 order-label">
-						&nbsp;@model.user.shipping.zipcode
+						&nbsp;@model.order.user.shipping.zipcode
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						배송국가 :
