@@ -48,7 +48,7 @@ var isMerchantOrAdmin = function (req, res, next) {
 var hasShipping = function(obj) {
   if (!obj.shipping)
     return false;
-  if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.country && obj.shipping.address)
+  if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.country && obj.shipping.address && obj.email)
     return true;
   return false;
 }
@@ -508,12 +508,22 @@ router.post('/shipping', function(req, res) {
           });
       }
       else if (req.user) {
+        if (!req.user.email) {
+          req.Validator.validate('email', i18n.__('user.email'), {
+            required: true
+          })
+        }
+        
         req.Validator.getErrors(function(errors){
           if (errors.length > 0) {
             res.render('shipping', { errors: errors });
           }
           else {
             var user = req.user;
+
+            if (!req.user.email) {
+              user.email = req.body.email;
+            }
 
             user.shipping = {
               full_name: req.body.full_name,
@@ -579,7 +589,7 @@ router.post('/shipping', function(req, res) {
 });
 
 router.get('/orders/extract', isAdmin, function(req, res) {
-  var stream = Order.find({}, {}, {$sort: {created_at: -1}}).populate('user').stream();
+  var stream = Order.find({status: "Paid"}, {}, {$sort: {created_at: -1}}).populate('user').stream();
 
   stream.on('error', function (err) {
     console.log(err);
