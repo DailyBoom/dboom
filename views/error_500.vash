@@ -1,0 +1,31 @@
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+<div class="container-fluid" id="notfound">
+	<div class="row">
+		<div class="container">
+			<div class="row">
+				<div class="col s12 center">
+					<div class="error-template white-text">
+						<div class="icon-error"><i class="fa fa-exclamation-circle fa-fw"></i></div>
+						<div class="error-details">
+							<br>
+							<span class="error-title">서버 에러 났씁니다.</span>
+							<br>
+							서비스 이용에 불편을 드려서 대단히 죄송합니다.
+						</div>
+						<div class="error-actions">
+							<a href="/" class="waves-effect waves-light btn btn-large blue-grey darken-2">
+								데일리 붐<i class="fa fa-home fa-fw right"></i>
+							</a>
+							<a href="mailto:contact@dailyboom.co" class="waves-effect waves-light btn btn-large blue-grey lighten-5 blue-grey-text text-darken-2">
+								고객 센터 <i class="fa fa-envelope fa-fw right"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- .container -->
+	</div><!-- .row -->
+</div><!-- .container-fluid -->
+	})
+})
