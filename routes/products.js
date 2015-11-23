@@ -56,6 +56,7 @@ router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCou
     brand_logo: req.files['brandlogo'] ? req.files['brandlogo'][0].path : '',
     delivery_info: req.files['deliveryinfo'] ? req.files['deliveryinfo'][0].path : '',
     options: req.body.options,
+    is_published: false,
     video: req.body.videoUrl,
     company_url: req.body.webUrl,
     company_facebook: req.body.fbUrl,
@@ -65,7 +66,7 @@ router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCou
   console.log(product);
   product.save(function(err) {
     if (err) console.log(err), res.render('/products/new', { title: 'Index', error: err.errmsg });
-    else res.redirect('/');
+    else res.redirect('/products/preview/'+product.id);
   });
 });
 
@@ -106,9 +107,32 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
 
     console.log(product);
     product.save(function(err) {
-      if (err) console.log(err), res.render('products/index', { title: 'Index', error: err.errmsg });
-      else res.redirect('/products/list');
+      if (err) { 
+        console.log(err);
+        res.render('products/edit', { title: 'Index', error: err.errmsg });
+        res.end();
+      }
+      if (product.is_publshed == true)
+        res.redirect('/products/list');
+      else
+        res.redirect('/products/preview/'+product.id);        
     });
+  });
+});
+
+router.get('/products/preview/:id', isAdmin, function(req, res) {
+  Product.findOne({ _id: req.params.id }, function(err, product) {
+    if (err)
+      console.log(err);
+    res.render('products/preview', { product: product });
+  });
+});
+
+router.get('/products/publish/:id', isAdmin, function(req, res) {
+  Product.findOneAndUpdate({ _id: req.params.id }, { is_published: true }, function(err, product) {
+    if (err)
+      console.log(err);
+    res.redirect('/products/list');
   });
 });
 

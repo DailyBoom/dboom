@@ -132,9 +132,6 @@
 			</div>
 			<!-- .row -->
 			<br>
-			<button class="btn btn-large waves-effect waves-light amber darken-3 add-margin-bottom-md" type="submit" name="action">
-				미리보기 <i class="fa fa-eye fa-fw right"></i>
-			</button>
 			<button class="btn btn-large waves-effect waves-light green darken-3 add-margin-bottom-md" type="submit" name="action">
 				등록하기 <i class="fa fa-send fa-fw right"></i>
 			</button>

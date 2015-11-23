@@ -1,17 +1,17 @@
-@html.extend("layout", function(model) {
-	@html.block("body", function(model) {
+@html.extend("layout", function(@model) {
+	@html.block("body", function(@model) {
     <nav id="navbar-preview">
 			<div class="container">
 	      <div class="nav-wrapper">
-	        <a href="#!" class="brand-logo">PREVIEW MODE</a>
+	        <span class="brand-logo">PREVIEW MODE</span>
 	        <ul class="right">
 	          <li>
-							<a class="waves-effect waves-green btn-publish center" href="#!">
+							<a class="waves-effect waves-green btn-publish center" href="/products/publish/@model.product.id">
 								PUBLISH <i class="hide-on-small-only fa fa-send preview-fa text-md right"></i>
 							</a>
 						</li>
 	          <li>
-							<a class="waves-effect waves-yellow btn-edit center" href="#!">
+							<a class="waves-effect waves-yellow btn-edit center" href="/products/edit/@model.product.id">
 								EDIT <i class="hide-on-small-only fa fa-pencil preview-fa text-md right"></i>
 							</a>
 						</li>
@@ -19,185 +19,123 @@
 				</div>
       </div>
     </nav>
-		<div class="hide-on-med-and-up fixed-btn-buy z-depth-1 center">
-			<div class="progress-h cyan lighten-4">
-				<span class="text-progress-h center">75%</span>
-				<div class="determinate-h cyan darken-4" style="width: 75%;">
-				</div>
-			</div>
-			<!-- <div id="time-left-mobile" class="d-clock-mobile red white-text"></div> -->
-			<div class="mobile-share grey lighten-4">
-				<a href="#shareurl"><img class="social" src="/images/link_icon.png" /></a>
-				<a href="#sharemail"><img class="social" src="/images/icon_email.png" /></a>
-				<a href="#sharekakao"><img class="social" src="/images/icon_kakao.png" /></a>
-				<a href="#sharefb"><img class="social" src="/images/icon_fb.png" /></a>
-			</div>
-		</div>
-		<div class="section-blank">
-		</div>
-		<div class="container">
-			<div class="row">
-				<div id="main" class="col s12 m10 l10 left">
-					<div class="card">
-						<div class="card-image">
-							<!-- Image Slider -->
-							<div class="slider">
-								<ul class="slides">
-									<!-- model.product.images.forEach(function(img) { -->
-										<li>
- 											<img class="" src="/images/hero01.jpg" alt="model.product.name | Daily Boom" />
-										</li>
-									<!-- }) -->
-									<li>
-										<iframe id="iframe-video" class="iframe-video" src="https://www.youtube.com/embed/CLViADWy-1U" frameborder="0" allowfullscreen></iframe>
-									</li>
-								</ul>
-							</div>
-						</div><!-- /.card-image -->
-						<div class="card-content">
-							<span class="card-title activator grey-text text-darken-4">
-								<a href="#!"><i class="fa fa-info-circle fa-1-5x right" style="margin-top: -2px;"></i></a>
-								model.product.name
-							</span>
-							<span class="hide-on-small-only">
-								<a href="#sharefb"><img class="social right" src="/images/icon_fb.png" /></a>
-								<a href="#sharekakao"><img class="social right" src="/images/icon_kakao.png" /></a>
-								<a href="#sharemail"><img class="social right" src="/images/icon_email.png" /></a>
-								<a href="#shareurl"><img class="social right" src="/images/link_icon.png" /></a>
-							</span>
-							<p class="activator grey-text text-darken-1">이제 헤어컬러 시술이 쉬워 집니다...</p>
-						</div><!-- /.card-content -->
-						<div class="card-reveal">
-							<span class="card-title grey-text text-darken-4">
-								<i class="fa fa-times-circle fa-1-5x right"></i>
-							</span>
-							<div class="details-box">
-								<img class="details-img circle z-depth-1" src="/images/zone01.png" alt="{BRAND NAME LOGO}" />
-								<br>
-								<span class="text-lg">Zonecode</span>
-								<span class="card-title grey-text text-darken-4">
-									model.product.name
-								</span>
-								<div class="row">
-							    <div class="col s12">
-										<p class="text-sm">model.product.description</p>
-									</div>
-							  </div><!-- .row -->
-							</div><!-- .details-bottom -->
-							<div class="card">
-								<a class href="#!"></a>
-							</div>
-						</div><!-- .card-reveal -->
-						<div class="card-action price-align">
-							<span class="text-lg"><i class="fa fa-krw"></i> 35,000</span>
-						</div>
-					</div><!-- /.card -->
-					<div class="hide-on-med-and-up">
-						<a class="waves-effect waves-light btn btn-buy-mobile green modal-trigger" href="#modal-check-mobile">Buy Now</a>
-					</div><!-- /.hide-on-med-and-up -->
-				</div>
-				<!-- item -->
-				<div class="hide-on-small-only col m2 l2 center">
-<!-- progress bar -->
-					<div class="progress-v cyan lighten-3 z-depth-1 center">
-						<span class="white-text text-progress-v">75%<br>팔림</span>
-						<div class="determinate-v cyan darken-3" style="">
-						</div>
-					</div>
-					<script>
-						$(window).load(function(){
-							var progress = 75 + "%";
-							$('.text-progress-v').hide();
-							$('.determinate-v').animate({height: progress}, 1500);
-							$('.text-progress-v').delay(1250).fadeIn();
-						});
-					</script>
-<!-- Buy Modal -->
+<div class="container">
+	<div class="row">
+		<div class="col s12">
+			<div id="main-slider" class="slider-wrapper z-depth-1">
+					@model.product.images.forEach(function(img) {
+						<div class="slide" style="background-image: url(/@img);"></div>
+					})
+
+	    	</div><!-- #main-slider -->
+			<div class="pro-v-wrapper">
+				<div class="pro-v indigo lighten-5 center valign-wrapper"><div class="pro-v-text valign">@model.progress%<br>팔림</div></div>
+				<div class="pro-v-d amber darken-1" style="height: @model.progress%;"></div>
+			</div><!-- .pro-v-wrapper -->
+		</div><!-- .col -->
+		<div class="col s12">
+			<div class="buy-box-wrapper white-text">
+				<img class="brand-img" src="/@model.product.brand_logo" alt="@model.product.brand - Logo" />
+				<div class="item-name truncate">@model.product.name</div>
 					@if (model.user) {
-						<a id="btn-buy" class="hide-on-small-only btn-buy-txt waves-effect waves-light btn-floating green" href="#!">
-							Buy Now!
-						</a>
+						<a class="hide-on-small-only btn-buy-wrapper right" href="/checkout?product_id=@model.product.id"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
 					}
 					else {
-						<a id="btn-buy" class="hide-on-small-only btn-buy-txt waves-effect waves-light btn-floating green modal-trigger" href="#!">
-							Buy Now!
-						</a>
+						<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
 					}
-<!-- Buy -> Login Modal JS -->
-					<script>
-						$(document).ready(function (){
-					    $('iframe').each(function(){
-				        var url = $(this).attr("src");
-				        $(this).attr("src",url+"?wmode=transparent");
-					    });
-						});
-					</script>
+					<div class="hide-on-small-only item-price right" id="product_price">@model.product.price</div>
+					<div class="hide-on-small-only item-price-o blue-grey-text text-lighten-2 right" id="old_price">@model.product.old_price</div>
+			</div>
+			<div class="buy-box-info blue-grey lighten-5 blue-grey-text text-darken-2">
+				<div class="item-info">@html.raw(model.product.description)</div>
+			</div>
+			<div class="buy-box-footer blue-grey lighten-3">
+				<div class="center">
+					<!-- <span class="share-text white-text">share</span> -->
+					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
+					<img id="sharekakao" class="social" src="/images/icon_kakao.png" alt="Kakao Logo" />
+					<a href="mailto:?subject=데일리 붐: 오늘 뭐 사지?&body=http://dailyboom.co"><img id="sharemail"  class="social" src="/images/icon_email.png" alt="Email Image" /></a>
+					<a class="modal-trigger" href="#share_url_modal"><img id="shareurl" class="social" src="/images/link_icon.png" alt="Link Image" /></a>
 				</div>
-			</div> <!-- .row -->
-			<br>
-			<br>
-			<div class="col s12 m12 l12">
-				<span class="text-lg">지난 상품</span>
-				<a class="text-md right see-more" href="/products/">더보기 <i class="fa fa-chevron-right"></i></a>
-				<hr>
+			</div><!-- .buy-box-footer -->
+			<!-- Modal Structure -->
+		  <div id="share_url_modal" class="modal">
+				<div class="modal-header blue-grey darken-2 white-text center">
+					공유하기
+				</div>
+		    <div class="modal-content">
+					<input readonly type="text" id="share_url" value="http://dailyboom.co">
+					<br>
+					<br>
+					<a href="#!" class="modal-action modal-close waves-effect waves-light btn blue-grey darken-2">닫기</a>
+		    </div>
+		  </div>
+			<!-- Merchant xInfo -->
+			<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
+		    <li>
+					<div class="collapsible-header blue-grey darken-1 white-text">
+						배송 진행상황 조회 및 제품 교환/환불 정책
+					</div>
+					<div class="collapsible-body">
+						@if(model.product.delivery_info) {
+							<img class="responsive-img" src="/@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - 데일리 붐" />
+						}
+						else {
+							<p><b>배송 진행상황 조회</b></p>
+							<ol class="item-shipping-info">
+								<li>처리상황이 [발송완료]일 때 배송진행사항은 주문내역의 송장번호로 해당 택배사 홈페이지를 통해 확인하실 수 있습니다.</li>
+								<li>발송완료 등록 및 발송완료 SMS 문자 메시지를 받으신 후 고객님께 배달완료 되기까지 1~2일정도 소요됩니다. (토요일, 공휴일 제외)</li>
+								<li>택배사 또는 고객사정(고객님 연락이 되지 않을 경우)으로 인해 배송이 지연되는 경우가 있으니 해당 택배사로 전화문의를 하시면 배송상태를 확인 하실 수 있습니다.</li>
+							</ol>
+							<p><b>제품 교환/환불 정책</b></p>
+							<span>모든 제품은 해당 제품 회사의 물품 환불 및 교환 정책에 따릅니다.</span>
+							<br><span>해당 제품 회사가 아직 배송관련 교환 및 환불 정책이 없을 때, 모든 물품은 수령한지 10일 이내에 사용하지 않은 새 것 일 때 교환및 환불이 가능합니다. 환불을 원하는 경우, 해당 회사에 직접 연락을 하거나 데일리붐 회계팀(contact@dailyboom.co)로 연락주시기 바랍니다.</span>
+						}
+					</div>
+		    </li>
+		  </ul>
+
+			<!-- Mobile -->
+			<div class="hide-on-med-and-up mobile-buy blue-grey darken-3">
+				<div class="item-price-o blue-grey-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
+				<div class="item-price white-text" id="product_price_mobile">@model.product.price</div>
+				@if (model.user) {
+					<div class="hide-on-med-and-up">
+						<a class="modal-trigger" href="/checkout?product_id=@model.product.id">
+							<img class="btn-buy-mobile" src="/images/btn-buy-mobile_2.png" alt="데일리 붐 쇼핑 몰"/>
+						</a>
+					</div>
+				}
+				else {
+					<div class="hide-on-med-and-up">
+						<a class="modal-trigger" href="#modal-check">
+							<img class="btn-buy-mobile" src="/images/btn-buy-mobile_2.png" alt="" style="width:100%;"/>
+						</a>
+					</div>
+				}
 			</div>
-			<div class="row">
-				<div class="col s12 m12 l12">
-					<div class="row">
-						<div id="db-past" class="owl-carousel owl-theme">
-							@for(x=0;x<6;x++ ){
-							<div class="col s12 m12 l12">
-								<div class="card gre darken-">
-									<div class="card-image">
-										<div class="past-date-box grey-text text-darken-1 text-md">
-											10/01/2015
-										</div>
-										<img class="" src="/images/hero02.jpg" alt="" />
-									</div>
-									<div class="card-content">
-										<p class="grey-text text-darken-1 truncate">product.name</p>
-									</div>
-									<div class="card-action">
-										<a href="#"><i class="fa fa-history"></i>&nbsp;&nbsp;Bring it back! <span class="badge">5</span></a>
-									</div>
-								</div>
-							</div>
-							}
-						</div><!-- /.owl-carousel -->
-					</div><!-- .row -->
-				</div><!-- /.col s12 m9 l9 -->
-			</div><!-- .row -->
-			<div class="ad">
-				<script type='text/javascript'>
-				<!--//<![CDATA[
-				   document.MAX_ct0 ='';
-				   var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
-				   var m3_r = Math.floor(Math.random()*99999999999);
-				   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
-				   document.write ("zoneid=292195");document.write("&amp;nodis=1");
-				   document.write ('&amp;cb=' + m3_r);
-				   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
-				   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
-				   document.write ("&amp;loc=" + escape(window.location).substring(0,1600));
-				   if (document.context) document.write ("&context=" + escape(document.context));
-				   if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
-				       document.write ("&amp;ct0=" + escape(document.MAX_ct0));
-				   }
-				   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
-				   document.write ("'></scr"+"ipt>");
-				//]]>-->
-				</script>
-			</div>
-			<br>
-		</div> <!-- .container -->
-		<script>
+		</div>
+	</div>
+</div>
+<!-- Buy -> Login Modal JS -->
+	<script>
+		$(document).ready(function (){
+		$('iframe').each(function(){
+		var url = $(this).attr("src");
+		$(this).attr("src",url+"?wmode=transparent");
+		});
+		});
+	</script>
+			<br>		<script>
 			$(document).ready(function(){
-				$('.slider').slider({
-					full_width: true,
-					indicators: true,
-					interval: 60000
+				$("#main-slider").bxSlider({
+					mode:'horizontal',
+					infiniteLoop:true,
+					easing:'ease-in-out',
+					auto:true,
+					autoHover:true
 				});
-				$("#product_price").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
+				$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
 					var owl = $("#db-past");
 					owl.owlCarousel({
 						items : 3,
