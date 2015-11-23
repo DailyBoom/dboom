@@ -99,7 +99,7 @@ router.get('/orders/shipped', isAdmin, function(req, res) {
 });
 
 router.get('/merchants/orders/list', isMerchant, function(req, res) {
-  Order.find({}, {}, { sort: { 'created_at': -1 } }).populate('product', null, {merchant_id: req.user.id}).exec(function(err, orders) {
+  Order.find({status: "Paid"}, {}, { sort: { 'created_at': -1 } }).populate('product', null, {merchant_id: req.user.id}).exec(function(err, orders) {
     console.log(orders);
     orders = orders.filter(function(doc){
       if (doc.product)
