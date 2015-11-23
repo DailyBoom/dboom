@@ -20,7 +20,16 @@
 								<div class="collapsible-header">
 									<span class="">@order.created_at.toLocaleDateString('ko-KR')</span>
 									<span class="">@model.user.name</span>
-									<span class="right">@order.status <i class="fa fa-check-circle fa-fw green-text right"></i></span>
+									@if(order.status == 'Paid'){
+										<span class="green-text right">결제 완료 <i class="fa fa-check-circle fa-fw right"></i></span>
+									}
+									else if(order.status == 'Canceled'){
+										<span class="red-text right">주문 취소 <i class="fa fa-ban fa-fw right"></i></span>
+									}
+									else if(order.status == 'Waiting'){
+										<span class="amber-text right">결제 대기 <i class="fa fa-clock-o fa-fw right"></i></span>
+									}
+									<!-- <span class="right">@order.status <i class="fa fa-check-circle fa-fw right"></i></span> -->
 								</div>
 								<div class="collapsible-body">
 									<div class="row">
@@ -40,7 +49,7 @@
 											<div class="o-name">1</div><br>
 
 											<div class="o-label">결제 금액&nbsp;:&nbsp;</div>
-											<div class="o-name">@order.product.price 원</div><br>
+											<div class="o-name">order.product.price 원</div><br>
 
 											<div class="o-label">받는 분&nbsp;:&nbsp;</div>
 											<div class="o-name">@model.user.shipping.full_name</div><br>
