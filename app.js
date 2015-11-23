@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var validate = require('form-validate');
 var config = require("config");
+var moment = require("moment");
 var crypto = require('crypto');
 var i18n = require('i18n');
 i18n.configure({
@@ -92,6 +93,8 @@ else {
 }
 app.use(function(req, res, next) {
   res.locals.user = req.user;
+  moment.locale('ko');
+  res.locals.moment = moment;
   next();
 });
 app.use('/', routes);
@@ -123,8 +126,7 @@ passport.use(new FacebookStrategy({
     clientID: config.get("Facebook.clientID"),
     clientSecret: config.get("Facebook.clientSecret"),
     callbackURL: config.get("Facebook.callbackURL"),
-    profileFields: ["id", "birthday", "email", "first_name", "gender", "last_name"],
-    enableProof: false
+    profileFields: ['id', 'displayName']
   },
   function(accessToken, refreshToken, profile, done) {
      //check user table for anyone with a facebook ID of profile.id

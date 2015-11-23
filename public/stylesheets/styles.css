@@ -1271,7 +1271,11 @@ input[type=number]::-webkit-outer-spin-button {
   .success-text {
     padding: 10px 0;
     text-align: center;
-    font-size: 1.3em;
+    font-size: 1.2em;
+  }
+  .deposit-text {
+    padding: 10px 0;
+    font-size: 1.2em;
   }
   .s-social {
     display: inline-block;
@@ -1338,6 +1342,12 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .success-text {
     font-size: 3em;
+  }
+  .deposit-title {
+    font-size: 2.4em;
+  }
+  .deposit-text {
+    font-size: 1.5em;
   }
   .showoff {
     margin-left: 40px;

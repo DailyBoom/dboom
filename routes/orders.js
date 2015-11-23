@@ -94,7 +94,7 @@ router.get('/orders/shipped', isAdmin, function(req, res) {
 
 router.get('/orders/list', isAdmin, function(req, res) {
   Order.find({}, {}, { sort: { 'created_at': -1 } }).populate('product').exec(function(err, orders) {
-    res.render('orders/list', { orders: orders, moment: moment });
+    res.render('orders/list', { orders: orders });
   });
 });
 
@@ -242,10 +242,46 @@ router.post('/checkout', function(req, res) {
       });
   }
   else {
-    res.redirect('/');    
+    res.redirect('/');
   }
 });
 
+router.post('/deposit_checkout', function(req, res) {
+  if (req.session.order) {
+    Order.findOne({ '_id': req.session.order }).populate('product').populate('user').exec(function(err, order) {
+        if (err)
+          console.log(err);
+        order.status = "Waiting"
+        order.save(function(err) {
+          if (err)
+            console.log(err);
+          fs.readFile('./views/mailer/bank_deposit.vash', "utf8", function(err, file) {
+            if(err){
+              //handle errors
+              console.log('ERROR!');
+              return res.send('ERROR!');
+            }
+            var html = vash.compile(file);
+            moment.locale('ko');
+            transporter.sendMail({
+              from: 'Daily Boom <contact@dailyboom.co>',
+              to: order.user ? order.user.email : order.email,
+              subject: '무통장입금 안내',
+              html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment })
+            }, function (err, info) {
+                if (err) { console.log(err); }
+                console.log('Message sent: ' + info.response);
+                transporter.close();
+                res.redirect('/success');
+            });
+          });
+        })
+    });
+  }
+  else {
+    res.redirect('/');
+  }
+});
 
 router.get('/payco_callback', function(req, res) {
   console.log(req.query);
@@ -295,9 +331,9 @@ router.get('/payco_callback', function(req, res) {
                               var html = vash.compile(file);
                               transporter.sendMail({
                                 from: 'Daily Boom <contact@dailyboom.co>',
-                                to: order.user.email,
+                                to: order.user ? order.user.email : order.email,
                                 subject: '데일리 붐 구매 안내.',
-                                html: html({ user : order.user })
+                                html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name })
                               }, function (err, info) {
                                   if (err) { console.log(err); res.render('payco_callback', { error: err.errmsg }); }
                                   console.log('Message sent: ' + info.response);
@@ -324,8 +360,14 @@ router.get('/payco_callback', function(req, res) {
 router.get('/success', function(req, res) {
   if (!req.session.order)
     res.redirect('/');
-  delete req.session.order;
-  res.render('success', { msg: " ", code: req.query.code });
+  Order.findOne({_id: req.session.order, status: {$in : ['Paid', 'Waiting']}}).populate('product').exec(function(err, order) {
+    if (err)
+      console.log(err)
+    if (!order)
+      res.redirect('/');
+    delete req.session.order;
+    res.render('success', { code: req.query.code, order: order });
+  });
 });
 
 router.get('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
@@ -338,7 +380,7 @@ router.get('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
     order.save(function(err) {
       transporter.sendMail({
         from: 'DailyBoom <contact@dailyboom.co>',
-        to: order.user.email,
+        to: order.user ? order.user.email : order.email,
         subject: '데일리 붐 배송 안내.',
         html: fs.readFileSync('./views/mailer/shipped.vash', "utf8")
       }, function (err, info) {
@@ -376,6 +418,15 @@ router.get('/orders/cancel/:id', function(req, res) {
             order.save(function(err) {
               if (err)
                 console.log(err);
+              if (app.get("env") === "production") {
+                slack.send({
+                  channel: '#dailyboom-new-order',
+                  icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
+                  text: 'Cancel order #'+order._id,
+                  unfurl_links: 1,
+                  username: 'DailyBoom-bot'
+                });
+              }
               res.redirect('/mypage');
             });
           }
@@ -513,7 +564,7 @@ router.post('/shipping', function(req, res) {
             required: true
           })
         }
-        
+
         req.Validator.getErrors(function(errors){
           if (errors.length > 0) {
             res.render('shipping', { errors: errors });
@@ -595,7 +646,7 @@ router.get('/orders/extract', isAdmin, function(req, res) {
     console.log(err);
     res.end();
   })
-  
+
   stream.on('data', function () {
     res.writeHead(200, {
       'Content-Type': 'text/csv',

@@ -13,7 +13,7 @@ var isAdmin = function (req, res, next) {
 
 router.get('/products/list', isAdmin, function(req, res) {
   Product.find({}, {}, { sort: { 'scheduled_at' : -1 } }, function (err, Products) {
-    res.render('products/index', { products: Products, moment: moment });
+    res.render('products/index', { products: Products });
   });
 });
 
@@ -30,7 +30,7 @@ router.get('/products/delete/:id', isAdmin, function(req, res) {
 router.get('/products/edit/:id', isAdmin, function(req, res) {
   Product.findOne({_id: req.params.id}, function(err, product) {
     console.log(product);
-    res.render("products/edit", { product: product, moment: moment });
+    res.render("products/edit", { product: product });
   });
 });
 
