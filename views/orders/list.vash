@@ -1,74 +1,88 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
    <div class="container min-h-lg">
-		 <div class="row">
-			 <h3 class="blue-grey-text text-darken-3">주문내역
-				 <div class="legend right">
-				  <span class="blue-grey-text text-darken-2">View Order <i class="fa fa-eye fa-fw fa-1-5x"></i></span>
-				  <span class="red-text text-darken-3">Cancel Order <i class="fa fa-ban fa-fw fa-1-5x"></i></span>
-				  <span class="red-text text-darken-3">Delete Order <i class="fa fa-times fa-fw fa-1-5x"></i></span>
-				 </div>
-			 </h3>
-			<form action="/orders/get_by_date" method="get">
-				<div class="row">
-					<div class="col s12 m4 l4 ">
-						<label for="order_date">주문 날짜</label>
-						<input type="date" class="datepicker" id="order_date" name="order_date">
-					</div>
+		<h3 class="blue-grey-text text-darken-3">주문내역
+			<div class="legend right">
+				<span class="blue-grey-text text-darken-2">View Order <i class="fa fa-eye fa-fw fa-1-5x"></i></span>
+				<span class="red-text text-darken-3">Cancel Order <i class="fa fa-ban fa-fw fa-1-5x"></i></span>
+				<span class="red-text text-darken-3">Delete Order <i class="fa fa-times fa-fw fa-1-5x"></i></span>
+			</div>
+		</h3>
+		<form action="/orders/get_by_date" method="get">
+			<div class="row">
+				<div class="col s8 m3 l3">
+					<label for="order_date">주문 날짜</label>
+					<input type="date" class="datepicker" id="order_date" name="order_date" value="">
 				</div><!-- .col -->
-			</form>
-			 <table class="bordered highlight table-sm">
-			 	<thead>
-			 		<tr>
-			 			<th>주문번호</th>
-			 			<th>주문날짜</th>
-			 			<th>상품 명</th>
-			 			<th>수량</th>
-			 			<th>합계</th>
-			 			<th>상태</th>
-			 			<th>관리</th>
-			 		</tr>
-			 	</thead>
+				<div class="col s2 m2 l2">
+					<button type="submit" name="action" class="waves-effect waves-light btn btn-large blue-grey darken-2">
+						<i class="fa fa-search"></i>
+					</button>
+				</div><!-- .col -->
+				<div class="col s12 m7 l7">
 
-			 	<tbody>
-					@model.orders.forEach(function(order) {
-			 		<tr>
-			 			<td>@order.id</td>
-			 			<td>@model.moment(order.created_at).format('l')</td>
-						@if(order.product) {
-			 				<td><span class="truncate">@order.product.name</span></td>
-						}
-						else {
-							<td></td>
-						}
-			 			<td>@order.quantity</td>
-			 			<td>@order.payco.orderTotalAmt</td>
-			 			<td class="@if(order.status=='Paid'){ green-text text-darken-1 }else{ blue-grey-text text-darken-2 }">@order.status</td>
-			 			<td>
-			 				<a class="users-link blue-grey-text text-darken-2" href="/orders/view/@order.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
-			 				<a class="users-link red-text text-darken-3" href="/orders/cancel/@order.id"><i class="fa fa-ban fa-fw fa-1-5x"></i></a>
-							@if(model.user.admin == 1){
-				 				<a class="users-link red-text text-darken-3" href="/orders/delete/@order.id" onclick="return confirm('Are you sure?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
-							}
-			 			</td>
-			 		</tr>
-					})
-			 	</tbody>
-			 </table>
-		 </div><!-- .row -->
-		 <br>
-		 <div class="row">
-			 <ul class="pagination">
-		     <li class="disabled"><a href="#!"><i class="fa fa-chevron-left"></i></a></li>
-		     <li class="active"><a href="#!">1</a></li>
-		     <li class="waves-effect"><a href="#!">2</a></li>
-		     <li class="waves-effect"><a href="#!">3</a></li>
-		     <li class="waves-effect"><a href="#!">4</a></li>
-		     <li class="waves-effect"><a href="#!">5</a></li>
-		     <li class="waves-effect"><a href="#!"><i class="fa fa-chevron-right"></i></a></li>
-		   </ul>
-		 </div><!-- .row -->
-		 <br>
+				</div>
+			</div><!-- .row -->
+		</form>
+		<table class="responsive-table bordered highlight table-sm table-orders">
+			<thead class="blue-grey darken-2 blue-grey-text text-lighten-5">
+				<tr>
+					<th>주문날짜</th>
+					<th>주문자</th>
+					<th>상품명</th>
+					<th>수량</th>
+					<th>합계</th>
+					<th>상태</th>
+					<th>관리</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				@model.orders.forEach(function(order) {
+				<tr>
+					<td>@model.moment(order.created_at).format('l')</td>
+					<td>@order.shipping.full_name&nbsp;</td>
+					@if(order.product) {
+					<td><span class="truncate">@order.product.name</span></td>
+					}
+					else {
+					<td>&nbsp;</td>
+					}
+					<td>@order.quantity</td>
+					<td>@order.payco.orderTotalAmt&nbsp;</td>
+				@if(order.status=='Paid'){
+					<td class="green-text text-darken-3">@order.status</td>
+				}
+				else if(order.status=='Submitted'){
+					<td class="amber-text text-darken-3">@order.status</td>
+				}
+				else if(order.status=='Canceled'){
+					<td class="red-text text-darken-3">@order.status</td>
+				}
+					<td>
+						<a class="users-link blue-grey-text text-darken-2" href="/orders/view/@order.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
+						<a class="users-link red-text text-darken-3" href="/orders/cancel/@order.id"><i class="fa fa-ban fa-fw fa-1-5x"></i></a>
+					@if(model.user.admin == 1){
+						<a class="users-link red-text text-darken-3" href="/orders/delete/@order.id" onclick="return confirm('Are you sure?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
+					}
+					</td>
+				</tr>
+				})
+			</tbody>
+		</table>
+		<br>
+		<div class="row">
+			<ul class="pagination">
+				<li class="disabled"><a href="#!"><i class="fa fa-chevron-left"></i></a></li>
+				<li class="active"><a href="#!">1</a></li>
+				<li class="waves-effect"><a href="#!">2</a></li>
+				<li class="waves-effect"><a href="#!">3</a></li>
+				<li class="waves-effect"><a href="#!">4</a></li>
+				<li class="waves-effect"><a href="#!">5</a></li>
+				<li class="waves-effect"><a href="#!"><i class="fa fa-chevron-right"></i></a></li>
+			</ul>
+		</div><!-- .row -->
+		<br>
    </div><!-- .container -->
 	 <script>
 	 $('.datepicker').pickadate({

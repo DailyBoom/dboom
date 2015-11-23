@@ -19,12 +19,23 @@
 				CHEERS
 			</div>
 			<div class="row">
+				<!-- if PAID -->
 				<p class="success-text blue-grey-text text-darken-3">
 					고객님, 결제가 완료되었습니다.
 					<br>데일리 붐에서 상품 구매해주셔서 감사합니다.
 					<br>
 					<br>좋은 하루 되세요!
 				</p>
+				<!-- ELSE IF BANK DEPOSIT -->
+				<p class="success-text blue-grey-text text-darken-3">
+					고객님, 데일리 붐을 이용해 주셔서 감사합니다.
+					<br>
+					<br>2015년 XX월 XX일 (tomorrow's date) 오후 12시까지 이내에 입금을 완료하셔야 신청 처리가 정상적으로 접수됩니다.
+					<br>데일리 붐을 사용해주셔서 감사합니다.
+					<br>
+					<br>좋은 하루 되세요!
+				</p>
+				<!-- END IF -->
 				<div class="row @if(model.is_phone) { center }">
 					<a class="waves-effect waves-light btn btn-large blue-grey darken-2" href="/mypage">주문보기 <i class="fa fa-list right"></i></a>
 					<a class="waves-effect waves-light btn btn-large blue-grey lighten-5 blue-grey-text text-darken-3" href="/">홈으로 <i class="fa fa-home right"></i></a>

@@ -85,7 +85,7 @@
 		        <div class="input-field col s12 m8 offset-m2 l8 offset-l2">
 							<i class="fa fa-building-o prefix"></i>
 		          <input id="company" type="text" class="validate" name="company">
-		          <label for="company">회사 명</label>
+		          <label for="company">회사명</label>
 		        </div>
 						<div class="input-field col s12 m8 offset-m2 l8 offset-l2">
 							<i class="fa fa-user prefix"></i>
