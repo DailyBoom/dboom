@@ -260,7 +260,7 @@ router.post('/checkout', function(req, res) {
       });
   }
   else {
-    res.redirect('/');    
+    res.redirect('/');
   }
 });
 
@@ -388,7 +388,7 @@ router.get('/payco_callback', function(req, res) {
 router.get('/success', function(req, res) {
   if (!req.session.order)
     res.redirect('/');
-  Order.findOne({_id: req.session.order, status: {$in : ['Paid', 'Waiting']}}, function(err, order) {
+  Order.findOne({_id: req.session.order, status: {$in : ['Paid', 'Waiting']}}).populate('product').exec(function(err, order) {
     if (err)
       console.log(err)
     if (!order)
@@ -631,7 +631,7 @@ router.post('/shipping', function(req, res) {
             required: true
           })
         }
-        
+
         req.Validator.getErrors(function(errors){
           if (errors.length > 0) {
             res.render('shipping', { errors: errors });
@@ -713,7 +713,7 @@ router.get('/orders/extract', isAdmin, function(req, res) {
     console.log(err);
     res.end();
   })
-  
+
   stream.on('data', function () {
     res.writeHead(200, {
       'Content-Type': 'text/csv',

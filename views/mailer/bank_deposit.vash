@@ -46,6 +46,11 @@
 						<h3>
 							고객님, 데일리 붐을 이용해 주셔서 감사합니다.
 							<br>
+							<br>폭스트론 (주)
+							<br>043-105437-04-016
+							<br>IBK 기업은행
+							<br><span id="deposit_price">@(model.order.quantity * model.order.product.price + model.order.product.delivery_price)</span>
+							<br>
 							<br>@model.moment().add(1, 'days').format('LL') 오후 12시까지 이내에 입금을 완료하셔야 신청 처리가 정상적으로 접수됩니다.
 							<br>데일리 붐을 사용해주셔서 감사합니다.
 							<br>
@@ -60,5 +65,10 @@
 				</tr>
 			</tbody>
 		</table>
+		<script>
+		$(document).ready(function(){
+			$("#deposit_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
+		});
+		</script>
 	</body>
 </html>
