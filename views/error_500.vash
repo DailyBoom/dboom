@@ -9,7 +9,7 @@
 						<div class="icon-error"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 						<div class="error-details">
 							<br>
-							<span class="error-title">찾을 수 없는 페이지입니다.</span>
+							<span class="error-title">서버 에러 났씁니다.</span>
 							<br>
 							서비스 이용에 불편을 드려서 대단히 죄송합니다.
 						</div>
