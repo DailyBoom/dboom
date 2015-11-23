@@ -94,7 +94,7 @@ router.get('/orders/shipped', isAdmin, function(req, res) {
 
 router.get('/orders/list', isAdmin, function(req, res) {
   Order.find({}, {}, { sort: { 'created_at': -1 } }).populate('product').exec(function(err, orders) {
-    res.render('orders/list', { orders: orders, moment: moment });
+    res.render('orders/list', { orders: orders });
   });
 });
 
@@ -262,11 +262,12 @@ router.post('/deposit_checkout', function(req, res) {
               return res.send('ERROR!');
             }
             var html = vash.compile(file);
+            moment.locale('ko');
             transporter.sendMail({
               from: 'Daily Boom <contact@dailyboom.co>',
               to: order.user ? order.user.email : order.email,
               subject: '무통장입금 안내',
-              html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name })
+              html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment })
             }, function (err, info) {
                 if (err) { console.log(err); }
                 console.log('Message sent: ' + info.response);
@@ -365,7 +366,7 @@ router.get('/success', function(req, res) {
     if (!order)
       res.redirect('/');
     delete req.session.order;
-    res.render('success', { code: req.query.code });
+    res.render('success', { code: req.query.code, order: order });
   });
 });
 

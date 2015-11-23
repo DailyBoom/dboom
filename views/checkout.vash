@@ -89,7 +89,7 @@
 		<div id="bank_modal" class="modal">
 			<div class="modal-content center">
 				<h4>무통장입금</h4>
-				<form action="" method="post">
+				<form action="/deposit_checkout" method="post">
 					<div class="row">
 		        <div class="input-field col s12 m8 offset-m2">
 		          <input id="deposit_name" name="deposit_name" type="text" class="validate">
@@ -121,7 +121,7 @@
 						<br>
 						<div class="col s12 m8 offset-m2">
 							<p class="bank-info blue-grey-text text-darken-1 center">
-								2015년 XX월 XX일 (tomorrow's date) 오후 12시까지 이내에 입금을 완료하셔야 신청 처리가 정상적으로 접수됩니다.<br>데일리 붐을 사용해주셔서 감사합니다.
+								@model.moment().add(1, 'days').format('LL') 오후 12시까지 이내에 입금을 완료하셔야 신청 처리가 정상적으로 접수됩니다.<br>데일리 붐을 사용해주셔서 감사합니다.
 							</p>
 						</div>
 					</div>

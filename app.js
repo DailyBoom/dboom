@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var validate = require('form-validate');
 var config = require("config");
+var moment = require("moment");
 var crypto = require('crypto');
 var i18n = require('i18n');
 i18n.configure({
@@ -92,6 +93,8 @@ else {
 }
 app.use(function(req, res, next) {
   res.locals.user = req.user;
+  moment.locale('ko');
+  res.locals.moment = moment;
   next();
 });
 app.use('/', routes);

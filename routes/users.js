@@ -74,9 +74,9 @@ router.get('/mypage', isAuthenticated, function(req, res) {
       if (typeof req.session.errors !== 'undefined') {
         var errors = req.session.errors;
         delete req.session.errors;
-        res.render('users/show', { orders: orders, errors: errors, moment: moment });
+        res.render('users/show', { orders: orders, errors: errors });
       }
-      res.render('users/show', { orders: orders, moment: moment });
+      res.render('users/show', { orders: orders });
     });
 });
 
@@ -140,7 +140,7 @@ router.get('/users/view/:id', isAdmin, function(req, res) {
         console.log(err);
       if (!user)
         res.redirect('/users/list');
-      res.render('users/show', { user: user, orders: orders, moment: moment });
+      res.render('users/show', { user: user, orders: orders });
     });
   });
 });

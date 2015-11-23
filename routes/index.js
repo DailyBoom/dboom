@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
 
   Product.findOne({scheduled_at: now, is_published: true}, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
     Product.find({scheduled_at: {$lt: now} }).limit(6).sort({ 'scheduled_at' : -1 }).exec(function (err, pastProducts) {
-      res.render('index', { progress: 70, product: product, pastProducts: pastProducts, moment: moment });
+      res.render('index', { progress: 70, product: product, pastProducts: pastProducts });
     });
   });
 });
