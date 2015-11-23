@@ -61,9 +61,15 @@ input[type=number]::-webkit-outer-spin-button {
 @media only screen and (min-width: 601px) {
   .flex-s { display: block; }
 }
-@media only screen and (min-width: 0)      {} /* mobile portrait */
-@media only screen and (min-width: 601px)  {} /* mobile landscape */
-@media only screen and (min-width: 992px)  {
+
+/* Container Reset */
+@media only screen and (min-width: 0) {
+  .container { width: 95%; }
+}
+@media only screen and (min-width: 601px) {
+  .container { width: 90%; }
+}
+@media only screen and (min-width: 992px) {
   .container { width: 970px; }
 }
 @media only screen and (min-width: 1200px) {
@@ -437,7 +443,7 @@ input[type=number]::-webkit-outer-spin-button {
 /** Slider **/
 @media only screen and (min-width: 0) {
   .bx-wrapper .bx-viewport {
-    height: 230px !important;
+    height: 240px !important;
   }
   .bx-wrapper .bx-pager.bx-default-pager a {
   	background: rgba(255,255,255,0.5);;
@@ -455,7 +461,7 @@ input[type=number]::-webkit-outer-spin-button {
     margin-top: 0px;
   }
   .slide {
-    height: 230px;
+    height: 240px;
     width: 100%;
     background-position: center center;
     background-repeat: no-repeat;
@@ -1465,38 +1471,127 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 1.4em;
   }
 }
-.error-template {
-  display: block;
-  position: relative;
-  height: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  bottom: 0;
-  padding: 40px 15px;
-  text-align: center;
+
+/** Errors **/
+@media only screen and (min-width: 0) {
+  .error-template {
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 0;
+    padding: 40px 15px;
+    text-align: center;
+  }
+  .error-template h2 {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    padding-top: 0px;
+  }
+  .icon-error {
+    font-size: 6em;
+  }
+  .error-details {
+    font-size: 1.2em;
+  }
+  .error-title {
+    font-size: 1.5em;
+  }
+  .error-actions {
+    display: block;
+    margin-top: 150px;
+  }
+  .error-actions .btn {
+    margin-right:0px;
+  }
+  #notfound {
+    min-height: 550px;
+    background-image: url(/images/404a.jpg);
+    background-position: -225px top;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }
-.error-template h2 {
-  margin-top: 0px;
-  margin-bottom: 10px;
-  padding-top: 0px;
+@media only screen and (min-width: 601px) {
+  .error-template {
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 0;
+    padding: 40px 15px;
+    text-align: center;
+  }
+  .error-template h2 {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    padding-top: 0px;
+  }
+  .icon-error {
+    font-size: 6em;
+  }
+  .error-details {
+    font-size: 2.2em;
+  }
+  .error-title {
+    font-size: 1.5em;
+  }
+  .error-actions {
+    display: block;
+    margin-top: 150px;
+  }
+  .error-actions .btn {
+    margin-right:0px;
+  }
+  #notfound {
+    min-height: 550px;
+    background-image: url(/images/404a.jpg);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }
-.error-details {
-  font-size: 2em;
+@media only screen and (min-width: 992px) {
+  .error-template {
+    display: block;
+    position: relative;
+    height: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 0;
+    padding: 40px 15px;
+    text-align: center;
+  }
+  .error-template h2 {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    padding-top: 0px;
+  }
+  .icon-error {
+    font-size: 7em;
+  }
+  .error-details {
+    font-size: 3em;
+  }
+  .error-title {
+    font-size: 1.5em;
+  }
+  .error-actions {
+    display: block;
+    margin-top: 150px;
+  }
+  .error-actions .btn {
+    margin-right:10px;
+  }
+  #notfound {
+    min-height: 700px;
+    background-image: url(/images/404a.jpg);
+    background-position: 0 -120px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }
-.error-actions {
-  display: block;
-  margin-top: 450px;
-}
-.error-actions .btn {
-  margin-right:10px;
-}
-#notfound {
-  min-height: 700px;
-  background-image: url(/images/404a.jpg);
-  background-position: 0 -120px;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+
 #sharekakao, #sharefb {
   cursor: pointer;
 }

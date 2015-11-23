@@ -6,17 +6,19 @@
 			<div class="row">
 				<div class="col s12 center">
 					<div class="error-template white-text">
-						<h2>Uh Oh...</h2>
+						<div class="icon-error"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 						<div class="error-details">
-							Sorry, the requested page was not found...
+							<br>
+							<span class="error-title">찾을 수 없는 페이지입니다.</span>
+							<br>
+							서비스 이용에 불편을 드려서 대단히 죄송합니다.
 						</div>
 						<div class="error-actions">
 							<a href="/" class="waves-effect waves-light btn btn-large blue-grey darken-2">
-								<i class="fa fa-home left"></i>
-								Take Me Home
+								데일리 붐<i class="fa fa-home fa-fw right"></i>
 							</a>
 							<a href="mailto:contact@dailyboom.co" class="waves-effect waves-light btn btn-large blue-grey lighten-5 blue-grey-text text-darken-2">
-								<i class="fa fa-envelope left"></i> Contact Support
+								고객 센터 <i class="fa fa-envelope fa-fw right"></i>
 							</a>
 						</div>
 					</div>
