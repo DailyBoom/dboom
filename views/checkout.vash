@@ -2,10 +2,11 @@
 	@html.block("body", function(model) {
 		<div class="container">
 			<div class="row">
-				<h3 class="blue-grey-text text-darken-4">주문결제</h3>
-
+				<div class="col s12">
+					<h3 class="blue-grey-text text-darken-4">주문결제</h3>
+				</div>
 				<div class="col s12 m6 l8">
-					<div class="row blue-grey-text text-darken-3">
+					<div class="blue-grey-text text-darken-3">
 						<h5>옵션 및 수량 선택</h5>
 						<form method="post" id="options">
 							<div class="input-field col s12 m8 l9">
@@ -30,7 +31,7 @@
 						</form>
 					</div><!-- .row -->
 					<br>
-					<div class="row blue-grey-text text-darken-3">
+					<div class="blue-grey-text text-darken-3">
 						<h5>배송정보</h5>
 						<span class="check-name">@(model.user ? model.user.shipping.full_name : model.order.shipping.full_name)</span>
 						<br><span class="check-number">@(model.user? model.user.shipping.phone_number : model.order.shipping.phone_number)</span>
@@ -51,15 +52,14 @@
 						}
 					</div><!-- .row -->
 				</div><!-- .col -->
-
 				<div class="col s12 m6 l4">
-					<div class="row blue-grey-text text-darken-3">
+					<div class="blue-grey-text text-darken-3">
 						<h5 class="summary-title">상품정보</h5>
 						<div class="summary-box white z-depth-1 right center-align">
 							<img class="responsive-img" src="@model.order.product.images[0]" alt="" />
 							<div class="check-price-box center">
 								<span class="check-item-name blue-grey-text text-darken-1 truncate"><b>@model.order.product.brand</b></span>
-								<span class="check-item-name blue-grey-text text-darken-2 truncate">@model.order.product.name (@model.order.option)</span>
+								<span class="check-item-name blue-grey-text text-darken-2 truncate">@model.order.product.name<br>@model.order.option</span>
 								<span class="check-item-name blue-grey-text text-darken-2">+ <span id="delivery_price">@model.order.product.delivery_price</span> 배송비</span><br>
 								<span class="check-price blue-grey-text text-darken-3" id="product_price"> @(model.order.quantity * model.order.product.price + model.order.product.delivery_price)</span>
 							</div>
@@ -71,8 +71,8 @@
 						</div>
 					</div><!-- .row -->
 					@if(model.is_phone) {
-						<div class="row">
-							<br><b style="font-size: 1.2em;">PAYCO 결제 순서</b>
+						<div class="payco-box-bottom">
+							<b style="font-size: 1.2em;">PAYCO 결제 순서</b>
 							<ol class="payco-info">
 								<li>아래 하단에 있는 <b>"PAYCO 구매하기"</b> 버튼을 클릭해주세요.</li>
 								<li>주문정보내역 확인 후 구매하기 버튼 클릭 시 <b>'PAYCO'</b> 결제 인증페이지로 이동됩니다.</li>
@@ -81,7 +81,6 @@
 						</div>
 					}
 				</div><!-- .col -->
-
 			</div><!-- .row -->
 		</div><!-- .container -->
 
