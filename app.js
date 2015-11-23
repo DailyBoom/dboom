@@ -123,6 +123,7 @@ passport.use(new FacebookStrategy({
     clientID: config.get("Facebook.clientID"),
     clientSecret: config.get("Facebook.clientSecret"),
     callbackURL: config.get("Facebook.callbackURL"),
+    profileFields: ["id", "birthday", "email", "first_name", "gender", "last_name"],
     enableProof: false
   },
   function(accessToken, refreshToken, profile, done) {
