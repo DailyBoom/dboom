@@ -45,6 +45,12 @@ var isMerchantOrAdmin = function (req, res, next) {
   res.redirect('/login');
 }
 
+var isMerchant = function (req, res, next) {
+  if (req.isAuthenticated() && req.user.role === "merchant")
+    return next();
+  res.redirect('/login');
+}
+
 var hasShipping = function(obj) {
   if (!obj.shipping)
     return false;
@@ -92,14 +98,26 @@ router.get('/orders/shipped', isAdmin, function(req, res) {
   res.render('mailer/shipped');
 });
 
+router.get('/merchants/orders/list', isMerchant, function(req, res) {
+  Order.find({}, {}, { sort: { 'created_at': -1 } }).populate('product', null, {merchant_id: req.user.id}).exec(function(err, orders) {
+    console.log(orders);
+    orders = orders.filter(function(doc){
+      if (doc.product)
+        return doc;
+    });
+    console.log(orders);
+    res.render('orders/list', { orders: orders });
+  });
+});
+
 router.get('/orders/list', isAdmin, function(req, res) {
   Order.find({}, {}, { sort: { 'created_at': -1 } }).populate('product').exec(function(err, orders) {
     res.render('orders/list', { orders: orders });
   });
 });
 
-router.get('/orders/view/:id', isAdmin, function(req, res) {
-  Order.findOne({ _id: req.params.id }).populate('product').populate('user').exec(function(err, order) {
+router.get('/orders/view/:id', isMerchantOrAdmin, function(req, res) {
+  Order.findOne({ _id: req.params.id }).populate('product user').exec(function(err, order) {
     if (err)
       console.log(err);
     if (!order)
@@ -251,10 +269,20 @@ router.post('/deposit_checkout', function(req, res) {
     Order.findOne({ '_id': req.session.order }).populate('product').populate('user').exec(function(err, order) {
         if (err)
           console.log(err);
-        order.status = "Waiting"
+        order.status = "Waiting";
+        order.deposit_name = req.body.deposit_name;
         order.save(function(err) {
           if (err)
             console.log(err);
+          if (app.get("env") === "production") {
+            slack.send({
+              channel: '#dailyboom-new-order',
+              icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
+              text: 'New order via deposit #'+order._id,
+              unfurl_links: 1,
+              username: 'DailyBoom-bot'
+            });
+          }
           fs.readFile('./views/mailer/bank_deposit.vash', "utf8", function(err, file) {
             if(err){
               //handle errors
@@ -267,7 +295,7 @@ router.post('/deposit_checkout', function(req, res) {
               from: 'Daily Boom <contact@dailyboom.co>',
               to: order.user ? order.user.email : order.email,
               subject: '무통장입금 안내',
-              html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment })
+              html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment, order: order })
             }, function (err, info) {
                 if (err) { console.log(err); }
                 console.log('Message sent: ' + info.response);
@@ -368,6 +396,45 @@ router.get('/success', function(req, res) {
     delete req.session.order;
     res.render('success', { code: req.query.code, order: order });
   });
+});
+
+router.get('/orders/paid/:id', function(req, res) {
+  if (req.session.order) {
+    Order.findOne({ '_id': req.params.id }).populate('product').populate('user').exec(function(err, order) {
+        if (err)
+          console.log(err);
+        if (!order)
+          res.redirect('/mypage');
+        order.status = "Paid";
+        order.save(function(err) {
+          if (err)
+            console.log(err);
+          fs.readFile('./views/mailer/buy_success.vash', "utf8", function(err, file) {
+            if(err){
+              //handle errors
+              console.log('ERROR!');
+              return res.send('ERROR!');
+            }
+            var html = vash.compile(file);
+            moment.locale('ko');
+            transporter.sendMail({
+              from: 'Daily Boom <contact@dailyboom.co>',
+              to: order.user ? order.user.email : order.email,
+              subject: '데일리 붐 구매 안내.',
+              html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment })
+            }, function (err, info) {
+                if (err) { console.log(err); }
+                console.log('Message sent: ' + info.response);
+                transporter.close();
+                res.redirect('/success');
+            });
+          });
+        })
+    });
+  }
+  else {
+    res.redirect('/');
+  }
 });
 
 router.get('/orders/send/:id', isMerchantOrAdmin, function(req, res) {

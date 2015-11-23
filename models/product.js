@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 // create a schema
 var productSchema = new Schema({
+  merchant_id: { type: Schema.Types.ObjectId, ref: 'User' },
   name: { type: String, required: true },
   description: { type: String, required: true },
   brand: { type: String, required: false },

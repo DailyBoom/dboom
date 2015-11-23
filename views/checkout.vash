@@ -92,7 +92,7 @@
 				<form action="/deposit_checkout" method="post">
 					<div class="row">
 		        <div class="input-field col s12 m8 offset-m2">
-		          <input id="deposit_name" name="deposit_name" type="text" class="validate">
+		          <input id="deposit_name" name="deposit_name" type="text" class="validate" required>
 		          <label for="deposit_name">입금자 이름</label>
 		        </div>
 						<!-- <div class="input-field col s12">

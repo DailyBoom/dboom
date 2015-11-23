@@ -27,7 +27,8 @@ var orderSchema = new Schema({
 		paymentDetails: Object,
 		cancelTradeSeq: Number,
 		cancelPaymentDetails: Object
-	}
+	},
+	deposit_name: String
 });
 
 orderSchema.plugin(mongooseToCsv, {
