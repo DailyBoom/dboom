@@ -82,51 +82,50 @@
 					}
 				</div><!-- .col -->
 			</div><!-- .row -->
-		</div><!-- .container -->
-
-		<!-- Modal Structure -->
-		<div id="bank_modal" class="modal">
-			<div class="modal-content center">
-				<h4>무통장입금</h4>
-				<form action="" method="post">
-					<div class="row">
-		        <div class="input-field col s12 m8 offset-m2">
-		          <input id="deposit_name" name="deposit_name" type="text" class="validate">
-		          <label for="deposit_name">입금자 이름</label>
-		        </div>
-						<!-- <div class="input-field col s12">
-							<select id="deposit_bank" name="deposit_bank">
-					      <option value="" disabled selected>은행을 선택해주세요</option>
-								<option value="농협">농협</option>
-								<option value="국민은행">국민은행</option>
-								<option value="우리은행">우리은행</option>
-								<option value="하나은행">하나은행</option>
-								<option value="신한은행">신한은행</option>
-								<option value="외환은행">외환은행</option>
-								<option value="씨티은행">씨티은행</option>
-								<option value="기업은행">기업은행</option>
-								<option value="우체국">우체국</option>
-								<option value="부산은행">부산은행</option>
-								<option value="SC은행">SC은행</option>
-					    </select>
-		        </div> -->
-		      </div>
-					<div class="row">
-						<div class="bank-title">폭스트론 (주)</div>
-						<div class="bank-number">043-105437-04-016</div>
-						<div class="bank-title">IBK 기업은행</div>
-						<br>
-						<button type="submit" class="waves-effect waves-light btn green darken-2">확인</a>
-						<br>
-						<div class="col s12 m8 offset-m2">
-							<p class="bank-info blue-grey-text text-darken-1 center">
-								2015년 XX월 XX일 (tomorrow's date) 오후 12시까지 이내에 입금을 완료하셔야 신청 처리가 정상적으로 접수됩니다.<br>데일리 붐을 사용해주셔서 감사합니다.
-							</p>
+			<!-- Modal Structure -->
+			<div id="bank_modal" class="modal">
+				<div class="modal-content center">
+					<h4>무통장입금</h4>
+					<form action="" method="post">
+						<div class="row">
+			        <div class="input-field col s12 m8 offset-m2">
+			          <input id="deposit_name" name="deposit_name" type="text" class="validate">
+			          <label for="deposit_name">입금자 이름</label>
+			        </div>
+							<!-- <div class="input-field col s12">
+								<select id="deposit_bank" name="deposit_bank">
+						      <option value="" disabled selected>은행을 선택해주세요</option>
+									<option value="농협">농협</option>
+									<option value="국민은행">국민은행</option>
+									<option value="우리은행">우리은행</option>
+									<option value="하나은행">하나은행</option>
+									<option value="신한은행">신한은행</option>
+									<option value="외환은행">외환은행</option>
+									<option value="씨티은행">씨티은행</option>
+									<option value="기업은행">기업은행</option>
+									<option value="우체국">우체국</option>
+									<option value="부산은행">부산은행</option>
+									<option value="SC은행">SC은행</option>
+						    </select>
+			        </div> -->
+			      </div>
+						<div class="row">
+							<div class="bank-title">폭스트론 (주)</div>
+							<div class="bank-number">043-105437-04-016</div>
+							<div class="bank-title">IBK 기업은행</div>
+							<br>
+							<button type="submit" class="waves-effect waves-light btn green darken-2">확인</a>
+							<br>
+							<div class="col s12 m8 offset-m2">
+								<p class="bank-info blue-grey-text text-darken-1 center">
+									2015년 XX월 XX일 (tomorrow's date) 오후 12시까지 이내에 입금을 완료하셔야 신청 처리가 정상적으로 접수됩니다.<br>데일리 붐을 사용해주셔서 감사합니다.
+								</p>
+							</div>
 						</div>
-					</div>
-				</form>
-			</div>
-		</div><!-- .modal -->
+					</form>
+				</div>
+			</div><!-- .modal -->
+		</div><!-- .container -->
 
 		<script type="text/javascript">
 		$(document).ready(function() {
