@@ -46,15 +46,26 @@
 						<h3>
 							고객님, 데일리 붐을 이용해 주셔서 감사합니다.
 							<br>
+							<br>입금 계좌 정보:
 							<br>폭스트론 (주)
 							<br>043-105437-04-016
 							<br>IBK 기업은행
 							<br><span id="deposit_price">@(model.order.quantity * model.order.product.price + model.order.product.delivery_price).toLocaleString()</span>
 							<br>
+							<br>@model.order.product.brand
+							<br>@model.order.product.name
+							<br>@model.order.option
+							<br>@model.order.quantity
+							<br>
+              <br>@model.order.shipping.full_name
+							<br>@model.order.shipping.phone_number
+							<br>@model.order.shipping.address
+							<br>@model.order.shipping.zipcode
+							<br>
 							<br>@model.moment().add(1, 'days').format('LL') 오후 12시까지 이내에 입금을 완료하셔야 신청 처리가 정상적으로 접수됩니다.
 							<br>데일리 붐을 사용해주셔서 감사합니다.
 							<br>
-							<br>주문내역 및 기타정보는 <span class="amber-text text-darken-3">마이페이지 >> 주문내역</span>에서 확인가능 합니다.
+							<br>주문내역 및 기타정보는 <span class="amber-text text-darken-3">마이페이지 > 주문내역</span>에서 확인가능 합니다.
 						</h3>
 					</td>
 				</tr>

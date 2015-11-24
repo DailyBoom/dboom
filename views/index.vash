@@ -167,7 +167,7 @@
 													</p>
 												</div>
 												<div class="card-action center">
-													<a class="waves-effect waves-light blue-grey-text text-darken-3" href="#!"><i class="fa fa-thumbs-up fa-fw"></i> 사고싶다 <!--<span class="badge">5</span>--></a>
+													<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 want" href="#!">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></a>
 												</div>
 											</div>
 										</div>
@@ -178,6 +178,17 @@
 					</div><!-- .row -->
 				</div><!-- /.col s12 m9 l9 -->
 			</div><!-- .row -->
+			<script>
+				$(document).ready(function(){
+					$('a.want').on('click', function(){
+						$(this).parent().addClass('cyan darken-2');
+						$(this).removeClass('want blue-grey-text text-darken-3');
+						$(this).addClass('white-text');
+						$(this).children('i').removeClass('fa-thumbs-o-up');
+						$(this).children('i').addClass('fa-thumbs-up white-text');
+					});
+				});
+			</script>
 			@if(!model.is_phone) {
 				<div>
 					<script type='text/javascript'>
