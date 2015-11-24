@@ -99,7 +99,10 @@ router.get('/orders/shipped', isAdmin, function(req, res) {
 });
 
 router.get('/merchants/orders/list', isMerchant, function(req, res) {
-  Order.find({status: "Paid"}, {}, { sort: { 'created_at': -1 } }).populate('product', null, {merchant_id: req.user.id}).exec(function(err, orders) {
+  var query = Order.find({status: "Paid"}, {}, { sort: { 'created_at': -1 } }).populate('product', null, {merchant_id: req.user.id});
+  if (req.query.order_date)
+    query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
+  query.exec(function(err, orders) {
     console.log(orders);
     orders = orders.filter(function(doc){
       if (doc.product)
@@ -111,7 +114,10 @@ router.get('/merchants/orders/list', isMerchant, function(req, res) {
 });
 
 router.get('/orders/list', isAdmin, function(req, res) {
-  Order.find({}, {}, { sort: { 'created_at': -1 } }).populate('product').exec(function(err, orders) {
+  var query = Order.find({}, {}, { sort: { 'created_at': -1 } }).populate('product');
+  if (req.query.order_date)
+    query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
+  query.exec(function(err, orders) {
     res.render('orders/list', { orders: orders });
   });
 });
@@ -399,42 +405,37 @@ router.get('/success', function(req, res) {
 });
 
 router.get('/orders/paid/:id', function(req, res) {
-  if (req.session.order) {
-    Order.findOne({ '_id': req.params.id }).populate('product').populate('user').exec(function(err, order) {
+  Order.findOne({ '_id': req.params.id }).populate('product').populate('user').exec(function(err, order) {
+      if (err)
+        console.log(err);
+      if (!order)
+        res.redirect('/mypage');
+      order.status = "Paid";
+      order.save(function(err) {
         if (err)
           console.log(err);
-        if (!order)
-          res.redirect('/mypage');
-        order.status = "Paid";
-        order.save(function(err) {
-          if (err)
-            console.log(err);
-          fs.readFile('./views/mailer/buy_success.vash', "utf8", function(err, file) {
-            if(err){
-              //handle errors
-              console.log('ERROR!');
-              return res.send('ERROR!');
-            }
-            var html = vash.compile(file);
-            moment.locale('ko');
-            transporter.sendMail({
-              from: 'Daily Boom <contact@dailyboom.co>',
-              to: order.user ? order.user.email : order.email,
-              subject: '데일리 붐 구매 안내.',
-              html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment })
-            }, function (err, info) {
-                if (err) { console.log(err); }
-                console.log('Message sent: ' + info.response);
-                transporter.close();
-                res.redirect('/success');
-            });
+        fs.readFile('./views/mailer/buy_success.vash', "utf8", function(err, file) {
+          if(err){
+            //handle errors
+            console.log('ERROR!');
+            return res.send('ERROR!');
+          }
+          var html = vash.compile(file);
+          moment.locale('ko');
+          transporter.sendMail({
+            from: 'Daily Boom <contact@dailyboom.co>',
+            to: order.user ? order.user.email : order.email,
+            subject: '데일리 붐 구매 안내.',
+            html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment })
+          }, function (err, info) {
+              if (err) { console.log(err); }
+              console.log('Message sent: ' + info.response);
+              transporter.close();
+              res.redirect('/orders/list');
           });
-        })
-    });
-  }
-  else {
-    res.redirect('/');
-  }
+        });
+      })
+  });
 });
 
 router.get('/orders/send/:id', isMerchantOrAdmin, function(req, res) {

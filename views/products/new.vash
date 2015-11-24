@@ -144,12 +144,10 @@
 	$(document).ready(function() {
 		$('.datepicker').pickadate({
 		format: 'mm/dd/yyyy',
+		min: true,
 	    selectMonths: true, // Creates a dropdown to control month
 	    selectYears: 15, // Creates a dropdown of 15 years to control year
-			disable: [
-				[2015,9,17],
-				[2015,9,20]
-			]
+		disable: @JSON.stringify(model.scheduled)
 	  });
 		var max_fields      = 4; //maximum input boxes allowed
 		var wrapper         = $("#options_wrapper"); //Fields wrapper

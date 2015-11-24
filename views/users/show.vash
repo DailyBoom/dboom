@@ -70,13 +70,6 @@
 											} else if(order.status == "Sent"){
 												<div class="o-name green-text">[배송 완료]</div>
 											}
-											@if(order.status == "Paid" && (model.user.admin || model.user.role == "merchant")){
-												<a href="/orders/send/@order.id" class="btn pull-right" >배송</a>
-											}
-											
-											@if(order.status == 'Waiting' && (model.user.admin || model.user.role == "merchant")){
-												<a href="/orders/paid/@order.id" class="btn pull-right" >배송</a>
-											}
 											
 											@if(order.payco.orderNo) {
 											<div class="payco"><button class="btn blue-grey darken-2 receipt" data-orderno="@order.payco.orderNo" >PAYCO 영수증</button>@if(!order.payco.cancelTradeSeq){<a class="btn red darken-2 right cancel" href="/orders/cancel/@order.id">결제 취소</a>}</div>
