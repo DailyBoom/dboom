@@ -1,24 +1,40 @@
 @html.extend("layout", function(@model) {
 	@html.block("body", function(@model) {
-    <nav id="navbar-preview">
-			<div class="container">
-	      <div class="nav-wrapper">
-	        <span class="brand-logo">PREVIEW MODE</span>
-	        <ul class="right">
-	          <li>
-							<a class="waves-effect waves-green btn-publish center" href="/products/publish/@model.product.id">
-								PUBLISH <i class="hide-on-small-only fa fa-send preview-fa text-md right"></i>
-							</a>
-						</li>
-	          <li>
-							<a class="waves-effect waves-yellow btn-edit center" href="/products/edit/@model.product.id">
-								EDIT <i class="hide-on-small-only fa fa-pencil preview-fa text-md right"></i>
-							</a>
-						</li>
-	        </ul>
-				</div>
-      </div>
-    </nav>
+<div id="navbar-preview" class="preview-bar">
+	<div class="container">
+		<ul class="left">
+			<li><span class="btn-flat btn-large white-text">PREVIEW MODE</span></li>
+		</ul>
+    <ul class="preview-menu right">
+      <li>
+				<a class="waves-effect waves-green btn-flat btn-large white-text center" href="/products/publish/@model.product.id">
+					PUBLISH <i class="hide-on-small-only fa fa-send fa-fw right"></i>
+				</a>
+			</li>
+      <li>
+				<a class="waves-effect waves-yellow btn-flat btn-large white-text center" href="/products/edit/@model.product.id">
+					EDIT <i class="hide-on-small-only fa fa-pencil fa-fw right"></i>
+				</a>
+			</li>
+    </ul>
+  </div>
+	<div class="preview-hide">
+		<a id="btn_c" class="waves-effect waves-light btn-flat white-text" href="#!"><i class="fa fa-chevron-up fa-fw"></i></a>
+		<a id="btn_o" class="waves-effect waves-light btn-flat white-text hide" href="#!"><i class="fa fa-chevron-down fa-fw"></i></a>
+	</div>
+</div><!-- .preview-bar -->
+<script>
+	$(document).ready(function(){
+		$('#btn_c').on('click', function(){
+			$('#navbar-preview').toggleClass('hide-bar');
+			$('#btn_o, #btn_c').toggleClass('hide');
+		});
+		$('#btn_o').on('click', function(){
+			$('#navbar-preview').toggleClass('hide-bar');
+			$('#btn_c, #btn_o').toggleClass('hide');
+		});
+	});
+</script>
 <div class="container">
 	<div class="row">
 		<div class="col s12">
@@ -120,38 +136,23 @@
 <!-- Buy -> Login Modal JS -->
 	<script>
 		$(document).ready(function (){
-		$('iframe').each(function(){
-		var url = $(this).attr("src");
-		$(this).attr("src",url+"?wmode=transparent");
-		});
+			$('iframe').each(function(){
+				var url = $(this).attr("src");
+				$(this).attr("src",url+"?wmode=transparent");
+			});
 		});
 	</script>
-			<br>		<script>
-			$(document).ready(function(){
-				$("#main-slider").bxSlider({
-					mode:'horizontal',
-					infiniteLoop:true,
-					easing:'ease-in-out',
-					auto:true,
-					autoHover:true
-				});
-				$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
-					var owl = $("#db-past");
-					owl.owlCarousel({
-						items : 3,
-						itemsDesktop : [1000,3],
-						itemsDesktopSmall : [900,3],
-						itemsTablet: [600,1],
-						itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
-						navigation: false,
-						pagination: false,
-						responsive: true,
-						rewindNav: false
-					});
-					// Custom Navigation Events
-					$(".next").click(function(){owl.trigger('owl.next');});
-					$(".prev").click(function(){owl.trigger('owl.prev');});
-				});
-		</script>
+	<script>
+		$(document).ready(function(){
+			$("#main-slider").bxSlider({
+				mode:'horizontal',
+				infiniteLoop:true,
+				easing:'ease-in-out',
+				auto:true,
+				autoHover:true
+			});
+			$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
+		});
+	</script>
 	})
 })

@@ -56,7 +56,7 @@
 					<td class="green-text text-darken-3">&nbsp;결제 완료</td>
 				}
 				else if(order.status=='Submitted'){
-					<td class="amber-text text-darken-3">&nbsp;@order.status</td>
+					<td class="amber-text text-darken-3">&nbsp;입금대기</td>
 				}
 				else if(order.status=='Canceled'){
 					<td class="red-text text-darken-3">&nbsp;주문 취소</td>
