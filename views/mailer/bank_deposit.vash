@@ -2,7 +2,7 @@
 	<head>
 		<title>데일리 붐에서 구매 해주셔서 감사합니다 - 데일리 붐</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Hanna:400,300,200,100' rel='stylesheet' type='text/css'>
 		<style>
 			h1,h2,h3,h4,h5,h6 {
@@ -50,7 +50,7 @@
 							<br>폭스트론 (주)
 							<br>043-105437-04-016
 							<br>IBK 기업은행
-							<br><span id="deposit_price">@(model.order.quantity * model.order.product.price + model.order.product.delivery_price)</span>
+							<br><span id="deposit_price">@(model.order.quantity * model.order.product.price + model.order.product.delivery_price).toLocaleString()</span>
 							<br>
 							<br>@model.order.product.brand
 							<br>@model.order.product.name
@@ -76,10 +76,5 @@
 				</tr>
 			</tbody>
 		</table>
-		<script>
-		$(document).ready(function(){
-			$("#deposit_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
-		});
-		</script>
 	</body>
 </html>

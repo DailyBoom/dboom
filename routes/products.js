@@ -18,7 +18,12 @@ router.get('/products/list', isAdmin, function(req, res) {
 });
 
 router.get('/products/new', isAdmin, function(req, res) {
-  res.render("products/new");
+  Product.find({scheduled_at: {$exists: true}}, 'scheduled_at', function(err, products) {
+    var scheduled = products.map(function(product) {
+      return [product.scheduled_at.getFullYear(), product.scheduled_at.getMonth(), product.scheduled_at.getDate()];
+    });
+    res.render("products/new", {scheduled: scheduled});
+  });
 });
 
 router.get('/products/delete/:id', isAdmin, function(req, res) {
@@ -29,8 +34,12 @@ router.get('/products/delete/:id', isAdmin, function(req, res) {
 
 router.get('/products/edit/:id', isAdmin, function(req, res) {
   Product.findOne({_id: req.params.id}, function(err, product) {
-    console.log(product);
-    res.render("products/edit", { product: product });
+    Product.find({scheduled_at: {$exists: true}, _id: {$ne: product.id}}, 'scheduled_at', function(err, products) {
+      var scheduled = products.map(function(product) {
+        return [product.scheduled_at.getFullYear(), product.scheduled_at.getMonth(), product.scheduled_at.getDate()];
+      });
+      res.render("products/edit", { product: product, scheduled: scheduled });
+    });
   });
 });
 
