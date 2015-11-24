@@ -203,7 +203,7 @@ router.post('/users/edit', isAuthenticated, function(req, res) {
 
 // for Admin Only
 router.get('/users/list', isAdmin, function(req, res){
-  User.find({}, function(err, users) {
+  User.find({}, {}, {$sort: { created_at: -1 }}, function(err, users) {
     if (err)
       console.log(err);
     res.render('users/list', { users: users });
@@ -440,5 +440,13 @@ router.post('/reset/:token', function(req, res) {
     });
   });
 });
+
+router.get('/users/is_merchant/:id', function(req, res) {
+  User.findOneAndUpdate({_id: req.params.id}, { role: 'merchant' }, function(err, user) {
+    if (err)
+      console.log(err);
+    res.redirect('/users/list');
+  });
+})
 
 module.exports = router;
