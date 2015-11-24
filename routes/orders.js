@@ -405,7 +405,7 @@ router.get('/success', function(req, res) {
   });
 });
 
-router.get('/orders/paid/:id', function(req, res) {
+router.get('/orders/paid/:id', isAdmin, function(req, res) {
   Order.findOne({ '_id': req.params.id }).populate('product').populate('user').exec(function(err, order) {
       if (err)
         console.log(err);
