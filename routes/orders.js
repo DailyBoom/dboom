@@ -456,7 +456,7 @@ router.get('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
           if (err) { console.log(err); res.render('signup', { error: err.errmsg }); }
           console.log('Message sent: ' + info.response);
           transporter.close();
-          res.redirect('/mypage');
+          res.redirect('/orders/list');
       });
     });
   });
