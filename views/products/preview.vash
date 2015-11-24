@@ -23,18 +23,6 @@
 		<a id="btn_o" class="waves-effect waves-light btn-flat white-text hide" href="#!"><i class="fa fa-chevron-down fa-fw"></i></a>
 	</div>
 </div><!-- .preview-bar -->
-<script>
-	$(document).ready(function(){
-		$('#btn_c').on('click', function(){
-			$('#navbar-preview').toggleClass('hide-bar');
-			$('#btn_o, #btn_c').toggleClass('hide');
-		});
-		$('#btn_o').on('click', function(){
-			$('#navbar-preview').toggleClass('hide-bar');
-			$('#btn_c, #btn_o').toggleClass('hide');
-		});
-	});
-</script>
 <div class="container">
 	<div class="row">
 		<div class="col s12">
@@ -139,6 +127,18 @@
 			$('iframe').each(function(){
 				var url = $(this).attr("src");
 				$(this).attr("src",url+"?wmode=transparent");
+			});
+		});
+	</script>
+	<script>
+		$(document).ready(function(){
+			$('#btn_c').on('click', function(){
+				$('#navbar-preview').toggleClass('hide-bar');
+				$('#btn_o, #btn_c').toggleClass('hide');
+			});
+			$('#btn_o').on('click', function(){
+				$('#navbar-preview').toggleClass('hide-bar');
+				$('#btn_c, #btn_o').toggleClass('hide');
 			});
 		});
 	</script>
