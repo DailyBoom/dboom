@@ -121,6 +121,10 @@
 								<!-- Dropdown Structure -->
 								<ul id="dropdown-profile" class="dropdown-content">
 									<li><a class="waves-effect waves-light green darken-2 white-text" href="#!">@model.user.username</a></li>
+                @if (model.user.role == 'merchant') {
+									<li class="divider"></li>
+                  <li><a class="waves-effect waves-light blue-grey-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck fa-fw right"></i></a></li>
+                }
 									<li class="divider"></li>
 									<li><a class="waves-effect waves-light blue-grey-text text-darken-2" href="/mypage">My Page <i class="fa fa-user fa-fw right"></i></a></li>
 									<li><a class="waves-effect waves-light blue-grey-text text-darken-2" href="/logout">Log Out <i class="fa fa-sign-out fa-fw right"></i></a></li>
