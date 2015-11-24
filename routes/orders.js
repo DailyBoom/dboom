@@ -16,6 +16,7 @@ var extend = require('util')._extend;
 var request = require("request");
 var slack = require('slack-notify')(config.get("Slack.webhookUrl"));
 var CSVTransform = require('csv-transform');
+var accounting = require('accounting');
 
 var transporter = nodemailer.createTransport(smtpTransport({
     host: config.get('Nodemailer.host'),
@@ -301,7 +302,7 @@ router.post('/deposit_checkout', function(req, res) {
               from: 'Daily Boom <contact@dailyboom.co>',
               to: order.user ? order.user.email : order.email,
               subject: '무통장입금 안내',
-              html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment, order: order })
+              html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment, order: order, accounting: accounting })
             }, function (err, info) {
                 if (err) { console.log(err); }
                 console.log('Message sent: ' + info.response);
