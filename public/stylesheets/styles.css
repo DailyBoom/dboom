@@ -790,6 +790,10 @@ input[type=number]::-webkit-outer-spin-button {
     height: 200px;
     overflow-y: scroll;
   }
+  .card .card-content.past span {
+    white-space: pre-wrap;
+    word-break: keep-all;
+  }
   .card .card-action.mod {
     padding: 10px 20px;
   }

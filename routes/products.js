@@ -52,13 +52,17 @@ router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCou
       return item.path;
   });
   
+  var quantity = 0;
+  req.body.options.forEach(function(option) {
+    quantity += parseInt(option.quantity);
+  });
+  
   var product = new Product({
     name: req.body.name,
     description: req.body.description,
     price: req.body.price,
     old_price: req.body.oldPrice,
-    quantity: req.body.quantity,
-    current_quantity: req.body.quantity,
+    quantity: quantity,
     images: paths,
     scheduled_at: req.body.selldate,
     brand: req.body.brandname,
@@ -84,13 +88,15 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
     if (err)
       console.log(err);
 
-    console.log(req.body.options);
+    var quantity = 0;
+    req.body.options.forEach(function(option) {
+      quantity += parseInt(option.quantity);
+    });
+
     product.name = req.body.name;
     product.description = req.body.description;
     product.price = req.body.price;
     product.old_price = req.body.oldPrice,
-    product.quantity = req.body.quantity;
-    product.current_quantity = req.body.quantity;
     product.scheduled_at = req.body.selldate;
     product.brand = req.body.brandname;
     product.options = req.body.options;
@@ -98,6 +104,9 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
     product.company_url = req.body.webUrl;
     product.company_facebook = req.body.fbUrl;
     product.company_kakaostory = req.body.kakaoUrl;
+
+    if (quantity > product.quantity)
+      product.quantity = quantity;
 
     if (req.files['photosmain']) {
       var paths = req.files['photosmain'].map(function(item) {

@@ -15,7 +15,6 @@ var productSchema = new Schema({
   delivery_price: { type: Number, default: 2500 },
   old_price: Number,
   quantity: Number,
-  current_quantity: Number,
   images: { type: Array },
   scheduled_at: Date,
   options: Object,

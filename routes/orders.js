@@ -61,7 +61,6 @@ var hasShipping = function(obj) {
 }
 
 var reservePayco = function(order) {
-  console.log(order.product.price+"//"+order.quantity+"//"+order.product.delivery_price);
   var payco = {
     "sellerKey": config.get("Payco.sellerKey"),
     "sellerOrderReferenceKey": order._id,
@@ -183,7 +182,7 @@ router.get('/checkout', function(req, res) {
                             var leftQuantity;
                             orderPop.product.options.forEach(function(option){
                               if (option.name === orderPop.option)
-                              leftQuantity = option.quantity;
+                              leftQuantity = parseInt(option.quantity);
                             });
                             res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
                         }
@@ -218,7 +217,7 @@ router.get('/checkout', function(req, res) {
                       orderPop.product.options.forEach(function(option){
                         console.log(orderPop.option);
                         if (option.name === orderPop.option)
-                         leftQuantity = option.quantity;
+                         leftQuantity = parseInt(option.quantity);
                       });
                       res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
                   }
@@ -255,7 +254,7 @@ router.post('/checkout', function(req, res) {
                       var leftQuantity;
                       order.product.options.forEach(function(option){
                         if (option.name === order.option)
-                         leftQuantity = option.quantity;
+                         leftQuantity = parseInt(option.quantity);
                       });
                       res.render('checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
                   }
@@ -345,7 +344,7 @@ router.get('/payco_callback', function(req, res) {
                         Product.findOne({ _id: order.product }, function(err, product) {
                           product.options.forEach(function(option){
                             if (option.name === order.option)
-                              option.quantity -= order.quanity;
+                              option.quantity -= order.quantity;
                           });
                           product.save(function(err) {
                             if (app.get("env") === "production") {
