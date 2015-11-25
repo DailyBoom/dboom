@@ -156,7 +156,7 @@
 											<div class="card">
 												<div class="card-image">
 													<div class="past-date-box blue-grey darken-1 white-text">
-														@model.moment(product.scheduled_at).format("YYYY/MM/DD")
+														@model.moment(product.scheduled_at).format("YYYY/MM/DD")@(model.moment(product.scheduled_at).day() == 6 ? model.moment(product.scheduled_at).add(1, 'days').format('-DD') : '')
 													</div>
 													<img class="" src="@product.images[0]" alt="" />
 												</div>
