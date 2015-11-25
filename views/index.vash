@@ -256,11 +256,6 @@
 		$('.determinate-h').animate({width: progress_h}, 1500, function() {
 			$('.progress-h-text').fadeIn().removeClass('hide');
 		});
-		var progress = @model.progress + "%";
-		$('.text-progress-v').hide();
-		$('.determinate-v').animate({height: progress}, 1500, function() {
-			$('.text-progress-v').fadeIn();
-		});
 	});
 </script>
 <script>

@@ -26,7 +26,7 @@
 <div class="container">
 	<div class="progress-wrapper">
 		<div class="progress-h cyan lighten-4"></div>
-		<div class="determinate-h cyan darken-1" style=""></div>
+		<div class="determinate-h cyan darken-1"></div>
 		<div class="progress-h-text white-text hide">@model.progress% 팔림</div>
 	</div>
 	<div class="row">
@@ -127,6 +127,14 @@
 			$('iframe').each(function(){
 				var url = $(this).attr("src");
 				$(this).attr("src",url+"?wmode=transparent");
+			});
+		});
+	</script>
+	<script>
+		$(window).load(function() {
+			var progress_h = @model.progress + "%";
+			$('.determinate-h').animate({width: progress_h}, 1500, function() {
+				$('.progress-h-text').fadeIn().removeClass('hide');
 			});
 		});
 	</script>
