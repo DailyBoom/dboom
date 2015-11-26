@@ -107,54 +107,43 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* Admin */
 @media only screen and (min-width: 0) {
-  .admin-nav {
-    display: none;
-    position: fixed;
-    right: 5px;
-    top: 55px;
-    z-index: 100;
-  }
-  .admin-nav a {
-    display: block;
-    width: 215px;
-    margin-bottom: 4px;
-  }
   .legend {
     display: block;
     position: relative;
     margin-right: 20px;
   }
   .legend span {
+    display: block;
+    text-align: right;
+    margin-left: 10px;
+    font-size: .25em !important;
+    line-height: 1;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .legend {
+    display: block;
+    position: relative;
+    margin-right: 20px;
+  }
+  .legend span {
+    display: inline-block;
+    text-align: right;
     margin-left: 10px;
     font-size: .333333em !important;
   }
 }
-@media only screen and (min-width: 601px) {
-  .admin-nav {
-    display: block;
-    position: fixed;
-    right: 10px;
-    top: 100px;
-    z-index: 100;
-  }
-  .admin-nav a {
-    display: block;
-    width: 215px;
-    margin-bottom: 10px;
-  }
-}
 @media only screen and (min-width: 992px) {
-  .admin-nav {
+  .legend {
     display: block;
-    position: fixed;
-    right: 10px;
-    top: 100px;
-    z-index: 100;
+    position: relative;
+    margin-right: 20px;
   }
-  .admin-nav a {
-    display: block;
-    width: 215px;
-    margin-bottom: 10px;
+  .legend span {
+    display: inline-block;
+    text-align: right;
+    margin-left: 10px;
+    font-size: .333333em !important;
   }
 }
 @media only screen and (min-width: 1200px) {}
@@ -499,6 +488,64 @@ input[type=number]::-webkit-outer-spin-button {
 @media only screen and (min-width: 1200px) {}
 
 /** Slider **/
+.bx-controls-direction:hover {
+  opacity: 1;
+  -webkit-animation-name: lighten;
+  -webkit-animation-duration: .5s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: 1;
+
+  -moz-animation-name: lighten;
+  -moz-animation-duration: .5s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: 1;
+
+  animation-name: lighten;
+  animation-duration: .5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+@-moz-keyframes lighten {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+@-webkit-keyframes lighten {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+@keyframes lighten {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+.bx-controls-direction {
+  opacity: .5;
+  -webkit-animation-name: dim;
+  -webkit-animation-duration: 2.5s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: 1;
+
+  -moz-animation-name: dim;
+  -moz-animation-duration: 2.5s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: 1;
+
+  animation-name: dim;
+  animation-duration: 2.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+@-moz-keyframes dim {
+  0% { opacity: 1.0; }
+  100% { opacity: 0.5; }
+}
+@-webkit-keyframes dim {
+  0% { opacity: 1.0; }
+  100% { opacity: 0.5; }
+}
+@keyframes dim {
+  0% { opacity: 1.0; }
+  100% { opacity: 0.5; }
+}
 @media only screen and (min-width: 0) {
   .bx-wrapper .bx-viewport {
     height: 240px !important;
@@ -525,10 +572,11 @@ input[type=number]::-webkit-outer-spin-button {
     background-repeat: no-repeat;
     background-size: cover;
   }
-  iframe.iframe-video {
-    height: 180px;
+  iframe {
+    height: 240px;
     width: 100%;
     margin: 0;
+    padding-bottom: 20px;
     background-color: #000;
   }
   .bx-wrapper .bx-pager {
@@ -567,9 +615,10 @@ input[type=number]::-webkit-outer-spin-button {
     background-repeat: no-repeat;
     background-size: cover;
   }
-  iframe.iframe-video {
+  iframe {
     height: 400px;
     width: 100%;
+    padding: 20px 0;
     background-color: #000;
   }
   .bx-wrapper .bx-pager {
@@ -608,9 +657,10 @@ input[type=number]::-webkit-outer-spin-button {
     background-repeat: no-repeat;
     background-size: cover;
   }
-  iframe.iframe-video {
+  iframe {
     height: 600px;
     width: 100%;
+    padding: 30px 0;
   }
   .bx-wrapper .bx-pager {
   	text-align: center;
@@ -618,7 +668,7 @@ input[type=number]::-webkit-outer-spin-button {
   	font-family: Arial;
   	font-weight: bold;
   	color: #666;
-    margin-bottom: 31px;
+    margin-bottom: 34px;
   	z-index: 10;
   }
 }
@@ -1083,7 +1133,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .collapsible-header { padding: 0 20px; }
   .collapsible.mod .collapsible-body {
-    padding: 10px 20px;
+    padding: 0px;
     font-size: 0.8em;
     text-align: justify;
   }
@@ -1094,6 +1144,9 @@ input[type=number]::-webkit-outer-spin-button {
   .collapsible-body p {
     margin: 0;
     padding: 10px 0;
+  }
+  .item-shipping-info-box {
+    padding: 10px 20px;
   }
 }
 @media only screen and (min-width: 601px)  {
@@ -1102,7 +1155,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .collapsible-header { padding: 0 20px; }
   .collapsible.mod .collapsible-body {
-    padding: 10px 20px;
+    padding: 0px;
     font-size: 0.8em;
     text-align: justify;
   }
@@ -1113,6 +1166,9 @@ input[type=number]::-webkit-outer-spin-button {
   .collapsible-body p {
     margin: 0;
     padding: 10px 0;
+  }
+  .item-shipping-info-box {
+    padding: 10px 20px;
   }
 }
 @media only screen and (min-width: 992px)  {
@@ -1121,7 +1177,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .collapsible-header { padding: 0 20px; }
   .collapsible.mod .collapsible-body {
-    padding: 10px 20px;
+    padding: 0px;
     font-size: 0.8em;
     text-align: justify;
   }
@@ -1132,6 +1188,9 @@ input[type=number]::-webkit-outer-spin-button {
   .collapsible-body p {
     margin: 0;
     padding: 10px 0;
+  }
+  .item-shipping-info-box {
+    padding: 10px 20px;
   }
 }
 @media only screen and (min-width: 1200px) {}
