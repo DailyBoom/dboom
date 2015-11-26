@@ -88,7 +88,7 @@
 			<br>
 			<!-- .row -->
 			<div class="row">
-				<div class="input-field col s12 m12 l12">
+				<div class="input-field col s12 m6 l6">
 					<i class="fa fa-krw prefix"></i>
 					<input id="oldPrice" type="number" class="validate" name="oldPrice" value="@model.product.old_price">
 					<label for="oldPrice">정상 가격 *</label>
@@ -100,6 +100,18 @@
 				</div>
 			</div>
 			<!-- .row -->
+			@if (model.product.images) {
+				<br>
+				<h5>상품 사진</h5>
+				<div class="row">
+				@model.product.images.forEach(function(img) {
+					<div class="col s6 m3 l3">
+						<a href="/@img" target="_blank"><img class="responsive-img" src="/@img" alt="" /></a>
+					</div>
+				})
+				</div>
+				<br>
+			}
 			<div class="file-field input-field">
 				<br>
 				<span class="hide-on-small-only"><br></span>
