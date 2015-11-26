@@ -58,7 +58,6 @@
 					@model.product.images.forEach(function(img) {
 						<div class="slide" style="background-image: url(@img);"></div>
 					})
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/L8eRzOYhLuw" frameborder="0" allowfullscreen></iframe>
 	    	</div><!-- #main-slider -->
 		</div><!-- .col -->
 		<div class="col s12">
