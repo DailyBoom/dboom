@@ -1,221 +1,205 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/local/bin/node',
-1 verbose cli   '/usr/local/bin/npm',
-1 verbose cli   'install',
-1 verbose cli   'accounting' ]
-2 info using npm@2.14.4
-3 info using node@v4.1.1
-4 verbose install initial load of /Users/charles/Documents/Charles/DBoom/db/package.json
-5 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/accounting/package.json
-6 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/bcrypt/package.json
-7 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/body-parser/package.json
-8 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/bson/package.json
-9 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/config/package.json
-10 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/connect-flash/package.json
-11 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/connect-mongo/package.json
-12 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/connect-redis/package.json
-13 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/cookie-parser/package.json
-14 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/csv-transform/package.json
-15 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/debug/package.json
-16 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/express/package.json
-17 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/express-device/package.json
-18 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/express-session/package.json
-19 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/form-validate/package.json
-20 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/i18n/package.json
-21 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/materialize-css/package.json
-22 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/moment/package.json
-23 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/mongodb/package.json
-24 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/mongoose/package.json
-25 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/mongoose-i18n/package.json
-26 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/mongoose-to-csv/package.json
-27 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/mongoose-unique-validator/package.json
-28 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/morgan/package.json
-29 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/multer/package.json
-30 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/nodemailer/package.json
-31 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/nodemailer-smtp-transport/package.json
-32 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/passport/package.json
-33 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/passport-facebook/package.json
-34 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/passport-kakao/package.json
-35 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/passport-local/package.json
-36 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/passport-remember-me/package.json
-37 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/request/package.json
-38 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/serve-favicon/package.json
-39 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/slack-notify/package.json
-40 verbose installManyTop reading scoped package data from /Users/charles/Documents/Charles/DBoom/db/node_modules/vash/package.json
-41 info package.json connect-flash@0.1.1 No license field.
-42 info package.json i18n@0.5.0 No license field.
-43 info package.json materialize-css@0.96.1 No license field.
-44 info package.json mongoose-to-csv@0.1.0 No license field.
-45 info package.json passport-facebook@2.0.0 No license field.
-46 info package.json passport-local@1.0.0 No license field.
-47 info package.json passport-remember-me@0.0.1 No license field.
-48 info package.json vash@0.9.4 No license field.
-49 info package.json accounting@0.4.1 No license field.
-50 info package.json connect-mongo@0.8.2 No license field.
-51 verbose readDependencies loading dependencies from /Users/charles/Documents/Charles/DBoom/db/package.json
-52 verbose install accounting is installed as 0.4.1
-53 silly cache add args [ 'accounting', null ]
-54 verbose cache add spec accounting
-55 silly cache add parsed spec Result {
-55 silly cache add   raw: 'accounting',
-55 silly cache add   scope: null,
-55 silly cache add   name: 'accounting',
-55 silly cache add   rawSpec: '',
-55 silly cache add   spec: '*',
-55 silly cache add   type: 'range' }
-56 silly addNamed accounting@*
-57 verbose addNamed "*" is a valid semver range for accounting
-58 silly addNameRange { name: 'accounting', range: '*', hasData: false }
-59 silly mapToRegistry name accounting
-60 silly mapToRegistry using default registry
-61 silly mapToRegistry registry https://registry.npmjs.org/
-62 silly mapToRegistry uri https://registry.npmjs.org/accounting
-63 verbose addNameRange registry:https://registry.npmjs.org/accounting not in flight; fetching
-64 verbose request uri https://registry.npmjs.org/accounting
-65 verbose request no auth needed
-66 info attempt registry request try #1 at 6:37:51 PM
-67 verbose request id 2a3d643d675f452c
-68 verbose etag "5DFFM5J4A2AGSC9Z554S51YJB"
-69 http request GET https://registry.npmjs.org/accounting
-70 http 304 https://registry.npmjs.org/accounting
-71 silly get cb [ 304,
-71 silly get   { date: 'Tue, 24 Nov 2015 09:37:52 GMT',
-71 silly get     via: '1.1 varnish',
-71 silly get     'cache-control': 'max-age=60',
-71 silly get     etag: '"5DFFM5J4A2AGSC9Z554S51YJB"',
-71 silly get     age: '0',
-71 silly get     connection: 'keep-alive',
-71 silly get     'x-served-by': 'cache-nrt6134-NRT',
-71 silly get     'x-cache': 'HIT',
-71 silly get     'x-cache-hits': '1',
-71 silly get     'x-timer': 'S1448357872.292290,VS0,VE213',
-71 silly get     vary: 'Accept' } ]
-72 verbose etag https://registry.npmjs.org/accounting from cache
-73 verbose get saving accounting to /Users/charles/.npm/registry.npmjs.org/accounting/.cache.json
-74 silly addNameRange number 2 { name: 'accounting', range: '*', hasData: true }
-75 silly addNameRange versions [ 'accounting', [ '0.3.0', '0.3.2', '0.4.1' ] ]
-76 silly addNamed accounting@0.4.1
-77 verbose addNamed "0.4.1" is a plain semver version for accounting
-78 silly cache afterAdd accounting@0.4.1
-79 verbose afterAdd /Users/charles/.npm/accounting/0.4.1/package/package.json not in flight; writing
-80 verbose afterAdd /Users/charles/.npm/accounting/0.4.1/package/package.json written
-81 silly install resolved [ { name: 'accounting',
-81 silly install resolved     description: 'number, money and currency formatting library',
-81 silly install resolved     homepage: 'http://openexchangerates.github.io/accounting.js',
-81 silly install resolved     keywords:
-81 silly install resolved      [ 'accounting',
-81 silly install resolved        'number',
-81 silly install resolved        'money',
-81 silly install resolved        'currency',
-81 silly install resolved        'format',
-81 silly install resolved        'utilities',
-81 silly install resolved        'finance',
-81 silly install resolved        'exchange' ],
-81 silly install resolved     author:
-81 silly install resolved      { name: 'Open Exchange Rates',
-81 silly install resolved        email: 'info@openexchangerates.org',
-81 silly install resolved        url: 'https://www.openexchangerates.org' },
-81 silly install resolved     contributors: [ [Object], [Object] ],
-81 silly install resolved     dependencies: {},
-81 silly install resolved     repository:
-81 silly install resolved      { type: 'git',
-81 silly install resolved        url: 'git://github.com/openexchangerates/accounting.js.git' },
-81 silly install resolved     main: 'accounting.js',
-81 silly install resolved     version: '0.4.1',
-81 silly install resolved     gitHead: '9b73d760f20fb5bd87a570f7b7ecf9af9cf5b76c',
-81 silly install resolved     bugs: { url: 'https://github.com/openexchangerates/accounting.js/issues' },
-81 silly install resolved     _id: 'accounting@0.4.1',
-81 silly install resolved     scripts: {},
-81 silly install resolved     _shasum: '87dd4103eff7f4460f1e186f5c677ed6cf566883',
-81 silly install resolved     _from: 'accounting@*',
-81 silly install resolved     _npmVersion: '1.4.21',
-81 silly install resolved     _npmUser: { name: 'joss', email: 'josscrowcroft@gmail.com' },
-81 silly install resolved     maintainers: [ [Object] ],
-81 silly install resolved     dist:
-81 silly install resolved      { shasum: '87dd4103eff7f4460f1e186f5c677ed6cf566883',
-81 silly install resolved        tarball: 'http://registry.npmjs.org/accounting/-/accounting-0.4.1.tgz' },
-81 silly install resolved     directories: {},
-81 silly install resolved     _resolved: 'https://registry.npmjs.org/accounting/-/accounting-0.4.1.tgz',
-81 silly install resolved     readme: 'ERROR: No README data found!' } ]
-82 info install accounting@0.4.1 into /Users/charles/Documents/Charles/DBoom/db
-83 info installOne accounting@0.4.1
-84 verbose installOne of accounting to /Users/charles/Documents/Charles/DBoom/db not in flight; installing
-85 verbose lock using /Users/charles/.npm/_locks/accounting-9ae8b765469a4faa.lock for /Users/charles/Documents/Charles/DBoom/db/node_modules/accounting
-86 silly install write writing accounting 0.4.1 to /Users/charles/Documents/Charles/DBoom/db/node_modules/accounting
-87 verbose unbuild node_modules/accounting
-88 info preuninstall accounting@0.4.1
-89 info uninstall accounting@0.4.1
-90 verbose unbuild rmStuff accounting@0.4.1 from /Users/charles/Documents/Charles/DBoom/db/node_modules
-91 info postuninstall accounting@0.4.1
-92 silly gentlyRm /Users/charles/Documents/Charles/DBoom/db/node_modules/accounting is being purged from base /Users/charles/Documents/Charles/DBoom/db
-93 verbose gentlyRm don't care about contents; nuking /Users/charles/Documents/Charles/DBoom/db/node_modules/accounting
-94 silly vacuum-fs purging /Users/charles/Documents/Charles/DBoom/db/node_modules/accounting
-95 silly vacuum-fs quitting because other entries in /Users/charles/Documents/Charles/DBoom/db/node_modules
-96 verbose tar unpack /Users/charles/.npm/accounting/0.4.1/package.tgz
-97 verbose tar unpacking to /Users/charles/Documents/Charles/DBoom/db/node_modules/accounting
-98 silly gentlyRm /Users/charles/Documents/Charles/DBoom/db/node_modules/accounting is being purged
-99 verbose gentlyRm don't care about contents; nuking /Users/charles/Documents/Charles/DBoom/db/node_modules/accounting
-100 silly gunzTarPerm modes [ '755', '644' ]
-101 silly gunzTarPerm extractEntry package.json
-102 silly gunzTarPerm extractEntry accounting.js
-103 silly gunzTarPerm extractEntry accounting.min.js
-104 silly gunzTarPerm extractEntry demo-resources/js/prettify.js
-105 silly gunzTarPerm extractEntry demo-resources/js/libs/jquery.min.js
-106 silly gunzTarPerm extractEntry demo-resources/style.css
-107 silly gunzTarPerm extractEntry index.html
-108 silly gunzTarPerm extractEntry license
-109 silly gunzTarPerm extractEntry readme.md
-110 silly gunzTarPerm extractEntry tests/jasmine/core/formatMoneySpec.js
-111 silly gunzTarPerm extractEntry tests/jasmine/core/formatNumberSpec.js
-112 silly gunzTarPerm extractEntry tests/jasmine/core/unformatSpec.js
-113 silly gunzTarPerm extractEntry tests/jasmine/lib/jasmine/jasmine-html.js
-114 silly gunzTarPerm extractEntry tests/jasmine/lib/jasmine/jasmine.js
-115 silly gunzTarPerm extractEntry tests/jasmine/lib/jasmine/MIT.LICENSE
-116 silly gunzTarPerm extractEntry tests/jasmine/lib/jasmine/jasmine.css
-117 silly gunzTarPerm extractEntry tests/jasmine/runner.html
-118 silly gunzTarPerm extractEntry tests/qunit/methods.js
-119 silly gunzTarPerm extractEntry tests/qunit/speed.js
-120 silly gunzTarPerm extractEntry tests/qunit/test.html
-121 silly gunzTarPerm extractEntry tests/qunit/vendor/jquery.js
-122 silly gunzTarPerm extractEntry tests/qunit/vendor/jslitmus.js
-123 silly gunzTarPerm extractEntry tests/qunit/vendor/qunit.js
-124 silly gunzTarPerm extractEntry tests/qunit/vendor/qunit.css
-125 verbose write writing to /Users/charles/Documents/Charles/DBoom/db/node_modules/accounting/package.json
-126 info preinstall accounting@0.4.1
-127 verbose readDependencies loading dependencies from /Users/charles/Documents/Charles/DBoom/db/node_modules/accounting/package.json
-128 verbose readDependencies loading dependencies from /Users/charles/Documents/Charles/DBoom/db/node_modules/accounting/package.json
-129 silly install resolved []
-130 verbose about to build /Users/charles/Documents/Charles/DBoom/db/node_modules/accounting
-131 info build /Users/charles/Documents/Charles/DBoom/db/node_modules/accounting
-132 info linkStuff accounting@0.4.1
-133 silly linkStuff accounting@0.4.1 has /Users/charles/Documents/Charles/DBoom/db/node_modules as its parent node_modules
-134 verbose linkBins accounting@0.4.1
-135 verbose linkMans accounting@0.4.1
-136 verbose rebuildBundles accounting@0.4.1
-137 info install accounting@0.4.1
-138 info postinstall accounting@0.4.1
-139 verbose unlock done using /Users/charles/.npm/_locks/accounting-9ae8b765469a4faa.lock for /Users/charles/Documents/Charles/DBoom/db/node_modules/accounting
-140 verbose validateInstall loading /Users/charles/Documents/Charles/DBoom/db/package.json for validation
-141 warn unmet dependency /Users/charles/Documents/Charles/DBoom/db/node_modules/mongoose requires mongodb@'2.0.46' but will load
-141 warn unmet dependency /Users/charles/Documents/Charles/DBoom/db/node_modules/mongodb,
-141 warn unmet dependency which is version 2.0.49
-142 verbose stack Error: The package mongoose@4.1.12 does not satisfy its siblings' peerDependencies requirements!
-142 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:125:32
-142 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:268:7
-142 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:142:5
-142 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
-142 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
-142 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
-142 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
-142 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
-142 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
-142 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
-143 verbose cwd /Users/charles/Documents/Charles/DBoom/db
-144 error Darwin 15.0.0
-145 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "accounting"
-146 error node v4.1.1
-147 error npm  v2.14.4
-148 error code EPEERINVALID
-149 error peerinvalid The package mongoose@4.1.12 does not satisfy its siblings' peerDependencies requirements!
-149 error peerinvalid Peer mongoose-unique-validator@0.6.1 wants mongoose@^4.2.2
-150 verbose exit [ 1, true ]
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'install', 'express-csv' ]
+2 info using npm@1.3.10
+3 info using node@v0.10.25
+4 verbose readDependencies using package.json deps
+5 verbose cache add [ 'express-csv', null ]
+6 verbose cache add name=undefined spec="express-csv" args=["express-csv",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'express-csv',
+7 verbose parsed url   path: 'express-csv',
+7 verbose parsed url   href: 'express-csv' }
+8 silly lockFile 91bb764c-express-csv express-csv
+9 verbose lock express-csv /home/cptmaumau/.npm/91bb764c-express-csv.lock
+10 silly lockFile 91bb764c-express-csv express-csv
+11 silly lockFile 91bb764c-express-csv express-csv
+12 verbose addNamed [ 'express-csv', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile 4d9bcea5-express-csv express-csv@
+15 verbose lock express-csv@ /home/cptmaumau/.npm/4d9bcea5-express-csv.lock
+16 silly addNameRange { name: 'express-csv', range: '*', hasData: false }
+17 verbose url raw express-csv
+18 verbose url resolving [ 'https://registry.npmjs.org/', './express-csv' ]
+19 verbose url resolved https://registry.npmjs.org/express-csv
+20 info trying registry request attempt 1 at 14:16:52
+21 http GET https://registry.npmjs.org/express-csv
+22 http 200 https://registry.npmjs.org/express-csv
+23 silly registry.get cb [ 200,
+23 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+23 silly registry.get     etag: '"D9EHEVIRZJ5DI5GEK18IY145D"',
+23 silly registry.get     'content-type': 'application/json',
+23 silly registry.get     'cache-control': 'max-age=60',
+23 silly registry.get     'content-length': '19521',
+23 silly registry.get     'accept-ranges': 'bytes',
+23 silly registry.get     date: 'Thu, 26 Nov 2015 05:16:53 GMT',
+23 silly registry.get     via: '1.1 varnish',
+23 silly registry.get     age: '0',
+23 silly registry.get     connection: 'keep-alive',
+23 silly registry.get     'x-served-by': 'cache-nrt6126-NRT',
+23 silly registry.get     'x-cache': 'MISS',
+23 silly registry.get     'x-cache-hits': '0',
+23 silly registry.get     'x-timer': 'S1448515013.117344,VS0,VE258',
+23 silly registry.get     vary: 'Accept' } ]
+24 silly addNameRange number 2 { name: 'express-csv', range: '*', hasData: true }
+25 silly addNameRange versions [ 'express-csv',
+25 silly addNameRange   [ '0.0.1',
+25 silly addNameRange     '0.0.2',
+25 silly addNameRange     '0.1.0',
+25 silly addNameRange     '0.1.1',
+25 silly addNameRange     '0.2.0',
+25 silly addNameRange     '0.2.1',
+25 silly addNameRange     '0.3.0',
+25 silly addNameRange     '0.3.1',
+25 silly addNameRange     '0.4.0',
+25 silly addNameRange     '0.4.1',
+25 silly addNameRange     '0.5.0',
+25 silly addNameRange     '0.6.0' ] ]
+26 verbose addNamed [ 'express-csv', '0.6.0' ]
+27 verbose addNamed [ '0.6.0', '0.6.0' ]
+28 silly lockFile 18a55796-express-csv-0-6-0 express-csv@0.6.0
+29 verbose lock express-csv@0.6.0 /home/cptmaumau/.npm/18a55796-express-csv-0-6-0.lock
+30 silly lockFile 6dc3f3e9-xpress-csv-express-csv-0-6-0-tgz https://registry.npmjs.org/express-csv/-/express-csv-0.6.0.tgz
+31 verbose lock https://registry.npmjs.org/express-csv/-/express-csv-0.6.0.tgz /home/cptmaumau/.npm/6dc3f3e9-xpress-csv-express-csv-0-6-0-tgz.lock
+32 verbose addRemoteTarball [ 'https://registry.npmjs.org/express-csv/-/express-csv-0.6.0.tgz',
+32 verbose addRemoteTarball   'db792d85b262207e561d6362ba39a1e681e3d503' ]
+33 info retry fetch attempt 1 at 14:16:53
+34 verbose fetch to= /home/cptmaumau/tmp/npm-7038-y6GlqvOr/1448515013303-0.46465220861136913/tmp.tgz
+35 http GET https://registry.npmjs.org/express-csv/-/express-csv-0.6.0.tgz
+36 http 200 https://registry.npmjs.org/express-csv/-/express-csv-0.6.0.tgz
+37 verbose tar unpack /home/cptmaumau/tmp/npm-7038-y6GlqvOr/1448515013303-0.46465220861136913/tmp.tgz
+38 silly lockFile c4e965ff-3303-0-46465220861136913-package tar:///home/cptmaumau/tmp/npm-7038-y6GlqvOr/1448515013303-0.46465220861136913/package
+39 verbose lock tar:///home/cptmaumau/tmp/npm-7038-y6GlqvOr/1448515013303-0.46465220861136913/package /home/cptmaumau/.npm/c4e965ff-3303-0-46465220861136913-package.lock
+40 silly lockFile 7eb9339e-3303-0-46465220861136913-tmp-tgz tar:///home/cptmaumau/tmp/npm-7038-y6GlqvOr/1448515013303-0.46465220861136913/tmp.tgz
+41 verbose lock tar:///home/cptmaumau/tmp/npm-7038-y6GlqvOr/1448515013303-0.46465220861136913/tmp.tgz /home/cptmaumau/.npm/7eb9339e-3303-0-46465220861136913-tmp-tgz.lock
+42 silly gunzTarPerm modes [ '755', '644' ]
+43 silly gunzTarPerm extractEntry package.json
+44 silly gunzTarPerm extractEntry .npmignore
+45 silly gunzTarPerm extractEntry index.js
+46 silly gunzTarPerm extractEntry .travis.yml
+47 silly gunzTarPerm extractEntry History.md
+48 silly gunzTarPerm extractEntry Makefile
+49 silly gunzTarPerm extractEntry Readme.md
+50 silly gunzTarPerm extractEntry lib/express-csv.js
+51 silly gunzTarPerm extractEntry support/benchmark.js
+52 silly lockFile c4e965ff-3303-0-46465220861136913-package tar:///home/cptmaumau/tmp/npm-7038-y6GlqvOr/1448515013303-0.46465220861136913/package
+53 silly lockFile c4e965ff-3303-0-46465220861136913-package tar:///home/cptmaumau/tmp/npm-7038-y6GlqvOr/1448515013303-0.46465220861136913/package
+54 silly lockFile 7eb9339e-3303-0-46465220861136913-tmp-tgz tar:///home/cptmaumau/tmp/npm-7038-y6GlqvOr/1448515013303-0.46465220861136913/tmp.tgz
+55 silly lockFile 7eb9339e-3303-0-46465220861136913-tmp-tgz tar:///home/cptmaumau/tmp/npm-7038-y6GlqvOr/1448515013303-0.46465220861136913/tmp.tgz
+56 verbose tar pack [ '/home/cptmaumau/.npm/express-csv/0.6.0/package.tgz',
+56 verbose tar pack   '/home/cptmaumau/tmp/npm-7038-y6GlqvOr/1448515013303-0.46465220861136913/package' ]
+57 verbose tarball /home/cptmaumau/.npm/express-csv/0.6.0/package.tgz
+58 verbose folder /home/cptmaumau/tmp/npm-7038-y6GlqvOr/1448515013303-0.46465220861136913/package
+59 silly lockFile c4e965ff-3303-0-46465220861136913-package tar:///home/cptmaumau/tmp/npm-7038-y6GlqvOr/1448515013303-0.46465220861136913/package
+60 verbose lock tar:///home/cptmaumau/tmp/npm-7038-y6GlqvOr/1448515013303-0.46465220861136913/package /home/cptmaumau/.npm/c4e965ff-3303-0-46465220861136913-package.lock
+61 silly lockFile b924e3bf-pm-express-csv-0-6-0-package-tgz tar:///home/cptmaumau/.npm/express-csv/0.6.0/package.tgz
+62 verbose lock tar:///home/cptmaumau/.npm/express-csv/0.6.0/package.tgz /home/cptmaumau/.npm/b924e3bf-pm-express-csv-0-6-0-package-tgz.lock
+63 silly lockFile c4e965ff-3303-0-46465220861136913-package tar:///home/cptmaumau/tmp/npm-7038-y6GlqvOr/1448515013303-0.46465220861136913/package
+64 silly lockFile c4e965ff-3303-0-46465220861136913-package tar:///home/cptmaumau/tmp/npm-7038-y6GlqvOr/1448515013303-0.46465220861136913/package
+65 silly lockFile b924e3bf-pm-express-csv-0-6-0-package-tgz tar:///home/cptmaumau/.npm/express-csv/0.6.0/package.tgz
+66 silly lockFile b924e3bf-pm-express-csv-0-6-0-package-tgz tar:///home/cptmaumau/.npm/express-csv/0.6.0/package.tgz
+67 silly lockFile eb9990d6-au-npm-express-csv-0-6-0-package /home/cptmaumau/.npm/express-csv/0.6.0/package
+68 verbose lock /home/cptmaumau/.npm/express-csv/0.6.0/package /home/cptmaumau/.npm/eb9990d6-au-npm-express-csv-0-6-0-package.lock
+69 silly lockFile eb9990d6-au-npm-express-csv-0-6-0-package /home/cptmaumau/.npm/express-csv/0.6.0/package
+70 silly lockFile eb9990d6-au-npm-express-csv-0-6-0-package /home/cptmaumau/.npm/express-csv/0.6.0/package
+71 verbose tar unpack /home/cptmaumau/.npm/express-csv/0.6.0/package.tgz
+72 silly lockFile c8737a99-au-npm-express-csv-0-6-0-package tar:///home/cptmaumau/.npm/express-csv/0.6.0/package
+73 verbose lock tar:///home/cptmaumau/.npm/express-csv/0.6.0/package /home/cptmaumau/.npm/c8737a99-au-npm-express-csv-0-6-0-package.lock
+74 silly lockFile b924e3bf-pm-express-csv-0-6-0-package-tgz tar:///home/cptmaumau/.npm/express-csv/0.6.0/package.tgz
+75 verbose lock tar:///home/cptmaumau/.npm/express-csv/0.6.0/package.tgz /home/cptmaumau/.npm/b924e3bf-pm-express-csv-0-6-0-package-tgz.lock
+76 silly gunzTarPerm modes [ '755', '644' ]
+77 silly gunzTarPerm extractEntry package.json
+78 silly gunzTarPerm extractEntry .npmignore
+79 silly gunzTarPerm extractEntry index.js
+80 silly gunzTarPerm extractEntry .travis.yml
+81 silly gunzTarPerm extractEntry History.md
+82 silly gunzTarPerm extractEntry Makefile
+83 silly gunzTarPerm extractEntry Readme.md
+84 silly gunzTarPerm extractEntry lib/express-csv.js
+85 silly gunzTarPerm extractEntry support/benchmark.js
+86 silly lockFile c8737a99-au-npm-express-csv-0-6-0-package tar:///home/cptmaumau/.npm/express-csv/0.6.0/package
+87 silly lockFile c8737a99-au-npm-express-csv-0-6-0-package tar:///home/cptmaumau/.npm/express-csv/0.6.0/package
+88 silly lockFile b924e3bf-pm-express-csv-0-6-0-package-tgz tar:///home/cptmaumau/.npm/express-csv/0.6.0/package.tgz
+89 silly lockFile b924e3bf-pm-express-csv-0-6-0-package-tgz tar:///home/cptmaumau/.npm/express-csv/0.6.0/package.tgz
+90 verbose chmod /home/cptmaumau/.npm/express-csv/0.6.0/package.tgz 644
+91 verbose chown /home/cptmaumau/.npm/express-csv/0.6.0/package.tgz [ 1000, 1000 ]
+92 silly lockFile 6dc3f3e9-xpress-csv-express-csv-0-6-0-tgz https://registry.npmjs.org/express-csv/-/express-csv-0.6.0.tgz
+93 silly lockFile 6dc3f3e9-xpress-csv-express-csv-0-6-0-tgz https://registry.npmjs.org/express-csv/-/express-csv-0.6.0.tgz
+94 silly lockFile 18a55796-express-csv-0-6-0 express-csv@0.6.0
+95 silly lockFile 18a55796-express-csv-0-6-0 express-csv@0.6.0
+96 silly lockFile 4d9bcea5-express-csv express-csv@
+97 silly lockFile 4d9bcea5-express-csv express-csv@
+98 silly resolved [ { name: 'express-csv',
+98 silly resolved     description: 'express-csv provides response csv easily to express.',
+98 silly resolved     version: '0.6.0',
+98 silly resolved     author: { name: 'Seiya Konno', email: 'nulltask@gmail.com' },
+98 silly resolved     contributors: [ [Object], [Object] ],
+98 silly resolved     devDependencies: { mocha: '*', should: '*', superagent: '*', express: '2' },
+98 silly resolved     keywords: [ 'express', 'csv' ],
+98 silly resolved     repository:
+98 silly resolved      { type: 'git',
+98 silly resolved        url: 'git://github.com/nulltask/express-csv.git' },
+98 silly resolved     main: 'index',
+98 silly resolved     engines: { node: '0.6 || 0.8 || 0.10' },
+98 silly resolved     scripts: { test: 'mocha', prepublish: 'make test' },
+98 silly resolved     readme: '[![build status](https://secure.travis-ci.org/nulltask/express-csv.png)](http://travis-ci.org/nulltask/express-csv)\n# Express CSV\n\n```\n _____                                 ____ ______     __\n| ____|_  ___ __  _ __ ___  ___ ___   / ___/ ___\\ \\   / /\n|  _| \\ \\/ / \'_ \\| \'__/ _ \\/ __/ __| | |   \\___ \\\\ \\ / / \n| |___ >  <| |_) | | |  __/\\__ \\__ \\ | |___ ___) |\\ V /  \n|_____/_/\\_\\ .__/|_|  \\___||___/___/  \\____|____/  \\_/   \n           |_|                                           \n```\n\n  Express CSV provides response CSV easily to [Express](http://expressjs.com/).\n\n## Installation\n\nnpm:\n\n    $ npm install express-csv\n\n## Usage\n\nExample:\n\n```js\nvar express = require(\'express\')\n  , csv = require(\'express-csv\')\n  , app = module.exports = express.createServer();\n\napp.get(\'/\', function(req, res) {\n  res.csv([\n    ["a", "b", "c"]\n  , ["d", "e", "f"]\n  ]);\n});\n\napp.listen(3000);\n```\n\nResponse:\n\n```\n$ curl --verbose http://127.0.0.1:3000/\n* About to connect() to 127.0.0.1 port 3000 (#0)\n*   Trying 127.0.0.1... connected\n* Connected to 127.0.0.1 (127.0.0.1) port 3000 (#0)\n> GET / HTTP/1.1\n> User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5\n> Host: 127.0.0.1:3000\n> Accept: */*\n> \n< HTTP/1.1 200 OK\n< X-Powered-By: Express\n< Content-Type: text/csv; charset=utf-8\n< Content-Length: 26\n< Connection: keep-alive\n< \n"a","b","c"\n"d","e","f"\n* Connection #0 to host 127.0.0.1 left intact\n* Closing connection #0\n```\n\nAlternatively, you can also pass an array of objects to be serialized, in which case the object\'s\nproperties will be iterated over.  E.g.:\n\n```js\nres.csv([ { name: "joe", id: 1 }]\n//=> "joe", 1\n```\n\n## License\n\n    The MIT License\n\n    Copyright (c) 2012 Seiya Konno <nulltask@gmail.com>\n\n    Permission is hereby granted, free of charge, to any person obtaining\n    a copy of this software and associated documentation files (the\n    \'Software\'), to deal in the Software without restriction, including\n    without limitation the rights to use, copy, modify, merge, publish,\n    distribute, sublicense, and/or sell copies of the Software, and to\n    permit persons to whom the Software is furnished to do so, subject to\n    the following conditions:\n\n    The above copyright notice and this permission notice shall be\n    included in all copies or substantial portions of the Software.\n\n    THE SOFTWARE IS PROVIDED \'AS IS\', WITHOUT WARRANTY OF ANY KIND,\n    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\n    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\n    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\n    CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\n    TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\n    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.',
+98 silly resolved     readmeFilename: 'Readme.md',
+98 silly resolved     bugs: { url: 'https://github.com/nulltask/express-csv/issues' },
+98 silly resolved     _id: 'express-csv@0.6.0',
+98 silly resolved     dist: { shasum: '02c4667d71af87dbfa5017fbfc7eef1d83f14766' },
+98 silly resolved     _from: 'express-csv@',
+98 silly resolved     _resolved: 'https://registry.npmjs.org/express-csv/-/express-csv-0.6.0.tgz' } ]
+99 info install express-csv@0.6.0 into /home/cptmaumau/Project/NodeJS/dailyboom
+100 info installOne express-csv@0.6.0
+101 info /home/cptmaumau/Project/NodeJS/dailyboom/node_modules/express-csv unbuild
+102 verbose tar unpack /home/cptmaumau/.npm/express-csv/0.6.0/package.tgz
+103 silly lockFile 88de9fc1-ilyboom-node-modules-express-csv tar:///home/cptmaumau/Project/NodeJS/dailyboom/node_modules/express-csv
+104 verbose lock tar:///home/cptmaumau/Project/NodeJS/dailyboom/node_modules/express-csv /home/cptmaumau/.npm/88de9fc1-ilyboom-node-modules-express-csv.lock
+105 silly lockFile b924e3bf-pm-express-csv-0-6-0-package-tgz tar:///home/cptmaumau/.npm/express-csv/0.6.0/package.tgz
+106 verbose lock tar:///home/cptmaumau/.npm/express-csv/0.6.0/package.tgz /home/cptmaumau/.npm/b924e3bf-pm-express-csv-0-6-0-package-tgz.lock
+107 silly gunzTarPerm modes [ '755', '644' ]
+108 silly gunzTarPerm extractEntry package.json
+109 silly gunzTarPerm extractEntry .npmignore
+110 silly gunzTarPerm extractEntry index.js
+111 silly gunzTarPerm extractEntry .travis.yml
+112 silly gunzTarPerm extractEntry History.md
+113 silly gunzTarPerm extractEntry Makefile
+114 silly gunzTarPerm extractEntry Readme.md
+115 silly gunzTarPerm extractEntry lib/express-csv.js
+116 silly gunzTarPerm extractEntry support/benchmark.js
+117 silly lockFile 88de9fc1-ilyboom-node-modules-express-csv tar:///home/cptmaumau/Project/NodeJS/dailyboom/node_modules/express-csv
+118 silly lockFile 88de9fc1-ilyboom-node-modules-express-csv tar:///home/cptmaumau/Project/NodeJS/dailyboom/node_modules/express-csv
+119 silly lockFile b924e3bf-pm-express-csv-0-6-0-package-tgz tar:///home/cptmaumau/.npm/express-csv/0.6.0/package.tgz
+120 silly lockFile b924e3bf-pm-express-csv-0-6-0-package-tgz tar:///home/cptmaumau/.npm/express-csv/0.6.0/package.tgz
+121 info preinstall express-csv@0.6.0
+122 verbose readDependencies using package.json deps
+123 verbose readDependencies using package.json deps
+124 silly resolved []
+125 verbose about to build /home/cptmaumau/Project/NodeJS/dailyboom/node_modules/express-csv
+126 info build /home/cptmaumau/Project/NodeJS/dailyboom/node_modules/express-csv
+127 verbose linkStuff [ false,
+127 verbose linkStuff   false,
+127 verbose linkStuff   false,
+127 verbose linkStuff   '/home/cptmaumau/Project/NodeJS/dailyboom/node_modules' ]
+128 info linkStuff express-csv@0.6.0
+129 verbose linkBins express-csv@0.6.0
+130 verbose linkMans express-csv@0.6.0
+131 verbose rebuildBundles express-csv@0.6.0
+132 info install express-csv@0.6.0
+133 info postinstall express-csv@0.6.0
+134 error peerinvalid The package mongoose does not satisfy its siblings' peerDependencies requirements!
+134 error peerinvalid Peer mongoose-unique-validator@0.6.1 wants mongoose@^4.2.2
+135 error System Linux 3.13.0-24-generic
+136 error command "/usr/bin/nodejs" "/usr/bin/npm" "install" "express-csv"
+137 error cwd /home/cptmaumau/Project/NodeJS/dailyboom
+138 error node -v v0.10.25
+139 error npm -v 1.3.10
+140 error code EPEERINVALID
+141 verbose exit [ 1, true ]

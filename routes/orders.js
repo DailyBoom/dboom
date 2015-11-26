@@ -171,28 +171,27 @@ router.get('/checkout', function(req, res) {
           orderPop.quantity = 1;
           orderPop.save(function(err) {
             if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
-              console.log(orderPop);
-                var payco = reservePayco(orderPop);
-                request.post(
-                    config.get("Payco.host")+'/outseller/order/reserve',
-                    { json: payco },
-                    function (error, response, body) {
-                        console.log(body)
-                        if (!error && body.code == 0) {
-                            var leftQuantity;
-                            orderPop.product.options.forEach(function(option){
-                              if (option.name === orderPop.option)
-                              leftQuantity = parseInt(option.quantity);
-                            });
-                            res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
-                        }
-                        else
-                          res.redirect('/');
-                    }
-                );
-              }
-              else
-                res.redirect('/shipping');
+              var payco = reservePayco(orderPop);
+              request.post(
+                  config.get("Payco.host")+'/outseller/order/reserve',
+                  { json: payco },
+                  function (error, response, body) {
+                      console.log(body)
+                      if (!error && body.code == 0) {
+                          var leftQuantity;
+                          orderPop.product.options.forEach(function(option){
+                            if (option.name === orderPop.option)
+                            leftQuantity = parseInt(option.quantity);
+                          });
+                          res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
+                      }
+                      else
+                        res.redirect('/');
+                  }
+              );
+            }
+            else
+              res.redirect('/shipping');
         });
       });
     });
@@ -334,6 +333,8 @@ router.get('/payco_callback', function(req, res) {
                   console.log(body)
                   if (!error && body.code == 0) {
                     Order.findOne({ _id: req.query.order_id }).populate('user').exec(function(err, order) {
+                      if (req.user)
+                        order.shipping = req.user.shipping;
                       order.payco.orderNo = body.result.orderNo;
                       order.payco.sellerOrderReferenceKey = body.result.sellerOrderReferenceKey;
                       order.payco.orderCertifyKey = body.result.orderCertifyKey;
@@ -346,6 +347,7 @@ router.get('/payco_callback', function(req, res) {
                             if (option.name === order.option)
                               option.quantity -= order.quantity;
                           });
+                          product.markModified('options');                          
                           product.save(function(err) {
                             if (app.get("env") === "production") {
                               slack.send({
@@ -410,31 +412,47 @@ router.get('/orders/paid/:id', isAdmin, function(req, res) {
         console.log(err);
       if (!order)
         res.redirect('/mypage');
+      if (req.user)
+        order.shipping = req.user.shipping;
       order.status = "Paid";
       order.save(function(err) {
         if (err)
           console.log(err);
-        fs.readFile('./views/mailer/buy_success.vash', "utf8", function(err, file) {
-          if(err){
-            //handle errors
-            console.log('ERROR!');
-            return res.send('ERROR!');
+        Product.findOne({ _id: order.product }, function(err, product) {
+          console.log(product.options);
+          product.options.forEach(function(option){
+            if (option.name === order.option) {
+              option.quantity -= order.quantity;
+              console.log(product.options);
+              product.markModified('options');
+              product.save(function(err) {
+                if (err)
+                  console.log(err);
+                fs.readFile('./views/mailer/buy_success.vash', "utf8", function(err, file) {
+                  if(err){
+                    //handle errors
+                    console.log('ERROR!');
+                    return res.send('ERROR!');
+                  }
+                  var html = vash.compile(file);
+                  moment.locale('ko');
+                  transporter.sendMail({
+                    from: 'Daily Boom <contact@dailyboom.co>',
+                    to: order.user ? order.user.email : order.email,
+                    subject: '데일리 붐 구매 안내.',
+                    html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment })
+                  }, function (err, info) {
+                      if (err) { console.log(err); }
+                      console.log('Message sent: ' + info.response);
+                      transporter.close();
+                      res.redirect('/orders/list');
+                  });
+                });
+              });
           }
-          var html = vash.compile(file);
-          moment.locale('ko');
-          transporter.sendMail({
-            from: 'Daily Boom <contact@dailyboom.co>',
-            to: order.user ? order.user.email : order.email,
-            subject: '데일리 붐 구매 안내.',
-            html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment })
-          }, function (err, info) {
-              if (err) { console.log(err); }
-              console.log('Message sent: ' + info.response);
-              transporter.close();
-              res.redirect('/orders/list');
-          });
         });
-      })
+      });
+    });
   });
 });
 
@@ -708,22 +726,10 @@ router.post('/shipping', function(req, res) {
 });
 
 router.get('/orders/extract', isAdmin, function(req, res) {
-  var stream = Order.find({status: "Paid"}, {}, {$sort: {created_at: -1}}).populate('user').stream();
-
-  stream.on('error', function (err) {
-    console.log(err);
-    res.end();
-  })
-
-  stream.on('data', function () {
-    res.writeHead(200, {
-      'Content-Type': 'text/csv',
-      'Content-Length': stream.size,
-      'Content-Disposition': 'attachment; filename=orders.csv'
-    });
-    console.log(stream.length);
-    stream.pipe(Order.csvTransformStream()).pipe('res');
-  })
+  res.setHeader('Content-disposition', 'attachment; filename=orders_'+moment().format("YYYYMMDDHHmmss")+'.csv'); 
+  res.set('Content-Type', 'text/csv'); 
+  res.status(200);
+  Order.find({status: "Paid"}, {}, {$sort: {created_at: -1}}).populate('user').stream().pipe(Order.csvTransformStream()).pipe(res);
 });
 
 module.exports = router;

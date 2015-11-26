@@ -105,7 +105,7 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
     product.company_facebook = req.body.fbUrl;
     product.company_kakaostory = req.body.kakaoUrl;
 
-    if (quantity > product.quantity)
+    if (quantity > product.quantity || !product.quantity)
       product.quantity = quantity;
 
     if (req.files['photosmain']) {

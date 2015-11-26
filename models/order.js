@@ -34,11 +34,11 @@ var orderSchema = new Schema({
 orderSchema.plugin(mongooseToCsv, {
 	headers: 'option quantity fullname address country zipcode phone_number',
 	constraints: {
-		'fullname': 'user.shipping.fullname',
-		'address': 'user.shipping.address',
-		'country': 'user.shipping.country',
-		'zipcode': 'user.shipping.zipcode',
-		'phone_number': 'user.shipping.phone_number',
+		'fullname': 'shipping.fullname',
+		'address': 'shipping.address',
+		'country': 'shipping.country',
+		'zipcode': 'shipping.zipcode',
+		'phone_number': 'shipping.phone_number',
 	}
 });
 

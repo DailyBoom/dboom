@@ -37,7 +37,9 @@ router.get('/', function(req, res, next) {
       product.options.forEach(function(option) {
         current_quantity += parseInt(option.quantity);
       });
-      res.render('index', { progress: current_quantity / product.quantity * 100, product: product, pastProducts: pastProducts });
+      var progress = (product.quantity - current_quantity) / product.quantity * 100;
+      console.log(progress);
+      res.render('index', { progress: progress.toFixed(0), product: product, pastProducts: pastProducts });
     });
   });
 });
