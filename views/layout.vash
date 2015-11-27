@@ -131,11 +131,11 @@
 						</ul>
 					}
 					else {
-            <ul class="right">
+            <ul class="right hide-on-med-and-up">
 							<li class="nav-item">
 								<!-- Dropdown Trigger -->
-								<a class='dropdown-button btn-floating btn-profile blue-grey lighten-2 z-depth-1' href='#' data-activates='dropdown-profile'>
-									<i class="fa fa-user fa-3x"></i>
+								<a class='dropdown-button btn btn-flat btn-mobile white-text' href='#' data-activates='dropdown-profile'>
+									<i class="fa fa-bars fa-fw fa-4x"></i>
 								</a>
 								<!-- Dropdown Structure -->
 								<ul id="dropdown-profile" class="dropdown-content blue-grey-text text-darken-2">
@@ -144,6 +144,10 @@
 								</ul>
 							</li>
 						</ul>
+            <ul class="right hide-on-small-only">
+              <li class="nav-item mod"><a class="white-text" href="/login">로그인</a></li>
+              <li class="nav-item mod"><a class="white-text" href="/signup">회원가입</a></li>
+            </ul>
 					}
 				</div><!-- .container -->
 			</nav>

@@ -149,6 +149,7 @@ input[type=number]::-webkit-outer-spin-button {
 @media only screen and (min-width: 1200px) {}
 
 /* Navbar */
+.nav-item.mod { padding: 15px 10px; }
 @media only screen and (min-width: 0) {
   .logo-d { display: none; }
   .logo-m { display: block; }
@@ -173,6 +174,9 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 2em;
     line-height: 2.2;
     vertical-align: middle;
+  }
+  .btn-mobile {
+    padding: 0;
   }
 }
 @media only screen and (min-width: 601px) {
@@ -586,6 +590,9 @@ input[type=number]::-webkit-outer-spin-button {
     color: #666;
     margin-bottom: 31px;
     z-index: 10;
+  }
+  .sold-out {
+    background-color: rgba(255,255,255,.5);
   }
 }
 @media only screen and (min-width: 601px)  {
