@@ -496,28 +496,60 @@ router.get('/orders/cancel/:id', function(req, res) {
       config.get("Payco.host")+'/outseller/order/cancel',
       { json: payco },
       function (error, response, body) {
-          console.log(body)
-          if (!error && body.code == 0) {
-            order.status = "Cancelled";
-            order.payco.cancelTradeSeq = body.result.cancelTradeSeq;
-            order.payco.cancelPaymentDetails = body.result.cancelPaymentDetails;
-            order.save(function(err) {
-              if (err)
-                console.log(err);
-              if (app.get("env") === "production") {
-                slack.send({
-                  channel: '#dailyboom-new-order',
-                  icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
-                  text: 'Cancel order #'+order._id,
-                  unfurl_links: 1,
-                  username: 'DailyBoom-bot'
-                });
-              }
-              res.redirect('/mypage');
+        console.log(body);
+        if (!error && body.code == 0) {
+          order.status = "Cancelled";
+          order.payco.cancelTradeSeq = body.result.cancelTradeSeq;
+          order.payco.cancelPaymentDetails = body.result.cancelPaymentDetails;
+          order.save(function(err) {
+            if (err)
+              console.log(err);
+            Product.findOne({ _id: order.product }, function(err, product) {
+              product.options.forEach(function(option){
+                if (option.name === order.option)
+                  option.quantity += order.quantity;
+              });
+              product.markModified('options');                          
+              product.save(function(err) {
+                if (app.get("env") === "production") {
+                  slack.send({
+                    channel: '#dailyboom-new-order',
+                    icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
+                    text: 'Cancel order #'+order._id,
+                    unfurl_links: 1,
+                    username: 'DailyBoom-bot'
+                  });
+                }
+                res.redirect('/mypage');
+              });
             });
-          }
+          });
+        }
+      });
+  });
+});
+
+router.get('/orders/cancel_deposit/:id', function(req, res) {
+  Order.findOne({ _id: req.params.id }, function(err, order) {
+    if (err)
+      console.log(err);
+    if (!order)
+      res.redirect('/mypage');
+    order.status = "Cancelled";
+    order.save(function(err) {
+      if (err)
+        console.log(err);
+      if (app.get("env") === "production") {
+        slack.send({
+          channel: '#dailyboom-new-order',
+          icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
+          text: 'Cancel deposit order #'+order._id,
+          unfurl_links: 1,
+          username: 'DailyBoom-bot'
+        });
       }
-  );
+      res.redirect('/mypage');
+    });
   });
 });
 

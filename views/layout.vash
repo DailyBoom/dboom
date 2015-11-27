@@ -216,7 +216,7 @@
           var interval = setInterval(function() {
             timeLeft = moment.duration(momentTom.diff(moment().tz("Asia/Seoul"), 'milliseconds'));
             if (timeLeft._milliseconds == 0) {
-              window.reload();
+              window.location = '/';
             }
             $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
           }, 1000);

@@ -47,11 +47,13 @@
 </div><!-- #modal-check -->
 <!-- End Login Modal -->
 <div class="container">
-	<!-- <div class="progress-wrapper">
+	@if(model.progress >= 50){
+	 <div class="progress-wrapper">
 		<div class="progress-h cyan lighten-4"></div>
 		<div class="determinate-h cyan darken-1" style=""></div>
 		<div class="progress-h-text white-text hide">@model.progress% 팔림</div>
-	</div> -->
+	</div> 
+	}
 	<div class="row">
 		<div class="col s12">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
