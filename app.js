@@ -9,6 +9,7 @@ var validate = require('form-validate');
 var config = require("config");
 var moment = require("moment");
 var crypto = require('crypto');
+var sitemap = require('express-sitemap')({url: 'dailyboom.co'});
 var i18n = require('i18n');
 i18n.configure({
     defaultLocale: 'ko',
@@ -59,8 +60,8 @@ app.use(validate(app, validateOptions))
 //app.use(i18n.middleware());
 
 passport.use(new RememberMeStrategy(
-  function (token, done) {
-    Token.findOne({ token: token }, function(err, token) {
+  function (token_id, done) {
+    Token.findOne({ _id: token_id }, function(err, token) {
       if (err) return done(err);
       if (!token) { return done(null, false); }
       token.consume(token.token, function (err, user) {
@@ -101,6 +102,11 @@ app.use('/', routes);
 app.use('/', users);
 app.use('/', products);
 app.use('/', orders);
+
+if (app.get('env') === 'production') {
+  sitemap.generate4(app, ['/']);
+  sitemap.XMLtoFile('./public/sitemap/sitemap.xml');
+}
 
 passport.use(new LocalStrategy(
   function (username, password, done) {
