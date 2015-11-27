@@ -52,25 +52,33 @@
 		<div class="progress-h cyan lighten-4"></div>
 		<div class="determinate-h cyan darken-1" style=""></div>
 		<div class="progress-h-text white-text hide">@model.progress% 팔림</div>
-	</div> 
+	</div>
 	}
 	<div class="row">
 		<div class="col s12">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
-					@model.product.images.forEach(function(img) {
-						<div class="slide" style="background-image: url(@img);"></div>
-					})
-	    	</div><!-- #main-slider -->
+				@model.product.images.forEach(function(img) {
+					<div class="slide" style="background-image: url(@img);">
+						@if(model.progress >= 100) {
+							<img class="sold-out" src="/images/sold-out.png" />
+						}
+					</div>
+				})
+    	</div><!-- #main-slider -->
 		</div><!-- .col -->
 		<div class="col s12">
 			<div class="buy-box-wrapper white-text">
 				<img class="brand-img" src="@model.product.brand_logo" alt="@model.product.brand - Logo" />
 				<div class="item-name truncate">@model.product.name</div>
 					@if (model.user) {
-						<a class="hide-on-small-only btn-buy-wrapper right" href="/checkout?product_id=@model.product.id"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
+						@if (model.progress < 100) {
+							<a class="hide-on-small-only btn-buy-wrapper right" href="/checkout?product_id=@model.product.id"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
+						}
 					}
 					else {
-						<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
+						@if (model.progress < 100) {
+							<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
+						}
 					}
 					<div class="hide-on-small-only item-price right" id="product_price">@model.product.price</div>
 					<div class="hide-on-small-only item-price-o blue-grey-text text-lighten-2 right" id="old_price">@model.product.old_price</div>
@@ -131,18 +139,22 @@
 				<div class="item-price-o blue-grey-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
 				<div class="item-price white-text" id="product_price_mobile">@model.product.price</div>
 				@if (model.user) {
-					<div class="hide-on-med-and-up">
-						<a class="modal-trigger" href="/checkout?product_id=@model.product.id">
-							<img class="btn-buy-mobile" src="/images/btn-buy-mobile_2.png" alt="데일리 붐 쇼핑 몰"/>
-						</a>
-					</div>
+					@if (model.progress < 100) {
+						<div class="hide-on-med-and-up">
+							<a class="modal-trigger" href="/checkout?product_id=@model.product.id">
+								<img class="btn-buy-mobile" src="/images/btn-buy-mobile_2.png" alt="데일리 붐 쇼핑 몰"/>
+							</a>
+						</div>
+					}
 				}
 				else {
-					<div class="hide-on-med-and-up">
-						<a class="modal-trigger" href="#modal-check">
-							<img class="btn-buy-mobile" src="/images/btn-buy-mobile_2.png" alt="" style="width:100%;"/>
-						</a>
-					</div>
+					@if (model.progress < 100) {
+						<div class="hide-on-med-and-up">
+							<a class="modal-trigger" href="#modal-check">
+								<img class="btn-buy-mobile" src="/images/btn-buy-mobile_2.png" alt="" style="width:100%;"/>
+							</a>
+						</div>
+					}
 				}
 			</div>
 
@@ -180,62 +192,47 @@
 					</div><!-- .row -->
 				</div><!-- /.col s12 m9 l9 -->
 			</div><!-- .row -->
-			<script>
-				$(document).ready(function(){
-					$('a.want').on('click', function(){
-						$(this).parent().addClass('cyan darken-2');
-						$(this).removeClass('want blue-grey-text text-darken-3');
-						$(this).addClass('white-text');
-						$(this).children('i').removeClass('fa-thumbs-o-up');
-						$(this).children('i').addClass('fa-thumbs-up white-text');
-					});
-				});
-			</script>
 			@if(!model.is_phone) {
-				<div>
-					<script type='text/javascript'>
-					<!--//<![CDATA[
-					   document.MAX_ct0 ='';
-					   var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
-					   var m3_r = Math.floor(Math.random()*99999999999);
-					   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
-					   document.write ("zoneid=292195");document.write("&amp;nodis=1");
-					   document.write ('&amp;cb=' + m3_r);
-					   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
-					   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
-					   document.write ("&amp;loc=" + escape(window.location).substring(0,1600));
-					   if (document.context) document.write ("&context=" + escape(document.context));
-					   if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
-					       document.write ("&amp;ct0=" + escape(document.MAX_ct0));
-					   }
-					   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
-					   document.write ("'></scr"+"ipt>");
-					//]]>-->
-					</script>
-				</div>
+				<script type='text/javascript'>
+				<!--//<![CDATA[
+				   document.MAX_ct0 ='';
+				   var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
+				   var m3_r = Math.floor(Math.random()*99999999999);
+				   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+				   document.write ("zoneid=292195");document.write("&amp;nodis=1");
+				   document.write ('&amp;cb=' + m3_r);
+				   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+				   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+				   document.write ("&amp;loc=" + escape(window.location).substring(0,1600));
+				   if (document.context) document.write ("&context=" + escape(document.context));
+				   if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
+				       document.write ("&amp;ct0=" + escape(document.MAX_ct0));
+				   }
+				   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+				   document.write ("'></scr"+"ipt>");
+				//]]>-->
+				</script>
 			}
 			else {
-				<div>
-					<script type='text/javascript'>
-					<!--//<![CDATA[
-					   document.MAX_ct0 ='';
-					   var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
-					   var m3_r = Math.floor(Math.random()*99999999999);
-					   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
-					   document.write ("zoneid=305337");document.write("&amp;nodis=1");
-					   document.write ('&amp;cb=' + m3_r);
-					   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
-					   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
-					   document.write ("&amp;loc=" + escape(window.location).substring(0,1600));
-					   if (document.context) document.write ("&context=" + escape(document.context));
-					   if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
-					       document.write ("&amp;ct0=" + escape(document.MAX_ct0));
-					   }
-					   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
-					   document.write ("'></scr"+"ipt>");
-					//]]>-->
-					</script>
-				</div>
+				<script type='text/javascript'>
+				<!--//<![CDATA[
+				   document.MAX_ct0 ='';
+				   var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
+				   var m3_r = Math.floor(Math.random()*99999999999);
+				   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+				   document.write ("zoneid=305337");document.write("&amp;nodis=1");
+				   document.write ('&amp;cb=' + m3_r);
+				   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+				   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+				   document.write ("&amp;loc=" + escape(window.location).substring(0,1600));
+				   if (document.context) document.write ("&context=" + escape(document.context));
+				   if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
+				       document.write ("&amp;ct0=" + escape(document.MAX_ct0));
+				   }
+				   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+				   document.write ("'></scr"+"ipt>");
+				//]]>-->
+				</script>
 			}
 		</div><!-- .col -->
 	</div><!-- .row -->
@@ -248,6 +245,17 @@
 			easing:'ease-in-out',
 			auto:true,
 			autoHover:true
+		});
+	});
+</script>
+<script>
+	$(document).ready(function(){
+		$('a.want').on('click', function(){
+			$(this).parent().addClass('cyan darken-2');
+			$(this).removeClass('want blue-grey-text text-darken-3');
+			$(this).addClass('white-text');
+			$(this).children('i').removeClass('fa-thumbs-o-up');
+			$(this).children('i').addClass('fa-thumbs-up white-text');
 		});
 	});
 </script>
