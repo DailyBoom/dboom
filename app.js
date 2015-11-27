@@ -9,7 +9,7 @@ var validate = require('form-validate');
 var config = require("config");
 var moment = require("moment");
 var crypto = require('crypto');
-var sitemap = require('express-sitemap')();
+var sitemap = require('express-sitemap')({url: 'dailyboom.co'});
 var i18n = require('i18n');
 i18n.configure({
     defaultLocale: 'ko',
