@@ -180,7 +180,7 @@
 													<div class="blue-grey-text text-darken-1 truncate"><b>@product.name</b></div>
 													<span class="blue-grey-text text-darken-1">@product.description</span>
 												</div>
-												<div class="card-action center">
+												<div class="card-action mod center">
 													<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 want" href="#!">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></a>
 												</div>
 											</div>

@@ -61,7 +61,7 @@
 				else if(order.status=='Submitted'){
 					<td class="blue-grey-text text-darken-3"><b>&nbsp;@order.status</b></td>
 				}
-				else if(order.status=='Canceled'){
+				else if(order.status=='Cancelled'){
 					<td class="red-text text-darken-3"><b>&nbsp;주문 취소</b></td>
 				}
 				else if(order.status=='Waiting'){
