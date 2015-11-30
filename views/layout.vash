@@ -124,8 +124,8 @@
                   <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck fa-fw right"></i></a></li>
                 }
 									<li class="divider"></li>
-									<li><a class="blue-grey-text text-darken-2" href="/mypage">My Page <i class="fa fa-user fa-fw right"></i></a></li>
-									<li><a class="blue-grey-text text-darken-2" href="/logout">Log Out <i class="fa fa-sign-out fa-fw right"></i></a></li>
+									<li><a class="blue-grey-text text-darken-2" href="/mypage">마이 페이지 <i class="fa fa-user fa-fw right"></i></a></li>
+									<li><a class="blue-grey-text text-darken-2" href="/logout">로그아웃 <i class="fa fa-sign-out fa-fw right"></i></a></li>
 								</ul>
 							</li>
 						</ul>
@@ -139,7 +139,7 @@
 								</a>
 								<!-- Dropdown Structure -->
 								<ul id="dropdown-profile" class="dropdown-content blue-grey-text text-darken-2">
-									<li><a class="waves-effect waves-light blue-grey-text text-darken-2" href="/login">Login <i class="fa fa-sign-in fa-fw right"></i></a></li>
+									<li><a class="waves-effect waves-light blue-grey-text text-darken-2" href="/login">로그인 <i class="fa fa-sign-in fa-fw right"></i></a></li>
 									<li><a class="waves-effect waves-light blue-grey-text text-darken-2" href="/signup">회원가입 <i class="fa fa-user-plus fa-fw right"></i></a></li>
 								</ul>
 							</li>
@@ -178,7 +178,7 @@
             <p class="text-footer">
               폭스트론 (주)
               <br>대표이사: 김지완
-              <br>서울특별시 성북구 삼양로22, 국민대학교 창업보육센터 103호
+              <br>서울특별시 성북구 삼양로22, 국민대학교 기린빌딩 103호
               <br>사업자등록번호: 206-86-90012
               <br>통신판매업신고: 2015-서울성북-00524호
               <br>Office: 070-4234-1257

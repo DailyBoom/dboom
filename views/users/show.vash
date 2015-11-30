@@ -23,7 +23,7 @@
 									@if(order.status == 'Paid'){
 										<span class="green-text right">결제 완료 <i class="fa fa-check-circle fa-fw right"></i></span>
 									}
-									else if(order.status == 'Canceled'){
+									else if(order.status == 'Cancelled'){
 										<span class="red-text right">주문 취소 <i class="fa fa-ban fa-fw right"></i></span>
 									}
 									else if(order.status == 'Waiting'){
@@ -49,7 +49,7 @@
 											<div class="o-name">@order.quantity</div><br>
 
 											<div class="o-label">결제 금액&nbsp;:&nbsp;</div>
-											<div class="o-name">@order.product.price 원</div><br>
+											<div class="o-name" id="p_price">@order.product.price 원</div><br>
 
 											<div class="o-label">받는 분&nbsp;:&nbsp;</div>
 											<div class="o-name">@model.user.shipping.full_name</div><br>
@@ -66,9 +66,9 @@
 											</div>
 											<div class="o-label">배송 상태&nbsp;:&nbsp;</div>
 											@if(order.status == "Paid"){
-												<div class="o-name green-text">[준비 중]</div>
+												<div class="o-name green-text">준비 중</div>
 											} else if(order.status == "Sent"){
-												<div class="o-name green-text">[배송 완료]</div>
+												<div class="o-name green-text">배송 완료</div>
 											}
 											@if(order.payco.orderNo) {
 											<div class="payco"><button class="btn blue-grey darken-2 receipt" data-orderno="@order.payco.orderNo" >PAYCO 영수증</button>@if(!order.payco.cancelTradeSeq){<a class="btn red darken-2 right cancel" href="/orders/cancel/@order.id">결제 취소</a>}</div>
@@ -204,6 +204,7 @@
 		$(document).ready(function(){
 			$('select').material_select();
 			$('ul.tabs').tabs();
+			$("#p_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
 		});
 		$(".payco .receipt").on("click", function() {
 			window.open('https://bill.payco.com/outseller/receipt/'+$(this).data('orderno')+'?receiptKind=card', 'popupPayco','top=100, left=300, width=727px, height=512px, resizable=no, scrollbars=yes');

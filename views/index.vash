@@ -111,7 +111,7 @@
 			<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
 		    <li>
 					<div class="collapsible-header blue-grey darken-1 white-text">
-						배송 진행상황 조회 및 제품 교환/환불 정책
+						<span>배송 진행상황 조회 및 제품 교환/환불 정책 <i class="fa fa-info-circle fa-fw right"></i></span>
 					</div>
 					<div class="collapsible-body">
 						@if(model.product.delivery_info) {
@@ -180,7 +180,7 @@
 													<div class="blue-grey-text text-darken-1 truncate"><b>@product.name</b></div>
 													<span class="blue-grey-text text-darken-1">@product.description</span>
 												</div>
-												<div class="card-action center">
+												<div class="card-action mod center">
 													<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 want" href="#!">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></a>
 												</div>
 											</div>
