@@ -4,7 +4,7 @@
 			<div class="row">
 				<h3 class="blue-grey-text text-darken-3">Users List</h3>
 				<br>
-				<table class="bordered highlight table-sm">
+				<table class="responsive-table bordered highlight table-sm">
 					<thead>
 						<tr>
 							<th>ID</th>

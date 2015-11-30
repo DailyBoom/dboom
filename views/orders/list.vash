@@ -3,17 +3,17 @@
    <div class="container min-h-lg">
 		<h3 class="blue-grey-text text-darken-3">주문내역
 			<div class="legend right">
-				<span class="blue-grey-text text-darken-2">View Order <i class="fa fa-eye fa-fw fa-1-5x"></i></span>
-				<span class="red-text text-darken-3">Cancel Order <i class="fa fa-ban fa-fw fa-1-5x"></i></span>
+				<span class="blue-grey-text text-darken-2">주문 보기 <i class="fa fa-eye fa-fw fa-1-5x"></i></span>
+				<span class="red-text text-darken-3">주문 취소 <i class="fa fa-ban fa-fw fa-1-5x"></i></span>
 			@if(model.user.admin == 1){
-				<span class="red-text text-darken-3">Delete Order <i class="fa fa-times fa-fw fa-1-5x"></i></span>
+				<span class="red-text text-darken-3">주문 삭제 <i class="fa fa-times fa-fw fa-1-5x"></i></span>
 			}
 			</div>
 		</h3>
 		<form method="get">
 			<div class="row">
 				<div class="col s8 m3 l3">
-					<label for="order_date">주문 날짜</label>
+					<label for="order_date">주문 날짜 조희</label>
 					<input type="date" class="datepicker" id="order_date" name="order_date" value="">
 				</div><!-- .col -->
 				<div class="col s2 m2 l2">
@@ -68,19 +68,19 @@
 					<td class="amber-text text-darken-3"><b>&nbsp;결제 대기</b></td>
 				}
 					<td>
-						<a class="users-link blue-grey-text text-darken-2" href="/orders/view/@order.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
-						<a class="users-link red-text text-darken-3" href="/orders/cancel/@order.id"><i class="fa fa-ban fa-fw fa-1-5x"></i></a>
-						@if(order.status == "Paid"){
-							<a href="/orders/send/@order.id" class="users-link green-text text-darken-3" ><i class="fa fa-paper-plane fa-fw fa-1-5x"></i></a>
-						}
+					@if(order.status == "Paid"){
+						<a href="/orders/send/@order.id" class="users-link green-text text-darken-3 blink" onclick="return confirm('배송하셨나요?');"><i class="fa fa-paper-plane fa-fw fa-1-5x"></i></a>
+					}
 					@if(model.user.admin == 1){
 						@if(order.status=='Waiting'){
-							<a class="users-link green-text text-darken-3" href="/orders/paid/@order.id" onclick="return confirm('Are you sure selected user has paid?')">
+							<a class="users-link amber-text text-darken-3 blink" href="/orders/paid/@order.id" onclick="return confirm('Are you sure selected user has paid?')">
 								<i class="fa fa-money fa-fw fa-1-5x"></i>
 							</a>
 						}
 						<a class="users-link red-text text-darken-3" href="/orders/delete/@order.id" onclick="return confirm('Are you sure?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
 					}
+						<a class="users-link blue-grey-text text-darken-2" href="/orders/view/@order.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
+						<a class="users-link red-text text-darken-3" href="/orders/cancel/@order.id"><i class="fa fa-ban fa-fw fa-1-5x"></i></a>
 					</td>
 				</tr>
 				})
