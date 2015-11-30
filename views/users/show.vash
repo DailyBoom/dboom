@@ -64,14 +64,17 @@
 											<div class="hide-on-med-and-up">
 												<br>
 											</div>
-											<div class="o-label">배송 상태&nbsp;:&nbsp;</div>
 											@if(order.status == "Paid"){
+												<div class="o-label">배송 상태&nbsp;:&nbsp;</div>
 												<div class="o-name green-text">준비 중</div>
-											} else if(order.status == "Sent"){
+											} 
+											else if(order.status == "Sent"){
+												<div class="o-label">배송 상태&nbsp;:&nbsp;</div>
 												<div class="o-name green-text">배송 완료</div>
 											}
+											<br/>
 											@if(order.payco.orderNo) {
-											<div class="payco"><button class="btn blue-grey darken-2 receipt" data-orderno="@order.payco.orderNo" >PAYCO 영수증</button>@if(!order.payco.cancelTradeSeq){<a class="btn red darken-2 right cancel" href="/orders/cancel/@order.id">결제 취소</a>}</div>
+											<div class="payco"><button class="btn blue-grey darken-2 receipt" data-orderno="@order.payco.orderNo" >PAYCO 영수증</button>@if(!order.payco.cancelTradeSeq && order.status == "Paid" && model.moment().isSame(order.created_at, 'day')){<a class="btn red darken-2 right cancel" href="/orders/cancel/@order.id">결제 취소</a>}</div>
 											} else if (order.status == "Waiting") {
 												<a class="btn red darken-2 right cancel" href="/orders/cancel_deposit/@order.id">무통장입금 취소</a>
 											}

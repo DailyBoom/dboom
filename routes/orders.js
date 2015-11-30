@@ -103,12 +103,10 @@ router.get('/merchants/orders/list', isMerchant, function(req, res) {
   if (req.query.order_date)
     query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
   query.exec(function(err, orders) {
-    console.log(orders);
     orders = orders.filter(function(doc){
       if (doc.product)
         return doc;
     });
-    console.log(orders);
     res.render('orders/list', { orders: orders });
   });
 });
@@ -483,7 +481,7 @@ router.get('/orders/cancel/:id', function(req, res) {
   Order.findOne({ _id: req.params.id }, function(err, order) {
     if (err)
       console.log(err);
-    if (!order)
+    if (!order || moment().isAfter(order.created_at, 'days'))
       res.redirect('/mypage');
     var payco = {
       "sellerKey" : config.get("Payco.sellerKey"),
