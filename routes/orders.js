@@ -483,7 +483,7 @@ router.get('/orders/cancel/:id', function(req, res) {
   Order.findOne({ _id: req.params.id }, function(err, order) {
     if (err)
       console.log(err);
-    if (!order)
+    if (!order || moment().isAfter(order.created_at, 'days'))
       res.redirect('/mypage');
     var payco = {
       "sellerKey" : config.get("Payco.sellerKey"),
