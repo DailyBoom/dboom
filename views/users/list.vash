@@ -29,7 +29,7 @@
 							}
 							<td>
 								<a class="users-link blue-grey-text" href="/users/view/@user.id"><i class="fa fa-user fa-fw fa-1-5x"></i></a>
-								<a class="users-link blue-grey-text" href="/users/edit/@user.id"><i class="fa fa-pencil fa-fw fa-1-5x"></i></a>
+								<a class="users-link blue-grey-text" href="#!" onclick="alert('@user._id');"><i class="fa fa-user-secret fa-fw fa-1-5x"></i></a>
 								@if(user.role == 'user'){<a class="users-link blue-grey-text" href="/users/is_merchant/@user.id" onclick="return confirm('User is Merchant?')"><i class="fa fa-street-view fa-fw fa-1-5x"></i></a>}
 								@if(user.role == 'merchant'){<a class="users-link green-text" href="#!"><i class="fa fa-street-view fa-fw fa-1-5x"></i></a>}
 								<a class="users-link blue-grey-text" href="/orders/list/@user.id"><i class="fa fa-truck fa-fw fa-1-5x"></i></a>
