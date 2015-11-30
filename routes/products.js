@@ -4,6 +4,7 @@ var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
 var moment = require("moment");
 var Product = require("../models/product");
+var i18n = require('i18n');
 
 var isAdmin = function (req, res, next) {
   if (req.isAuthenticated() && req.user.admin === true)
@@ -48,39 +49,79 @@ router.get('/products/preview', isAdmin, function(req, res) {
 });
 
 router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: "brandlogo", maxCount: 1}, {name: "deliveryinfo", maxCount: 1}]), function(req, res) {
-  var paths = req.files['photosmain'].map(function(item) {
-      return item.path;
+  
+  req.Validator.validate('selldate', i18n.__('product.sellDate'), {
+    required: true
+  })
+  .validate('brandname', i18n.__('product.brandName'), {
+    required: true
+  })
+  .validate('merchant_id', i18n.__('product.merchantId'), {
+    required: true
+  })
+  .validate('name', i18n.__('product.name'), {
+    required: true
+  })
+  .validate('description', i18n.__('product.description'), {
+    required: true
+  })
+  .validate('option_name', i18n.__('product.optionName'), {
+    required: true
+  })
+  .validate('o_quantity', i18n.__('product.optionQuantity'), {
+    required: true
+  })
+  .validate('oldPrice', i18n.__('product.oldPrice'), {
+    required: true
+  })
+  .validate('price', i18n.__('product.price'), {
+    required: true
+  })
+  .validate('photosmain', i18n.__('product.photosMain'), {
+    required: true
   });
   
-  var quantity = 0;
-  req.body.options.forEach(function(option) {
-    quantity += parseInt(option.quantity);
-  });
-  
-  var product = new Product({
-    merchant_id: req.body.merchant_id,
-    name: req.body.name,
-    description: req.body.description,
-    price: req.body.price,
-    old_price: req.body.oldPrice,
-    quantity: quantity,
-    images: paths,
-    scheduled_at: req.body.selldate,
-    brand: req.body.brandname,
-    brand_logo: req.files['brandlogo'] ? req.files['brandlogo'][0].path : '',
-    delivery_info: req.files['deliveryinfo'] ? req.files['deliveryinfo'][0].path : '',
-    options: req.body.options,
-    is_published: false,
-    video: req.body.videoUrl,
-    company_url: req.body.webUrl,
-    company_facebook: req.body.fbUrl,
-    company_kakaostory: req.body.kakaoUrl
-  });
-
-  console.log(product);
-  product.save(function(err) {
-    if (err) console.log(err), res.render('/products/new', { title: 'Index', error: err.errmsg });
-    else res.redirect('/products/preview/'+product.id);
+  req.Validator.getErrors(function(errors){
+    if (errors.length > 0) {
+      res.render('products/new', { errors: errors });
+      res.end();
+    }
+    else {
+      var paths = req.files['photosmain'].map(function(item) {
+          return item.path;
+      });
+      
+      var quantity = 0;
+      req.body.options.forEach(function(option) {
+        quantity += parseInt(option.quantity);
+      });
+      
+      var product = new Product({
+        merchant_id: req.body.merchant_id,
+        name: req.body.name,
+        description: req.body.description,
+        price: req.body.price,
+        old_price: req.body.oldPrice,
+        quantity: quantity,
+        images: paths,
+        scheduled_at: req.body.selldate,
+        brand: req.body.brandname,
+        brand_logo: req.files['brandlogo'] ? req.files['brandlogo'][0].path : '',
+        delivery_info: req.files['deliveryinfo'] ? req.files['deliveryinfo'][0].path : '',
+        options: req.body.options,
+        is_published: false,
+        video: req.body.videoUrl,
+        company_url: req.body.webUrl,
+        company_facebook: req.body.fbUrl,
+        company_kakaostory: req.body.kakaoUrl
+      });
+    
+      console.log(product);
+      product.save(function(err) {
+        if (err) console.log(err), res.render('/products/new', { title: 'Index', error: err.errmsg });
+        else res.redirect('/products/preview/'+product.id);
+      });
+    }
   });
 });
 

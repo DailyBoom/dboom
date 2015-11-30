@@ -17,7 +17,7 @@
 						받는 분 :
 					</span>
 					<span class="col s9 order-label">
-						&nbsp;@model.order.shipping.full_name
+						&nbsp;@model.order.shipping.full_name 
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						전화번호 :
