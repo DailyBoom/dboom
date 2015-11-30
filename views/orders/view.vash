@@ -17,25 +17,25 @@
 						받는 분 :
 					</span>
 					<span class="col s9 order-label">
-						&nbsp;@(model.order.user ? model.order.user.shipping.full_name : model.order.shipping.full_name)
+						&nbsp;@model.order.shipping.full_name
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						전화번호 :
 					</span>
 					<span class="col s9 order-label">
-						&nbsp;@(model.order.user ? model.order.user.shipping.phone_number : model.order.shipping.phone_number)
+						&nbsp;@model.order.shipping.phone_number
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						배송주소 :
 					</span>
 					<span class="col s9 order-label">
-						&nbsp;@(model.order.user ? model.order.user.shipping.address : model.order.shipping.address)
+						&nbsp;@model.order.shipping.address
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						우편번호 :
 					</span>
 					<span class="col s9 order-label">
-						&nbsp;@(model.order.user ? model.order.user.shipping.zipcode : model.order.shipping.zipcode)
+						&nbsp;@model.order.shipping.zipcode
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						배송국가 :
@@ -64,7 +64,7 @@
    </div><!-- .container -->
 	 <script>
 	 $(document).ready(function(){
-			$("#product_price, #product_price_mobile, #delivery_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
+		$("#product_price, #product_price_mobile, #delivery_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
 	 });
 	 </script>
   })
