@@ -49,37 +49,34 @@ router.get('/products/preview', isAdmin, function(req, res) {
 });
 
 router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: "brandlogo", maxCount: 1}, {name: "deliveryinfo", maxCount: 1}]), function(req, res) {
-  
-  req.Validator.validate('selldate', i18n.__('product.sellDate'), {
-    required: true
-  })
-  .validate('brandname', i18n.__('product.brandName'), {
-    required: true
-  })
-  .validate('merchant_id', i18n.__('product.merchantId'), {
-    required: true
-  })
-  .validate('name', i18n.__('product.name'), {
-    required: true
-  })
-  .validate('description', i18n.__('product.description'), {
-    required: true
-  })
-  .validate('option_name', i18n.__('product.optionName'), {
-    required: true
-  })
-  .validate('o_quantity', i18n.__('product.optionQuantity'), {
-    required: true
-  })
-  .validate('oldPrice', i18n.__('product.oldPrice'), {
-    required: true
-  })
-  .validate('price', i18n.__('product.price'), {
-    required: true
-  })
-  .validate('photosmain', i18n.__('product.photosMain'), {
-    required: true
-  });
+  console.log(req.body);
+  // req.Validator.validate('selldate', i18n.__('product.sellDate'), {
+  //   required: true
+  // })
+  // .validate('brandname', i18n.__('product.brandName'), {
+  //   required: true
+  // })
+  // .validate('merchant_id', i18n.__('product.merchantId'), {
+  //   required: true
+  // })
+  // .validate('name', i18n.__('product.name'), {
+  //   required: true
+  // })
+  // .validate('description', i18n.__('product.description'), {
+  //   required: true
+  // })
+  // .validate('option_name', i18n.__('product.optionName'), {
+  //   required: true
+  // })
+  // .validate('o_quantity', i18n.__('product.optionQuantity'), {
+  //   required: true
+  // })
+  // .validate('oldPrice', i18n.__('product.oldPrice'), {
+  //   required: true
+  // })
+  // .validate('price', i18n.__('product.price'), {
+  //   required: true
+  // });
   
   req.Validator.getErrors(function(errors){
     if (errors.length > 0) {
@@ -87,17 +84,18 @@ router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCou
       res.end();
     }
     else {
-      var paths = req.files['photosmain'].map(function(item) {
-          return item.path;
-      });
-      
+      if (req.files['photosmain']) {
+        var paths = req.files['photosmain'].map(function(item) {
+            return item.path;
+        });
+      }
       var quantity = 0;
       req.body.options.forEach(function(option) {
         quantity += parseInt(option.quantity);
       });
       
       var product = new Product({
-        merchant_id: req.body.merchant_id,
+        //merchant_id: req.body.merchant_id,
         name: req.body.name,
         description: req.body.description,
         price: req.body.price,
