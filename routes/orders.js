@@ -276,6 +276,8 @@ router.post('/deposit_checkout', function(req, res) {
           console.log(err);
         order.status = "Waiting";
         order.deposit_name = req.body.deposit_name;
+        if (req.user)
+          order.shipping = req.user.shipping;
         order.save(function(err) {
           if (err)
             console.log(err);
@@ -412,8 +414,6 @@ router.get('/orders/paid/:id', isAdmin, function(req, res) {
         console.log(err);
       if (!order)
         res.redirect('/mypage');
-      if (req.user)
-        order.shipping = req.user.shipping;
       order.status = "Paid";
       order.save(function(err) {
         if (err)
