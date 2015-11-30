@@ -62,7 +62,7 @@
 			<div class="file-field input-field">
 				<br>
 				<span class="hide-on-small-only"><br></span>
-				<span for="deliveryinfo" class="input-file-mod grey-text">배송 진행상황 및 제품 교환/환불 정책 (가로 970px, 없을경우 데일리 붐 정보 적용)</span>
+				<span for="deliveryinfo" class="input-file-mod grey-text">배송 진행상황 및 제품 교환/환불 정책 (없을경우 비우 놓으면 데일리 붐 정보 적용)</span>
 				<div class="btn blue-grey darken-2">
 					<span><i class="fa fa-image left"></i>선택</span>
 					<input id="deliveryinfo" type="file" class="validate" name="deliveryinfo">
