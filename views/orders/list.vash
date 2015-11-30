@@ -51,7 +51,12 @@
 					<td>&nbsp;</td>
 				}
 					<td>&nbsp;@order.quantity</td>
-					<td>&nbsp;@order.payco.orderTotalAmt</td>
+					<td>
+						&nbsp;
+					@if(order.payco.totalOrderAmt) {
+						<span class="product_price">@order.payco.totalOrderAmt</span>
+					}
+					</td>
 				@if(order.status=='Sent'){
 					<td class="blue-text text-darken-3"><b>&nbsp;Sent</b></td>
 				}
@@ -106,6 +111,7 @@
 		selectMonths: true, // Creates a dropdown to control month
 		selectYears: 15 // Creates a dropdown of 15 years to control year
 	 });
+	 $(".product_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
 	 </script>
   })
 })
