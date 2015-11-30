@@ -70,14 +70,14 @@
 					<td>
 						<a class="users-link blue-grey-text text-darken-2" href="/orders/view/@order.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
 						<a class="users-link red-text text-darken-3" href="/orders/cancel/@order.id"><i class="fa fa-ban fa-fw fa-1-5x"></i></a>
+						@if(order.status == "Paid"){
+							<a href="/orders/send/@order.id" class="users-link green-text text-darken-3" ><i class="fa fa-paper-plane fa-fw fa-1-5x"></i></a>
+						}
 					@if(model.user.admin == 1){
 						@if(order.status=='Waiting'){
 							<a class="users-link green-text text-darken-3" href="/orders/paid/@order.id" onclick="return confirm('Are you sure selected user has paid?')">
 								<i class="fa fa-money fa-fw fa-1-5x"></i>
 							</a>
-						}
-						@if(order.status == "Paid"){
-							<a href="/orders/send/@order.id" class="users-link green-text text-darken-3" ><i class="fa fa-paper-plane fa-fw fa-1-5x"></i></a>
 						}
 						<a class="users-link red-text text-darken-3" href="/orders/delete/@order.id" onclick="return confirm('Are you sure?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
 					}
