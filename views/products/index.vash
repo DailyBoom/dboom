@@ -19,7 +19,7 @@
 					<div class="card-content past">
 						<p class="blue-grey-text text-darken-1 truncate">@product.name</p>
 						<p class="blue-grey-text text-darken-1">
-							@product.description
+							@html.raw(product.description)
 						</p>
 					</div><!-- .card-content -->
 					<div class="card-action blue-grey lighten-5 center">

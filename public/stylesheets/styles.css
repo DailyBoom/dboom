@@ -1620,12 +1620,22 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /** Orders **/
+@keyframes blink {
+  0%   { opacity: 1;}
+  50%  { opacity: .6;}
+  100% { opacity: 1;}
+}
 @media only screen and (min-width: 0)     {
   .table-orders thead tr th {
     border-radius: 0;
   }
   input#order_date {
     height: 2rem;
+  }
+  .blink {
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
   }
 }
 @media only screen and (min-width: 601px) {
