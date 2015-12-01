@@ -2,11 +2,15 @@
 	@html.block("body", function(model) {
    <div class="container min-h-lg">
 		<h3 class="blue-grey-text text-darken-3">주문내역
-			<div class="legend right">
-				<span class="blue-grey-text text-darken-2">주문 보기 <i class="fa fa-eye fa-fw fa-1-5x"></i></span>
-				<span class="red-text text-darken-3">주문 취소 <i class="fa fa-ban fa-fw fa-1-5x"></i></span>
+			<div class="legend right right-align">
+				<span class="blue-grey-text text-darken-2">주문 보기 <i class="fa fa-eye fa-fw"></i></span>
+				<span class="red-text text-darken-3">주문 취소 <i class="fa fa-ban fa-fw"></i></span>
 			@if(model.user.admin == 1){
-				<span class="red-text text-darken-3">주문 삭제 <i class="fa fa-times fa-fw fa-1-5x"></i></span>
+				<span class="red-text text-darken-3">주문 삭제 <i class="fa fa-times fa-fw"></i></span>
+			}
+			@if(model.user.role == "merchant"){
+				<br>
+				<span>배송 후 </span><span class="green-text text-darken-3"><b>"배송 확인 <i class="fa fa-paper-plane fa-fw"></i>"</b></span><span> 눌러주세요</span>
 			}
 			</div>
 		</h3>
