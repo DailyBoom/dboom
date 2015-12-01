@@ -64,9 +64,12 @@ router.post('/login', passport.authenticate('local', {
 });
 
 router.get('/logout', function(req, res){
-  req.session.destroy();
-  req.logout();
-  res.redirect('/');
+  Token.findOneAndRemove({ _id: req.cookies.remember_me }, function(err) {
+    res.clearCookie('remember_me');
+    req.session.destroy();
+    req.logout();
+    res.redirect('/');
+  });
 });
 
 router.get('/mypage', isAuthenticated, function(req, res) {
