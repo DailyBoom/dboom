@@ -18,14 +18,14 @@
 					<tbody>
 						@model.users.forEach(function(user) {
 						<tr>
-							<td>@user.username</td>
-							<td>@user.email</td>
-							<td>@user.name</td>
+							<td>&nbsp;@user.username</td>
+							<td>&nbsp;@user.email</td>
+							<td>&nbsp;@user.name</td>
 							@if(user.admin == 1) {
-								<td>admin</td>
+								<td>&nbsp;admin</td>
 							}
 							else {
-								<td>@user.role</td>
+								<td>&nbsp;@user.role</td>
 							}
 							<td>
 								<a class="users-link blue-grey-text" href="/users/view/@user.id"><i class="fa fa-user fa-fw fa-1-5x"></i></a>
