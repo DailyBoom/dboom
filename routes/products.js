@@ -95,7 +95,6 @@ router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCou
       });
       
       var product = new Product({
-        merchant_id: req.body.merchant_id,
         name: req.body.name,
         description: req.body.description,
         price: req.body.price,
@@ -113,6 +112,9 @@ router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCou
         company_facebook: req.body.fbUrl,
         company_kakaostory: req.body.kakaoUrl
       });
+    
+      if (req.body.merchant_id)
+        product.merchant_id = req.body.merchant_id;
     
       console.log(product);
       product.save(function(err) {

@@ -25,7 +25,7 @@ var isAuthenticated = function (req, res, next) {
 
 /* GET Home Page */
 router.get('/', function(req, res, next) {
-  var now
+  var now;
   if (moment().day() == 0)
     now = moment().subtract(1, 'days').format("MM/DD/YYYY");
   else
