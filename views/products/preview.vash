@@ -3,16 +3,16 @@
 <div id="navbar-preview" class="preview-bar">
 	<div class="container">
 		<ul class="left">
-			<li><span class="btn-flat btn-large white-text">PREVIEW MODE</span></li>
+			<li><span class="btn-flat btn-large mod white-text">PREVIEW MODE</span></li>
 		</ul>
     <ul class="preview-menu right">
       <li>
-				<a class="waves-effect waves-green btn-flat btn-large white-text center" href="/products/publish/@model.product.id">
+				<a class="waves-effect waves-green btn-flat btn-large mod white-text center" href="/products/publish/@model.product.id">
 					PUBLISH <i class="hide-on-small-only fa fa-send fa-fw right"></i>
 				</a>
 			</li>
       <li>
-				<a class="waves-effect waves-yellow btn-flat btn-large white-text center" href="/products/edit/@model.product.id">
+				<a class="waves-effect waves-yellow btn-flat btn-large mod white-text center" href="/products/edit/@model.product.id">
 					EDIT <i class="hide-on-small-only fa fa-pencil fa-fw right"></i>
 				</a>
 			</li>
