@@ -17,10 +17,8 @@
 						<img class="" src="/@product.images[0]" alt="@product.name" />
 					</div><!-- .card-image -->
 					<div class="card-content past">
-						<p class="blue-grey-text text-darken-1 truncate">@product.name</p>
-						<p class="blue-grey-text text-darken-1">
-							@html.raw(product.description)
-						</p>
+						<p class="blue-grey-text text-darken-1 truncate"><b>@product.name</b></p>
+						<span class="blue-grey-text text-darken-1">@html.raw(product.description)</span>
 					</div><!-- .card-content -->
 					<div class="card-action blue-grey lighten-5 center">
 						<a class="waves-effect waves-light blue-grey-text text-darken-3" href="#"><i class="fa fa-thumbs-up fa-fw"></i> 사고싶다 <!--<span class="badge">5</span>--></a>
