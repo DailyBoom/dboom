@@ -71,7 +71,11 @@
 				</tr>
 				<tr class="blue-grey darken-1 white-text">
 					<td>
-						<h4>데일리 붐 보러가기 <i class="fa fa-hand-o-right fa-fw"></i> <a class="amber-text" href="http://dailyboom.co/">dailyboom.co</a></h4>
+						<h4>
+							문의 사항 <a class="amber-text" href="mailto:contact@dailyboom.co">contact@dailyboom.co</a>
+							<br><br>
+							데일리 붐 보러가기 <a class="amber-text" href="http://dailyboom.co/">dailyboom.co</a>
+						</h4>
 					</td>
 				</tr>
 			</tbody>

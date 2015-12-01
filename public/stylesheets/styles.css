@@ -149,7 +149,6 @@ input[type=number]::-webkit-outer-spin-button {
 @media only screen and (min-width: 1200px) {}
 
 /* Navbar */
-.nav-item.mod { padding: 15px 10px; }
 @media only screen and (min-width: 0) {
   .logo-d { display: none; }
   .logo-m { display: block; }
@@ -192,6 +191,7 @@ input[type=number]::-webkit-outer-spin-button {
     background: linear-gradient(#37474f, #455a64, #37474f);
   }
   .nav-item { padding: 0 10px; }
+  .nav-item.mod { padding: 0px; }
   .btn-profile {
     height: 40px;
     width: 40px;
@@ -200,8 +200,8 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .d-clock {
     font-family: 'BulkyPixels', sans-serif;
-    font-size: 2.8em;
-    line-height: 1.6;
+    font-size: 2.5em;
+    line-height: 1.8em;
     vertical-align: middle;
   }
 }
@@ -217,6 +217,7 @@ input[type=number]::-webkit-outer-spin-button {
     background: linear-gradient(#37474f, #455a64, #37474f);
   }
   .nav-item { padding: 10px; }
+  .nav-item.mod { padding: 18px 10px; }
   .btn-profile {
     height: 70px;
     width: 70px;

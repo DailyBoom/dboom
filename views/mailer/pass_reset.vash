@@ -57,10 +57,18 @@
 				<tr>
 					<td><a href="#">link</a></td>
 				</tr>
-				<tr class="blue-grey darken-1 white-text">
+				<tr>
 					<td>
 						<h3>오늘도 즐거운 쇼핑을 데일리 붐에서 확인하세요.</h3>
-						<h4>데일리 붐 보러가기 <a class="amber-text" href="http://dailyboom.co/">> dailyboom.co <</a></h4>
+					</td>
+				</tr>
+				<tr class="blue-grey darken-1 white-text">
+					<td>
+						<h4>
+							문의 사항 <a class="amber-text" href="mailto:contact@dailyboom.co">contact@dailyboom.co</a>
+							<br><br>
+							데일리 붐 보러가기 <a class="amber-text" href="http://dailyboom.co/">dailyboom.co</a>
+						</h4>
 					</td>
 				</tr>
 			</tbody>
