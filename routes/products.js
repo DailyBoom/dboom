@@ -95,7 +95,7 @@ router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCou
       });
       
       var product = new Product({
-        //merchant_id: req.body.merchant_id,
+        merchant_id: req.body.merchant_id,
         name: req.body.name,
         description: req.body.description,
         price: req.body.price,
