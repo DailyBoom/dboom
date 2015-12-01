@@ -478,7 +478,7 @@ router.get('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
 });
 
 router.get('/orders/cancel/:id', function(req, res) {
-  Order.findOne({ _id: req.params.id }, function(err, order) {
+  Order.findOne({ _id: req.params.id }).populate('user').exec(function(err, order) {
     if (err)
       console.log(err);
     if (!order || moment().isAfter(order.created_at, 'days'))
@@ -518,7 +518,26 @@ router.get('/orders/cancel/:id', function(req, res) {
                     username: 'DailyBoom-bot'
                   });
                 }
-                res.redirect('/mypage');
+                fs.readFile('./views/mailer/order_cancelled.vash', "utf8", function(err, file) {
+                  if(err){
+                    //handle errors
+                    console.log('ERROR!');
+                    return res.send('ERROR!');
+                  }
+                  var html = vash.compile(file);
+                  moment.locale('ko');
+                  transporter.sendMail({
+                    from: 'Daily Boom <contact@dailyboom.co>',
+                    to: order.user ? order.user.email : order.email,
+                    subject: '데일리 붐 주문 취소 안내',
+                    html: html({ moment: moment, order: order, accounting: accounting })
+                  }, function (err, info) {
+                      if (err) { console.log(err); }
+                      console.log('Message sent: ' + info.response);
+                      transporter.close();
+                      res.redirect('/mypage');
+                  });
+                });
               });
             });
           });
@@ -528,7 +547,7 @@ router.get('/orders/cancel/:id', function(req, res) {
 });
 
 router.get('/orders/cancel_deposit/:id', function(req, res) {
-  Order.findOne({ _id: req.params.id }, function(err, order) {
+  Order.findOne({ _id: req.params.id }).populate('user').exec(function(err, order) {
     if (err)
       console.log(err);
     if (!order)
@@ -546,7 +565,26 @@ router.get('/orders/cancel_deposit/:id', function(req, res) {
           username: 'DailyBoom-bot'
         });
       }
-      res.redirect('/mypage');
+      fs.readFile('./views/mailer/order_cancelled.vash', "utf8", function(err, file) {
+        if(err){
+          //handle errors
+          console.log('ERROR!');
+          return res.send('ERROR!');
+        }
+        var html = vash.compile(file);
+        moment.locale('ko');
+        transporter.sendMail({
+          from: 'Daily Boom <contact@dailyboom.co>',
+          to: order.user ? order.user.email : order.email,
+          subject: '데일리 붐 주문 취소 안내',
+          html: html({ moment: moment, order: order, accounting: accounting })
+        }, function (err, info) {
+            if (err) { console.log(err); }
+            console.log('Message sent: ' + info.response);
+            transporter.close();
+            res.redirect('/mypage');
+        });
+      });
     });
   });
 });
