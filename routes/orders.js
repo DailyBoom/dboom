@@ -101,6 +101,7 @@ router.get('/orders/shipped', isAdmin, function(req, res) {
 });
 
 router.get('/merchants/orders/list', isMerchant, function(req, res) {
+  var page = req.query.page ? req.query.page : 1;
   var query = Order.find({status: {$in: ["Paid", "Sent"]}}, {}, { sort: { 'created_at': -1 } }).populate('product', null, {merchant_id: req.user.id});
   if (req.query.order_date)
     query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
