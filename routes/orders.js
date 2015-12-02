@@ -130,6 +130,14 @@ router.get('/orders/view/:id', isMerchantOrAdmin, function(req, res) {
   });
 });
 
+router.get('/orders/delete/:id', isAdmin, function(req, res) {
+  Order.findOneAndRemove({ _id: req.params.id }, function(err, order) {
+    if (err)
+      console.log(err);
+    res.redirect('/orders/list');
+  });
+});
+
 router.get('/checkout', function(req, res) {
   if (!req.query.product_id && !req.session.product && !req.session.order)
     return res.redirect('/');
