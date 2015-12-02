@@ -17,6 +17,8 @@ var request = require("request");
 var slack = require('slack-notify')(config.get("Slack.webhookUrl"));
 var CSVTransform = require('csv-transform');
 var accounting = require('accounting');
+var paginate = require('express-paginate');
+require('mongoose-pagination');
 
 var transporter = nodemailer.createTransport(smtpTransport({
     host: config.get('Nodemailer.host'),
@@ -112,11 +114,13 @@ router.get('/merchants/orders/list', isMerchant, function(req, res) {
 });
 
 router.get('/orders/list', isAdmin, function(req, res) {
+  var page = req.query.page ? req.query.page : 1;
   var query = Order.find({}, {}, { sort: { 'created_at': -1 } }).populate('product');
   if (req.query.order_date)
     query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
-  query.exec(function(err, orders) {
-    res.render('orders/list', { orders: orders });
+  query.paginate(page, 10, function(err, orders, total) {
+    console.log(total);
+    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.floor(total / 10), page), currentPage: page });
   });
 });
 
