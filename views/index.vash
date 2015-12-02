@@ -199,7 +199,6 @@
 					</div>
 					<br>
 				</div>
-<<<<<<< HEAD
 				<div id="db-partners" class="owl-carousel owl-theme">
 					<div class="col s12">
 						<a href="http://www.medihealshop.com/" target="_blank">
@@ -224,6 +223,16 @@
 					<div class="col s12">
 						<a href="https://www.pinterest.com/ddam_living/" target="_blank">
 							<div class="partner-logo" style="background-image: url('/images/partners/ddam.png');"></div>
+						</a>
+					</div><!-- .col -->
+					<div class="col s12">
+						<a href="https://judyartworks.wordpress.com/" target="_blank">
+							<div class="partner-logo" style="background-image: url('/images/partners/jk-design.png');"></div>
+						</a>
+					</div><!-- .col -->
+					<div class="col s12">
+						<a href="www.zonecode.org" target="_blank">
+							<div class="partner-logo" style="background-image: url('/images/partners/zone.png');"></div>
 						</a>
 					</div><!-- .col -->
 					<div class="col s12">
