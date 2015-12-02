@@ -138,96 +138,107 @@ router.get('/checkout', function(req, res) {
     delete req.session.product;
   }
   console.log(req.session.order);
-  if (typeof req.session.order === 'undefined' || !req.session.order) {
-    var order = new Order({
-      product: req.query.product_id ? req.query.product_id : req.session.product,
-      status: "Submitted",
-    });
-
-    if (req.user) {
-      order.user = req.user.id;
-    }
-
-    order.save(function(err) {
-      if (err)
-        res.redirect("/");
-      req.session.order = order.id;
-      if (!req.session.product)
-        req.session.product = req.query.product_id;
-        order.populate('product', function(err, orderPop) {
-          if (parseInt(orderPop.product.options[0].quantity) > 0) {
-            orderPop.option = orderPop.product.options[0].name;
-          }
-          else {
-            orderPop.product.options.some(function(option){
-               if (parseInt(option.quantity) > 0) {
-                   orderPop.option = option.name;
-                   return true;
-               }
-            });
-          }
-          orderPop.quantity = 1;
-          orderPop.save(function(err) {
-            if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
-              var payco = reservePayco(orderPop);
-              request.post(
-                  config.get("Payco.host")+'/outseller/order/reserve',
-                  { json: payco },
-                  function (error, response, body) {
-                      console.log(body)
-                      if (!error && body.code == 0) {
-                          var leftQuantity;
-                          orderPop.product.options.forEach(function(option){
-                            if (option.name === orderPop.option)
-                            leftQuantity = parseInt(option.quantity);
-                          });
-                          res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
-                      }
-                      else
-                        res.redirect('/');
-                  }
-              );
+  var now;
+  if (moment().day() == 0)
+    now = moment().subtract(1, 'days').format("MM/DD/YYYY");
+  else
+    now = moment().format("MM/DD/YYYY");
+  Product.findOne({_id: req.query.product_id ? req.query.product_id : req.session.product, scheduled_at: now, is_published: true}, function(err, product) {
+    if (err)
+      console.log(err);
+    if (!product)
+      return res.redirect('/');
+    if (typeof req.session.order === 'undefined' || !req.session.order) {
+      var order = new Order({
+        product: product.id,
+        status: "Submitted",
+      });
+  
+      if (req.user) {
+        order.user = req.user.id;
+      }
+  
+      order.save(function(err) {
+        if (err)
+          res.redirect("/");
+        req.session.order = order.id;
+        if (!req.session.product)
+          req.session.product = req.query.product_id;
+          order.populate('product', function(err, orderPop) {
+            if (parseInt(orderPop.product.options[0].quantity) > 0) {
+              orderPop.option = orderPop.product.options[0].name;
             }
-            else
-              res.redirect('/shipping');
+            else {
+              orderPop.product.options.some(function(option){
+                if (parseInt(option.quantity) > 0) {
+                    orderPop.option = option.name;
+                    return true;
+                }
+              });
+            }
+            orderPop.quantity = 1;
+            orderPop.save(function(err) {
+              if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
+                var payco = reservePayco(orderPop);
+                request.post(
+                    config.get("Payco.host")+'/outseller/order/reserve',
+                    { json: payco },
+                    function (error, response, body) {
+                        console.log(body)
+                        if (!error && body.code == 0) {
+                            var leftQuantity;
+                            orderPop.product.options.forEach(function(option){
+                              if (option.name === orderPop.option)
+                              leftQuantity = parseInt(option.quantity);
+                            });
+                            res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
+                        }
+                        else
+                          res.redirect('/');
+                    }
+                );
+              }
+              else
+                res.redirect('/shipping');
+          });
         });
       });
-    });
-  }
-  else {
-    Order.findOne({ '_id': req.session.order }, function(err, order) {
-      if (err)
-        console.log(err);
-      if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
-        order.populate('product', function(err, orderPop) {
-          console.log(orderPop.product.options);
-          if (!req.session.product)
-            req.session.product = orderPop.product.id;
-          var payco = reservePayco(orderPop);
-          request.post(
-              config.get("Payco.host")+'/outseller/order/reserve',
-              { json: payco },
-              function (error, response, body) {
-                  console.log(body);
-                  if (!error && body.code == 0) {
-                      var leftQuantity;
-                      orderPop.product.options.forEach(function(option){
-                        console.log(orderPop.option);
-                        if (option.name === orderPop.option)
-                         leftQuantity = parseInt(option.quantity);
-                      });
-                      res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
-                  }
-                  else
-                    res.redirect('/');
-              }
-          );
-        })
-      }
-      else
-        res.redirect('/shipping');
-    });
-  }
+    }
+    else {
+      Order.findOne({ '_id': req.session.order }, function(err, order) {
+        if (err)
+          console.log(err);
+        if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
+          order.populate('product', function(err, orderPop) {
+            console.log(orderPop.product.options);
+            if (!req.session.product)
+              req.session.product = orderPop.product.id;
+            var payco = reservePayco(orderPop);
+            request.post(
+                config.get("Payco.host")+'/outseller/order/reserve',
+                { json: payco },
+                function (error, response, body) {
+                    console.log(body);
+                    if (!error && body.code == 0) {
+                        var leftQuantity;
+                        orderPop.product.options.forEach(function(option){
+                          console.log(orderPop.option);
+                          if (option.name === orderPop.option)
+                          leftQuantity = parseInt(option.quantity);
+                        });
+                        res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
+                    }
+                    else
+                      res.redirect('/');
+                }
+            );
+          })
+        }
+        else
+          res.redirect('/shipping');
+      });
+    }
+  });
 });
 
 router.post('/checkout', function(req, res) {
@@ -251,7 +262,7 @@ router.post('/checkout', function(req, res) {
                       var leftQuantity;
                       order.product.options.forEach(function(option){
                         if (option.name === order.option)
-                         leftQuantity = parseInt(option.quantity);
+                        leftQuantity = parseInt(option.quantity);
                       });
                       res.render('checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
                   }
