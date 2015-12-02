@@ -192,6 +192,47 @@
 					</div><!-- .row -->
 				</div><!-- /.col s12 m9 l9 -->
 			</div><!-- .row -->
+			<!-- Featured section -->
+			<div class="row">
+				<div class="col s12">
+					<div class="past-box-wrapper white-text">
+						브랜드 ON 데일리 붐
+					</div>
+					<br>
+				</div>
+				<div class="col s3 m2 l2">
+					<a href="http://www.medihealshop.com/" target="_blank">
+						<div class="partner-logo" style="background-image: url('/images/partners/mediheal.png');"></div>
+					</a>
+				</div><!-- .col -->
+				<div class="col s3 m2 l2">
+					<a href="https://www.my-memoirs.com/" target="_blank">
+						<div class="partner-logo" style="background-image: url('/images/partners/mymemoirs.png');"></div>
+					</a>
+				</div><!-- .col -->
+				<div class="col s3 m2 l2">
+					<a href="http://www.candyroo.com/" target="_blank">
+						<div class="partner-logo" style="background-image: url('/images/partners/candyroo_2.png');"></div>
+					</a>
+				</div><!-- .col -->
+				<div class="col s3 m2 l2">
+					<a href="http://www.craft-link.co.kr/" target="_blank">
+						<div class="partner-logo" style="background-image: url('/images/partners/craftlink.png');"></div>
+					</a>
+				</div><!-- .col -->
+				<div class="col s3 m2 l2">
+					<a href="https://www.pinterest.com/ddam_living/" target="_blank">
+						<div class="partner-logo" style="background-image: url('/images/partners/ddam.png');"></div>
+					</a>
+				</div><!-- .col -->
+				<div class="col s3 m2 l2">
+					<a href="http://www.my-memoirs.com/" target="_blank">
+						<div class="partner-logo" style="background-image: url('/images/partners/sexiest.png');"></div>
+					</a>
+				</div><!-- .col -->
+			</div><!-- .row -->
+			<br>
+			<br>
 			@if(!model.is_phone) {
 				<script type='text/javascript'>
 				<!--//<![CDATA[
