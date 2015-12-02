@@ -462,16 +462,25 @@ router.get('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
       res.redirect('/mypage');
     order.status = "Sent";
     order.save(function(err) {
-      transporter.sendMail({
-        from: 'DailyBoom <contact@dailyboom.co>',
-        to: order.user ? order.user.email : order.email,
-        subject: '데일리 붐 배송 안내.',
-        html: fs.readFileSync('./views/mailer/shipped.vash', "utf8")
-      }, function (err, info) {
-          if (err) { console.log(err); res.render('signup', { error: err.errmsg }); }
-          console.log('Message sent: ' + info.response);
-          transporter.close();
-          res.redirect('/orders/list');
+      fs.readFile('./views/mailer/shipped.vash', "utf8", function(err, file) {
+        if(err){
+          //handle errors
+          console.log('ERROR!');
+          return res.send('ERROR!');
+        }
+        var html = vash.compile(file);
+        moment.locale('ko');
+        transporter.sendMail({
+          from: 'Daily Boom <contact@dailyboom.co>',
+          to: order.user ? order.user.email : order.email,
+          subject: '데일리 붐 배송 안내.',
+          html: html({ moment: moment, order: order, accounting: accounting })
+        }, function (err, info) {
+            if (err) { console.log(err); }
+            console.log('Message sent: ' + info.response);
+            transporter.close();
+            res.redirect('/mypage');
+        });
       });
     });
   });
@@ -690,21 +699,29 @@ router.post('/shipping', function(req, res) {
                 else {
                   order.user = user.id;
                   order.save(function(err) {
-                    transporter.sendMail({
-                      from: 'DailyBoom <contact@dailyboom.co>',
-                      to: user.email,
-                      subject: 'Welcome to DailyBoom',
-                      text: 'Thank you for registering on DailyBoom!'
-                    }, function (err, info) {
-                        if (err) { console.log(err); res.render('shipping', { error: err.errmsg }); }
-                        console.log('Message sent: ' + info.response);
-                        transporter.close();
-                        req.login(user, function(err) {
-                          if (err) {
-                            console.log(err);
-                          }
-                          return res.redirect('/checkout');
-                        });
+                    fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
+                      if(err){
+                        //handle errors
+                        console.log('ERROR!');
+                        return res.send('ERROR!');
+                      }
+                      var html = vash.compile(file);
+                      transporter.sendMail({
+                        from: 'Daily Boom <contact@dailyboom.co>',
+                        to: user.email,
+                        subject: user.username+'님 회원가입을 축하드립니다.',
+                        html: html({ user : user })
+                      }, function (err, info) {
+                          if (err) { console.log(err); res.render('signup', { error: err.errmsg }); }
+                          console.log('Message sent: ' + info.response);
+                          transporter.close();
+                          req.login(user, function(err) {
+                            if (err) {
+                              console.log(err);
+                            }
+                            return res.redirect('/');
+                          });
+                      });
                     });
                   });
                 }
