@@ -25,6 +25,7 @@ var KakaoStrategy = require('passport-kakao').Strategy;
 var RememberMeStrategy = require('passport-remember-me').Strategy;
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/dailyboom');
+var paginate = require('express-paginate');
 var device = require('express-device');
 var User = require('./models/user');
 var Token = require('./models/token');
@@ -57,6 +58,7 @@ device.enableDeviceHelpers(app)
 app.use(session({ store: new MongoStore({ mongooseConnection: mongoose.connection }), secret: 'keyboard cat', name: 'session_id', saveUninitialized: true, resave: true })); // store: new RedisStore({ host: '127.0.0.1',  port: 6379 }),
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(validate(app, validateOptions))
+app.use(paginate.middleware(10, 50));
 //app.use(i18n.middleware());
 
 passport.use(new RememberMeStrategy(

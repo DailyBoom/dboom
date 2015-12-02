@@ -17,6 +17,8 @@ var request = require("request");
 var slack = require('slack-notify')(config.get("Slack.webhookUrl"));
 var CSVTransform = require('csv-transform');
 var accounting = require('accounting');
+var paginate = require('express-paginate');
+require('mongoose-pagination');
 
 var transporter = nodemailer.createTransport(smtpTransport({
     host: config.get('Nodemailer.host'),
@@ -99,24 +101,27 @@ router.get('/orders/shipped', isAdmin, function(req, res) {
 });
 
 router.get('/merchants/orders/list', isMerchant, function(req, res) {
+  var page = req.query.page ? req.query.page : 1;
   var query = Order.find({status: {$in: ["Paid", "Sent"]}}, {}, { sort: { 'created_at': -1 } }).populate('product', null, {merchant_id: req.user.id});
   if (req.query.order_date)
     query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
-  query.exec(function(err, orders) {
+  query.paginate(page, 10, function(err, orders, total) {
     orders = orders.filter(function(doc){
       if (doc.product)
         return doc;
     });
-    res.render('orders/list', { orders: orders });
+    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.floor(total / 10), page), currentPage: page  });
   });
 });
 
 router.get('/orders/list', isAdmin, function(req, res) {
+  var page = req.query.page ? req.query.page : 1;
   var query = Order.find({}, {}, { sort: { 'created_at': -1 } }).populate('product');
   if (req.query.order_date)
     query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
-  query.exec(function(err, orders) {
-    res.render('orders/list', { orders: orders });
+  query.paginate(page, 10, function(err, orders, total) {
+    console.log(total);
+    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.floor(total / 10), page), currentPage: page });
   });
 });
 

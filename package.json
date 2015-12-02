@@ -36,7 +36,9 @@
     "slack-notify": "~0.1.4",
     "moment": "~2.10.6",
     "connect-mongo": "~0.8.2",
-    "express-sitemap": "~1.6.1"
+    "express-sitemap": "~1.6.1",
+    "mongoose-pagination": "~1.0.0",
+    "express-paginate": "~0.1.0"
   },
   "description": "",
   "main": "app.js",

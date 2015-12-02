@@ -199,6 +199,7 @@
 					</div>
 					<br>
 				</div>
+<<<<<<< HEAD
 				<div id="db-partners" class="owl-carousel owl-theme">
 					<div class="col s12">
 						<a href="http://www.medihealshop.com/" target="_blank">
@@ -226,7 +227,7 @@
 						</a>
 					</div><!-- .col -->
 					<div class="col s12">
-						<a href="http://www.my-memoirs.com/" target="_blank">
+						<a href="#!" target="_blank">
 							<div class="partner-logo" style="background-image: url('/images/partners/sexiest.png');"></div>
 						</a>
 					</div><!-- .col -->
