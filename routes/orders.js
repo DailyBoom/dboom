@@ -130,6 +130,14 @@ router.get('/orders/view/:id', isMerchantOrAdmin, function(req, res) {
   });
 });
 
+router.get('/orders/delete/:id', isAdmin, function(req, res) {
+  Order.findOneAndRemove({ _id: req.params.id }, function(err, order) {
+    if (err)
+      console.log(err);
+    res.redirect('/orders/list');
+  });
+});
+
 router.get('/checkout', function(req, res) {
   if (!req.query.product_id && !req.session.product && !req.session.order)
     return res.redirect('/');
@@ -138,96 +146,107 @@ router.get('/checkout', function(req, res) {
     delete req.session.product;
   }
   console.log(req.session.order);
-  if (typeof req.session.order === 'undefined' || !req.session.order) {
-    var order = new Order({
-      product: req.query.product_id ? req.query.product_id : req.session.product,
-      status: "Submitted",
-    });
-
-    if (req.user) {
-      order.user = req.user.id;
-    }
-
-    order.save(function(err) {
-      if (err)
-        res.redirect("/");
-      req.session.order = order.id;
-      if (!req.session.product)
-        req.session.product = req.query.product_id;
-        order.populate('product', function(err, orderPop) {
-          if (parseInt(orderPop.product.options[0].quantity) > 0) {
-            orderPop.option = orderPop.product.options[0].name;
-          }
-          else {
-            orderPop.product.options.some(function(option){
-               if (parseInt(option.quantity) > 0) {
-                   orderPop.option = option.name;
-                   return true;
-               }
-            });
-          }
-          orderPop.quantity = 1;
-          orderPop.save(function(err) {
-            if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
-              var payco = reservePayco(orderPop);
-              request.post(
-                  config.get("Payco.host")+'/outseller/order/reserve',
-                  { json: payco },
-                  function (error, response, body) {
-                      console.log(body)
-                      if (!error && body.code == 0) {
-                          var leftQuantity;
-                          orderPop.product.options.forEach(function(option){
-                            if (option.name === orderPop.option)
-                            leftQuantity = parseInt(option.quantity);
-                          });
-                          res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
-                      }
-                      else
-                        res.redirect('/');
-                  }
-              );
+  var now;
+  if (moment().day() == 0)
+    now = moment().subtract(1, 'days').format("MM/DD/YYYY");
+  else
+    now = moment().format("MM/DD/YYYY");
+  Product.findOne({_id: req.query.product_id ? req.query.product_id : req.session.product, scheduled_at: now, is_published: true}, function(err, product) {
+    if (err)
+      console.log(err);
+    if (!product)
+      return res.redirect('/');
+    if (typeof req.session.order === 'undefined' || !req.session.order) {
+      var order = new Order({
+        product: product.id,
+        status: "Submitted",
+      });
+  
+      if (req.user) {
+        order.user = req.user.id;
+      }
+  
+      order.save(function(err) {
+        if (err)
+          res.redirect("/");
+        req.session.order = order.id;
+        if (!req.session.product)
+          req.session.product = req.query.product_id;
+          order.populate('product', function(err, orderPop) {
+            if (parseInt(orderPop.product.options[0].quantity) > 0) {
+              orderPop.option = orderPop.product.options[0].name;
             }
-            else
-              res.redirect('/shipping');
+            else {
+              orderPop.product.options.some(function(option){
+                if (parseInt(option.quantity) > 0) {
+                    orderPop.option = option.name;
+                    return true;
+                }
+              });
+            }
+            orderPop.quantity = 1;
+            orderPop.save(function(err) {
+              if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
+                var payco = reservePayco(orderPop);
+                request.post(
+                    config.get("Payco.host")+'/outseller/order/reserve',
+                    { json: payco },
+                    function (error, response, body) {
+                        console.log(body)
+                        if (!error && body.code == 0) {
+                            var leftQuantity;
+                            orderPop.product.options.forEach(function(option){
+                              if (option.name === orderPop.option)
+                              leftQuantity = parseInt(option.quantity);
+                            });
+                            res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
+                        }
+                        else
+                          res.redirect('/');
+                    }
+                );
+              }
+              else
+                res.redirect('/shipping');
+          });
         });
       });
-    });
-  }
-  else {
-    Order.findOne({ '_id': req.session.order }, function(err, order) {
-      if (err)
-        console.log(err);
-      if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
-        order.populate('product', function(err, orderPop) {
-          console.log(orderPop.product.options);
-          if (!req.session.product)
-            req.session.product = orderPop.product.id;
-          var payco = reservePayco(orderPop);
-          request.post(
-              config.get("Payco.host")+'/outseller/order/reserve',
-              { json: payco },
-              function (error, response, body) {
-                  console.log(body);
-                  if (!error && body.code == 0) {
-                      var leftQuantity;
-                      orderPop.product.options.forEach(function(option){
-                        console.log(orderPop.option);
-                        if (option.name === orderPop.option)
-                         leftQuantity = parseInt(option.quantity);
-                      });
-                      res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
-                  }
-                  else
-                    res.redirect('/');
-              }
-          );
-        })
-      }
-      else
-        res.redirect('/shipping');
-    });
-  }
+    }
+    else {
+      Order.findOne({ '_id': req.session.order }, function(err, order) {
+        if (err)
+          console.log(err);
+        if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
+          order.populate('product', function(err, orderPop) {
+            console.log(orderPop.product.options);
+            if (!req.session.product)
+              req.session.product = orderPop.product.id;
+            var payco = reservePayco(orderPop);
+            request.post(
+                config.get("Payco.host")+'/outseller/order/reserve',
+                { json: payco },
+                function (error, response, body) {
+                    console.log(body);
+                    if (!error && body.code == 0) {
+                        var leftQuantity;
+                        orderPop.product.options.forEach(function(option){
+                          console.log(orderPop.option);
+                          if (option.name === orderPop.option)
+                          leftQuantity = parseInt(option.quantity);
+                        });
+                        res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
+                    }
+                    else
+                      res.redirect('/');
+                }
+            );
+          })
+        }
+        else
+          res.redirect('/shipping');
+      });
+    }
+  });
 });
 
 router.post('/checkout', function(req, res) {
@@ -251,7 +270,7 @@ router.post('/checkout', function(req, res) {
                       var leftQuantity;
                       order.product.options.forEach(function(option){
                         if (option.name === order.option)
-                         leftQuantity = parseInt(option.quantity);
+                        leftQuantity = parseInt(option.quantity);
                       });
                       res.render('checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
                   }
@@ -462,23 +481,32 @@ router.get('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
       res.redirect('/mypage');
     order.status = "Sent";
     order.save(function(err) {
-      transporter.sendMail({
-        from: 'DailyBoom <contact@dailyboom.co>',
-        to: order.user ? order.user.email : order.email,
-        subject: '데일리 붐 배송 안내.',
-        html: fs.readFileSync('./views/mailer/shipped.vash', "utf8")
-      }, function (err, info) {
-          if (err) { console.log(err); res.render('signup', { error: err.errmsg }); }
-          console.log('Message sent: ' + info.response);
-          transporter.close();
-          res.redirect('/orders/list');
+      fs.readFile('./views/mailer/shipped.vash', "utf8", function(err, file) {
+        if(err){
+          //handle errors
+          console.log('ERROR!');
+          return res.send('ERROR!');
+        }
+        var html = vash.compile(file);
+        moment.locale('ko');
+        transporter.sendMail({
+          from: 'Daily Boom <contact@dailyboom.co>',
+          to: order.user ? order.user.email : order.email,
+          subject: '데일리 붐 배송 안내.',
+          html: html({ moment: moment, order: order, accounting: accounting })
+        }, function (err, info) {
+            if (err) { console.log(err); }
+            console.log('Message sent: ' + info.response);
+            transporter.close();
+            res.redirect('/mypage');
+        });
       });
     });
   });
 });
 
 router.get('/orders/cancel/:id', function(req, res) {
-  Order.findOne({ _id: req.params.id }, function(err, order) {
+  Order.findOne({ _id: req.params.id }).populate('user').exec(function(err, order) {
     if (err)
       console.log(err);
     if (!order || moment().isAfter(order.created_at, 'days'))
@@ -518,7 +546,26 @@ router.get('/orders/cancel/:id', function(req, res) {
                     username: 'DailyBoom-bot'
                   });
                 }
-                res.redirect('/mypage');
+                fs.readFile('./views/mailer/order_cancelled.vash', "utf8", function(err, file) {
+                  if(err){
+                    //handle errors
+                    console.log('ERROR!');
+                    return res.send('ERROR!');
+                  }
+                  var html = vash.compile(file);
+                  moment.locale('ko');
+                  transporter.sendMail({
+                    from: 'Daily Boom <contact@dailyboom.co>',
+                    to: order.user ? order.user.email : order.email,
+                    subject: '데일리 붐 주문 취소 안내',
+                    html: html({ moment: moment, order: order, accounting: accounting })
+                  }, function (err, info) {
+                      if (err) { console.log(err); }
+                      console.log('Message sent: ' + info.response);
+                      transporter.close();
+                      res.redirect('/mypage');
+                  });
+                });
               });
             });
           });
@@ -528,7 +575,7 @@ router.get('/orders/cancel/:id', function(req, res) {
 });
 
 router.get('/orders/cancel_deposit/:id', function(req, res) {
-  Order.findOne({ _id: req.params.id }, function(err, order) {
+  Order.findOne({ _id: req.params.id }).populate('user').exec(function(err, order) {
     if (err)
       console.log(err);
     if (!order)
@@ -546,7 +593,26 @@ router.get('/orders/cancel_deposit/:id', function(req, res) {
           username: 'DailyBoom-bot'
         });
       }
-      res.redirect('/mypage');
+      fs.readFile('./views/mailer/order_cancelled.vash', "utf8", function(err, file) {
+        if(err){
+          //handle errors
+          console.log('ERROR!');
+          return res.send('ERROR!');
+        }
+        var html = vash.compile(file);
+        moment.locale('ko');
+        transporter.sendMail({
+          from: 'Daily Boom <contact@dailyboom.co>',
+          to: order.user ? order.user.email : order.email,
+          subject: '데일리 붐 주문 취소 안내',
+          html: html({ moment: moment, order: order, accounting: accounting })
+        }, function (err, info) {
+            if (err) { console.log(err); }
+            console.log('Message sent: ' + info.response);
+            transporter.close();
+            res.redirect('/mypage');
+        });
+      });
     });
   });
 });
@@ -652,21 +718,29 @@ router.post('/shipping', function(req, res) {
                 else {
                   order.user = user.id;
                   order.save(function(err) {
-                    transporter.sendMail({
-                      from: 'DailyBoom <contact@dailyboom.co>',
-                      to: user.email,
-                      subject: 'Welcome to DailyBoom',
-                      text: 'Thank you for registering on DailyBoom!'
-                    }, function (err, info) {
-                        if (err) { console.log(err); res.render('shipping', { error: err.errmsg }); }
-                        console.log('Message sent: ' + info.response);
-                        transporter.close();
-                        req.login(user, function(err) {
-                          if (err) {
-                            console.log(err);
-                          }
-                          return res.redirect('/checkout');
-                        });
+                    fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
+                      if(err){
+                        //handle errors
+                        console.log('ERROR!');
+                        return res.send('ERROR!');
+                      }
+                      var html = vash.compile(file);
+                      transporter.sendMail({
+                        from: 'Daily Boom <contact@dailyboom.co>',
+                        to: user.email,
+                        subject: user.username+'님 회원가입을 축하드립니다.',
+                        html: html({ user : user })
+                      }, function (err, info) {
+                          if (err) { console.log(err); res.render('signup', { error: err.errmsg }); }
+                          console.log('Message sent: ' + info.response);
+                          transporter.close();
+                          req.login(user, function(err) {
+                            if (err) {
+                              console.log(err);
+                            }
+                            return res.redirect('/');
+                          });
+                      });
                     });
                   });
                 }

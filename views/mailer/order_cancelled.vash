@@ -41,7 +41,7 @@
 			<tbody class="blue-grey lighten-5 blue-grey-text text-darken-3">
 				<tr>
 					<td class="db-mail-body">
-						<h1><span class="amber-text text-darken-3">@model.full_name 님</span>의 데일리 붐 주문 취소 안내 메일입니다.</h1>
+						<h1><span class="amber-text text-darken-3">@model.order.shipping.full_name 님</span>의 데일리 붐 주문 취소 안내 메일입니다.</h1>
 						<br>
 						<h3>
 							고객님, 데일리 붐을 이용해 주셔서 감사합니다.
@@ -54,7 +54,7 @@
 							<br>@model.order.quantity
 							<br>@model.accounting.formatNumber(model.order.quantity * model.order.product.price + model.order.product.delivery_price) 원
 							<br>
-              <br>@model.order.shipping.full_name
+							<br>@model.order.shipping.full_name
 							<br>@model.order.shipping.phone_number
 							<br>@model.order.shipping.address
 							<br>@model.order.shipping.zipcode
