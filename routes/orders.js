@@ -104,12 +104,12 @@ router.get('/merchants/orders/list', isMerchant, function(req, res) {
   var query = Order.find({status: {$in: ["Paid", "Sent"]}}, {}, { sort: { 'created_at': -1 } }).populate('product', null, {merchant_id: req.user.id});
   if (req.query.order_date)
     query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
-  query.exec(function(err, orders) {
+  query.paginate(page, 10, function(err, orders, total) {
     orders = orders.filter(function(doc){
       if (doc.product)
         return doc;
     });
-    res.render('orders/list', { orders: orders });
+    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.floor(total / 10), page), currentPage: page  });
   });
 });
 
