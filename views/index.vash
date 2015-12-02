@@ -160,7 +160,6 @@
 
 			<div class="past-box-wrapper white-text">
 				지난 상품
-				<!--<a class="seemore white-text right" href="/products/list">더보기&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></a>-->
 			</div>
 			<div class="row">
 				<div class="col s12 m12 l12">
@@ -200,36 +199,38 @@
 					</div>
 					<br>
 				</div>
-				<div class="col s3 m2 l2">
-					<a href="http://www.medihealshop.com/" target="_blank">
-						<div class="partner-logo" style="background-image: url('/images/partners/mediheal.png');"></div>
-					</a>
-				</div><!-- .col -->
-				<div class="col s3 m2 l2">
-					<a href="https://www.my-memoirs.com/" target="_blank">
-						<div class="partner-logo" style="background-image: url('/images/partners/mymemoirs.png');"></div>
-					</a>
-				</div><!-- .col -->
-				<div class="col s3 m2 l2">
-					<a href="http://www.candyroo.com/" target="_blank">
-						<div class="partner-logo" style="background-image: url('/images/partners/candyroo_2.png');"></div>
-					</a>
-				</div><!-- .col -->
-				<div class="col s3 m2 l2">
-					<a href="http://www.craft-link.co.kr/" target="_blank">
-						<div class="partner-logo" style="background-image: url('/images/partners/craftlink.png');"></div>
-					</a>
-				</div><!-- .col -->
-				<div class="col s3 m2 l2">
-					<a href="https://www.pinterest.com/ddam_living/" target="_blank">
-						<div class="partner-logo" style="background-image: url('/images/partners/ddam.png');"></div>
-					</a>
-				</div><!-- .col -->
-				<div class="col s3 m2 l2">
-					<a href="http://www.my-memoirs.com/" target="_blank">
-						<div class="partner-logo" style="background-image: url('/images/partners/sexiest.png');"></div>
-					</a>
-				</div><!-- .col -->
+				<div id="db-partners" class="owl-carousel owl-theme">
+					<div class="col s12">
+						<a href="http://www.medihealshop.com/" target="_blank">
+							<div class="partner-logo" style="background-image: url('/images/partners/mediheal.png');"></div>
+						</a>
+					</div><!-- .col -->
+					<div class="col s12">
+						<a href="https://www.my-memoirs.com/" target="_blank">
+							<div class="partner-logo" style="background-image: url('/images/partners/mymemoirs.png');"></div>
+						</a>
+					</div><!-- .col -->
+					<div class="col s12">
+						<a href="http://www.candyroo.com/" target="_blank">
+							<div class="partner-logo" style="background-image: url('/images/partners/candyroo_2.png');"></div>
+						</a>
+					</div><!-- .col -->
+					<div class="col s12">
+						<a href="http://www.craft-link.co.kr/" target="_blank">
+							<div class="partner-logo" style="background-image: url('/images/partners/craftlink.png');"></div>
+						</a>
+					</div><!-- .col -->
+					<div class="col s12">
+						<a href="https://www.pinterest.com/ddam_living/" target="_blank">
+							<div class="partner-logo" style="background-image: url('/images/partners/ddam.png');"></div>
+						</a>
+					</div><!-- .col -->
+					<div class="col s12">
+						<a href="http://www.my-memoirs.com/" target="_blank">
+							<div class="partner-logo" style="background-image: url('/images/partners/sexiest.png');"></div>
+						</a>
+					</div><!-- .col -->
+				</div><!-- /.owl-carousel -->
 			</div><!-- .row -->
 			<br>
 			<br>
@@ -336,6 +337,19 @@
 			pagination: false,
 			responsive: true,
 			rewindNav: false
+		});
+		var partners = $("#db-partners");
+		partners.owlCarousel({
+			items : 6,
+			itemsDesktop : [1200,6],
+			itemsDesktopSmall : [992,5],
+			itemsTablet: [600,3],
+			itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
+			autoPlay: 2500,
+			navigation: false,
+			pagination: false,
+			responsive: true,
+			rewindNav: true
 		});
 		// Custom Navigation Events
 		$(".next").click(function(){owl.trigger('owl.next');});
