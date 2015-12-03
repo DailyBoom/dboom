@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var mongooseToCsv = require("mongoose-to-csv");
+var moment = require("moment");
 var Schema = mongoose.Schema;
 
 var orderSchema = new Schema({
@@ -33,7 +34,7 @@ var orderSchema = new Schema({
 });
 
 orderSchema.plugin(mongooseToCsv, {
-	headers: ['주문번호', '상태', '옵션', '수량', '받는 분', '배송주소', '배송국가', '우편번호', '전화번호'],
+	headers: ['주문번호', '주문날짜', '상태', '옵션', '수량', '받는 분', '배송주소', '배송국가', '우편번호', '전화번호'],
 	constraints: {
 		'주문번호': 'id',
 		'옵션': 'option',
@@ -46,6 +47,7 @@ orderSchema.plugin(mongooseToCsv, {
 			else if (doc.status == "Sent")
 				return '배송 완료';
 		},
+		'주문날짜': function(doc) { return moment(doc.created_at).format("YYYY.DD.MM"); },
 		'받는 분': function(doc) { return doc.shipping.full_name; },
 		'배송주소': function(doc) { return doc.shipping.address; },
 		'전화번호': function(doc) { return doc.shipping.phone_number; },

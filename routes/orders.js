@@ -836,14 +836,14 @@ router.get('/orders/export', isAdmin, function(req, res) {
   res.setHeader('Content-disposition', 'attachment; filename=orders_'+moment().format("YYYYMMDDHHmmss")+'.csv'); 
   res.set('Content-Type', 'text/csv'); 
   res.status(200);
-  Order.find({status: {$in: ["Paid", "Sent"]}}, {}, {$sort: {created_at: -1}}).stream().pipe(Order.csvTransformStream()).pipe(res);
+  Order.find({status: {$in: ["Paid", "Sent"]}}, {}, {sort: {created_at: -1}}).stream().pipe(Order.csvTransformStream()).pipe(res);
 });
 
 router.get('/orders/merchants/export', isMerchant, function(req, res) {
   res.setHeader('Content-disposition', 'attachment; filename=orders_'+moment().format("YYYYMMDDHHmmss")+'.csv'); 
   res.set('Content-Type', 'text/csv'); 
   res.status(200);
-  Order.find({status: {$in: ["Paid", "Sent"]}, merchant_id: req.user.id}, {}, {$sort: {created_at: -1}}).stream().pipe(Order.csvTransformStream()).pipe(res);
+  Order.find({status: {$in: ["Paid", "Sent"]}, merchant_id: req.user.id}, {}, {sort: {created_at: -1}}).stream().pipe(Order.csvTransformStream()).pipe(res);
 });
 
 module.exports = router;
