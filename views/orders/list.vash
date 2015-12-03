@@ -27,7 +27,12 @@
 				</div><!-- .col -->
 				<div class="col s12 m7 l7">
 					<div class="fa-2x right">
-						<a href="/orders/export">주문 목록 내려받기 <i class="fa fa-floppy-o fa-fw"></i></a>
+						@if(model.user.role == 'merchant'){
+							<a href="/orders/merchants/export">주문 목록 내려받기 <i class="fa fa-floppy-o fa-fw"></i></a>
+						}
+						else {
+							<a href="/orders/export">주문 목록 내려받기 <i class="fa fa-floppy-o fa-fw"></i></a>
+						}
 					</div>
 				</div>
 			</div><!-- .row -->
