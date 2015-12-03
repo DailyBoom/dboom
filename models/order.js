@@ -49,8 +49,8 @@ orderSchema.plugin(mongooseToCsv, {
 		},
 		'주문날짜': function(doc) { return moment(doc.created_at).format("YYYY.DD.MM"); },
 		'받는 분': function(doc) { return doc.shipping.full_name; },
-		'배송주소': function(doc) { return doc.shipping.address; },
-		'전화번호': function(doc) { return doc.shipping.phone_number; },
+		'배송주소': function(doc) { if (doc.shipping.address) return doc.shipping.address.replace(/,/g , ""); },
+		'전화번호': function(doc) { if (doc.shipping.phone_number) return doc.shipping.phone_number.toString(); },
 		'배송국가': function(doc) { return doc.shipping.country; },
 		'우편번호': function(doc) { return doc.shipping.zipcode; }
 	}
