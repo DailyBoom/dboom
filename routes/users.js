@@ -12,6 +12,8 @@ var i18n = require("i18n");
 var Token = require("../models/token");
 var crypto = require('crypto');
 var fs = require('fs');
+var paginate = require('express-paginate');
+require('mongoose-pagination');
 var transporter = nodemailer.createTransport(smtpTransport({
     host: config.get('Nodemailer.host'),
     auth: {
