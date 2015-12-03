@@ -28,17 +28,23 @@ var orderSchema = new Schema({
 		cancelTradeSeq: Number,
 		cancelPaymentDetails: Object
 	},
-	deposit_name: String
+	deposit_name: String,
+	merchant_id: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
 orderSchema.plugin(mongooseToCsv, {
-	headers: 'option quantity fullname address country zipcode phone_number',
+	headers: ['주문번호', '옵션', '수량', '받는 분', '배송주소', '배송국가', '우편번호', '전화번호'],
 	constraints: {
-		'fullname': 'shipping.fullname',
-		'address': 'shipping.address',
-		'country': 'shipping.country',
-		'zipcode': 'shipping.zipcode',
-		'phone_number': 'shipping.phone_number',
+		'주문번호': 'id',
+		'옵션': 'option',
+		'수량': 'quantity'
+	},
+	virtuals: {
+		'받는 분': function(doc) { return doc.shipping.full_name; },
+		'배송주소': function(doc) { return doc.shipping.address; },
+		'전화번호': function(doc) { return doc.shipping.phone_number; },
+		'배송국가': function(doc) { return doc.shipping.country; },
+		'우편번호': function(doc) { return doc.shipping.zipcode; }
 	}
 });
 

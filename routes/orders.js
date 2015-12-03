@@ -102,14 +102,10 @@ router.get('/orders/shipped', isAdmin, function(req, res) {
 
 router.get('/merchants/orders/list', isMerchant, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
-  var query = Order.find({status: {$in: ["Paid", "Sent"]}}, {}, { sort: { 'created_at': -1 } }).populate('product', null, {merchant_id: req.user.id});
+  var query = Order.find({ status: {$in: ["Paid", "Sent"]}, merchant_id: req.user.id }, {}, { sort: { 'created_at': -1 } }).populate('product');
   if (req.query.order_date)
     query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
   query.paginate(page, 10, function(err, orders, total) {
-    orders = orders.filter(function(doc){
-      if (doc.product)
-        return doc;
-    });
     res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.floor(total / 10), page), currentPage: page  });
   });
 });
@@ -356,7 +352,7 @@ router.get('/payco_callback', function(req, res) {
               function (error, response, body) {
                   console.log(body)
                   if (!error && body.code == 0) {
-                    Order.findOne({ _id: req.query.order_id }).populate('user').exec(function(err, order) {
+                    Order.findOne({ _id: req.query.order_id }).populate('user').populate('product').exec(function(err, order) {
                       if (req.user)
                         order.shipping = req.user.shipping;
                       order.payco.orderNo = body.result.orderNo;
@@ -364,9 +360,10 @@ router.get('/payco_callback', function(req, res) {
                       order.payco.orderCertifyKey = body.result.orderCertifyKey;
                       order.payco.totalOrderAmt = body.result.totalOrderAmt;
                       order.payco.paymentDetails = body.result.paymentDetails;
+                      order.merchant_id = order.product.merchant_id;
                       order.status = "Paid";
                       order.save(function(err) {
-                        Product.findOne({ _id: order.product }, function(err, product) {
+                        Product.findOne({ _id: order.product.id }, function(err, product) {
                           product.options.forEach(function(option){
                             if (option.name === order.option)
                               option.quantity -= order.quantity;
@@ -436,6 +433,7 @@ router.get('/orders/paid/:id', isAdmin, function(req, res) {
         console.log(err);
       if (!order)
         res.redirect('/mypage');
+      order.merchant_id = order.product.merchant_id;
       order.status = "Paid";
       order.save(function(err) {
         if (err)
@@ -834,11 +832,18 @@ router.post('/shipping', function(req, res) {
   });
 });
 
-router.get('/orders/extract', isAdmin, function(req, res) {
+router.get('/orders/export', isAdmin, function(req, res) {
   res.setHeader('Content-disposition', 'attachment; filename=orders_'+moment().format("YYYYMMDDHHmmss")+'.csv'); 
   res.set('Content-Type', 'text/csv'); 
   res.status(200);
-  Order.find({status: "Paid"}, {}, {$sort: {created_at: -1}}).populate('user').stream().pipe(Order.csvTransformStream()).pipe(res);
+  Order.find({status: "Paid"}, {}, {$sort: {created_at: -1}}).stream().pipe(Order.csvTransformStream()).pipe(res);
+});
+
+router.get('/orders/merchants/export', isMerchant, function(req, res) {
+  res.setHeader('Content-disposition', 'attachment; filename=orders_'+moment().format("YYYYMMDDHHmmss")+'.csv'); 
+  res.set('Content-Type', 'text/csv'); 
+  res.status(200);
+  Order.find({status: "Paid", merchant_id: req.user.id}, {}, {$sort: {created_at: -1}}).stream().pipe(Order.csvTransformStream()).pipe(res);
 });
 
 module.exports = router;

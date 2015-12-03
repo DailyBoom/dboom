@@ -4,6 +4,7 @@ var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
 var moment = require("moment");
 var Product = require("../models/product");
+var User = require("../models/user");
 var i18n = require('i18n');
 
 var isAdmin = function (req, res, next) {
@@ -20,10 +21,12 @@ router.get('/products/list', isAdmin, function(req, res) {
 
 router.get('/products/new', isAdmin, function(req, res) {
   Product.find({scheduled_at: {$exists: true}}, 'scheduled_at', function(err, products) {
-    var scheduled = products.map(function(product) {
-      return [product.scheduled_at.getFullYear(), product.scheduled_at.getMonth(), product.scheduled_at.getDate()];
+    User.find({ role: 'merchant' }, function(err, merchants) {
+      var scheduled = products.map(function(product) {
+        return [product.scheduled_at.getFullYear(), product.scheduled_at.getMonth(), product.scheduled_at.getDate()];
+      });
+      res.render("products/new", { scheduled: scheduled, merchants: merchants });
     });
-    res.render("products/new", {scheduled: scheduled});
   });
 });
 
@@ -135,7 +138,7 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
       quantity += parseInt(option.quantity);
     });
 
-    if (req.body.merchantId)
+    if (req.body.merchant_id)
       product.merchant_id = req.body.merchant_id;
     product.name = req.body.name;
     product.description = req.body.description;
