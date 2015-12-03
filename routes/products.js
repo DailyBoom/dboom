@@ -135,6 +135,8 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
       quantity += parseInt(option.quantity);
     });
 
+    if (req.body.merchantId)
+      product.merchant_id = req.body.merchant_id;
     product.name = req.body.name;
     product.description = req.body.description;
     product.price = req.body.price;
