@@ -33,13 +33,19 @@ var orderSchema = new Schema({
 });
 
 orderSchema.plugin(mongooseToCsv, {
-	headers: ['주문번호', '옵션', '수량', '받는 분', '배송주소', '배송국가', '우편번호', '전화번호'],
+	headers: ['주문번호', '상태', '옵션', '수량', '받는 분', '배송주소', '배송국가', '우편번호', '전화번호'],
 	constraints: {
 		'주문번호': 'id',
 		'옵션': 'option',
 		'수량': 'quantity'
 	},
 	virtuals: {
+		'상태': function(doc) {
+			if (doc.status == "Paid")
+				return '결제 완료';
+			else if (doc.status == "Sent")
+				return '배송 완료';
+		},
 		'받는 분': function(doc) { return doc.shipping.full_name; },
 		'배송주소': function(doc) { return doc.shipping.address; },
 		'전화번호': function(doc) { return doc.shipping.phone_number; },
