@@ -226,6 +226,11 @@
 						</a>
 					</div><!-- .col -->
 					<div class="col s12">
+						<a href="http://bodyfantasies.kr/" target="_blank">
+							<div class="partner-logo" style="background-image: url('/images/partners/sexiest.png');"></div>
+						</a>
+					</div><!-- .col -->
+					<div class="col s12">
 						<a href="https://judyartworks.wordpress.com/" target="_blank">
 							<div class="partner-logo" style="background-image: url('/images/partners/jk-design.png');"></div>
 						</a>
@@ -233,11 +238,6 @@
 					<div class="col s12">
 						<a href="www.zonecode.org" target="_blank">
 							<div class="partner-logo" style="background-image: url('/images/partners/zone.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="#!" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/sexiest.png');"></div>
 						</a>
 					</div><!-- .col -->
 				</div><!-- /.owl-carousel -->
@@ -353,7 +353,7 @@
 			items : 6,
 			itemsDesktop : [1200,6],
 			itemsDesktopSmall : [992,5],
-			itemsTablet: [600,3],
+			itemsTablet: [600,4],
 			itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
 			autoPlay: 2500,
 			navigation: false,
