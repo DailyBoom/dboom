@@ -168,11 +168,19 @@
 								@if (model.pastProducts) {
 									@model.pastProducts.forEach(function(product) {
 										<div class="col s12 m12 l12">
-											<div class="card">
+											<div class="card past">
 												<div class="card-image">
 													<div class="past-date-box blue-grey darken-1 white-text">
 														@model.moment(product.scheduled_at).format("YYYY/MM/DD")@(model.moment(product.scheduled_at).day() == 6 ? model.moment(product.scheduled_at).add(1, 'days').format('-DD') : '')
 													</div>
+													<div class="card-image-ol">
+														<div class="ol-old-p">
+															@product.old_price
+														</div>
+														<div class="ol-new-p">
+															@product.price
+														</div>
+													</div><!-- .card-image-ol -->
 													<img class="" src="@product.images[0]" alt="" />
 												</div>
 												<div class="card-content past">
@@ -335,7 +343,7 @@
 		$('.collapsible').collapsible({
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
-		$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
+		$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile, .ol-old-p, .ol-new-p").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
 		var owl = $("#db-past");
 		owl.owlCarousel({
 			items : 3,
