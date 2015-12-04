@@ -106,7 +106,7 @@ router.get('/merchants/orders/list', isMerchant, function(req, res) {
   if (req.query.order_date)
     query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
   query.paginate(page, 10, function(err, orders, total) {
-    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.floor(total / 10), page), currentPage: page  });
+    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.floor(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
   });
 });
 
@@ -117,7 +117,7 @@ router.get('/orders/list', isAdmin, function(req, res) {
     query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
   query.paginate(page, 10, function(err, orders, total) {
     console.log(total);
-    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.floor(total / 10), page), currentPage: page });
+    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.floor(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
   });
 });
 
@@ -837,7 +837,10 @@ router.get('/orders/export', isAdmin, function(req, res) {
   res.set('Content-Type', 'text/csv; charset=utf-8'); 
   res.write(new Buffer('EFBBBF', 'hex'));
   res.status(200);
-  Order.find({status: {$in: ["Paid", "Sent"]}}, {}, {sort: {created_at: -1}}).stream().pipe(Order.csvTransformStream()).pipe(res);
+  var query = Order.find({status: {$in: ["Paid", "Sent"]}}, {}, {sort: {created_at: -1}});
+  if (req.query.date)
+    query.where('created_at').gte(req.query.date).lt(moment(req.query.date).add(1, 'days'));
+  query.stream().pipe(Order.csvTransformStream()).pipe(res);
 });
 
 router.get('/orders/merchants/export', isMerchant, function(req, res) {
@@ -845,7 +848,10 @@ router.get('/orders/merchants/export', isMerchant, function(req, res) {
   res.set('Content-Type', 'text/csv; charset=utf-8'); 
   res.write(new Buffer('EFBBBF', 'hex'));
   res.status(200);
-  Order.find({status: {$in: ["Paid", "Sent"]}, merchant_id: req.user.id}, {}, {sort: {created_at: -1}}).stream().pipe(Order.csvTransformStream()).pipe(res);
+  var query = Order.find({status: {$in: ["Paid", "Sent"]}, merchant_id: req.user.id}, {}, {sort: {created_at: -1}});
+  if (req.query.date)
+    query.where('created_at').gte(req.query.date).lt(moment(req.query.date).add(1, 'days'));
+  query.stream().pipe(Order.csvTransformStream()).pipe(res);
 });
 
 module.exports = router;
