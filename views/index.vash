@@ -244,13 +244,18 @@
 						</a>
 					</div><!-- .col -->
 					<div class="col s12">
-						<a href="https://judyartworks.wordpress.com/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/jk-design.png');"></div>
+						<a href="http://www.varyd.com/" target="_blank">
+							<div class="partner-logo" style="background-image: url('/images/partners/varyd.png');"></div>
+						</a>
+					</div><!-- .col -->
+					<div class="col s12">
+						<a href="http://www.tkbr.co.kr/" target="_blank">
+							<div class="partner-logo" style="background-image: url('/images/partners/tkbr.png');"></div>
 						</a>
 					</div><!-- .col -->
 					<div class="col s12">
 						<a href="www.zonecode.org" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/zone.png');"></div>
+							<div class="partner-logo" style="background-image: url('/images/partners/zone2.png');"></div>
 						</a>
 					</div><!-- .col -->
 				</div><!-- /.owl-carousel -->
