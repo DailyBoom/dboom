@@ -68,7 +68,7 @@
 					event.preventDefault();
 					$.ajax({
 						type: "POST",
-						url: "http://localhost:3000/advertise",
+						url: "/advertise",
 						dataType: "json",
 						data: {
 							company: $("#company").val(),

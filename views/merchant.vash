@@ -125,7 +125,7 @@
 					event.preventDefault();
 					$.ajax({
 						type: "POST",
-						url: "http://localhost:3000/merchant",
+						url: "/merchant",
 						dataType: "json",
 						data: {
 							company: $("#company").val(),
