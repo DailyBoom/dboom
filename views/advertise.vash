@@ -64,6 +64,27 @@
 		<script>
 			$(document).ready(function(){
 				$('.parallax').parallax();
+				$('form').on("submit", function(event) {
+					event.preventDefault();
+					$.ajax({
+						type: "POST",
+						url: "http://localhost:3000/advertise",
+						dataType: "json",
+						data: {
+							company: $("#company").val(),
+							fullname: $("#fullname").val(),
+							email: $("#email").val(),
+							details: $("#details").val()
+						},
+						success: function (res) {
+							Materialize.toast(res.message, 4000);
+							$('form input, form textarea').val("");
+						},
+						error: function (res) {
+							Materialize.toast(res.responseJSON.message, 4000);
+						}
+					});
+				});
 			});
 		</script>
 	})
