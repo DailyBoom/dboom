@@ -74,20 +74,20 @@
 					</div>
 				</div>
 				@if(model.product.options) {
-				@{ var i = 0; }
-				@model.product.options.forEach(function(option) {
-					<div class="row options_row">
-						<div class="input-field col s12 m6 l6">
-							<input id="option_name" type="text" class="validate" name="options[@i][name]" value="@option.name">
-							<label for="option_name">옵션 * 예) 상품 색성</label>
+					@{ var i = 0; }
+					@model.product.options.forEach(function(option) {
+						<div class="row options_row">
+							<div class="input-field col s12 m6 l6">
+								<input id="option_name" type="text" class="validate" name="options[@i][name]" value="@option.name">
+								<label for="option_name">옵션 * 예) 상품 색성</label>
+							</div>
+							<div class="input-field col s12 m6 l6">
+								<input id="o_quatity" type="number" class="validate" name="options[@i][quantity]" value="@option.quantity">
+								<label for="o_quantity">옵션 수량 *</label>
+							</div>
 						</div>
-						<div class="input-field col s12 m6 l6">
-							<input id="o_quatity" type="number" class="validate" name="options[@i][quantity]" value="@option.quantity">
-							<label for="o_quantity">옵션 수량 *</label>
-						</div>
-					</div>
-					@{ i++; }
-				})
+						@{ i++; }
+					})
 				}
 			</div>
 			<!-- #options_wrapper -->
@@ -132,20 +132,24 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s12 m12 l12">
-					<input id="videoUrl" name="videoUrl" type="url" class="validate">
-					<label for="videoURL">동영상 링크 (YouTube 추천)</label>
+					<input id="videoUrl" name="videoUrl" type="url" class="validate" value="@model.product.videoUrl">
+					<label for="videoUrl">동영상 링크 (YouTube Embeded Link)</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
-					<input id="webUrl" name="webUrl" type="url" class="validate">
+					<input id="webUrl" name="webUrl" type="url" class="validate" value="@model.product.webUrl">
 					<label for="webUrl">Website 링크</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
-					<input id="fbUrl" name="fbUrl" type="url" class="validate">
+					<input id="fbUrl" name="fbUrl" type="url" class="validate" value="@model.product.fbUrl">
 					<label for="fbUrl">Facebook 링크</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
-					<input id="kakaoUrl" name="kakaoUrl" type="text" class="validate">
+					<input id="kakaoUrl" name="kakaoUrl" type="text" class="validate" value="@model.product.kakaoUrl">
 					<label for="kakaoUrl">Kakao Story 링크</label>
+				</div>
+				<div class="input-field col s12 m12 l12">
+					<input id="reviewUrl" name="reviewUrl" type="text" class="validate" value="@model.product.reviewUrl">
+					<label for="reviewUrl">Review 링크</label>
 				</div>
 			</div>
 			<div class="row">

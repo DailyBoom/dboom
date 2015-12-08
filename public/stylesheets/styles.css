@@ -65,21 +65,21 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /* Font Awesome Fix */
-@media only screen and (min-width: 0)      {
+@media only screen and (min-width: 0) {
   .fa-1x { font-size: 1em !important; }
   .fa-2x { font-size: 1.4em !important; }
   .fa-3x { font-size: 1.8em !important; }
   .fa-4x { font-size: 2em !important; }
   .fa-5x { font-size: 2.5em !important; }
 }
-@media only screen and (min-width: 601px)  {
+@media only screen and (min-width: 601px) {
   .fa-1x { font-size: 1em !important; }
   .fa-2x { font-size: 1.5em !important; }
   .fa-3x { font-size: 2em !important; }
   .fa-4x { font-size: 2.5em !important; }
   .fa-5x { font-size: 2.3em !important; }
 }
-@media only screen and (min-width: 992px)  {
+@media only screen and (min-width: 992px) {
   .fa-1x { font-size: 1em !important; }
   .fa-2x { font-size: 1.2em !important; }
   .fa-3x { font-size: 2em !important; }
@@ -583,11 +583,9 @@ input[type=number]::-webkit-outer-spin-button {
     background-repeat: no-repeat;
     background-size: cover;
   }
-  iframe {
+  .slider-wrapper iframe {
     height: 240px;
-    width: 100%;
-    margin: 0;
-    padding-bottom: 20px;
+    background-color: #000;
   }
   .bx-wrapper .bx-pager {
     text-align: center;
@@ -628,10 +626,8 @@ input[type=number]::-webkit-outer-spin-button {
     background-repeat: no-repeat;
     background-size: cover;
   }
-  iframe {
+  .slider-wrapper iframe {
     height: 400px;
-    width: 100%;
-    padding: 20px 0;
   }
   .bx-wrapper .bx-pager {
     text-align: center;
@@ -669,10 +665,9 @@ input[type=number]::-webkit-outer-spin-button {
     background-repeat: no-repeat;
     background-size: cover;
   }
-  iframe {
+  .slider-wrapper iframe {
     height: 600px;
-    width: 100%;
-    padding: 30px 0;
+    padding-bottom: 30px;
   }
   .bx-wrapper .bx-pager {
   	text-align: center;
@@ -845,6 +840,10 @@ input[type=number]::-webkit-outer-spin-button {
     word-break: keep-all;
     text-align: justify;
     font-size: 1em;
+  }
+  .item-info-links {
+    margin-top: 1.2em;
+    font-size: 1.2em;
   }
   .past-box-wrapper {
     width: 100%;
