@@ -64,6 +64,8 @@
 						}
 					</div>
 				})
+				@if(model.product.videoUrl)
+					@model.product.videoUrl
     	</div><!-- #main-slider -->
 		</div><!-- .col -->
 		<div class="col s12">
@@ -85,6 +87,11 @@
 			</div>
 			<div class="buy-box-info blue-grey lighten-5 blue-grey-text text-darken-2">
 				<div class="item-info">@html.raw(model.product.description)</div>
+				<div class="item-info-links">
+					@if(model.product.reviewUrl) {
+						<a href="@model.product.reviewUrl" target="_blank"><i class="fa fa-hand-o-right"></i> 상품 리뷰 보기</a>
+					}
+				</div>
 			</div>
 			<div class="buy-box-footer blue-grey lighten-3">
 				<div class="center">

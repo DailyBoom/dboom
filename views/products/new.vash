@@ -127,7 +127,7 @@
 			<div class="row">
 				<div class="input-field col s12 m12 l12">
 					<input id="videoUrl" name="videoUrl" type="url" class="validate">
-					<label for="videoUrl">동영상 링크 (YouTube 추천)</label>
+					<label for="videoUrl">동영상 링크 (YouTube Embeded Link)</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
 					<input id="webUrl" name="webUrl" type="url" class="validate">
@@ -140,6 +140,10 @@
 				<div class="input-field col s12 m12 l12">
 					<input id="kakaoUrl" name="kakaoUrl" type="text" class="validate">
 					<label for="kakaoUrl">Kakao Story 링크</label>
+				</div>
+				<div class="input-field col s12 m12 l12">
+					<input id="reviewUrl" name="reviewUrl" type="text" class="validate">
+					<label for="reviewUrl">Review 링크</label>
 				</div>
 			</div>
 			<div class="row">
