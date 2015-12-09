@@ -2,7 +2,7 @@
 	@html.block("body", function(model) {
 <!-- Login Modal Structure -->
 <div id="modal-check" class="modal">
-	<div class="modal-header-c green darken-2 white-text center">
+	<div class="modal-header-c red darken-2 white-text center">
 		로그인
 	</div>
 	<div class="modal-content-c">
@@ -22,7 +22,7 @@
 						<label for="remember-me">아이디 저장</label>
 					</span>
 					<span class="right">
-						<button class="waves-effect waves-light btn green darken-2" type="submit" name="action">로그인</button>
+						<button class="waves-effect waves-light btn red darken-2" type="submit" name="action">로그인</button>
 					</span>
 				</div><!-- .col -->
 				<div class="col s12">
@@ -40,7 +40,7 @@
 			</form>
 		</div><!-- .row -->
 	</div><!-- .modal-content -->
-	<div class="modal-footer-c green lighten-5 red-text text-darken-3">
+	<div class="modal-footer-c red lighten-5 red-text text-darken-3">
 		<a class="red-text text-darken-3 left" href="/forgot">비밀번호를 잊으셨나요?</a>
 		<!-- <a class="red-text text-darken-3 right" href="/signup">회원가입</a> -->
 	</div>
@@ -85,7 +85,7 @@
 					<div class="hide-on-small-only item-price right" id="product_price">@model.product.price</div>
 					<div class="hide-on-small-only item-price-o red-text text-lighten-2 right" id="old_price">@model.product.old_price</div>
 			</div>
-			<div class="buy-box-info green lighten-5 red-text text-darken-4">
+			<div class="buy-box-info blue-grey lighten-5 blue-grey-text text-darken-4">
 				<div class="item-info">@html.raw(model.product.description)</div>
 				<div class="item-info-links">
 					@if(model.product.reviewUrl != '') {
@@ -104,14 +104,14 @@
 			</div><!-- .buy-box-footer -->
 			<!-- Modal Structure -->
 		  <div id="share_url_modal" class="modal">
-				<div class="modal-header green darken-2 white-text center">
+				<div class="modal-header red darken-2 white-text center">
 					공유하기
 				</div>
 		    <div class="modal-content">
 					<input readonly type="text" id="share_url" value="http://dailyboom.co">
 					<br>
 					<br>
-					<a href="#!" class="modal-action modal-close waves-effect waves-light btn green darken-2">닫기</a>
+					<a href="#!" class="modal-action modal-close waves-effect waves-light btn red darken-2">닫기</a>
 		    </div>
 		  </div>
 			<!-- Merchant xInfo -->
@@ -120,7 +120,7 @@
 					<div class="collapsible-header green darken-1 white-text">
 						<span>배송 진행상황 조회 및 제품 교환/환불 정책 <i class="fa fa-info-circle fa-fw right"></i></span>
 					</div>
-					<div class="collapsible-body">
+					<div class="collapsible-body blue-grey lighten-5">
 						@if(model.product.delivery_info) {
 							<img class="responsive-img" src="@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - 데일리 붐" />
 						}
@@ -165,7 +165,7 @@
 				}
 			</div>
 
-			<div class="past-box-wrapper green darken-2 white-text">
+			<div class="past-box-wrapper red darken-2 white-text">
 				지난 상품
 			</div>
 			<div class="row">
@@ -191,11 +191,11 @@
 													<img class="" src="@product.images[0]" alt="" />
 												</div>
 												<div class="card-content past">
-													<div class="red-text text-darken-1 truncate"><b>@product.name</b></div>
-													<span class="red-text text-darken-1">@product.description</span>
+													<div class="blue-grey-text text-darken-1 truncate"><b>@product.name</b></div>
+													<span class="blue-grey-text text-darken-1">@product.description</span>
 												</div>
 												<div class="card-action mod center">
-													<a class="waves-effect waves-light btn-flat red-text text-darken-3 want" href="#!">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></a>
+													<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 want" href="#!">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></a>
 												</div>
 											</div>
 										</div>
@@ -209,7 +209,7 @@
 			<!-- Featured section -->
 			<div class="row">
 				<div class="col s12">
-					<div class="past-box-wrapper green darken-2 white-text">
+					<div class="past-box-wrapper red darken-2 white-text">
 						브랜드 ON 데일리 붐
 					</div>
 					<br>

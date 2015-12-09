@@ -20,7 +20,19 @@
 @media only screen and (min-width: 1200px) {} /* desktop */
 
 /* Colors	*/
-
+nav {
+  /*background: -webkit-linear-gradient(#37474f, #455a64, #37474f);
+  background: -o-linear-gradient(#37474f, #455a64, #37474f);
+  background: -moz-linear-gradient(#37474f, #455a64, #37474f);
+  background: linear-gradient(#37474f, #455a64, #37474f);*/
+  border-bottom: 3px solid #fff;
+}
+body {
+  background: -webkit-radial-gradient(#9fa8da, #1a237e);
+  background: -o-radial-gradient(#9fa8da, #1a237e);
+  background: -moz-radial-gradient(#9fa8da, #1a237e);
+  background: radial-gradient(#9fa8da, #1a237e);
+}
 /* Global Settings */
 /*body {
   background: -webkit-radial-gradient(#ffffff, #cfd8dc);
@@ -32,13 +44,10 @@
   background-size: cover;
 }*/
 body {
-  background: -webkit-radial-gradient(#ffffff, #cfd8dc); /* Safari 5.1 to 6.0 */
-  background: -o-radial-gradient(#ffffff, #cfd8dc); /* For Opera 11.6 to 12.0 */
-  background: -moz-radial-gradient(#ffffff, #cfd8dc); /* For Firefox 3.6 to 15 */
-  background: radial-gradient(#ffffff, #cfd8dc); /* Standard syntax */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  /*background: -webkit-radial-gradient(#ffffff, #cfd8dc);
+  background: -o-radial-gradient(#ffffff, #cfd8dc);
+  background: -moz-radial-gradient(#ffffff, #cfd8dc);
+  background: radial-gradient(#ffffff, #cfd8dc);*/
 }
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
@@ -165,10 +174,6 @@ input[type=number]::-webkit-outer-spin-button {
   nav {
     height: 51px;
     line-height: 51px;
-    /*background: -webkit-linear-gradient(#37474f, #455a64, #37474f);
-    background: -o-linear-gradient(#37474f, #455a64, #37474f);
-    background: -moz-linear-gradient(#37474f, #455a64, #37474f);
-    background: linear-gradient(#37474f, #455a64, #37474f);*/
   }
   .nav-item { padding: 0px; }
   .btn-profile {
