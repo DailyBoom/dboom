@@ -116,6 +116,9 @@ router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCou
         company_kakaostory: req.body.kakaoUrl
       });
     
+      if (product.price >= 50000)
+        product.delivery_price = 0;
+    
       if (req.body.merchant_id)
         product.merchant_id = req.body.merchant_id;
     
@@ -150,7 +153,11 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
     product.video = req.body.videoUrl;
     product.company_url = req.body.webUrl;
     product.company_facebook = req.body.fbUrl;
-    product.company_kakaostory = req.body.kakaoUrl;
+    product.company_kakaostory = req.body.kakaoUrl;    
+    product.extend = req.body.extend ? req.body.extend : 0;
+
+    if (product.price >= 50000)
+      product.delivery_price = 0;
 
     if (quantity > product.quantity || !product.quantity)
       product.quantity = quantity;
