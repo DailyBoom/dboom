@@ -96,7 +96,7 @@
   </head>
   <body>
 		<div class="navbar">
-			<nav class="blue-grey darken-3">
+			<nav class="green darken-3">
 				<div class="container center">
 					<a href="/" class="logo-d"><img class="logo-img left" src="/images/db_korea.png" /></a>
 					<a href="/" class="logo-m"><img class="logo-img left" src="/images/dbkorea01.png" /></a>
@@ -124,8 +124,8 @@
                   <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck fa-fw right"></i></a></li>
                 }
 									<li class="divider"></li>
-									<li><a class="blue-grey-text text-darken-2" href="/mypage">마이 페이지 <i class="fa fa-user fa-fw right"></i></a></li>
-									<li><a class="blue-grey-text text-darken-2" href="/logout">로그아웃 <i class="fa fa-sign-out fa-fw right"></i></a></li>
+									<li><a class="red-text text-darken-2" href="/mypage">마이 페이지 <i class="fa fa-user fa-fw right"></i></a></li>
+									<li><a class="red-text text-darken-2" href="/logout">로그아웃 <i class="fa fa-sign-out fa-fw right"></i></a></li>
 								</ul>
 							</li>
 						</ul>
@@ -138,9 +138,9 @@
 									<i class="fa fa-bars fa-fw fa-4x"></i>
 								</a>
 								<!-- Dropdown Structure -->
-								<ul id="dropdown-profile" class="dropdown-content blue-grey-text text-darken-2">
-									<li><a class="waves-effect waves-light blue-grey-text text-darken-2" href="/login">로그인 <i class="fa fa-sign-in fa-fw right"></i></a></li>
-									<li><a class="waves-effect waves-light blue-grey-text text-darken-2" href="/signup">회원가입 <i class="fa fa-user-plus fa-fw right"></i></a></li>
+								<ul id="dropdown-profile" class="dropdown-content red-text text-darken-2">
+									<li><a class="waves-effect waves-light red-text text-darken-2" href="/login">로그인 <i class="fa fa-sign-in fa-fw right"></i></a></li>
+									<li><a class="waves-effect waves-light red-text text-darken-2" href="/signup">회원가입 <i class="fa fa-user-plus fa-fw right"></i></a></li>
 								</ul>
 							</li>
 						</ul>
@@ -153,7 +153,7 @@
 			</nav>
 		</div><!-- .navbar -->
       @html.block("body")
-		<footer class="page-footer blue-grey darken-3">
+		<footer class="page-footer green darken-3">
 			<div class="container">
         <div class="row flex-s">
           <div class="col s12 m3 l3 box-2">

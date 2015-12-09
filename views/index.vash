@@ -2,7 +2,7 @@
 	@html.block("body", function(model) {
 <!-- Login Modal Structure -->
 <div id="modal-check" class="modal">
-	<div class="modal-header-c blue-grey darken-2 white-text center">
+	<div class="modal-header-c green darken-2 white-text center">
 		로그인
 	</div>
 	<div class="modal-content-c">
@@ -22,7 +22,7 @@
 						<label for="remember-me">아이디 저장</label>
 					</span>
 					<span class="right">
-						<button class="waves-effect waves-light btn blue-grey darken-2" type="submit" name="action">로그인</button>
+						<button class="waves-effect waves-light btn green darken-2" type="submit" name="action">로그인</button>
 					</span>
 				</div><!-- .col -->
 				<div class="col s12">
@@ -40,9 +40,9 @@
 			</form>
 		</div><!-- .row -->
 	</div><!-- .modal-content -->
-	<div class="modal-footer-c blue-grey lighten-5 blue-grey-text text-darken-3">
-		<a class="blue-grey-text text-darken-3 left" href="/forgot">비밀번호를 잊으셨나요?</a>
-		<!-- <a class="blue-grey-text text-darken-3 right" href="/signup">회원가입</a> -->
+	<div class="modal-footer-c green lighten-5 red-text text-darken-3">
+		<a class="red-text text-darken-3 left" href="/forgot">비밀번호를 잊으셨나요?</a>
+		<!-- <a class="red-text text-darken-3 right" href="/signup">회원가입</a> -->
 	</div>
 </div><!-- #modal-check -->
 <!-- End Login Modal -->
@@ -69,7 +69,7 @@
     	</div><!-- #main-slider -->
 		</div><!-- .col -->
 		<div class="col s12">
-			<div class="buy-box-wrapper white-text">
+			<div class="buy-box-wrapper green darken-3 white-text">
 				<img class="brand-img" src="@model.product.brand_logo" alt="@model.product.brand - Logo" />
 				<div class="item-name truncate">@model.product.name</div>
 					@if (model.user) {
@@ -83,9 +83,9 @@
 						}
 					}
 					<div class="hide-on-small-only item-price right" id="product_price">@model.product.price</div>
-					<div class="hide-on-small-only item-price-o blue-grey-text text-lighten-2 right" id="old_price">@model.product.old_price</div>
+					<div class="hide-on-small-only item-price-o red-text text-lighten-2 right" id="old_price">@model.product.old_price</div>
 			</div>
-			<div class="buy-box-info blue-grey lighten-5 blue-grey-text text-darken-2">
+			<div class="buy-box-info green lighten-5 red-text text-darken-4">
 				<div class="item-info">@html.raw(model.product.description)</div>
 				<div class="item-info-links">
 					@if(model.product.reviewUrl != '') {
@@ -93,7 +93,7 @@
 					}
 				</div>
 			</div>
-			<div class="buy-box-footer blue-grey lighten-3">
+			<div class="buy-box-footer green lighten-3">
 				<div class="center">
 					<!-- <span class="share-text white-text">share</span> -->
 					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
@@ -104,20 +104,20 @@
 			</div><!-- .buy-box-footer -->
 			<!-- Modal Structure -->
 		  <div id="share_url_modal" class="modal">
-				<div class="modal-header blue-grey darken-2 white-text center">
+				<div class="modal-header green darken-2 white-text center">
 					공유하기
 				</div>
 		    <div class="modal-content">
 					<input readonly type="text" id="share_url" value="http://dailyboom.co">
 					<br>
 					<br>
-					<a href="#!" class="modal-action modal-close waves-effect waves-light btn blue-grey darken-2">닫기</a>
+					<a href="#!" class="modal-action modal-close waves-effect waves-light btn green darken-2">닫기</a>
 		    </div>
 		  </div>
 			<!-- Merchant xInfo -->
 			<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
 		    <li>
-					<div class="collapsible-header blue-grey darken-1 white-text">
+					<div class="collapsible-header green darken-1 white-text">
 						<span>배송 진행상황 조회 및 제품 교환/환불 정책 <i class="fa fa-info-circle fa-fw right"></i></span>
 					</div>
 					<div class="collapsible-body">
@@ -142,8 +142,8 @@
 		  </ul>
 
 			<!-- Mobile -->
-			<div class="hide-on-med-and-up mobile-buy blue-grey darken-3">
-				<div class="item-price-o blue-grey-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
+			<div class="hide-on-med-and-up mobile-buy green darken-3">
+				<div class="item-price-o red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
 				<div class="item-price white-text" id="product_price_mobile">@model.product.price</div>
 				@if (model.user) {
 					@if (model.progress < 100) {
@@ -165,7 +165,7 @@
 				}
 			</div>
 
-			<div class="past-box-wrapper white-text">
+			<div class="past-box-wrapper green darken-2 white-text">
 				지난 상품
 			</div>
 			<div class="row">
@@ -177,7 +177,7 @@
 										<div class="col s12 m12 l12">
 											<div class="card past">
 												<div class="card-image">
-													<div class="past-date-box blue-grey darken-1 white-text">
+													<div class="past-date-box green darken-1 white-text">
 														@model.moment(product.scheduled_at).format("YYYY/MM/DD")@(model.moment(product.scheduled_at).day() == 6 ? model.moment(product.scheduled_at).add(1, 'days').format('-DD') : '')
 													</div>
 													<div class="card-image-ol">
@@ -191,11 +191,11 @@
 													<img class="" src="@product.images[0]" alt="" />
 												</div>
 												<div class="card-content past">
-													<div class="blue-grey-text text-darken-1 truncate"><b>@product.name</b></div>
-													<span class="blue-grey-text text-darken-1">@product.description</span>
+													<div class="red-text text-darken-1 truncate"><b>@product.name</b></div>
+													<span class="red-text text-darken-1">@product.description</span>
 												</div>
 												<div class="card-action mod center">
-													<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 want" href="#!">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></a>
+													<a class="waves-effect waves-light btn-flat red-text text-darken-3 want" href="#!">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></a>
 												</div>
 											</div>
 										</div>
@@ -209,7 +209,7 @@
 			<!-- Featured section -->
 			<div class="row">
 				<div class="col s12">
-					<div class="past-box-wrapper white-text">
+					<div class="past-box-wrapper green darken-2 white-text">
 						브랜드 ON 데일리 붐
 					</div>
 					<br>
@@ -324,7 +324,7 @@
 	$(document).ready(function(){
 		$('a.want').on('click', function(){
 			$(this).parent().addClass('cyan darken-2');
-			$(this).removeClass('want blue-grey-text text-darken-3');
+			$(this).removeClass('want red-text text-darken-3');
 			$(this).addClass('white-text');
 			$(this).children('i').removeClass('fa-thumbs-o-up');
 			$(this).children('i').addClass('fa-thumbs-up white-text');
