@@ -38,7 +38,6 @@ router.get('/', function(req, res, next) {
         current_quantity += parseInt(option.quantity);
       });
       var progress = (product.quantity - current_quantity) / product.quantity * 100;
-      console.log(progress);
       res.render('index', { progress: progress.toFixed(0), product: product, pastProducts: pastProducts });
     });
   });
@@ -100,5 +99,26 @@ router.get('/beta', function(req, res, next) {
   });
 });
 
+router.get('/extend/:id', function(req, res, next) {
+  Product.findOne({_id: req.params.id}, function(err, product) {
+    if (product.extend == 1) {
+      if (moment().isAfter(moment(product.scheduled_at).add(2, 'days'), 'days'))
+        return res.redirect('/');
+    }
+    else if (product.extend == 2) {
+      var current_quantity = 0;
+      product.options.forEach(function(option) {
+        current_quantity += parseInt(option.quantity);
+      });
+      if (current_quantity <= 0) {
+        return res.redirect('/');
+      }
+    }
+    else {
+      res.redirect('/');
+    }
+    res.render('extend', { product: product });
+  });
+});
 
 module.exports = router;

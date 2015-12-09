@@ -21,6 +21,7 @@ var productSchema = new Schema({
   video: String,
   delivery_info: String,
   is_published: Boolean,
+  extend: Number,
   created_at: { type : Date, default : Date.now },
   updated_at: Date
 });

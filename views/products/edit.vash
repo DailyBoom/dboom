@@ -51,6 +51,17 @@
 					<label for="description">상품 정보 *</label>
 				</div>
 			</div>
+			<div class="row">
+				Extend
+				<div class="input-field col s12">
+					<input name="extend" type="radio" id="extend_hour" value="1" @(model.product.extend == 1 ? 'checked' : '')/>
+					<label for="extend_hour">48h</label>
+				</div>
+				<div class="input-field col s12">
+					<input name="extend" type="radio" id="extend_sold_out" value="2" @(model.product.extend == 2 ? 'checked' : '')/>
+					<label for="extend_sold_out">Sold Out</label>
+				</div>
+			</div>
 			<!-- .row -->
 			<div class="file-field input-field">
 				<br>

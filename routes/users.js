@@ -208,10 +208,11 @@ router.post('/users/edit', isAuthenticated, function(req, res) {
 
 // for Admin Only
 router.get('/users/list', isAdmin, function(req, res){
-  User.find({}, {}, {$sort: { created_at: -1 }}, function(err, users) {
+  var page = req.query.page ? req.query.page : 1;
+  User.find({}, {}, {$sort: { created_at: -1 }}).paginate(page, 10, function(err, users, total) {
     if (err)
       console.log(err);
-    res.render('users/list', { users: users });
+    res.render('users/list', { users: users, pages: paginate.getArrayPages(req)(3, Math.floor(total / 10), page), currentPage: page });
   });
 });
 
