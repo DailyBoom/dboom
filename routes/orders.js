@@ -199,7 +199,7 @@ router.get('/checkout', function(req, res) {
                               if (option.name === orderPop.option)
                               leftQuantity = parseInt(option.quantity);
                             });
-                            res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
+                            res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity, title: "주문결제" });
                         }
                         else
                           res.redirect('/');
@@ -234,7 +234,7 @@ router.get('/checkout', function(req, res) {
                           if (option.name === orderPop.option)
                           leftQuantity = parseInt(option.quantity);
                         });
-                        res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
+                        res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity, title: "주문결제" });
                     }
                     else
                       res.redirect('/');
@@ -315,6 +315,7 @@ router.post('/deposit_checkout', function(req, res) {
             }
             var html = vash.compile(file);
             moment.locale('ko');
+            console.log(order);
             transporter.sendMail({
               from: 'Daily Boom <contact@dailyboom.co>',
               to: order.user ? order.user.email : order.email,
@@ -422,7 +423,7 @@ router.get('/success', function(req, res) {
     if (!order)
       res.redirect('/');
     delete req.session.order;
-    res.render('success', { code: req.query.code, order: order });
+    res.render('success', { code: req.query.code, order: order, title: "주문 완료", description: "고객님, 데일리 붐을 이용해 주셔서 감사합니다." });
   });
 });
 
@@ -623,7 +624,7 @@ router.get('/shipping', function(req, res) {
   if (!req.session.order)
     res.redirect('/');
   else
-    res.render('shipping');
+    res.render('shipping', { title: "배송지 정보" });
 });
 
 router.post('/shipping', function(req, res) {
@@ -715,7 +716,7 @@ router.post('/shipping', function(req, res) {
                   for (var path in err.errors) {
                     errors.push(i18n.__("unique", i18n.__("user."+path)));
                   }
-                  res.render('shipping', { errors: errors });
+                  res.render('shipping', { errors: errors, title: "배송지 정보" });
                 }
                 else {
                   order.user = user.id;
@@ -759,7 +760,7 @@ router.post('/shipping', function(req, res) {
 
         req.Validator.getErrors(function(errors){
           if (errors.length > 0) {
-            res.render('shipping', { errors: errors });
+            res.render('shipping', { errors: errors, title: "배송지 정보" });
           }
           else {
             var user = req.user;
@@ -782,13 +783,13 @@ router.post('/shipping', function(req, res) {
                   for (var path in err.errors) {
                     errors.push(i18n.__("unique", i18n.__("user."+path)));
                   }
-                res.render('shipping', { errors: errors });
+                res.render('shipping', { errors: errors, title: "배송지 정보" });
               }
               else {
                 order.user = user.id;
                 order.save(function(err) {
                   if (err) {
-                    res.render('shipping', { errors: err });
+                    res.render('shipping', { errors: err, title: "배송지 정보" });
                   }
                   else {
                     res.redirect('/checkout');
@@ -806,7 +807,7 @@ router.post('/shipping', function(req, res) {
 
         req.Validator.getErrors(function(errors){
           if (errors.length > 0) {
-            res.render('shipping', { errors: errors });
+            res.render('shipping', { errors: errors, title: "배송지 정보" });
           }
           else {
             order.shipping = {
@@ -819,7 +820,7 @@ router.post('/shipping', function(req, res) {
             order.email = req.body.email;
             order.save(function(err) {
               if (err) {
-                res.render('shipping', { errors: err });
+                res.render('shipping', { errors: err, title: "배송지 정보" });
               }
               else {
                   res.redirect('/checkout');

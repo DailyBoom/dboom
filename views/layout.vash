@@ -10,7 +10,7 @@
       <meta name="title" content="데일리 붐 - 오늘 뭐 사지?">
     }
     else {
-      <meta name="title" content="@model.title">      
+      <meta name="title" content="데일리 붐 - @model.title">
     }
     @if(!model.description){
       <meta name="description" content="오늘 뭐 사지? 데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다. 상품이 공개된 후부터 ‘24시간 카운트 다운’으로 진행되기 때문에 고객들은 실시간으로 남은 할인가격 시간과 구매율(%)을 확인할 수 있습니다.">
