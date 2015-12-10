@@ -38,29 +38,29 @@ router.get('/', function(req, res, next) {
         current_quantity += parseInt(option.quantity);
       });
       var progress = (product.quantity - current_quantity) / product.quantity * 100;
-      res.render('index', { progress: progress.toFixed(0), product: product, pastProducts: pastProducts });
+      res.render('index', { progress: progress.toFixed(0), product: product, pastProducts: pastProducts, title: "오늘 뭐 사지?" });
     });
   });
 });
 
 router.get('/about', function(req, res, next) {
-  res.render('about');
+  res.render('about', { title: "회사 소개", description: "데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다." });
 });
 
 router.get('/advertise', function(req, res, next) {
-  res.render('advertise');
+  res.render('advertise', { title: "광고·제휴 문의", description: "광고·제휴 문의" });
 });
 
 router.get('/privacy', function(req, res, next) {
-  res.render('privacy');
+  res.render('privacy', { title: "개인정보 정책", description: "데일리 붐은 회원님의 개인정보를 안전하게 보호하기 위하여 최선의 노력을 다하고 있으며, 개인정보보호관련 법규 및 정부기관의 가이드라인을 준수하고 있습니다." });
 });
 
 router.get('/terms', function(req, res, next) {
-  res.render('terms');
+  res.render('terms', { title: "이용약관", description: "이 약관은 Daily Boom (전자상거래 사업자)이 운영하는 T.P.O 제공하는 인터넷 관련 서비스(이하 '서비스'라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다." });
 });
 
 router.get('/merchant', function(req, res, next) {
-  res.render('merchant');
+  res.render('merchant', { title: "판매자 문의", description: "데일리 붐은 하루 24시간 오직 한개의 상품만을 판매함으로써 매출을 획기적으로 증가시켜 드립니다." });
 });
 
 router.post('/advertise', function(req, res, next) {
@@ -117,7 +117,7 @@ router.get('/extend/:id', function(req, res, next) {
     else {
       res.redirect('/');
     }
-    res.render('extend', { product: product });
+    res.render('extend', { product: product, title: product.name, description: product.description });
   });
 });
 

@@ -37,7 +37,7 @@ var isAdmin = function (req, res, next) {
 router.get('/login', function(req, res, next) {
   if (req.user)
     return res.redirect('/');
-  res.render('login', { title: 'Login', errors: req.session.messages || [] });
+  res.render('login', { title: '로그인', errors: req.session.messages || [] });
   delete req.session.messages;
 });
 
@@ -79,9 +79,9 @@ router.get('/mypage', isAuthenticated, function(req, res) {
       if (typeof req.session.errors !== 'undefined') {
         var errors = req.session.errors;
         delete req.session.errors;
-        res.render('users/show', { orders: orders, errors: errors });
+        res.render('users/show', { orders: orders, errors: errors, title: "마이 페이지" });
       }
-      res.render('users/show', { orders: orders });
+      res.render('users/show', { orders: orders, title: "마이 페이지" });
     });
 });
 
@@ -225,7 +225,7 @@ router.get('/users/delete/:id', isAdmin, function(req, res) {
 router.get('/signup', function(req, res, next) {
   if (req.user)
     res.redirect('/');
-  req.Validator.getErrors(function() { res.render('signup'); });
+  req.Validator.getErrors(function() { res.render('signup', { title: "회원가입" }); });
 });
 
 router.post('/signup', function(req, res) {
@@ -290,7 +290,7 @@ router.post('/signup', function(req, res) {
   // form validation
   req.Validator.getErrors(function(errors){
     if (errors.length > 0) {
-      res.render('signup', { errors: errors });
+      res.render('signup', { errors: errors, title: "회원가입" });
     }
     else {
       var user = new User({
@@ -316,7 +316,7 @@ router.post('/signup', function(req, res) {
           for (var path in err.errors) {
             errors.push(i18n.__("unique", i18n.__("user."+path)));
           }
-          res.render('signup', { errors: errors });
+          res.render('signup', { errors: errors, title: "회원가입" });
         }
         else {
           fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
@@ -332,7 +332,7 @@ router.post('/signup', function(req, res) {
               subject: user.username+'님 회원가입을 축하드립니다.',
               html: html({ user : user })
             }, function (err, info) {
-                if (err) { console.log(err); res.render('signup', { error: err.errmsg }); }
+                if (err) { console.log(err); res.render('signup', { error: err.errmsg, title: "회원가입" }); }
                 console.log('Message sent: ' + info.response);
                 transporter.close();
                 req.login(user, function(err) {
@@ -373,7 +373,7 @@ router.get('/auth/kakao/callback',
 });
 
 router.get('/forgot', function(req, res, next) {
-  res.render('users/forgot');
+  res.render('users/forgot', { title: "비밀번호를 잊으셨나요?" });
 })
 
 router.post('/forgot', function(req, res, next) {
