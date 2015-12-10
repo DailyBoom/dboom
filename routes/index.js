@@ -38,29 +38,29 @@ router.get('/', function(req, res, next) {
         current_quantity += parseInt(option.quantity);
       });
       var progress = (product.quantity - current_quantity) / product.quantity * 100;
-      res.render('index', { progress: progress.toFixed(0), product: product, pastProducts: pastProducts });
+      res.render('index', { progress: progress.toFixed(0), product: product, pastProducts: pastProducts, title: "오늘 뭐 사지?" });
     });
   });
 });
 
 router.get('/about', function(req, res, next) {
-  res.render('about');
+  res.render('about', { title: "회사 소개" });
 });
 
 router.get('/advertise', function(req, res, next) {
-  res.render('advertise');
+  res.render('advertise', { title: "광고·제휴 문의" });
 });
 
 router.get('/privacy', function(req, res, next) {
-  res.render('privacy');
+  res.render('privacy', { title: "개인정보 정책" });
 });
 
 router.get('/terms', function(req, res, next) {
-  res.render('terms');
+  res.render('terms', { title: "이용약관" });
 });
 
 router.get('/merchant', function(req, res, next) {
-  res.render('merchant');
+  res.render('merchant', { title: "판매자 문의" });
 });
 
 router.post('/advertise', function(req, res, next) {
