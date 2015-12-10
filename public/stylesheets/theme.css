@@ -31,7 +31,6 @@ nav {
   background-size: contain;
 }
 .snow {
-  position: absolute;
 	background: none;
 	background-image: url('/images/themes/s1.png'),
                     url('/images/themes/s2.png'),
