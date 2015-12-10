@@ -27,14 +27,9 @@ nav {
   background: linear-gradient(#37474f, #455a64, #37474f);*/
   border-bottom: 3px solid #fff;
 }
-body {
-  background: -webkit-radial-gradient(#9fa8da, #1a237e);
-  background: -o-radial-gradient(#9fa8da, #1a237e);
-  background: -moz-radial-gradient(#9fa8da, #1a237e);
-  background: radial-gradient(#9fa8da, #1a237e);
-}
+
 /* Global Settings */
-/*body {
+body {
   background: -webkit-radial-gradient(#ffffff, #cfd8dc);
   background: -o-radial-gradient(#ffffff, #cfd8dc);
   background: -moz-radial-gradient(#ffffff, #cfd8dc);
@@ -42,7 +37,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}*/
+}
 body {
   /*background: -webkit-radial-gradient(#ffffff, #cfd8dc);
   background: -o-radial-gradient(#ffffff, #cfd8dc);
