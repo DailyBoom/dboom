@@ -11,6 +11,7 @@ var productSchema = new Schema({
   company_url: { type: String, required: false },
   company_facebook: String,
   company_kakaostory: String,
+  review_url: String,
   price: Number,
   delivery_price: { type: Number, default: 2500 },
   old_price: Number,

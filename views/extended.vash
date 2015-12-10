@@ -58,7 +58,7 @@
 		<div class="col s12">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
 				@model.product.images.forEach(function(img) {
-					<div class="slide" style="background-image: url(@img);">
+					<div class="slide" style="background-image: url(/@img);">
 						@if(model.progress >= 100) {
 							<img class="sold-out" src="/images/sold-out.png" />
 						}
