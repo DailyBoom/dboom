@@ -12,7 +12,7 @@
 					}
 					<div class="col l6 offset-l3">
 						<div class="modal-c z-depth-1">
-							<div class="modal-header green darken-2 white-text center">
+							<div class="modal-header blue-grey darken-2 white-text center">
 								로그인
 							</div>
 							<div class="modal-content">
@@ -49,7 +49,7 @@
 									</form>
 								</div><!-- .row -->
 							</div><!-- .modal-content -->
-							<div class="modal-footer green darken-1">
+							<div class="modal-footer blue-grey darken-1">
 								<a class="blue-grey-text text-lighten-5 left" href="/forgot">비밀번호를 잊으셨나요?</a>
 								<a class="blue-grey-text text-lighten-5 right" href="/signup">회원가입</a>
 							</div>
