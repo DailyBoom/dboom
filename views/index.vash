@@ -89,7 +89,7 @@
 				<div class="item-info">@html.raw(model.product.description)</div>
 				<div class="item-info-links">
 					@if(model.product.review_url) {
-						<a href="@model.product.reviewUrl" target="_blank"><i class="fa fa-hand-o-right"></i> 상품 리뷰 보기</a>
+						<a href="@model.product.review_url" target="_blank"><i class="fa fa-hand-o-right"></i> 상품 리뷰 보기</a>
 					}
 				</div>
 			</div>

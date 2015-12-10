@@ -64,8 +64,8 @@
 						}
 					</div>
 				})
-				@if(model.product.videoUrl)
-					@model.product.videoUrl
+				@if(model.product.video)
+					@model.product.video
     	</div><!-- #main-slider -->
 		</div><!-- .col -->
 		<div class="col s12">
@@ -88,8 +88,8 @@
 			<div class="buy-box-info blue-grey lighten-5 blue-grey-text text-darken-4">
 				<div class="item-info">@html.raw(model.product.description)</div>
 				<div class="item-info-links">
-					@if(model.product.reviewUrl != '') {
-						<a href="@model.product.reviewUrl" target="_blank"><i class="fa fa-hand-o-right"></i> 상품 리뷰 보기</a>
+					@if(model.product.review_url != '') {
+						<a href="@model.product.review_url" target="_blank"><i class="fa fa-hand-o-right"></i> 상품 리뷰 보기</a>
 					}
 				</div>
 			</div>
