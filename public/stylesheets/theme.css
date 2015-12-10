@@ -1,0 +1,80 @@
+/*  Daily Boom, Inc. All rights reserved.  */
+
+/* Media Queries */
+@media only screen and (min-width: 0) {} /* mobile portrait */
+@media only screen and (min-width: 601px) {} /* mobile landscape */
+@media only screen and (min-width: 992px) {} /* tablet */
+@media only screen and (min-width: 1200px) {} /* desktop */
+
+/* Colors	*/
+nav {
+  /*background: -webkit-linear-gradient(#37474f, #455a64, #37474f);
+  background: -o-linear-gradient(#37474f, #455a64, #37474f);
+  background: -moz-linear-gradient(#37474f, #455a64, #37474f);
+  background: linear-gradient(#37474f, #455a64, #37474f);*/
+  border-bottom: 3px solid #fff;
+}
+
+/* Global Settings */
+body {
+  background: -webkit-radial-gradient(#ffffff, #cfd8dc);
+  background: -o-radial-gradient(#ffffff, #cfd8dc);
+  background: -moz-radial-gradient(#ffffff, #cfd8dc);
+  background: radial-gradient(#ffffff, #cfd8dc);
+}
+
+/* Nav */
+nav {
+  /*background-image: url('/images/themes/xmas-nav_4.jpg');*/
+  background-position: center;
+  background-repeat: repeat-x;
+  background-size: contain;
+}
+.snow {
+  position: absolute;
+	background: none;
+	background-image: url('/images/themes/s1.png'),
+                    url('/images/themes/s2.png'),
+                    url('/images/themes/s3.png');
+	z-index:100;
+	-webkit-animation: snow 10s linear infinite;
+	-moz-animation: snow 10s linear infinite;
+	-ms-animation: snow 10s linear infinite;
+	animation: snow 10s linear infinite;
+}
+@keyframes snow {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+@-moz-keyframes snow {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 400px 1000px, 200px 400px, 100px 300px;}
+}
+@-webkit-keyframes snow {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+@-ms-keyframes snow {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+
+/* Home */
+.buy-box-info {
+  background-image: url('/images/themes/xmas-info.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Terms */
+.info-details.text-justify.blue-grey-text.text-darken-2,
+.info-terms.grey-text,
+.info-terms b,
+ol.terms {
+  color: #ddd !important;
+}

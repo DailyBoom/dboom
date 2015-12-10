@@ -21,10 +21,10 @@
 
 /* Colors	*/
 nav {
-  /*background: -webkit-linear-gradient(#37474f, #455a64, #37474f);
+  background: -webkit-linear-gradient(#37474f, #455a64, #37474f);
   background: -o-linear-gradient(#37474f, #455a64, #37474f);
   background: -moz-linear-gradient(#37474f, #455a64, #37474f);
-  background: linear-gradient(#37474f, #455a64, #37474f);*/
+  background: linear-gradient(#37474f, #455a64, #37474f);
   border-bottom: 3px solid #fff;
 }
 
@@ -37,12 +37,6 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
-body {
-  /*background: -webkit-radial-gradient(#ffffff, #cfd8dc);
-  background: -o-radial-gradient(#ffffff, #cfd8dc);
-  background: -moz-radial-gradient(#ffffff, #cfd8dc);
-  background: radial-gradient(#ffffff, #cfd8dc);*/
 }
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
