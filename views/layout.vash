@@ -102,7 +102,7 @@
   </head>
   <body>
 		<div class="navbar">
-			<nav class="blue-grey darken-3">
+			<nav class="red darken-4">
 				<div class="container center">
 					<a href="/" class="logo-d"><img class="logo-img left" src="/images/db_korea.png" /></a>
 					<a href="/" class="logo-m"><img class="logo-img left" src="/images/dbkorea01.png" /></a>
@@ -117,7 +117,7 @@
 								</a>
 								<!-- Dropdown Structure -->
 								<ul id="dropdown-profile" class="dropdown-content">
-									<li><a class="green darken-2 white-text" href="#!">@model.user.username</a></li>
+									<li><a class="red darken-2 white-text" href="#!">@model.user.username</a></li>
                 @if (model.user.admin == 1) {
                   <li class="divider"></li>
                   <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus fa-fw right"></i></a></li>
@@ -144,7 +144,7 @@
 									<i class="fa fa-bars fa-fw fa-4x"></i>
 								</a>
 								<!-- Dropdown Structure -->
-								<ul id="dropdown-profile" class="dropdown-content blue-grey-text text-darken-2">
+								<ul id="dropdown-profile" class="dropdown-content red-text text-darken-2">
 									<li><a class="waves-effect waves-light blue-grey-text text-darken-2" href="/login">로그인 <i class="fa fa-sign-in fa-fw right"></i></a></li>
 									<li><a class="waves-effect waves-light blue-grey-text text-darken-2" href="/signup">회원가입 <i class="fa fa-user-plus fa-fw right"></i></a></li>
 								</ul>
@@ -159,7 +159,7 @@
 			</nav>
 		</div><!-- .navbar -->
       @html.block("body")
-		<footer class="page-footer blue-grey darken-3">
+		<footer class="page-footer red darken-4">
 			<div class="container">
         <div class="row flex-s">
           <div class="col s12 m3 l3 box-2">

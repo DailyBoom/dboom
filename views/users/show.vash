@@ -10,7 +10,7 @@
 <!-- mypage1 = Basic user info -->
 			<div id="mypage1" class="col s12 m12 l12">
 				<div class="row">
-					<div class="user-title blue-grey darken-2 white-text z-depth-1">
+					<div class="user-title green darken-2 white-text z-depth-1">
 						주문 내역
 					</div>
 						<ul class="collapsible" data-collapsible="expandable">
@@ -67,7 +67,7 @@
 											@if(order.status == "Paid"){
 												<div class="o-label">배송 상태&nbsp;:&nbsp;</div>
 												<div class="o-name green-text">준비 중</div>
-											} 
+											}
 											else if(order.status == "Sent"){
 												<div class="o-label">배송 상태&nbsp;:&nbsp;</div>
 												<div class="o-name green-text">배송 완료</div>
@@ -106,7 +106,7 @@
 <!-- #mypage2 = User Account Info -->
 			<div id="mypage2" class="col s12 m12 l12 set-min-h">
 				<div class="row">
-					<div class="user-title blue-grey darken-2 white-text z-depth-1">
+					<div class="user-title green darken-2 white-text z-depth-1">
 						나의 정보
 					</div>
 					<div class="row">
