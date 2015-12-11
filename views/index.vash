@@ -195,7 +195,12 @@
 													<span class="blue-grey-text text-darken-1">@product.description</span>
 												</div>
 												<div class="card-action mod center">
-													<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 want" href="#!">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></a>
+													@if(product.extend == 1 && model.moment().isBefore(model.moment(product.scheduled_at).add(2, 'days'), 'days')){
+														<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/extend/@product.id">구매가능! (<span class="time-left"></span>)</a>
+													}
+													else {
+														<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 want" href="#!">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></a>
+													}
 												</div>
 											</div>
 										</div>
@@ -319,8 +324,6 @@
 			autoHover:true
 		});
 	});
-</script>
-<script>
 	$(document).ready(function(){
 		$('a.want').on('click', function(){
 			$(this).parent().addClass('cyan darken-2');
@@ -330,16 +333,12 @@
 			$(this).children('i').addClass('fa-thumbs-up white-text');
 		});
 	});
-</script>
-<script>
 	$(window).load(function() {
 		var progress_h = @model.progress + "%";
 		$('.determinate-h').animate({width: progress_h}, 1500, function() {
 			$('.progress-h-text').fadeIn().removeClass('hide');
 		});
 	});
-</script>
-<script>
 	$(document).ready(function(){
 		$('.iframe-video').each(function(){
 			var url = $(this).attr("src");
@@ -384,6 +383,21 @@
 		// Custom Navigation Events
 		$(".next").click(function(){owl.trigger('owl.next');});
 		$(".prev").click(function(){owl.trigger('owl.prev');});
+		var timer = function(elem) {
+			var date = moment(elem.data('date')).tz("Asia/Seoul").add(2, 'days');
+			var now = moment().tz("Asia/Seoul");
+			var timeLeft = moment.duration(date.diff(now), 'milliseconds');
+			elem.find('.time-left').hide();
+			elem.find('.time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+			elem.find('.time-left').fadeIn(1000);
+			setInterval(function() {
+				timeLeft = moment.duration(date.diff(moment().tz("Asia/Seoul"), 'milliseconds'));
+				elem.find('.time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+			}, 1000);
+		}
+		$(".extended-time").each(function() {
+			timer($(this));
+		});
 	});
 </script>
 	})
