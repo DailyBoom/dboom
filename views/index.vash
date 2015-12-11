@@ -199,6 +199,9 @@
 													@if(product.extend == 1 && model.moment().isBefore(model.moment(product.scheduled_at).add(2, 'days'), 'days')){
 														<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/extend/@product.id">구매가능! (<span class="time-left"></span>)</a>
 													}
+													else if (product.extend == 2){
+														<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3" href="/extend/@product.id">구매가능!</a>
+													}
 													else {
 														<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 want" href="#!">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></a>
 													}
