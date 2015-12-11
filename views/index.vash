@@ -67,6 +67,7 @@
 				@if(model.product.video)
 					@model.product.video
     	</div><!-- #main-slider -->
+			<div class="snowpile"></div>
 		</div><!-- .col -->
 		<div class="col s12">
 			<div class="buy-box-wrapper blue-grey darken-3 white-text">
@@ -74,12 +75,12 @@
 				<div class="item-name truncate">@model.product.name</div>
 					@if (model.user) {
 						@if (model.progress < 100) {
-							<a class="hide-on-small-only btn-buy-wrapper right" href="/checkout?product_id=@model.product.id"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
+							<a class="hide-on-small-only btn-buy-wrapper right" href="/checkout?product_id=@model.product.id"><img class="btn-buy" src="/images/themes/btn-buy.png" /></a>
 						}
 					}
 					else {
 						@if (model.progress < 100) {
-							<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
+							<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/themes/btn-buy.png" /></a>
 						}
 					}
 					<div class="hide-on-small-only item-price right" id="product_price">@model.product.price</div>
