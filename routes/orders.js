@@ -170,7 +170,7 @@ router.get('/checkout', function(req, res) {
         return res.redirect('/');
       }
     }
-    else if (product.scheduled_at != now)
+    else if (moment(product.scheduled_at).format("MM/DD/YYYY") != now)
       return res.redirect('/');
     if (typeof req.session.order === 'undefined' || !req.session.order) {
       var order = new Order({
