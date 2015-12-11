@@ -158,7 +158,7 @@ router.get('/checkout', function(req, res) {
     if (!product)
       return res.redirect('/');
     if (product.extend == 1) {
-      if (moment().isAfter(moment(product.scheduled_at).add(2, 'days'), 'days'))
+      if (moment().isAfter(moment(product.scheduled_at).add(3, 'days'), 'days'))
         return res.redirect('/');
     }
     else if (product.extend == 2) {

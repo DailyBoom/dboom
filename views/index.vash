@@ -196,7 +196,7 @@
 													<span class="blue-grey-text text-darken-1">@product.description</span>
 												</div>
 												<div class="card-action mod center">
-													@if(product.extend == 1 && model.moment().isBefore(model.moment(product.scheduled_at).add(2, 'days'), 'days')){
+													@if(product.extend == 1 && model.moment().isBefore(model.moment(product.scheduled_at).add(3, 'days'), 'days')){
 														<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/extend/@product.id">구매가능! (<span class="time-left"></span>)</a>
 													}
 													else if (product.extend == 2){
@@ -388,7 +388,7 @@
 		$(".next").click(function(){owl.trigger('owl.next');});
 		$(".prev").click(function(){owl.trigger('owl.prev');});
 		var timer = function(elem) {
-			var date = moment(elem.data('date')).tz("Asia/Seoul").add(2, 'days');
+			var date = moment(elem.data('date')).tz("Asia/Seoul").add(3, 'days');
 			var now = moment().tz("Asia/Seoul");
 			var timeLeft = moment.duration(date.diff(now), 'milliseconds');
 			elem.find('.time-left').hide();
