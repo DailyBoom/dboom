@@ -195,17 +195,21 @@
 													<div class="blue-grey-text text-darken-1 truncate"><b>@product.name</b></div>
 													<span class="blue-grey-text text-darken-1">@product.description</span>
 												</div>
-												<div class="card-action mod center">
 													@if(product.extend == 1 && model.moment().isBefore(model.moment(product.scheduled_at).add(3, 'days'), 'days')){
-														<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/extend/@product.id">구매가능! (<span class="time-left"></span>)</a>
+														<div class="card-action mod center green">
+															<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/extend/@product.id">구매가능! (<span class="time-left"></span>)</a>
+														</div>
 													}
 													else if (product.extend == 2){
-														<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3" href="/extend/@product.id">구매가능!</a>
+														<div class="card-action mod center green">
+															<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3" href="/extend/@product.id">구매가능!</a>
+														</div>
 													}
 													else {
-														<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 want" href="#!">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></a>
+														<div class="card-action mod center">
+															<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 want" href="#!">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></a>
+														</div>
 													}
-												</div>
 											</div>
 										</div>
 									})

@@ -165,47 +165,6 @@
 				}
 			</div>
 
-			<div class="past-box-wrapper blue-grey darken-2 white-text">
-				지난 상품
-			</div>
-			<div class="row">
-				<div class="col s12 m12 l12">
-					<div class="row">
-						<div id="db-past" class="owl-carousel owl-theme">
-								@if (model.pastProducts) {
-									@model.pastProducts.forEach(function(product) {
-										<div class="col s12 m12 l12">
-											<div class="card past">
-												<div class="card-image">
-													<div class="past-date-box blue-grey darken-1 white-text">
-														@model.moment(product.scheduled_at).format("YYYY/MM/DD")@(model.moment(product.scheduled_at).day() == 6 ? model.moment(product.scheduled_at).add(1, 'days').format('-DD') : '')
-													</div>
-													<div class="card-image-ol">
-														<div class="ol-old-p">
-															@product.old_price
-														</div>
-														<div class="ol-new-p">
-															@product.price
-														</div>
-													</div><!-- .card-image-ol -->
-													<img class="" src="@product.images[0]" alt="" />
-												</div>
-												<div class="card-content past">
-													<div class="blue-grey-text text-darken-1 truncate"><b>@product.name</b></div>
-													<span class="blue-grey-text text-darken-1">@product.description</span>
-												</div>
-												<div class="card-action mod center">
-													<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 want" href="#!">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></a>
-												</div>
-											</div>
-										</div>
-									})
-								}
-							<?}?>
-						</div><!-- /.owl-carousel -->
-					</div><!-- .row -->
-				</div><!-- /.col s12 m9 l9 -->
-			</div><!-- .row -->
 			<!-- Featured section -->
 			<div class="row">
 				<div class="col s12">
