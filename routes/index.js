@@ -118,7 +118,7 @@ router.get('/extend/:id', function(req, res, next) {
     else {
       res.redirect('/');
     }
-    res.render('extended', { product: product, title: product.name, description: product.description, progress: progress });
+    res.render('extended', { product: product, title: product.name, description: product.description, progress: progress, date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2 });
   });
 });
 
