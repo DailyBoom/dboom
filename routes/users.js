@@ -460,7 +460,7 @@ router.get('/users/is_merchant/:id', function(req, res) {
 
 router.get('/zonecode', function(req, res) {
   Product.findOne({ _id: "56026fb1ad79928905a6998e"}, function(err, product) {
-    res.render('extended', { product: product });
+    res.render('extended', { product: product, progress: 10, no_time: true });
   });
 });
 
