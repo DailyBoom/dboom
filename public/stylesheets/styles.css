@@ -734,6 +734,8 @@ input[type=number]::-webkit-outer-spin-button {
 .ol-new-p {
   font-size: 2em;
 }
+.m-item { display: inline-block; }
+.m-item .item-price-o.mod { text-decoration: none !important; }
 @media only screen and (min-width: 0) {
   .mobile-buy {
     display: block;
@@ -742,7 +744,7 @@ input[type=number]::-webkit-outer-spin-button {
     left: 0;
     right: 0;
     height: 62px;
-    padding: 0 20px;
+    padding: 0 10px;
     border-top: 2px solid #fff;
     border-bottom: 2px solid #fff;
     font-size: 2em;
@@ -897,8 +899,8 @@ input[type=number]::-webkit-outer-spin-button {
 @media only screen and (min-width: 601px)  {
   .buy-box-wrapper {
     position: relative;
-    height: 50px;
-    line-height: 2.5;
+    height: 55px;
+    line-height: 1.4;
     vertical-align: middle;
     margin-top: -60px;
     padding: 0 10px;
@@ -952,6 +954,7 @@ input[type=number]::-webkit-outer-spin-button {
     position: absolute;
     margin-left: 10px;
     font-size: 1.4em;
+    line-height: 55px;
   }
   .item-price {
     display: inline-block;
@@ -968,6 +971,13 @@ input[type=number]::-webkit-outer-spin-button {
   .item-info {
     text-align: justify;
     font-size: 1em;
+  }
+  .m-item { margin-top: 0px; }
+  .item-price.desk {
+    margin-right: 20px;
+  }
+  .item-price-o.desk {
+    margin-right: 20px;
   }
   .past-box-wrapper {
     height: 51px;
@@ -1018,8 +1028,9 @@ input[type=number]::-webkit-outer-spin-button {
 @media only screen and (min-width: 992px)  {
   .buy-box-wrapper {
     position: relative;
-    height: 60px;
-    line-height: 60px;
+    height: 70px;
+    line-height: 1;
+    vertical-align: middle;
     margin-top: -60px;
     padding: 0 20px;
   }
@@ -1075,6 +1086,7 @@ input[type=number]::-webkit-outer-spin-button {
     position: absolute;
     margin-left: 20px;
     font-size: 2em;
+    line-height: 70px;
   }
   .item-price {
     display: inline-block;
@@ -1087,6 +1099,13 @@ input[type=number]::-webkit-outer-spin-button {
     word-break: keep-all;
     clear: both;
     font-size: 1.2em;
+  }
+  .m-item { margin-top: 4px; }
+  .item-price.desk {
+    margin-right: 20px;
+  }
+  .item-price-o.desk {
+    margin-right: 20px;
   }
   .past-box-wrapper {
     height: 51px;

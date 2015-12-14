@@ -82,12 +82,30 @@ nav {
     height: 38px;
     margin-top: -100px;
   }
+  .deal-wrapper {
+    display: none;
+  }
+  .deal-img {
+    display: none;
+  }
+  .deal-text {
+    display: none;
+  }
 }
 @media only screen and (min-width: 601px) {
   .snowpile {
     width: 90%;
-    height: 50px;
     margin-top: -112px;
+  }
+  .deal-wrapper {
+    top: 51px;
+  }
+  .deal-img {
+    width: 160px;
+  }
+  .deal-text {
+    left: 45px;
+    top: 90px;
   }
 }
 @media only screen and (min-width: 992px) {
@@ -95,6 +113,23 @@ nav {
     width: 970px;
     height: 80px;
     margin-top: -142px;
+  }
+  .deal-wrapper {
+    position: absolute;
+    top: 91px;
+    z-index: 100;
+  }
+  .deal-img {
+    width: 160px;
+  }
+  .deal-text {
+    position: absolute;
+    left: 45px;
+    top: 90px;
+    line-height: 1;
+    font-size: 2em;
+    color: #fff;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
   }
 }
 /* Terms */
