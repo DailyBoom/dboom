@@ -848,6 +848,8 @@ router.post('/shipping', function(req, res) {
   });
 });
 
+//order export
+
 router.get('/orders/export', isAdmin, function(req, res) {
   res.setHeader('Content-disposition', 'attachment; filename=orders_'+moment().format("YYYYMMDDHHmmss")+'.csv'); 
   res.set('Content-Type', 'text/csv; charset=utf-8'); 

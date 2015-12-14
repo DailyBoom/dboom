@@ -6,6 +6,7 @@ var nodemailer = require('nodemailer');
 var moment = require('moment');
 var smtpTransport = require('nodemailer-smtp-transport');
 var User = require("../models/user");
+var Product = require("../models/product");
 var Order = require("../models/order");
 var config = require('config');
 var i18n = require("i18n");
@@ -454,5 +455,13 @@ router.get('/users/is_merchant/:id', function(req, res) {
     res.redirect('/users/list');
   });
 })
+
+//Zonecode page
+
+router.get('/zonecode', function(req, res) {
+  Product.findOne({ id: "56026fb1ad79928905a6998e"}, function(err, product) {
+    res.render('extended', { product: product });
+  });
+});
 
 module.exports = router;
