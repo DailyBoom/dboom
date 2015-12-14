@@ -449,7 +449,7 @@ router.post('/reset/:token', function(req, res) {
 });
 
 router.get('/users/is_merchant/:id', function(req, res) {
-  User.findOneAndUpdate({_id: req.params.id}, { role: 'merchant' }, function(err, user) {
+  User.findOneAndUpdate({ _id: req.params.id }, { role: 'merchant' }, function(err, user) {
     if (err)
       console.log(err);
     res.redirect('/users/list');
@@ -459,8 +459,9 @@ router.get('/users/is_merchant/:id', function(req, res) {
 //Zonecode page
 
 router.get('/zonecode', function(req, res) {
-  Product.findOne({ _id: "56026fb1ad79928905a6998e"}, function(err, product) {
-    res.render('extended', { product: product, progress: 10, no_time: true, title: product.name, description: product.description });
+  Product.findOne({ _id: "56026fb1ad79928905a6998e" }, function(err, product) {
+    var sale = (product.old_price - product.price) / product.old_price * 100;
+    res.render('extended', { product: product, progress: 10, no_time: true, title: product.name, description: product.description, sale: sale.toFixed(0) });
   });
 });
 
