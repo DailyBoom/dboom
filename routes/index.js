@@ -38,7 +38,8 @@ router.get('/', function(req, res, next) {
         current_quantity += parseInt(option.quantity);
       });
       var progress = (product.quantity - current_quantity) / product.quantity * 100;
-      res.render('index', { progress: progress.toFixed(0), product: product, pastProducts: pastProducts, title: "오늘 뭐 사지?" });
+      var sale = (product.old_price - product.price) / product.old_price * 100;
+      res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, pastProducts: pastProducts, title: "오늘 뭐 사지?" });
     });
   });
 });
