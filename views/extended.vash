@@ -82,8 +82,16 @@
 							<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
 						}
 					}
-					<div class="hide-on-small-only item-price right" id="product_price">@model.product.price</div>
-					<div class="hide-on-small-only item-price-o red-text text-lighten-2 right" id="old_price">@model.product.old_price</div>
+					<!-- <div class="hide-on-small-only item-price right" id="product_price">@model.product.price</div> -->
+					<!-- <div class="hide-on-small-only item-price-o red-text text-lighten-2 right" id="old_price">@model.product.old_price</div> -->
+					<div class="m-item right">
+						<div class="item-price-o mod red-text text-lighten-2">SALE</div>
+						<div class="item-price white-text">50%</div>
+					</div>&nbsp;
+					<div class="m-item right">
+						<div class="item-price-o desk red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
+						<div class="item-price desk white-text" id="product_price_mobile">@model.product.price</div>
+					</div>
 			</div>
 			<div class="buy-box-info blue-grey lighten-5 blue-grey-text text-darken-4">
 				<div class="item-info">@html.raw(model.product.description)</div>
@@ -143,8 +151,16 @@
 
 			<!-- Mobile -->
 			<div class="hide-on-med-and-up mobile-buy blue-grey darken-3">
-				<div class="item-price-o red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
-				<div class="item-price white-text" id="product_price_mobile">@model.product.price</div>
+				<!-- <div class="item-price-o red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div> -->
+				<!-- <div class="item-price white-text" id="product_price_mobile">@model.product.price</div> -->
+				<div class="m-item">
+					<div class="item-price-o red-text text-lighten-2">SALE</div>
+					<div class="item-price white-text">50%</div>
+				</div>&nbsp;
+				<div class="m-item">
+					<div class="item-price-o red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
+					<div class="item-price white-text" id="product_price_mobile">@model.product.price</div>
+				</div>
 				@if (model.user) {
 					@if (model.progress < 100) {
 						<div class="hide-on-med-and-up">
