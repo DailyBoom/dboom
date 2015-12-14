@@ -85,11 +85,12 @@
 					}
 					<!-- <div class="hide-on-small-only item-price right" id="product_price">@model.product.price</div> -->
 					<!-- <div class="hide-on-small-only item-price-o red-text text-lighten-2 right" id="old_price">@model.product.old_price</div> -->
-					<div class="m-item right">
+					<div class="hide-on-small-only m-item right">
 						<div class="item-price-o mod red-text text-lighten-2">SALE</div>
 						<div class="item-price white-text">@model.sale%</div>
-					</div>&nbsp;
-					<div class="m-item right">
+					</div>
+					<span class="hide-on-small-only">&nbsp;</span>
+					<div class="hide-on-small-only m-item right">
 						<div class="item-price-o desk red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
 						<div class="item-price desk white-text" id="product_price_mobile">@model.product.price</div>
 					</div>
