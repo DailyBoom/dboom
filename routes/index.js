@@ -107,6 +107,7 @@ router.get('/extend/:id', function(req, res, next) {
         current_quantity += parseInt(option.quantity);
       });
     var progress = (product.quantity - current_quantity) / product.quantity * 100;
+    var sale = (product.old_price - product.price) / product.old_price * 100;
     if (product.extend == 1) {
       if (moment().isAfter(moment(product.scheduled_at).add(3, 'days'), 'days'))
         return res.redirect('/');
@@ -119,7 +120,7 @@ router.get('/extend/:id', function(req, res, next) {
     else {
       res.redirect('/');
     }
-    res.render('extended', { product: product, title: product.name, description: product.description, progress: progress, date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2 });
+    res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2 });
   });
 });
 
