@@ -65,7 +65,7 @@
 					</div>
 				})
 				@if(model.product.video)
-					@model.product.video
+					<iframe width="560" height="315" src="@model.product.video" frameborder="0" allowfullscreen></iframe>
     	</div><!-- #main-slider -->
 			<div class="snowpile"></div>
 		</div><!-- .col -->
@@ -222,7 +222,7 @@
 													}
 													else {
 														<div class="card-action mod center">
-															<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 want" href="#!">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></a>
+															<span class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 want">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></span>
 														</div>
 													}
 											</div>
