@@ -37,11 +37,11 @@
       <meta property="og:image" content="http://dailyboom.co/@model.cover" />
     }
     <meta property="og:site_name" content="데일리 붐 - Daily Boom">
-    <meta property="og:url" content="http://dailyboom.co" />
+    <meta property="og:url" content="http://dailyboom.co@model.url" />
     <meta property="og:type" content="product">
     <meta property="fb:app_id" content="636096523200038">
 
-    <link rel="canonical" href="http://dailyboom.co" />
+    <link rel="canonical" href="http://dailyboom.co@model.url" />
     <link rel="publisher" href="https://plus.google.com/107959815610933986765" />
 
 		<!-- favicon -->

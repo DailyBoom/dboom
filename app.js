@@ -98,6 +98,7 @@ app.use(function(req, res, next) {
   res.locals.user = req.user;
   moment.locale('ko');
   res.locals.moment = moment;
+  res.locals.url = req.url;
   next();
 });
 app.use('/', routes);
