@@ -41,7 +41,7 @@
   		<script src="/javascripts/formatCurrency/jquery.formatCurrency-1.4.0.min.js"></script>
   		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.ko-KR.js"></script>
   		<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
-      <script src="/javascripts/popOut.js"></script>
+      <!-- <script src="/javascripts/popOut.js"></script> -->
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
       <!--[if IE 9]>
