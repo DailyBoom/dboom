@@ -103,9 +103,9 @@ router.get('/beta', function(req, res, next) {
 router.get('/extend/:id', function(req, res, next) {
   Product.findOne({_id: req.params.id}, function(err, product) {
     var current_quantity = 0;
-      product.options.forEach(function(option) {
-        current_quantity += parseInt(option.quantity);
-      });
+    product.options.forEach(function(option) {
+      current_quantity += parseInt(option.quantity);
+    });
     var progress = (product.quantity - current_quantity) / product.quantity * 100;
     var sale = (product.old_price - product.price) / product.old_price * 100;
     if (product.extend == 1) {

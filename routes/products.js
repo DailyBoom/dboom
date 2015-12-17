@@ -210,4 +210,22 @@ router.get('/products/publish/:id', isAdmin, function(req, res) {
   });
 });
 
+router.post('/products/wanna_buy', function(req, res) {
+  if (!req.isAuthenticated())
+    return res.status(500).json({ message: '로그인이 필요합니다' });
+  Product.findOne({ _id: req.body.id }, function(err, product) {
+    console.log(product.wanna_buy);
+    if (product.wanna_buy.indexOf(req.user.id) == -1) {
+      product.wanna_buy.push(req.user.id);
+    }
+    else {
+      product.wanna_buy.splice(product.wanna_buy.indexOf(req.user.id), 1);
+    }
+    console.log(product.wanna_buy);
+    product.save(function() {
+      res.status(200).json({});
+    });
+  });
+});
+
 module.exports = router;

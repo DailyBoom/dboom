@@ -72,7 +72,7 @@
 					</div>
 				})
 				@if(model.product.video)
-					@model.product.video
+					<iframe width="560" height="315" src="@model.product.video" frameborder="0" allowfullscreen></iframe>
     	</div><!-- #main-slider -->
 			<div class="snowpile"></div>
 		</div><!-- .col -->
@@ -227,9 +227,14 @@
 															<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3" href="/extend/@product.id">구매가능!</a>
 														</div>
 													}
+													else if (model.user && product.wanna_buy.indexOf(model.user.id) != -1) {
+														<div class="card-action mod center want cyan" data-id="@product.id">
+															<span class="white-text waves-effect waves-light btn-flat blue-grey-text text-darken-3">사고싶다 <i class="fa fa-thumbs-up fa-fw right"></i></span>
+														</div>
+													}
 													else {
-														<div class="card-action mod center">
-															<a class="waves-effect waves-light btn-flat blue-grey-text text-darken-3 want" href="#!">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></a>
+														<div class="card-action mod center want" data-id="@product.id">
+															<span class="waves-effect waves-light btn-flat blue-grey-text text-darken-3">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></span>
 														</div>
 													}
 											</div>
@@ -355,12 +360,24 @@
 		});
 	});
 	$(document).ready(function(){
-		$('a.want').on('click', function(){
-			$(this).parent().addClass('cyan darken-2');
-			$(this).removeClass('want red-text text-darken-3');
-			$(this).addClass('white-text');
-			$(this).children('i').removeClass('fa-thumbs-o-up');
-			$(this).children('i').addClass('fa-thumbs-up white-text');
+		$('.want').on('click', function(){
+			var btn = $(this);
+			$.ajax({
+				type: "POST",
+				url: "/products/wanna_buy",
+				dataType: "json",
+				data: {
+					id: btn.data('id'),
+				},
+				success: function (res) {
+					btn.toggleClass('cyan text-darken-3');
+					btn.find('span').toggleClass('white-text');
+					btn.find('i').toggleClass('fa-thumbs-o-up fa-thumbs-up');
+				},
+				error: function (res) {
+					Materialize.toast(res.responseJSON.message, 4000);
+				}
+			});
 		});
 	});
 	$(window).load(function() {
