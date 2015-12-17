@@ -363,7 +363,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .modal .modal-content-c {
     display: block;
-    padding: 10px;
+    padding: 10px 10px 0px 10px;
   }
   .modal-header {
     height: 1.8em;

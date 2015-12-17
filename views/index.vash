@@ -32,16 +32,23 @@
 				</div>
 				<div class="col s12 center">
 					<div class="social-login-wrapper">
-						<a class="btn-social-login" href="#!"><img class="circle z-depth-1" src="/images/icon_fb_social.png" id="facebook" data-product="@model.product.id" /></a>
-						<a class="btn-social-login" href="#!"><img class="circle z-depth-1" src="/images/icon_kakao_social.png" id="kakao" data-product="@model.product.id" /></a>
-						<a class="btn-social-login" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;"><img class="circle z-depth-1" src="/images/icon_buy.png" /></a>
+						<a class="btn-social-login tooltipped" data-position="top" data-delay="0" data-tooltip="페이스북으로 로그인" href="#!"><img class="circle z-depth-1" src="/images/icon_fb_social.png" id="facebook" data-product="@model.product.id" /></a>
+						<a class="btn-social-login tooltipped" data-position="top" data-delay="0" data-tooltip="카카오톡으로 로그인" href="#!"><img class="circle z-depth-1" src="/images/icon_kakao_social.png" id="kakao" data-product="@model.product.id" /></a>
+						<a class="btn-social-login tooltipped hide-on-small-only" data-position="top" data-delay="0" data-tooltip="비회원 바로구매" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;"><img class="circle z-depth-1" src="/images/icon_buy.png" /></a>
+						<a class="btn-social-login hide-on-med-and-up" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;">
+							<img class="circle z-depth-1" src="/images/icon_buy.png" />
+						</a>
+						<img class="responsive-img" src="/images/buynow.png" alt="비회원 바로구매 - 데일리 붐" />
+						<div class="right blue-grey-text">
+							<i class="fa fa-info-circle fa-fw"></i> 비회원 바로구매
+						</div>
 					</div>
 				</div>
 			</form>
 		</div><!-- .row -->
 	</div><!-- .modal-content -->
 	<div class="modal-footer-c blue-grey lighten-5 red-text text-darken-3">
-		<a class="red-text text-darken-3 left" href="/forgot">비밀번호를 잊으셨나요?</a>
+		<a class="blue-grey-text text-darken-3 left" href="/forgot">비밀번호를 잊으셨나요?</a>
 		<!-- <a class="red-text text-darken-3 right" href="/signup">회원가입</a> -->
 	</div>
 </div><!-- #modal-check -->
@@ -154,7 +161,7 @@
 			<!-- Mobile -->
 			<div class="hide-on-med-and-up mobile-buy blue-grey darken-3">
 				<div class="m-item">
-					<div class="item-price-o red-text text-lighten-2">SALE</div>
+					<div class="item-price-o mod red-text text-lighten-2">SALE</div>
 					<div class="item-price white-text">@model.sale%</div>
 				</div>&nbsp;
 				<div class="m-item">
@@ -363,6 +370,7 @@
 		});
 	});
 	$(document).ready(function(){
+		$('.tooltipped').tooltip({delay: 0});
 		$('.iframe-video').each(function(){
 			var url = $(this).attr("src");
 			$(this).attr("src",url+"?wmode=transparent");

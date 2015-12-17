@@ -87,29 +87,29 @@
 			</div><!-- .row -->
     </div><!-- .container-fluid -->
 		<script type="text/javascript">
-		$(document).ready(function() {
-			var h = $(window).height();
-			var i = h - 80;
-			var j = h - 55;
-			console.log(h);
-			console.log(i);
-			$('.wrapper').offset({top:h});
-			$('.pagination').offset({top:j});
-			$('.btn-info').offset({top:i});
-			$('.buy-now').offset({top:i});
+			$(document).ready(function() {
+				var h = $(window).height();
+				var i = h - 80;
+				var j = h - 55;
+				console.log(h);
+				console.log(i);
+				$('.wrapper').offset({top:h});
+				$('.pagination').offset({top:j});
+				$('.btn-info').offset({top:i});
+				$('.buy-now').offset({top:i});
 
-	    $('.scrollspy').scrollSpy();
+		    $('.scrollspy').scrollSpy();
 
-			$('.dropdown-button').dropdown({
-				inDuration: 300,
-				outDuration: 225,
-				constrain_width: false, // Does not change width of dropdown to that of the activator
-				hover: false, // Activate on hover
-				gutter: 0, // Spacing from edge
-				belowOrigin: false, // Displays dropdown below the button
-				alignment: 'right' // Displays dropdown with edge aligned to the left of button
+				$('.dropdown-button').dropdown({
+					inDuration: 300,
+					outDuration: 225,
+					constrain_width: false, // Does not change width of dropdown to that of the activator
+					hover: false, // Activate on hover
+					gutter: 0, // Spacing from edge
+					belowOrigin: false, // Displays dropdown below the button
+					alignment: 'right' // Displays dropdown with edge aligned to the left of button
+				});
 			});
-		});
 		</script>
   })
 })
