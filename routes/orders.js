@@ -130,6 +130,30 @@ router.get('/orders/view/:id', isMerchantOrAdmin, function(req, res) {
   });
 });
 
+router.get('/orders/edit/:id', isAdmin, function(req, res) {
+  Order.findOne({ _id: req.params.id }).exec(function(err, order) {
+    if (err)
+      console.log(err);
+    if (!order)
+      return res.redirect('/orders/list');
+    res.render('orders/edit', { order: order });
+  });
+});
+
+router.post('/orders/edit/:id', isAdmin, function(req, res) {
+  Order.findOne({ _id: req.params.id }).exec(function(err, order) {
+    order.shipping.full_name = req.body.full_name;
+    order.shipping.phone_number = req.body.phone_number;
+    order.shipping.address = req.body.address;
+    order.shipping.zipcode = req.body.zipcode;
+    order.shipping.country = req.body.country;
+    
+    order.save(function() {
+      res.redirect('/orders/view/'+order.id);
+    });
+  });
+});
+
 router.get('/orders/delete/:id', isAdmin, function(req, res) {
   Order.findOneAndRemove({ _id: req.params.id }, function(err, order) {
     if (err)
