@@ -4,6 +4,7 @@ var mongoose = require("mongoose");
 var moment = require('moment');
 var User = require('../models/user');
 var Product = require('../models/product');
+var Coupon = require('../models/coupon');
 var smtpTransport = require('nodemailer-smtp-transport');
 var config = require('config');
 var nodemailer = require('nodemailer');
@@ -121,6 +122,33 @@ router.get('/extend/:id', function(req, res, next) {
       res.redirect('/');
     }
     res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2 });
+  });
+});
+
+router.get('/coupons/new', function(req, res, next) {
+  User.find({ role: 'user' }, function(err, users) {
+    res.render('coupons/new', { users: users });
+  });
+});
+
+router.post('/coupons/new', function(req, res, next) {
+  var coupon = new Coupon({
+    user: req.body.user,
+    type: req.body.type,
+    price: req.body.price,
+    percentage: req.body.percentage,
+    expires_at: req.body.expire_date
+  });
+  
+  coupon.save(function() {
+    res.redirect('/coupons/list');
+  });
+});
+
+router.get('/coupons/list', function(req, res, next) {
+  Coupon.find({}).populate('user').exec(function(err, coupons) {
+    console.log(coupons);
+    res.render('coupons/list', { coupons: coupons });
   });
 });
 

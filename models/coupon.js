@@ -6,7 +6,7 @@ var couponSchema = new Schema({
 	type: Number,
 	expires_at: Date,
 	price: Number,
-	percent: Number,
+	percentage: Number,
 	created_at: { type: Date, default: Date.now }
 });
 
