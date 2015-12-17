@@ -35,6 +35,8 @@
 				@model.product.images.forEach(function(img) {
 					<div class="slide" style="background-image: url(/@img);"></div>
 				})
+				@if(model.product.video)
+					<iframe width="560" height="315" src="@model.product.video" frameborder="0" allowfullscreen></iframe>
     	</div><!-- #main-slider -->
 		</div><!-- .col -->
 		<div class="col s12">
