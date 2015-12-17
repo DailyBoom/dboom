@@ -1,0 +1,80 @@
+@html.extend("layout", function(model) { @html.block("body", function(model) {
+<div class="container">
+	<div class="set-margin-xl">
+	</div>
+	<h4>New coupon</h4>
+	<div class="row">
+		<form class="col s12" method="post" action="/coupons/new">
+			<div class="row">
+				<br>
+				<div class="input-field col s12 m12 l12">
+					<input id="expire_date" type="date" class="datepicker" name="expire_date" required>
+					<label for="expire_date" style="margin-top: -1.75rem;">Expire date</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<select id="user" name="user">
+						@model.users.forEach(function(user) {
+							<option value="@user.id" selected>@user.name (@user.username)</option>
+						})
+					</select>
+					<label>User</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<select id="type" name="type">
+						<option value="1" selected>Free delivery</option>
+						<option value="2">Price (amount)</option>
+						<option value="3">Price (percentage)</option>
+					</select>
+					<label>Coupon type</label>
+				</div>
+			</div>
+			<div class="row price" hidden>
+				<br>
+				<div class="input-field col s12 m12 l12">
+					<input id="price" type="number" name="price">
+					<label for="price" style="margin-top: -1.75rem;">Price</label>
+				</div>
+			</div>
+			<div class="row percentage" hidden>
+				<br>
+				<div class="input-field col s12 m12 l12">
+					<input id="percentage" type="number" name="percentage">
+					<label for="percentage" style="margin-top: -1.75rem;">Percentage</label>
+				</div>
+			</div>
+			<button class="waves-effect waves-light btn btn-large blue-grey darken-3 right" type="submit" name="action">
+				등록하기 <i class="fa fa-chevron-right right"></i>
+			</button>
+		</form>
+	</div>
+</div>
+<script>
+	$(document).ready(function() {
+		$('select').material_select();
+		$('#type').on("change", function() {
+			if ($('#type option:selected').val() == 2) {
+				$('.price').show();
+				$('.percentage').hide();
+			}
+			else if ($('#type option:selected').val() == 3) {
+				$('.percentage').show();
+				$('.price').hide();
+			}
+			else {
+				$('.price').hide();
+				$('.percentage').hide();
+			}
+		});
+		$('.datepicker').pickadate({
+			format: 'mm/dd/yyyy',
+			min: true,
+			selectMonths: true, // Creates a dropdown to control month
+			selectYears: 15, // Creates a dropdown of 15 years to control year
+		});
+	});
+</script>
+}) })

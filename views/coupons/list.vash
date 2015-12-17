@@ -1,0 +1,38 @@
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+		<div class="container min-h-lg">
+			<div class="row">
+				<h3 class="blue-grey-text text-darken-3">Coupons List</h3>
+				<br>
+				<table class="responsive-table bordered highlight table-sm">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Expires at</th>
+							<th>User</th>
+							<th>Type</th>
+							<th>Amount</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						@model.coupons.forEach(function(coupon) {
+							<tr>
+								<td>@coupon.id</td>
+								<td>@model.moment(coupon.expires_at).format('YYYY/MM/DD')</td>
+								<td>@coupon.user.name (@coupon.user.username)</td>
+								<td>@coupon.type</td>
+								@if(coupon.type == 2) {
+									<td>@coupon.price</td>
+								}
+								else if(coupon.type == 3) {
+									<td>@coupon.percentage %</td>
+								}
+							</tr>
+						})
+					</tbody>
+				</table>
+			</div>
+		</div>
+	})
+})
