@@ -33,13 +33,13 @@
 										<option value="">쿠폰 선택</option> 
 										@model.coupons.forEach(function(coupon) {
 											@if(coupon.type == 1 && model.order.product.delivery_price > 0) {
-												<option value="@coupon.id" @(model.order.coupon.id == coupon.id ? 'selected' : '') >무료 배송</option>
+												<option value="@coupon.id" @(model.order.coupon && model.order.coupon.id == coupon.id ? 'selected' : '') >무료 배송 (유효기간: @model.moment(coupon.expires_at).format("YYYY/MM/DD"))</option>
 											}
 											else if (coupon.type == 2) {
-												<option value="@coupon.id" @(model.order.coupon.id == coupon.id ? 'selected' : '') >@coupon.price 원</option>
+												<option value="@coupon.id" @(model.order.coupon && model.order.coupon.id == coupon.id ? 'selected' : '') >@coupon.price 원 (유효기간: @model.moment(coupon.expires_at).format("YYYY/MM/DD"))</option>
 											}
 											else if (coupon.type == 3) {
-												<option value="@coupon.id" @(model.order.coupon.id == coupon.id ? 'selected' : '') >@coupon.percentage%</option>
+												<option value="@coupon.id" @(model.order.coupon && model.order.coupon.id == coupon.id ? 'selected' : '') >@coupon.percentage% (유효기간: @model.moment(coupon.expires_at).format("YYYY/MM/DD"))</option>
 											}
 										})
 									</select>
@@ -81,7 +81,7 @@
 								@if (model.order.product.delivery_price > 0){
 								    <span class="check-item-name blue-grey-text text-darken-2">+ <span id="delivery_price">@model.order.product.delivery_price</span> 배송비</span><br>
 								}
-								else if (model.order.product.delivery_price <= 0 || model.order.coupon.type == 1) {
+								else if (model.order.product.delivery_price <= 0 || (model.order.coupon && model.order.coupon.type == 1)) {
 								     <span class="check-item-name blue-grey-text text-darken-2">무료 배송</span><br>
 								}
 								<span class="check-price blue-grey-text text-darken-3" id="product_price">@model.order.totalOrderAmt</span>

@@ -465,4 +465,12 @@ router.get('/zonecode', function(req, res) {
   });
 });
 
+
+router.get('/judykimproductions', function(req, res) {
+  Product.findOne({ _id: "5673ba377687397705278e7e" }, function(err, product) {
+    var sale = (product.old_price - product.price) / product.old_price * 100;
+    res.render('extended', { product: product, progress: 10, no_time: true, title: "Zonecode", description: product.description, sale: sale.toFixed(0), cover: product.images[0] });
+  });
+});
+
 module.exports = router;

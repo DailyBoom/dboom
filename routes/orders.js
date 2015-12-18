@@ -253,7 +253,7 @@ router.get('/checkout', function(req, res) {
                               leftQuantity = parseInt(option.quantity);
                             });
                             if (req.user) {
-                              Coupon.find({ user: req.user.id }, function(err, coupons) {
+                              Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") } }, function(err, coupons) {
                                 res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity, title: "주문결제", coupons: coupons });
                               });
                             }
@@ -295,7 +295,7 @@ router.get('/checkout', function(req, res) {
                           leftQuantity = parseInt(option.quantity);
                         });
                         if (req.user) {
-                          Coupon.find({ user: req.user.id }, function(err, coupons) {
+                          Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") } }, function(err, coupons) {
                             res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity, title: "주문결제", coupons: coupons });
                           });
                         }
@@ -344,7 +344,7 @@ router.post('/checkout', function(req, res) {
                           leftQuantity = parseInt(option.quantity);
                         });
                         if (req.user) {
-                          Coupon.find({ user: req.user.id }, function(err, coupons) {
+                          Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") } }, function(err, coupons) {
                             res.render('checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity, title: "주문결제", coupons: coupons });
                           });
                         }
