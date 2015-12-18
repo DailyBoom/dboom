@@ -27,6 +27,24 @@
 									}
 								</select>
 							</div>
+							@if(model.coupons) {
+								<div class="input-field col s12">
+									<select id="coupon" name="coupon">
+										<option value="">쿠폰 선택</option> 
+										@model.coupons.forEach(function(coupon) {
+											@if(coupon.type == 1 && model.order.product.delivery_price > 0) {
+												<option value="@coupon.id" @(model.order.coupon.id == coupon.id ? 'selected' : '') >무료 배송</option>
+											}
+											else if (coupon.type == 2) {
+												<option value="@coupon.id" @(model.order.coupon.id == coupon.id ? 'selected' : '') >@coupon.price 원</option>
+											}
+											else if (coupon.type == 3) {
+												<option value="@coupon.id" @(model.order.coupon.id == coupon.id ? 'selected' : '') >@coupon.percentage%</option>
+											}
+										})
+									</select>
+								</div>
+							}
 							<input type="hidden" value="@model.order.product.id" />
 						</form>
 					</div><!-- .row -->
@@ -63,10 +81,10 @@
 								@if (model.order.product.delivery_price > 0){
 								    <span class="check-item-name blue-grey-text text-darken-2">+ <span id="delivery_price">@model.order.product.delivery_price</span> 배송비</span><br>
 								}
-								else {
+								else if (model.order.product.delivery_price <= 0 || model.order.coupon.type == 1) {
 								     <span class="check-item-name blue-grey-text text-darken-2">무료 배송</span><br>
 								}
-								<span class="check-price blue-grey-text text-darken-3" id="product_price"> @(model.order.quantity * model.order.product.price + model.order.product.delivery_price)</span>
+								<span class="check-price blue-grey-text text-darken-3" id="product_price">@model.order.totalOrderAmt</span>
 							</div>
 							<div id="payco_btn_type_A1" class="btn-payco center"></div>
 							<div class="bank-box">
@@ -135,8 +153,9 @@
 
 		<script type="text/javascript">
 		$(document).ready(function() {
-			$("#order_option, #order_quantity").on('change', function() {
-				$("#options").submit();
+			$("#order_option, #order_quantity, #coupon").on('change', function() {
+				if ($(this).find("option:selected").val() != 0)
+					$("#options").submit();
 			});
 			$('.modal-trigger').leanModal({
 		      dismissible: true, // Modal can be dismissed by clicking outside of the modal

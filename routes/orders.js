@@ -10,6 +10,7 @@ var smtpTransport = require('nodemailer-smtp-transport');
 var User = require('../models/user');
 var Product = require('../models/product');
 var Order = require('../models/order');
+var Coupon = require('../models/coupon');
 var i18n = require('i18n');
 var config = require('config');
 var extend = require('util')._extend;
@@ -62,13 +63,25 @@ var hasShipping = function(obj) {
   return false;
 }
 
+var getOrderTotal = function(order) {
+  order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price;  
+  if (order.coupon) {
+    if (order.coupon.type == 1)
+      order.totalOrderAmt -= order.product.delivery_price;
+    else if (order.coupon.type == 2)
+      order.totalOrderAmt -= order.coupon.price;
+    else if (order.coupon.type == 3)
+      order.totalOrderAmt -= order.totalOrderAmt * (order.coupon.percentage / 100);
+  }
+}
+
 var reservePayco = function(order) {
   var payco = {
     "sellerKey": config.get("Payco.sellerKey"),
     "sellerOrderReferenceKey": order._id,
-    "totalOrderAmt": order.product.price * order.quantity + order.product.delivery_price,
+    "totalOrderAmt": order.totalOrderAmt,
     "totalDeliveryFeeAmt": 0,
-    "totalPaymentAmt": order.product.price * order.quantity + order.product.delivery_price,
+    "totalPaymentAmt": order.totalOrderAmt,
     "returnUrl": config.get("Payco.returnUrl"),
     "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
     "orderMethod": "EASYPAY",
@@ -77,8 +90,8 @@ var reservePayco = function(order) {
         {
           "cpId": config.get("Payco.cpId"),
           "productId": config.get("Payco.productId"),
-          "productAmt": order.product.price * order.quantity + order.product.delivery_price,
-          "productPaymentAmt": order.product.price * order.quantity + order.product.delivery_price,
+          "productAmt": order.totalOrderAmt,
+          "productPaymentAmt": order.totalOrderAmt,
           "sortOrdering": 1,
           "productName": order.product.name+"("+order.option+")",
           "orderQuantity": order.quantity,
@@ -170,7 +183,6 @@ router.get('/checkout', function(req, res) {
     delete req.session.product;
   }
   
-  console.log(req.session.order);
   var now;
   if (moment().day() == 0)
     now = moment().subtract(1, 'days').format("MM/DD/YYYY");
@@ -212,7 +224,7 @@ router.get('/checkout', function(req, res) {
         req.session.order = order.id;
         if (!req.session.product)
           req.session.product = req.query.product_id;
-          order.populate('product', function(err, orderPop) {
+          order.populate('product coupon', function(err, orderPop) {
             if (parseInt(orderPop.product.options[0].quantity) > 0) {
               orderPop.option = orderPop.product.options[0].name;
             }
@@ -225,6 +237,7 @@ router.get('/checkout', function(req, res) {
               });
             }
             orderPop.quantity = 1;
+            getOrderTotal(order);
             orderPop.save(function(err) {
               if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
                 var payco = reservePayco(orderPop);
@@ -239,7 +252,13 @@ router.get('/checkout', function(req, res) {
                               if (option.name === orderPop.option)
                               leftQuantity = parseInt(option.quantity);
                             });
-                            res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity, title: "주문결제" });
+                            if (req.user) {
+                              Coupon.find({ user: req.user.id }, function(err, coupons) {
+                                res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity, title: "주문결제", coupons: coupons });
+                              });
+                            }
+                            else
+                              res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity, title: "주문결제" });
                         }
                         else
                           res.redirect('/');
@@ -257,10 +276,11 @@ router.get('/checkout', function(req, res) {
         if (err)
           console.log(err);
         if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
-          order.populate('product', function(err, orderPop) {
+          order.populate('product coupon', function(err, orderPop) {
             console.log(orderPop.product.options);
             if (!req.session.product)
               req.session.product = orderPop.product.id;
+            getOrderTotal(order);
             var payco = reservePayco(orderPop);
             request.post(
                 config.get("Payco.host")+'/outseller/order/reserve',
@@ -274,6 +294,12 @@ router.get('/checkout', function(req, res) {
                           if (option.name === orderPop.option)
                           leftQuantity = parseInt(option.quantity);
                         });
+                        if (req.user) {
+                          Coupon.find({ user: req.user.id }, function(err, coupons) {
+                            res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity, title: "주문결제", coupons: coupons });
+                          });
+                        }
+                        else
                         res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity, title: "주문결제" });
                     }
                     else
@@ -296,29 +322,41 @@ router.post('/checkout', function(req, res) {
           console.log(err);
         order.option = req.body.order_option;
         order.quantity = parseInt(req.body.order_quantity);
+        order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price;
+        order.coupon = req.body.coupon;
         order.save(function(err, order) {
           if (!req.session.product)
             req.session.product = order.product.id;
-          console.log(order);
-          var payco = reservePayco(order);
-          request.post(
-              config.get("Payco.host")+'/outseller/order/reserve',
-              { json: payco },
-              function (error, response, body) {
-                  console.log(body)
-                  if (!error && body.code == 0) {
-                      var leftQuantity;
-                      order.product.options.forEach(function(option){
-                        if (option.name === order.option)
-                        leftQuantity = parseInt(option.quantity);
-                      });
-                      res.render('checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity });
-                  }
-                  else
-                    res.redirect('/');
-              }
-          );
-        })
+          order.populate('coupon', function(err, order) {
+            console.log(order);
+            getOrderTotal(order);
+            console.log(order);
+            var payco = reservePayco(order);
+            request.post(
+                config.get("Payco.host")+'/outseller/order/reserve',
+                { json: payco },
+                function (error, response, body) {
+                    console.log(body)
+                    if (!error && body.code == 0) {
+                        var leftQuantity;
+                        order.product.options.forEach(function(option){
+                          if (option.name === order.option)
+                          leftQuantity = parseInt(option.quantity);
+                        });
+                        if (req.user) {
+                          Coupon.find({ user: req.user.id }, function(err, coupons) {
+                            res.render('checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity, title: "주문결제", coupons: coupons });
+                          });
+                        }
+                        else
+                          res.render('checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity, title: "주문결제" });
+                    }
+                    else
+                      res.redirect('/');
+                }
+              );
+          });
+        });
       });
   }
   else {

@@ -30,7 +30,8 @@ var orderSchema = new Schema({
 		cancelPaymentDetails: Object
 	},
 	deposit_name: String,
-	merchant_id: { type: Schema.Types.ObjectId, ref: 'User' }
+	merchant_id: { type: Schema.Types.ObjectId, ref: 'User' },
+	coupon: { type: Schema.Types.ObjectId, ref: 'Coupon' }
 });
 
 orderSchema.plugin(mongooseToCsv, {
