@@ -3,9 +3,9 @@
 		<div class="container">
 			<div class="row">
 				<ul class="tabs z-depth-1">
-					<li class="tab col s6 m3"><a class="blue-grey-text text-darken-2 active" href="#mypage1">나의주문내역 <i class="fa fa-shopping-cart fa-fw"></i></a></li>
-					<li class="tab col s6 m3"><a class="blue-grey-text text-darken-2" href="#mypage2">정보설정 <i class="fa fa-cog fa-fw"></i></a></li>
-					<li class="tab col s6 m3"><a class="blue-grey-text text-darken-2" href="#mypage3">나의쿠폰함 <i class="fa fa-ticket fa-fw"></i></a></li>
+					<li class="tab col s4 m3"><a class="blue-grey-text text-darken-2 active" href="#mypage1">나의주문내역 <i class="fa fa-shopping-cart fa-fw"></i></a></li>
+					<li class="tab col s4 m3"><a class="blue-grey-text text-darken-2" href="#mypage2">정보설정 <i class="fa fa-cog fa-fw"></i></a></li>
+					<li class="tab col s4 m3"><a class="blue-grey-text text-darken-2" href="#mypage3">나의쿠폰함 <i class="fa fa-ticket fa-fw"></i></a></li>
 				</ul>
 			</div><!-- .row -->
 <!-- mypage1 = Basic user info -->
