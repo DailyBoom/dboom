@@ -5,6 +5,7 @@
 				<ul class="tabs z-depth-1">
 					<li class="tab col s6 m3"><a class="blue-grey-text text-darken-2 active" href="#mypage1">나의주문내역 <i class="fa fa-shopping-cart fa-fw"></i></a></li>
 					<li class="tab col s6 m3"><a class="blue-grey-text text-darken-2" href="#mypage2">정보설정 <i class="fa fa-cog fa-fw"></i></a></li>
+					<li class="tab col s6 m3"><a class="blue-grey-text text-darken-2" href="#mypage3">나의쿠폰함 <i class="fa fa-ticket fa-fw"></i></a></li>
 				</ul>
 			</div><!-- .row -->
 <!-- mypage1 = Basic user info -->
@@ -202,6 +203,38 @@
 					</div><!-- .row -->
 				</div><!-- .row -->
 			</div><!-- #mypage2 -->
+			<div id="mypage3" class="col s12 m12 l12 set-min-h">
+				<div class="row">
+					<div class="user-title green darken-2 white-text z-depth-1">
+						나의 쿠폰함
+					</div>
+					<!-- coupons -->
+					<div class="col s12 m4 l4">
+						<div class="card blue-grey-text text-darken-2">
+							<div class="card-content">
+								<span class="card-title blue-grey-text text-darken-3">무료 배송</span>
+								<br><span class="grey-text">2016.12.01 ~ 2016.12.31</span>
+							</div>
+							<div class="card-action">
+								<div class="btn-flat green-text text-darken-2">쿠폰 사용가능 <i class="fa fa-check fa-fw right"></i></a>
+							</div>
+						</div><!-- .card -->
+					</div><!-- .col -->
+					<div class="col s12 m4 l4">
+						<div class="card blue-grey-text text-darken-2">
+							<div class="card-content">
+								<span class="card-title blue-grey-text text-darken-3">무료 배송</span>
+								<br><span class="grey-text">2016.12.01 ~ 2016.12.31</span>
+							</div>
+							<div class="card-action">
+								<div class="btn-flat grey-text">이미 사용하셨습니다 <i class="fa fa-ban fa-fw right"></i>
+								</div>
+							</div>
+						</div><!-- .card -->
+					</div><!-- .col -->
+					<!-- coupons -->
+				</div><!-- .row -->
+			</div><!-- #mypage3 -->
 		</div><!-- .container -->
 		<script>
 		$(document).ready(function(){
