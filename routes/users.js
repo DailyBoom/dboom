@@ -222,6 +222,15 @@ router.get('/users/list', isAdmin, function(req, res){
   });
 });
 
+router.post('/users/list', isAdmin, function(req, res){
+  var page = req.query.page ? req.query.page : 1;
+  User.find( { $or: [{name: req.body.name}, {email: req.body.email}, {role: req.body.role }]}, {}, {$sort: { created_at: -1 }}).paginate(page, 10, function(err, users, total) {
+    if (err)
+      console.log(err);
+    res.render('users/list', { users: users, pages: paginate.getArrayPages(req)(3, Math.floor(total / 10), page), currentPage: page });
+  });
+});
+
 router.get('/users/delete/:id', isAdmin, function(req, res) {
   User.findOneAndRemove({ _id: req.params.id }, function(err, user) {
     res.redirect('/users/list');

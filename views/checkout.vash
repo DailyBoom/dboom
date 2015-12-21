@@ -77,7 +77,7 @@
 							<img class="responsive-img" src="@model.order.product.images[0]" alt="" />
 							<div class="check-price-box center">
 								<span class="check-item-name blue-grey-text text-darken-1 truncate"><b>@model.order.product.brand</b></span>
-								<span class="check-item-name blue-grey-text text-darken-2 truncate">@model.order.product.name<br>@model.order.option</span>
+								<span class="check-item-name blue-grey-text text-darken-2 truncate">@model.order.option</span>
 								@if (model.order.product.delivery_price <= 0 || (model.order.coupon && model.order.coupon.type == 1)) {
 								     <span class="check-item-name blue-grey-text text-darken-2">무료 배송</span><br>
 								}

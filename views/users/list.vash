@@ -4,6 +4,22 @@
 			<div class="row">
 				<h3 class="blue-grey-text text-darken-3">Users List</h3>
 				<br>
+				<form method="post">
+					<div class="col s4">
+						<input name="name" id="name" type="text" placeholder="name">
+					</div>
+					<div class="col s4">
+						<input name="email" id="email" type="email" placeholder="email">
+					</div>
+					<div class="col s4">
+						<select name="role" id="role">
+							<option value="">Role</option>
+							<option value="user">User</option>
+							<option value="merchant">Merchant</option>
+						</select>
+					</div>
+					<button type="submit" class="right">Search</button>
+				</form>
 				<table class="responsive-table bordered highlight table-sm">
 					<thead>
 						<tr>
@@ -55,5 +71,10 @@
 			<!-- .row -->
 			<br>
 		</div><!-- .container -->
+		<script>
+			$(document).ready(function() {
+				$('select').material_select();
+			});
+		</script>
 	})
 })
