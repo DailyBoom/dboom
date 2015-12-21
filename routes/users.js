@@ -81,9 +81,13 @@ router.get('/mypage', isAuthenticated, function(req, res) {
       if (typeof req.session.errors !== 'undefined') {
         var errors = req.session.errors;
         delete req.session.errors;
-        res.render('users/show', { orders: orders, errors: errors, title: "마이 페이지" });
+        Coupon.find({ user: req.user.id }, function(err, coupons) {
+          res.render('users/show', { orders: orders, errors: errors, title: "마이 페이지", coupons: coupons });
+        });
       }
-      res.render('users/show', { orders: orders, title: "마이 페이지" });
+      Coupon.find({ user: req.user.id }, function(err, coupons) {
+        res.render('users/show', { orders: orders, title: "마이 페이지", coupons: coupons });
+      });
     });
 });
 

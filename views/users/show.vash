@@ -209,18 +209,35 @@
 						나의 쿠폰함
 					</div>
 					<!-- coupons -->
-					<div class="col s12 m4 l4">
-						<div class="card blue-grey-text text-darken-2">
-							<div class="card-content">
-								<span class="card-title blue-grey-text text-darken-3">무료 배송</span>
-								<br><span class="grey-text">2016.12.01 ~ 2016.12.31</span>
-							</div>
-							<div class="card-action">
-								<div class="btn-flat green-text text-darken-2">쿠폰 사용가능 <i class="fa fa-check fa-fw right"></i></a>
-							</div>
-						</div><!-- .card -->
-					</div><!-- .col -->
-					<div class="col s12 m4 l4">
+					@if(model.coupons) {
+						@model.coupons.forEach(function(coupon) {
+							<div class="col s12 m4 l4">
+								<div class="card blue-grey-text text-darken-2">
+									<div class="card-content">
+										@if(coupon.type == 1) {
+											<span class="card-title blue-grey-text text-darken-3">무료 배송</span>
+										}
+										else if (coupon.type == 2) {
+											<span class="card-title blue-grey-text text-darken-3">@coupon.price 원</span>
+										}
+										else if (coupon.type == 3) {
+											<span class="card-title blue-grey-text text-darken-3">@coupon.percentage%</span>
+										}
+										<br><span class="grey-text">유효기간: @model.moment(coupon.expires_at).format("YYYY/MM/DD") </span>
+									</div>
+									<div class="card-action">
+										@if(!coupon.used) {
+											<div class="btn-flat green-text text-darken-2">쿠폰 사용가능 <i class="fa fa-check fa-fw right"></i></div>
+										}
+										else {
+											<div class="btn-flat grey-text">이미 사용하셨습니다 <i class="fa fa-ban fa-fw right"></i></div>
+										}
+									</div>
+								</div><!-- .card -->
+							</div><!-- .col -->
+						})
+					}
+					<!--<div class="col s12 m4 l4">
 						<div class="card blue-grey-text text-darken-2">
 							<div class="card-content">
 								<span class="card-title blue-grey-text text-darken-3">무료 배송</span>
@@ -230,9 +247,8 @@
 								<div class="btn-flat grey-text">이미 사용하셨습니다 <i class="fa fa-ban fa-fw right"></i>
 								</div>
 							</div>
-						</div><!-- .card -->
-					</div><!-- .col -->
-					<!-- coupons -->
+						</div>
+					</div>-->
 				</div><!-- .row -->
 			</div><!-- #mypage3 -->
 		</div><!-- .container -->

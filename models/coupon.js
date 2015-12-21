@@ -7,6 +7,7 @@ var couponSchema = new Schema({
 	expires_at: Date,
 	price: Number,
 	percentage: Number,
+	used: { type: Boolean, default: false },
 	created_at: { type: Date, default: Date.now }
 });
 

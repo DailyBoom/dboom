@@ -253,7 +253,7 @@ router.get('/checkout', function(req, res) {
                               leftQuantity = parseInt(option.quantity);
                             });
                             if (req.user) {
-                              Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") } }, function(err, coupons) {
+                              Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
                                 res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity, title: "주문결제", coupons: coupons });
                               });
                             }
@@ -295,7 +295,7 @@ router.get('/checkout', function(req, res) {
                           leftQuantity = parseInt(option.quantity);
                         });
                         if (req.user) {
-                          Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") } }, function(err, coupons) {
+                          Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
                             res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity, title: "주문결제", coupons: coupons });
                           });
                         }
@@ -342,7 +342,7 @@ router.post('/checkout', function(req, res) {
                           leftQuantity = parseInt(option.quantity);
                         });
                         if (req.user) {
-                          Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") } }, function(err, coupons) {
+                          Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
                             res.render('checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity, title: "주문결제", coupons: coupons });
                           });
                         }
@@ -428,7 +428,7 @@ router.get('/payco_callback', function(req, res) {
               function (error, response, body) {
                   console.log(body)
                   if (!error && body.code == 0) {
-                    Order.findOne({ _id: req.query.order_id }).populate('user').populate('product').exec(function(err, order) {
+                    Order.findOne({ _id: req.query.order_id }).populate('user product coupon').exec(function(err, order) {
                       if (req.user)
                         order.shipping = req.user.shipping;
                       order.payco.orderNo = body.result.orderNo;
@@ -438,6 +438,9 @@ router.get('/payco_callback', function(req, res) {
                       order.payco.paymentDetails = body.result.paymentDetails;
                       order.merchant_id = order.product.merchant_id;
                       order.status = "Paid";
+                      if (order.coupon) {
+                        order.coupon.used = true;
+                      }
                       order.save(function(err) {
                         Product.findOne({ _id: order.product.id }, function(err, product) {
                           product.options.forEach(function(option){
@@ -504,13 +507,16 @@ router.get('/success', function(req, res) {
 });
 
 router.get('/orders/paid/:id', isAdmin, function(req, res) {
-  Order.findOne({ '_id': req.params.id }).populate('product').populate('user').exec(function(err, order) {
+  Order.findOne({ '_id': req.params.id }).populate('product user coupon').exec(function(err, order) {
       if (err)
         console.log(err);
       if (!order)
         res.redirect('/mypage');
       order.merchant_id = order.product.merchant_id;
       order.status = "Paid";
+      if (order.coupon) {
+        order.coupon.used = true;
+      }
       order.save(function(err) {
         if (err)
           console.log(err);
