@@ -31,7 +31,8 @@ var orderSchema = new Schema({
 	},
 	deposit_name: String,
 	merchant_id: { type: Schema.Types.ObjectId, ref: 'User' },
-	coupon: { type: Schema.Types.ObjectId, ref: 'Coupon' }
+	coupon: { type: Schema.Types.ObjectId, ref: 'Coupon' },
+	totalOrderAmt: Number
 });
 
 orderSchema.plugin(mongooseToCsv, {

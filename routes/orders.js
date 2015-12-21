@@ -364,13 +364,18 @@ router.post('/checkout', function(req, res) {
 
 router.post('/deposit_checkout', function(req, res) {
   if (req.session.order) {
-    Order.findOne({ '_id': req.session.order }).populate('product').populate('user').exec(function(err, order) {
+    Order.findOne({ '_id': req.session.order }).populate('product coupon user').exec(function(err, order) {
         if (err)
           console.log(err);
         order.status = "Waiting";
         order.deposit_name = req.body.deposit_name;
         if (req.user)
           order.shipping = req.user.shipping;
+        getOrderTotal(order);
+        if (order.coupon) {
+          order.coupon.used = true;
+          order.coupon.save();
+        }
         order.save(function(err) {
           if (err)
             console.log(err);
@@ -440,6 +445,7 @@ router.get('/payco_callback', function(req, res) {
                       order.status = "Paid";
                       if (order.coupon) {
                         order.coupon.used = true;
+                        order.coupon.save();
                       }
                       order.save(function(err) {
                         Product.findOne({ _id: order.product.id }, function(err, product) {
@@ -514,9 +520,6 @@ router.get('/orders/paid/:id', isAdmin, function(req, res) {
         res.redirect('/mypage');
       order.merchant_id = order.product.merchant_id;
       order.status = "Paid";
-      if (order.coupon) {
-        order.coupon.used = true;
-      }
       order.save(function(err) {
         if (err)
           console.log(err);

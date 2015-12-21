@@ -50,7 +50,7 @@
 							<br>폭스트론 (주)
 							<br>043-105437-04-016
 							<br>IBK 기업은행
-							<br>@model.accounting.formatNumber(model.order.quantity * model.order.product.price + model.order.product.delivery_price) 원
+							<br>@model.accounting.formatNumber(model.order.totalOrderAmt) 원
 							<br>
 							<br>@model.order.product.brand
 							<br>@model.order.product.name
