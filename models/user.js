@@ -27,7 +27,8 @@ var userSchema = new Schema({
   facebookId: Number,
   kakaoId: Number,
   resetPasswordToken: String,
-  resetPasswordExpires: Date
+  resetPasswordExpires: Date,
+  eventNumber: { type: Number, default: 1 }
 });
 
 userSchema.plugin(uniqueValidator);
@@ -48,6 +49,7 @@ userSchema.pre('save', function(next) {
 
             // override the cleartext password with the hashed one
             user.password = hash;
+
             next();
         });
     });

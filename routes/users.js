@@ -8,6 +8,7 @@ var smtpTransport = require('nodemailer-smtp-transport');
 var User = require("../models/user");
 var Product = require("../models/product");
 var Order = require("../models/order");
+var Coupon = require("../models/coupon");
 var config = require('config');
 var i18n = require("i18n");
 var Token = require("../models/token");
@@ -340,7 +341,20 @@ router.post('/signup', function(req, res) {
                   if (err) {
                     console.log(err);
                   }
-                  return res.redirect('/');
+                  User.count({}, function(err, nb) {
+                    if (nb <= 1064) {
+                      var coupon = new Coupon({
+                        user: user.id,
+                        type: 1,
+                        expires_at: moment().add(1, 'months').hours(0).minutes(0).seconds(0)
+                      });
+                      coupon.save(function() {
+                        return res.redirect('/');                        
+                      })
+                    }
+                    else
+                      return res.redirect('/');
+                  });
                 });
             });
           });

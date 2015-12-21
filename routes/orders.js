@@ -328,9 +328,7 @@ router.post('/checkout', function(req, res) {
           if (!req.session.product)
             req.session.product = order.product.id;
           order.populate('coupon', function(err, order) {
-            console.log(order);
             getOrderTotal(order);
-            console.log(order);
             var payco = reservePayco(order);
             request.post(
                 config.get("Payco.host")+'/outseller/order/reserve',

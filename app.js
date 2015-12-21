@@ -29,6 +29,7 @@ var paginate = require('express-paginate');
 var device = require('express-device');
 var User = require('./models/user');
 var Token = require('./models/token');
+var Coupon = require('./models/coupon');
 //var materialize = require('materialize-css');
 
 var routes = require('./routes/index');
@@ -158,7 +159,20 @@ passport.use(new FacebookStrategy({
               });
               user.save(function(err) {
                   if (err) console.log(err);
-                  return done(err, user);
+                  User.count({}, function(err, nb) {
+                    if (nb <= 1064) {
+                      var coupon = new Coupon({
+                        user: user.id,
+                        type: 1,
+                        expires_at: moment().add(1, 'months').hours(0).minutes(0).seconds(0)
+                      });
+                      coupon.save(function() {
+                        return done(err, user);
+                      })
+                    }
+                    else
+                      return done(err, user);
+                  });
               });
           } else {
               //found user. Return
@@ -191,7 +205,20 @@ passport.use(new KakaoStrategy({
               });
               user.save(function(err) {
                   if (err) console.log(err);
-                  return done(err, user);
+                  User.count({}, function(err, nb) {
+                    if (nb <= 1064) {
+                      var coupon = new Coupon({
+                        user: user.id,
+                        type: 1,
+                        expires_at: moment().add(1, 'months').hours(0).minutes(0).seconds(0)
+                      });
+                      coupon.save(function() {
+                        return done(err, user);
+                      })
+                    }
+                    else
+                      return done(err, user);
+                  });
               });
           } else {
               //found user. Return
