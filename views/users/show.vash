@@ -118,12 +118,12 @@
 									<span class="card-title black-text">기본 정보</span>
 									<br>
 									<div class="row">
-										<div class="col s12 m6 l6">
+										<!-- <div class="col s12 m6 l6">
 											<span>
 												<p class="form-lighten">이름&nbsp;:&nbsp;</p>
 												<p class="text-md">@model.user.name</p>
 											</span>
-										</div>
+										</div> -->
 										<div class="col s12 m6 l6">
 											<span>
 												<p class="form-lighten">User ID&nbsp;:&nbsp;</p>
@@ -236,6 +236,20 @@
 								</div><!-- .card -->
 							</div><!-- .col -->
 						})
+					}
+					else {
+						<div class="row">
+							<div class="col s12">
+								<div class="card blue-grey-text text-darken-2">
+									<div class="card-content center">
+										<i class="fa fa-ticket fa-fw fa-3x"></i>
+										<div class="card-title blue-grey-text text-darken-2">
+											보유하고있는 쿠폰이 없습니다.
+										</div>
+									</div>
+								</div><!-- .card -->
+							</div><!-- .col -->
+						</div><!-- .row -->
 					}
 					<!--<div class="col s12 m4 l4">
 						<div class="card blue-grey-text text-darken-2">
