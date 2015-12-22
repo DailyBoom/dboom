@@ -80,10 +80,7 @@
 			<div class="buy-box-wrapper blue-grey darken-3 white-text">
 				<img class="brand-img" src="@model.product.brand_logo" alt="@model.product.brand - Logo" />
 				<!-- <div class="item-name truncate">@model.product.name</div> -->
-					@if (model.product.name.length >= 35) {
-						<div class="item-name name-sm">@model.product.name</div>
-					}
-					else if (model.product.name.length >= 21) {
+					@if (model.product.name.length > 20) {
 						<div class="item-name name-md">@model.product.name</div>
 					}
 					else {

@@ -52,7 +52,7 @@
 			<!-- .row -->
 			<div class="row">
 				<div class="input-field col s12">
-					<input id="name" type="text" class="validate" name="name" required="true">
+					<input id="name" type="text" class="validate" name="name" required="true" maxlength="30">
 					<label for="name">상품 이름 *</label>
 				</div>
 			</div>
