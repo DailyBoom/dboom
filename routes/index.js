@@ -145,17 +145,18 @@ router.get('/coupons/new', function(req, res, next) {
 });
 
 router.post('/coupons/new', function(req, res, next) {
-  var coupon = new Coupon({
-    user: req.body.user,
-    type: req.body.type,
-    price: req.body.price,
-    percentage: req.body.percentage,
-    expires_at: req.body.expire_date
+  req.body.users.forEach(function(user) {
+    var coupon = new Coupon({
+      user: user,
+      type: req.body.type,
+      price: req.body.price,
+      percentage: req.body.percentage,
+      expires_at: req.body.expire_date
+    });
+    
+    coupon.save();
   });
-  
-  coupon.save(function() {
-    res.redirect('/coupons/list');
-  });
+  res.redirect('/coupons/list');
 });
 
 router.get('/coupons/list', function(req, res, next) {
