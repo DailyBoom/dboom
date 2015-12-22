@@ -23,7 +23,9 @@ router.get('/products/new', isAdmin, function(req, res) {
   Product.find({scheduled_at: {$exists: true}}, 'scheduled_at', function(err, products) {
     User.find({ role: 'merchant' }, function(err, merchants) {
       var scheduled = products.map(function(product) {
-        return [product.scheduled_at.getFullYear(), product.scheduled_at.getMonth(), product.scheduled_at.getDate()];
+        if (product.scheduled_at) {
+          return [product.scheduled_at.getFullYear(), product.scheduled_at.getMonth(), product.scheduled_at.getDate()];
+        }
       });
       res.render("products/new", { scheduled: scheduled, merchants: merchants });
     });
@@ -40,7 +42,9 @@ router.get('/products/edit/:id', isAdmin, function(req, res) {
   Product.findOne({_id: req.params.id}, function(err, product) {
     Product.find({scheduled_at: {$exists: true}, _id: {$ne: product.id}}, 'scheduled_at', function(err, products) {
       var scheduled = products.map(function(product) {
-        return [product.scheduled_at.getFullYear(), product.scheduled_at.getMonth(), product.scheduled_at.getDate()];
+        if (product.scheduled_at) {
+          return [product.scheduled_at.getFullYear(), product.scheduled_at.getMonth(), product.scheduled_at.getDate()];
+        }
       });
       res.render("products/edit", { product: product, scheduled: scheduled });
     });
