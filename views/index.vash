@@ -79,7 +79,13 @@
 		<div class="col s12">
 			<div class="buy-box-wrapper blue-grey darken-3 white-text">
 				<img class="brand-img" src="@model.product.brand_logo" alt="@model.product.brand - Logo" />
-				<div class="item-name truncate">@model.product.name</div>
+				<!-- <div class="item-name truncate">@model.product.name</div> -->
+				@if (model.product.name.length >= 21) {
+					<div class="item-name truncate">@model.product.name</div>
+				}
+				else {
+					<div class="item-name truncate">@model.product.name</div>
+				}
 					@if (model.user) {
 						@if (model.progress < 100) {
 							<a class="hide-on-small-only btn-buy-wrapper right" href="/checkout?product_id=@model.product.id"><img class="btn-buy" src="/images/themes/btn-buy.png" /></a>
