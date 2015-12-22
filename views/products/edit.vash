@@ -54,6 +54,10 @@
 			<div class="row">
 				Extend
 				<div class="input-field col s12">
+					<input name="extend" type="radio" id="extend_none" value="0" @(!model.product.extend || model.product.extend == 0 ? 'checked' : '')/>
+					<label for="extend_none">None</label>
+				</div>
+				<div class="input-field col s12">
 					<input name="extend" type="radio" id="extend_hour" value="1" @(model.product.extend == 1 ? 'checked' : '')/>
 					<label for="extend_hour">48h</label>
 				</div>
