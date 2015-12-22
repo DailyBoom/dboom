@@ -14,9 +14,9 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
-					<select id="user" name="user" multiple>
+					<select id="users" name="users" multiple>
 						@model.users.forEach(function(user) {
-							<option value="@user.id" selected>@user.name (@user.username)</option>
+							<option value="@user.id">@user.name (@user.username)</option>
 						})
 					</select>
 					<label>User</label>
