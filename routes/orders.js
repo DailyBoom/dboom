@@ -119,7 +119,7 @@ router.get('/merchants/orders/list', isMerchant, function(req, res) {
   if (req.query.order_date)
     query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
   query.paginate(page, 10, function(err, orders, total) {
-    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.floor(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
+    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
   });
 });
 
@@ -129,7 +129,7 @@ router.get('/orders/list', isAdmin, function(req, res) {
   if (req.query.order_date)
     query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
   query.paginate(page, 10, function(err, orders, total) {
-    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.floor(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
+    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
   });
 });
 

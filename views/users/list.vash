@@ -66,6 +66,9 @@
 							<li class="waves-effect"><a href="@page.url">@page.number</a></li>
 						}
 					})
+					@if(model.currentPage != model.lastPage) {
+						<li class="waves-effect"><a href="/users/list?page=@model.lastPage&limit=10">Last</a></li>
+					}
 				</ul>
 			</div>
 			<!-- .row -->

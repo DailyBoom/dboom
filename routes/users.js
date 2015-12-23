@@ -218,7 +218,8 @@ router.get('/users/list', isAdmin, function(req, res){
   User.find({}, {}, {$sort: { created_at: -1 }}).paginate(page, 10, function(err, users, total) {
     if (err)
       console.log(err);
-    res.render('users/list', { users: users, pages: paginate.getArrayPages(req)(3, Math.round(total / 10) + 1, page), currentPage: page });
+      console.log(total);
+    res.render('users/list', { users: users, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, lastPage: Math.ceil(total / 10) });
   });
 });
 
@@ -227,7 +228,7 @@ router.post('/users/list', isAdmin, function(req, res){
   User.find( { $or: [{name: req.body.name}, {email: req.body.email}, {role: req.body.role }]}, {}, {$sort: { created_at: -1 }}).paginate(page, 10, function(err, users, total) {
     if (err)
       console.log(err);
-    res.render('users/list', { users: users, pages: paginate.getArrayPages(req)(3, Math.round(total / 10) + 1, page), currentPage: page });
+    res.render('users/list', { users: users, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, lastPage: Math.ceil(total / 10) });
   });
 });
 
