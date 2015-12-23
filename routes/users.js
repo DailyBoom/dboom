@@ -342,7 +342,7 @@ router.post('/signup', function(req, res) {
             }
             var html = vash.compile(file);
             transporter.sendMail({
-              from: 'Daily Boom <contact@dailyboom.co>',
+              from: '데일리 붐 <contact@dailyboom.co>',
               to: user.email,
               subject: user.username+'님 회원가입을 축하드립니다.',
               html: html({ user : user })
@@ -419,7 +419,7 @@ router.post('/forgot', function(req, res, next) {
     user.save(function(err) {
       var mailOptions = {
         to: user.email,
-        from: 'contact@dailyboom.co',
+        from: '데일리 붐 <contact@dailyboom.co>',
         subject: '데일리 붐 비밀번호 재신청',
         text: 'Y데일리 붐 회원님의 비밀번호 변경 요청 메일입니다.\n\n' +
           '아래의 링크를 클릭하여 회원 님의 비밀번호를 변경하십시오.:\n\n' +
@@ -462,7 +462,7 @@ router.post('/reset/:token', function(req, res) {
       req.login(user, function(err) {
         var mailOptions = {
         to: user.email,
-        from: 'contact@dailyboom.co',
+        from: '데일리 붐 <contact@dailyboom.co>',
         subject: 'Your password has been changed',
         text: 'Hello,\n\n' +
           'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'

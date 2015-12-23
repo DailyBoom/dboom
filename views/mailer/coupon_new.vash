@@ -52,13 +52,10 @@
 			<tbody class="blue-grey lighten-5 blue-grey-text text-darken-3">
 				<tr>
 					<td class="db-mail-body">
-						<h1><span class="amber-text text-darken-3">@(model.order.shipping.full_name)님</span>의 데일리 붐 배송 안내 메일입니다.</h1>
+						<h1><span class="amber-text text-darken-3">@(model.user.username)님 쿠폰이 발급되었습니다.</span></h1>
 						<br>
 						<h3>
-							무료배송쿠폰이 발급되었습니다.
-							<br>
-							<br>
-							쇼핑시 유용하게 사용할 수 있는 무료배송쿠폰 발급되었습니다.
+							쇼핑시 유용하게 사용할 수 있는 쿠폰 발급되었습니다.
 							<br>
 							좀 더 즐거운 쇼핑을 데일리붐에서 즐기세요!
 							<br>

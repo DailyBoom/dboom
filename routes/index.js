@@ -7,7 +7,10 @@ var Product = require('../models/product');
 var Coupon = require('../models/coupon');
 var smtpTransport = require('nodemailer-smtp-transport');
 var config = require('config');
+var fs = require("fs");
+var vash = require("vash");
 var nodemailer = require('nodemailer');
+var util = require("util");
 
 var transporter = nodemailer.createTransport(smtpTransport({
     host: config.get('Nodemailer.host'),
@@ -80,7 +83,7 @@ router.get('/merchant', function(req, res, next) {
 
 router.post('/advertise', function(req, res, next) {
   transporter.sendMail({
-    from: 'Daily Boom <contact@dailyboom.co>',
+    from: '데일리 붐 <contact@dailyboom.co>',
     to: 'contact@dailyboom.co',
     subject: 'Advertise contact.',
     html: '<p>회사 명: '+req.body.company+'</p><p>이름: '+req.body.fullname+'</p><p>이메일: '+req.body.email+'</p><p>내용: '+req.body.details+'</p>'
@@ -94,7 +97,7 @@ router.post('/advertise', function(req, res, next) {
 
 router.post('/merchant', function(req, res, next) {
   transporter.sendMail({
-    from: 'Daily Boom <contact@dailyboom.co>',
+    from: '데일리 붐 <contact@dailyboom.co>',
     to: 'contact@dailyboom.co',
     subject: 'Merchant contact.',
     html: '<p>회사 명: '+req.body.company+'</p><p>이름: '+req.body.fullname+'</p><p>이메일: '+req.body.email+'</p><p>내용: '+req.body.details+'</p>'
@@ -145,6 +148,9 @@ router.get('/coupons/new', function(req, res, next) {
 });
 
 router.post('/coupons/new', function(req, res, next) {
+  if (!util.isArray(req.body.users)) {
+    req.body.users = req.body.users.split();
+  }
   req.body.users.forEach(function(user) {
     var coupon = new Coupon({
       user: user,
@@ -154,14 +160,37 @@ router.post('/coupons/new', function(req, res, next) {
       expires_at: req.body.expire_date
     });
     
-    coupon.save();
+    coupon.save(function() {
+      coupon.populate('user', function(err, coupon) {
+        console.log(coupon);
+        if (coupon.user.email) {
+          fs.readFile('./views/mailer/coupon_new.vash', "utf8", function(err, file) {
+            if(err){
+              //handle errors
+              console.log('ERROR!');
+              return res.send('ERROR!');
+            }
+            var html = vash.compile(file);
+            transporter.sendMail({
+              from: '데일리 붐 <contact@dailyboom.co>',
+              to: coupon.user.email,
+              subject: '쿠폰이 발급되었습니다.',
+              html: html({ user: coupon.user })
+            }, function (err, info) {
+                if (err) { console.log(err); }
+                console.log('Message sent: ' + info.response);
+                transporter.close();
+            });
+          });
+        }
+      });
+    });
   });
   res.redirect('/coupons/list');
 });
 
 router.get('/coupons/list', function(req, res, next) {
   Coupon.find({}).populate('user').exec(function(err, coupons) {
-    console.log(coupons);
     res.render('coupons/list', { coupons: coupons });
   });
 });

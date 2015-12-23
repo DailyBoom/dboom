@@ -147,23 +147,23 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s12 m12 l12">
-					<input id="videoUrl" name="videoUrl" type="url" class="validate" value="@model.product.videoUrl">
+					<input id="videoUrl" name="videoUrl" type="url" class="validate" value="@model.product.video">
 					<label for="videoUrl">동영상 링크 (YouTube Embeded Link)</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
-					<input id="webUrl" name="webUrl" type="url" class="validate" value="@model.product.webUrl">
+					<input id="webUrl" name="webUrl" type="url" class="validate" value="@model.product.company_url">
 					<label for="webUrl">Website 링크</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
-					<input id="fbUrl" name="fbUrl" type="url" class="validate" value="@model.product.fbUrl">
+					<input id="fbUrl" name="fbUrl" type="url" class="validate" value="@model.product.company_facebook">
 					<label for="fbUrl">Facebook 링크</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
-					<input id="kakaoUrl" name="kakaoUrl" type="text" class="validate" value="@model.product.kakaoUrl">
+					<input id="kakaoUrl" name="kakaoUrl" type="text" class="validate" value="@model.product.company_kakaostory">
 					<label for="kakaoUrl">Kakao Story 링크</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
-					<input id="reviewUrl" name="reviewUrl" type="text" class="validate" value="@model.product.reviewUrl">
+					<input id="reviewUrl" name="reviewUrl" type="text" class="validate" value="@model.product.review_url">
 					<label for="reviewUrl">Review 링크</label>
 				</div>
 			</div>

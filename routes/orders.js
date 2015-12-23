@@ -398,7 +398,7 @@ router.post('/deposit_checkout', function(req, res) {
             moment.locale('ko');
             console.log(order);
             transporter.sendMail({
-              from: 'Daily Boom <contact@dailyboom.co>',
+              from: '데일리 붐 <contact@dailyboom.co>',
               to: order.user ? order.user.email : order.email,
               subject: '무통장입금 안내',
               html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment, order: order, accounting: accounting })
@@ -472,7 +472,7 @@ router.get('/payco_callback', function(req, res) {
                               }
                               var html = vash.compile(file);
                               transporter.sendMail({
-                                from: 'Daily Boom <contact@dailyboom.co>',
+                                from: '데일리 붐 <contact@dailyboom.co>',
                                 to: order.user ? order.user.email : order.email,
                                 subject: '데일리 붐 구매 안내.',
                                 html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name })
@@ -542,7 +542,7 @@ router.get('/orders/paid/:id', isAdmin, function(req, res) {
                   var html = vash.compile(file);
                   moment.locale('ko');
                   transporter.sendMail({
-                    from: 'Daily Boom <contact@dailyboom.co>',
+                    from: '데일리 붐 <contact@dailyboom.co>',
                     to: order.user ? order.user.email : order.email,
                     subject: '데일리 붐 구매 안내.',
                     html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment })
@@ -578,7 +578,7 @@ router.get('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
         var html = vash.compile(file);
         moment.locale('ko');
         transporter.sendMail({
-          from: 'Daily Boom <contact@dailyboom.co>',
+          from: '데일리 붐 <contact@dailyboom.co>',
           to: order.user ? order.user.email : order.email,
           subject: '데일리 붐 배송 안내.',
           html: html({ moment: moment, order: order, accounting: accounting })
@@ -643,7 +643,7 @@ router.get('/orders/cancel/:id', function(req, res) {
                   var html = vash.compile(file);
                   moment.locale('ko');
                   transporter.sendMail({
-                    from: 'Daily Boom <contact@dailyboom.co>',
+                    from: '데일리 붐 <contact@dailyboom.co>',
                     to: order.user ? order.user.email : order.email,
                     subject: '데일리 붐 주문 취소 안내',
                     html: html({ moment: moment, order: order, accounting: accounting })
@@ -690,7 +690,7 @@ router.get('/orders/cancel_deposit/:id', function(req, res) {
         var html = vash.compile(file);
         moment.locale('ko');
         transporter.sendMail({
-          from: 'Daily Boom <contact@dailyboom.co>',
+          from: '데일리 붐 <contact@dailyboom.co>',
           to: order.user ? order.user.email : order.email,
           subject: '데일리 붐 주문 취소 안내',
           html: html({ moment: moment, order: order, accounting: accounting })
@@ -814,7 +814,7 @@ router.post('/shipping', function(req, res) {
                       }
                       var html = vash.compile(file);
                       transporter.sendMail({
-                        from: 'Daily Boom <contact@dailyboom.co>',
+                        from: '데일리 붐 <contact@dailyboom.co>',
                         to: user.email,
                         subject: user.username+'님 회원가입을 축하드립니다.',
                         html: html({ user : user })
