@@ -57,11 +57,13 @@
 <script>
 	$(document).ready(function() {
 		$('select').material_select();
-		$('.select_all').click(function() {
+		$('.select_all').on("click", function() {
     		$('#users option').prop('selected', true);
+			$('select').material_select();
 		});
-		$('.clear_all').click(function() {
+		$('.clear_all').on("click", function() {
     		$('#users option').prop('selected', false);
+			$('select').material_select();
 		});
 		$('#type').on("change", function() {
 			if ($('#type option:selected').val() == 2) {
