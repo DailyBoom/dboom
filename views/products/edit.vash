@@ -9,7 +9,7 @@
 			<div class="row">
 				<br>
 				<div class="input-field col s12 m12 l12">
-					<input id="selldate" type="date" class="datepicker" name="selldate" value="@(model.product.scheaduled_at ? model.moment(model.product.scheduled_at).format('MM/DD/YYYY') : '')">
+					<input id="selldate" type="date" class="datepicker" name="selldate" value="@(model.product.scheduled_at ? model.moment(model.product.scheduled_at).format('MM/DD/YYYY') : '')">
 					<label for="selldate" style="margin-top: -1.75rem;">판매 희망 날짜 *</label>
 				</div>
 			</div>

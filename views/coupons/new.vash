@@ -12,6 +12,8 @@
 					<label for="expire_date" style="margin-top: -1.75rem;">Expire date</label>
 				</div>
 			</div>
+			<button class="select_all" type="button">Select All</button>
+			<button class="clear_all" type="button">Clear All</button>
 			<div class="row">
 				<div class="input-field col s12">
 					<select id="users" name="users" multiple>
@@ -55,6 +57,12 @@
 <script>
 	$(document).ready(function() {
 		$('select').material_select();
+		$('.select_all').click(function() {
+    		$('#users option').prop('selected', true);
+		});
+		$('.clear_all').click(function() {
+    		$('#users option').prop('selected', false);
+		});
 		$('#type').on("change", function() {
 			if ($('#type option:selected').val() == 2) {
 				$('.price').show();
