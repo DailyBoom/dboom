@@ -124,6 +124,33 @@
 					<input class="file-path validate" type="text">
 				</div>
 			</div>
+			<br>
+			<div class="row">
+				<div class="input-field col s12">
+					<select id="color" class="validate" name="color">
+						<option value="">Blue Grey (default)</option>
+						<option value="red">Red</option>
+						<option value="pink">Pink</option>
+						<option value="purple">Purple</option>
+						<option value="deep-purple">Deep Purple</option>
+						<option value="indigo">Indigo</option>
+						<option value="blue">Blue</option>
+						<option value="light-blue">Light Blue</option>
+						<option value="cyan">Cyan</option>
+						<option value="teal">Teal</option>
+						<option value="green">Green</option>
+						<option value="light-green">Light Green</option>
+						<option value="lime">Lime</option>
+						<option value="yellow">Yellow</option>
+						<option value="amber">Amber</option>
+						<option value="orange">Orange</option>
+						<option value="deep-orange">Deep Orange</option>
+						<option value="brown">Brown</option>
+						<option value="grey">Grey</option>
+					</select>
+					<label for="color">테마 색상</label>
+				</div>
+			</div>
 			<div class="row">
 				<div class="input-field col s12 m12 l12">
 					<input id="videoUrl" name="videoUrl" type="url" class="validate">

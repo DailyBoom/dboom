@@ -1,5 +1,9 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
+		<div class="coupon-wrapper">
+			<img class="toast-coupon" src="/images/themes/coupon.jpg">
+			<br><a href="#!" class="white circle blue-grey-text text-darken-3 right" id="hide-c"><i class="fa fa-times fa-fw fa-2x"></i></a>
+		</div>
 		<div class="container">
 			<div class="row">
 				<form class="col s12" method="post" action="/signup">
@@ -148,6 +152,9 @@
 					$('#add-address').toggleClass('hide');
 					$('#add-address input').not("#zipcode").prop('required', this.checked);
 				});
+			});
+			$('#hide-c').on('click', function(){
+				$(this).parent().fadeOut();
 			});
 		</script>
   })
