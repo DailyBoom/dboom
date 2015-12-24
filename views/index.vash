@@ -356,6 +356,14 @@
 		</div><!-- .col -->
 	</div><!-- .row -->
 </div><!-- .container -->
+@if(model.toast) {
+<script>
+	$(document).ready(function() {
+		var toast = $('<a href="/signup">@model.toast</a>');
+		Materialize.toast(toast, 10000);
+	});
+</script>
+}
 <script>
 	$(document).ready(function() {
 		$("#main-slider").bxSlider({

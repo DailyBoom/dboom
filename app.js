@@ -136,9 +136,10 @@ passport.use(new FacebookStrategy({
     clientID: config.get("Facebook.clientID"),
     clientSecret: config.get("Facebook.clientSecret"),
     callbackURL: config.get("Facebook.callbackURL"),
-    profileFields: ['id', 'displayName']
+    profileFields: ['id', 'displayName'],
+    passReqToCallback: true
   },
-  function(accessToken, refreshToken, profile, done) {
+  function(req, accessToken, refreshToken, profile, done) {
      //check user table for anyone with a facebook ID of profile.id
       User.findOne({
           'facebookId': profile.id
@@ -184,9 +185,10 @@ passport.use(new FacebookStrategy({
 
 passport.use(new KakaoStrategy({
     clientID : config.get("Kakao.clientID"),
-    callbackURL : config.get("Kakao.callbackURL")
+    callbackURL : config.get("Kakao.callbackURL"),
+    passReqToCallback: true    
   },
-  function(accessToken, refreshToken, profile, done){
+  function(req, accessToken, refreshToken, profile, done){
      //check user table for anyone with a facebook ID of profile.id
       User.findOne({
           'kakaoId': profile.id

@@ -23,6 +23,7 @@ var productSchema = new Schema({
   delivery_info: String,
   is_published: Boolean,
   extend: Number,
+  color: String,
   wanna_buy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   created_at: { type : Date, default : Date.now },
   updated_at: Date
