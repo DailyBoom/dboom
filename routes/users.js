@@ -77,15 +77,15 @@ router.get('/logout', function(req, res){
 });
 
 router.get('/mypage', isAuthenticated, function(req, res) {
-  Order.find({ 'user': req.user._id }, {}, {$sort: { created_at: -1 }}).where('status').ne('Submitted').populate('product').exec(function(err, orders) {
+  Order.find({ 'user': req.user._id }, {}, {sort: { created_at: -1 }}).where('status').ne('Submitted').populate('product').exec(function(err, orders) {
       if (typeof req.session.errors !== 'undefined') {
         var errors = req.session.errors;
         delete req.session.errors;
-        Coupon.find({ user: req.user.id }, function(err, coupons) {
+        Coupon.find({ user: req.user.id }, {}, { sort: { created_at: -1 } }, function(err, coupons) {
           res.render('users/show', { orders: orders, errors: errors, title: "마이 페이지", coupons: coupons });
         });
       }
-      Coupon.find({ user: req.user.id }, function(err, coupons) {
+      Coupon.find({ user: req.user.id }, {}, { sort: { created_at: -1 } }, function(err, coupons) {
         res.render('users/show', { orders: orders, title: "마이 페이지", coupons: coupons });
       });
     });

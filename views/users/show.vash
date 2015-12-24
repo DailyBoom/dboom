@@ -227,10 +227,10 @@
 									</div>
 									<div class="card-action">
 										@if(!coupon.used) {
-											<div class="btn-flat green-text text-darken-2">쿠폰 사용가능 <i class="fa fa-check fa-fw right"></i></div>
+											<div class="green-text text-darken-2">쿠폰 사용가능 <i class="fa fa-check fa-fw right"></i></div>
 										}
 										else {
-											<div class="btn-flat grey-text">이미 사용하셨습니다 <i class="fa fa-ban fa-fw right"></i></div>
+											<div class="grey-text">이미 사용하셨습니다 <i class="fa fa-ban fa-fw right"></i></div>
 										}
 									</div>
 								</div><!-- .card -->
