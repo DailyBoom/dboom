@@ -12,6 +12,7 @@
 							<th>User</th>
 							<th>Type</th>
 							<th>Amount</th>
+							<th>Used</th>
 						</tr>
 					</thead>
 					
@@ -28,6 +29,10 @@
 								else if(coupon.type == 3) {
 									<td>@coupon.percentage %</td>
 								}
+								else {
+									<td></td>
+								}
+								<td>@coupon.used</td>
 							</tr>
 						})
 					</tbody>
