@@ -740,6 +740,18 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .m-item { display: inline-block; }
 .m-item .item-price-o.mod { text-decoration: none !important; }
+
+/* Product */
+.color-box {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+}
+#color .dropdown-content .select-dropdown li:nth-child(2) {
+  background-color: #f44336;
+}
+
+/* Buy */
 @media only screen and (min-width: 0) {
   .mobile-buy {
     display: block;
@@ -768,7 +780,7 @@ input[type=number]::-webkit-outer-spin-button {
     vertical-align: middle;
     width: 100%;
     margin-top: -60px;
-    padding: 0 10px;
+    padding: 0 5px;
     border-top: 2px solid #fff;
     border-bottom: 2px solid #fff;
     z-index: 10;
@@ -817,7 +829,7 @@ input[type=number]::-webkit-outer-spin-button {
     z-index: 10;
   }
   .item-name {
-    width: 65%;
+    width: 70%;
     display: inline-block;
     position: absolute;
     margin-left: 5px;
@@ -829,6 +841,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .item-name.name-lg {
     font-size: 1.5em;
+    font-size: 6vw;
   }
   .item-price {
     display: block;
@@ -968,7 +981,6 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .item-name.name-md {
     font-size: 1.4em;
-    font-size: 2.5vw;
   }
   .item-name.name-lg {
     font-size: 2em;
@@ -1103,18 +1115,14 @@ input[type=number]::-webkit-outer-spin-button {
     display: inline-block;
     position: absolute;
     margin-left: 10px;
-  }
-  .item-name.name-sm {
-    font-size: 1.25em;
     line-height: 70px;
   }
   .item-name.name-md {
     font-size: 1.75em;
-    line-height: 70px;
   }
   .item-name.name-lg {
     font-size: 2.5em;
-    line-height: 70px;
+    overflow-x: scroll;
   }
   .item-price {
     display: inline-block;
