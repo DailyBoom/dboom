@@ -1,5 +1,13 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
+@if(model.toast) {
+	<div class="coupon-wrapper">
+		<a href="/signup" class="white-text">
+			<img class="toast-coupon" src="/images/themes/coupon.jpg">
+		</a>
+		<br><a href="#!" class="white circle blue-grey-text text-darken-3 right" id="hide-c"><i class="fa fa-times fa-fw fa-2x"></i></a>
+	</div>
+}
 <!-- Login Modal Structure -->
 <div id="modal-check" class="modal">
 	<div class="modal-header-c @(model.product.color ? 'model.product.color' : 'blue-grey') darken-2 white-text center">
@@ -356,14 +364,7 @@
 		</div><!-- .col -->
 	</div><!-- .row -->
 </div><!-- .container -->
-@if(model.toast) {
-<script>
-	$(document).ready(function() {
-		var toast = $('<a href="/signup">@model.toast</a>');
-		Materialize.toast(toast, 10000);
-	});
-</script>
-}
+
 <script>
 	$(document).ready(function() {
 		$("#main-slider").bxSlider({
@@ -461,6 +462,9 @@
 		$(".extended-time").each(function() {
 			timer($(this));
 		});
+	});
+	$('#hide-c').on('click', function(){
+		$(this).parent().fadeOut();
 	});
 </script>
 	})
