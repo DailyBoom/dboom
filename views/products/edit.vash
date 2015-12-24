@@ -213,6 +213,7 @@
 <!-- .container -->
 <script>
 	$(document).ready(function() {
+		$('select').material_select();
 			$('.datepicker').pickadate({
 			min: true,
 			format: 'mm/dd/yyyy',
