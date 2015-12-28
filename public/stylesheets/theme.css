@@ -75,6 +75,7 @@ nav {
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
+  text-align: center;
 }
 @media only screen and (min-width: 0) {
   .snowpile {
@@ -114,6 +115,7 @@ nav {
     width: 970px;
     height: 80px;
     margin-top: -142px;
+    text-align: center;
   }
   .deal-wrapper {
     position: absolute;

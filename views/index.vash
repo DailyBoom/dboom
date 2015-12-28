@@ -82,7 +82,18 @@
 				@if(model.product.video)
 					<iframe width="560" height="315" src="@model.product.video" frameborder="0" allowfullscreen></iframe>
     	</div><!-- #main-slider -->
-			<div class="snowpile"></div>
+			<div class="snowpile">
+			@if (model.user) {
+				@if (model.progress < 100) {
+					<a class="hide-on-small-only btn red btn-buy" href="/checkout?product_id=@model.product.id">BUY TODAY'S PRODUCT NOW</a>
+				}
+			}
+			else {
+				@if (model.progress < 100) {
+					<a class="hide-on-small-only btn red btn-buy modal-trigger" href="#modal-check">BUY TODAY'S PRODUCT NOW</a>
+				}
+			}
+			</div>
 		</div><!-- .col -->
 		<div class="col s12">
 			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'blue-grey') darken-3 white-text">
@@ -95,16 +106,7 @@
 						<div class="item-name name-lg">@model.product.name</div>
 					}
 					<!--  -->
-					@if (model.user) {
-						@if (model.progress < 100) {
-							<a class="hide-on-small-only btn-buy-wrapper right" href="/checkout?product_id=@model.product.id"><img class="btn-buy" src="/images/themes/btn-buy.png" /></a>
-						}
-					}
-					else {
-						@if (model.progress < 100) {
-							<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/themes/btn-buy.png" /></a>
-						}
-					}
+
 					<!-- <div class="hide-on-small-only item-price right" id="product_price">@model.product.price</div> -->
 					<!-- <div class="hide-on-small-only item-price-o red-text text-lighten-2 right" id="old_price">@model.product.old_price</div> -->
 					<div class="hide-on-small-only m-item right">

@@ -1093,9 +1093,12 @@ input[type=number]::-webkit-outer-spin-button {
     z-index: 1000;
   }
   .btn-buy {
-    display: block;
-    height: 100px;
-    width: 100px;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 50px;
+    height: auto;
+    width: auto;
   }
   .buy-box-footer {
     display: block;
