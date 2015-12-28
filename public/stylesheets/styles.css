@@ -207,9 +207,9 @@ input[type=number]::-webkit-outer-spin-button {
 @media only screen and (min-width: 992px) {
   .logo-m { display: none; }
   .logo-d { display: block; }
-  .logo-img { height: 90px; }
+  .logo-img { height: 110px; }
   nav {
-    height: 90px;
+    height: 110px;
   }
   .nav-item { padding: 10px; }
   .nav-item.mod { padding: 18px 10px; }
@@ -232,6 +232,9 @@ input[type=number]::-webkit-outer-spin-button {
     left: 0;
     right: 0;
     text-align: center;
+  }
+  .time {
+    top: 25px;    
   }
 }
 @media only screen and (min-width: 1200px) {}
@@ -1071,6 +1074,9 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 @media only screen and (min-width: 992px)  {
+  .user-link {
+    margin-top: 10px;
+  }
   .buy-box-wrapper {
     position: relative;
     height: 70px;
@@ -1093,12 +1099,15 @@ input[type=number]::-webkit-outer-spin-button {
     z-index: 1000;
   }
   .btn-buy {
-    display: inline-block;
+    /*display: inline-block;
     font-size: 20px;
     font-weight: bold;
     padding: 10px 50px;
     height: auto;
-    width: auto;
+    width: auto;*/
+    display: block;
+    width: 100px;
+    height: 100px;
   }
   .buy-box-footer {
     display: block;
