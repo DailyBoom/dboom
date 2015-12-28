@@ -40,22 +40,42 @@
     	</div><!-- #main-slider -->
 		</div><!-- .col -->
 		<div class="col s12">
-			<div class="buy-box-wrapper white-text">
-				<img class="brand-img" src="/@model.product.brand_logo" alt="@model.product.brand - Logo" />
-				<div class="item-name truncate">@model.product.name</div>
-					@if (model.user) {
-						<a class="hide-on-small-only btn-buy-wrapper right" href="/checkout?product_id=@model.product.id"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
+			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'blue-grey') darken-3 white-text">
+				<img class="brand-img" src="@model.product.brand_logo" alt="@model.product.brand - Logo" />
+				<!-- <div class="item-name truncate">@model.product.name</div> -->
+					@if (model.product.name.length >= 12) {
+						<div class="item-name name-md">@model.product.name</div>
 					}
 					else {
-						<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/btn-buy-a.png" /></a>
+						<div class="item-name name-lg">@model.product.name</div>
 					}
-					<div class="hide-on-small-only item-price right" id="product_price">@model.product.price</div>
-					<div class="hide-on-small-only item-price-o blue-grey-text text-lighten-2 right" id="old_price">@model.product.old_price</div>
+					<!--  -->
+					@if (model.user) {
+						@if (model.progress < 100) {
+							<a class="hide-on-small-only btn-buy-wrapper right" href="/checkout?product_id=@model.product.id"><img class="btn-buy" src="/images/themes/btn-buy.png" /></a>
+						}
+					}
+					else {
+						@if (model.progress < 100) {
+							<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/themes/btn-buy.png" /></a>
+						}
+					}
+					<!-- <div class="hide-on-small-only item-price right" id="product_price">@model.product.price</div> -->
+					<!-- <div class="hide-on-small-only item-price-o red-text text-lighten-2 right" id="old_price">@model.product.old_price</div> -->
+					<div class="hide-on-small-only m-item right">
+						<div class="item-price-o mod red-text text-lighten-2">SALE</div>
+						<div class="item-price white-text">@model.sale%</div>
+					</div>
+					<span class="hide-on-small-only">&nbsp;</span>
+					<div class="hide-on-small-only m-item right">
+						<div class="item-price-o desk red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
+						<div class="item-price desk white-text" id="product_price_mobile">@model.product.price</div>
+					</div>
 			</div>
-			<div class="buy-box-info blue-grey lighten-5 blue-grey-text text-darken-2">
+			<div class="buy-box-info @(model.product.color ? model.product.color : 'blue-grey') lighten-5 blue-grey-text text-darken-2">
 				<div class="item-info">@html.raw(model.product.description)</div>
 			</div>
-			<div class="buy-box-footer blue-grey lighten-3">
+			<div class="buy-box-footer @(model.product.color ? model.product.color : 'blue-grey') lighten-3">
 				<div class="center">
 					<!-- <span class="share-text white-text">share</span> -->
 					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
@@ -66,20 +86,20 @@
 			</div><!-- .buy-box-footer -->
 			<!-- Modal Structure -->
 		  <div id="share_url_modal" class="modal">
-				<div class="modal-header blue-grey darken-2 white-text center">
+				<div class="modal-header @(model.product.color ? model.product.color : 'blue-grey') darken-2 white-text center">
 					공유하기
 				</div>
 		    <div class="modal-content">
 					<input readonly type="text" id="share_url" value="http://dailyboom.co">
 					<br>
 					<br>
-					<a href="#!" class="modal-action modal-close waves-effect waves-light btn blue-grey darken-2">닫기</a>
+					<a href="#!" class="modal-action modal-close waves-effect waves-light btn @(model.product.color ? model.product.color : 'blue-grey') darken-2">닫기</a>
 		    </div>
 		  </div>
 			<!-- Merchant xInfo -->
 			<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
 		    <li>
-					<div class="collapsible-header blue-grey darken-1 white-text">
+					<div class="collapsible-header @(model.product.color ? model.product.color : 'blue-grey') darken-1 white-text">
 						배송 진행상황 조회 및 제품 교환/환불 정책
 					</div>
 					<div class="collapsible-body">
@@ -102,7 +122,7 @@
 		  </ul>
 
 			<!-- Mobile -->
-			<div class="hide-on-med-and-up mobile-buy blue-grey darken-3">
+			<div class="hide-on-med-and-up mobile-buy @(model.product.color ? model.product.color : 'blue-grey') darken-3">
 				<div class="item-price-o blue-grey-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
 				<div class="item-price white-text" id="product_price_mobile">@model.product.price</div>
 				@if (model.user) {

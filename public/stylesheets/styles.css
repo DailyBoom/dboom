@@ -1137,7 +1137,6 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .item-name.name-lg {
     font-size: 2.5em;
-    overflow-x: scroll;
   }
   .item-price {
     display: inline-block;

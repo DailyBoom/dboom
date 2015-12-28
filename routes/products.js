@@ -204,7 +204,7 @@ router.get('/products/preview/:id', isAdmin, function(req, res) {
   Product.findOne({ _id: req.params.id }, function(err, product) {
     if (err)
       console.log(err);
-    res.render('products/preview', { product: product });
+    res.render('products/preview', { product: product, progress: 10 });
   });
 });
 
