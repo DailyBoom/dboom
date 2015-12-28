@@ -119,8 +119,8 @@
 				<div class="container center">
 					<a href="/" class="logo-d"><img class="logo-img left" src="/images/db_korea.png" /></a>
 					<a href="/" class="logo-m"><img class="logo-img left" src="/images/dbkorea01.png" /></a>
-					<span id="time-left-label" class="d-clock white-text">남은시간</span>
-          <span id="time-left" class="d-clock white-text"></span>
+					<span id="time-left-label" class="d-clock white-text label">남은시간</span>
+          <span id="time-left" class="d-clock white-text time"></span>
 					@if (model.user) {
 						<ul class="right">
 							<li class="nav-item">
@@ -165,7 +165,7 @@
 								</ul>
 							</li>
 						</ul>
-            <ul class="right hide-on-small-only">
+            <ul class="right hide-on-small-only user-link">
               <li class="nav-item mod"><a class="white-text" href="/login">로그인</a></li>
               <li class="nav-item mod"><a class="white-text" href="/signup">회원가입</a></li>
             </ul>
@@ -229,6 +229,7 @@
         $(window).load(function() {
             $('#time-left-label').fadeOut(2500, function(){
               var now = moment();
+              var is_mobile = @model.is_mobile;
               var momentTom = '@(model.date ? model.date : null)';
               if (momentTom)
                 momentTom = moment(momentTom).tz("Asia/Seoul").add(3, 'days').hours(0).minutes(0).seconds(0);
@@ -241,6 +242,11 @@
               $('#time-left').hide();
               $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
               $('#time-left').fadeIn(1000);
+              if (!is_mobile) {
+                $('#time-left-label').css("top", "-25px");
+                $('#time-left-label').css("font-size", "25px");
+                $('#time-left-label').fadeIn(1000);
+              }
               var interval = setInterval(function() {
                 timeLeft = moment.duration(momentTom.diff(moment().tz("Asia/Seoul"), 'milliseconds'));
                 if (timeLeft._milliseconds == 0) {
