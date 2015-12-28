@@ -174,7 +174,7 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s12 m12 l12">
-					<input id="videoUrl" name="videoUrl" type="url" class="validate" value="@model.product.video">
+					<input id="videoUrl" name="videoUrl" type="text" class="validate" value="@model.product.video">
 					<label for="videoUrl">동영상 링크 (YouTube Embeded Link)</label>
 				</div>
 				<div class="input-field col s12 m12 l12">

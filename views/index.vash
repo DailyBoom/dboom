@@ -72,6 +72,9 @@
 	<div class="row">
 		<div class="col s12">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
+				@if(model.product.video)
+					@html.raw(model.product.video)
+					<!-- <iframe width="560" height="315" src="@model.product.video" frameborder="0" allowfullscreen></iframe> -->
 				@model.product.images.forEach(function(img) {
 					<div class="slide" style="background-image: url(@img);">
 						@if(model.progress >= 100) {
@@ -79,18 +82,16 @@
 						}
 					</div>
 				})
-				@if(model.product.video)
-					<iframe width="560" height="315" src="@model.product.video" frameborder="0" allowfullscreen></iframe>
     	</div><!-- #main-slider -->
 			<div class="snowpile">
 			@if (model.user) {
 				@if (model.progress < 100) {
-					<a class="hide-on-small-only btn red btn-buy" href="/checkout?product_id=@model.product.id">BUY TODAY'S PRODUCT NOW</a>
+					<a class="hide-on-small-only btn btn-large buy-mod red darken-1" href="/checkout?product_id=@model.product.id">구 매 하 기</a>
 				}
 			}
 			else {
 				@if (model.progress < 100) {
-					<a class="hide-on-small-only btn red btn-buy modal-trigger" href="#modal-check">BUY TODAY'S PRODUCT NOW</a>
+					<a class="hide-on-small-only btn btn-large buy-mod red darken-1 modal-trigger" href="#modal-check">구 매 하 기</a>
 				}
 			}
 			</div>
