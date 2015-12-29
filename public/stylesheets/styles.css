@@ -501,6 +501,17 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /** Slider **/
+.btn.buy-mod {
+  opacity: .6;
+  border: 2px solid #fff;
+  font-size: 1.5em;
+  line-height: 2.25em;
+  vertical-align: middle;
+}
+.btn.buy-mod:hover {
+  opacity: 1.0;
+}
+
 .bx-controls-direction:hover {
   opacity: 1;
   -webkit-animation-name: lighten;
@@ -741,8 +752,12 @@ input[type=number]::-webkit-outer-spin-button {
 .ol-new-p {
   font-size: 2em;
 }
-.m-item { display: inline-block; }
-.m-item .item-price-o.mod { text-decoration: none !important; }
+.m-item {
+  display: inline-block;
+}
+.m-item .item-price-o.mod {
+  text-decoration: none !important;
+}
 
 /* Coupon */
 .coupon-wrapper {
@@ -1007,12 +1022,12 @@ input[type=number]::-webkit-outer-spin-button {
   .item-price {
     display: inline-block;
     font-size: 1.8em;
-    margin-right: 90px;
+    /*margin-right: 90px;*/
     margin-top: -8px;
   }
   .item-price-o {
     margin-top: 2px;
-    margin-right: 20px;
+    /*margin-right: 20px;*/
     text-decoration: line-through;
     font-size: 1.2em;
   }
@@ -1152,7 +1167,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .item-price {
     display: inline-block;
-    margin-right: 120px;
+    /*margin-right: 120px;*/
     font-size: 2.5em;
     margin-top: 0;
   }
