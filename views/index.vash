@@ -62,7 +62,7 @@
 </div><!-- #modal-check -->
 <!-- End Login Modal -->
 <div class="container">
-	<div class="time-wrapper blue">
+	<div class="time-wrapper blue hide-on-small-only">
 		<span id="time-left-label" class="d-clock white-text label">남은시간</span>
 		<span id="time-left" class="d-clock white-text time"></span>
 		@if (model.user) {
