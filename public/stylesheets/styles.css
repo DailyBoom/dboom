@@ -14,6 +14,16 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Dotum';
+  src:  url('/fonts/hcrdotum-webfont.woff2') format('woff2'),
+        url('/fonts/hcrdotum-webfont.woff') format('woff'),
+        url('/fonts/hcrdotum-webfont.ttf') format('truetype');
+}
+body {
+  font-family: 'Dotum', sans-serif;
+}
+
 @media only screen and (min-width: 0) {}
 @media only screen and (min-width: 601px) {}
 @media only screen and (min-width: 992px) {}
