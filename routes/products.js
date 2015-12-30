@@ -1,11 +1,26 @@
 var express = require('express');
 var router = express.Router();
 var multer  = require('multer');
-var upload = multer({ dest: 'uploads/' });
 var moment = require("moment");
 var Product = require("../models/product");
 var User = require("../models/user");
 var i18n = require('i18n');
+var mime = require('mime-types');
+var crypto = require("crypto");
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads/')
+  },
+  filename: function (req, file, cb) {
+    crypto.pseudoRandomBytes(16, function (err, raw) {
+      cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+    });
+  }
+});
+
+var upload = multer({ storage: storage });
+
 
 var isAdmin = function (req, res, next) {
   if (req.isAuthenticated() && req.user.admin === true)
