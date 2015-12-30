@@ -65,7 +65,7 @@ router.get('/', function(req, res, next) {
 });
 
 // beta
-router.get('/b', function(req, res, next) {
+router.get('/alpha', function(req, res, next) {
   var now;
   if (moment().day() == 0)
     now = moment().subtract(1, 'days').format("MM/DD/YYYY");
@@ -84,7 +84,7 @@ router.get('/b', function(req, res, next) {
           });
           var progress = (product.quantity - current_quantity) / product.quantity * 100;
           var sale = (product.old_price - product.price) / product.old_price * 100;
-          res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, pastProducts: pastProducts, title: "오늘 뭐 사지?", toast: toast });
+          res.render('index_text', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, pastProducts: pastProducts, title: "오늘 뭐 사지?", toast: toast });
 
         });
       }
@@ -95,7 +95,7 @@ router.get('/b', function(req, res, next) {
         });
         var progress = (product.quantity - current_quantity) / product.quantity * 100;
         var sale = (product.old_price - product.price) / product.old_price * 100;
-        res.render('index_b', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, pastProducts: pastProducts, title: "오늘 뭐 사지?", toast: toast });
+        res.render('index_test', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, pastProducts: pastProducts, title: "오늘 뭐 사지?", toast: toast });
       }
     });
   });

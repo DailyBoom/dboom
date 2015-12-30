@@ -117,16 +117,14 @@
 		<div class="navbar">
 			<nav class="@(model.product && model.product.color ? model.product.color : 'blue-grey') darken-3 snow">
 				<div class="container center">
-					<a href="/" class="logo-d"><img class="logo-img left" src="/images/db_korea.png" /></a>
-					<a href="/" class="logo-m"><img class="logo-img left" src="/images/dbkorea01.png" /></a>
-					<span id="time-left-label" class="d-clock white-text label">남은시간</span>
-          <span id="time-left" class="d-clock white-text time"></span>
+					<a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
+					<a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
 					@if (model.user) {
 						<ul class="right">
 							<li class="nav-item">
 								<!-- Dropdown Trigger -->
 								<a class='dropdown-button btn-floating btn-profile green z-depth-1' href='#' data-activates='dropdown-profile'>
-									<i class="fa fa-user fa-3x"></i>
+									<i class="fa fa-user fa-2x"></i>
 								</a>
 								<!-- Dropdown Structure -->
 								<ul id="dropdown-profile" class="dropdown-content">
@@ -227,7 +225,7 @@
       @if(!model.no_time){
         <script>
         $(window).load(function() {
-            $('#time-left-label').fadeOut(2500, function(){
+            // $('#time-left-label').fadeOut(2500, function(){
               var now = moment();
               var is_mobile = @model.is_mobile;
               var momentTom = '@(model.date ? model.date : null)';
@@ -243,8 +241,6 @@
               $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
               $('#time-left').fadeIn(1000);
               if (!is_mobile) {
-                $('#time-left-label').css("top", "-25px");
-                $('#time-left-label').css("font-size", "25px");
                 $('#time-left-label').fadeIn(1000);
               }
               var interval = setInterval(function() {
@@ -254,7 +250,7 @@
                 }
                 $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
               }, 1000);
-            });
+            // });
         });
       </script>
     }
