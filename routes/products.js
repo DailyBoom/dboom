@@ -6,6 +6,7 @@ var Product = require("../models/product");
 var User = require("../models/user");
 var i18n = require('i18n');
 var mime = require('mime-types');
+var crypto = require("crypto");
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {

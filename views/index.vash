@@ -158,12 +158,12 @@
 				<div class="right-align">
 				@if (model.user) {
 					@if (model.progress < 100) {
-						<a class="hide-on-small-only btn btn-large buy-mod red darken-1" href="/checkout?product_id=@model.product.id">오늘의 상품 구매하기 ></a>
+						<a class="hide-on-small-only btn btn-large buy-mod red darken-1" href="/checkout?product_id=@model.product.id">오늘의 상품 구매하기 <i class="fa fa-chevron-right fa-fw"></i></a>
 					}
 				}
 				else {
 					@if (model.progress < 100) {
-						<a class="hide-on-small-only btn btn-large buy-mod red darken-1 modal-trigger" href="#modal-check">오늘의 상품 구매하기 ></a>
+						<a class="hide-on-small-only btn btn-large buy-mod red darken-1 modal-trigger" href="#modal-check">오늘의 상품 구매하기 <i class="fa fa-chevron-right fa-fw"></i></a>
 					}
 				}
 				</div>
