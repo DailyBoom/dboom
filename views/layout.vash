@@ -238,7 +238,6 @@
               else
                 momentTom = moment().tz("Asia/Seoul").add(1, 'days').hours(0).minutes(0).seconds(0);
               var timeLeft = moment.duration(momentTom.diff(now), 'milliseconds');
-              $('#time-left').hide();
               if (!is_mobile) {
                 $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
               }
