@@ -505,7 +505,7 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 10px 20px;
   z-index: 1001;
   text-align: center;
-  width: 550px;
+  width: 570px;
 }
 
 /** Slider **/
