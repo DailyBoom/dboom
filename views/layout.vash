@@ -115,7 +115,7 @@
   </head>
   <body>
 		<div class="navbar">
-			<nav class="@(model.product && model.product.color ? model.product.color : 'light-blue') darken-3 snow">
+			<nav class="@(model.product && model.product.color ? model.product.color : 'blue-grey') darken-3 snow">
 				<div class="container center">
 					<a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
 					<a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
@@ -124,11 +124,11 @@
 							<li class="nav-item">
 								<!-- Dropdown Trigger -->
 								<a class='dropdown-button btn-floating btn-profile green z-depth-1' href='#' data-activates='dropdown-profile'>
-									<i class="fa fa-user fa-3x"></i>
+									<i class="fa fa-user fa-2x"></i>
 								</a>
 								<!-- Dropdown Structure -->
 								<ul id="dropdown-profile" class="dropdown-content">
-									<li><a class="@(model.product && model.product.color ? model.product.color : 'light-blue') darken-2 white-text" href="#!">@model.user.username</a></li>
+									<li><a class="@(model.product && model.product.color ? model.product.color : 'blue-grey') darken-4 white-text" href="#!">@model.user.username</a></li>
                 @if (model.user.admin == 1) {
                   <li class="divider"></li>
                   <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus fa-fw right"></i></a></li>
@@ -143,8 +143,8 @@
                   <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck fa-fw right"></i></a></li>
                 }
 									<li class="divider"></li>
-									<li><a class="@(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href="/mypage">마이 페이지 <i class="fa fa-user fa-fw right"></i></a></li>
-									<li><a class="@(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href="/logout">로그아웃 <i class="fa fa-sign-out fa-fw right"></i></a></li>
+									<li><a class="@(model.product && model.product.color ? model.product.color : 'blue-grey')-text text-darken-2" href="/mypage">마이 페이지 <i class="fa fa-user fa-fw right"></i></a></li>
+									<li><a class="@(model.product && model.product.color ? model.product.color : 'blue-grey')-text text-darken-2" href="/logout">로그아웃 <i class="fa fa-sign-out fa-fw right"></i></a></li>
 								</ul>
 							</li>
 						</ul>
@@ -157,9 +157,9 @@
 									<i class="fa fa-bars fa-fw fa-4x"></i>
 								</a>
 								<!-- Dropdown Structure -->
-								<ul id="dropdown-profile" class="dropdown-content @(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2">
-									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href="/login">로그인 <i class="fa fa-sign-in fa-fw right"></i></a></li>
-									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href="/signup">회원가입 <i class="fa fa-user-plus fa-fw right"></i></a></li>
+								<ul id="dropdown-profile" class="dropdown-content @(model.product && model.product.color ? model.product.color : 'blue-grey')-text text-darken-2">
+									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'blue-grey')-text text-darken-2" href="/login">로그인 <i class="fa fa-sign-in fa-fw right"></i></a></li>
+									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'blue-grey')-text text-darken-2" href="/signup">회원가입 <i class="fa fa-user-plus fa-fw right"></i></a></li>
 								</ul>
 							</li>
 						</ul>
@@ -172,7 +172,7 @@
 			</nav>
 		</div><!-- .navbar -->
       @html.block("body")
-		<footer class="page-footer @(model.product && model.product.color ? model.product.color : 'light-blue') darken-3">
+		<footer class="page-footer @(model.product && model.product.color ? model.product.color : 'blue-grey') darken-3">
 			<div class="container">
         <div class="row flex-s">
           <div class="col s12 m3 l3 box-2">
@@ -225,7 +225,7 @@
       @if(!model.no_time){
         <script>
         $(window).load(function() {
-            $('#time-left-label').fadeOut(2500, function(){
+            // $('#time-left-label').fadeOut(2500, function(){
               var now = moment();
               var is_mobile = @model.is_mobile;
               var momentTom = '@(model.date ? model.date : null)';
@@ -241,8 +241,6 @@
               $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
               $('#time-left').fadeIn(1000);
               if (!is_mobile) {
-                $('#time-left-label').css("display", "block");
-                $('#time-left-label').css("font-size", "25px");
                 $('#time-left-label').fadeIn(1000);
               }
               var interval = setInterval(function() {
@@ -252,7 +250,7 @@
                 }
                 $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
               }, 1000);
-            });
+            // });
         });
       </script>
     }

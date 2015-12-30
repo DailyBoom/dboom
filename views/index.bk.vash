@@ -10,7 +10,7 @@
 }
 <!-- Login Modal Structure -->
 <div id="modal-check" class="modal">
-	<div class="modal-header-c @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text center">
+	<div class="modal-header-c @(model.product.color ? model.product.color : 'blue-grey') darken-2 white-text center">
 		로그인
 	</div>
 	<div class="modal-content-c">
@@ -30,7 +30,7 @@
 						<label for="remember-me">아이디 저장</label>
 					</span>
 					<span class="right">
-						<button class="waves-effect waves-light btn @(model.product.color ? model.product.color : 'light-blue') darken-2" type="submit" name="action">로그인</button>
+						<button class="waves-effect waves-light btn @(model.product.color ? model.product.color : 'blue-grey') darken-2" type="submit" name="action">로그인</button>
 					</span>
 				</div><!-- .col -->
 				<div class="col s12">
@@ -47,7 +47,7 @@
 							<img class="circle z-depth-1" src="/images/icon_buy.png" />
 						</a>
 						<img class="responsive-img hide-on-med-and-up" src="/images/buynow.png" alt="비회원 바로구매 - 데일리 붐" />
-						<div class="right @(model.product.color ? model.product.color : 'light-blue')-text hide-on-med-and-up">
+						<div class="right @(model.product.color ? model.product.color : 'blue-grey')-text hide-on-med-and-up">
 							<i class="fa fa-info-circle fa-fw"></i> 비회원 바로구매
 						</div>
 					</div>
@@ -55,40 +55,26 @@
 			</form>
 		</div><!-- .row -->
 	</div><!-- .modal-content -->
-	<div class="modal-footer-c @(model.product.color ? model.product.color : 'light-blue') lighten-5 red-text text-darken-3">
-		<a class="@(model.product.color ? model.product.color : 'light-blue')-text text-darken-3 left" href="/forgot">비밀번호를 잊으셨나요?</a>
+	<div class="modal-footer-c @(model.product.color ? model.product.color : 'blue-grey') lighten-5 red-text text-darken-3">
+		<a class="@(model.product.color ? model.product.color : 'blue-grey')-text text-darken-3 left" href="/forgot">비밀번호를 잊으셨나요?</a>
 		<!-- <a class="red-text text-darken-3 right" href="/signup">회원가입</a> -->
 	</div>
 </div><!-- #modal-check -->
 <!-- End Login Modal -->
-<!-- Buy Wrapper -->
-<div class="hide-on-small-only buy-sticky-wrapper @(model.product.color ? model.product.color : 'light-blue')">
-	@if (model.user) {
-		@if (model.progress < 100) {
-			<a class="btn btn-large buy-mod red darken-1 right" href="/checkout?product_id=@model.product.id"> 구매하기 <i class="fa fa-chevron-right fa-fw"></i> </a>
-		}
-	}
-	else {
-		@if (model.progress < 100) {
-			<a class="btn btn-large buy-mod red darken-1 right modal-trigger" href="#modal-check"> 구매하기 <i class="fa fa-chevron-right fa-fw"></i> </a>
-		}
-	}
-	<span id="time-left-label" class="d-clock label @(model.product.color ? model.product.color : 'light-blue') white-text left">남은시간</span>
-	<br><span id="time-left" class="d-clock white-text left"></span>
-</div>
-
 <div class="container">
 	@if(model.progress >= 50){
-		 <div class="progress-wrapper">
-			<div class="progress-h red lighten-4"></div>
-			<div class="determinate-h red darken-2" style=""></div>
-			<div class="progress-h-text white-text hide">@model.progress% 팔림</div>
-		</div>
+	 <div class="progress-wrapper">
+		<div class="progress-h red lighten-4"></div>
+		<div class="determinate-h red darken-2" style=""></div>
+		<div class="progress-h-text white-text hide">@model.progress% 팔림</div>
+	</div>
 	}
-	<!-- L Slider -->
-	<div class="hero-wrapper">
-		<div class="hero-left">
+	<div class="row">
+		<div class="col s12">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
+				@if(model.product.video)
+					@html.raw(model.product.video)
+					<!-- <iframe width="560" height="315" src="@model.product.video" frameborder="0" allowfullscreen></iframe> -->
 				@model.product.images.forEach(function(img) {
 					<div class="slide" style="background-image: url(@img);">
 						@if(model.progress >= 100) {
@@ -96,48 +82,34 @@
 						}
 					</div>
 				})
-				@if(model.product.video) {
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/@model.product.video" frameborder="0" allowfullscreen></iframe>
+    	</div><!-- #main-slider -->
+			<div class="snowpile">
+			@if (model.user) {
+				@if (model.progress < 100) {
+					<a class="hide-on-small-only btn btn-large buy-mod red darken-1" href="/checkout?product_id=@model.product.id">구 매 하 기</a>
 				}
-				else {
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/03Birmmx8RA" frameborder="0" allowfullscreen></iframe>
-				}
-			</div><!-- #main-slider -->
-		</div><!-- .hero-left -->
-		<div class="hero-right" id="bx-pager">
-			@{ var x = 0; }
-			@model.product.images.forEach(function(img) {
-				<a class="hero-img" data-slide-index="@x">
-					<div class="hero-thumbnail" style="background-image: url(@img);"></div>
-				</a>
-				@{ x++; }
-			})
-			@if(model.product.video) {
-				<a class="hero-img" data-slide-index="@x">
-					<div class="hero-thumbnail" style="background-image: url('http://img.youtube.com/vi/@model.product.video/sddefault.jpg');"></div>
-				</a>
 			}
 			else {
-				<a class="hero-img" data-slide-index="@x">
-					<div class="hero-thumbnail" style="background-image: url('http://img.youtube.com/vi/03Birmmx8RA/sddefault.jpg');"></div>
-				</a>
+				@if (model.progress < 100) {
+					<a class="hide-on-small-only btn btn-large buy-mod red darken-1 modal-trigger" href="#modal-check">구 매 하 기</a>
+				}
 			}
-		</div><!-- .hero-right -->
-	</div><!-- .hero-wrapper -->
-</div><!-- .container -->
-
-<!-- b4 -->
-<div class="container">
-	<div class="row">
+			</div>
+		</div><!-- .col -->
 		<div class="col s12">
-			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-3 white-text">
+			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'blue-grey') darken-3 white-text">
 				<img class="brand-img" src="@model.product.brand_logo" alt="@model.product.brand - Logo" />
+				<!-- <div class="item-name truncate">@model.product.name</div> -->
 					@if (model.product.name.length >= 12) {
 						<div class="item-name name-md">@model.product.name</div>
 					}
 					else {
 						<div class="item-name name-lg">@model.product.name</div>
 					}
+					<!--  -->
+
+					<!-- <div class="hide-on-small-only item-price right" id="product_price">@model.product.price</div> -->
+					<!-- <div class="hide-on-small-only item-price-o red-text text-lighten-2 right" id="old_price">@model.product.old_price</div> -->
 					<div class="hide-on-small-only m-item right">
 						<div class="item-price-o mod red-text text-lighten-2">SALE</div>
 						<div class="item-price white-text">@model.sale%</div>
@@ -148,27 +120,15 @@
 						<div class="item-price desk white-text" id="product_price_mobile">@model.product.price</div>
 					</div>
 			</div>
-			<div class="buy-box-info @(model.product.color ? model.product.color : 'light-blue') lighten-5 blue-grey-text text-darken-4">
+			<div class="buy-box-info @(model.product.color ? model.product.color : 'blue-grey') lighten-5 blue-grey-text text-darken-4">
 				<div class="item-info">@html.raw(model.product.description)</div>
 				<div class="item-info-links">
 					@if(model.product.review_url) {
 						<a href="@model.product.review_url" target="_blank"><i class="fa fa-hand-o-right"></i> 상품 리뷰 보기</a>
 					}
 				</div>
-				<div class="right-align">
-				@if (model.user) {
-					@if (model.progress < 100) {
-						<a class="hide-on-small-only btn btn-large buy-mod red darken-1" href="/checkout?product_id=@model.product.id">오늘의 상품 구매하기 ></a>
-					}
-				}
-				else {
-					@if (model.progress < 100) {
-						<a class="hide-on-small-only btn btn-large buy-mod red darken-1 modal-trigger" href="#modal-check">오늘의 상품 구매하기 ></a>
-					}
-				}
-				</div>
 			</div>
-			<div class="buy-box-footer @(model.product.color ? model.product.color : 'light-blue') lighten-3">
+			<div class="buy-box-footer @(model.product.color ? model.product.color : 'blue-grey') lighten-3">
 				<div class="center">
 					<!-- <span class="share-text white-text">share</span> -->
 					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
@@ -179,23 +139,23 @@
 			</div><!-- .buy-box-footer -->
 			<!-- Modal Structure -->
 		  <div id="share_url_modal" class="modal">
-				<div class="modal-header @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text center">
+				<div class="modal-header @(model.product.color ? model.product.color : 'blue-grey') darken-2 white-text center">
 					공유하기
 				</div>
 		    <div class="modal-content">
 					<input readonly type="text" id="share_url" value="http://dailyboom.co">
 					<br>
 					<br>
-					<a href="#!" class="modal-action modal-close waves-effect waves-light btn @(model.product.color ? model.product.color : 'light-blue') darken-2">닫기</a>
+					<a href="#!" class="modal-action modal-close waves-effect waves-light btn @(model.product.color ? model.product.color : 'blue-grey') darken-2">닫기</a>
 		    </div>
 		  </div>
 			<!-- Merchant xInfo -->
 			<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
 		    <li>
-					<div class="collapsible-header @(model.product.color ? model.product.color : 'light-blue') darken-1 white-text">
+					<div class="collapsible-header @(model.product.color ? model.product.color : 'blue-grey') darken-1 white-text">
 						<span>배송 진행상황 조회 및 제품 교환/환불 정책 <i class="fa fa-info-circle fa-fw right"></i></span>
 					</div>
-					<div class="collapsible-body @(model.product.color ? model.product.color : 'light-blue') lighten-5">
+					<div class="collapsible-body @(model.product.color ? model.product.color : 'blue-grey') lighten-5">
 						@if(model.product.delivery_info) {
 							<img class="responsive-img" src="@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - 데일리 붐" />
 						}
@@ -217,7 +177,7 @@
 		  </ul>
 
 			<!-- Mobile -->
-			<div class="hide-on-med-and-up mobile-buy @(model.product.color ? model.product.color : 'light-blue') darken-3">
+			<div class="hide-on-med-and-up mobile-buy @(model.product.color ? model.product.color : 'blue-grey') darken-3">
 				<div class="m-item">
 					<div class="item-price-o mod red-text text-lighten-2">SALE</div>
 					<div class="item-price white-text">@model.sale%</div>
@@ -246,7 +206,7 @@
 				}
 			</div>
 
-			<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text">
+			<div class="past-box-wrapper @(model.product.color ? model.product.color : 'blue-grey') darken-2 white-text">
 				지난 상품
 			</div>
 			<div class="row">
@@ -258,7 +218,7 @@
 										<div class="col s12 m12 l12">
 											<div class="card past">
 												<div class="card-image">
-													<div class="past-date-box @(model.product.color ? model.product.color : 'light-blue') darken-1 white-text">
+													<div class="past-date-box @(model.product.color ? model.product.color : 'blue-grey') darken-1 white-text">
 														@model.moment(product.scheduled_at).format("YYYY/MM/DD")@(model.moment(product.scheduled_at).day() == 6 ? model.moment(product.scheduled_at).add(1, 'days').format('-DD') : '')
 													</div>
 													<div class="card-image-ol">
@@ -277,22 +237,22 @@
 												</div>
 													@if(product.extend == 1 && model.moment().isBefore(model.moment(product.scheduled_at).add(3, 'days'), 'days')){
 														<div class="card-action mod center green">
-															<a class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/extend/@product.id">구매가능! (<span class="time-left"></span>)</a>
+															<a class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'blue-grey')-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/extend/@product.id">구매가능! (<span class="time-left"></span>)</a>
 														</div>
 													}
 													else if (product.extend == 2){
 														<div class="card-action mod center green">
-															<a class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3" href="/extend/@product.id">구매가능!</a>
+															<a class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'blue-grey')-text text-darken-3" href="/extend/@product.id">구매가능!</a>
 														</div>
 													}
 													else if (model.user && product.wanna_buy.indexOf(model.user.id) != -1) {
 														<div class="card-action mod center want cyan" data-id="@product.id">
-															<span class="white-text waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3">사고싶다 <i class="fa fa-thumbs-up fa-fw right"></i></span>
+															<span class="white-text waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'blue-grey')-text text-darken-3">사고싶다 <i class="fa fa-thumbs-up fa-fw right"></i></span>
 														</div>
 													}
 													else {
 														<div class="card-action mod center want" data-id="@product.id">
-															<span class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></span>
+															<span class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'blue-grey')-text text-darken-3">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></span>
 														</div>
 													}
 											</div>
@@ -307,7 +267,7 @@
 			<!-- Featured section -->
 			<div class="row">
 				<div class="col s12">
-					<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text">
+					<div class="past-box-wrapper @(model.product.color ? model.product.color : 'blue-grey') darken-2 white-text">
 						브랜드 ON 데일리 붐
 					</div>
 					<br>
@@ -412,12 +372,10 @@
 	$(document).ready(function() {
 		$("#main-slider").bxSlider({
 			mode:'horizontal',
-			pagerCustom: '#bx-pager',
 			infiniteLoop:true,
 			easing:'ease-in-out',
 			auto:true,
-			autoHover:true,
-			controls:false
+			autoHover:true
 		});
 	});
 	$(document).ready(function(){
