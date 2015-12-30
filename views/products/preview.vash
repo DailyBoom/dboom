@@ -41,24 +41,13 @@
 		</div><!-- .col -->
 		<div class="col s12">
 			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'blue-grey') darken-3 white-text">
-				<img class="brand-img" src="@model.product.brand_logo" alt="@model.product.brand - Logo" />
+				<img class="brand-img" src="/@model.product.brand_logo" alt="@model.product.brand - Logo" />
 				<!-- <div class="item-name truncate">@model.product.name</div> -->
 					@if (model.product.name.length >= 12) {
 						<div class="item-name name-md">@model.product.name</div>
 					}
 					else {
 						<div class="item-name name-lg">@model.product.name</div>
-					}
-					<!--  -->
-					@if (model.user) {
-						@if (model.progress < 100) {
-							<a class="hide-on-small-only btn-buy-wrapper right" href="/checkout?product_id=@model.product.id"><img class="btn-buy" src="/images/themes/btn-buy.png" /></a>
-						}
-					}
-					else {
-						@if (model.progress < 100) {
-							<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/themes/btn-buy.png" /></a>
-						}
 					}
 					<!-- <div class="hide-on-small-only item-price right" id="product_price">@model.product.price</div> -->
 					<!-- <div class="hide-on-small-only item-price-o red-text text-lighten-2 right" id="old_price">@model.product.old_price</div> -->
@@ -74,6 +63,18 @@
 			</div>
 			<div class="buy-box-info @(model.product.color ? model.product.color : 'blue-grey') lighten-5 blue-grey-text text-darken-2">
 				<div class="item-info">@html.raw(model.product.description)</div>
+				<div class="right-align">
+				@if (model.user) {
+					@if (model.progress < 100) {
+						<a class="hide-on-small-only btn btn-large buy-mod red darken-1" href="/checkout?product_id=@model.product.id">오늘의 상품 구매하기 <i class="fa fa-chevron-right fa-fw"></i></a>
+					}
+				}
+				else {
+					@if (model.progress < 100) {
+						<a class="hide-on-small-only btn btn-large buy-mod red darken-1 modal-trigger" href="#modal-check">오늘의 상품 구매하기 <i class="fa fa-chevron-right fa-fw"></i></a>
+					}
+				}
+				</div>
 			</div>
 			<div class="buy-box-footer @(model.product.color ? model.product.color : 'blue-grey') lighten-3">
 				<div class="center">
