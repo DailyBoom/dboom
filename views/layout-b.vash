@@ -71,7 +71,7 @@
 		<link rel="stylesheet" href="/stylesheets/owl.carousel.css" />
 		<link rel="stylesheet" href="/stylesheets/bxslider.css" />
 		<!-- Custom CSS -->
-		<link rel="stylesheet" href="/stylesheets/styles.css">
+		<link rel="stylesheet" href="/stylesheets/styles.b.css">
 		<link rel="stylesheet" href="/stylesheets/theme.css">
 
 		<!-- jQuery -->
@@ -117,8 +117,8 @@
 		<div class="navbar">
 			<nav class="@(model.product && model.product.color ? model.product.color : 'blue-grey') darken-3 snow">
 				<div class="container center">
-					<a href="/" class="logo-d"><img class="logo-img left" src="/images/db_korea.png" /></a>
-					<a href="/" class="logo-m"><img class="logo-img left" src="/images/dbkorea01.png" /></a>
+					<a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
+					<a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
 					<span id="time-left-label" class="d-clock white-text label">남은시간</span>
           <span id="time-left" class="d-clock white-text time"></span>
 					@if (model.user) {
