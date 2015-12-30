@@ -38,7 +38,8 @@
     "connect-mongo": "~0.8.2",
     "express-sitemap": "~1.6.1",
     "mongoose-pagination": "~1.0.0",
-    "express-paginate": "~0.1.0"
+    "express-paginate": "~0.1.0",
+    "mime-types": "~2.1.8"
   },
   "description": "",
   "main": "app.js",
