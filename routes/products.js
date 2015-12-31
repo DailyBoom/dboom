@@ -28,8 +28,18 @@ var isAdmin = function (req, res, next) {
   res.redirect('/login');
 }
 
-router.get('/products/list', isAdmin, function(req, res) {
-  Product.find({}, {}, { sort: { 'scheduled_at' : -1 } }, function (err, Products) {
+var isMerchantOrAdmin = function (req, res, next) {
+  if (req.isAuthenticated() && (req.user.admin === true || req.user.role === "merchant"))
+    return next();
+  res.redirect('/login');
+}
+
+router.get('/products/list', isMerchantOrAdmin, function(req, res) {
+  var query = Product.find({}, {}, { sort: { 'scheduled_at' : -1 } });
+  if (req.user.role == 'merchant') {
+    query.where('merchant_id').equals(req.user._id);
+  }
+  query.exec(function (err, Products) {
     res.render('products/index', { products: Products });
   });
 });
@@ -215,11 +225,16 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
   });
 });
 
-router.get('/products/preview/:id', isAdmin, function(req, res) {
-  Product.findOne({ _id: req.params.id }, function(err, product) {
+router.get('/products/preview/:id', isMerchantOrAdmin, function(req, res) {
+  var query = Product.findOne({ _id: req.params.id });
+  if (req.user.role == 'merchant') {
+    query.where('merchant_id').equals(req.user._id);
+  }
+  query.exec(function(err, product) {
     if (err)
       console.log(err);
-    res.render('products/preview', { product: product, progress: 10 });
+    var sale = (product.old_price - product.price) / product.old_price * 100;
+    res.render('products/preview', { product: product, progress: 10, sale: sale.toFixed(0) });
   });
 });
 

@@ -133,7 +133,6 @@
                 @if (model.user.admin == 1) {
                   <li class="divider"></li>
                   <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus fa-fw right"></i></a></li>
-                  <li><a class="deep-purple-text text-darken-2" href="/products/list">Products <i class="fa fa-list fa-fw right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/coupons/new">New Coupon <i class="fa fa-plus fa-fw right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/coupons/list">Coupons <i class="fa fa-list fa-fw right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/users/list">Users List <i class="fa fa-users fa-fw right"></i></a></li>
@@ -141,6 +140,7 @@
                 }
                 @if (model.user.admin || model.user.role == "merchant") {
 									<li class="divider"></li>
+                  <li><a class="deep-purple-text text-darken-2" href="/products/list">Products <i class="fa fa-list fa-fw right"></i></a></li>
                   <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck fa-fw right"></i></a></li>
                 }
 									<li class="divider"></li>
