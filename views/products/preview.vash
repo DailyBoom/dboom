@@ -79,7 +79,7 @@
 	<div class="row">
 		<div class="col s12">
 			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-3 white-text">
-				<img class="brand-img" src="@model.product.brand_logo" alt="@model.product.brand - Logo" />
+				<img class="brand-img" src="/@model.product.brand_logo" alt="@model.product.brand - Logo" />
 					@if (model.product.name.length >= 12) {
 						<div class="item-name name-md">@model.product.name</div>
 					}
