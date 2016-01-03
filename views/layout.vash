@@ -119,6 +119,7 @@
 				<div class="container center">
 					<a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
 					<a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
+        	<span id="time-left-mobile" class="hide-on-med-and-up d-clock white-text left"></span>
 					@if (model.user) {
 						<ul class="right">
 							<li class="nav-item">
@@ -132,7 +133,6 @@
                 @if (model.user.admin == 1) {
                   <li class="divider"></li>
                   <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus fa-fw right"></i></a></li>
-                  <li><a class="deep-purple-text text-darken-2" href="/products/list">Products <i class="fa fa-list fa-fw right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/coupons/new">New Coupon <i class="fa fa-plus fa-fw right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/coupons/list">Coupons <i class="fa fa-list fa-fw right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/users/list">Users List <i class="fa fa-users fa-fw right"></i></a></li>
@@ -140,6 +140,7 @@
                 }
                 @if (model.user.admin || model.user.role == "merchant") {
 									<li class="divider"></li>
+                  <li><a class="deep-purple-text text-darken-2" href="/products/list">Products <i class="fa fa-list fa-fw right"></i></a></li>
                   <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck fa-fw right"></i></a></li>
                 }
 									<li class="divider"></li>
@@ -237,18 +238,23 @@
               else
                 momentTom = moment().tz("Asia/Seoul").add(1, 'days').hours(0).minutes(0).seconds(0);
               var timeLeft = moment.duration(momentTom.diff(now), 'milliseconds');
-              $('#time-left').hide();
-              $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-              $('#time-left').fadeIn(1000);
               if (!is_mobile) {
-                $('#time-left-label').fadeIn(1000);
+                $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+              }
+              else {
+                $('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
               }
               var interval = setInterval(function() {
                 timeLeft = moment.duration(momentTom.diff(moment().tz("Asia/Seoul"), 'milliseconds'));
                 if (timeLeft._milliseconds == 0) {
                   window.location = '/';
                 }
-                $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+                if (!is_mobile) {
+                  $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());                  
+                }
+                else {
+                  $('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+                }
               }, 1000);
             // });
         });

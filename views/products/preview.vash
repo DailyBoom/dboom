@@ -1,5 +1,6 @@
 @html.extend("layout", function(@model) {
 	@html.block("body", function(@model) {
+@if(model.user.admin) {
 <div id="navbar-preview" class="preview-bar">
 	<div class="container">
 		<ul class="left">
@@ -23,45 +24,68 @@
 		<a id="btn_o" class="waves-effect waves-light btn-flat white-text hide" href="#!"><i class="fa fa-chevron-down fa-fw"></i></a>
 	</div>
 </div><!-- .preview-bar -->
+}
+
 <div class="container">
-	<div class="progress-wrapper">
-		<div class="progress-h cyan lighten-4"></div>
-		<div class="determinate-h cyan darken-1"></div>
-		<div class="progress-h-text white-text hide">@model.progress% 팔림</div>
-	</div>
-	<div class="row">
-		<div class="col s12">
+	@if(model.progress >= 50){
+		 <div class="progress-wrapper">
+			<div class="progress-h red lighten-4"></div>
+			<div class="determinate-h red darken-2" style=""></div>
+			<div class="progress-h-text white-text hide">@model.progress% 팔림</div>
+		</div>
+	}
+	<!-- L Slider -->
+	<div class="hero-wrapper">
+		<div class="hero-left">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
 				@model.product.images.forEach(function(img) {
-					<div class="slide" style="background-image: url(/@img);"></div>
+					<div class="slide" style="background-image: url(/@img);">
+						@if(model.progress >= 100) {
+							<img class="sold-out" src="/images/sold-out.png" />
+						}
+					</div>
 				})
-				@if(model.product.video)
-					<iframe width="560" height="315" src="@model.product.video" frameborder="0" allowfullscreen></iframe>
-    	</div><!-- #main-slider -->
-		</div><!-- .col -->
+				@if(model.product.video) {
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/@model.product.video" frameborder="0" allowfullscreen></iframe>
+				}
+				else {
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/03Birmmx8RA" frameborder="0" allowfullscreen></iframe>
+				}
+			</div><!-- #main-slider -->
+		</div><!-- .hero-left -->
+		<div class="hero-right" id="bx-pager">
+			@{ var x = 0; }
+			@model.product.images.forEach(function(img) {
+				<a class="hero-img" data-slide-index="@x">
+					<div class="hero-thumbnail" style="background-image: url(/@img);"></div>
+				</a>
+				@{ x++; }
+			})
+			@if(model.product.video) {
+				<a class="hero-img" data-slide-index="@x">
+					<div class="hero-thumbnail" style="background-image: url('http://img.youtube.com/vi/@model.product.video/sddefault.jpg');"></div>
+				</a>
+			}
+			else {
+				<a class="hero-img" data-slide-index="@x">
+					<div class="hero-thumbnail" style="background-image: url('http://img.youtube.com/vi/03Birmmx8RA/sddefault.jpg');"></div>
+				</a>
+			}
+		</div><!-- .hero-right -->
+	</div><!-- .hero-wrapper -->
+</div><!-- .container -->
+<!-- b4 -->
+<div class="container">
+	<div class="row">
 		<div class="col s12">
-			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'blue-grey') darken-3 white-text">
-				<img class="brand-img" src="@model.product.brand_logo" alt="@model.product.brand - Logo" />
-				<!-- <div class="item-name truncate">@model.product.name</div> -->
+			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-3 white-text">
+				<img class="brand-img" src="/@model.product.brand_logo" alt="@model.product.brand - Logo" />
 					@if (model.product.name.length >= 12) {
 						<div class="item-name name-md">@model.product.name</div>
 					}
 					else {
 						<div class="item-name name-lg">@model.product.name</div>
 					}
-					<!--  -->
-					@if (model.user) {
-						@if (model.progress < 100) {
-							<a class="hide-on-small-only btn-buy-wrapper right" href="/checkout?product_id=@model.product.id"><img class="btn-buy" src="/images/themes/btn-buy.png" /></a>
-						}
-					}
-					else {
-						@if (model.progress < 100) {
-							<a class="hide-on-small-only btn-buy-wrapper right modal-trigger" href="#modal-check"><img class="btn-buy" src="/images/themes/btn-buy.png" /></a>
-						}
-					}
-					<!-- <div class="hide-on-small-only item-price right" id="product_price">@model.product.price</div> -->
-					<!-- <div class="hide-on-small-only item-price-o red-text text-lighten-2 right" id="old_price">@model.product.old_price</div> -->
 					<div class="hide-on-small-only m-item right">
 						<div class="item-price-o mod red-text text-lighten-2">SALE</div>
 						<div class="item-price white-text">@model.sale%</div>
@@ -72,10 +96,27 @@
 						<div class="item-price desk white-text" id="product_price_mobile">@model.product.price</div>
 					</div>
 			</div>
-			<div class="buy-box-info @(model.product.color ? model.product.color : 'blue-grey') lighten-5 blue-grey-text text-darken-2">
+			<div class="buy-box-info @(model.product.color ? model.product.color : 'light-blue') lighten-5 blue-grey-text text-darken-4">
 				<div class="item-info">@html.raw(model.product.description)</div>
+				<div class="item-info-links">
+					@if(model.product.review_url) {
+						<a href="@model.product.review_url" target="_blank"><i class="fa fa-hand-o-right"></i> 상품 리뷰 보기</a>
+					}
+				</div>
+				<div class="right-align">
+				@if (model.user) {
+					@if (model.progress < 100) {
+						<span class="hide-on-small-only btn btn-large buy-mod red darken-1">오늘의 상품 구매하기 <i class="fa fa-chevron-right fa-fw"></i></span>
+					}
+				}
+				else {
+					@if (model.progress < 100) {
+						<span class="hide-on-small-only btn btn-large buy-mod red darken-1 modal-trigger">오늘의 상품 구매하기 <i class="fa fa-chevron-right fa-fw"></i></span>
+					}
+				}
+				</div>
 			</div>
-			<div class="buy-box-footer @(model.product.color ? model.product.color : 'blue-grey') lighten-3">
+			<div class="buy-box-footer @(model.product.color ? model.product.color : 'light-blue') lighten-3">
 				<div class="center">
 					<!-- <span class="share-text white-text">share</span> -->
 					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
@@ -86,58 +127,70 @@
 			</div><!-- .buy-box-footer -->
 			<!-- Modal Structure -->
 		  <div id="share_url_modal" class="modal">
-				<div class="modal-header @(model.product.color ? model.product.color : 'blue-grey') darken-2 white-text center">
+				<div class="modal-header @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text center">
 					공유하기
 				</div>
 		    <div class="modal-content">
 					<input readonly type="text" id="share_url" value="http://dailyboom.co">
 					<br>
 					<br>
-					<a href="#!" class="modal-action modal-close waves-effect waves-light btn @(model.product.color ? model.product.color : 'blue-grey') darken-2">닫기</a>
+					<a href="#!" class="modal-action modal-close waves-effect waves-light btn @(model.product.color ? model.product.color : 'light-blue') darken-2">닫기</a>
 		    </div>
 		  </div>
 			<!-- Merchant xInfo -->
 			<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
 		    <li>
-					<div class="collapsible-header @(model.product.color ? model.product.color : 'blue-grey') darken-1 white-text">
-						배송 진행상황 조회 및 제품 교환/환불 정책
+					<div class="collapsible-header @(model.product.color ? model.product.color : 'light-blue') darken-1 white-text">
+						<span>배송 진행상황 조회 및 제품 교환/환불 정책 <i class="fa fa-info-circle fa-fw right"></i></span>
 					</div>
-					<div class="collapsible-body">
+					<div class="collapsible-body @(model.product.color ? model.product.color : 'light-blue') lighten-5">
 						@if(model.product.delivery_info) {
-							<img class="responsive-img" src="/@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - 데일리 붐" />
+							<img class="responsive-img" src="@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - 데일리 붐" />
 						}
 						else {
-							<p><b>배송 진행상황 조회</b></p>
-							<ol class="item-shipping-info">
-								<li>처리상황이 [발송완료]일 때 배송진행사항은 주문내역의 송장번호로 해당 택배사 홈페이지를 통해 확인하실 수 있습니다.</li>
-								<li>발송완료 등록 및 발송완료 SMS 문자 메시지를 받으신 후 고객님께 배달완료 되기까지 1~2일정도 소요됩니다. (토요일, 공휴일 제외)</li>
-								<li>택배사 또는 고객사정(고객님 연락이 되지 않을 경우)으로 인해 배송이 지연되는 경우가 있으니 해당 택배사로 전화문의를 하시면 배송상태를 확인 하실 수 있습니다.</li>
-							</ol>
-							<p><b>제품 교환/환불 정책</b></p>
-							<span>모든 제품은 해당 제품 회사의 물품 환불 및 교환 정책에 따릅니다.</span>
-							<br><span>해당 제품 회사가 아직 배송관련 교환 및 환불 정책이 없을 때, 모든 물품은 수령한지 10일 이내에 사용하지 않은 새 것 일 때 교환및 환불이 가능합니다. 환불을 원하는 경우, 해당 회사에 직접 연락을 하거나 데일리붐 회계팀(contact@dailyboom.co)로 연락주시기 바랍니다.</span>
+							<div class="item-shipping-info-box">
+								<p><b>배송 진행상황 조회</b></p>
+								<ol class="item-shipping-info">
+									<li>처리상황이 [발송완료]일 때 배송진행사항은 주문내역의 송장번호로 해당 택배사 홈페이지를 통해 확인하실 수 있습니다.</li>
+									<li>발송완료 등록 및 발송완료 SMS 문자 메시지를 받으신 후 고객님께 배달완료 되기까지 1~2일정도 소요됩니다. (토요일, 공휴일 제외)</li>
+									<li>택배사 또는 고객사정(고객님 연락이 되지 않을 경우)으로 인해 배송이 지연되는 경우가 있으니 해당 택배사로 전화문의를 하시면 배송상태를 확인 하실 수 있습니다.</li>
+								</ol>
+								<p><b>제품 교환/환불 정책</b></p>
+								<span>모든 제품은 해당 제품 회사의 물품 환불 및 교환 정책에 따릅니다.</span>
+								<br><span>해당 제품 회사가 아직 배송관련 교환 및 환불 정책이 없을 때, 모든 물품은 수령한지 10일 이내에 사용하지 않은 새 것 일 때 교환및 환불이 가능합니다. 환불을 원하는 경우, 해당 회사에 직접 연락을 하거나 데일리 붐 회계팀(contact@dailyboom.co)로 연락주시기 바랍니다.</span>
+							</div>
 						}
 					</div>
 		    </li>
 		  </ul>
 
 			<!-- Mobile -->
-			<div class="hide-on-med-and-up mobile-buy @(model.product.color ? model.product.color : 'blue-grey') darken-3">
-				<div class="item-price-o blue-grey-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
-				<div class="item-price white-text" id="product_price_mobile">@model.product.price</div>
+			<div class="hide-on-med-and-up mobile-buy @(model.product.color ? model.product.color : 'light-blue') darken-3">
+				<div class="m-item">
+					<div class="item-price-o mod red-text text-lighten-2">SALE</div>
+					<div class="item-price white-text">@model.sale%</div>
+				</div>&nbsp;
+				<div class="m-item">
+					<div class="item-price-o red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
+					<div class="item-price white-text" id="product_price_mobile">@model.product.price</div>
+				</div>
 				@if (model.user) {
-					<div class="hide-on-med-and-up">
-						<a class="modal-trigger" href="/checkout?product_id=@model.product.id">
-							<img class="btn-buy-mobile" src="/images/btn-buy-mobile_2.png" alt="데일리 붐 쇼핑 몰"/>
-						</a>
-					</div>
+					@if (model.progress < 100) {
+						<div class="hide-on-med-and-up">
+							<a class="modal-trigger" href="/checkout?product_id=@model.product.id">
+								<img class="btn-buy-mobile" src="/images/themes/btn-buy-mobile.png" alt="데일리 붐 쇼핑 몰"/>
+							</a>
+						</div>
+					}
 				}
 				else {
-					<div class="hide-on-med-and-up">
-						<a class="modal-trigger" href="#modal-check">
-							<img class="btn-buy-mobile" src="/images/btn-buy-mobile_2.png" alt="" style="width:100%;"/>
-						</a>
-					</div>
+					@if (model.progress < 100) {
+						<div class="hide-on-med-and-up">
+							<a class="modal-trigger" href="#modal-check">
+								<img class="btn-buy-mobile" src="/images/themes/btn-buy-mobile.png" alt="" style="width:100%;"/>
+							</a>
+						</div>
+					}
 				}
 			</div>
 		</div>
@@ -176,10 +229,12 @@
 		$(document).ready(function(){
 			$("#main-slider").bxSlider({
 				mode:'horizontal',
+				pagerCustom: '#bx-pager',
 				infiniteLoop:true,
 				easing:'ease-in-out',
 				auto:true,
-				autoHover:true
+				autoHover:true,
+				controls:false
 			});
 			$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
 		});

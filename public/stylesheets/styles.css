@@ -191,6 +191,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 2em;
     line-height: 2.2;
     vertical-align: middle;
+    margin-left: 40px;
   }
   .btn-mobile {
     padding: 0;
@@ -216,6 +217,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 2.5em;
     line-height: 1.8em;
     vertical-align: middle;
+    margin: 0;
   }
 }
 @media only screen and (min-width: 992px) {
