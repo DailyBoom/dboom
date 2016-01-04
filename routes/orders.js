@@ -325,7 +325,7 @@ router.post('/checkout', function(req, res) {
         order.quantity = parseInt(req.body.order_quantity);
         order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price;
         order.coupon = req.body.coupon;
-        order.save(function(err, order) {
+        order.save(function(err) {
           console.log(order);
           if (!req.session.product)
             req.session.product = order.product.id;
