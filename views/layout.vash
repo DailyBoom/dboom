@@ -29,8 +29,8 @@
     }
 		<meta itemprop="pageType" content="Product" />
     @if(!model.cover){
-  		<meta itemprop="image" content="http://dailyboom.co/images/db_cover.png" />
-      <meta property="og:image" content="http://dailyboom.co/images/db_cover.png" />
+  		<meta itemprop="image" content="http://dailyboom.co/images/dailyboomNEW5.jpg" />
+      <meta property="og:image" content="http://dailyboom.co/images/dailyboomNEW5.jpg" />
     }
     else {
   		<meta itemprop="image" content="http://dailyboom.co/@model.cover" />
