@@ -17,6 +17,9 @@
 											<option value="@option.name" @(model.order.option == option.name ? 'selected' : '')>@option.name</option>
 											@{ i++; }
 										}
+										else {
+											<option value="@option.name" class="cross" disabled>@option.name (Sold Out)</option>
+										}
 									})
 								</select>
 							</div>

@@ -1227,7 +1227,7 @@ input[type=number]::-webkit-outer-spin-button {
     margin-top: -15px;
   }
   .item-name {
-    width: 45%;
+    width: 55%;
     display: inline-block;
     position: absolute;
     margin-left: 10px;
@@ -1580,6 +1580,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 /** Checkout **/
 @media only screen and (min-width: 0)      {
+  .disabled {
+    text-decoration: line-through;
+  }
   .summary-box {
     width: 100%;
   }
