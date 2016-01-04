@@ -318,6 +318,7 @@ router.get('/checkout', function(req, res) {
 router.post('/checkout', function(req, res) {
   if (req.session.order) {
     Order.findOne({ '_id': req.session.order }).populate('product').exec(function(err, order) {
+        console.log(order);
         if (err)
           console.log(err);
         order.option = req.body.order_option;
@@ -325,6 +326,7 @@ router.post('/checkout', function(req, res) {
         order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price;
         order.coupon = req.body.coupon;
         order.save(function(err, order) {
+          console.log(order);
           if (!req.session.product)
             req.session.product = order.product.id;
           order.populate('coupon', function(err, order) {
