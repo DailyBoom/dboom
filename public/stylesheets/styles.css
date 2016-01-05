@@ -181,6 +181,13 @@ input[type=number]::-webkit-outer-spin-button {
     height: 51px;
     line-height: 51px;
   }
+  nav .button-collapse {
+    height: 51px;
+  }
+  nav .button-collapse i {
+    height: 51px;
+    line-height: 51px;
+  }
   .nav-item { padding: 0px; }
   nav ul a.mod { padding: 0; }
   .side-nav a {
@@ -200,8 +207,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .d-clock {
     font-size: 2em;
-    line-height: 2.2;
-    vertical-align: middle;
+    line-height: 51px;
     margin-left: 20px;
   }
   .btn-mobile {
