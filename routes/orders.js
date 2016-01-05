@@ -318,15 +318,14 @@ router.get('/checkout', function(req, res) {
 router.post('/checkout', function(req, res) {
   if (req.session.order) {
     Order.findOne({ '_id': req.session.order }).populate('product').exec(function(err, order) {
-        console.log(order);
         if (err)
           console.log(err);
         order.option = req.body.order_option;
         order.quantity = parseInt(req.body.order_quantity);
         order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price;
-        order.coupon = req.body.coupon;
+        if (req.body.coupon)
+          order.coupon = req.body.coupon;
         order.save(function(err) {
-          console.log(order);
           if (!req.session.product)
             req.session.product = order.product.id;
           order.populate('coupon', function(err, order) {
@@ -341,7 +340,7 @@ router.post('/checkout', function(req, res) {
                         var leftQuantity;
                         order.product.options.forEach(function(option){
                           if (option.name === order.option)
-                          leftQuantity = parseInt(option.quantity);
+                            leftQuantity = parseInt(option.quantity);
                         });
                         if (req.user) {
                           Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
@@ -369,6 +368,7 @@ router.post('/deposit_checkout', function(req, res) {
     Order.findOne({ '_id': req.session.order }).populate('product coupon user').exec(function(err, order) {
         if (err)
           console.log(err);
+        console.log(order);
         order.status = "Waiting";
         order.deposit_name = req.body.deposit_name;
         if (req.user)
