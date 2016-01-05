@@ -103,6 +103,8 @@
 						<a href="@model.product.review_url" target="_blank"><i class="fa fa-hand-o-right"></i> 상품 리뷰 보기</a>
 					}
 				</div>
+				@if(model.product.description_image)
+					<img class="responsive-img" src="@model.product.description_image" alt="" />
 				<div class="right-align">
 				@if (model.user) {
 					@if (model.progress < 100) {
