@@ -6,6 +6,7 @@ var productSchema = new Schema({
   merchant_id: { type: Schema.Types.ObjectId, ref: 'User' },
   name: { type: String, required: true },
   description: { type: String, required: true },
+  description_image: String,
   brand: { type: String, required: false },
   brand_logo: { type: String, required: false },
   company_url: { type: String, required: false },

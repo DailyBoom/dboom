@@ -80,7 +80,7 @@ router.get('/products/preview', isAdmin, function(req, res) {
   res.render("products/preview");
 });
 
-router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: "brandlogo", maxCount: 1}, {name: "deliveryinfo", maxCount: 1}]), function(req, res) {
+router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: "brandlogo", maxCount: 1}, {name: "deliveryinfo", maxCount: 1}, { name: "description_image", maxCount: 1}]), function(req, res) {
   console.log(req.body);
   // req.Validator.validate('selldate', i18n.__('product.sellDate'), {
   //   required: true
@@ -137,6 +137,7 @@ router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCou
         brand: req.body.brandname,
         brand_logo: req.files['brandlogo'] ? req.files['brandlogo'][0].path : '',
         delivery_info: req.files['deliveryinfo'] ? req.files['deliveryinfo'][0].path : '',
+        description_image: req.files['description_image'] ? req.files['description_image'][0].path : '',
         options: req.body.options,
         is_published: false,
         video: req.body.videoUrl,
@@ -162,7 +163,7 @@ router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCou
   });
 });
 
-router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: "brandlogo", maxCount: 1}, {name: "deliveryinfo", maxCount: 1}]), function(req, res) {
+router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: "brandlogo", maxCount: 1}, {name: "deliveryinfo", maxCount: 1}, { name: "description_image", maxCount: 1}]), function(req, res) {
   Product.findOne({_id: req.params.id}, function (err, product) {
     if (err)
       console.log(err);
@@ -208,6 +209,10 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
 
     if (req.files['deliveryinfo']) {
       product.delivery_info = req.files['deliveryinfo'][0].path;
+    }
+    
+    if (req.files['description_image']) {
+      product.delivery_info = req.files['description_image'][0].path;
     }
 
     console.log(product);
