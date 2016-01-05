@@ -136,6 +136,7 @@
 				<div class="item-info-links">
 					@if(model.product.review_url) {
 						<a href="@model.product.review_url" target="_blank"><i class="fa fa-hand-o-right"></i> 상품 리뷰 보기</a>
+						<br>
 					}
 				</div>
 				@if(model.product.description_image)
