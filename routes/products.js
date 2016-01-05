@@ -212,7 +212,7 @@ router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', m
     }
     
     if (req.files['description_image']) {
-      product.delivery_info = req.files['description_image'][0].path;
+      product.description_image = req.files['description_image'][0].path;
     }
 
     console.log(product);
