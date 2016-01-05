@@ -116,12 +116,12 @@
   <body>
 		<div class="navbar">
 			<nav class="@(model.product && model.product.color ? model.product.color : 'blue-grey') darken-3 snow">
-				<div class="container center">
+				<div class="container">
 					<a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
 					<a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
         	<span id="time-left-mobile" class="hide-on-med-and-up d-clock white-text left"></span>
 					@if (model.user) {
-						<ul class="right">
+						<ul class="right hide-on-small-only">
 							<li class="nav-item">
 								<!-- Dropdown Trigger -->
 								<a class='dropdown-button btn-floating btn-profile green z-depth-1' href='#' data-activates='dropdown-profile'>
@@ -129,9 +129,9 @@
 								</a>
 								<!-- Dropdown Structure -->
 								<ul id="dropdown-profile" class="dropdown-content">
-									<li><a class="@(model.product && model.product.color ? model.product.color : 'blue-grey') darken-4 white-text" href="#!">@model.user.username</a></li>
+									<a class="@(model.product && model.product.color ? model.product.color : 'blue-grey') darken-4 white-text" href="#!">@model.user.username</a>
                 @if (model.user.admin == 1) {
-                  <li class="divider"></li>
+                  <!-- <li class="divider"></li> -->
                   <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus fa-fw right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/coupons/new">New Coupon <i class="fa fa-plus fa-fw right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/coupons/list">Coupons <i class="fa fa-list fa-fw right"></i></a></li>
@@ -149,18 +149,50 @@
 								</ul>
 							</li>
 						</ul>
+            <ul class="right hide-on-med-up">
+							<li class="nav-item">
+								<!-- Dropdown Trigger -->
+								<!-- <a class='dropdown-button btn-floating btn-profile green z-depth-1' href='#' data-activates='dropdown-profile'>
+									<i class="fa fa-user fa-cx"></i>
+								</a> -->
+								<!-- Dropdown Structure -->
+								<!-- <ul id="dropdown-profile" class="dropdown-content"> -->
+                <a href="#" data-activates="slide-out" class="button-collapse mod"><i class="fa fa-bars fa-fw"></i></a>
+                <ul id="slide-out" class="side-nav">
+									<a class="@(model.product && model.product.color ? model.product.color : 'blue-grey') darken-4 white-text center" href="#!">@model.user.username</a>
+                @if (model.user.admin == 1) {
+                  <!-- <li class="divider"></li> -->
+                  <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus fa-fw right-align"></i></a></li>
+                  <li><a class="deep-purple-text text-darken-2" href="/coupons/new">New Coupon <i class="fa fa-plus fa-fw right-align"></i></a></li>
+                  <li><a class="deep-purple-text text-darken-2" href="/coupons/list">Coupons <i class="fa fa-list fa-fw right-align"></i></a></li>
+                  <li><a class="deep-purple-text text-darken-2" href="/users/list">Users List <i class="fa fa-users fa-fw right-align"></i></a></li>
+                  <li><a class="deep-purple-text text-darken-2" href="/orders/list">Orders List <i class="fa fa-shopping-cart fa-fw right-align"></i></a></li>
+                }
+                @if (model.user.admin || model.user.role == "merchant") {
+									<li class="divider"></li>
+                  <li><a class="deep-purple-text text-darken-2" href="/products/list">Products <i class="fa fa-list fa-fw right-align"></i></a></li>
+                  <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck fa-fw right-align"></i></a></li>
+                }
+									<li class="divider"></li>
+									<li><a class="@(model.product && model.product.color ? model.product.color : 'blue-grey')-text text-darken-2" href="/mypage">마이 페이지 <i class="fa fa-user fa-fw right-align"></i></a></li>
+									<li><a class="@(model.product && model.product.color ? model.product.color : 'blue-grey')-text text-darken-2" href="/logout">로그아웃 <i class="fa fa-sign-out fa-fw right-align"></i></a></li>
+								</ul>
+							</li>
+						</ul>
 					}
 					else {
             <ul class="right hide-on-med-and-up">
 							<li class="nav-item">
 								<!-- Dropdown Trigger -->
-								<a class='dropdown-button btn btn-flat btn-mobile white-text' href='#' data-activates='dropdown-profile'>
+								<!-- <a class='dropdown-button btn btn-flat btn-mobile white-text' href='#' data-activates='dropdown-profile'>
 									<i class="fa fa-bars fa-fw fa-4x"></i>
-								</a>
+								</a> -->
+                <a href="#" data-activates="slide-out" class="button-collapse mod"><i class="fa fa-bars fa-fw"></i></a>
 								<!-- Dropdown Structure -->
-								<ul id="dropdown-profile" class="dropdown-content @(model.product && model.product.color ? model.product.color : 'blue-grey')-text text-darken-2">
-									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'blue-grey')-text text-darken-2" href="/login">로그인 <i class="fa fa-sign-in fa-fw right"></i></a></li>
-									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'blue-grey')-text text-darken-2" href="/signup">회원가입 <i class="fa fa-user-plus fa-fw right"></i></a></li>
+								<!-- <ul id="dropdown-profile" class="dropdown-content @(model.product && model.product.color ? model.product.color : 'blue-grey')-text text-darken-2"> -->
+                <ul id="slide-out" class="side-nav">
+									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'blue-grey')-text text-darken-2" href="/login">로그인 <i class="fa fa-sign-in fa-fw"></i></a></li>
+									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'blue-grey')-text text-darken-2" href="/signup">회원가입 <i class="fa fa-user-plus fa-fw"></i></a></li>
 								</ul>
 							</li>
 						</ul>
@@ -267,6 +299,11 @@
     }
     <script>
     $(window).load(function() {
+        $(".button-collapse").sideNav({
+          menuWidth: 200,
+          edge: 'right',
+          closeOnClick: true
+        });
         $('.dropdown-button').dropdown({
   					inDuration: 300,
   					outDuration: 225,

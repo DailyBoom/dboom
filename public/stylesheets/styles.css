@@ -182,6 +182,11 @@ input[type=number]::-webkit-outer-spin-button {
     line-height: 51px;
   }
   .nav-item { padding: 0px; }
+  nav ul a.mod { padding: 0; }
+  .side-nav a {
+    height: 50px;
+    line-height: 50px;
+  }
   .btn-profile {
     height: 40px;
     width: 40px;
@@ -909,7 +914,7 @@ input[type=number]::-webkit-outer-spin-button {
     border-top: 2px solid #fff;
     border-bottom: 2px solid #fff;
     font-size: 2em;
-    z-index: 1000;
+    z-index: 900;
   }
   .btn-buy-mobile {
     height: auto;
