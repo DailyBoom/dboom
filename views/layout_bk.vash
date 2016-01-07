@@ -29,8 +29,8 @@
     }
 		<meta itemprop="pageType" content="Product" />
     @if(!model.cover){
-  		<meta itemprop="image" content="http://dailyboom.co/images/db_cover.png" />
-      <meta property="og:image" content="http://dailyboom.co/images/db_cover.png" />
+  		<meta itemprop="image" content="http://dailyboom.co/images/dailyboomNEW5.jpg" />
+      <meta property="og:image" content="http://dailyboom.co/images/dailyboomNEW5.jpg" />
     }
     else {
   		<meta itemprop="image" content="http://dailyboom.co/@model.cover" />
@@ -114,19 +114,32 @@
     </script>
   </head>
   <body>
+    <nav class="@(model.product && model.product.color ? model.product.color : 'blue-grey') darken-3 snow">
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#!">First Sidebar Link</a></li>
+        <li><a href="#!">Second Sidebar Link</a></li>
+      </ul>
+      <ul id="slide-out" class="side-nav">
+        <li><a href="#!">First Sidebar Link</a></li>
+        <li><a href="#!">Second Sidebar Link</a></li>
+      </ul>
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+    </nav>
+
+
+
 		<div class="navbar">
 			<nav class="@(model.product && model.product.color ? model.product.color : 'blue-grey') darken-3 snow">
 				<div class="container center">
-					<a href="/" class="logo-d"><img class="logo-img left" src="/images/db_korea.png" /></a>
-					<a href="/" class="logo-m"><img class="logo-img left" src="/images/dbkorea01.png" /></a>
-					<span id="time-left-label" class="d-clock white-text label">남은시간</span>
-          <span id="time-left" class="d-clock white-text time"></span>
+					<a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
+					<a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
+        	<span id="time-left-mobile" class="hide-on-med-and-up d-clock white-text left"></span>
 					@if (model.user) {
 						<ul class="right">
 							<li class="nav-item">
 								<!-- Dropdown Trigger -->
 								<a class='dropdown-button btn-floating btn-profile green z-depth-1' href='#' data-activates='dropdown-profile'>
-									<i class="fa fa-user fa-3x"></i>
+									<i class="fa fa-user fa-cx"></i>
 								</a>
 								<!-- Dropdown Structure -->
 								<ul id="dropdown-profile" class="dropdown-content">
@@ -134,7 +147,6 @@
                 @if (model.user.admin == 1) {
                   <li class="divider"></li>
                   <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus fa-fw right"></i></a></li>
-                  <li><a class="deep-purple-text text-darken-2" href="/products/list">Products <i class="fa fa-list fa-fw right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/coupons/new">New Coupon <i class="fa fa-plus fa-fw right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/coupons/list">Coupons <i class="fa fa-list fa-fw right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/users/list">Users List <i class="fa fa-users fa-fw right"></i></a></li>
@@ -142,6 +154,7 @@
                 }
                 @if (model.user.admin || model.user.role == "merchant") {
 									<li class="divider"></li>
+                  <li><a class="deep-purple-text text-darken-2" href="/products/list">Products <i class="fa fa-list fa-fw right"></i></a></li>
                   <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck fa-fw right"></i></a></li>
                 }
 									<li class="divider"></li>
@@ -173,6 +186,11 @@
 				</div><!-- .container -->
 			</nav>
 		</div><!-- .navbar -->
+
+
+
+
+
       @html.block("body")
 		<footer class="page-footer @(model.product && model.product.color ? model.product.color : 'blue-grey') darken-3">
 			<div class="container">
@@ -227,7 +245,7 @@
       @if(!model.no_time){
         <script>
         $(window).load(function() {
-            $('#time-left-label').fadeOut(2500, function(){
+            // $('#time-left-label').fadeOut(2500, function(){
               var now = moment();
               var is_mobile = @model.is_mobile;
               var momentTom = '@(model.date ? model.date : null)';
@@ -239,22 +257,25 @@
               else
                 momentTom = moment().tz("Asia/Seoul").add(1, 'days').hours(0).minutes(0).seconds(0);
               var timeLeft = moment.duration(momentTom.diff(now), 'milliseconds');
-              $('#time-left').hide();
-              $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-              $('#time-left').fadeIn(1000);
               if (!is_mobile) {
-                $('#time-left-label').css("top", "-25px");
-                $('#time-left-label').css("font-size", "25px");
-                $('#time-left-label').fadeIn(1000);
+                $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+              }
+              else {
+                $('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
               }
               var interval = setInterval(function() {
                 timeLeft = moment.duration(momentTom.diff(moment().tz("Asia/Seoul"), 'milliseconds'));
                 if (timeLeft._milliseconds == 0) {
                   window.location = '/';
                 }
-                $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+                if (!is_mobile) {
+                  $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+                }
+                else {
+                  $('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+                }
               }, 1000);
-            });
+            // });
         });
       </script>
     }
