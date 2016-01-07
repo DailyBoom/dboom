@@ -62,7 +62,7 @@
 </div><!-- #modal-check -->
 <!-- End Login Modal -->
 <!-- Buy Wrapper -->
-<div class="hide-on-small-only buy-sticky-wrapper @(model.product.color ? model.product.color : 'light-blue')">
+<div id="buy-sticky" class="hide-on-small-only buy-sticky-wrapper @(model.product.color ? model.product.color : 'light-blue')">
 	@if (model.user) {
 		@if (model.progress < 100) {
 			<a class="btn btn-large buy-mod red darken-1 right" href="/checkout?product_id=@model.product.id"> 구매하기 <i class="fa fa-chevron-right fa-fw"></i> </a>
@@ -411,7 +411,26 @@
 		</div><!-- .col -->
 	</div><!-- .row -->
 </div><!-- .container -->
-
+<script>
+var footer = $('#buy-sticky'),
+extra = 245; // In case you want to trigger it a bit sooner than exactly at the bottom.
+footer.css({ display: 'block' });
+$(window).scroll(function() {
+	var scrolledLength = ( $(window).height() + extra ) + $(window).scrollTop(),
+	documentHeight = $(document).height();
+	console.log( 'Scroll length: ' + scrolledLength + ' Document height: ' + documentHeight )
+	if( scrolledLength >= documentHeight && footer.hasClass('bottom') ) {
+		footer
+		.removeClass('bottom')
+		.stop().animate({ bottom: '-123' }, 300);
+	}
+	else if ( scrolledLength <= documentHeight ) {
+		footer
+		.addClass('bottom')
+		.stop().animate({ bottom: '0' }, 300);
+	}
+});
+</script>
 <script>
 	$(document).ready(function() {
 		$("#main-slider").bxSlider({
