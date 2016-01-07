@@ -107,6 +107,7 @@ app.use('/', routes);
 app.use('/', users);
 app.use('/', products);
 app.use('/', orders);
+app.use('/', partners);
 
 if (app.get('env') === 'production') {
   sitemap.generate4(app, ['/']);

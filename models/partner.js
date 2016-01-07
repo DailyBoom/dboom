@@ -3,8 +3,8 @@ var Schema = mongoose.Schema;
 
 var partnerSchema = new Schema({
 	name: String,
-	link: String,
-	logo: String
+	logo: String,
+	url: String
 });
 
 var Partner = mongoose.model("Partner", partnerSchema);
