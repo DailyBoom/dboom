@@ -162,14 +162,13 @@
 			<div class="row">
 				<div class="input-field col s12">
 					<select id="color" class="validate" name="color">
-						<option @(model.product.color=='' ? 'selected' : '') value="">Blue Grey (default)</option>
+						<option @(model.product.color=='' ? 'selected' : '') value="">Light Blue (default)</option>
 						<option @(model.product.color=='red' ? 'selected' : '') value="red">Red</option>
 						<option @(model.product.color=='pink' ? 'selected' : '') value="pink">Pink</option>
 						<option @(model.product.color=='purple' ? 'selected' : '') value="purple">Purple</option>
 						<option @(model.product.color=='deep-purple' ? 'selected' : '') value="deep-purple">Deep Purple</option>
 						<option @(model.product.color=='indigo' ? 'selected' : '') value="indigo">Indigo</option>
 						<option @(model.product.color=='blue' ? 'selected' : '') value="blue">Blue</option>
-						<option @(model.product.color=='light-blue' ? 'selected' : '') value="light-blue">Light Blue</option>
 						<option @(model.product.color=='cyan' ? 'selected' : '') value="cyan">Cyan</option>
 						<option @(model.product.color=='teal' ? 'selected' : '') value="teal">Teal</option>
 						<option @(model.product.color=='green' ? 'selected' : '') value="green">Green</option>
@@ -180,6 +179,7 @@
 						<option @(model.product.color=='orange' ? 'selected' : '') value="orange">Orange</option>
 						<option @(model.product.color=='deep-orange' ? 'selected' : '') value="deep-orange">Deep Orange</option>
 						<option @(model.product.color=='brown' ? 'selected' : '') value="brown">Brown</option>
+						<option @(model.product.color=='blue-grey' ? 'selected' : '') value="blue-grey">Blue Grey</option>
 						<option @(model.product.color=='grey' ? 'selected' : '') value="grey">Grey</option>
 					</select>
 					<label for="color">테마 색상</label>

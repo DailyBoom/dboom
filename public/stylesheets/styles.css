@@ -172,6 +172,7 @@ input[type=number]::-webkit-outer-spin-button {
  */
 .d-clock {
   font-family: 'BulkyPixels', sans-serif;
+  clear: none;
 }
 @media only screen and (min-width: 0) {
   .logo-d { display: none; }
@@ -181,7 +182,23 @@ input[type=number]::-webkit-outer-spin-button {
     height: 51px;
     line-height: 51px;
   }
+  nav .button-collapse {
+    height: 51px;
+  }
+  nav .button-collapse i {
+    height: 51px;
+    line-height: 51px;
+  }
   .nav-item { padding: 0px; }
+  nav ul a.mod { padding: 0; }
+  .side-nav a {
+    height: 50px;
+    line-height: 50px;
+  }
+  i.right {
+    line-height: 50px;
+    vertical-align: middle;
+  }
   .btn-profile {
     height: 40px;
     width: 40px;
@@ -190,9 +207,10 @@ input[type=number]::-webkit-outer-spin-button {
     margin-top: -8px;
   }
   .d-clock {
+    position: absolute;
     font-size: 2em;
-    line-height: 2.2;
-    vertical-align: middle;
+    line-height: 51px;
+    margin-top: 5px;
     margin-left: 20px;
   }
   .btn-mobile {
@@ -216,6 +234,7 @@ input[type=number]::-webkit-outer-spin-button {
     vertical-align: middle;
   }
   .d-clock {
+    position: relative;
     font-size: 2.5em;
     line-height: 1.8em;
     vertical-align: middle;
@@ -364,7 +383,10 @@ input[type=number]::-webkit-outer-spin-button {
 }
 @media only screen and (min-width: 0) {
   .footer-social { height: 40px; }
-  .footer-box { text-align: center; }
+  .footer-box {
+    text-align: center;
+    padding: 0 0.25rem !important;
+  }
   .footer-link {
     width: ;
     margin: 0;
@@ -906,7 +928,7 @@ input[type=number]::-webkit-outer-spin-button {
     border-top: 2px solid #fff;
     border-bottom: 2px solid #fff;
     font-size: 2em;
-    z-index: 1000;
+    z-index: 900;
   }
   .btn-buy-mobile {
     height: auto;
