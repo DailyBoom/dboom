@@ -36,6 +36,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var products = require('./routes/products');
 var orders = require('./routes/orders');
+var partners = require('./routes/partners');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
