@@ -1,0 +1,35 @@
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+<div class="container">
+	<div class="set-margin-xl">
+	</div>
+	<h4>데일리 붐 브랜드</h4>
+	<div class="row">
+
+		@model.partners.forEach(function(partner){
+
+			<div class="col s16 m3 l3">
+				<div class="card">
+					<div class="card-image">
+						<div class="partner-logo" style="background-image: url('/@partner.logo');"></div>
+					</div><!-- .card-image -->
+					<div class="card-content past">
+						<p class="blue-grey-text text-darken-1 truncate"><b>@partner.name</b></p>
+						<a href="@partner.url" target="_blank"><p>@partner.url</p></a>
+					</div><!-- .card-content -->
+					<div class="card-action blue-grey lighten-5 center">
+						@if (model.user) {
+							if (model.user.admin == 1) {
+								<a class="waves-effect waves-light red-text text-darken-3 right" href="/partners/delete/@partner.id" onclick="return confirm('Are you sure you want to delete?');">Delete</a>
+								<a class="waves-effect waves-light amber-text text-darken-3 right" href="/partners/edit/@partner.id">Edit</a>
+						} }
+					</div>
+				</div><!-- .card -->
+			</div><!-- .col -->
+
+		})
+
+	</div><!-- .row -->
+</div><!-- .container -->
+	})
+})
