@@ -1,0 +1,51 @@
+@html.extend("layout", function(model) { @html.block("body", function(model) {
+<div class="container">
+	<div class="set-margin-xl">
+	</div>
+	<h4>브랜드 등록</h4>
+	<div class="row">
+		@if (model.errors) {
+			<ul class="red-text">
+				@model.errors.forEach(function(error) {
+					<li>@error</li>
+				})
+			</ul>
+		}
+		<form class="col s12" method="post" action="/brands/new" enctype="multipart/form-data">
+			<input id="uploaddate" type="date" name="uploaddate" hidden>
+			<div class="row">
+				<div class="input-field col s12 m8 l8">
+					<input id="name" type="text" class="validate" name="name" required>
+					<label for="name">브랜드 명 *</label>
+				</div>
+				<div class="file-field input-field col s12 m4 l4">
+					<span class="hide-on-med-and-up"><br></span>
+					<span for="logo" class="input-file-mod grey-text">브랜드 로고 *</span>
+					<div class="btn blue-grey darken-2">
+						<span>선택 <i class="fa fa-image right"></i></span>
+						<input type="file" id="logo" name="logo">
+					</div>
+					<div class="file-path-wrapper">
+						<input class="file-path validate" type="text">
+					</div>
+				</div>
+			</div>
+			<!-- .row -->
+			<div class="row">
+				<div class="input-field col s12 m12 l12">
+					<input id="url" name="url" type="url" class="validate">
+					<label for="url">Website 링크</label>
+				</div>
+			</div>
+			<!-- .row -->
+			<br>
+			<button class="btn btn-large waves-effect waves-light green darken-3 add-margin-bottom-md" type="submit" name="action">
+				등록하기 <i class="fa fa-send fa-fw right"></i>
+			</button>
+		</form>
+	</div>
+	<!-- .row -->
+	<br>
+</div>
+<!-- .container -->
+}) })
