@@ -39,8 +39,9 @@ var isAdmin = function (req, res, next) {
 router.get('/login', function(req, res, next) {
   if (req.user)
     return res.redirect('/');
-  res.render('login', { title: '로그인', errors: req.session.messages || [] });
+  var message = req.session.messages || [];
   delete req.session.messages;
+  res.render('login', { title: '로그인', errors: message });
 });
 
 router.post('/login', passport.authenticate('local', {
