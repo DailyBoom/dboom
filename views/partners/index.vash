@@ -3,6 +3,7 @@
 <div class="container">
 	<div class="set-margin-xl">
 	</div>
+	<a class="btn green right" href="/partners/new">Add <i class="fa fa-plus fa-fw"></i></a>
 	<h4>데일리 붐 브랜드</h4>
 	<div class="row">
 

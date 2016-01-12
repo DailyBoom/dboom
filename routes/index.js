@@ -5,6 +5,7 @@ var moment = require('moment');
 var User = require('../models/user');
 var Product = require('../models/product');
 var Coupon = require('../models/coupon');
+var Partner = require('../models/partner');
 var smtpTransport = require('nodemailer-smtp-transport');
 var config = require('config');
 var fs = require("fs");
@@ -58,44 +59,9 @@ router.get('/', function(req, res, next) {
         });
         var progress = (product.quantity - current_quantity) / product.quantity * 100;
         var sale = (product.old_price - product.price) / product.old_price * 100;
-        res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, pastProducts: pastProducts, title: "오늘 뭐 사지?", toast: toast });
-      }
-    });
-  });
-});
-
-// beta
-router.get('/alpha', function(req, res, next) {
-  var now;
-  if (moment().day() == 0)
-    now = moment().subtract(1, 'days').format("MM/DD/YYYY");
-  else
-    now = moment().format("MM/DD/YYYY");
-  if (!req.user) {
-    var toast = "크리스마스/연말 이벤트 - 가입시 무료 배송 쿠폰!";
-  }
-  Product.findOne({scheduled_at: now, is_published: true }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
-    Product.find({scheduled_at: {$lt: now} }).limit(6).sort({ 'scheduled_at' : -1 }).exec(function (err, pastProducts) {
-      if (!product) {
-        Product.findOne({ _id: "5652e5343185841a787c43eb" }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
-          var current_quantity = 0;
-          product.options.forEach(function(option) {
-            current_quantity += parseInt(option.quantity);
-          });
-          var progress = (product.quantity - current_quantity) / product.quantity * 100;
-          var sale = (product.old_price - product.price) / product.old_price * 100;
-          res.render('index_text', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, pastProducts: pastProducts, title: "오늘 뭐 사지?", toast: toast });
-
+        Partner.find({}, function(err, partners) {
+          res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, pastProducts: pastProducts, title: "오늘 뭐 사지?", toast: toast, partners: partners });
         });
-      }
-      else {
-        var current_quantity = 0;
-        product.options.forEach(function(option) {
-          current_quantity += parseInt(option.quantity);
-        });
-        var progress = (product.quantity - current_quantity) / product.quantity * 100;
-        var sale = (product.old_price - product.price) / product.old_price * 100;
-        res.render('index_test', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, pastProducts: pastProducts, title: "오늘 뭐 사지?", toast: toast });
       }
     });
   });

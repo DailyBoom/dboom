@@ -1,8 +1,6 @@
 /*  Daily Boom, Inc. All rights reserved.  */
 
 /* Fonts */
-@import url(https://fonts.googleapis.com/css?family=Candal);
-@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
 @font-face {
   font-family: 'BulkyPixels';
   src: url('/fonts/bulkypix-webfont.eot');
@@ -39,18 +37,10 @@ nav {
 }
 
 /* Global Settings */
-/*body {
-  background: -webkit-radial-gradient(#ffffff, #cfd8dc);
-  background: -o-radial-gradient(#ffffff, #cfd8dc);
-  background: -moz-radial-gradient(#ffffff, #cfd8dc);
-  background: radial-gradient(#ffffff, #cfd8dc);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}*/
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
+  -moz-appearance: none;
   margin: 0;
 }
 .min-h-lg { min-height: 500px; }
@@ -275,21 +265,13 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .d-clock {
     width: 325px;
-    font-size: 3em;
+    font-size: 4em;
     line-height: 1;
     clear: left;
-    /*margin-top: 10px;*/
-    /*vertical-align: baseline;*/
-    /*position: absolute;*/
-    /*margin-left: auto;*/
-    /*margin-right: auto;*/
-    /*left: 0;*/
-    /*right: 0;*/
-    /*text-align: center;*/
   }
   .d-clock.label {
     width: auto;
-    font-size: 1.75em;
+    font-size: 2.5em;
     margin-bottom: 10px;
   }
 }
@@ -388,7 +370,6 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 0 0.25rem !important;
   }
   .footer-link {
-    width: ;
     margin: 0;
     padding: 0px 2px;
     font-size: 0.75em;
@@ -585,6 +566,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .btn.buy-mod i {
   font-size: 1em;
+}
+.buy-mod-img {
+  height: 100px;
 }
 
 .bx-controls-direction:hover {
@@ -1410,7 +1394,6 @@ input[type=number]::-webkit-outer-spin-button {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
-  filter:         url(~"data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
   -webkit-filter: grayscale(100%);
   -moz-filter:    grayscale(100%);
   -ms-filter:     grayscale(100%);
