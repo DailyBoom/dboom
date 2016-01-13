@@ -65,12 +65,16 @@
 <div id="buy-sticky" class="hide-on-small-only buy-sticky-wrapper @(model.product.color ? model.product.color : 'light-blue')">
 	@if (model.user) {
 		@if (model.progress < 100) {
-			<a class="btn btn-large buy-mod red darken-1 right" href="/checkout?product_id=@model.product.id"> 구매하기 <i class="fa fa-chevron-right fa-fw"></i> </a>
+			<a href="/checkout?product_id=@model.product.id">
+				<img class="buy-mod-img right" src="/images/db_buy_btn.png" alt="Buy Button Daily Boom Korea 데일리 붐" />
+			</a>
 		}
 	}
 	else {
 		@if (model.progress < 100) {
-			<a class="btn btn-large buy-mod red darken-1 right modal-trigger" href="#modal-check"> 구매하기 <i class="fa fa-chevron-right fa-fw"></i> </a>
+			<a href="#modal-check">
+				<img class="buy-mod-img right" src="/images/db_buy_btn.png" alt="Buy Button Daily Boom Korea 데일리 붐" />
+			</a>
 		}
 	}
 	<span id="time-left-label" class="d-clock label @(model.product.color ? model.product.color : 'light-blue') white-text left">남은시간</span>
@@ -317,51 +321,13 @@
 					<br>
 				</div>
 				<div id="db-partners" class="owl-carousel owl-theme">
-					<div class="col s12">
-						<a href="http://www.medihealshop.com/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/mediheal.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="https://www.my-memoirs.com/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/mymemoirs.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="http://www.candyroo.com/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/candyroo_2.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="http://www.craft-link.co.kr/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/craftlink.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="https://www.pinterest.com/ddam_living/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/ddam.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="http://bodyfantasies.kr/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/sexiest.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="http://www.varyd.com/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/varyd.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="http://www.tkbr.co.kr/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/tkbr.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="www.zonecode.org" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/zone.png');"></div>
-						</a>
-					</div><!-- .col -->
+					@model.partners.forEach(function(partner) {
+						<div class="col s12">
+							<a href="@partner.url" target="_blank">
+								<div class="partner-logo" style="background-image: url('/@partner.logo');"></div>
+							</a>
+						</div><!-- .col -->
+					})
 				</div><!-- /.owl-carousel -->
 			</div><!-- .row -->
 			<br>
@@ -422,7 +388,7 @@ $(window).scroll(function() {
 	if( scrolledLength >= documentHeight && footer.hasClass('bottom') ) {
 		footer
 		.removeClass('bottom')
-		.stop().animate({ bottom: '-123' }, 300);
+		.stop().animate({ bottom: '-150' }, 300);
 	}
 	else if ( scrolledLength <= documentHeight ) {
 		footer

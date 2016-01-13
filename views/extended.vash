@@ -348,27 +348,12 @@
 			controls:false
 		});
 	});
-</script>
-<script>
-	$(document).ready(function(){
-		$('a.want').on('click', function(){
-			$(this).parent().addClass('cyan darken-2');
-			$(this).removeClass('want red-text text-darken-3');
-			$(this).addClass('white-text');
-			$(this).children('i').removeClass('fa-thumbs-o-up');
-			$(this).children('i').addClass('fa-thumbs-up white-text');
-		});
-	});
-</script>
-<script>
 	$(window).load(function() {
 		var progress_h = @model.progress + "%";
 		$('.determinate-h').animate({width: progress_h}, 1500, function() {
 			$('.progress-h-text').fadeIn().removeClass('hide');
 		});
 	});
-</script>
-<script>
 	$(document).ready(function(){
 		$('.iframe-video').each(function(){
 			var url = $(this).attr("src");
