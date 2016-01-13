@@ -204,11 +204,14 @@
           <div class="col s12 m3 l3 box-2">
             <p class="follow-us white-text">Follow Us</p>
   					<span>
-  						<a class="grey-text text-lighten-4" href="https://www.facebook.com/dailyboomkorea" target="_blank">
+  						<a href="https://www.facebook.com/dailyboomkorea" target="_blank">
                 <img class="footer-social" src="/images/facebook.png" />
               </a>
-  						<a class="grey-text text-lighten-4" href="http://instagram.com/dailyboomkorea" target="_blank">
+  						<a href="http://instagram.com/dailyboomkorea" target="_blank">
                 <img class="footer-social" src="/images/insta.png" />
+              </a>
+              <a href="http://blog.naver.com/dailyboomkorea" target="_blank">
+                <img class="footer-social" src="/images/nblog.png" />
               </a>
   					</span>
           </div><!-- .col -->
