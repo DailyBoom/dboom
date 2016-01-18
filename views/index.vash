@@ -72,7 +72,7 @@
 	}
 	else {
 		@if (model.progress < 100) {
-			<a href="#modal-check">
+			<a href="#modal-check" class="modal-trigger">
 				<img class="buy-mod-img right" src="/images/db_buy_btn.png" alt="Buy Button Daily Boom Korea 데일리 붐" />
 			</a>
 		}
