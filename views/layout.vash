@@ -256,7 +256,7 @@
         $(window).load(function() {
             // $('#time-left-label').fadeOut(2500, function(){
               var now = moment();
-              var is_mobile = @model.is_mobile;
+              var is_mobile = @model.is_phone;
               var momentTom = '@(model.date ? model.date : null)';
               if (momentTom)
                 momentTom = moment(momentTom).tz("Asia/Seoul").add(3, 'days').hours(0).minutes(0).seconds(0);

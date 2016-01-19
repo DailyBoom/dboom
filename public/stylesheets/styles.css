@@ -239,8 +239,8 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .d-clock {
     position: relative;
-    font-size: 2em;
-    line-height: 1.5;
+    font-size: 3em;
+    line-height: 1;
     vertical-align: middle;
     margin: 0;
   }
@@ -510,9 +510,15 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0 auto;
   }
   .btn-social-login img {
-    height: 70px;
-    width: 70px;
-    margin: 0 1em;
+    height: 66px;
+    width: 66px;
+    margin-right: 10px;
+  }
+  .btn-social-login.mod img {
+    height: 66px;
+    width: auto;
+    margin: 0 0 0 10px;
+    border-radius: 5px;
   }
 }
 @media only screen and (min-width: 992px) {
@@ -1179,7 +1185,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
   /* custom card */
   .card.past .card-image-ol {
-    height: 179px;
+    height: 207px;
     padding-top: 60px;
   }
   .card .card-content.past {
@@ -1818,6 +1824,12 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 @media only screen and (min-width: 1200px) {}
+
+/** Ad **/
+.a-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
 
 /** Users **/
 /*** Signup Page ***/
