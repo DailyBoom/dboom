@@ -148,7 +148,7 @@
 								</ul>
 							</li>
 						</ul>
-            <ul class="right hide-on-med-up">
+            <ul class="right hide-on-med-and-up">
 							<li class="nav-item">
 								<!-- Mobile Slider Menu -->
                 <a href="#" data-activates="slide-out" class="button-collapse mod"><i class="fa fa-bars fa-fw"></i></a>
