@@ -1,4 +1,22 @@
 {
+	"login": "로그인",
+	"signup": "회원가입",
+	"buy_today": "오늘의 상품 구매하기",
+	"time_left": "남은시간",
+	"buy_now": "구매하기",
+	"item_left": "남음",
+	"shipping_info": "배송 진행상항 조희 및 제품/환불 정책",
+	"past_items": "지난 상품",
+	"bring_back": "사고싶다",
+	"available": "구매가능",
+	"featured": "브랜드 on 데일리 붐",
+	"about": "회사 고개",
+	"advertise": "광고 제휴 문의",
+	"privacy": "개인정보 정책",
+	"terms": "이용약관",
+	"merchant_contact": "판매자 문의",
+	"footer_1": "폭스트론(주)의 사전 동의 없이 Daily Boom 사이트의 정보, 콘텐츠, UI등을 상업적 목적으로 전재, 전송, 스크래핑 등에 무단 사용할 수 없습니다.",
+	"footer_2": "Daily Boom은 통신판매 중개자로서 통신판매의 당사자가 아니며 상품주문, 배송, 환불의 의무와 책임은 각 판매업체에 있습니다.",
 	"user.username": "아이디",
 	"user.email": "이메일",
 	"user.password": "비밀번호",
@@ -29,5 +47,6 @@
 	"alpha.isNotAlpha": "%s 영문자로 만 가능합니다.",
 	"numeric.isNotNumeric": "%s 숫자로 만 가능합니다.",
 	"alphaNumeric.isNotAlphaNumeric": "%s 숫자와 영문으로 만 가능합니다.",
-	"unique": "이미 사용중인 %s입니다."
+	"unique": "이미 사용중인 %s입니다.",
+	"past_item": "past_item"
 }

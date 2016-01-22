@@ -44,7 +44,7 @@ router.get('/products/list', isMerchantOrAdmin, function(req, res) {
   });
 });
 
-router.get('/products/new', isAdmin, function(req, res) {
+router.get('/products/new', isMerchantOrAdmin, function(req, res) {
   Product.find({scheduled_at: {$exists: true}}, 'scheduled_at', function(err, products) {
     User.find({ role: 'merchant' }, function(err, merchants) {
       var scheduled = products.map(function(product) {
@@ -63,7 +63,7 @@ router.get('/products/delete/:id', isAdmin, function(req, res) {
   });
 });
 
-router.get('/products/edit/:id', isAdmin, function(req, res) {
+router.get('/products/edit/:id', isMerchantOrAdmin, function(req, res) {
   Product.findOne({_id: req.params.id}, function(err, product) {
     Product.find({scheduled_at: {$exists: true}, _id: {$ne: product.id}}, 'scheduled_at', function(err, products) {
       var scheduled = products.map(function(product) {
@@ -76,11 +76,11 @@ router.get('/products/edit/:id', isAdmin, function(req, res) {
   });
 });
 
-router.get('/products/preview', isAdmin, function(req, res) {
+router.get('/products/preview', isMerchantOrAdmin, function(req, res) {
   res.render("products/preview");
 });
 
-router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: "brandlogo", maxCount: 1}, {name: "deliveryinfo", maxCount: 1}, { name: "description_image", maxCount: 1}]), function(req, res) {
+router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: "brandlogo", maxCount: 1}, {name: "deliveryinfo", maxCount: 1}, { name: "description_image", maxCount: 1}]), function(req, res) {
   console.log(req.body);
   // req.Validator.validate('selldate', i18n.__('product.sellDate'), {
   //   required: true
@@ -163,7 +163,7 @@ router.post('/products/new', isAdmin, upload.fields([{name: 'photosmain', maxCou
   });
 });
 
-router.post('/products/edit/:id', isAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: "brandlogo", maxCount: 1}, {name: "deliveryinfo", maxCount: 1}, { name: "description_image", maxCount: 1}]), function(req, res) {
+router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: "brandlogo", maxCount: 1}, {name: "deliveryinfo", maxCount: 1}, { name: "description_image", maxCount: 1}]), function(req, res) {
   Product.findOne({_id: req.params.id}, function (err, product) {
     if (err)
       console.log(err);

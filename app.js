@@ -12,7 +12,7 @@ var crypto = require('crypto');
 var sitemap = require('express-sitemap')({url: 'dailyboom.co'});
 var i18n = require('i18n');
 i18n.configure({
-    defaultLocale: 'ko',
+    defaultLocale: 'en',
     directory: path.join(__dirname, 'locales')
 });
 var app = express();
@@ -61,6 +61,7 @@ app.use(session({ store: new MongoStore({ mongooseConnection: mongoose.connectio
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(validate(app, validateOptions))
 app.use(paginate.middleware(10, 50));
+app.use(i18n.init);
 //app.use(i18n.middleware());
 
 passport.use(new RememberMeStrategy(

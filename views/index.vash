@@ -77,7 +77,7 @@
 			</a>
 		}
 	}
-	<span id="time-left-label" class="d-clock label @(model.product.color ? model.product.color : 'light-blue') white-text left">남은시간</span>
+	<span id="time-left-label" class="d-clock label @(model.product.color ? model.product.color : 'light-blue') white-text left">@model.__('time_left')</span>
 	<br><span id="time-left" class="d-clock white-text left"></span>
 </div>
 
@@ -166,12 +166,12 @@
 				<div class="right-align">
 				@if (model.user) {
 					@if (model.progress < 100) {
-						<a class="hide-on-small-only btn btn-large buy-mod red darken-1" href="/checkout?product_id=@model.product.id">오늘의 상품 구매하기 <i class="fa fa-chevron-right fa-fw"></i></a>
+						<a class="hide-on-small-only btn btn-large buy-mod red darken-1" href="/checkout?product_id=@model.product.id">@model.__('buy_today') <i class="fa fa-chevron-right fa-fw"></i></a>
 					}
 				}
 				else {
 					@if (model.progress < 100) {
-						<a class="hide-on-small-only btn btn-large buy-mod red darken-1 modal-trigger" href="#modal-check">오늘의 상품 구매하기 <i class="fa fa-chevron-right fa-fw"></i></a>
+						<a class="hide-on-small-only btn btn-large buy-mod red darken-1 modal-trigger" href="#modal-check">@model.__('buy_today') <i class="fa fa-chevron-right fa-fw"></i></a>
 					}
 				}
 				</div>
@@ -201,7 +201,7 @@
 			<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
 		    <li>
 					<div class="collapsible-header @(model.product.color ? model.product.color : 'light-blue') darken-1 white-text">
-						<span>배송 진행상황 조회 및 제품 교환/환불 정책 <i class="fa fa-info-circle fa-fw right"></i></span>
+						<span>@model.__('shipping_info') <i class="fa fa-info-circle fa-fw right"></i></span>
 					</div>
 					<div class="collapsible-body @(model.product.color ? model.product.color : 'light-blue') lighten-5">
 						@if(model.product.delivery_info) {
@@ -255,7 +255,7 @@
 			</div>
 
 			<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text">
-				지난 상품
+				@model.__('past_items')
 			</div>
 			<div class="row">
 				<div class="col s12 m12 l12">
@@ -285,22 +285,22 @@
 												</div>
 													@if(product.extend == 1 && model.moment().isBefore(model.moment(product.scheduled_at).add(3, 'days'), 'days')){
 														<div class="card-action mod center green">
-															<a class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/extend/@product.id">구매가능! (<span class="time-left"></span>)</a>
+															<a class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/extend/@product.id">@model__('available')! (<span class="time-left"></span>)</a>
 														</div>
 													}
 													else if (product.extend == 2){
 														<div class="card-action mod center green">
-															<a class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3" href="/extend/@product.id">구매가능!</a>
+															<a class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3" href="/extend/@product.id">@model.__('available')!</a>
 														</div>
 													}
 													else if (model.user && product.wanna_buy.indexOf(model.user.id) != -1) {
 														<div class="card-action mod center want cyan" data-id="@product.id">
-															<span class="white-text waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3">사고싶다 <i class="fa fa-thumbs-up fa-fw right"></i></span>
+															<span class="white-text waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3">@model.__('bring_back') <i class="fa fa-thumbs-up fa-fw right"></i></span>
 														</div>
 													}
 													else {
 														<div class="card-action mod center want" data-id="@product.id">
-															<span class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3">사고싶다 <i class="fa fa-thumbs-o-up fa-fw right"></i></span>
+															<span class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3">@model.__('bring_back') <i class="fa fa-thumbs-o-up fa-fw right"></i></span>
 														</div>
 													}
 											</div>
@@ -316,7 +316,7 @@
 			<div class="row">
 				<div class="col s12">
 					<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text">
-						브랜드 ON 데일리 붐
+						@model.__('featured')
 					</div>
 					<br>
 				</div>

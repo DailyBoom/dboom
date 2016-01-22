@@ -131,7 +131,6 @@
 								<ul id="dropdown-profile" class="dropdown-content">
 									<a class="@(model.product && model.product.color ? model.product.color : 'light-blue') darken-4 white-text" href="#!">@model.user.username</a>
                 @if (model.user.admin == 1) {
-                  <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus fa-fw right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/coupons/new">New Coupon <i class="fa fa-plus fa-fw right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/coupons/list">Coupons <i class="fa fa-list fa-fw right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/users/list">Users List <i class="fa fa-users fa-fw right"></i></a></li>
@@ -139,6 +138,7 @@
                 }
                 @if (model.user.admin || model.user.role == "merchant") {
 									<li class="divider"></li>
+                  <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus fa-fw right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/products/list">Products <i class="fa fa-list fa-fw right"></i></a></li>
                   <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck fa-fw right"></i></a></li>
                 }
@@ -155,7 +155,6 @@
                 <ul id="slide-out" class="side-nav">
 									<a class="@(model.product && model.product.color ? model.product.color : 'light-blue') darken-4 white-text center" href="#!">@model.user.username</a>
                 @if (model.user.admin == 1) {
-                  <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/coupons/new">New Coupon <i class="fa fa-plus right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/coupons/list">Coupons <i class="fa fa-list right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/users/list">Users List <i class="fa fa-users right"></i></a></li>
@@ -163,6 +162,7 @@
                 }
                 @if (model.user.admin || model.user.role == "merchant") {
 									<li class="divider"></li>
+                  <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/products/list">Products <i class="fa fa-list right"></i></a></li>
                   <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck right"></i></a></li>
                 }
@@ -190,8 +190,8 @@
 							</li>
 						</ul>
             <ul class="right hide-on-small-only user-link">
-              <li class="nav-item mod"><a class="white-text" href="/login">로그인</a></li>
-              <li class="nav-item mod"><a class="white-text" href="/signup">회원가입</a></li>
+              <li class="nav-item mod"><a class="white-text" href="/login">@model.__('login')</a></li>
+              <li class="nav-item mod"><a class="white-text" href="/signup">@model.__('signup')</a></li>
             </ul>
 					}
 				</div><!-- .container -->
@@ -216,11 +216,11 @@
   					</span>
           </div><!-- .col -->
           <div class="col s12 m9 l9 footer-box white-text box-1">
-            <a class="footer-link white-text" href="/about">회사 소개</a>&#149;
-            <a class="footer-link white-text" href="/advertise">광고·제휴 문의</a>&#149;
-            <a class="footer-link white-text" href="/privacy">개인정보 정책</a>&#149;
-            <a class="footer-link white-text" href="/terms">이용약관</a>&#149;
-            <a class="footer-link white-text" href="/merchant">판매자 문의</a>
+            <a class="footer-link white-text" href="/about">@model.__('about')</a>&#149;
+            <a class="footer-link white-text" href="/advertise">@model.__('advertise')</a>&#149;
+            <a class="footer-link white-text" href="/privacy">@model.__('privacy')</a>&#149;
+            <a class="footer-link white-text" href="/terms">@model.__('terms')</a>&#149;
+            <a class="footer-link white-text" href="/merchant">@model.__('merchant_contact')</a>
           </div><!-- .col -->
           <div class="col s12 m4 l4 box-3">
             <p class="text-footer">
@@ -235,9 +235,9 @@
           </div>
           <div class="col s12 m5 l5 box-4">
             <p class="text-footer">
-              폭스트론(주)의 사전 동의 없이 Daily Boom 사이트의 정보, 콘텐츠, UI등을 상업적 목적으로 전재, 전송, 스크래핑 등에  무단 사용할 수 없습니다.
+              @model.__('footer_1')
               <br><br>
-              Daily Boom은 통신판매 중개자로서 통신판매의 당사자가 아니며 상품주문, 배송, 환불의 의무와 책임은 각 판매업체에 있습니다.
+              @model.__('footer_2')
             </p>
           </div>
         </div><!-- .row -->

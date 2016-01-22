@@ -1,4 +1,22 @@
 {
+	"login": "Login",
+	"signup": "Sign up",
+	"buy_today": "Buy today’s product",
+	"time_left": "Time left",
+	"buy_now": "Buy now",
+	"item_left": "items left",
+	"shipping_info": "Shipping info and return/exchange policy",
+	"past_items": "Past Items",
+	"bring_back": "Bring it back",
+	"available": "Available",
+	"featured": "Featured on DailyBoom",
+	"about": "About us",
+	"advertise": "Advertise/partnership",
+	"privacy": "Privacy policy",
+	"terms": "Terms policy",
+	"merchant_contact": "Merchant contact",
+	"footer_1": "DailyBoom is operated by Foxtron Inc. By using DailyBoom, you agree to the conditions in the private policy and user policy.",
+	"footer_2": "Products sold on Dailyboom are sold by individual merchants who are responsible for shipping, handling and liabilities including exchanges and return.",
 	"length.tooShort": "The Field %s is too short (Min. %d characters required)",
 	"length.tooLong": "The Field %s is too long (Max. %d characters allowed)",
 	"alphaNumeric.isNotAlphaNumeric": "The Field %s may only contain alpha-numeric characters",
@@ -10,5 +28,6 @@
 	"between.isNotNumeric": "The Field %s may only contain numbers",
 	"between.notInRange": "The Field %s may only contain numbers from %d-%d",
 	"between.tooBig": "The Field %s may only contain numbers below %d",
-	"email.invalid": "The field %s requires a valid Email address"
+	"email.invalid": "The field %s requires a valid Email address",
+	"past_item": "past_item"
 }
