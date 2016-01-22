@@ -12,7 +12,7 @@ var crypto = require('crypto');
 var sitemap = require('express-sitemap')({url: 'dailyboom.co'});
 var i18n = require('i18n');
 i18n.configure({
-    defaultLocale: 'en',
+    defaultLocale: 'ko',
     directory: path.join(__dirname, 'locales')
 });
 var app = express();

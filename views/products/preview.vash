@@ -2,8 +2,8 @@
 	@html.block("body", function(@model) {
 <div id="navbar-preview" class="preview-bar">
 	<div class="container">
-		<ul class="left">
-			<li><span class="btn-flat btn-large mod white-text">PREVIEW MODE</span></li>
+		<ul class="preview-menu left">
+			<li><span class="preview white-text">PREVIEW MODE</span></li>
 		</ul>
 		<ul class="preview-menu right">
 		@if(model.user.admin) {
@@ -124,8 +124,8 @@
 					<!-- <span class="share-text white-text">share</span> -->
 					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
 					<img id="sharekakao" class="social" src="/images/icon_kakao.png" alt="Kakao Logo" />
-					<a href="mailto:?subject=데일리 붐: 오늘 뭐 사지?&body=http://dailyboom.co"><img id="sharemail"  class="social" src="/images/icon_email.png" alt="Email Image" /></a>
-					<a class="modal-trigger" href="#share_url_modal"><img id="shareurl" class="social" src="/images/link_icon.png" alt="Link Image" /></a>
+					<img id="sharemail"  class="social" src="/images/icon_email.png" alt="Email Image" />
+					<img id="shareurl" class="social" src="/images/link_icon.png" alt="Link Image" />
 				</div>
 			</div><!-- .buy-box-footer -->
 			<!-- Modal Structure -->
@@ -180,18 +180,14 @@
 				@if (model.user) {
 					@if (model.progress < 100) {
 						<div class="hide-on-med-and-up">
-							<a class="modal-trigger" href="/checkout?product_id=@model.product.id">
-								<img class="btn-buy-mobile" src="/images/themes/btn-buy-mobile.png" alt="데일리 붐 쇼핑 몰"/>
-							</a>
+							<img class="btn-buy-mobile" src="/images/themes/btn-buy-mobile.png" alt="데일리 붐 쇼핑 몰"/>
 						</div>
 					}
 				}
 				else {
 					@if (model.progress < 100) {
 						<div class="hide-on-med-and-up">
-							<a class="modal-trigger" href="#modal-check">
-								<img class="btn-buy-mobile" src="/images/themes/btn-buy-mobile.png" alt="" style="width:100%;"/>
-							</a>
+							<img class="btn-buy-mobile" src="/images/themes/btn-buy-mobile.png" alt="" style="width:100%;"/>
 						</div>
 					}
 				}

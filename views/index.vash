@@ -333,6 +333,7 @@
 			<br>
 			<br>
 			@if(!model.is_phone) {
+			<div class="a-wrapper">
 				<script type='text/javascript'>
 				<!--//<![CDATA[
 				   document.MAX_ct0 ='';
@@ -352,6 +353,7 @@
 				   document.write ("'></scr"+"ipt>");
 				//]]>-->
 				</script>
+			</div>
 			}
 			else {
 				<script type='text/javascript'>
