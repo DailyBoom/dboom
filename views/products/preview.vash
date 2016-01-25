@@ -1,5 +1,6 @@
 @html.extend("layout", function(@model) {
 	@html.block("body", function(@model) {
+@if(model.user && (model.user.admin || model.user.role == 'merchant')) {
 <div id="navbar-preview" class="preview-bar">
 	<div class="container">
 		<ul class="preview-menu left">
@@ -9,8 +10,8 @@
 		@if(model.user.admin) {
 			<li>
 				<a class="waves-effect waves-green btn-flat btn-large mod white-text center" href="/products/publish/@model.product.id">
-							PUBLISH <i class="hide-on-small-only fa fa-send fa-fw right"></i>
-						</a>
+					PUBLISH <i class="hide-on-small-only fa fa-send fa-fw right"></i>
+				</a>
 			</li>
 		}
 			<li>
@@ -25,7 +26,7 @@
 		<a id="btn_o" class="waves-effect waves-light btn-flat white-text hide" href="#!"><i class="fa fa-chevron-down fa-fw"></i></a>
 	</div>
 </div><!-- .preview-bar -->
-
+}
 <div class="container">
 	@if(model.progress >= 50){
 		 <div class="progress-wrapper">
