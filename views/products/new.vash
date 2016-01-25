@@ -40,13 +40,18 @@
 			<!-- .row -->
 			<div class="row">
 				<div class="input-field col s12">
-					<select id="merchant_id" class="validate" name="merchant_id">
-						<option value=""></option>
-						@model.merchants.forEach(function(merchant) {
-							<option value="@merchant.id">@merchant.username / @merchant.name</option>
-						})
-					</select>
-					<label for="merchant_id">판매자 아이디 *</label>
+					@if(@model.user.admin) {
+						<select id="merchant_id" class="validate" name="merchant_id">
+							<option value=""></option>
+							@model.merchants.forEach(function(merchant) {
+								<option value="@merchant.id">@merchant.username / @merchant.name</option>
+							})
+						</select>
+						<label for="merchant_id">판매자 아이디 *</label>
+					}
+					else {
+						<input id="merchant_id" name="merchant_id" type="hidden" value="@model.user.id" />
+					}
 				</div>
 			</div>
 			<!-- .row -->
