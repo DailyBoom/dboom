@@ -285,7 +285,7 @@
 												</div>
 													@if(product.extend == 1 && model.moment().isBefore(model.moment(product.scheduled_at).add(3, 'days'), 'days')){
 														<div class="card-action mod center green">
-															<a class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/extend/@product.id">@model__('available')! (<span class="time-left"></span>)</a>
+															<a class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/extend/@product.id">@model.__('available')! (<span class="time-left"></span>)</a>
 														</div>
 													}
 													else if (product.extend == 2){

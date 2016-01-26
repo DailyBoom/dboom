@@ -13,6 +13,7 @@ var sitemap = require('express-sitemap')({url: 'dailyboom.co'});
 var i18n = require('i18n');
 i18n.configure({
     defaultLocale: 'ko',
+//    locales: ['ko', 'en'],
     directory: path.join(__dirname, 'locales')
 });
 var app = express();
