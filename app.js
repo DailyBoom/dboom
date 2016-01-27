@@ -163,21 +163,8 @@ passport.use(new FacebookStrategy({
                   facebookId: profile.id
               });
               user.save(function(err) {
-                  if (err) console.log(err);
-                  User.count({}, function(err, nb) {
-                    if (nb <= 1064) {
-                      var coupon = new Coupon({
-                        user: user.id,
-                        type: 1,
-                        expires_at: moment().add(1, 'months').hours(0).minutes(0).seconds(0)
-                      });
-                      coupon.save(function() {
-                        return done(err, user);
-                      })
-                    }
-                    else
-                      return done(err, user);
-                  });
+                if (err) console.log(err);
+                return done(err, user);
               });
           } else {
               //found user. Return
@@ -210,21 +197,8 @@ passport.use(new KakaoStrategy({
                   kakaoId: profile.id
               });
               user.save(function(err) {
-                  if (err) console.log(err);
-                  User.count({}, function(err, nb) {
-                    if (nb <= 1064) {
-                      var coupon = new Coupon({
-                        user: user.id,
-                        type: 1,
-                        expires_at: moment().add(1, 'months').hours(0).minutes(0).seconds(0)
-                      });
-                      coupon.save(function() {
-                        return done(err, user);
-                      })
-                    }
-                    else
-                      return done(err, user);
-                  });
+                if (err) console.log(err);
+                return done(err, user);
               });
           } else {
               //found user. Return

@@ -1,13 +1,5 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-@if(model.toast) {
-	<div class="coupon-wrapper">
-		<a href="/signup" class="white-text">
-			<img class="toast-coupon" src="/images/themes/coupon.jpg">
-		</a>
-		<br><a href="#!" class="white circle blue-grey-text text-darken-3 right" id="hide-c"><i class="fa fa-times fa-fw fa-2x"></i></a>
-	</div>
-}
 <!-- Login Modal Structure -->
 <div id="modal-check" class="modal">
 	<div class="modal-header-c @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text center">

@@ -355,38 +355,7 @@ router.post('/signup', function(req, res) {
                   if (err) {
                     console.log(err);
                   }
-                  User.count({}, function(err, nb) {
-                    if (nb <= 1064) {
-                      var coupon = new Coupon({
-                        user: user.id,
-                        type: 1,
-                        expires_at: moment().add(1, 'months').hours(0).minutes(0).seconds(0)
-                      });
-                      coupon.save(function() {
-                        fs.readFile('./views/mailer/coupon_new.vash', "utf8", function(err, file) {
-                          if(err){
-                            //handle errors
-                            console.log('ERROR!');
-                            return res.send('ERROR!');
-                          }
-                          var html = vash.compile(file);
-                          transporter.sendMail({
-                            from: '데일리 붐 <contact@dailyboom.co>',
-                            to: user.email,
-                            subject: '쿠폰이 발급되었습니다.',
-                            html: html({ user: user })
-                          }, function (err, info) {
-                              if (err) { console.log(err); }
-                              console.log('Message sent: ' + info.response);
-                              transporter.close();
-                              res.redirect('/');
-                          });
-                        });
-                      });
-                    }
-                    else
-                      return res.redirect('/');
-                  });
+                  return res.redirect('/');
                 });
             });
           });
