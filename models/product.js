@@ -11,6 +11,8 @@ var productSchema = new Schema({
   brand_logo: { type: String, required: false },
   company_url: { type: String, required: false },
   company_facebook: String,
+  company_instagram: String,
+  company_youtube: String,
   company_kakaostory: String,
   review_url: String,
   price: Number,

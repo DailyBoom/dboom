@@ -143,6 +143,8 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         video: req.body.videoUrl,
         company_url: req.body.webUrl,
         company_facebook: req.body.fbUrl,
+        company_youtube: req.body.ytUrl,
+        company_instagram: req.body.igUrl,
         company_kakaostory: req.body.kakaoUrl,
         review_url: req.body.reviewUrl,
         color: req.body.color    
@@ -185,6 +187,8 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
     product.video = req.body.videoUrl;
     product.company_url = req.body.webUrl;
     product.company_facebook = req.body.fbUrl;
+    product.company_youtube = req.body.ytUrl;
+    product.company_instagram = req.body.igUrl;
     product.company_kakaostory = req.body.kakaoUrl;    
     product.review_url = req.body.reviewUrl;
     product.extend = req.body.extend ? req.body.extend : 0;
