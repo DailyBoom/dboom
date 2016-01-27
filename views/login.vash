@@ -13,7 +13,7 @@
 					<div class="col l6 offset-l3">
 						<div class="modal-c z-depth-1">
 							<div class="modal-header blue-grey darken-2 white-text center">
-								로그인
+								@model.__('login')
 							</div>
 							<div class="modal-content">
 								<div class="row">
@@ -29,10 +29,10 @@
 										<div class="col s12">
 											<span class="left">
 												<input type="checkbox" id="remember-me" name="remember_me"/>
-												<label for="remember-me">아이디 저장</label>
+												<label for="remember-me">@model.__('remember_me')</label>
 											</span>
 											<span class="right">
-												<button class="waves-effect waves-light btn blue-grey darken-2" type="submit" name="action">로그인</button>
+												<button class="waves-effect waves-light btn blue-grey darken-2" type="submit" name="action">@model.__('login')</button>
 											</span>
 										</div><!-- .col -->
 										<div class="col s12">
@@ -50,8 +50,8 @@
 								</div><!-- .row -->
 							</div><!-- .modal-content -->
 							<div class="modal-footer blue-grey darken-1">
-								<a class="blue-grey-text text-lighten-5 left" href="/forgot">비밀번호를 잊으셨나요?</a>
-								<a class="blue-grey-text text-lighten-5 right" href="/signup">회원가입</a>
+								<a class="blue-grey-text text-lighten-5 left" href="/forgot">@model.__('forgot_pass')</a>
+								<a class="blue-grey-text text-lighten-5 right" href="/signup">@model.__('signup')</a>
 							</div>
 						</div><!-- .login -->
 					</div><!-- .col -->

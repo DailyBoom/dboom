@@ -26,8 +26,8 @@
 						<!-- <i class="fa fa-clock-o fa-fw fa-3x"></i> -->
 					</div> <!-- cd-timeline-img -->
 					<div class="cd-timeline-content green-text text-darken-3">
-						<h2>데일리 붐은</h2>
-						<p>하루 24시간 오직 한개의 상품만을 판매함으로써 매출을 획기적으로 증가시켜 드립니다.</p>
+						<h2>@model.__('merchant.subtitle')</h2>
+						<p>@model.__('merchant.text_1')</p>
 						<!-- <p>데일리 붐은 하루 24시간 오직 한개의 상품만을 판매함으로써 매출을 획기적으로 증가시켜 드립니다.</p> -->
 						<!-- <a href="#0" class="cd-read-more">Read more</a> -->
 						<!-- <span class="cd-date">Jan 14</span> -->
@@ -39,8 +39,8 @@
 						<!-- <i class="fa fa-money fa-fw fa-3x"></i> -->
 					</div> <!-- cd-timeline-img -->
 					<div class="cd-timeline-content yellow-text text-darken-3">
-						<h2>데일리 붐은</h2>
-						<p>초기 투자비용에 대한 부담없이 새로운 신규 고객을 만나게 해 드립니다.</p>
+						<h2>@model.__('merchant.subtitle')</h2>
+						<p>@model.__('merchant.text_2')</p>
 					</div> <!-- cd-timeline-content -->
 				</div>
 				<div class="cd-timeline-block">
@@ -49,8 +49,8 @@
 						<!-- <i class="fa fa-medkit fa-fw fa-3x"></i> -->
 					</div> <!-- cd-timeline-img -->
 					<div class="cd-timeline-content blue-text text-darken-3">
-						<h2>데일리 붐은</h2>
-						<p>제휴 업체의 매출 및 브랜드 인지도 상승에 직접적인 도움을 드립니다.</p>
+						<h2>@model.__('merchant.subtitle')</h2>
+						<p>@model.__('merchant.text_3')</p>
 					</div> <!-- cd-timeline-content -->
 				</div>
 				<div class="cd-timeline-block">
@@ -59,8 +59,8 @@
 						<!-- <i class="fa fa-users fa-fw fa-3x"></i> -->
 					</div> <!-- cd-timeline-img -->
 					<div class="cd-timeline-content red-text text-darken-3">
-						<h2>데일리 붐은</h2>
-						<p>One Day 프로모션과 SNS를 활용하여 국내외 고객들에게 새로운 제품을 홍보해 드립니다.</p>
+						<h2>@model.__('merchant.subtitle')</h2>
+						<p>@model.__('merchant.text_4')</p>
 					</div> <!-- cd-timeline-content -->
 				</div>
 				<div class="cd-timeline-block">
@@ -69,8 +69,8 @@
 						<!-- <i class="fa fa-smile-o fa-fw fa-3x"></i> -->
 					</div> <!-- cd-timeline-img -->
 					<div class="cd-timeline-content blue-grey-text text-darken-3">
-						<h2>데일리 붐은</h2>
-						<p>고객의 만족도가 높은 제품을 재판매해 드립니다.</p>
+						<h2>@model.__('merchant.subtitle')</h2>
+						<p>@model.__('merchant.text_5')</p>
 					</div> <!-- cd-timeline-content -->
 				</div>
 			</section>
@@ -79,23 +79,23 @@
 				<form class="col s12 m12 l12 add-margin-bottom-md" method="post">
 		      <div class="row grey-text text-darken-3">
 						<div class="col s12 m8 offset-m2 l8 offset-l2">
-							<p class="info-title amber-text text-darken-3">판매자 문의</p>
+							<p class="info-title amber-text text-darken-3">@model.__('merchant.contact')</p>
 							<br>
 						</div>
 		        <div class="input-field col s12 m8 offset-m2 l8 offset-l2">
 							<i class="fa fa-building-o prefix"></i>
 		          <input id="company" type="text" class="validate" name="company">
-		          <label for="company">회사명</label>
+		          <label for="company">@model.__('merchant.company_name')</label>
 		        </div>
 						<div class="input-field col s12 m8 offset-m2 l8 offset-l2">
 							<i class="fa fa-user prefix"></i>
 		          <input id="fullname" type="text" class="validate" name="fullname" required>
-		          <label for="fullname">이름</label>
+		          <label for="fullname">@model.__('merchant.name')</label>
 		        </div>
 						<div class="input-field col s12 m8 offset-m2 l8 offset-l2">
 							<i class="fa fa-envelope-o prefix"></i>
 		          <input id="email" type="email" class="validate" name="email" required>
-		          <label for="email">이메일</label>
+		          <label for="email">@model.__('merchant.email')</label>
 		        </div>
 						<!-- <div class="input-field col s12 m8 offset-m2 l8 offset-l2">
 							<i class="fa fa-globe prefix"></i>
@@ -105,12 +105,12 @@
 						<div class="input-field col s12 m8 offset-m2 l8 offset-l2">
 							<i class="fa fa-pencil-square-o prefix"></i>
 		          <textarea id="details" class="materialize-textarea" name="details"></textarea>
-		          <label for="details">내용</label>
+		          <label for="details">@model.__('merchant.intro')</label>
 		        </div>
 					</div><!-- .row -->
 					<div class="col s12 m8 offset-m2 l8 offset-l2">
 						<div class="row">
-							<button class="btn btn-large waves-effect waves-light blue-grey darken-3 right" type="submit" name="action">보내기
+							<button class="btn btn-large waves-effect waves-light blue-grey darken-3 right" type="submit" name="action">@model.__('merchant.send')
 						    <i class="fa fa-send right"></i>
 						  </button>
 						</div>

@@ -3,16 +3,16 @@
 		<div class="container">
 			<div class="row">
 				<ul class="tabs z-depth-1">
-					<li class="tab col s4 m3"><a class="blue-grey-text text-darken-2 active" href="#mypage1">나의주문내역 <i class="fa fa-shopping-cart fa-fw"></i></a></li>
-					<li class="tab col s4 m3"><a class="blue-grey-text text-darken-2" href="#mypage2">정보설정 <i class="fa fa-cog fa-fw"></i></a></li>
-					<li class="tab col s4 m3"><a class="blue-grey-text text-darken-2" href="#mypage3">나의쿠폰함 <i class="fa fa-ticket fa-fw"></i></a></li>
+					<li class="tab col s4 m3"><a class="blue-grey-text text-darken-2 active" href="#mypage1">@model.__('user.order.summary') <i class="fa fa-shopping-cart fa-fw"></i></a></li>
+					<li class="tab col s4 m3"><a class="blue-grey-text text-darken-2" href="#mypage2">@model.__('settings') <i class="fa fa-cog fa-fw"></i></a></li>
+					<li class="tab col s4 m3"><a class="blue-grey-text text-darken-2" href="#mypage3">@model.__('user.coupons') <i class="fa fa-ticket fa-fw"></i></a></li>
 				</ul>
 			</div><!-- .row -->
 <!-- mypage1 = Basic user info -->
 			<div id="mypage1" class="col s12 m12 l12">
 				<div class="row">
 					<div class="user-title green darken-2 white-text z-depth-1">
-						주문 내역
+						@model.__('user.orders')
 					</div>
 						<ul class="collapsible" data-collapsible="expandable">
 							@if (model.orders) {
@@ -22,23 +22,23 @@
 									<span class="">@order.created_at.toLocaleDateString('ko-KR')</span>
 									<span class="">@model.user.name</span>
 									@if(order.status == 'Paid'){
-										<span class="green-text right">결제 완료 <i class="fa fa-check-circle fa-fw right"></i></span>
+										<span class="green-text right">@model.__('user.order.confirmed') <i class="fa fa-check-circle fa-fw right"></i></span>
 									}
 									else if(order.status == 'Cancelled'){
 										<span class="red-text right">주문 취소 <i class="fa fa-ban fa-fw right"></i></span>
 									}
 									else if(order.status == 'Waiting'){
-										<span class="amber-text right">결제 대기 <i class="fa fa-clock-o fa-fw right"></i></span>
+										<span class="amber-text right">@model.__('user.order.waiting') <i class="fa fa-clock-o fa-fw right"></i></span>
 									}
 									<!-- <span class="right">@order.status <i class="fa fa-check-circle fa-fw right"></i></span> -->
 								</div>
 								<div class="collapsible-body">
 									<div class="row">
 										<div class="col s12 m8 l8">
-											<div class="o-label">주문 번호&nbsp;:&nbsp;</div>
+											<div class="o-label">@model.__('user.order.number')&nbsp;:&nbsp;</div>
 											<div class="o-name">@order._id</div><br>
 
-											<div class="o-label">주문 상품&nbsp;:&nbsp;</div>
+											<div class="o-label">@model.__('user.order.item')&nbsp;:&nbsp;</div>
 											@if(order.product) {
 												<div class="o-name">@order.product.name</div><br>
 											}
@@ -46,19 +46,19 @@
 												<br>
 											}
 
-											<div class="o-label">주문 수량&nbsp;:&nbsp;</div>
+											<div class="o-label">@model.__('user.order.quantity')&nbsp;:&nbsp;</div>
 											<div class="o-name">@order.quantity</div><br>
 
-											<div class="o-label">결제 금액&nbsp;:&nbsp;</div>
+											<div class="o-label">@model.__('user.order.price')&nbsp;:&nbsp;</div>
 											<div class="o-name" id="p_price">@order.product.price 원</div><br>
 
-											<div class="o-label">받는 분&nbsp;:&nbsp;</div>
+											<div class="o-label">@model.__('user.recipient')&nbsp;:&nbsp;</div>
 											<div class="o-name">@model.user.shipping.full_name</div><br>
 
-											<div class="o-label">받는분 주소&nbsp;:&nbsp;</div>
+											<div class="o-label">@model.__('user.recipient.address')&nbsp;:&nbsp;</div>
 											<div class="o-name">@model.user.shipping.address</div><br>
 
-											<div class="o-label">우편번호&nbsp;:&nbsp;</div>
+											<div class="o-label">@model.__('user.zipcode')&nbsp;:&nbsp;</div>
 											<div class="o-name">@model.user.shipping.zipcode</div><br>
 										</div>
 										<div class="col s12 m4 l4">
@@ -66,11 +66,11 @@
 												<br>
 											</div>
 											@if(order.status == "Paid"){
-												<div class="o-label">배송 상태&nbsp;:&nbsp;</div>
-												<div class="o-name green-text">준비 중</div>
+												<div class="o-label">@model.__('user.order.situation')&nbsp;:&nbsp;</div>
+												<div class="o-name green-text">@model.__('user.order.ready')</div>
 											}
 											else if(order.status == "Sent"){
-												<div class="o-label">배송 상태&nbsp;:&nbsp;</div>
+												<div class="o-label">@model.__('user.order.situation')&nbsp;:&nbsp;</div>
 												<div class="o-name green-text">배송 완료</div>
 											}
 											<br/>
@@ -126,12 +126,12 @@
 										</div> -->
 										<div class="col s12 m6 l6">
 											<span>
-												<p class="form-lighten">User ID&nbsp;:&nbsp;</p>
+												<p class="form-lighten">@model.__('user.username')&nbsp;:&nbsp;</p>
 												<p class="text-md">@model.user.username</p>
 											</span>
 										</div>
 									</div>
-									<p class="form-lighten">이메일&nbsp;:&nbsp;</p>
+									<p class="form-lighten">@model.__('user.email')&nbsp;:&nbsp;</p>
 									<p class="text-md">@model.user.email</p>
 									<br>
 									<br>
@@ -141,32 +141,32 @@
 									<div class="row">
 										<div class="col s12 m6 l6">
 											<span>
-												<p class="form-lighten">받는분&nbsp;:&nbsp;</p>
+												<p class="form-lighten">@model.__('user.recipient')&nbsp;:&nbsp;</p>
 												<p class="text-md">@model.user.shipping.full_name</p>
 											</span>
 										</div>
 										<div class="col s12 m6 l6">
 											<span>
-												<p class="form-lighten">전화번호&nbsp;:&nbsp;</p>
+												<p class="form-lighten">@model.__('user.phoneNumber')&nbsp;:&nbsp;</p>
 												<p class="text-md">@model.user.shipping.phone_number</p>
 											</span>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col s12 m12 l12">
-											<p class="form-lighten">배송지 주소&nbsp;:&nbsp;</p>
+											<p class="form-lighten">@model.__('user.address1')&nbsp;:&nbsp;</p>
 											<p class="text-md">@model.user.shipping.address</p>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col s12 m12 l12">
-											<p class="form-lighten">우편번호&nbsp;:&nbsp;</p>
+											<p class="form-lighten">@model.__('user.zipcode')&nbsp;:&nbsp;</p>
 											<p class="text-md">@model.user.shipping.zipcode</p>
 										</div>
 									</div>
 									<br>
 									<!-- edit form page -->
-									<a class="waves-effect waves-light btn blue-grey darken-2 white-text" href="/users/edit">정보 수정 <i class="fa fa-pencil-square-o fa-fw right"></i></a>
+									<a class="waves-effect waves-light btn blue-grey darken-2 white-text" href="/users/edit">@model.__('settings.edit') <i class="fa fa-pencil-square-o fa-fw right"></i></a>
 								</div>
 							</div><!-- .card -->
 						</div><!-- Left Card -->
@@ -174,7 +174,7 @@
 						<div class="col s12 m5 l5">
 							<div class="card">
 								<div class="card-content">
-									<span class="card-title black-text">비밀번호 변경</span>
+									<span class="card-title black-text">@model.__('settings.change_password')</span>
 									<div class="row">
 								    <form class="col s12 m12 l12" method="post" action="/users/edit_password">
 											@if (model.errors) {
@@ -187,14 +187,14 @@
 											<div class="row">
 												<div class="input-field col s12 m12 l12">
 													<input id="password" name="password" type="password" class="validate" required>
-													<label for="password">새 비밀본호</label>
+													<label for="password">@model.__('settings.new_password')</label>
 												</div>
 												<div class="input-field col s12 m12 l12">
 													<input id="confirmpassword" name="confirmpassword" type="password" class="validate" required>
-													<label for="confirmpassword">새 비밀본호 확인</label>
+													<label for="confirmpassword">@model.__('settings.confirm_new_pass')</label>
 									      		</div>
 											</div>
-											<button class="waves-effect waves-light btn amber darken-3" type="submit" name="button">변경하기 <i class="fa fa-key fa-fw right"></i></button>
+											<button class="waves-effect waves-light btn amber darken-3" type="submit" name="button">@model.__('settings.confirm_changes') <i class="fa fa-key fa-fw right"></i></button>
 										</form>
 									</div>
 								</div>

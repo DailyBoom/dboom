@@ -22,23 +22,23 @@
 				<form class="col s12 m12 l12 add-margin-bottom-md">
 		      <div class="row grey-text text-darken-3">
 						<div class="col s12 m8 offset-m2 l8 offset-l2">
-							<p class="info-title amber-text text-darken-3">광고·제휴 문의</p>
+							<p class="info-title amber-text text-darken-3">@model.__('advertise')</p>
 							<br>
 						</div>
 		        <div class="input-field col s12 m8 offset-m2 l8 offset-l2">
 							<i class="fa fa-building-o prefix"></i>
 		          <input id="company" type="text" class="validate" name="company">
-		          <label for="company">회사명</label>
+		          <label for="company">@model.__('advertise.company_name')</label>
 		        </div>
 						<div class="input-field col s12 m8 offset-m2 l8 offset-l2">
 							<i class="fa fa-user prefix"></i>
 		          <input id="fullname" type="text" class="validate" name="fullname" required>
-		          <label for="fullname">이름</label>
+		          <label for="fullname">@model.__('advertise.name')</label>
 		        </div>
 						<div class="input-field col s12 m8 offset-m2 l8 offset-l2">
 							<i class="fa fa-envelope-o prefix"></i>
 		          <input id="email" type="text" class="validate" name="email" required>
-		          <label for="email">이메일</label>
+		          <label for="email">@model.__('advertise.email')</label>
 		        </div>
 						<!-- <div class="input-field col s12 m8 offset-m2 l8 offset-l2">
 							<i class="fa fa-globe prefix"></i>
@@ -48,12 +48,12 @@
 						<div class="input-field col s12 m8 offset-m2 l8 offset-l2">
 							<i class="fa fa-pencil-square-o prefix"></i>
 		          <textarea id="details" class="materialize-textarea" name="details"></textarea>
-		          <label for="details">내용</label>
+		          <label for="details">@model.__('advertise.intro')</label>
 		        </div>
 					</div><!-- .row -->
 					<div class="col s12 m8 offset-m2 l8 offset-l2">
 						<div class="row">
-							<button class="btn btn-large waves-effect waves-light blue-grey darken-3 right" type="submit" name="action">보내기
+							<button class="btn btn-large waves-effect waves-light blue-grey darken-3 right" type="submit" name="action">@model.__('advertise.send')
 						    <i class="fa fa-send right"></i>
 						  </button>
 						</div>
