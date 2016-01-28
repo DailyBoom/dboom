@@ -13,7 +13,7 @@ var sitemap = require('express-sitemap')({url: 'dailyboom.co'});
 var i18n = require('i18n');
 i18n.configure({
     defaultLocale: 'ko',
-//    locales: ['ko', 'en'],
+    locales: ['ko', 'en', 'vi'],
     directory: path.join(__dirname, 'locales')
 });
 var app = express();
@@ -99,6 +99,12 @@ else {
   mongoose.set('debug', true);
 }
 app.use(function(req, res, next) {
+  console.log(i18n.getLocale(req));
+  if (req.query.lang) {
+    console.log(req.query.lang);
+    i18n.setLocale(req, req.query.lang);
+    console.log(i18n.getLocale(req));
+  }
   res.locals.user = req.user;
   moment.locale('ko');
   res.locals.moment = moment;

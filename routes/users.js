@@ -9,6 +9,7 @@ var User = require("../models/user");
 var Product = require("../models/product");
 var Order = require("../models/order");
 var Coupon = require("../models/coupon");
+var Comment = require("../models/comment");
 var config = require('config');
 var i18n = require("i18n");
 var Token = require("../models/token");
@@ -470,6 +471,28 @@ router.get('/users/is_merchant/:id', function(req, res) {
     res.redirect('/users/list');
   });
 })
+
+router.post('/comments/new', function(req, res) {
+  var comment = new Comment({
+    user: req.user ? req.user.id : null,
+    name: req.body.name,
+    body: req.body.body
+  });
+  
+  comment.save(function(err) {
+    if (err) {
+      console.log(err);
+      res.status(500).json({ message: '죄송합니다. 오류가있었습다. 확인후 다시 시도해주세요.' });
+    }
+    res.status(200).json({ message: '감사합니다. 성공적으로 전송이 되었습니다.' });
+  });
+});
+
+router.get('/comments/list', isAdmin, function(req, res) {
+  Comment.find({}, function(err, comments) {
+    res.render('comments/list', { comments: comments });
+  });
+});
 
 //Zonecode page
 
