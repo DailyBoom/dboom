@@ -69,6 +69,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 		<!-- Sliders CSS -->
 		<link rel="stylesheet" href="/stylesheets/owl.carousel.css" />
+		<link rel="stylesheet" href="/stylesheets/owl.theme.css" />
 		<link rel="stylesheet" href="/stylesheets/bxslider.css" />
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="/stylesheets/styles.css">

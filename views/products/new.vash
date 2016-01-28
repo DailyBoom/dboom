@@ -71,7 +71,7 @@
 			<div class="file-field input-field">
 				<br>
 				<span class="hide-on-small-only"><br></span>
-				<span for="description_image" class="input-file-mod grey-text">상정보 이미지</span>
+				<span for="description_image" class="input-file-mod grey-text">상품정보 이미지</span>
 				<div class="btn blue-grey darken-2">
 					<span><i class="fa fa-image left"></i>선택</span>
 					<input id="description_image" type="file" class="validate" name="description_image">
