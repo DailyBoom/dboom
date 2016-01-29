@@ -105,6 +105,9 @@ app.use(function(req, res, next) {
     i18n.setLocale(req, req.query.lang);
     console.log(i18n.getLocale(req));
   }
+  else {
+    i18n.setLocale(req, 'ko');    
+  }
   res.locals.user = req.user;
   moment.locale('ko');
   res.locals.moment = moment;
