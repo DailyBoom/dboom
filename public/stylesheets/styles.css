@@ -226,7 +226,7 @@ input[type=number]::-webkit-outer-spin-button {
   .buy-sticky-wrapper {
     display: block;
     position: fixed;
-    width: 500px;
+    width: 90%;
     right: 0;
     bottom: -10px;
     left: 0;
@@ -274,7 +274,7 @@ input[type=number]::-webkit-outer-spin-button {
   .buy-sticky-wrapper {
     display: block;
     position: fixed;
-    width: 650px;
+    width: 975px;
     right: 0;
     bottom: -10px;
     left: 0;
@@ -295,6 +295,7 @@ input[type=number]::-webkit-outer-spin-button {
     width: auto;
     font-size: 2.5em;
     margin-bottom: 10px;
+    line-height: 1.5;
   }
   .buy-mod-img {
     height: 100px;

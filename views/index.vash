@@ -54,7 +54,7 @@
 </div><!-- #modal-check -->
 <!-- End Login Modal -->
 <!-- Buy Wrapper -->
-<div id="buy-sticky" class="hide-on-small-only buy-sticky-wrapper @(model.product.color ? model.product.color : 'light-blue')">
+<div id="buy-sticky" class="hide-on-small-only buy-sticky-wrapper center @(model.product.color ? model.product.color : 'light-blue')">
 	@if (model.user) {
 		@if (model.progress < 100) {
 			<a href="/checkout?product_id=@model.product.id">
@@ -69,8 +69,8 @@
 			</a>
 		}
 	}
-	<span id="time-left-label" class="d-clock label @(model.product.color ? model.product.color : 'light-blue') white-text left">@model.__('time_left')</span>
-	<br><span id="time-left" class="d-clock white-text left"></span>
+	<span id="time-left-label" class="d-clock label @(model.product.color ? model.product.color : 'light-blue') white-text">@model.__('time_left')</span>
+	<br><span id="time-left" class="d-clock white-text"></span>
 </div>
 
 <div class="container">

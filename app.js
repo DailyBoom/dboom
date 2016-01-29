@@ -14,7 +14,8 @@ var i18n = require('i18n');
 i18n.configure({
     defaultLocale: 'ko',
     locales: ['ko', 'en', 'vi'],
-    directory: path.join(__dirname, 'locales')
+    directory: path.join(__dirname, 'locales'),
+    cookie: 'dboom_locale'
 });
 var app = express();
 
@@ -99,14 +100,15 @@ else {
   mongoose.set('debug', true);
 }
 app.use(function(req, res, next) {
-  console.log(i18n.getLocale(req));
+  console.log(i18n.getLocale(res));
   if (req.query.lang) {
     console.log(req.query.lang);
+    res.cookie('dboom_locale', req.query.lang, { maxAge: 900000, httpOnly: true });
     i18n.setLocale(req, req.query.lang);
-    console.log(i18n.getLocale(req));
+    console.log(req.cookies.dboom_locale);
   }
-  else {
-    i18n.setLocale(req, 'ko');    
+  else if (!req.cookies.dboom_locale) {
+    i18n.setLocale(req, 'ko');
   }
   res.locals.user = req.user;
   moment.locale('ko');

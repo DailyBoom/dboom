@@ -78,6 +78,8 @@
 	"merchant.email": "이메일",
 	"merchant.intro": "내용",
 	"merchant.send": "보내기",
+	"contact.success": "감사합니다. 성공적으로 전송이 되었습니다.",
+	"contact.failed": "죄송합니다. 오류가있었습다. 확인후 다시 시도해주세요.",
 	"product.sellDate": "판매 희망 날짜",
 	"product.brandName": "브랜드 명",
 	"product.merchantId": "판매자 아이디",
