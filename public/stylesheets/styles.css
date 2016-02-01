@@ -1145,7 +1145,8 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 5px 20px 5px 20px;
   }
   .share-text {
-    font-size: 1.4em;
+    margin-right: 25px;
+    font-size: 2em;
   }
   img.social {
     height: 30px;
@@ -1281,7 +1282,9 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 5px 20px 5px 20px;
   }
   .share-text {
-    font-size: 1.4em;
+    font-size: 2em;
+    line-height: 1.75;
+    vertical-align: bottom;
   }
   img.social {
     height: 36px;

@@ -186,7 +186,7 @@
 			</div>
 			<div class="buy-box-footer @(model.product.color ? model.product.color : 'light-blue') lighten-3">
 				<div class="center">
-					<!-- <span class="share-text white-text">share</span> -->
+					<span class="share-text white-text">상품 공유하기</span>
 					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
 					<img id="sharekakao" class="social" src="/images/icon_kakao.png" alt="Kakao Logo" />
 					<a href="mailto:?subject=데일리 붐: 오늘 뭐 사지?&body=http://dailyboom.co"><img id="sharemail"  class="social" src="/images/icon_email.png" alt="Email Image" /></a>
