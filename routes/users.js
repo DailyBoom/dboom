@@ -475,7 +475,6 @@ router.get('/users/is_merchant/:id', function(req, res) {
 router.post('/comments/new', function(req, res) {
   var comment = new Comment({
     user: req.user ? req.user.id : null,
-    name: req.body.name,
     body: req.body.body
   });
   
