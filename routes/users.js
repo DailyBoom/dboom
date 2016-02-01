@@ -473,8 +473,10 @@ router.get('/users/is_merchant/:id', function(req, res) {
 })
 
 router.post('/comments/new', function(req, res) {
+  console.log(req.body);
   var comment = new Comment({
     user: req.user ? req.user.id : null,
+    type: req.body.type,
     order: req.body.order,
     body: req.body.body
   });
@@ -484,6 +486,7 @@ router.post('/comments/new', function(req, res) {
       console.log(err);
       res.status(500).json({ message: '죄송합니다. 오류가있었습다. 확인후 다시 시도해주세요.' });
     }
+    console.log(comment);
     res.status(200).json({ message: '감사합니다. 성공적으로 전송이 되었습니다.' });
   });
 });
