@@ -525,4 +525,12 @@ router.get('/neopop', function(req, res) {
   });
 });
 
+router.get('/test_vi', function(req, res) {
+  Product.findOne({ _id: "56af07fa2de6ec7c2ef12e72" }, function(err, product) {
+    var sale = (product.old_price - product.price) / product.old_price * 100;
+    i18n.setLocale(req, 'vi');
+    res.render('extended', { product: product, progress: 10, no_time: true, title: "Judy Kim Productions", description: product.description, sale: sale.toFixed(0), cover: product.images[0] });
+  });
+});
+
 module.exports = router;
