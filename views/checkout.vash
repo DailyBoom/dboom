@@ -113,14 +113,14 @@
 		<!-- Comments -->
 		<div class="container">
       <div class="row">
-        <form class="col s12" action="">
+        <form class="col s12" action="" id="new_comment">
           <div class="row blue-grey-text text-darken-2">
             <div class="col col s12 m6 l8">
-              <h5>질문이 있으신가요?</h5>
+              <h5>고객요청 사항?</h5>
             </div>
             <div class="input-field col s12 m6 l8">
-              <textarea id="checkout_qna" class="materialize-textarea" name="checkout_qna"></textarea>
-              <label for="checkout_qna">작성하기...</label>
+              <textarea id="comment_body" class="materialize-textarea" name="comment_body"></textarea>
+              <label for="comment_body">예)  경비실에 맡겨주세요, PayPal 결제 시스템 추천합니다, 상품 구매가 진행되지 않습니다 등</label>
             </div>
           </div>
           <button type="submit" class="waves-effect waves-light btn blue-grey darken-2">보내기 <i class="fa fa-paper-plane fa-fw right"></i></button>
@@ -174,6 +174,26 @@
 
 		<script type="text/javascript">
 		$(document).ready(function() {
+			$('#new_comment').on("submit", function(event) {
+				event.preventDefault();
+				$.ajax({
+					type: "POST",
+					url: "/comments/new",
+					dataType: "json",
+					data: {
+						body: $("#comment_body").val(),
+						order: "@model.order.id"
+					},
+					success: function (res) {
+						Materialize.toast(res.message, 4000);
+						$('form input, form textarea').val("");
+					},
+					error: function (res) {
+						Materialize.toast(res.responseJSON.message, 4000);
+					}
+				});
+			});
+			
 			$("#order_option, #order_quantity, #coupon").on('change', function() {
 				if ($(this).find("option:selected").val() != 0)
 					$("#options").submit();

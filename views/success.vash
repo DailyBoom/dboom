@@ -46,14 +46,14 @@
 				<!-- Comments -->
 				<div class="container">
 		      <div class="row">
-		        <form class="col s12" action="">
+		        <form class="col s12" action="" id="new_comment">
 		          <div class="row blue-grey-text text-darken-2">
 		            <div class="col col s12 m6 l8">
-		              <h5>후기 / 기타 문의사항</h5>
+		              <h5>데일리 붐 피드백</h5>
 		            </div>
 		            <div class="input-field col s12 m6 l8">
-		              <textarea id="feedback" class="materialize-textarea" name="feedback"></textarea>
-		              <label for="feedback">후기 작성해주세요.</label>
+		              <textarea id="comment_body" class="materialize-textarea" name="comment_body"></textarea>
+		              <label for="comment_body">예)  결제 시스템이 편해요, 결제 방법 추가해주세요, 영문 버전도 만들어주세요 등</label>
 		            </div>
 		          </div>
 		          <button type="submit" class="waves-effect waves-light btn blue-grey darken-2">보내기 <i class="fa fa-paper-plane fa-fw right"></i></button>
@@ -77,6 +77,25 @@
 		</div><!-- .container -->
 		<script>
 		$(document).ready(function(){
+			$('#new_comment').on("submit", function(event) {
+				event.preventDefault();
+				$.ajax({
+					type: "POST",
+					url: "/comments/new",
+					dataType: "json",
+					data: {
+						body: $("#comment_body").val(),
+						order: "@model.order.id"
+					},
+					success: function (res) {
+						Materialize.toast(res.message, 4000);
+						$('form input, form textarea').val("");
+					},
+					error: function (res) {
+						Materialize.toast(res.responseJSON.message, 4000);
+					}
+				});
+			});
 			$('.parallax').parallax();
 			$("#deposit_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
 		});
