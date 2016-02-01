@@ -130,7 +130,7 @@
 					  </div>
             <div id="ordreq" class="input-field col s12 m6 l8">
               <input value="test" id="order_request" class="validate" name="order_request" type="text" maxlength="30" />
-              <label for="order_request">&nbsp;</label>
+              <label for="order_request" id="order_request_label">&nbsp;</label>
             </div>
           </div>
         </form>
@@ -145,19 +145,19 @@
     <script>
       $('#request_select').on('change', function() {
         if ($("#request_select option:selected").val() == 1) {
-          $('#order_request').val('배송전 연락바랍니다.');
+          $('#order_request_label').html('배송전 연락바랍니다.');
         };
         if ($("#request_select option:selected").val() == 2) {
-          $('#order_request').val('경비실에 맡겨주시기 바랍니다.');
+          $('#order_request_label').html('경비실에 맡겨주시기 바랍니다.');
         };
         if ($("#request_select option:selected").val() == 3) {
-          $('#order_request').val('택배함에 놔주세요.');
+          $('#order_request_label').html('택배함에 놔주세요.');
         };
         if ($("#request_select option:selected").val() == 4) {
-          $('#order_request').val('집앞에 놔주세요.');
+          $('#order_request_label').html('집앞에 놔주세요.');
         };
-				if ($("#request_select option:selected").val() == 5) {
-          $('#order_request').val('');
+		if ($("#request_select option:selected").val() == 5) {
+          $('#order_request_label').html('');
         };
       });
     </script>
