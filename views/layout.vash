@@ -136,6 +136,7 @@
                   <li><a class="deep-purple-text text-darken-2" href="/coupons/list">Coupons <i class="fa fa-list fa-fw right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/users/list">Users List <i class="fa fa-users fa-fw right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/orders/list">Orders List <i class="fa fa-shopping-cart fa-fw right"></i></a></li>
+                  <li><a class="deep-purple-text text-darken-2" href="/users/comments">Comments <i class="fa fa-comment fa-fw right"></i></a></li>
                 }
                 @if (model.user.admin || model.user.role == "merchant") {
 									<li class="divider"></li>
