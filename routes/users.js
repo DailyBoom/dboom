@@ -494,7 +494,7 @@ router.get('/comments/list', isAdmin, function(req, res) {
   });
 });
 
-//Zonecode page
+//Custom pages
 
 router.get('/zonecode', function(req, res) {
   Product.findOne({ _id: "56026fb1ad79928905a6998e" }, function(err, product) {
@@ -506,6 +506,20 @@ router.get('/zonecode', function(req, res) {
 
 router.get('/judykimproductions', function(req, res) {
   Product.findOne({ _id: "5673ba377687397705278e7e" }, function(err, product) {
+    var sale = (product.old_price - product.price) / product.old_price * 100;
+    res.render('extended', { product: product, progress: 10, no_time: true, title: "Judy Kim Productions", description: product.description, sale: sale.toFixed(0), cover: product.images[0] });
+  });
+});
+
+router.get('/beautamin', function(req, res) {
+  Product.findOne({ _id: "56a1e4206a2520396f64c6eb" }, function(err, product) {
+    var sale = (product.old_price - product.price) / product.old_price * 100;
+    res.render('extended', { product: product, progress: 10, no_time: true, title: "Judy Kim Productions", description: product.description, sale: sale.toFixed(0), cover: product.images[0] });
+  });
+});
+
+router.get('/neopop', function(req, res) {
+  Product.findOne({ _id: "56a99dba0fe1ef4972513d0e" }, function(err, product) {
     var sale = (product.old_price - product.price) / product.old_price * 100;
     res.render('extended', { product: product, progress: 10, no_time: true, title: "Judy Kim Productions", description: product.description, sale: sale.toFixed(0), cover: product.images[0] });
   });
