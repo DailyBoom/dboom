@@ -118,9 +118,61 @@
             <div class="col col s12 m6 l8">
               <h5>고객요청 사항</h5>
             </div>
+						<div class="input-field col s12 m6 l8">
+					    <select id="request_select">
+					      <option value="" disabled selected>배송시 요청사항을 선택해 주세요.</option>
+					      <option value="1">배송전 연락바랍니다.</option>
+					      <option value="2">경비실에 맡겨주시기 바랍니다.</option>
+					      <option value="3">택배함에 놔주세요.</option>
+					      <option value="4">집앞에 놔주세요.</option>
+					      <option value="5">직접입력...</option>
+					    </select>
+					  </div>
+            <div id="ordreq" class="input-field col s12 m6 l8">
+              <input value="test" id="order_request" class="validate" name="order_request" type="text" maxlength="30" />
+              <label for="order_request">&nbsp;</label>
+            </div>
+          </div>
+        </form>
+      </div><!-- .row -->
+    </div><!-- .container -->
+		<script>
+	    $(document).ready(function() {
+	      $('select').material_select();
+	      $('#order_request').characterCounter();
+	    });
+		</script>
+    <script>
+      $('#request_select').on('change', function() {
+        if ($("#request_select option:selected").val() == 1) {
+          $('#order_request').val('배송전 연락바랍니다.');
+        };
+        if ($("#request_select option:selected").val() == 2) {
+          $('#order_request').val('경비실에 맡겨주시기 바랍니다.');
+        };
+        if ($("#request_select option:selected").val() == 3) {
+          $('#order_request').val('택배함에 놔주세요.');
+        };
+        if ($("#request_select option:selected").val() == 4) {
+          $('#order_request').val('집앞에 놔주세요.');
+        };
+				if ($("#request_select option:selected").val() == 5) {
+          $('#order_request').val('');
+        };
+      });
+    </script>
+
+		<!-- Comments -->
+		<div class="container">
+      <div class="row">
+        <form class="col s12" action="" id="new_comment">
+          <div class="row blue-grey-text text-darken-2">
+            <div class="col col s12 m6 l8">
+              <h5>질문이 있으십니까?</h5>
+            </div>
             <div class="input-field col s12 m6 l8">
               <textarea id="comment_body" class="materialize-textarea" name="comment_body"></textarea>
-              <label for="comment_body">예)  경비실에 맡겨주세요, PayPal 결제 시스템 추천합니다, 상품 구매가 진행되지 않습니다 등</label>
+              <label for="comment_body">예) 상품 구매가 진행되지 않습니다, Payco 결제 시스템 추천합니다 등</label>
             </div>
           </div>
           <button type="submit" class="waves-effect waves-light btn blue-grey darken-2">보내기 <i class="fa fa-paper-plane fa-fw right"></i></button>
@@ -193,7 +245,7 @@
 					}
 				});
 			});
-			
+
 			$("#order_option, #order_quantity, #coupon").on('change', function() {
 				if ($(this).find("option:selected").val() != 0)
 					$("#options").submit();
