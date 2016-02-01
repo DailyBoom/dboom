@@ -131,13 +131,6 @@
 								<!-- Dropdown Structure -->
 								<ul id="dropdown-profile" class="dropdown-content">
 									<a class="@(model.product && model.product.color ? model.product.color : 'light-blue') darken-4 white-text" href="#!">@model.user.username</a>
-                @if (model.user.admin == 1) {
-                  <li><a class="deep-purple-text text-darken-2" href="/coupons/new">New Coupon <i class="fa fa-plus fa-fw right"></i></a></li>
-                  <li><a class="deep-purple-text text-darken-2" href="/coupons/list">Coupons <i class="fa fa-list fa-fw right"></i></a></li>
-                  <li><a class="deep-purple-text text-darken-2" href="/users/list">Users List <i class="fa fa-users fa-fw right"></i></a></li>
-                  <li><a class="deep-purple-text text-darken-2" href="/orders/list">Orders List <i class="fa fa-shopping-cart fa-fw right"></i></a></li>
-                  <li><a class="deep-purple-text text-darken-2" href="/users/comments">Comments <i class="fa fa-comment fa-fw right"></i></a></li>
-                }
                 @if (model.user.admin || model.user.role == "merchant") {
 									<li class="divider"></li>
                   <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus fa-fw right"></i></a></li>
@@ -147,6 +140,15 @@
 									<li class="divider"></li>
 									<li><a class="@(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href="/mypage">마이 페이지 <i class="fa fa-user fa-fw right"></i></a></li>
 									<li><a class="@(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href="/logout">로그아웃 <i class="fa fa-sign-out fa-fw right"></i></a></li>
+                @if (model.user.admin == 1) {
+                  <li class="divider"></li>
+                  <li><a class="deep-purple-text text-darken-2" href="/orders/list">Orders List <i class="fa fa-shopping-cart fa-fw right"></i></a></li>
+                  <li><a class="deep-purple-text text-darken-2" href="/users/comments">Comments <i class="fa fa-comment fa-fw right"></i></a></li>
+                  <li><a class="deep-purple-text text-darken-2" href="/users/list">Users List <i class="fa fa-users fa-fw right"></i></a></li>
+                  <li><a class="deep-purple-text text-darken-2" href="/coupons/list">Coupons <i class="fa fa-list fa-fw right"></i></a></li>
+                  <li><a class="deep-purple-text text-darken-2" href="/coupons/new">New Coupon <i class="fa fa-plus fa-fw right"></i></a></li>
+                  <li><a class="deep-purple-text text-darken-2" href="/partners/new">Add Partner <i class="fa fa-plus fa-fw right"></i></a></li>
+                }
 								</ul>
 							</li>
 						</ul>
