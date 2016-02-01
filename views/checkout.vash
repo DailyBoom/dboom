@@ -116,11 +116,11 @@
         <form class="col s12" action="" id="new_comment">
           <div class="row blue-grey-text text-darken-2">
             <div class="col col s12 m6 l8">
-              <h5>질문이 있으신가요?</h5>
+              <h5>고객요청 사항?</h5>
             </div>
             <div class="input-field col s12 m6 l8">
               <textarea id="comment_body" class="materialize-textarea" name="comment_body"></textarea>
-              <label for="comment_body">작성하기...</label>
+              <label for="comment_body">예)  경비실에 맡겨주세요, PayPal 결제 시스템 추천합니다, 상품 구매가 진행되지 않습니다 등</label>
             </div>
           </div>
           <button type="submit" class="waves-effect waves-light btn blue-grey darken-2">보내기 <i class="fa fa-paper-plane fa-fw right"></i></button>
