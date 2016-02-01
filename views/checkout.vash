@@ -181,7 +181,8 @@
 					url: "/comments/new",
 					dataType: "json",
 					data: {
-						body: $("#comment_body").val()
+						body: $("#comment_body").val(),
+						order: @model.order.id
 					},
 					success: function (res) {
 						Materialize.toast(res.message, 4000);
