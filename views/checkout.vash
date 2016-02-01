@@ -33,7 +33,7 @@
 							@if(model.coupons) {
 								<div class="input-field col s12">
 									<select id="coupon" name="coupon">
-										<option value="">쿠폰 선택</option> 
+										<option value="">쿠폰 선택</option>
 										@model.coupons.forEach(function(coupon) {
 											@if(coupon.type == 1 && model.order.product.delivery_price > 0) {
 												<option value="@coupon.id" @(model.order.coupon && model.order.coupon.id == coupon.id ? 'selected' : '') >무료 배송 (유효기간: @model.moment(coupon.expires_at).format("YYYY/MM/DD"))</option>
@@ -109,6 +109,24 @@
 				</div><!-- .col -->
 			</div><!-- .row -->
 		</div><!-- .container -->
+
+		<!-- Comments -->
+		<div class="container">
+      <div class="row">
+        <form class="col s12" action="">
+          <div class="row blue-grey-text text-darken-2">
+            <div class="col col s12 m6 l8">
+              <h5>질문이 있으신가요?</h5>
+            </div>
+            <div class="input-field col s12 m6 l8">
+              <textarea id="checkout_qna" class="materialize-textarea" name="checkout_qna"></textarea>
+              <label for="checkout_qna">작성하기...</label>
+            </div>
+          </div>
+          <button type="submit" class="waves-effect waves-light btn blue-grey darken-2">보내기 <i class="fa fa-paper-plane fa-fw right"></i></button>
+        </form>
+      </div><!-- .row -->
+    </div><!-- .container -->
 
 		<!-- Modal Structure -->
 		<div id="bank_modal" class="modal">

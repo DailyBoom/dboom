@@ -185,10 +185,10 @@ input[type=number]::-webkit-outer-spin-button {
     height: 50px;
     line-height: 50px;
   }
-  i.right {
+  /*i.right {
     line-height: 50px;
     vertical-align: middle;
-  }
+  }*/
   .btn-profile {
     height: 40px;
     width: 40px;
