@@ -42,6 +42,25 @@
 					<br>좋은 하루 되세요!
 				</p>
 				}
+
+				<!-- Comments -->
+				<div class="container">
+		      <div class="row">
+		        <form class="col s12" action="">
+		          <div class="row blue-grey-text text-darken-2">
+		            <div class="col col s12 m6 l8">
+		              <h5>후기 / 기타 문의사항</h5>
+		            </div>
+		            <div class="input-field col s12 m6 l8">
+		              <textarea id="feedback" class="materialize-textarea" name="feedback"></textarea>
+		              <label for="feedback">후기 작성해주세요.</label>
+		            </div>
+		          </div>
+		          <button type="submit" class="waves-effect waves-light btn blue-grey darken-2">보내기 <i class="fa fa-paper-plane fa-fw right"></i></button>
+		        </form>
+		      </div><!-- .row -->
+		    </div><!-- .container -->
+
 				<div class="row @if(model.is_phone) { center }else{ left }">
 					<a class="waves-effect waves-light btn btn-large blue-grey darken-2" href="/mypage">주문보기 <i class="fa fa-list right"></i></a>
 					<a class="waves-effect waves-light btn btn-large blue-grey lighten-5 blue-grey-text text-darken-3" href="/">홈으로 <i class="fa fa-home right"></i></a>
