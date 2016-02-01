@@ -129,7 +129,7 @@
 					    </select>
 					  </div>
             <div id="ordreq" class="input-field col s12 m6 l8">
-              <input value="test" id="order_request" class="validate" name="order_request" type="text" maxlength="30" />
+              <input value="" id="order_request" class="validate" name="order_request" type="text" maxlength="30" />
               <label for="order_request">&nbsp;</label>
             </div>
           </div>
