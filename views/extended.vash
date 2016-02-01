@@ -203,7 +203,7 @@
 			<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
 		    <li>
 					<div class="collapsible-header @(model.product.color ? model.product.color : 'light-blue') darken-1 white-text">
-						<span>배송 진행상황 조회 및 제품 교환/환불 정책 <i class="fa fa-info-circle fa-fw right"></i></span>
+						<span>@model.__('shipping_info') <i class="fa fa-info-circle fa-fw right"></i></span>
 					</div>
 					<div class="collapsible-body @(model.product.color ? model.product.color : 'light-blue') lighten-5">
 						@if(model.product.delivery_info) {
@@ -260,7 +260,7 @@
 			<div class="row">
 				<div class="col s12">
 					<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text">
-						브랜드 ON 데일리 붐
+						@model.__('featured')
 					</div>
 					<br>
 				</div>
