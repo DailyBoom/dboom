@@ -53,8 +53,23 @@
 	</div>
 </div><!-- #modal-check -->
 <!-- End Login Modal -->
+<!-- Login Modal Structure -->
+<div id="modal-ask" class="modal modal-lg center">
+	<div class="modal-content">
+		<div class="row">
+			<p>Send a message to <a href="http://www.askajumma.com" target="_blank"><b>Ask Ajumma</b></a>* and say,</p>
+			<h5>"I want the Daily Boom product!"</h5>
+			<a href="http://goto.kakao.com/i1ala00r" target="_blank"><img class="help-icon" src="/images/kakao_lg.jpg" alt="Kakaotalk" /></a>
+			<a href="http://www.facebook.com/askthisajumma" target="_blank"><img class="help-icon" src="/images/icon_fb.png" alt="Kakaotalk" /></a>
+			<p class="ask-text">
+				*Ask Ajumma is a virtual concierge service,  all major international credit cards are accepted.<br>A 20% surcharge will be assessed for each transaction.
+			</p>
+		</div><!-- .row -->
+	</div><!-- .modal-content -->
+</div><!-- #modal-check -->
 <!-- Buy Wrapper -->
 <div id="buy-sticky" class="hide-on-small-only buy-sticky-wrapper center @(model.product.color ? model.product.color : 'light-blue')">
+	<a href="#modal-ask" class="buy-help modal-trigger">Can't Read Korean? Click here.</a>
 	@if (model.user) {
 		@if (model.progress < 100) {
 			<a href="/checkout?product_id=@model.product.id">
@@ -261,6 +276,7 @@
 					}
 				}
 			</div>
+			<a href="#modal-ask" class="hide-on-med-and-up buy-help modal-trigger">Can't Read Korean? Click here.</a>
 
 			<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text">
 				@model.__('past_items')
