@@ -69,7 +69,7 @@
 </div><!-- #modal-check -->
 <!-- Buy Wrapper -->
 <div id="buy-sticky" class="hide-on-small-only buy-sticky-wrapper center @(model.product.color ? model.product.color : 'light-blue')">
-	<a href="#modal-ask" class="buy-help modal-trigger">Can't Read Korean? Click here.</a>
+	<a href="#modal-ask" class="buy-help-d modal-trigger">Can't Read Korean? Click here.</a>
 	@if (model.user) {
 		@if (model.progress < 100) {
 			<a href="/checkout?product_id=@model.product.id">
