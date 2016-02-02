@@ -1,6 +1,7 @@
 /*  Daily Boom, Inc. All rights reserved.  */
 
 /* Fonts */
+@import url(https://fonts.googleapis.com/css?family=Lato:400,900,700);
 @font-face {
   font-family: 'BulkyPixels';
   src: url('/fonts/bulkypix-webfont.eot');
@@ -461,6 +462,17 @@ input[type=number]::-webkit-outer-spin-button {
 /** Sticky Buy **/
 .help-icon {
   border-radius: 5px;
+}
+.aa-a,
+.aa-b {
+  font-family: 'Lato', sans-serif;
+  font-weight: 900 !important;
+}
+.aa-a {
+  color: #111111;
+}
+.aa-b {
+  color: #8d0000;
 }
 @media only screen and (min-width: 0) {
   .buy-help {

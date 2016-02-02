@@ -57,7 +57,7 @@
 <div id="modal-ask" class="modal modal-lg center">
 	<div class="modal-content">
 		<div class="row">
-			<p>Send a message to <a href="http://www.askajumma.com" target="_blank"><b>Ask Ajumma</b></a>* and say,</p>
+			<p>Send a message to <a href="http://www.askajumma.com" target="_blank"><b><span class="aa-a">Ask</span> <span class="aa-b">Ajumma</span></b></a>* and say,</p>
 			<h5>"I want the Daily Boom product!"</h5>
 			<a href="http://goto.kakao.com/i1ala00r" target="_blank"><img class="help-icon" src="/images/kakao_lg.jpg" alt="Kakaotalk" /></a>
 			<a href="http://www.facebook.com/askthisajumma" target="_blank"><img class="help-icon" src="/images/icon_fb.png" alt="Kakaotalk" /></a>
