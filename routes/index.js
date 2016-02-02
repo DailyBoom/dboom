@@ -95,7 +95,7 @@ router.post('/advertise', function(req, res, next) {
     html: '<p>회사 명: '+req.body.company+'</p><p>이름: '+req.body.fullname+'</p><p>이메일: '+req.body.email+'</p><p>내용: '+req.body.details+'</p>'
   }, function (err, info) {
       if (err) { console.log(err); res.status(500).json({ message: '죄송합니다. 오류가있었습다. 확인후 다시 시도해주세요.'}); }
-      console.log('Message sent: ' + info.response);
+     //console.log('Message sent: ' + info.response);
       transporter.close();
       res.status(200).json({ message: '감사합니다. 성공적으로 전송이 되었습니다.'});
   });
@@ -109,7 +109,7 @@ router.post('/merchant', function(req, res, next) {
     html: '<p>회사 명: '+req.body.company+'</p><p>이름: '+req.body.fullname+'</p><p>이메일: '+req.body.email+'</p><p>내용: '+req.body.details+'</p>'
   }, function (err, info) {
       if (err) { console.log(err); res.status(500).json({ message: '죄송합니다. 오류가있었습다. 확인후 다시 시도해주세요.'}); }
-      console.log('Message sent: ' + info.response);
+      //console.log('Message sent: ' + info.response);
       transporter.close();
       res.status(200).json({ message: '감사합니다. 성공적으로 전송이 되었습니다.'});
   });
@@ -184,7 +184,7 @@ router.post('/coupons/new', function(req, res, next) {
               html: html({ user: coupon.user })
             }, function (err, info) {
                 if (err) { console.log(err); }
-                console.log('Message sent: ' + info.response);
+                //console.log('Message sent: ' + info.response);
                 transporter.close();
             });
           });

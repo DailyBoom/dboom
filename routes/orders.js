@@ -406,7 +406,7 @@ router.post('/deposit_checkout', function(req, res) {
               html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment, order: order, accounting: accounting })
             }, function (err, info) {
                 if (err) { console.log(err); }
-                console.log('Message sent: ' + info.response);
+                //console.log('Message sent: ' + info.response);
                 transporter.close();
                 res.redirect('/success');
             });
@@ -479,8 +479,8 @@ router.get('/payco_callback', function(req, res) {
                                 subject: '데일리 붐 구매 안내.',
                                 html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name })
                               }, function (err, info) {
-                                  if (err) { console.log(err); res.render('payco_callback', { error: err.errmsg }); }
-                                  console.log('Message sent: ' + info.response);
+                                  if (err) { console.log(err); }
+                                  //console.log('Message sent: ' + info.response);
                                   transporter.close();
                                   res.render('payco_callback', {code: req.query.code});
                               });
@@ -550,7 +550,7 @@ router.get('/orders/paid/:id', isAdmin, function(req, res) {
                     html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment })
                   }, function (err, info) {
                       if (err) { console.log(err); }
-                      console.log('Message sent: ' + info.response);
+                      //console.log('Message sent: ' + info.response);
                       transporter.close();
                       res.redirect('/orders/list');
                   });
@@ -586,7 +586,7 @@ router.get('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
           html: html({ moment: moment, order: order, accounting: accounting })
         }, function (err, info) {
             if (err) { console.log(err); }
-            console.log('Message sent: ' + info.response);
+            //console.log('Message sent: ' + info.response);
             transporter.close();
             res.redirect('/mypage');
         });
@@ -650,8 +650,8 @@ router.get('/orders/cancel/:id', function(req, res) {
                     subject: '데일리 붐 주문 취소 안내',
                     html: html({ moment: moment, order: order, accounting: accounting })
                   }, function (err, info) {
-                      if (err) { console.log(err); }
-                      console.log('Message sent: ' + info.response);
+                      if (err) { console.log(err);}
+                      //console.log('Message sent: ' + info.response);
                       transporter.close();
                       res.redirect('/mypage');
                   });
@@ -697,8 +697,8 @@ router.get('/orders/cancel_deposit/:id', function(req, res) {
           subject: '데일리 붐 주문 취소 안내',
           html: html({ moment: moment, order: order, accounting: accounting })
         }, function (err, info) {
-            if (err) { console.log(err); }
-            console.log('Message sent: ' + info.response);
+            if (err) { console.log(err);}
+            //console.log('Message sent: ' + info.response);
             transporter.close();
             res.redirect('/mypage');
         });
@@ -821,44 +821,13 @@ router.post('/shipping', function(req, res) {
                         subject: user.username+'님 회원가입을 축하드립니다.',
                         html: html({ user : user })
                       }, function (err, info) {
-                          if (err) { console.log(err); res.render('signup', { error: err.errmsg }); }
-                          console.log('Message sent: ' + info.response);
+                          if (err) { console.log(err); }
+                          //console.log('Message sent: ' + info.response);
                           req.login(user, function(err) {
                             if (err) {
                               console.log(err);
                             }
-                            User.count({}, function(err, nb) {
-                              if (nb <= 1064) {
-                                var coupon = new Coupon({
-                                  user: user.id,
-                                  type: 1,
-                                  expires_at: moment().add(1, 'months').hours(0).minutes(0).seconds(0)
-                                });
-                                coupon.save(function() {
-                                  fs.readFile('./views/mailer/coupon_new.vash', "utf8", function(err, file) {
-                                    if(err){
-                                      //handle errors
-                                      console.log('ERROR!');
-                                      return res.send('ERROR!');
-                                    }
-                                    var html = vash.compile(file);
-                                    transporter.sendMail({
-                                      from: '데일리 붐 <contact@dailyboom.co>',
-                                      to: user.email,
-                                      subject: '쿠폰이 발급되었습니다.',
-                                      html: html({ user: user })
-                                    }, function (err, info) {
-                                        if (err) { console.log(err); }
-                                        console.log('Message sent: ' + info.response);
-                                        transporter.close();
-                                        res.redirect('/checkout');
-                                    });
-                                  });
-                                })
-                              }
-                              else
-                                return res.redirect('/checkout');
-                            });
+                            return res.redirect('/checkout');
                           });
                       });
                     });
