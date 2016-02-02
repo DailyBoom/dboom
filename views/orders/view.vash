@@ -20,6 +20,12 @@
 						&nbsp;@model.order.shipping.full_name 
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
+						@model.__('user.email') :
+					</span>
+					<span class="col s9 order-label">
+						&nbsp;@(model.order.email ? model.order.email : model.order.user.email)
+					</span>
+					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						전화번호 :
 					</span>
 					<span class="col s9 order-label">
@@ -61,6 +67,16 @@
  			</div><!-- .col -->
 
 		 </div><!-- .row -->
+		 <div class="row">
+			 <div class="col s12 m12 l12">
+			 	<h4>고객요청 사항</h4>
+				<div class="row blue-grey-text text-darken-3">
+					@model.comments.forEach(function(comment) {
+						<p>@comment.body</p>
+					})
+				</div>
+			 </div>
+		 </div>
    </div><!-- .container -->
 	 <script>
 	 $(document).ready(function(){

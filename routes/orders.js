@@ -11,6 +11,7 @@ var User = require('../models/user');
 var Product = require('../models/product');
 var Order = require('../models/order');
 var Coupon = require('../models/coupon');
+var Comment = require('../models/comment');
 var i18n = require('i18n');
 var config = require('config');
 var extend = require('util')._extend;
@@ -139,7 +140,9 @@ router.get('/orders/view/:id', isMerchantOrAdmin, function(req, res) {
       console.log(err);
     if (!order)
       res.redirect('/');
-    res.render('orders/view', { order: order });
+    Comment.find({ order: order._id }, function(err, comments) {
+      res.render('orders/view', { order: order, comments: comments });
+    });
   });
 });
 
@@ -366,6 +369,8 @@ router.post('/checkout', function(req, res) {
 router.post('/deposit_checkout', function(req, res) {
   if (req.session.order) {
     Order.findOne({ '_id': req.session.order }).populate('product coupon user').exec(function(err, order) {
+        if (order.status == "Waiting")
+          return res.redirect('/success');
         if (err)
           console.log(err);
         console.log(order);
