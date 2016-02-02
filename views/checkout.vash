@@ -111,14 +111,17 @@
 		</div><!-- .container -->
 
 		<!-- Comments -->
-	<div class="container">
+		<div class="container">
       <div class="row">
         <form class="col s12" action="" id="new_comment">
+					<hr>
+					<br>
           <div class="row blue-grey-text text-darken-2">
-            <div class="col col s12 m6 l8">
-              <h5>고객요청 사항</h5>
+            <div class="col s12 m6 l8">
+              <!-- <h5>고객요청 사항</h5> -->
+              <h5>고객문의 사항</h5>
             </div>
-			<div class="input-field col s12 m6 l8">
+			<div class="input-field col s12 m6 l8 hide">
 				<select id="request_select" name="request_select">
 					<option value="" disabled selected>배송시 요청사항을 선택해 주세요.</option>
 					<option value="1">배송전 연락바랍니다.</option>
@@ -133,20 +136,11 @@
               <label for="comment_body">예) 상품 구매가 진행되지 않습니다, Payco 결제 시스템 추천합니다 등</label>
             </div>
           </div>
-          <button type="submit" class="waves-effect waves-light btn blue-grey darken-2">보내기 <i class="fa fa-paper-plane fa-fw right"></i></button>
+          <button type="submit" class="waves-effect waves-light btn blue-grey darken-3">메시지 보내기 <i class="fa fa-paper-plane fa-fw right"></i></button>
         </form>
       </div><!-- .row -->
     </div><!-- .container -->
-	
-
-		<!-- Comments -->
-		<div class="container">
-      <div class="row">
-        <form class="col s12" action="" id="new_comment">
-                  </form>
-      </div><!-- .row -->
-    </div><!-- .container -->
-
+		<br>
 		<!-- Modal Structure -->
 		<div id="bank_modal" class="modal">
 			<div class="modal-content center">
@@ -196,112 +190,117 @@
 	      $('select').material_select();
 	      $('#order_request').characterCounter();
 	    });
-		// $('#request_select').on('change', function() {
-		// 	if ($("#request_select option:selected").val() == 1) {
-		// 		$('#order_request_label').html('배송전 연락바랍니다.');
-		// 	}
-		// 	if ($("#request_select option:selected").val() == 2) {
-		// 		$('#order_request_label').html('경비실에 맡겨주시기 바랍니다.');
-		// 	}
-		// 	if ($("#request_select option:selected").val() == 3) {
-		// 		$('#order_request_label').html('택배함에 놔주세요.');
-		// 	}
-		// 	if ($("#request_select option:selected").val() == 4) {
-		// 		$('#order_request_label').html('집앞에 놔주세요.');
-		// 	}
-		// 	if ($("#request_select option:selected").val() == 5) {
-		// 		$('#order_request_label').html('');
-		// 	}
-		// });
-		$(document).ready(function() {
-			$('#new_comment').on("submit", function(event) {
-				event.preventDefault();
-				$.ajax({
-					type: "POST",
-					url: "/comments/new",
-					dataType: "json",
-					data: {
-						body: $("#comment_body").val(),
-						type: $("#request_select option:selected").val(),
-						order: "@model.order.id"
-					},
-					success: function (res) {
-						Materialize.toast(res.message, 4000);
-						$('form textarea').val("");
-					},
-					error: function (res) {
-						Materialize.toast(res.responseJSON.message, 4000);
-					}
+			$('#request_select').on('change', function() {
+				if ($("#request_select option:selected").val() == 1) {
+					$('#comment_body').html('배송전 연락바랍니다.');
+					$('#comment_body').focus();
+				}
+				if ($("#request_select option:selected").val() == 2) {
+					$('#comment_body').html('경비실에 맡겨주시기 바랍니다.');
+					$('#comment_body').focus();
+				}
+				if ($("#request_select option:selected").val() == 3) {
+					$('#comment_body').html('택배함에 놔주세요.');
+					$('#comment_body').focus();
+				}
+				if ($("#request_select option:selected").val() == 4) {
+					$('#comment_body').html('집앞에 놔주세요.');
+					$('#comment_body').focus();
+				}
+				if ($("#request_select option:selected").val() == 5) {
+					$('#comment_body').html('');
+					$('#comment_body').focus();
+				}
+			});
+			$(document).ready(function() {
+				$('#new_comment').on("submit", function(event) {
+					event.preventDefault();
+					$.ajax({
+						type: "POST",
+						url: "/comments/new",
+						dataType: "json",
+						data: {
+							body: $("#comment_body").val(),
+							type: $("#request_select option:selected").val(),
+							order: "@model.order.id"
+						},
+						success: function (res) {
+							Materialize.toast(res.message, 4000);
+							$('form textarea').val("");
+						},
+						error: function (res) {
+							Materialize.toast(res.responseJSON.message, 4000);
+						}
+					});
 				});
+
+				$("#order_option, #order_quantity, #coupon").on('change', function() {
+					if ($(this).find("option:selected").val() != 0)
+						$("#options").submit();
+				});
+				$('.modal-trigger').leanModal({
+			      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+			      opacity: .5, // Opacity of modal background
+			      in_duration: 300, // Transition in duration
+			      out_duration: 200 // Transition out duration
+			    }
+			  );
+				$('select').material_select();
 			});
+			$("#product_price, #product_price_mobile, #delivery_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
 
-			$("#order_option, #order_quantity, #coupon").on('change', function() {
-				if ($(this).find("option:selected").val() != 0)
-					$("#options").submit();
+			function order() {
+
+				 // ==== 1. 선택 박스 필수 옵션을 체크 함 =====/
+
+				//  if (document.getElementById('frm').option.value == "") {
+				//      alert('옵션을 선택해주세요');
+				//      return false;
+				//  }
+
+				//  if (document.getElementById('frm').buy_cnt.value == 0) {
+				//      alert('구매수량을 선택해주세요');
+				//      return false;
+				//  }
+
+				 /*
+				   1. payco로 주문 정보를 등록 처리를 하는 가맹점 페이지로 이동
+				   2. 해당 페이지에서 페이코 주문 예약 API를 이용하여 주문 정보를 등록
+				   3. 리턴받은 주문서 페이지로 이동 처리한다.
+				  */
+
+				 // 성공 시 주문서 URL 팝업   ( 모바일의 경우 redirect )
+				var orderurl = '@model.orderSheetUrl';
+				var is_mobile = @model.is_mobile;
+				if(!is_mobile){
+					var popout = window.open(orderurl, 'popupPayco','top=100, left=300, width=727px, height=512px, resizable=no, scrollbars=yes');
+					var pollTimer = window.setInterval(function() {
+						if (popout.closed !== false) {
+							window.clearInterval(pollTimer);
+							if (window['code'] == 0) {
+								window.location = '/success';
+							}
+							else {
+								alert('Error in payment');
+							}
+						}
+					}, 200);
+				}
+				else {
+					window.location = orderurl;
+				}
+			}
+			//<![CDATA[
+			Payco.Button.register({
+				SELLER_KEY : 'YJLGJG' ,
+				ORDER_METHOD : "CHECKOUT",        // 주문유형 : CHECKOUT. 체크아웃 타입 / EASYPAY. 간편결제형
+				BUTTON_TYPE : "C4",                 // 버튼타입 선택 (A1,A2)
+				BUTTON_HANDLER : order,            // 구매하기 버튼 이벤트 Handler 함수 등록
+				DISPLAY_PROMOTION : "Y",            // 이벤트 문구 출력 여부
+				DISPLAY_ELEMENT_ID : "payco_btn_type_A1",  // 노출될 element id
+				"" : ""
 			});
-			$('.modal-trigger').leanModal({
-		      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-		      opacity: .5, // Opacity of modal background
-		      in_duration: 300, // Transition in duration
-		      out_duration: 200 // Transition out duration
-		    }
-		  );
-			$('select').material_select();
-		});
-		$("#product_price, #product_price_mobile, #delivery_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
-
-		function order() {
-
-			 // ==== 1. 선택 박스 필수 옵션을 체크 함 =====/
-
-			//  if (document.getElementById('frm').option.value == "") {
-			//      alert('옵션을 선택해주세요');
-			//      return false;
-			//  }
-
-			//  if (document.getElementById('frm').buy_cnt.value == 0) {
-			//      alert('구매수량을 선택해주세요');
-			//      return false;
-			//  }
-
-			 /*
-			   1. payco로 주문 정보를 등록 처리를 하는 가맹점 페이지로 이동
-			   2. 해당 페이지에서 페이코 주문 예약 API를 이용하여 주문 정보를 등록
-			   3. 리턴받은 주문서 페이지로 이동 처리한다.
-			  */
-
-			 // 성공 시 주문서 URL 팝업   ( 모바일의 경우 redirect )
-			var orderurl = '@model.orderSheetUrl';
-			var is_mobile = @model.is_mobile;
-			if(!is_mobile){
-				var popout = window.open(orderurl, 'popupPayco','top=100, left=300, width=727px, height=512px, resizable=no, scrollbars=yes');
-				var pollTimer = window.setInterval(function() {
-					if (popout.closed !== false) {
-						window.clearInterval(pollTimer);
-						if (window['code'] == 0) {
-							window.location = '/success';
-						}
-						else {
-							alert('Error in payment');
-						}
-					}
-				}, 200);
-			}
-			else {
-				window.location = orderurl;
-			}
-		}
-		//<![CDATA[
-		Payco.Button.register({
-			SELLER_KEY : 'YJLGJG' ,
-			ORDER_METHOD : "CHECKOUT",        // 주문유형 : CHECKOUT. 체크아웃 타입 / EASYPAY. 간편결제형
-			BUTTON_TYPE : "C4",                 // 버튼타입 선택 (A1,A2)
-			BUTTON_HANDLER : order,            // 구매하기 버튼 이벤트 Handler 함수 등록
-			DISPLAY_PROMOTION : "Y",            // 이벤트 문구 출력 여부
-			DISPLAY_ELEMENT_ID : "payco_btn_type_A1",  // 노출될 element id
-			"" : ""
-		});
-		//]]>
+			//]]>
 		</script>
 	})
 })
