@@ -132,7 +132,7 @@
 				</select>
 			</div>
             <div class="input-field col s12 m6 l8">
-              <textarea id="comment_body" class="materialize-textarea" name="comment_body"></textarea>
+              <textarea id="comment_body" class="materialize-textarea" name="comment_body" required></textarea>
               <label for="comment_body">예) 상품 구매가 진행되지 않습니다, Payco 결제 시스템 추천합니다 등</label>
             </div>
           </div>
