@@ -498,6 +498,10 @@ input[type=number]::-webkit-outer-spin-button {
   .ask-text {
     font-size: 0.6em;
   }
+  
+  .merchant_signup {
+    margin-top: 30px;
+  }
 }
 @media only screen and (min-width: 601px) {
   .buy-help-d {
