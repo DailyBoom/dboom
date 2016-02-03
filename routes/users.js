@@ -366,6 +366,126 @@ router.post('/signup', function(req, res) {
   });
 });
 
+router.get('/merchant_signup', function(req, res, next) {
+  if (req.user)
+    res.redirect('/');
+  req.Validator.getErrors(function() { res.render('users/new_merchant', { title: "판매자 가입하기" }); });
+});
+
+router.post('/merchant_signup', function(req, res) {
+  // form validation rules
+  req.Validator.validate('username', i18n.__('user.username'), {
+    length: {
+      min: 3,
+      max: 20
+    },
+    required: true
+  })
+  .validate('email', i18n.__('user.email'), {
+    required: true
+  })
+  .validate('password', i18n.__('user.password'), {
+    length: {
+      min: 8,
+      max: 15
+    },
+    required: true
+  })
+  .validate('confirmpassword', i18n.__('user.confirmPassword'), {
+    length: {
+      min: 8,
+      max: 15
+    },
+    isConfirm: function(field, fieldName, value, fn) {
+      var errors;
+      if (value !== req.body.password) {
+        errors = i18n.__('passNotConfirmed', fieldName, i18n.__('user.password'));
+      }
+      fn(errors);
+    },
+    required: true
+  })
+  .validate('agree-terms-1', i18n.__('user.agreeTerms1'), {
+    required: true
+  })
+  .validate('agree-terms-3', i18n.__('user.agreeTerms3'), {
+    required: true
+  })
+  .validate('phone_number', i18n.__('user.phoneNumber'), {
+    required: true,
+    numeric: true
+  })
+  .validate('address1', i18n.__('user.address1'), {
+    required: true
+  })
+  .validate('person_in_charge', i18n.__('merchant.person_in_charge'), {
+    required: true
+  })
+  .validate('company_name', i18n.__('merchant.company_name'), {
+    required: true
+  })
+  .validate('business_reg', i18n.__('merchant.business_reg'), {
+    required: true
+  });
+
+  // form validation
+  req.Validator.getErrors(function(errors){
+    if (errors.length > 0) {
+      res.render('users/new_merchant', { errors: errors, title: "판매자 가입하기" });
+    }
+    else {
+      var user = new User({
+        username: req.body.username,
+        password: req.body.password,
+        email: req.body.email,
+        person_in_charge: req.body.person_in_charge,
+        company_name: req.body.company_name,
+        business_reg: req.business_reg,
+        role: 'merchant',
+        shipping: {
+          address: req.body.address1,
+          phone_number: req.body.phone_number
+        }
+      });
+      user.save(function(err) {
+        if (err) {
+          console.log(err);
+          var errors = [];
+          for (var path in err.errors) {
+            errors.push(i18n.__("unique", i18n.__("user."+path)));
+          }
+          res.render('users/new_merchant', { errors: errors, title: "판매자 가입하기" });
+        }
+        else {
+          fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
+            if(err){
+              //handle errors
+              console.log('ERROR!');
+              return res.send('ERROR!');
+            }
+            var html = vash.compile(file);
+            transporter.sendMail({
+              from: '데일리 붐 <contact@dailyboom.co>',
+              to: user.email,
+              subject: user.username+'님 회원가입을 축하드립니다.',
+              html: html({ user : user })
+            }, function (err, info) {
+                if (err) { console.log(err); res.redirect('/'); }
+                //console.log('Message sent: ' + info.response);
+                req.login(user, function(err) {
+                  if (err) {
+                    console.log(err);
+                  }
+                  return res.redirect('/');
+                });
+            });
+          });
+        }
+      });
+    }
+  });
+});
+
 router.get('/auth/facebook',
   passport.authenticate('facebook',
     { display: 'popup'}
@@ -517,14 +637,14 @@ router.get('/judykimproductions', function(req, res) {
 router.get('/beautamin', function(req, res) {
   Product.findOne({ _id: "56a1e4206a2520396f64c6eb" }, function(err, product) {
     var sale = (product.old_price - product.price) / product.old_price * 100;
-    res.render('extended', { product: product, progress: 10, no_time: true, title: "Judy Kim Productions", description: product.description, sale: sale.toFixed(0), cover: product.images[0] });
+    res.render('extended', { product: product, progress: 10, no_time: true, title: "Beautamin", description: product.description, sale: sale.toFixed(0), cover: product.images[0] });
   });
 });
 
 router.get('/neopop', function(req, res) {
   Product.findOne({ _id: "56a99dba0fe1ef4972513d0e" }, function(err, product) {
     var sale = (product.old_price - product.price) / product.old_price * 100;
-    res.render('extended', { product: product, progress: 10, no_time: true, title: "Judy Kim Productions", description: product.description, sale: sale.toFixed(0), cover: product.images[0] });
+    res.render('extended', { product: product, progress: 10, no_time: true, title: "Neopop", description: product.description, sale: sale.toFixed(0), cover: product.images[0] });
   });
 });
 
@@ -532,7 +652,7 @@ router.get('/test_vi', function(req, res) {
   Product.findOne({ _id: "56af07fa2de6ec7c2ef12e72" }, function(err, product) {
     var sale = (product.old_price - product.price) / product.old_price * 100;
     i18n.setLocale(req, 'vi');
-    res.render('extended', { product: product, progress: 10, no_time: true, title: "Judy Kim Productions", description: product.description, sale: sale.toFixed(0), cover: product.images[0] });
+    res.render('extended', { product: product, progress: 10, no_time: true, title: "", description: product.description, sale: sale.toFixed(0), cover: product.images[0] });
   });
 });
 

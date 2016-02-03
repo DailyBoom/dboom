@@ -28,7 +28,10 @@ var userSchema = new Schema({
   kakaoId: Number,
   resetPasswordToken: String,
   resetPasswordExpires: Date,
-  eventNumber: { type: Number, default: 1 }
+  eventNumber: { type: Number, default: 1 },
+  person_in_charge: String,
+  company_name: String,
+  business_reg: String
 });
 
 userSchema.plugin(uniqueValidator);
