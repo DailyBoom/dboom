@@ -99,6 +99,11 @@
 			<div class="progress-h-text white-text hide">@model.progress% 팔림</div>
 		</div>
 	}
+
+@if(model.product.images.length == 1) {
+	<img class="responsive-img" src="@model.product.images[0]" alt="@model.product.name" />
+}
+else {
 	<!-- L Slider -->
 	<div class="hero-wrapper">
 		<div class="hero-left">
@@ -138,6 +143,7 @@
 			}
 		</div><!-- .hero-right -->
 	</div><!-- .hero-wrapper -->
+}
 </div><!-- .container -->
 
 <!-- b4 -->
