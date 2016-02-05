@@ -23,7 +23,10 @@
 						@model.__('user.email') :
 					</span>
 					<span class="col s9 order-label">
-						&nbsp;@(model.order.email ? model.order.email : model.order.user.email)
+						&nbsp;
+						@if(model.order.email || model.order.user) {
+							@(model.order.email ? model.order.email : model.order.user.email)
+						}
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						전화번호 :
