@@ -350,7 +350,7 @@ router.post('/signup', function(req, res) {
               subject: user.username+'님 회원가입을 축하드립니다.',
               html: html({ user : user })
             }, function (err, info) {
-                if (err) { console.log(err); res.redirect('/'); }
+                if (err) { console.log(err); }
                 //console.log('Message sent: ' + info.response);
                 req.login(user, function(err) {
                   if (err) {
