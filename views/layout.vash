@@ -254,48 +254,6 @@
 				<p class="section"></p>
 			</div>
 		</footer><!-- .footer -->
-      @if(!model.no_time){
-        <script>
-        $(window).load(function() {
-            // $('#time-left-label').fadeOut(2500, function(){
-              var now = moment();
-              var is_mobile = @model.is_phone;
-              var momentTom = '@(model.date ? model.date : null)';
-              if (momentTom)
-                momentTom = moment(momentTom).tz("Asia/Seoul").add(3, 'days').hours(0).minutes(0).seconds(0);
-              else if (now.day() == 6) {
-                momentTom = moment().tz("Asia/Seoul").add(2, 'days').hours(0).minutes(0).seconds(0);
-              }
-              else
-                momentTom = moment().tz("Asia/Seoul").add(1, 'days').hours(0).minutes(0).seconds(0);
-              var timeLeft = moment.duration(momentTom.diff(now), 'milliseconds');
-              if (!is_mobile) {
-                $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-              }
-              else {
-                $('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-              }
-              var interval = setInterval(function() {
-                timeLeft = moment.duration(momentTom.diff(moment().tz("Asia/Seoul"), 'milliseconds'));
-                if (timeLeft._milliseconds == 0) {
-                  window.location = '/';
-                }
-                if (!is_mobile) {
-                  $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-                }
-                else {
-                  $('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-                }
-              }, 1000);
-            // });
-        });
-      </script>
-    }
-    else {
-      <script>
-        $('#time-left-label').hide();
-      </script>
-    }
     <script>
     $(window).load(function() {
         $(".button-collapse").sideNav({
