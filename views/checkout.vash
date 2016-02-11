@@ -1,9 +1,31 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
 		<div class="container">
+			<div class="row blue-grey-text text-lighten-2 center">
+				<br>
+				<div class="col s4">
+					<h5 class="sm">
+						<i class="fa fa-truck fa-2x fa-fw"></i>
+						<br class="hide-on-med-and-up">1. 배송지 정보
+					</h5>
+				</div>
+				<div class="col s4 blink">
+					<h5 class="green-text text-darken-3 sm">
+						<i class="fa fa-credit-card fa-2x fa-fw green-text text-darken-3"></i>
+						<br class="hide-on-med-and-up">2. 주문결제
+					</h5>
+				</div>
+				<div class="col s4">
+					<h5 class="sm">
+						<i class="fa fa-thumbs-o-up fa-2x fa-fw"></i>
+						<br class="hide-on-med-and-up">3. 완료
+					</h5>
+				</div>
+			</div><!-- .row -->
 			<div class="row">
 				<div class="col s12">
-					<h3 class="blue-grey-text text-darken-4">주문결제</h3>
+					<!-- <h3 class="blue-grey-text text-darken-4">주문결제</h3> -->
+					<br>
 				</div>
 				<div class="col s12 m6 l8">
 					<div class="blue-grey-text text-darken-3">
