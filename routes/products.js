@@ -7,6 +7,10 @@ var User = require("../models/user");
 var i18n = require('i18n');
 var mime = require('mime-types');
 var crypto = require("crypto");
+var config = require('config');
+var slack = require('slack-notify')(config.get("Slack.webhookUrl"));
+var app = express();
+
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -159,7 +163,18 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
       console.log(product);
       product.save(function(err) {
         if (err) console.log(err), res.render('/products/new', { title: 'Index', error: err.errmsg });
-        else res.redirect('/products/preview/'+product.id);
+        else {
+          if (app.get("env") === "production" && req.user.role == 'merchant') {
+            slack.send({
+              channel: '#dailyboom-new-product',
+              icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
+              text: 'New product has been uploaded #'+product._id,
+              unfurl_links: 1,
+              username: 'DailyBoom-bot'
+            });
+          }
+          res.redirect('/products/preview/'+product.id);
+        }
       });
     }
   });
