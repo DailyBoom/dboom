@@ -857,41 +857,37 @@ router.post('/shipping', function(req, res) {
             res.render('shipping', { errors: errors, title: "배송지 정보" });
           }
           else {
-            var user = req.user;
-
-            if (!req.user.email) {
-              user.email = req.body.email;
+            User.update({ _id: req.user._id }, {
+              email: !req.user.email ? req.body.email : req.user.email,
+              shipping: {
+                full_name: req.body.full_name,
+                address: req.body.address1,
+                country: req.body.country,
+                zipcode: req.body.zipcode,
+                phone_number: req.body.phone_number
+              } },
+              function(err, user) {
+                if (err) {
+                    console.log(err);
+                    var errors = [];
+                    for (var path in err.errors) {
+                      errors.push(i18n.__("unique", i18n.__("user."+path)));
+                    }
+                  res.render('shipping', { errors: errors, title: "배송지 정보" });
+                }
+                else {
+                  order.user = user.id;
+                  order.save(function(err) {
+                    if (err) {
+                      res.render('shipping', { errors: err, title: "배송지 정보" });
+                    }
+                    else {
+                      res.redirect('/checkout');
+                    }
+                  });
+                }
+              });
             }
-
-            user.shipping = {
-              full_name: req.body.full_name,
-              address: req.body.address1,
-              country: req.body.country,
-              zipcode: req.body.zipcode,
-              phone_number: req.body.phone_number
-            }
-            user.save(function(err) {
-              if (err) {
-                  console.log(err);
-                  var errors = [];
-                  for (var path in err.errors) {
-                    errors.push(i18n.__("unique", i18n.__("user."+path)));
-                  }
-                res.render('shipping', { errors: errors, title: "배송지 정보" });
-              }
-              else {
-                order.user = user.id;
-                order.save(function(err) {
-                  if (err) {
-                    res.render('shipping', { errors: err, title: "배송지 정보" });
-                  }
-                  else {
-                    res.redirect('/checkout');
-                  }
-                });
-              }
-            });
-          }
         });
       }
       else {
