@@ -1,0 +1,72 @@
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+		<div class="container">
+			<br>
+			<div class="row">
+				<div class="col s12 m3">
+					<!-- Side Menu -->
+					<div class="collection with-header m-t-0">
+				    <a class="collection-item blue darken-3 white-text">카테고리 선택</a>
+						<a href="#!" class="collection-item">의류 . 페션</a>
+				    <a href="#!" class="collection-item">잡화 . 뷰티</a>
+				    <a href="#!" class="collection-item">가구 . 생활</a>
+				    <a href="#!" class="collection-item">디지털 . 전자</a>
+				    <a href="#!" class="collection-item">레저 . 취미</a>
+				    <a href="#!" class="collection-item">기타</a>
+				  </div>
+				</div>
+				<div class="col s12 m6">
+					<div class="row">
+						<img class="responsive-img" src="/images/test.jpg" alt="" />
+					</div>
+				</div>
+				<div class="col s12 m3">
+
+				</div>
+			</div><!-- .row -->
+			<!-- <div class="row">
+				<div class="col s12 m4">
+					<div class="card">
+						<div class="card-image">
+							<img class="responsive-img" src="/images/test.jpg" alt="" />
+						</div>
+					</div>
+				</div>
+				<div class="col s12 m4">
+					<div class="card">
+						<div class="card-content center">
+							<p>남은시간</p>
+							<h4>23:59:59</h4>
+						</div>
+					</div>
+				</div>
+				<div class="col s12 m4">
+					<div class="card">
+						<div class="card-content center">
+							<p>남은시간</p>
+							<h4>23:59:59</h4>
+						</div>
+					</div>
+				</div>
+			</div> -->
+
+			<div class="row">
+				@for(x=0;x<12;x++) {
+				<div class="col s6 m4">
+					<div class="card">
+						<div class="card-image">
+							<img class="responsive-img" src="/images/test.jpg" alt="" />
+							<span class="card-title">시크릿 커플속옷 선물</span>
+						</div>
+						<div class="card-content">
+							<a class="right" href="#!"><img class="btn-buy-mobile" src="/images/db_buy_btn.png" alt="" /></a>
+							<p class="ol-old-p">70,000 원</p>
+							<p class="ol-new-p">50,000 원</p>
+						</div>
+					</div>
+				</div>
+				}
+			</div><!-- .row -->
+		</div><!-- container -->
+	})
+})
