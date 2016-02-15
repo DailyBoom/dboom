@@ -100,6 +100,7 @@
 	"product.oldPrice": "정상 가격",
 	"product.price": "데일리 붐 가격",
 	"product.photosMain": "상품 사진 기본",
+	"currency": "₩",
 	"length.tooShort": "%s 8~15자 이내로 영문으로 작성해주세요.",
 	"notUnique": "%s 사용중인 아이디 입니다. 다른 아이디 선택해주세요.",
 	"passNotConfirmed": "%s 와 %s 가 일치 않습니다. 확인후 다시 입력해주세요.",

@@ -39,10 +39,6 @@ router.get('/', function(req, res, next) {
     var toast = "크리스마스/연말 이벤트 - 가입시 무료 배송 쿠폰!";
   }
   var date = null;
-  if (moment().isBetween('02/08/2016', '02/10/2016')) {
-    date = moment('02/08/2016').format("MM/DD/YYYY");
-    now = moment('02/08/2016').format("MM/DD/YYYY");
-  }
   Product.findOne({scheduled_at: now, is_published: true }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
     Product.find({scheduled_at: {$lt: now} }).limit(6).sort({ 'scheduled_at' : -1 }).exec(function (err, pastProducts) {
       if (!product) {
@@ -54,7 +50,6 @@ router.get('/', function(req, res, next) {
           var progress = (product.quantity - current_quantity) / product.quantity * 100;
           var sale = (product.old_price - product.price) / product.old_price * 100;
           res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, pastProducts: pastProducts, title: "오늘 뭐 사지?", toast: toast });
-
         });
       }
       else {

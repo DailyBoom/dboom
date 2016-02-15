@@ -85,7 +85,7 @@
 						<div class="btn-shipping-edit">
 							<a class="waves-effect waves-light btn blue-grey darken-2" href="/shipping">배송정보 수정</a>
 						</div>
-						@if(!model.is_phone) {
+						@if(!model.is_phone && model.getLocale() != 'vi') {
 							<br><b style="font-size: 1.2em;">PAYCO 결제 순서</b>
 							<ul class="payco-info">
 								<li>우측 하단에 있는 <b>"PAYCO 구매하기"</b> 버튼을 클릭해주세요.</li>
@@ -111,14 +111,16 @@
 								}
 								<span class="check-price blue-grey-text text-darken-3" id="product_price">@model.order.totalOrderAmt</span>
 							</div>
-							<div id="payco_btn_type_A1" class="btn-payco center"></div>
-							<div class="bank-box">
-								<img class="responsive-img" src="/images/or_2.png" alt="데일리 붐 or" />
-								<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">무통장입금</a>
-							</div>
+							@if(model.getLocale() != 'vi') {
+								<div id="payco_btn_type_A1" class="btn-payco center"></div>
+								<div class="bank-box">
+									<img class="responsive-img" src="/images/or_2.png" alt="데일리 붐 or" />
+									<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">무통장입금</a>
+								</div>
+							}
 						</div>
 					</div><!-- .row -->
-					@if(model.is_phone) {
+					@if(model.is_phone && model.getLocale() != 'vi') {
 						<div class="payco-box-bottom">
 							<b style="font-size: 1.2em;">PAYCO 결제 순서</b>
 							<ol class="payco-info">
@@ -256,7 +258,11 @@
 			  );
 				$('select').material_select();
 			});
-			$("#product_price, #product_price_mobile, #delivery_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
+			var lang = '@model.getLocale()';
+			if (lang == 'vi')
+				$("#product_price, #product_price_mobile, #delivery_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+			else
+				$("#product_price, #product_price_mobile, #delivery_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});			
 
 			function order() {
 

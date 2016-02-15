@@ -97,6 +97,7 @@
 	"product.oldPrice": "Old Price",
 	"product.price": "Price on DailyBoom",
 	"product.photosMain": "Product Pictures",
+	"currency": "₩",
 	"length.tooShort": "The Field %s is too short (Min. %d characters required)",
 	"length.tooLong": "The Field %s is too long (Max. %d characters allowed)",
 	"alphaNumeric.isNotAlphaNumeric": "The Field %s may only contain alpha-numeric characters",
