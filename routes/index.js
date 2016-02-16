@@ -73,6 +73,18 @@ router.get('/mall', function(req, res, next) {
   });
 });
 
+router.get('/mall/:merchant', function(req, res, next) {
+  User.findOne({ username: req.params.merchant }, function(err, merchant) {
+    if (err)
+      console.log(err);
+    if (!merchant)
+      return res.redirect('/mall');
+    Product.find({ merchant_id: merchant._id, extend: 3 }, function(err, products) {
+      res.render('mall', { title: "데일리 붐 쇼핑 몰", description: "데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다.", products: products, merchant: merchant });
+    });
+  });
+});
+
 router.get('/about', function(req, res, next) {
   res.render('about', { title: "회사 소개", description: "데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다." });
 });
