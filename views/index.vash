@@ -291,7 +291,7 @@ else {
 
 			<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text">
 				@model.__('past_items')
-				<a class="white-text right" href="/mall"><i class="fa fa-shopping-bag fa-fw white-text"></i> 쇼핑몰 보기</a>
+				<a class="hide white-text right" href="/mall"><i class="fa fa-shopping-bag fa-fw white-text"></i> 쇼핑몰 보기</a>
 			</div>
 			<div class="row">
 				<div class="col s12 m12 l12">
