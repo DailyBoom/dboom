@@ -76,19 +76,19 @@
 	@if (model.user) {
 		@if (model.progress < 100) {
 			<a href="/checkout?product_id=@model.product.id">
-				<img class="buy-mod-img right" src="/images/db_buy_btn.png" alt="Buy Button Daily Boom Korea 데일리 붐" />
+				<img class="buy-mod-img" src="/images/db_buy_btn.png" alt="Buy Button Daily Boom Korea 데일리 붐" />
 			</a>
 		}
 	}
 	else {
 		@if (model.progress < 100) {
 			<a href="#modal-check" class="modal-trigger">
-				<img class="buy-mod-img right" src="/images/db_buy_btn.png" alt="Buy Button Daily Boom Korea 데일리 붐" />
+				<img class="buy-mod-img" src="/images/db_buy_btn.png" alt="Buy Button Daily Boom Korea 데일리 붐" />
 			</a>
 		}
 	}
-	<span id="time-left-label" class="d-clock label @(model.product.color ? model.product.color : 'light-blue') white-text">@model.__('time_left')</span>
-	<br><span id="time-left" class="d-clock white-text"></span>
+	<span id="time-left-label" class="hide d-clock label @(model.product.color ? model.product.color : 'light-blue') white-text">@model.__('time_left')</span>
+	<br><span id="time-left" class="hide d-clock white-text"></span>
 </div>
 
 <div class="container">
@@ -291,7 +291,7 @@ else {
 
 			<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text">
 				@model.__('past_items')
-				<a class="white-text right" href="/products/list"><i class="fa fa-shopping-bag fa-fw white-text"></i> 쇼핑몰 보기</a>
+				<a class="white-text right" href="/mall"><i class="fa fa-shopping-bag fa-fw white-text"></i> 쇼핑몰 보기</a>
 			</div>
 			<div class="row">
 				<div class="col s12 m12 l12">

@@ -151,6 +151,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         company_instagram: req.body.igUrl,
         company_kakaostory: req.body.kakaoUrl,
         review_url: req.body.reviewUrl,
+        extend: req.body.extend ? req.body.extend : 0,        
         color: req.body.color    
       });
     

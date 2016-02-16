@@ -81,6 +81,12 @@
 				</div>
 			</div>
 			<!-- .file -->
+			<div class="row">
+				<div class="input-field col s12">
+					<input name="extend" type="radio" id="extend_mall" value="3" @(model.product.extend == 3 ? 'checked' : '')/>
+					<label for="extend_mall">Mall</label>
+				</div>
+			</div>
 			<div class="file-field input-field">
 				<br>
 				<span class="hide-on-small-only"><br></span>

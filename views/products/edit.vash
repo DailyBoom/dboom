@@ -83,6 +83,10 @@
 					<input name="extend" type="radio" id="extend_sold_out" value="2" @(model.product.extend == 2 ? 'checked' : '')/>
 					<label for="extend_sold_out">Sold Out</label>
 				</div>
+				<div class="input-field col s12">
+					<input name="extend" type="radio" id="extend_mall" value="3" @(model.product.extend == 3 ? 'checked' : '')/>
+					<label for="extend_mall">Mall</label>
+				</div>
 			</div>
 			<!-- .row -->
 			<div class="file-field input-field">
