@@ -146,19 +146,19 @@
 						<br>
 					}
 					@if(model.product.company_url) {
-						<a href="@model.product.company_url" target="_blank"><i class="fa fa-home"></i> @model.product.brand 홈페이지</a>
+						<a href="@model.product.company_url" target="_blank"><i class="fa fa-home"></i> @model.product.brand @model.__('merchant.website')</a>
 						<br>
 					}
 					@if(model.product.company_facebook) {
-						<a href="@model.product.company_facebook" target="_blank"><i class="fa fa-facebook-official"></i> @model.product.brand 페이스북 페이지</a>
+						<a href="@model.product.company_facebook" target="_blank"><i class="fa fa-facebook-official"></i> @model.product.brand @model.__('merchant.facebook')</a>
 						<br>
 					}
 					@if(model.product.company_youtube) {
-						<a href="@model.product.company_youtube" target="_blank"><i class="fa fa-youtube"></i> @model.product.brand YouTube 채널</a>
+						<a href="@model.product.company_youtube" target="_blank"><i class="fa fa-youtube"></i> @model.product.brand @model.__('merchant.youtube')</a>
 						<br>
 					}
 					@if(model.product.company_instagram) {
-						<a href="@model.product.company_instagram" target="_blank"><i class="fa fa-instagram"></i> @model.product.brand 인스타그램</a>
+						<a href="@model.product.company_instagram" target="_blank"><i class="fa fa-instagram"></i> @model.product.brand @model.__('merchant.instagram')</a>
 						<br>
 					}
 				</div>

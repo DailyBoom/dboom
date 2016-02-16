@@ -4,52 +4,48 @@
 	</div>
 	<h4>상품 수정</h4>
 	<br>
-	<div class="col s12">
-		<div class="row">
-			<div class="col s12">
-				판매 선텍
-			</div>
-		@if(@model.user.admin) {
-			<div class="input-field col s2">
-	      <input name="is_hot" type="checkbox" id="is_hot" @(model.product.is_hot) ? 'checked' : ''/>
-	      <label for="is_hot">Hot Item<br>(* Mall Only)</label>
-			</div>
-		}
-			<div class="input-field col s2">
-				<input name="listing" type="radio" id="listing_db" value="0" @(model.product.listing == 0 ? 'checked' : '')/>
-				<label for="listing_db">Main Sale<br>(데일리 붐 메인)</label>
-			</div>
-			<div class="input-field col s2">
-				<input name="listing" type="radio" id="listing_mall" value="1" @(model.product.listing == 1 ? 'checked' : '')/>
-				<label for="listing_mall">Mall<br>(데일리 붐 몰)</label>
-			</div>
-			<div class="input-field col s2">
-				<input name="listing" type="radio" id="listing_none" value="3" @(!model.product.listing || model.product.listing == 0 ? 'checked' : '')/>
-				<label for="listing_none">None<br>(판매 안함)</label>
-			</div>
-			<div id="main_sale">
-				<div class="input-field col s2 p-b-3 add-border-l add-border-t add-border-b">
-					<input name="extend" type="radio" id="extend_hour" value="0" @(model.product.extend == 0 ? 'checked' : '')/>
-					<label for="extend_hour">48h<br>(48시간 추가)</label>
-				</div>
-				<div class="input-field col s2 p-b-3 add-border-t add-border-b add-border-r">
-					<input name="extend" type="radio" id="extend_sold_out" value="1" @(model.product.extend == 1 ? 'checked' : '')/>
-					<label for="extend_sold_out">Sold Out<br>(품절)</label>
-				</div>
-			</div>
-		</div><!-- .row -->
-	</div>
-	<!-- .col -->
-
-<script>
-
-</script>
-
-	<br><br>
 	<div class="row">
 		<form class="col s12" method="post" action="/products/edit/@model.product.id" enctype="multipart/form-data">
+			<div class="col s12">
+				<div class="row">
+					<div class="col s12">
+						판매 선텍
+					</div>
+				@if(@model.user.admin) {
+					<div class="input-field col s2">
+				<input name="is_hot" type="checkbox" id="is_hot" @(model.product.is_hot) ? 'checked' : ''/>
+				<label for="is_hot">Hot Item<br>(* Mall Only)</label>
+					</div>
+				}
+					<div class="input-field col s2">
+						<input name="extend" type="radio" id="extend_db" value="3" @(model.product.extend == 3 ? 'checked' : '')/>
+						<label for="extend_db">Main Sale<br>(데일리 붐 메인)</label>
+					</div>
+					<div class="input-field col s2">
+						<input name="extend" type="radio" id="extend_mall" value="4" @(model.product.extend == 4 ? 'checked' : '')/>
+						<label for="extend_mall">Mall<br>(데일리 붐 몰)</label>
+					</div>
+					<div id="main_sale" class="@(model.product.extend == 4 ? 'hide' : '')">
+						<div class="input-field col s2 p-b-3 add-border-l add-border-t add-border-b">
+							<input name="extend" type="radio" id="extend_none" value="0" @(!model.product.extend || model.product.extend == 0 ? 'checked' : '')/>
+							<label for="extend_none">None<br>(판매 안함)</label>
+						</div>
+						<div class="input-field col s2 p-b-3 add-border-t add-border-b">
+							<input name="extend" type="radio" id="extend_hour" value="1" @(model.product.extend == 1 ? 'checked' : '')/>
+							<label for="extend_hour">48h<br>(48시간 추가)</label>
+						</div>
+						<div class="input-field col s2 p-b-3 add-border-t add-border-b add-border-r">
+							<input name="extend" type="radio" id="extend_sold_out" value="2" @(model.product.extend == 2 ? 'checked' : '')/>
+							<label for="extend_sold_out">Sold Out<br>(품절)</label>
+						</div>
+					</div>
+				</div><!-- .row -->
+			</div>
+			<!-- .col -->
+		
+			<br><br>
 			<input id="uploaddate" type="date" name="uploaddate" hidden>
-			<div class="row" id="j_pickdate">
+			<div class="row @(model.product.extend == 4 ? 'hide' : '')" id="j_pickdate">
 				<br>
 				<div class="input-field col s12 m12 l12">
 					<input id="selldate" type="date" class="datepicker" name="selldate" value="@(model.product.scheduled_at ? model.moment(model.product.scheduled_at).format('MM/DD/YYYY') : '')">
@@ -292,22 +288,16 @@
 		});
 		// check db or mall
 		var addReq = $('#j_pickdate').find('#selldate');
-		$('#main_sale').hide();
 
-		$('input[type=radio][name=listing]').change(function() {
-			if (this.value == '0') {
-				$('#main_sale').fadeIn();
-				$('#j_pickdate').fadeIn();
+		$('input[type=radio][name=extend]').change(function() {
+			if (this.value == '3') {
+				$('#main_sale').removeClass('hide');
+				$('#j_pickdate').removeClass('hide');
 				addReq.attr('required', true);
 			}
-			else if (this.value == '1') {
-				$('#main_sale').fadeOut();
-				$('#j_pickdate').fadeOut();
-				addReq.attr('required', false);
-			}
-			else if (this.value == '3') {
-				$('#main_sale').fadeOut();
-				$('#j_pickdate').fadeOut();
+			else if (this.value == '4') {
+				$('#main_sale').addClass('hide');
+				$('#j_pickdate').addClass('hide');
 				addReq.attr('required', false);
 			}
 		});
