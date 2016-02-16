@@ -25,12 +25,12 @@
 				</div>
 			}
 				<div class="input-field col s3">
-					<input name="listing" type="radio" id="listing_db" value="0"/>
-					<label for="listing_db">데일리 붐 메인</label>
+					<input name="extend" type="radio" id="extend_db" value="0"/>
+					<label for="extend_db">데일리 붐 메인</label>
 				</div>
 				<div class="input-field col s3">
-					<input name="listing" type="radio" id="listing_mall" value="1"/>
-					<label for="listing_mall">Mall (델일리 붐 몰에서 판매)</label>
+					<input name="extend" type="radio" id="extend_mall" value="1"/>
+					<label for="extend_mall">Mall (델일리 붐 몰에서 판매)</label>
 				</div>
 			</div>
 			<!-- .row -->
@@ -266,7 +266,7 @@
 		var addReq = $('#j_pickdate').find('#selldate');
 		$('#j_pickdate').hide();
 
-		$('input[type=radio][name=listing]').change(function() {
+		$('input[type=radio][name=extend]').change(function() {
 			if (this.value == '0') {
 				$('#j_pickdate').fadeIn();
 				addReq.attr('required', true);
