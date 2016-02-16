@@ -1,0 +1,57 @@
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+		<div class="container-fluid">
+			<div class="row">
+
+			</div><!-- .row -->
+		</div><!-- .container-fluid -->
+		<div class="container">
+			<br>
+			<div class="col s12 center">
+				<h4>이번주 핫 아이템</h4>
+			</div>
+			<div class="row">
+				@for(x=0;x<3;x++) {
+				<div class="col s6 m4 m-y-3">
+					<div class="card">
+						<div class="card-image">
+							<img class="responsive-img" src="/images/test.jpg" alt="" />
+						</div>
+						<div class="card-content">
+							<span>Trendi Company</span>
+							<div class="mall-title left"><b>시크릿 커플속옷 선물</b></div>
+							<a class="right" href="#!"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>
+							<p class="mall-price-o">70,000 원</p>
+							<p class="mall-price-n">50,000 원</p>
+						</div>
+					</div>
+				</div>
+				}
+			</div><!-- .row -->
+			<br><br>
+			<div class="col s12 center">
+				<h4>데일리 붐 몰</h4>
+			</div>
+			<div class="row">
+				@for(x=0;x<12;x++) {
+					<div class="col s6 m4 m-y-3">
+						<div class="card">
+							<div class="card-image">
+								<img class="responsive-img" src="/images/test.jpg" alt="" />
+							</div>
+							<div class="card-content">
+								<span>Trendi Company</span>
+								<div class="mall-title left"><b>시크릿 커플속옷 선물</b></div>
+								<a class="right" href="#!"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>
+								<p class="mall-price-o">70,000 원</p>
+								<p class="mall-price-n">50,000 원</p>
+							</div>
+						</div>
+					</div>
+				}
+			</div><!-- .row -->
+			<br>
+			<br>
+		</div><!-- container -->
+	})
+})
