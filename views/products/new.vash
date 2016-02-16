@@ -13,10 +13,31 @@
 		}
 		<form class="col s12" method="post" action="/products/new" enctype="multipart/form-data">
 			<input id="uploaddate" type="date" name="uploaddate" hidden>
+			<br>
 			<div class="row">
-				<br>
+				<div class="col s12">
+					판매 선텍
+				</div>
+			@if(@model.user.admin) {
+				<div class="input-field col s3">
+			      <input name="is_hot" type="checkbox" id="is_hot" />
+			      <label for="is_hot">Hot Item (* Mall Only)</label>
+				</div>
+			}
+				<div class="input-field col s3">
+					<input name="listing" type="radio" id="listing_db" value="0"/>
+					<label for="listing_db">데일리 붐 메인</label>
+				</div>
+				<div class="input-field col s3">
+					<input name="listing" type="radio" id="listing_mall" value="1"/>
+					<label for="listing_mall">Mall (델일리 붐 몰에서 판매)</label>
+				</div>
+			</div>
+			<!-- .row -->
+			<br>
+			<div class="row" id="j_pickdate">
 				<div class="input-field col s12 m12 l12">
-					<input id="selldate" type="date" class="datepicker" name="selldate" required>
+					<input id="selldate" type="date" class="datepicker" name="selldate">
 					<label for="selldate" style="margin-top: -1.75rem;">판매 희망 날짜 *</label>
 				</div>
 			</div>
@@ -81,12 +102,6 @@
 				</div>
 			</div>
 			<!-- .file -->
-			<div class="row">
-				<div class="input-field col s12">
-					<input name="extend" type="radio" id="extend_mall" value="3" />
-					<label for="extend_mall">Mall</label>
-				</div>
-			</div>
 			<div class="file-field input-field">
 				<br>
 				<span class="hide-on-small-only"><br></span>
@@ -246,7 +261,21 @@
 			if (x >= 1) {
 				$('.options_row').last().remove(); x--;
 			}
-		})
+		});
+
+		var addReq = $('#j_pickdate').find('#selldate');
+		$('#j_pickdate').hide();
+
+		$('input[type=radio][name=listing]').change(function() {
+			if (this.value == '0') {
+				$('#j_pickdate').fadeIn();
+				addReq.attr('required', true);
+			}
+			else if (this.value == '1') {
+				$('#j_pickdate').fadeOut();
+				addReq.attr('required', false);
+			}
+		});
 	});
 </script>
 }) })
