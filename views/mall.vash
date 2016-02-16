@@ -6,26 +6,26 @@
 			</div><!-- .row -->
 		</div><!-- .container-fluid -->
 		<div class="container">
-			<div class="col s12 center hide">
+			<div class="col s12 center">
 				<h4>이번주 핫 아이템</h4>
 			</div>
-			<div class="row hide">
-				@for(x=0;x<3;x++) {
+			<div class="row">
+				@model.hotProducts.forEach(function(product) {
 				<div class="col s6 m4 m-y-3">
 					<div class="card">
 						<div class="card-image">
-							<img class="responsive-img" src="/images/test.jpg" alt="" />
+							<img class="responsive-img" src="/@product.images[0]" alt="" />
 						</div>
 						<div class="card-content">
-							<span>Trendi Company</span>
-							<div class="mall-title left"><b>시크릿 커플속옷 선물</b></div>
+							<span>@product.brand</span>
+							<div class="mall-title left"><b>@product.name</b></div>
 							<a class="right" href="#!"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>
-							<p class="mall-price-o">70,000 원</p>
-							<p class="mall-price-n">50,000 원</p>
+							<p class="mall-price-o">@product.old_price</p>
+							<p class="mall-price-n">@product.price</p>
 						</div>
 					</div>
 				</div>
-				}
+				})
 			</div><!-- .row -->
 			<div class="col s12 center">
 				<h4>데일리 붐 몰</h4>
