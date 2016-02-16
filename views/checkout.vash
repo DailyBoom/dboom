@@ -118,6 +118,11 @@
 									<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">무통장입금</a>
 								</div>
 							}
+							else {
+								<div class="bank-box">
+									<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">Next</a>
+								</div>
+							}
 						</div>
 					</div><!-- .row -->
 					@if(model.is_phone && model.getLocale() != 'vi') {

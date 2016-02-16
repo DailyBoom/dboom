@@ -347,7 +347,7 @@ router.post('/signup', function(req, res) {
               from: '데일리 붐 <contact@dailyboom.co>',
               to: user.email,
               subject: user.username+'님 회원가입을 축하드립니다.',
-              html: html({ user : user })
+              html: html({ user : user, i18n: i18n })
             }, function (err, info) {
                 if (err) { console.log(err); }
                 //console.log('Message sent: ' + info.response);

@@ -50,21 +50,21 @@
 			<tbody class="blue-grey lighten-5 blue-grey-text text-darken-3">
 				<tr>
 					<td class="db-mail-body">
-						<h1>가입해 주셔서 감사합니다</h1>
-						<h3>고객님의 정보는 철저한 보안 아래 안전하게 유지됩니다.</h3>
+						<h1>@model.i18n.__('email.signup.1', model.username)</h1>
+						<h3>@model.i18n.__('email.signup.2')</h3>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<h3>오늘도 즐거운 쇼핑을 데일리 붐에서 확인하세요.</h3>
+						<h3>@model.i18n.__('email.signup.3')</h3>
 					</td>
 				</tr>
 				<tr class="blue-grey darken-1 white-text">
 					<td>
 						<h4>
-							데일리 붐 보러가기 <a class="amber-text" href="http://dailyboom.co/">dailyboom.co</a>
+							@html.raw(model.i18n.__('email.signup.4'))
 							<br><br>
-							문의 사항 <a class="amber-text" href="mailto:contact@dailyboom.co">contact@dailyboom.co</a>
+							@model.i18n.__('email.signup.5')
 						</h4>
 					</td>
 				</tr>

@@ -482,7 +482,7 @@ router.get('/payco_callback', function(req, res) {
                                 from: '데일리 붐 <contact@dailyboom.co>',
                                 to: order.user ? order.user.email : order.email,
                                 subject: '데일리 붐 구매 안내.',
-                                html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name })
+                                html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, i18n: i18n })
                               }, function (err, info) {
                                   if (err) { console.log(err); }
                                   //console.log('Message sent: ' + info.response);
@@ -508,12 +508,12 @@ router.get('/payco_callback', function(req, res) {
 
 router.get('/success', function(req, res) {
   if (!req.session.order)
-    res.redirect('/');
+    return res.redirect('/');
   Order.findOne({_id: req.session.order, status: {$in : ['Paid', 'Waiting']}}).populate('product').exec(function(err, order) {
     if (err)
       console.log(err)
     if (!order)
-      res.redirect('/');
+      return res.redirect('/');
     delete req.session.order;
     res.render('success', { code: req.query.code, order: order, title: "주문 완료", description: "고객님, 데일리 붐을 이용해 주셔서 감사합니다." });
   });
@@ -524,7 +524,7 @@ router.get('/orders/paid/:id', isAdmin, function(req, res) {
       if (err)
         console.log(err);
       if (!order)
-        res.redirect('/mypage');
+        return res.redirect('/mypage');
       order.merchant_id = order.product.merchant_id;
       order.status = "Paid";
       order.save(function(err) {
@@ -573,7 +573,7 @@ router.get('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
     if (err)
       console.log(err);
     if (!order)
-      res.redirect('/mypage');
+      return res.redirect('/mypage');
     order.status = "Sent";
     order.save(function(err) {
       fs.readFile('./views/mailer/shipped.vash', "utf8", function(err, file) {
@@ -605,7 +605,7 @@ router.get('/orders/cancel/:id', function(req, res) {
     if (err)
       console.log(err);
     if (!order || moment().isAfter(order.created_at, 'days'))
-      res.redirect('/mypage');
+      return res.redirect('/mypage');
     var payco = {
       "sellerKey" : config.get("Payco.sellerKey"),
       "orderNo" : order.payco.orderNo,
@@ -677,7 +677,7 @@ router.get('/orders/cancel_deposit/:id', function(req, res) {
     if (err)
       console.log(err);
     if (!order)
-      res.redirect('/mypage');
+      return res.redirect('/mypage');
     order.status = "Cancelled";
     order.save(function(err) {
       if (err)

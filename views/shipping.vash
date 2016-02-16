@@ -6,19 +6,19 @@
 				<div class="col s4 blink">
 					<h5 class="green-text text-darken-3 sm">
 						<i class="fa fa-truck fa-2x fa-fw green-text text-darken-3"></i>
-						<br class="hide-on-med-and-up">1. 배송지 정보
+						<br class="hide-on-med-and-up">1. @model.__('shipping')
 					</h5>
 				</div>
 				<div class="col s4">
 					<h5 class="sm">
 						<i class="fa fa-credit-card fa-2x fa-fw"></i>
-						<br class="hide-on-med-and-up">2. 주문결제
+						<br class="hide-on-med-and-up">2. @model.__('payment')
 					</h5>
 				</div>
 				<div class="col s4">
 					<h5 class="sm">
 						<i class="fa fa-thumbs-o-up fa-2x fa-fw"></i>
-						<br class="hide-on-med-and-up">3. 완료
+						<br class="hide-on-med-and-up">3. @model.__('confirm')
 					</h5>
 				</div>
 			</div><!-- .row -->

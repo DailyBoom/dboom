@@ -41,22 +41,22 @@
 			<tbody class="blue-grey lighten-5 blue-grey-text text-darken-3">
 				<tr>
 					<td class="db-mail-body">
-						<h1><span class="amber-text text-darken-3">@model.full_name 님</span>의 데일리 붐 구매 안내 메일입니다.</h1>
+						<h1>@model.i18n.__('email.buy_success.1', model.full_name)</h1>
 						<br>
 						<h3>
-							데일리붐을 이용해 주셔서 진심으로 감사합니다.
+							@model.i18n.__('email.buy_success.2')
 							<br>
 							<br>
-							주문내역 및 기타정보는 <span class="amber-text text-darken-3">마이페이지 >> 주문내역</span>에서 확인가능 합니다.
+							@html.raw(model.i18n.__('email.buy_success.3'))
 						</h3>
 					</td>
 				</tr>
 				<tr class="blue-grey darken-1 white-text">
 					<td>
 						<h4>
-							문의 사항 <a class="amber-text" href="mailto:contact@dailyboom.co">contact@dailyboom.co</a>
+							@model.i18n.__('email.buy_success.4')
 							<br><br>
-							데일리 붐 보러가기 <a class="amber-text" href="http://dailyboom.co/">dailyboom.co</a>
+							@html.raw(model.i18n.__('email.buy_success.5'))
 						</h4>
 					</td>
 				</tr>
