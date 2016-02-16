@@ -45,6 +45,15 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
 }
 .min-h-lg { min-height: 500px; }
+.m-t-0 { margin-top: 0     !important; }
+.m-t-1 { margin-top: 0.5em !important; }
+.m-y-1 { margin-top: 0.5em !important; }
+.m-y-2 { margin-top: 1.25em !important; }
+.m-y-3 { margin-top: 2em !important; }
+.p-b-0 { padding-bottom: 0 !important; }
+.p-y-1 { padding-top: 5px !important; padding-bottom: 5px !important; }
+.p-y-2 { padding-top: 10px !important; padding-bottom: 10px !important; }
+.p-x-3 { padding-right: 20px !important; padding-left: 20px !important; }
 
 /* Grid */
 @media only screen and (min-width: 0) {
@@ -1529,6 +1538,41 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 10px 20px;
   }
 }
+@media only screen and (min-width: 1200px) {}
+
+/** Mall **/
+.mall-price-o {
+  text-decoration: line-through;
+}
+@media only screen and (min-width: 0) {
+  .mall-title {
+    width: 100%;
+    font-size: 1em;
+    margin-bottom: 3px;
+  }
+  .mall-btn-buy {
+    margin-top: 5px;
+    height: 25px;
+  }
+  .mall-price-n {
+    font-size: 1.25em;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .mall-title {
+    width: 100%;
+    font-size: 1.25em;
+    margin-bottom: 5px;
+  }
+  .mall-btn-buy {
+    margin-top: 9px;
+    height: 46px;
+  }
+  .mall-price-n {
+    font-size: 1.65em;
+  }
+}
+@media only screen and (min-width: 992px) {}
 @media only screen and (min-width: 1200px) {}
 
 /*** Partners ***/
