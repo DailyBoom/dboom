@@ -3,6 +3,38 @@
 	<div class="set-margin-xl">
 	</div>
 	<h4>상품 등록</h4>
+	<br>
+	<div class="col s12">
+		<div class="row">
+			<div class="col s12">
+				판매 선텍
+			@if(@model.user.admin) {
+				<p>
+		      <input name="is_hot" type="checkbox" id="is_hot" @(model.product.is_hot) ? 'checked' : ''/>
+		      <label for="is_hot">Hot Item (* Mall Only)</label>
+				</p>
+			}
+			</div>
+			<div class="input-field col s3">
+				<input name="extend" type="radio" id="extend_none" value="0" @(!model.product.extend || model.product.extend == 0 ? 'checked' : '')/>
+				<label for="extend_none">None (판매 안함)</label>
+			</div>
+			<div class="input-field col s3">
+				<input name="extend" type="radio" id="extend_hour" value="1" @(model.product.extend == 1 ? 'checked' : '')/>
+				<label for="extend_hour">48h (48시간 추가)</label>
+			</div>
+			<div class="input-field col s3">
+				<input name="extend" type="radio" id="extend_sold_out" value="2" @(model.product.extend == 2 ? 'checked' : '')/>
+				<label for="extend_sold_out">Sold Out (품절)</label>
+			</div>
+			<div class="input-field col s3">
+				<input name="extend" type="radio" id="extend_mall" value="3" @(model.product.extend == 3 ? 'checked' : '')/>
+				<label for="extend_mall">Mall (데일리 붐 몰)</label>
+			</div>
+		</div><!-- .row -->
+	</div>
+	<!-- .col -->
+	<br><br>
 	<div class="row">
 		<form class="col s12" method="post" action="/products/edit/@model.product.id" enctype="multipart/form-data">
 			<input id="uploaddate" type="date" name="uploaddate" hidden>
@@ -69,26 +101,6 @@
 				</div>
 			</div>
 			<!-- .file -->
-			<div class="row">
-				Extend
-				<div class="input-field col s12">
-					<input name="extend" type="radio" id="extend_none" value="0" @(!model.product.extend || model.product.extend == 0 ? 'checked' : '')/>
-					<label for="extend_none">None</label>
-				</div>
-				<div class="input-field col s12">
-					<input name="extend" type="radio" id="extend_hour" value="1" @(model.product.extend == 1 ? 'checked' : '')/>
-					<label for="extend_hour">48h</label>
-				</div>
-				<div class="input-field col s12">
-					<input name="extend" type="radio" id="extend_sold_out" value="2" @(model.product.extend == 2 ? 'checked' : '')/>
-					<label for="extend_sold_out">Sold Out</label>
-				</div>
-				<div class="input-field col s12">
-					<input name="extend" type="radio" id="extend_mall" value="3" @(model.product.extend == 3 ? 'checked' : '')/>
-					<label for="extend_mall">Mall</label>
-				</div>
-			</div>
-			<!-- .row -->
 			<div class="file-field input-field">
 				<br>
 				<span class="hide-on-small-only"><br></span>
