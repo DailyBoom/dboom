@@ -200,7 +200,7 @@ router.get('/checkout', function(req, res) {
       if (moment().isAfter(moment(product.scheduled_at).add(3, 'days'), 'days'))
         return res.redirect('/');
     }
-    else if (product.extend == 2) {
+    else if (product.extend == 2 || product.extend == 3) {
       var current_quantity = 0;
       product.options.forEach(function(option) {
         current_quantity += parseInt(option.quantity);
