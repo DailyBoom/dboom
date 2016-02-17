@@ -152,7 +152,8 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         company_kakaostory: req.body.kakaoUrl,
         review_url: req.body.reviewUrl,
         extend: req.body.extend ? req.body.extend : 0,        
-        color: req.body.color    
+        is_hot: req.body.is_hot,
+        color: req.body.color
       });
     
       if (product.price >= 50000)
@@ -208,6 +209,7 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
     product.company_kakaostory = req.body.kakaoUrl;    
     product.review_url = req.body.reviewUrl;
     product.extend = req.body.extend ? req.body.extend : 0;
+    product.is_hot = req.body.is_hot;
     product.color = req.body.color;
     
     if (product.price >= 50000)
