@@ -6,14 +6,14 @@
 			</div><!-- .row -->
 		</div><!-- .container-fluid -->
 		<div class="container">
-			@if(model.merchant) {
-				@if(model.products[0].brand_logo) {
-					<div class="col s12 center">
-						<img class="img-brand-mall" src="/uploads/@model.products[0].brand_logo" alt="@model.products[0].brand - 데일리 붐 판매자" />
-					</div>
-				}
-			}
 			<div class="col s12 center">
+				@if(model.merchant) {
+					@if(model.products[0].brand_logo) {
+						<div class="col s12 center">
+							<img class="img-brand-mall" src="/@model.products[0].brand_logo" alt="@model.products[0].brand - 데일리 붐 판매자" />
+						</div>
+					}
+				}
 				<h4>이번주 핫 아이템</h4>
 			</div>
 			<div class="row">

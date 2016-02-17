@@ -439,7 +439,11 @@ $('#time-left-label').hide();
 		$('.collapsible').collapsible({
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
-		$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile, .ol-old-p, .ol-new-p").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
+		var lang = '@model.getLocale()';
+		if (lang == 'vi')
+			$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile, .ol-old-p, .ol-new-p").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+		else
+			$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile, .ol-old-p, .ol-new-p").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
 		var owl = $("#db-past");
 		owl.owlCarousel({
 			items : 3,
