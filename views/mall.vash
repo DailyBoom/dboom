@@ -1,7 +1,7 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
 		<div class="container m-y-3">
-			<div class="col s12 center">
+			<div class="col s12">
 				@if(model.merchant) {
 					@if(model.products[0].brand_logo) {
 						<div class="col s12 center">
@@ -12,7 +12,9 @@
 					}
 				}
 				else {
-					<h4 class="m-t-3 p-y-1">이번주 핫 아이템</h4>
+					<div class="col s12 center">
+						<h4 class="m-t-3 p-y-1">이번주 핫 아이템</h4>
+					</div>
 				}
 			</div>
 		@if(!model.merchant) {
@@ -35,6 +37,7 @@
 				</div>
 				})
 			</div><!-- .row -->
+			<br>
 			<div class="col s12 center m-t-3 p-y-1">
 				<h4>데일리 붐 몰</h4>
 			</div>
