@@ -23,20 +23,22 @@
 			@if(!model.merchant) {
 				<div class="row">
 					@model.hotProducts.forEach(function(product) {
-					<div class="col s6 m4 m-y-3">
-						<div class="card">
-							<div class="card-image">
-								<div class="mall-card-img" style="background-image: url('/@product.images[0]')"></div>
-							</div>
-							<div class="card-content">
-								<span>@product.brand</span>
-								<div class="mall-title left"><b>@product.name</b></div>
-								<a class="right" href="/extend/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>
-								<p class="mall-price-o">@product.old_price</p>
-								<p class="mall-price-n">@product.price</p>
+					<a href="/extend/@product.id">
+						<div class="col s6 m4 m-y-3">
+							<div class="card">
+								<div class="card-image">
+									<div class="mall-card-img" style="background-image: url('/@product.images[0]')"></div>
+								</div>
+								<div class="card-content">
+									<span>@product.brand</span>
+									<div class="mall-title left"><b>@product.name</b></div>
+									<a class="right" href="/extend/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>
+									<p class="mall-price-o">@product.old_price</p>
+									<p class="mall-price-n">@product.price</p>
+								</div>
 							</div>
 						</div>
-					</div>
+					</a>
 					})
 				</div><!-- .row -->
 				<div class="row">
