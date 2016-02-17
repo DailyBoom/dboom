@@ -159,7 +159,7 @@ router.get('/extend/:id', function(req, res, next) {
       if (moment().isAfter(moment(product.scheduled_at).add(3, 'days'), 'days'))
         return res.redirect('/');
     }
-    else if (product.extend == 2) {
+    else if (product.extend == 2 || product.extend == 4) {
       if (current_quantity <= 0) {
         return res.redirect('/');
       }
