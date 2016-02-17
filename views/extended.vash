@@ -57,16 +57,16 @@
 	<div class="hide-on-small-only buy-sticky-wrapper @(model.product.color ? model.product.color : 'light-blue')">
 		@if (model.user) {
 			@if (model.progress < 100) {
-				<a class="btn btn-large buy-mod red darken-1 right" href="/checkout?product_id=@model.product.id"> 구매하기 <i class="fa fa-chevron-right fa-fw"></i> </a>
+				<a class="center btn btn-large buy-mod red darken-1 right" href="/checkout?product_id=@model.product.id"> 구매하기 <i class="fa fa-chevron-right fa-fw"></i> </a>
 			}
 		}
 		else {
 			@if (model.progress < 100) {
-				<a class="btn btn-large buy-mod red darken-1 right modal-trigger" href="#modal-check"> 구매하기 <i class="fa fa-chevron-right fa-fw"></i> </a>
+				<a class="center btn btn-large buy-mod red darken-1 right modal-trigger" href="#modal-check"> 구매하기 <i class="fa fa-chevron-right fa-fw"></i> </a>
 			}
 		}
-		<span id="time-left-label" class="d-clock label @(model.product.color ? model.product.color : 'light-blue') white-text left">남은시간</span>
-		<br><span id="time-left" class="d-clock white-text left"></span>
+		<span id="time-left-label" class="hide d-clock label @(model.product.color ? model.product.color : 'light-blue') white-text left">남은시간</span>
+		<br><span id="time-left" class="hide d-clock white-text left"></span>
 	</div>
 }
 <div class="container">

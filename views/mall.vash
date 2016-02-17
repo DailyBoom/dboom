@@ -52,7 +52,7 @@
 						<div class="card-content">
 							<span>@product.brand</span>
 							<div class="mall-title left"><b>@product.name</b></div>
-							<a class="right" href="#!"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>
+							<a class="right" href="/extend/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>
 							<p class="mall-price-o">@product.old_price</p>
 							<p class="mall-price-n">@product.price</p>
 						</div>
@@ -76,7 +76,7 @@
 							<div class="card-content">
 								<span>@product.brand</span>
 								<div class="mall-title left"><b>@product.name</b></div>
-								<a class="right" href="#!"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>
+								<a class="right" href="/extend/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>
 								<p class="mall-price-o">@product.old_price</p>
 								<p class="mall-price-n">@product.price</p>
 							</div>
