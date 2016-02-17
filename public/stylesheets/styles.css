@@ -47,13 +47,14 @@ input[type=number]::-webkit-outer-spin-button {
 .min-h-lg { min-height: 500px; }
 .m-t-0 { margin-top: 0     !important; }
 .m-t-1 { margin-top: 0.5em !important; }
+.m-t-3 { margin-top: 2em   !important; }
 .m-y-1 { margin-top: 0.5em !important; }
-.m-y-2 { margin-top: 1.25em !important; }
-.m-y-3 { margin-top: 2em !important; }
-.p-b-0 { padding-bottom: 0 !important; }
+.m-y-2 { margin-top: 1em !important; }
+.m-y-3 { margin-top: 2em   !important; }
+.p-b-0 { padding-bottom: 0    !important; }
 .p-b-3 { padding-bottom: 20px !important; }
-.p-y-1 { padding-top: 5px !important; padding-bottom: 5px !important; }
-.p-y-2 { padding-top: 10px !important; padding-bottom: 10px !important; }
+.p-y-1 { padding-top: 5px   !important; padding-bottom: 5px !important; }
+.p-y-2 { padding-top: 10px  !important; padding-bottom: 10px !important; }
 .p-x-3 { padding-right: 20px !important; padding-left: 20px !important; }
 .add-border-a { border:        2px solid #666; }
 .add-border-t { border-top:    2px solid #666; }
@@ -1547,8 +1548,13 @@ input[type=number]::-webkit-outer-spin-button {
 @media only screen and (min-width: 1200px) {}
 
 /** Mall **/
-.mall-price-o {
-  text-decoration: line-through;
+.mall-price-o { text-decoration: line-through; }
+.img-brand-mall { border-radius: 5px; }
+.mall-card-img,
+.mall-card-img-s {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 @media only screen and (min-width: 0) {
   .mall-title {
@@ -1564,7 +1570,13 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 1.25em;
   }
   .img-brand-mall {
-    max-height: 50px;
+    height: 100px;
+  }
+  .mall-card-img {
+    height: 200px;
+  }
+  .mall-card-img-s {
+    height: 200px;
   }
 }
 @media only screen and (min-width: 601px) {
@@ -1581,7 +1593,13 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 1.65em;
   }
   .img-brand-mall {
-    max-height: 100px;
+    height: 200px;
+  }
+  .mall-card-img {
+    height: 300px;
+  }
+  .mall-card-img-s {
+    height: 200px;
   }
 }
 @media only screen and (min-width: 992px) {}
