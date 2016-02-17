@@ -13,7 +13,7 @@
 					</div>
 				@if(@model.user.admin) {
 					<div class="input-field col s2">
-						<input name="is_hot" type="checkbox" id="is_hot" @(model.product.is_hot) ? 'checked' : ''/>
+						<input name="is_hot" type="checkbox" id="is_hot" @(model.product.is_hot ? 'checked' : '') />
 						<label for="is_hot">Hot Item<br>(* Mall Only)</label>
 					</div>
 				}

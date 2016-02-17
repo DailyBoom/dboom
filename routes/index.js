@@ -82,6 +82,10 @@ router.get('/mall/:merchant', function(req, res, next) {
     if (!merchant)
       return res.redirect('/mall');
     Product.find({ merchant_id: merchant._id, extend: 4 }, function(err, products) {
+      if (err)
+        console.log(err);
+      if (!products || products.length == 0)
+        return res.redirect('/mall');        
       Product.find({ merchant_id: merchant._id, extend: 4, is_hot: true }, function(err, hotProducts) {
         res.render('mall', { title: "데일리 붐 쇼핑 몰", description: "데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다.", products: products, hotProducts: hotProducts, merchant: merchant });
       });
