@@ -1,27 +1,28 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-		<div class="container-fluid">
-			<div class="row">
-
-			</div><!-- .row -->
-		</div><!-- .container-fluid -->
-		<div class="container">
+		<div class="container m-y-3">
 			<div class="col s12 center">
 				@if(model.merchant) {
 					@if(model.products[0].brand_logo) {
 						<div class="col s12 center">
 							<img class="img-brand-mall" src="/@model.products[0].brand_logo" alt="@model.products[0].brand - 데일리 붐 판매자" />
+							<h3>@model.products[0].brand</h3>
 						</div>
+						<br>
 					}
 				}
-				<h4>이번주 핫 아이템</h4>
+				else {
+					<h4 class="m-t-3 p-y-1">이번주 핫 아이템</h4>
+				}
 			</div>
+		@if(!model.merchant) {
 			<div class="row">
 				@model.hotProducts.forEach(function(product) {
 				<div class="col s6 m4 m-y-3">
 					<div class="card">
 						<div class="card-image">
-							<img class="responsive-img" src="/@product.images[0]" alt="" />
+							<div class="mall-card-img" style="background-image: url('/@product.images[0]')"></div>
+							<!-- <img class="responsive-img" src="/@product.images[0]" alt="" /> -->
 						</div>
 						<div class="card-content">
 							<span>@product.brand</span>
@@ -34,15 +35,17 @@
 				</div>
 				})
 			</div><!-- .row -->
-			<div class="col s12 center">
+			<div class="col s12 center m-t-3 p-y-1">
 				<h4>데일리 붐 몰</h4>
 			</div>
+		}
 			<div class="row">
 				@model.products.forEach(function(product) {
 					<div class="col s6 m4 m-y-3">
 						<div class="card">
 							<div class="card-image">
-								<img class="responsive-img" src="/@product.images[0]" alt="" />
+								<div class="mall-card-img" style="background-image: url('/@product.images[0]')"></div>
+								<!-- <img class="responsive-img" src="/@product.images[0]" alt="" /> -->
 							</div>
 							<div class="card-content">
 								<span>@product.brand</span>

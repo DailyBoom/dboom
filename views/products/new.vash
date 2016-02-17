@@ -16,7 +16,7 @@
 			<br>
 			<div class="row">
 				<div class="col s12">
-					판매 선텍
+					판매 선택
 				</div>
 			@if(@model.user.admin) {
 				<div class="input-field col s3">
@@ -30,7 +30,7 @@
 				</div>
 				<div class="input-field col s3">
 					<input name="extend" type="radio" id="extend_mall" value="1"/>
-					<label for="extend_mall">Mall (델일리 붐 몰에서 판매)</label>
+					<label for="extend_mall">Mall (데일리 붐 몰에서 판매)</label>
 				</div>
 			</div>
 			<!-- .row -->
