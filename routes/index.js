@@ -97,7 +97,7 @@ router.get('/mall/:brand/:product_id', function(req, res, next) {
     });
     var progress = (product.quantity - current_quantity) / product.quantity * 100;
     var sale = (product.old_price - product.price) / product.old_price * 100;
-    res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: true, cover: product.images[0], mall: true });
+    res.render('extended_m', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: true, cover: product.images[0], mall: true });
   });
 });
 
@@ -178,31 +178,6 @@ router.get('/extend/:id', function(req, res, next) {
       res.redirect('/');
     }
     res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2, cover: product.images[0] });
-  });
-});
-
-// Item from mall
-router.get('/mall/extend/:id', function(req, res, next) {
-  Product.findOne({_id: req.params.id}, function(err, product) {
-    var current_quantity = 0;
-    product.options.forEach(function(option) {
-      current_quantity += parseInt(option.quantity);
-    });
-    var progress = (product.quantity - current_quantity) / product.quantity * 100;
-    var sale = (product.old_price - product.price) / product.old_price * 100;
-    if (product.extend == 1) {
-      if (moment().isAfter(moment(product.scheduled_at).add(3, 'days'), 'days'))
-        return res.redirect('/');
-    }
-    else if (product.extend == 2 || product.extend == 4) {
-      if (current_quantity <= 0) {
-        return res.redirect('/');
-      }
-    }
-    else {
-      res.redirect('/');
-    }
-    res.render('extended_m', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2 });
   });
 });
 
