@@ -492,6 +492,15 @@ input[type=number]::-webkit-outer-spin-button {
   color: #8d0000;
 }
 @media only screen and (min-width: 0) {
+  
+  .mall-back {
+    margin: 10px 0;
+  }
+  
+  .mall-back i {
+    vertical-align: middle;
+  }
+  
   .buy-help {
     display: block;
     position: fixed;
