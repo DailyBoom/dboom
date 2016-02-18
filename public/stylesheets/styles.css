@@ -1296,6 +1296,11 @@ input[type=number]::-webkit-outer-spin-button {
   .item-price-o.desk {
     margin-right: 20px;
   }
+  .item-price.desk.mod {
+    font-size: 3em;
+    line-height: 1.25;
+    margin-right: 20px;
+  }
   .past-box-wrapper {
     height: 51px;
     line-height: 51px;
@@ -1562,6 +1567,12 @@ input[type=number]::-webkit-outer-spin-button {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.mall-cover {
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+}
 @media only screen and (min-width: 0) {
   .mall-title {
     width: 100%;
@@ -1584,6 +1595,9 @@ input[type=number]::-webkit-outer-spin-button {
   .mall-card-img-s {
     height: 200px;
   }
+  .mall-cover {
+    height: 200px;
+  }
 }
 @media only screen and (min-width: 601px) {
   .mall-title {
@@ -1599,13 +1613,16 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 1.65em;
   }
   .img-brand-mall {
-    height: 300px;
+    height: 0px;
   }
   .mall-card-img {
     height: 300px;
   }
   .mall-card-img-s {
     height: 200px;
+  }
+  .mall-cover {
+    height: 400px;
   }
 }
 @media only screen and (min-width: 992px) {}

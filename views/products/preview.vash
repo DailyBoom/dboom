@@ -14,6 +14,13 @@
 				</a>
 			</li>
 		}
+		else {
+			<li>
+				<a class="btn-preview white-text center" href="/products/list">
+					ITEMS
+				</a>
+			</li>
+		}
 			<li>
 				<a class="btn-preview white-text center" href="/products/edit/@model.product.id">
 					EDIT

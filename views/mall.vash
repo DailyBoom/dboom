@@ -2,11 +2,12 @@
 	@html.block("body", function(model) {
 		<div class="container m-y-3">
 			@if(model.merchant) {
-				<div class="row">
+				<div class="row mall-cover" style="background-image: url('/@model.products[0].images[2]')">
 					<div class="col s12 center">
-						@if(model.products[0].brand_logo)
+						@if(model.products[0].brand_logo) {
 							<img class="img-brand-mall" src="/@model.products[0].brand_logo" alt="@model.products[0].brand - 데일리 붐 판매자" />
-						<h3>@model.products[0].brand</h3>
+						}
+						<!-- <h3>@model.products[0].brand</h3> -->
 					</div>
 				</div><!-- .row -->
 			}
@@ -23,7 +24,7 @@
 			@if(!model.merchant) {
 				<div class="row">
 					@model.hotProducts.forEach(function(product) {
-					<a href="/extend/@product.id">
+					<a href="/mall/extend/@product.id">
 						<div class="col s6 m4 m-y-3">
 							<div class="card">
 								<div class="card-image">
@@ -32,7 +33,7 @@
 								<div class="card-content">
 									<span>@product.brand</span>
 									<div class="mall-title left"><b>@product.name</b></div>
-									<a class="right" href="/extend/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>
+									<a class="right" href="/mall/extend/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>
 									<p class="mall-price-o">@product.old_price</p>
 									<p class="mall-price-n">@product.price</p>
 								</div>
@@ -50,7 +51,7 @@
 			else {
 				<div class="row">
 					<div class="col s12 center m-t-3 p-t-2">
-						<h4>DailyBoom Exclusive</h4>
+						<h4>@model.products[0].brand Exclusive Store</h4>
 					</div>
 				</div><!-- .row -->
 			}
