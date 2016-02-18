@@ -1,68 +1,79 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
 		<div class="container m-y-3">
-			<div class="col s12">
-				@if(model.merchant) {
-					@if(model.products[0].brand_logo) {
-						<div class="col s12 center">
-							<img class="img-brand-mall" src="/@model.products[0].brand_logo" alt="@model.products[0].brand - 데일리 붐 판매자" />
-							<h3>@model.products[0].brand</h3>
-						</div>
-						<br>
-					}
-				}
-				else {
+			@if(model.merchant) {
+				<div class="row">
 					<div class="col s12 center">
-						<h4 class="m-t-3 p-y-1">이번주 핫 아이템</h4>
+						@if(model.products[0].brand_logo)
+							<img class="img-brand-mall" src="/@model.products[0].brand_logo" alt="@model.products[0].brand - 데일리 붐 판매자" />
+						<h3>@model.products[0].brand</h3>
 					</div>
-				}
-			</div>
-		@if(!model.merchant) {
-			<div class="row">
-				@model.hotProducts.forEach(function(product) {
-				<div class="col s6 m4 m-y-3">
-					<div class="card">
-						<div class="card-image">
-							<div class="mall-card-img" style="background-image: url('/@product.images[0]')"></div>
-							<!-- <img class="responsive-img" src="/@product.images[0]" alt="" /> -->
-						</div>
-						<div class="card-content">
-							<span>@product.brand</span>
-							<div class="mall-title left"><b>@product.name</b></div>
-							<a class="right" href="/extend/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>
-							<p class="mall-price-o">@product.old_price</p>
-							<p class="mall-price-n">@product.price</p>
-						</div>
+				</div><!-- .row -->
+			}
+			else {
+				<div class="row">
+					<div class="col s12 center">
+						<h4 class="m-t-3 p-y-1">추천 아이템</h4>
 					</div>
-				</div>
-				})
-			</div><!-- .row -->
-			<br>
-			<div class="col s12 center m-t-3 p-y-1">
-				<h4>데일리 붐 몰</h4>
-			</div>
-		}
-			<div class="row">
-				@model.products.forEach(function(product) {
-					<div class="col s6 m4 m-y-3">
-						<div class="card">
-							<div class="card-image">
-								<div class="mall-card-img" style="background-image: url('/@product.images[0]')"></div>
-								<!-- <img class="responsive-img" src="/@product.images[0]" alt="" /> -->
-							</div>
-							<div class="card-content">
-								<span>@product.brand</span>
-								<div class="mall-title left"><b>@product.name</b></div>
-								<a class="right" href="/extend/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>
-								<p class="mall-price-o">@product.old_price</p>
-								<p class="mall-price-n">@product.price</p>
+				</div><!-- .row -->
+			}
+		</div><!-- .container -->
+
+		<div class="container">
+			@if(!model.merchant) {
+				<div class="row">
+					@model.hotProducts.forEach(function(product) {
+					<a href="/extend/@product.id">
+						<div class="col s6 m4 m-y-3">
+							<div class="card">
+								<div class="card-image">
+									<div class="mall-card-img" style="background-image: url('/@product.images[0]')"></div>
+								</div>
+								<div class="card-content">
+									<span>@product.brand</span>
+									<div class="mall-title left"><b>@product.name</b></div>
+									<a class="right" href="/extend/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>
+									<p class="mall-price-o">@product.old_price</p>
+									<p class="mall-price-n">@product.price</p>
+								</div>
 							</div>
 						</div>
+					</a>
+					})
+				</div><!-- .row -->
+				<div class="row">
+					<div class="col s12 center m-t-3 p-y-1">
+						<h4>Only on DailyBoom</h4>
 					</div>
-				})
-			</div><!-- .row -->
-			<br>
-			<br>
+				</div><!-- .row -->
+			}
+			else {
+				<div class="row">
+					<div class="col s12 center m-t-3 p-t-2">
+						<h4>DailyBoom Exclusive</h4>
+					</div>
+				</div><!-- .row -->
+			}
+				<div class="row">
+					@model.products.forEach(function(product) {
+						<div class="col s6 m4 m-y-3">
+							<div class="card">
+								<div class="card-image">
+									<div class="mall-card-img" style="background-image: url('/@product.images[0]')"></div>
+								</div>
+								<div class="card-content">
+									<span>@product.brand</span>
+									<div class="mall-title left"><b>@product.name</b></div>
+									<a class="right" href="/extend/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>
+									<p class="mall-price-o">@product.old_price</p>
+									<p class="mall-price-n">@product.price</p>
+								</div>
+							</div>
+						</div>
+					})
+				</div><!-- .row -->
+				<br>
+				<br>
 		</div><!-- container -->
 	})
 })
