@@ -91,25 +91,19 @@ router.get('/mall/:merchant', function(req, res, next) {
   });
 });
 
-router.get('/mall/:merchant/:product_id', function(req, res, next) {
-  User.findOne({ username: req.params.merchant }, function(err, merchant) {
+router.get('/mall/:brand/:product_id', function(req, res, next) {
+  Product.findOne({ extend: 4, _id: req.params.product_id }, function(err, product) {
     if (err)
       console.log(err);
-    if (!merchant)
+    if (!product || product.length == 0)
       return res.redirect('/mall');
-    Product.findOne({ merchant_id: merchant._id, extend: 4, _id: req.params.product_id }, function(err, product) {
-      if (err)
-        console.log(err);
-      if (!product || product.length == 0)
-        return res.redirect('/mall');
-      var current_quantity = 0;
-      product.options.forEach(function(option) {
-        current_quantity += parseInt(option.quantity);
-      });
-      var progress = (product.quantity - current_quantity) / product.quantity * 100;
-      var sale = (product.old_price - product.price) / product.old_price * 100;
-      res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: true, cover: product.images[0] });
+    var current_quantity = 0;
+    product.options.forEach(function(option) {
+      current_quantity += parseInt(option.quantity);
     });
+    var progress = (product.quantity - current_quantity) / product.quantity * 100;
+    var sale = (product.old_price - product.price) / product.old_price * 100;
+    res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: true, cover: product.images[0] });
   });
 });
 
