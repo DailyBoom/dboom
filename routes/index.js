@@ -75,19 +75,13 @@ router.get('/mall', function(req, res, next) {
   });
 });
 
-router.get('/mall/:merchant', function(req, res, next) {
-  User.findOne({ username: req.params.merchant }, function(err, merchant) {
+router.get('/mall/:brand', function(req, res, next) {
+  Product.find({ brand: req.params.brand, extend: 4 }, {}, { sort: { 'created_at' : -1 }}, function(err, products) {
     if (err)
       console.log(err);
-    if (!merchant)
+    if (!products || products.length == 0)
       return res.redirect('/mall');
-    Product.find({ merchant_id: merchant._id, extend: 4 }, {}, { sort: { 'created_at' : -1 }}, function(err, products) {
-      if (err)
-        console.log(err);
-      if (!products || products.length == 0)
-        return res.redirect('/mall');
-      res.render('mall', { title: "데일리 붐 쇼핑 몰", description: "데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다.", products: products, merchant: merchant });
-    });
+    res.render('mall', { title: "데일리 붐 쇼핑 몰", description: "데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다.", products: products, merchant: req.params.brand });
   });
 });
 
@@ -103,7 +97,7 @@ router.get('/mall/:brand/:product_id', function(req, res, next) {
     });
     var progress = (product.quantity - current_quantity) / product.quantity * 100;
     var sale = (product.old_price - product.price) / product.old_price * 100;
-    res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: true, cover: product.images[0] });
+    res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: true, cover: product.images[0], mall: true });
   });
 });
 

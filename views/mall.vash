@@ -23,22 +23,22 @@
 			@if(!model.merchant) {
 				<div class="row">
 					@model.hotProducts.forEach(function(product) {
-					<a href="/mall/@product.brand/@product.id">
 						<div class="col s6 m4 m-y-3">
 							<div class="card">
 								<div class="card-image">
-									<div class="mall-card-img" style="background-image: url('/@product.images[0]')"></div>
+									<a href="/mall/@product.brand/@product.id">
+										<div class="mall-card-img" style="background-image: url('/@product.images[0]')"></div>
+									</a>
 								</div>
 								<div class="card-content">
-									<span>@product.brand</span>
-									<div class="mall-title left"><b>@product.name</b></div>
+									<a href="/mall/@product.brand"><span>@product.brand</span></a>
+									<div class="mall-title left"><a href="/mall/@product.brand/@product.id"><b>@product.name</b></a></div>
 									<a class="right" href="/mall/@product.brand/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>
 									<p class="mall-price-o">@product.old_price</p>
 									<p class="mall-price-n">@product.price</p>
 								</div>
 							</div>
 						</div>
-					</a>
 					})
 				</div><!-- .row -->
 				<div class="row">
@@ -59,11 +59,13 @@
 						<div class="col s6 m4 m-y-3">
 							<div class="card">
 								<div class="card-image">
-									<div class="mall-card-img" style="background-image: url('/@product.images[0]')"></div>
+									<a href="/mall/@product.brand/@product.id">
+										<div class="mall-card-img" style="background-image: url('/@product.images[0]')"></div>
+									</a>
 								</div>
 								<div class="card-content">
-									<span>@product.brand</span>
-									<div class="mall-title left"><b>@product.name</b></div>
+									<a href="/mall/@product.brand"><span>@product.brand</span></a>
+									<div class="mall-title left"><a href="/mall/@product.brand/@product.id"><b>@product.name</b></a></div>
 									<a class="right" href="/mall/@product.brand/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>
 									<p class="mall-price-o">@product.old_price</p>
 									<p class="mall-price-n">@product.price</p>
