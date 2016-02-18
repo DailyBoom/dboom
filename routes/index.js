@@ -68,8 +68,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/mall', function(req, res, next) {
-  Product.find({ extend: 4 }, {}, { sort: { 'created_at' : -1 }}, function(err, products) {
-    Product.find({ extend: 4, is_hot: true }, function(err, hotProducts) {
+  Product.find({ extend: 4 }, {}, { sort: { 'created_at' : -1 }}).populate('merchant_id').exec(function(err, products) {
+    Product.find({ extend: 4, is_hot: true }).populate('merchant_id').exec(function(err, hotProducts) {
       res.render('mall', { title: "데일리 붐 쇼핑 몰", description: "데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다.", products: products, hotProducts: hotProducts });
     });
   });
@@ -81,12 +81,34 @@ router.get('/mall/:merchant', function(req, res, next) {
       console.log(err);
     if (!merchant)
       return res.redirect('/mall');
-    Product.find({ merchant_id: merchant._id, extend: 4 }, {}, { sort: { 'created_at' : -1 }}, function(err, products) {
+    Product.find({ merchant_id: merchant._id, extend: 4 }, {}, { sort: { 'created_at' : -1 }}).populate('merchant_id').exec(function(err, products) {
       if (err)
         console.log(err);
       if (!products || products.length == 0)
         return res.redirect('/mall');
       res.render('mall', { title: "데일리 붐 쇼핑 몰", description: "데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다.", products: products, merchant: merchant });
+    });
+  });
+});
+
+router.get('/mall/:merchant/:product_id', function(req, res, next) {
+  User.findOne({ username: req.params.merchant }, function(err, merchant) {
+    if (err)
+      console.log(err);
+    if (!merchant)
+      return res.redirect('/mall');
+    Product.findOne({ merchant_id: merchant._id, extend: 4, _id: req.params.product_id }, function(err, product) {
+      if (err)
+        console.log(err);
+      if (!product || product.length == 0)
+        return res.redirect('/mall');
+      var current_quantity = 0;
+      product.options.forEach(function(option) {
+        current_quantity += parseInt(option.quantity);
+      });
+      var progress = (product.quantity - current_quantity) / product.quantity * 100;
+      var sale = (product.old_price - product.price) / product.old_price * 100;
+      res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: true, cover: product.images[0] });
     });
   });
 });
@@ -167,7 +189,7 @@ router.get('/extend/:id', function(req, res, next) {
     else {
       res.redirect('/');
     }
-    res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2 });
+    res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2, cover: product.images[0] });
   });
 });
 

@@ -109,5 +109,8 @@
 	"email.invalid": "The field %s requires a valid Email address",
 	"remember_me": "remember_me",
 	"forgot_pass": "forgot_pass",
-	"user.add_address": "user.add_address"
+	"user.add_address": "Thêm thông tin vận chuyển",
+	"shipping": "shipping",
+	"payment": "payment",
+	"confirm": "confirm"
 }

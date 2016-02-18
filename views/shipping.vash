@@ -41,21 +41,21 @@
 					<div class="row">
 						<div class="input-field col s12 m6 l6">
 							<input id="full_name" name="full_name" type="text" class="validate" placeholder="홍길동" value="@(model.user && model.user.shipping.full_name ? model.user.shipping.full_name : model.Validator.getValue('full_name'))">
-							<label for="full_name">받는분 이름</label>
+							<label for="full_name">@model.__('user.fullName')</label>
 						</div>
 						<div class="input-field col s12 m6 l6">
 							<input id="phone_number" name="phone_number" type="text" class="validate" placeholder="01021345678" value="@(model.user && model.user.shipping.phone_number ? model.user.shipping.phone_number : model.Validator.getValue('phone_number'))">
-							<label for="phone_number"><span class="signup-info red-text"><i class="fa fa-exclamation-circle"></i> "-" 없는 숫자 형식으로 입력해 주세요.</span></label>
+							<label for="phone_number">@html.raw(model.__('user.phoneNumber'))</label>
 						</div>
 					</div>
 					<div class="row">
 						<div class="input-field col s12 m9 l9">
 							<input id="address1" name="address1" type="text" class="validate" placeholder="시 . 구 . 동 . " value="@(model.user && model.user.shipping.address ? model.user.shipping.address : model.Validator.getValue('address1'))">
-							<label for="address1">배송지 주소</label>
+							<label for="address1">@model.__('user.address1')</label>
 						</div>
 						<div class="input-field col s12 m3 l3">
 							<input id="zipcode" name="zipcode" type="text" class="validate" placeholder="100123" value="@(model.user && model.user.shipping.zipcode ? model.user.shipping.zipcode : model.Validator.getValue('zipcode'))" maxlength="6">
-							<label for="zipcode">우편번호</label>
+							<label for="zipcode">@model.__('user.zipcode')</label>
 						</div>
 					</div>
 					<div class="row">
@@ -63,14 +63,14 @@
 							<select id="country" name="country">
 								<option value="대한민국">대한민국</option>
 							</select>
-							<label>배송 국가</label>
+							<label>@model.__('user.country')</label>
 						</div>
 					</div>
 					@if (!model.user || !model.user.email) {
 						<div class="row">
 							<div class="input-field col s12">
 								<input id="email" name="email" type="email" class="validate" placeholder="someone@dailyboom.co" value="@model.Validator.getValue('email')">
-								<label for="email">이메일</label>
+								<label for="email">@model.__('user.email')</label>
 							</div>
 						</div>
 					}
@@ -85,15 +85,15 @@
 									<div class="row">
 										<div class="input-field col s12 m4 l4">
 											<input id="username" name="username" type="text" class="validate" value="@model.Validator.getValue('username')">
-											<label for="username">아이디</label>
+											<label for="username">@model.__('user.username')</label>
 										</div>
 										<div class="input-field col s12 m4 l4">
 											<input id="password" name="password" type="password" class="validate">
-											<label for="password">비밀번호</label>
+											<label for="password">@model.__('user.password')</label>
 										</div>
 										<div class="input-field col s12 m4 l4">
 											<input name="confirmpassword" id="confirmpassword" type="password" class="validate">
-											<label for="confirmpassword">비밀번호 확인</label>
+											<label for="confirmpassword">@model.__('user.confirmPassword')</label>
 										</div>
 									</div>
 								</div>
@@ -108,14 +108,14 @@
 							<br>
 							<div class="row">
 								<div class="col s12">
-									<span class="red-text">필수 동의항목</span>
+									<span class="red-text">@model.__('required')</span>
 									<p class="grey-text">
 										<input type="checkbox" id="agree-all" />
-										<label for="agree-all">전체동의</label>
+										<label for="agree-all">@model.__('agree_all')</label>
 									</p>
 									<p class="grey-text">
 										<input class="agree-check" type="checkbox" id="agree-terms-1" name="agree-terms-1" />
-										<label for="agree-terms-1">데일리 붐 이용약관</label><a class="right" href="/terms" target="_blank">보기</a>
+										<label for="agree-terms-1">@model.__('user.agreeTerms1')</label><a class="right" href="/terms" target="_blank">보기</a>
 									</p>
 									<!-- <p class="grey-text">
 										<input class="agree-check" type="checkbox" id="agree-terms-2" name="agree-terms-2" />
@@ -123,7 +123,7 @@
 									</p> -->
 									<p class="grey-text">
 										<input class="agree-check" type="checkbox" id="agree-terms-3" name="agree-terms-3" />
-										<label for="agree-terms-3">개인정보 수집 및 이용</label><a class="right" href="/privacy" target="_blank">보기</a>
+										<label for="agree-terms-3">@model.__('user.agreeTerms3')</label><a class="right" href="/privacy" target="_blank">보기</a>
 									</p>
 								</div>
 							</div><!-- .row -->

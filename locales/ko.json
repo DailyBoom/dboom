@@ -25,7 +25,7 @@
 	"user.confirmPassword": "비밀번호 확인",
 	"user.add_address": "배송 정보 추가",
 	"user.fullName": "받는분 이름",
-	"user.phoneNumber": "전화번호",
+	"user.phoneNumber": "전화번호 <span class='signup-info red-text'><i class='fa fa-exclamation-circle'></i> '-' 없는 숫자 형식으로 입력해 주세요.</span>",
 	"user.address1": "배송지 주소",
 	"user.zipcode": "우편번호",
 	"user.country": "배송 국가",
