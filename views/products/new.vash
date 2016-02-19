@@ -25,11 +25,11 @@
 				</div>
 			}
 				<div class="input-field col s3">
-					<input name="extend" type="radio" id="extend_db" value="0"/>
+					<input name="extend" type="radio" id="extend_db" value="3"/>
 					<label for="extend_db">데일리 붐 메인</label>
 				</div>
 				<div class="input-field col s3">
-					<input name="extend" type="radio" id="extend_mall" value="1"/>
+					<input name="extend" type="radio" id="extend_mall" value="4"/>
 					<label for="extend_mall">Mall (데일리 붐 몰에서 판매)</label>
 				</div>
 			</div>
