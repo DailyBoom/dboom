@@ -4,22 +4,24 @@
 	<div class="row">
 		<div class="col s12">
 			<h4 class="left">지난 상품</h4>
-			<div class="input-field right">
-		    <select name="type" id="type">
-		      <option value="" selected>All</option>
-		      <option value="1">Daily Sale</option>
-		      <option value="2">Boom Mall</option>
-		    </select>
-		    <label for="type">Listing Type</label>
-		  </div>
-		</div>
-	</div>
+			<div class="col s12 m3 right">
+				<div class="input-field">
+			    <select name="type" id="type">
+			      <option value="" selected>All</option>
+			      <option value="1">Daily Sale</option>
+			      <option value="2">Boom Mall</option>
+			    </select>
+			    <label for="type">Listing Type</label>
+			  </div>
+			</div>
+		</div><!-- .col -->
+	</div><!-- .row -->
 
 	<div class="row">
 
 		@model.products.forEach(function(product){
 
-			<div class="col s12 m6 l6">
+			<div class="col s12 m4 l4">
 				<div class="card">
 					<div class="card-image">
 						<div class="past-date-box blue-grey darken-1 white-text">
@@ -27,18 +29,20 @@
 						</div>
 						<img class="" src="/@product.images[0]" alt="@product.name" />
 					</div><!-- .card-image -->
-					<div class="card-content past">
+					<div class="card-content past mall">
 						<p class="blue-grey-text text-darken-1 truncate"><b>@product.name</b></p>
 						<span class="blue-grey-text text-darken-1">@html.raw(product.description)</span>
 					</div><!-- .card-content -->
 					<div class="card-action blue-grey lighten-5 center">
 						<a class="waves-effect waves-light blue-grey-text text-darken-3" href="#"><i class="fa fa-thumbs-up fa-fw"></i> 사고싶다 (@product.wanna_buy.length)<!--<span class="badge">5</span>--></a>
+					</div>
+					<div class="blue-grey lighten-4 center p-y-2">
+						<a class="amber-text text-darken-3 m-x-1" href="/products/edit/@product.id">Edit</a>
+						<a class="amber-text text-darken-3 m-x-1" href="/products/preview/@product.id">Preview</a>
 						@if (model.user) {
 							if (model.user.admin == 1) {
-								<a class="waves-effect waves-light red-text text-darken-3 right" href="/products/delete/@product.id" onclick="return confirm('Are you sure you want to delete?');">Delete</a>
+								<a class="red-text text-darken-3 m-x-1" href="/products/delete/@product.id" onclick="return confirm('Are you sure you want to delete?');">Delete</a>
 						} }
-						<a class="waves-effect waves-light amber-text text-darken-3 right" href="/products/edit/@product.id">Edit</a>
-						<a class="waves-effect waves-light amber-text text-darken-3 right" href="/products/preview/@product.id">Preview</a>
 					</div>
 				</div><!-- .card -->
 			</div><!-- .col -->
