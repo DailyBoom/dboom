@@ -1590,12 +1590,12 @@ input[type=number]::-webkit-outer-spin-button {
 @media only screen and (min-width: 0) {
   .mall-title {
     width: 100%;
-    font-size: 1em;
+    font-size: 1.25em;
     margin-bottom: 3px;
   }
   .mall-btn-buy {
     margin-top: 5px;
-    height: 25px;
+    height: 45px;
   }
   .mall-price-n {
     font-size: 1.25em;
