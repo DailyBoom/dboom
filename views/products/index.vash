@@ -1,9 +1,20 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-<div class="container">
-	<div class="set-margin-xl">
+<div class="container m-y-3">
+	<div class="row">
+		<div class="col s12">
+			<h4 class="left">지난 상품</h4>
+			<div class="input-field right">
+		    <select name="type" id="type">
+		      <option value="" selected>All</option>
+		      <option value="1">Daily Sale</option>
+		      <option value="2">Boom Mall</option>
+		    </select>
+		    <label for="type">Listing Type</label>
+		  </div>
+		</div>
 	</div>
-	<h4>지난 상품</h4>
+
 	<div class="row">
 
 		@model.products.forEach(function(product){
@@ -27,7 +38,7 @@
 								<a class="waves-effect waves-light red-text text-darken-3 right" href="/products/delete/@product.id" onclick="return confirm('Are you sure you want to delete?');">Delete</a>
 						} }
 						<a class="waves-effect waves-light amber-text text-darken-3 right" href="/products/edit/@product.id">Edit</a>
-						<a class="waves-effect waves-light amber-text text-darken-3 right" href="/products/preview/@product.id">Preview</a>						
+						<a class="waves-effect waves-light amber-text text-darken-3 right" href="/products/preview/@product.id">Preview</a>
 					</div>
 				</div><!-- .card -->
 			</div><!-- .col -->
@@ -36,5 +47,10 @@
 
 	</div><!-- .row -->
 </div><!-- .container -->
+<script>
+$(document).ready(function() {
+	$('select').material_select();
+});
+</script>
 	})
 })
