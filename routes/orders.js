@@ -390,7 +390,7 @@ router.post('/deposit_checkout', function(req, res) {
             slack.send({
               channel: '#dailyboom-new-order',
               icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
-              text: 'New order via deposit #'+order._id,
+              text: 'New order via deposit <http://dailyboom.co/orders/view/'+order._id+'>',
               unfurl_links: 1,
               username: 'DailyBoom-bot'
             });
@@ -466,7 +466,7 @@ router.get('/payco_callback', function(req, res) {
                               slack.send({
                                 channel: '#dailyboom-new-order',
                                 icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
-                                text: 'New order #'+order._id,
+                                text: 'New order <http://dailyboom.co/orders/view/'+order._id+'>',
                                 unfurl_links: 1,
                                 username: 'DailyBoom-bot'
                               });

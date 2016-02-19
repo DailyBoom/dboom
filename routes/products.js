@@ -9,6 +9,7 @@ var mime = require('mime-types');
 var crypto = require("crypto");
 var config = require('config');
 var slack = require('slack-notify')(config.get("Slack.webhookUrl"));
+var paginate = require('express-paginate');
 var app = express();
 
 
@@ -40,11 +41,18 @@ var isMerchantOrAdmin = function (req, res, next) {
 
 router.get('/products/list', isMerchantOrAdmin, function(req, res) {
   var query = Product.find({}, {}, { sort: { 'scheduled_at' : -1 } });
+  var page = req.query.page ? req.query.page : 1;
   if (req.user.role == 'merchant') {
     query.where('merchant_id').equals(req.user._id);
   }
-  query.exec(function (err, Products) {
-    res.render('products/index', { products: Products });
+  if (req.query.type == 1) {
+    query.where('extend').gte(1).lte(3);
+  }
+  else if (req.query.type == 2) {
+    query.where('extend').equals(4);    
+  }
+  query.paginate(page, 10, function(err, Products, total) {
+    res.render('products/index', { products: Products, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page) });
   });
 });
 
