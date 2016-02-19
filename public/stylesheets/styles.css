@@ -48,6 +48,7 @@ input[type=number]::-webkit-outer-spin-button {
 .m-t-0 { margin-top: 0     !important; }
 .m-t-1 { margin-top: 0.5em !important; }
 .m-t-3 { margin-top: 2em   !important; }
+.m-x-1 { margin-left: 0.5em !important; margin-right: 0.5em !important; }
 .m-y-1 { margin-top: 0.5em !important; }
 .m-y-2 { margin-top: 1em !important; }
 .m-y-3 { margin-top: 2em   !important; }
@@ -1199,6 +1200,10 @@ input[type=number]::-webkit-outer-spin-button {
   .card .card-content.past span {
     white-space: pre-wrap;
     word-break: keep-all;
+  }
+  .card .card-content.past.mall {
+    height: 120px;
+    overflow-y: scroll;
   }
   .card .card-action.mod {
     padding: 10px;
