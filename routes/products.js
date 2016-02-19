@@ -49,7 +49,7 @@ router.get('/products/list', isMerchantOrAdmin, function(req, res) {
     query.where('extend').gte(1).lte(3);
   }
   else if (req.query.type == 2) {
-    query.where('extend').equals(4);    
+    query.where('extend').equals(4);
   }
   query.paginate(page, 10, function(err, Products, total) {
     res.render('products/index', { products: Products, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page) });
@@ -178,7 +178,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
             slack.send({
               channel: '#dailyboom-new-product',
               icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
-              text: 'New product has been uploaded #'+product._id,
+              text: 'New product has been uploaded <http://dailyboom.co/products/preview/'+product._id+'>',
               unfurl_links: 1,
               username: 'DailyBoom-bot'
             });

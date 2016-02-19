@@ -4,16 +4,18 @@
 	<div class="row">
 		<div class="col s12">
 			<h4 class="left">지난 상품</h4>
-			<div class="col s12 m3 right">
-				<div class="input-field">
-			    <select name="type" id="type">
-			      <option value="" selected>All</option>
-			      <option value="1">Daily Sale</option>
-			      <option value="2">Boom Mall</option>
-			    </select>
-			    <label for="type">Listing Type</label>
-			  </div>
-			</div>
+			<form method="get" id="type_form">
+				<div class="col s12 m3 right">
+					<div class="input-field">
+						<select name="type" id="type">
+							<option value="" selected>All</option>
+							<option value="1">Daily Sale</option>
+							<option value="2">Boom Mall</option>
+						</select>
+						<label for="type">Listing Type</label>
+					</div>
+				</div>
+			</form>
 		</div><!-- .col -->
 	</div><!-- .row -->
 
@@ -68,6 +70,9 @@
 <script>
 $(document).ready(function() {
 	$('select').material_select();
+	$('#type').on('change', function() {
+		$('#type_form').submit();
+	});
 });
 </script>
 	})
