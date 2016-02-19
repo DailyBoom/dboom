@@ -24,7 +24,7 @@
 			@if(!model.merchant) {
 				<div class="row">
 					@model.hotProducts.forEach(function(product) {
-						<div class="col s6 m4 m-y-3">
+						<div class="col s12 m4 m-y-3">
 							<div class="card">
 								<div class="card-image">
 									<a href="/mall/@product.brand/@product.id">
@@ -57,7 +57,7 @@
 			}
 				<div class="row">
 					@model.products.forEach(function(product) {
-						<div class="col s6 m4 m-y-3">
+						<div class="col s12 m4 m-y-3">
 							<div class="card">
 								<div class="card-image">
 									<a href="/mall/@product.brand/@product.id">
