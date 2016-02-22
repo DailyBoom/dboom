@@ -18,7 +18,20 @@
 			</form>
 		</div><!-- .col -->
 	</div><!-- .row -->
-
+	<div class="row">
+		<ul class="pagination">
+			@model.pages.forEach(function(page) { 
+				@if(model.currentPage == page.number) {
+					<li class="active">@page.number</li>
+				} else {
+					<li class="waves-effect"><a href="@page.url">@page.number</a></li>
+				}
+			})
+			@if(model.currentPage != model.lastPage) {
+				<li class="waves-effect"><a href="/products/list?page=@model.lastPage&limit=10">Last</a></li>
+			}
+		</ul>
+	</div><!-- .row -->
 	<div class="row">
 
 		@model.products.forEach(function(product){
@@ -62,7 +75,7 @@
 				}
 			})
 			@if(model.currentPage != model.lastPage) {
-				<li class="waves-effect"><a href="/users/list?page=@model.lastPage&limit=10">Last</a></li>
+				<li class="waves-effect"><a href="/products/list?page=@model.lastPage&limit=10">Last</a></li>
 			}
 		</ul>
 	</div><!-- .row -->

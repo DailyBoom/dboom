@@ -218,10 +218,20 @@ router.post('/users/edit', isAuthenticated, function(req, res) {
 // for Admin Only
 router.get('/users/list', isAdmin, function(req, res){
   var page = req.query.page ? req.query.page : 1;
-  User.find({}, {}, {$sort: { created_at: -1 }}).paginate(page, 10, function(err, users, total) {
+  var query = User.find({}, {}, {$sort: { created_at: -1 }});
+  if (req.query.name) {
+    query.where('name', req.query.name);
+  }
+  if (req.query.email) {
+    query.where('email', req.query.email);
+  }
+  if (req.query.role) {
+    query.where('role', req.query.role);
+  }
+  query.paginate(page, 10, function(err, users, total) {
     if (err)
       console.log(err);
-      console.log(total);
+    console.log(total);
     res.render('users/list', { users: users, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, lastPage: Math.ceil(total / 10) });
   });
 });
