@@ -289,11 +289,11 @@ else {
 			</div>
 			<a href="#modal-ask" class="hide-on-med-and-up buy-help modal-trigger">Can't Read Korean? Click here.</a>
 
-			<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text">
+			<div class="hide past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text">
 				@model.__('past_items')
 				<a class="hide white-text right" href="/mall"><i class="fa fa-shopping-bag fa-fw white-text"></i> 쇼핑몰 보기</a>
 			</div>
-			<div class="row">
+			<div class="row hide">
 				<div class="col s12 m12 l12">
 					<div class="row">
 						<div id="db-past" class="owl-carousel owl-theme">
