@@ -2,7 +2,7 @@
 	@html.block("body", function(model) {
 		<div class="container m-y-3">
 			@if(model.merchant) {
-				<div class="row mall-cover" style="background-image: url('/@model.products[0].images[2]')">
+				<div class="row">
 					<div class="col s12 center">
 						@if(model.products[0].brand_logo) {
 							<img class="img-brand-mall" src="/@model.products[0].brand_logo" alt="@model.products[0].brand - 데일리 붐 판매자" />

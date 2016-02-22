@@ -1601,7 +1601,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 1.25em;
   }
   .img-brand-mall {
-    height: 100px;
+    height: 120px;
   }
   .mall-card-img {
     height: 200px;
@@ -1627,7 +1627,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 1.65em;
   }
   .img-brand-mall {
-    height: 0px;
+    height: 240px;
   }
   .mall-card-img {
     height: 300px;
