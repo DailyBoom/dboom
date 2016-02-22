@@ -27,6 +27,7 @@
 	"user.add_address": "Add shipping information",
 	"user.fullName": "Full Name",
 	"user.phoneNumber": "Phone Number",
+	"user.phone_warning": " ",
 	"user.address1": "Address",
 	"user.zipcode": "Zipcode",
 	"user.country": "Country",

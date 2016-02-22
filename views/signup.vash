@@ -52,7 +52,7 @@
 									</div>
 									<div class="input-field col s12 m6 l6">
 										<input id="phone_number" type="text" class="validate" name="phone_number" value="@model.Validator.getValue('phone_number')" maxlength="11">
-										<label for="phone_number"><span class="signup-info red-text"><i class="fa fa-exclamation-circle"></i> "-" 없는 숫자 형식으로 입력해 주세요.</span></label>
+										<label for="phone_number">@model.__('user.phoneNumber') @html.raw(@model.__('user.phone_warning'))</label>
 									</div>
 								</div>
 								<div class="row">

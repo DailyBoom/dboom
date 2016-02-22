@@ -24,6 +24,7 @@
 	"user.confirmPassword": "Mật khẩu xác nhận",
 	"user.fullName": "Tên đầy đủ",
 	"user.phoneNumber": "Số điện thoại",
+	"user.phone_warning": " ",
 	"user.address1": "Địa chỉ",
 	"user.zipcode": "Mã Bưu chính",
 	"user.country": "Quốc gia",

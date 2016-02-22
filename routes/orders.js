@@ -857,16 +857,17 @@ router.post('/shipping', function(req, res) {
             res.render('shipping', { errors: errors, title: "배송지 정보" });
           }
           else {
-            User.update({ _id: req.user._id }, {
-              email: !req.user.email ? req.body.email : req.user.email,
-              shipping: {
+             User.findOne({ _id: req.user._id }, {}, function(err, user) {
+              user.username = req.body.username; 
+              user.email = req.body.email;
+              user.shipping = {
                 full_name: req.body.full_name,
                 address: req.body.address1,
                 country: req.body.country,
                 zipcode: req.body.zipcode,
                 phone_number: req.body.phone_number
-              } },
-              function(err, user) {
+              };
+              user.save(function(err) {
                 if (err) {
                     console.log(err);
                     var errors = [];
@@ -887,7 +888,8 @@ router.post('/shipping', function(req, res) {
                   });
                 }
               });
-            }
+            });
+          }
         });
       }
       else {

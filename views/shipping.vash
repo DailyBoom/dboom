@@ -45,7 +45,7 @@
 						</div>
 						<div class="input-field col s12 m6 l6">
 							<input id="phone_number" name="phone_number" type="text" class="validate" placeholder="01021345678" value="@(model.user && model.user.shipping.phone_number ? model.user.shipping.phone_number : model.Validator.getValue('phone_number'))">
-							<label for="phone_number">@html.raw(model.__('user.phoneNumber'))</label>
+							<label for="phone_number">@model.__('user.phoneNumber') @html.raw(model.__('user.phone_warning'))</label>
 						</div>
 					</div>
 					<div class="row">

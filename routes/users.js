@@ -195,19 +195,21 @@ router.post('/users/edit', isAuthenticated, function(req, res) {
       res.render('users/edit', { errors: errors });
     }
     else {
-      User.update({ _id: req.user._id }, { username: req.body.username, 
-      email: req.body.email,
-      shipping: {
-        full_name: req.body.full_name,
-        address: req.body.address1,
-        country: req.body.country,
-        zipcode: req.body.zipcode,
-        phone_number: req.body.phone_number
-      }},
-      function(err, user) {
-        if (err)
-          console.log(err);
-        res.redirect('/mypage');
+      User.findOne({ _id: req.user._id }, {}, function(err, user) {
+        user.username = req.body.username; 
+        user.email = req.body.email;
+        user.shipping = {
+          full_name: req.body.full_name,
+          address: req.body.address1,
+          country: req.body.country,
+          zipcode: req.body.zipcode,
+          phone_number: req.body.phone_number
+        };
+        user.save(function(err) {
+          if (err)
+            console.log(err);
+          res.redirect('/mypage');
+        });
       });
     }
   });
