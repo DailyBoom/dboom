@@ -299,7 +299,7 @@ input[type=number]::-webkit-outer-spin-button {
   .buy-sticky-wrapper {
     display: block;
     position: fixed;
-    width: 500px;
+    width: 975px;
     right: 0;
     bottom: -10px;
     left: 0;
@@ -536,7 +536,7 @@ input[type=number]::-webkit-outer-spin-button {
     clear: both;
     height: auto;
     width: auto;
-    /* right: 20px; */
+    right: 20px;
     top: 0;
     padding: 10px 15px;
     font-size: 1em;

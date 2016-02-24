@@ -121,7 +121,7 @@
 				<div class="container">
 					<a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
 					<a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
-        	<span id="time-left-mobile" class="hide d-clock white-text left"></span>
+        	<span id="time-left-mobile" class="hide-on-med-and-up d-clock white-text left"></span>
 					@if (model.user) {
 						<ul class="right hide-on-small-only">
 							<li class="nav-item">

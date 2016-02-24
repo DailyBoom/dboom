@@ -223,7 +223,7 @@ router.get('/checkout', function(req, res) {
   
       order.save(function(err) {
         if (err)
-          res.redirect("/");
+          return res.redirect("/");
         req.session.order = order.id;
         if (!req.session.product)
           req.session.product = req.query.product_id;

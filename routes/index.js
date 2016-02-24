@@ -235,4 +235,9 @@ router.get('/coupons/list', function(req, res, next) {
   });
 });
 
+router.get('/test_iamport', function(req, res, next) {
+  res.render('test_iamport');
+});
+
+
 module.exports = router;
