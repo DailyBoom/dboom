@@ -264,15 +264,16 @@
 		});
 
 		var addReq = $('#j_pickdate').find('#selldate');
-		$('#j_pickdate').hide();
 
 		$('input[type=radio][name=extend]').change(function() {
-			if (this.value == '0') {
-				$('#j_pickdate').fadeIn();
+			if (this.value == '3') {
+				$('#main_sale').removeClass('hide');
+				$('#j_pickdate').removeClass('hide');
 				addReq.attr('required', true);
 			}
-			else if (this.value == '1') {
-				$('#j_pickdate').fadeOut();
+			else if (this.value == '4') {
+				$('#main_sale').addClass('hide');
+				$('#j_pickdate').addClass('hide');
 				addReq.attr('required', false);
 			}
 		});
