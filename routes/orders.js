@@ -178,6 +178,54 @@ router.get('/orders/delete/:id', isAdmin, function(req, res) {
   });
 });
 
+router.post('/add_to_cart', function(req, res) {
+  Product.findOne({_id: req.body.product_id, is_published: true, extend: 4}, function(err, product) {
+    if (err)
+      console.log(err);
+    if (!product)
+      res.status(500).json({ error: "Product is invalid" });
+    if (!req.session.cart_order) {
+      var order = new Order({
+        cart: [{ product: product._id, quantity: req.body.quantity, option: req.body.option }],
+        status: "Submitted"
+      });
+      order.save(function(err) {
+        req.session.cart_order = order._id;
+        return res.status(200).json({ success: true, message: "Product added" });
+      });
+    }
+    else {
+      Order.findOne({ _id: req.session.cart_order }, function(err, order) {
+        if (err) {
+          console.log(err);          
+          return res.status(500).json({ error: "Error with order" });          
+        }
+        order.cart.push({ product: product._id, quantity: req.body.quantity, option: req.body.option });
+        order.save(function(err) {
+          return res.status(200).json({ success: true, message: "Product added" });
+        });
+      });
+    }
+  });
+});
+
+router.get('/mall/checkout', function(req, res) {
+  console.log(req.session.cart_order);
+  if (typeof req.session.cart_order === 'undefined' || !req.session.cart_order) {
+    return res.redirect('/mall');
+  }
+  else {
+    Order.findOne({ _id: req.session.cart_order }).populate('cart.product').exec(function(err, order) {
+      if (err)
+        console.log(err);
+      order.cart.forEach(function(item) {
+        console.log(item.product.option);
+      });
+      res.redirect('/mall');
+    });
+  }
+})
+
 router.get('/checkout', function(req, res) {
   if (!req.query.product_id && !req.session.product && !req.session.order)
     return res.redirect('/');

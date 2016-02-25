@@ -85,6 +85,34 @@
 						<div class="btn-shipping-edit">
 							<a class="waves-effect waves-light btn blue-grey darken-2" href="/shipping">배송정보 수정</a>
 						</div>
+								<!-- Comments -->
+						<div class="row">
+							<form class="col s12" action="" id="new_comment">
+										<hr>
+										<br>
+							<div class="row blue-grey-text text-darken-2">
+								<div class="col s12 m6 l8">
+								<!-- <h5>고객요청 사항</h5> -->
+								<h5>고객문의 사항</h5>
+								</div>
+								<div class="input-field col s12 m6 l8 hide">
+									<select id="request_select" name="request_select">
+										<option value="" disabled selected>배송시 요청사항을 선택해 주세요.</option>
+										<option value="1">배송전 연락바랍니다.</option>
+										<option value="2">경비실에 맡겨주시기 바랍니다.</option>
+										<option value="3">택배함에 놔주세요.</option>
+										<option value="4">집앞에 놔주세요.</option>
+										<option value="5">직접입력...</option>
+									</select>
+								</div>
+								<div class="input-field col s12 m6 l8">
+								<textarea id="comment_body" class="materialize-textarea" name="comment_body" required></textarea>
+								<label for="comment_body">예) 상품 구매가 진행되지 않습니다, Payco 결제 시스템 추천합니다 등</label>
+								</div>
+							</div>
+							<button type="submit" class="waves-effect waves-light btn blue-grey darken-3">메세지 보내기 <i class="fa fa-paper-plane fa-fw right"></i></button>
+							</form>
+						</div><!-- .row -->
 						@if(!model.is_phone && model.getLocale() != 'vi') {
 							<br><b style="font-size: 1.2em;">PAYCO 결제 순서</b>
 							<ul class="payco-info">
@@ -139,36 +167,6 @@
 			</div><!-- .row -->
 		</div><!-- .container -->
 
-		<!-- Comments -->
-		<div class="container">
-      <div class="row">
-        <form class="col s12" action="" id="new_comment">
-					<hr>
-					<br>
-          <div class="row blue-grey-text text-darken-2">
-            <div class="col s12 m6 l8">
-              <!-- <h5>고객요청 사항</h5> -->
-              <h5>고객문의 사항</h5>
-            </div>
-			<div class="input-field col s12 m6 l8 hide">
-				<select id="request_select" name="request_select">
-					<option value="" disabled selected>배송시 요청사항을 선택해 주세요.</option>
-					<option value="1">배송전 연락바랍니다.</option>
-					<option value="2">경비실에 맡겨주시기 바랍니다.</option>
-					<option value="3">택배함에 놔주세요.</option>
-					<option value="4">집앞에 놔주세요.</option>
-					<option value="5">직접입력...</option>
-				</select>
-			</div>
-            <div class="input-field col s12 m6 l8">
-              <textarea id="comment_body" class="materialize-textarea" name="comment_body" required></textarea>
-              <label for="comment_body">예) 상품 구매가 진행되지 않습니다, Payco 결제 시스템 추천합니다 등</label>
-            </div>
-          </div>
-          <button type="submit" class="waves-effect waves-light btn blue-grey darken-3">메시지 보내기 <i class="fa fa-paper-plane fa-fw right"></i></button>
-        </form>
-      </div><!-- .row -->
-    </div><!-- .container -->
 		<br>
 		<!-- Modal Structure -->
 		<div id="bank_modal" class="modal">

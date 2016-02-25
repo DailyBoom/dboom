@@ -114,10 +114,10 @@ app.use(function(req, res, next) {
   res.locals.url = req.url;
   next();
 });
+app.use('/', orders);
 app.use('/', routes);
 app.use('/', users);
 app.use('/', products);
-app.use('/', orders);
 app.use('/', partners);
 
 if (app.get('env') === 'production') {

@@ -67,7 +67,8 @@
 								<div class="card-content">
 									<a href="/mall/@product.brand"><span>@product.brand</span></a>
 									<div class="mall-title left"><a href="/mall/@product.brand/@product.id"><b>@product.name</b></a></div>
-									<a class="right" href="/mall/@product.brand/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>
+									<!--<a class="right" href="/mall/@product.brand/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>-->
+									<button class="btn-xs add_cart right" data-id="@product.id">Add to cart <i class="fa fa-cart-plus"></i></button>
 									<p class="mall-price-o">@(product.old_price != product.price ? product.old_price : '')</p>
 									<p class="mall-price-n">@product.price</p>
 								</div>
@@ -82,4 +83,24 @@
 })
 <script>
 	$(".mall-price-o, .mall-price-n").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
+	$(".add_cart").on("click", function() {
+		var id = $(this).data("id");
+		$.ajax({
+			type: "POST",
+			url: "/add_to_cart",
+			dataType: "json",
+			data: {
+				product_id: id,
+				quantity: 1,
+				option: 1
+			},
+			success: function (res) {
+				Materialize.toast(res.message, 4000);
+				$('form input, form textarea').val("");
+			},
+			error: function (res) {
+				Materialize.toast(res.responseJSON.message, 4000);
+			}
+		});
+	});
 </script>
