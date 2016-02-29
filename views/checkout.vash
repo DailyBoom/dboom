@@ -141,9 +141,7 @@
 							</div>
 							@if(model.getLocale() != 'vi') {
 								<div id="payco_btn_type_A1" class="btn-payco center"></div>
-								@if(model.user.admin) {
-									<button class="btn btn-large btn-block purple" id="iamport_btn">INICIS 바로결제</button>
-								}
+								<button class="btn btn-large btn-block purple" id="iamport_btn">INICIS 바로결제</button>
 								<div class="bank-box">
 									<img class="responsive-img" src="/images/or_2.png" alt="데일리 붐 or" />
 									<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">무통장입금</a>
