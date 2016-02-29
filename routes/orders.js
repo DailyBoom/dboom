@@ -76,6 +76,16 @@ var getOrderTotal = function(order) {
   }
 }
 
+var getOrderCartTotal = function(order) {
+  order.totalOrderAmt = 0;
+  order.cart.forEach(function(item) {
+    order.totalOrderAmt += item.product.price;
+  });
+  if (order.totalOrderAmt < 50000)
+    order.totalOrderAmt += 2500;
+  console.log(order.totalOrderAmt);
+};
+
 var reservePayco = function(order) {
   var payco = {
     "sellerKey": config.get("Payco.sellerKey"),
@@ -105,6 +115,38 @@ var reservePayco = function(order) {
   console.log(payco);
   return payco;
 }
+
+var reserveCartPayco = function(order) {
+  var payco = {
+    "sellerKey": config.get("Payco.sellerKey"),
+    "sellerOrderReferenceKey": order._id,
+    "totalOrderAmt": order.totalOrderAmt,
+    "totalDeliveryFeeAmt": 0,
+    "totalPaymentAmt": order.totalOrderAmt,
+    "returnUrl": config.get("Payco.returnMallUrl"),
+    "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
+    "orderMethod": "EASYPAY",
+    "payMode": "PAY2",
+    "orderProducts": []
+  };
+
+  order.cart.forEach(function(item) {
+    payco.orderProducts.push({
+      "cpId": config.get("Payco.cpId"),
+      "productId": config.get("Payco.productId"),
+      "productAmt": item.product.price,
+      "productPaymentAmt": item.product.price,
+      "sortOrdering": 1,
+      "productName": item.product.name+"("+item.product.options[item.option].name+")",
+      "orderQuantity": item.quantity,
+      "sellerOrderProductReferenceKey": order._id,
+      "productImageUrl": "http://dailyboom.co/"+item.product.images[0]
+    });
+  });
+
+  console.log(payco);
+  return payco;
+};
 
 router.get('/orders/success', isAdmin, function(req, res) {
   res.render('mailer/buy_success');
@@ -184,8 +226,11 @@ router.post('/add_to_cart', function(req, res) {
       console.log(err);
     if (!product)
       res.status(500).json({ error: "Product is invalid" });
+    if (req.body.quantity > product.options[req.body.option].quantity)
+      res.status(500).json({ error: "Quantity is invalid" });      
     if (!req.session.cart_order) {
       var order = new Order({
+        cart_merchants: [product.merchant_id],
         cart: [{ product: product._id, quantity: req.body.quantity, option: req.body.option }],
         status: "Submitted"
       });
@@ -200,6 +245,7 @@ router.post('/add_to_cart', function(req, res) {
           console.log(err);          
           return res.status(500).json({ error: "Error with order" });          
         }
+        order.cart_merchants.push(product.merchant_id);
         order.cart.push({ product: product._id, quantity: req.body.quantity, option: req.body.option });
         order.save(function(err) {
           return res.status(200).json({ success: true, message: "Product added" });
@@ -218,13 +264,58 @@ router.get('/mall/checkout', function(req, res) {
     Order.findOne({ _id: req.session.cart_order }).populate('cart.product').exec(function(err, order) {
       if (err)
         console.log(err);
-      order.cart.forEach(function(item) {
-        console.log(item.product.option);
-      });
+      getOrderCartTotal(order);
+      var payco = reserveCartPayco(order);
       res.redirect('/mall');
     });
   }
-})
+});
+
+router.post('/iamport_callback', function (req, res) {
+  Order.find({ _id: req.body.id }, function (err, order) {
+    console.log(req.body.imp);
+    order.status = "Paid";
+    order.save(function (err) {
+      Product.findOne({ _id: order.product.id }, function (err, product) {
+        product.options.forEach(function (option) {
+          if (option.name === order.option)
+            option.quantity -= order.quantity;
+        });
+        product.markModified('options');
+        product.save(function (err) {
+          if (app.get("env") === "production") {
+            slack.send({
+              channel: '#dailyboom-new-order',
+              icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
+              text: 'New order <http://dailyboom.co/orders/view/' + order._id + '>',
+              unfurl_links: 1,
+              username: 'DailyBoom-bot'
+            });
+          }
+          fs.readFile('./views/mailer/buy_success.vash', "utf8", function (err, file) {
+            if (err) {
+              //handle errors
+              console.log('ERROR!');
+              return res.send('ERROR!');
+            }
+            var html = vash.compile(file);
+            transporter.sendMail({
+              from: '데일리 붐 <contact@dailyboom.co>',
+              to: order.user ? order.user.email : order.email,
+              subject: '데일리 붐 구매 안내.',
+              html: html({ full_name: order.user ? order.user.shipping.full_name : order.shipping.full_name, i18n: i18n })
+            }, function (err, info) {
+              if (err) { console.log(err); }
+              //console.log('Message sent: ' + info.response);
+              transporter.close();
+              return res.status(200).json({ success: true });
+            });
+          });
+        });
+      });
+    });
+  });
+});
 
 router.get('/checkout', function(req, res) {
   if (!req.query.product_id && !req.session.product && !req.session.order)
@@ -354,7 +445,8 @@ router.get('/checkout', function(req, res) {
                         res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity, title: "주문결제" });
                     }
                     else
-                      res.redirect('/');
+                        res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: "주문결제" });
+                      //res.redirect('/');
                 }
             );
           })
@@ -472,82 +564,161 @@ router.post('/deposit_checkout', function(req, res) {
   }
 });
 
-router.get('/payco_callback', function(req, res) {
+router.get('/payco_callback', function (req, res) {
   console.log(req.query);
   if (req.query.code == 0) {
-        var payco = {
-          "sellerKey" : config.get("Payco.sellerKey"),
-          "reserveOrderNo" : req.query.reserveOrderNo,
-          "sellerOrderReferenceKey": req.query.sellerOrderReferenceKey,
-          "paymentCertifyToken" : req.query.paymentCertifyToken,
-          "totalPaymentAmt": req.query.totalPaymentAmt
-        }
-        request.post(
-              config.get("Payco.host")+'/outseller/payment/approval',
-              { json: payco },
-              function (error, response, body) {
-                  console.log(body)
-                  if (!error && body.code == 0) {
-                    Order.findOne({ _id: req.query.order_id }).populate('user product coupon').exec(function(err, order) {
-                      if (req.user)
-                        order.shipping = req.user.shipping;
-                      order.payco.orderNo = body.result.orderNo;
-                      order.payco.sellerOrderReferenceKey = body.result.sellerOrderReferenceKey;
-                      order.payco.orderCertifyKey = body.result.orderCertifyKey;
-                      order.payco.totalOrderAmt = body.result.totalOrderAmt;
-                      order.payco.paymentDetails = body.result.paymentDetails;
-                      order.merchant_id = order.product.merchant_id;
-                      order.status = "Paid";
-                      if (order.coupon) {
-                        order.coupon.used = true;
-                        order.coupon.save();
-                      }
-                      order.save(function(err) {
-                        Product.findOne({ _id: order.product.id }, function(err, product) {
-                          product.options.forEach(function(option){
-                            if (option.name === order.option)
-                              option.quantity -= order.quantity;
-                          });
-                          product.markModified('options');                          
-                          product.save(function(err) {
-                            if (app.get("env") === "production") {
-                              slack.send({
-                                channel: '#dailyboom-new-order',
-                                icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
-                                text: 'New order <http://dailyboom.co/orders/view/'+order._id+'>',
-                                unfurl_links: 1,
-                                username: 'DailyBoom-bot'
-                              });
-                            }
-                            fs.readFile('./views/mailer/buy_success.vash', "utf8", function(err, file) {
-                              if(err){
-                                //handle errors
-                                console.log('ERROR!');
-                                return res.send('ERROR!');
-                              }
-                              var html = vash.compile(file);
-                              transporter.sendMail({
-                                from: '데일리 붐 <contact@dailyboom.co>',
-                                to: order.user ? order.user.email : order.email,
-                                subject: '데일리 붐 구매 안내.',
-                                html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, i18n: i18n })
-                              }, function (err, info) {
-                                  if (err) { console.log(err); }
-                                  //console.log('Message sent: ' + info.response);
-                                  transporter.close();
-                                  res.render('payco_callback', {code: req.query.code});
-                              });
-                            });
-                          });
-                        });
-                      });
+    var payco = {
+      "sellerKey": config.get("Payco.sellerKey"),
+      "reserveOrderNo": req.query.reserveOrderNo,
+      "sellerOrderReferenceKey": req.query.sellerOrderReferenceKey,
+      "paymentCertifyToken": req.query.paymentCertifyToken,
+      "totalPaymentAmt": req.query.totalPaymentAmt
+    }
+    request.post(
+      config.get("Payco.host") + '/outseller/payment/approval',
+      { json: payco },
+      function (error, response, body) {
+        console.log(body)
+        if (!error && body.code == 0) {
+          Order.findOne({ _id: req.query.order_id }).populate('user product coupon').exec(function (err, order) {
+            if (req.user)
+              order.shipping = req.user.shipping;
+            order.payco.orderNo = body.result.orderNo;
+            order.payco.sellerOrderReferenceKey = body.result.sellerOrderReferenceKey;
+            order.payco.orderCertifyKey = body.result.orderCertifyKey;
+            order.payco.totalOrderAmt = body.result.totalOrderAmt;
+            order.payco.paymentDetails = body.result.paymentDetails;
+            order.merchant_id = order.product.merchant_id;
+            order.status = "Paid";
+            if (order.coupon) {
+              order.coupon.used = true;
+              order.coupon.save();
+            }
+            order.save(function (err) {
+              Product.findOne({ _id: order.product.id }, function (err, product) {
+                product.options.forEach(function (option) {
+                  if (option.name === order.option)
+                    option.quantity -= order.quantity;
+                });
+                product.markModified('options');
+                product.save(function (err) {
+                  if (app.get("env") === "production") {
+                    slack.send({
+                      channel: '#dailyboom-new-order',
+                      icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
+                      text: 'New order <http://dailyboom.co/orders/view/' + order._id + '>',
+                      unfurl_links: 1,
+                      username: 'DailyBoom-bot'
                     });
                   }
-                  else {
-                    res.render('payco_callback', { msg: body.message, code: req.query.code });
-                  }
+                  fs.readFile('./views/mailer/buy_success.vash', "utf8", function (err, file) {
+                    if (err) {
+                      //handle errors
+                      console.log('ERROR!');
+                      return res.send('ERROR!');
+                    }
+                    var html = vash.compile(file);
+                    transporter.sendMail({
+                      from: '데일리 붐 <contact@dailyboom.co>',
+                      to: order.user ? order.user.email : order.email,
+                      subject: '데일리 붐 구매 안내.',
+                      html: html({ full_name: order.user ? order.user.shipping.full_name : order.shipping.full_name, i18n: i18n })
+                    }, function (err, info) {
+                      if (err) { console.log(err); }
+                      //console.log('Message sent: ' + info.response);
+                      transporter.close();
+                      res.render('payco_callback', { code: req.query.code });
+                    });
+                  });
+                });
+              });
+            });
+          });
+        }
+        else {
+          res.render('payco_callback', { msg: body.message, code: req.query.code });
+        }
+      }
+      );
+  }
+  else {
+    res.render('payco_callback', { msg: "ERROR", code: req.query.code });
+  }
+});
+
+// Callback for payco on a mall checkout
+router.get('/mall/payco_callback', function (req, res) {
+  console.log(req.query);
+  if (req.query.code == 0) {
+    var payco = {
+      "sellerKey": config.get("Payco.sellerKey"),
+      "reserveOrderNo": req.query.reserveOrderNo,
+      "sellerOrderReferenceKey": req.query.sellerOrderReferenceKey,
+      "paymentCertifyToken": req.query.paymentCertifyToken,
+      "totalPaymentAmt": req.query.totalPaymentAmt
+    }
+    request.post(
+      config.get("Payco.host") + '/outseller/payment/approval',
+      { json: payco },
+      function (error, response, body) {
+        console.log(body)
+        if (!error && body.code == 0) {
+          Order.findOne({ _id: req.query.order_id }).populate('user cart.product coupon').exec(function (err, order) {
+            if (req.user)
+              order.shipping = req.user.shipping;
+            order.payco.orderNo = body.result.orderNo;
+            order.payco.sellerOrderReferenceKey = body.result.sellerOrderReferenceKey;
+            order.payco.orderCertifyKey = body.result.orderCertifyKey;
+            order.payco.totalOrderAmt = body.result.totalOrderAmt;
+            order.payco.paymentDetails = body.result.paymentDetails;
+            order.merchant_id = order.product.merchant_id;
+            order.status = "Paid";
+            if (order.coupon) {
+              order.coupon.used = true;
+              order.coupon.save();
+            }
+            order.save(function (err) {
+              order.cart.forEach(function (item) {
+                item.product.options[item.option].quantity -= item.quantity;
+                item.product.markModified('options');
+                item.product.save();
+              });
+              if (app.get("env") === "production") {
+                slack.send({
+                  channel: '#dailyboom-new-order',
+                  icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
+                  text: 'New order <http://dailyboom.co/orders/view/' + order._id + '>',
+                  unfurl_links: 1,
+                  username: 'DailyBoom-bot'
+                });
               }
-          );
+              fs.readFile('./views/mailer/buy_success.vash', "utf8", function (err, file) {
+                if (err) {
+                  //handle errors
+                  console.log('ERROR!');
+                  return res.send('ERROR!');
+                }
+                var html = vash.compile(file);
+                transporter.sendMail({
+                  from: '데일리 붐 <contact@dailyboom.co>',
+                  to: order.user ? order.user.email : order.email,
+                  subject: '데일리 붐 구매 안내.',
+                  html: html({ full_name: order.user ? order.user.shipping.full_name : order.shipping.full_name, i18n: i18n })
+                }, function (err, info) {
+                  if (err) { console.log(err); }
+                  //console.log('Message sent: ' + info.response);
+                  transporter.close();
+                  res.render('payco_callback', { code: req.query.code });
+                });
+              });
+            });
+          });
+        }
+        else {
+          res.render('payco_callback', { msg: body.message, code: req.query.code });
+        }
+      }
+      );
   }
   else {
     res.render('payco_callback', { msg: "ERROR", code: req.query.code });
@@ -613,6 +784,47 @@ router.get('/orders/paid/:id', isAdmin, function(req, res) {
         });
       });
     });
+  });
+});
+
+// When a mall cart gets paid
+router.get('/orders/cart_paid/:id', isAdmin, function(req, res) {
+  Order.findOne({ '_id': req.params.id }).populate('cart.product user coupon').exec(function(err, order) {
+      if (err)
+        console.log(err);
+      if (!order)
+        return res.redirect('/mypage');
+      order.merchant_id = order.product.merchant_id;
+      order.status = "Paid";
+      order.save(function(err) {
+        if (err)
+          console.log(err);
+        order.cart.forEach(function(item){
+          item.product.options[item.option].quantity -= item.quantity;          
+          item.product.markModified('options');
+          item.product.save();
+        });
+        fs.readFile('./views/mailer/buy_success.vash', "utf8", function(err, file) {
+          if(err){
+            //handle errors
+            console.log('ERROR!');
+            return res.send('ERROR!');
+          }
+          var html = vash.compile(file);
+          moment.locale('ko');
+          transporter.sendMail({
+            from: '데일리 붐 <contact@dailyboom.co>',
+            to: order.user ? order.user.email : order.email,
+            subject: '데일리 붐 구매 안내.',
+            html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment })
+          }, function (err, info) {
+              if (err) { console.log(err); }
+              //console.log('Message sent: ' + info.response);
+              transporter.close();
+              res.redirect('/orders/list');
+          });
+        });
+      });
   });
 });
 
