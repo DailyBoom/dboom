@@ -158,7 +158,7 @@ else {
 					else {
 						<div class="item-name name-lg">@model.product.name</div>
 					}
-					<div class="hide-on-small-only m-item right">
+					<div class="hide-on-small-only m-item right hide">
 						<div class="item-price-o mod red-text text-lighten-2">SALE</div>
 						<div class="item-price white-text">@model.sale%</div>
 					</div>
@@ -260,7 +260,7 @@ else {
 
 			<!-- Mobile -->
 			<div class="hide-on-med-and-up mobile-buy @(model.product.color ? model.product.color : 'light-blue') darken-3">
-				<div class="m-item">
+				<div class="m-item hide">
 					<div class="item-price-o mod red-text text-lighten-2">SALE</div>
 					<div class="item-price white-text">@model.sale%</div>
 				</div>&nbsp;
