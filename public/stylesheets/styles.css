@@ -1362,6 +1362,34 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 @media only screen and (min-width: 992px)  {
+  .add-cart-sticky {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 200px;
+    z-index: 1000;
+    background: white;
+    padding: 10px;
+    border: solid 1px black;
+  }
+  
+  .add-cart-sticky .row {
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+  }
+  
+  .add-cart-sticky .fa {
+    vertical-align: sub;
+    cursor: pointer;
+  }
+  
+  .add-cart-sticky input {
+    border: solid 1px black;
+    height: auto;
+    padding: 5px !important;
+  }
+  
   .user-link {
     margin-top: 0px;
   }
