@@ -1068,6 +1068,19 @@ input[type=number]::-webkit-outer-spin-button {
   border-bottom: 2px solid #fff;
 }
 @media only screen and (min-width: 0) {
+  #add_to_cart_m {
+    font-size: 17px;
+    margin-top: 10px;
+  }
+  
+  #modal-cart-added .btn {
+    margin: 10px 0;
+  }
+  
+  #modal-add-to-cart #quantity {
+    border: 1px solid black;
+  }
+  
   .mobile-buy {
     display: block;
     position: fixed;
@@ -1365,12 +1378,16 @@ input[type=number]::-webkit-outer-spin-button {
   .add-cart-sticky {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    right: 5%;
     width: 200px;
     z-index: 1000;
     background: white;
     padding: 10px;
     border: solid 1px black;
+  }
+  
+  .add-cart-sticky h5 {
+    text-align: center;
   }
   
   .add-cart-sticky .row {
@@ -1388,6 +1405,10 @@ input[type=number]::-webkit-outer-spin-button {
     border: solid 1px black;
     height: auto;
     padding: 5px !important;
+  }
+  
+  #modal-cart-added .btn {
+    margin: 10px;
   }
   
   .user-link {
@@ -1879,7 +1900,31 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
-@media only screen and (min-width: 0)      {
+@media only screen and (min-width: 0) {
+  .checkout-mall {
+    position: relative;
+  }
+  
+  .cart {
+    padding: 0 !important;
+  }
+  
+  .cart-header {
+    padding: 10px !important;
+    border-top: 1px solid #b3b3b3;
+    border-bottom: 1px solid #b3b3b3;
+  }
+  
+  .cart-item {
+    border-bottom: 1px solid #b3b3b3;
+    padding: 10px 0 !important;
+  }
+  
+  .pay-card {
+    position: fixed;
+    right: 0px;
+  }
+  
   .summary-box {
     width: 100%;
   }
@@ -1964,12 +2009,12 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 @media only screen and (min-width: 601px)  {
+  
   .summary-box {
     width: 296px;
   }
   .summary-title {
     width: 296px;
-    float: right;
   }
   .check-name {
     font-size: 2em;

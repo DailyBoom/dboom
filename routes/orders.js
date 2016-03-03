@@ -222,6 +222,7 @@ router.get('/orders/delete/:id', isAdmin, function(req, res) {
 
 router.post('/add_to_cart', function(req, res) {
   Product.findOne({_id: req.body.product_id, is_published: true, extend: 4}, function(err, product) {
+    console.log(req.body);
     if (err)
       console.log(err);
     if (!product)
@@ -266,7 +267,24 @@ router.get('/mall/checkout', function(req, res) {
         console.log(err);
       getOrderCartTotal(order);
       var payco = reserveCartPayco(order);
-      res.redirect('/mall');
+      request.post(
+            config.get("Payco.host")+'/outseller/order/reserve',
+            { json: payco },
+            function (error, response, body) {
+                console.log(body)
+                if (!error && body.code == 0) {
+                    if (req.user) {
+                      Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
+                        res.render('mall/checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, title: "주문결제", coupons: coupons });
+                      });
+                    }
+                    else
+                      res.render('mall/checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, title: "주문결제" });
+                }
+                else
+                  res.redirect('/mall');
+            }
+        );
     });
   }
 });
