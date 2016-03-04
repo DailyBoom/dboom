@@ -24,61 +24,72 @@
 		</div>
 		<!-- .row -->
 		<div class="row checkout-mall">
-			<div class="col s12 m6 l8">
-				<div class="col s12 white z-depth-1 center-align cart">
-					<div class="col s12 cart-header"><span class="col s7">상품정보</span><span class="col s5">상품금액</span></div>
-					@model.order.cart.forEach(function(item) {
+			<div class="col s12 m6 l8 blue-grey-text text-darken-3">
+				<h5>장바구니</h5>
+				<div class="col s12 white z-depth-1 cart">
+					<div class="col s12 cart-header center"><span class="col s9">상품정보</span><span class="col s3">상품금액</span></div>
+					@model.order.cart.forEach(function(item, index) {
 						<div class="col s12 cart-item">
-							<img class="col s3" src="/@item.product.images[0]" />
-							<p class="col s4">@item.product.name (@item.product.options[item.option].name)</p>
-							<p class="col s5 product-price">@(item.product.price * item.quantity)</p>
+							<a href="/mall/product/@item.product.id"><img class="col s3" src="/@item.product.images[0]" /></a>
+							<div class="col s6">
+								<a href="/mall/product/@item.product.id" class="product-name blue-grey-text col s12">@item.product.name (@item.product.options[item.option].name)</a>
+								<div class="col s12">수량: <select data-index="@index" autocomplete="off" class="browser-default product-quantity">
+											@for(var i = 1; i <= 10 ; i++) {
+												<option value="@i" @(item.quantity == i ? 'selected="selected"' : '') >@i</option>
+											}
+										</select>
+								</div>
+							</div>
+							<div class="col s3 center"><p class="product-price">@(item.product.price * item.quantity)</p></div>
 						</div>
 					})
 				</div>
-				<div class="blue-grey-text text-darken-3">
+				@if(model.coupons) {
+				<h5 class="left">쿠폰 선택</h5>
+				<div class="blue-grey-text text-darken-3 white z-depth-1 col s12">
 					<form method="post">
-						@if(model.coupons) {
-							<div class="input-field col s12">
-								<select id="coupon" name="coupon">
-									<option value="">쿠폰 선택</option>
-									@model.coupons.forEach(function(coupon) { 
-										@if(coupon.type == 1 && model.order.totalOrderAmt < 50000) {
-											<option value="@coupon.id" @(model.order.coupon && model.order.coupon.id==coupon.id ? 'selected' : '')>무료 배송 (유효기간: @model.moment(coupon.expires_at).format("YYYY/MM/DD"))</option>
-										}
-										else if (coupon.type == 2) {
-											<option value="@coupon.id" @(model.order.coupon && model.order.coupon.id==coupon.id ? 'selected' : '')>@coupon.price 원 (유효기간: @model.moment(coupon.expires_at).format("YYYY/MM/DD"))</option>
-										}
-										else if (coupon.type == 3) {
-											<option value="@coupon.id" @(model.order.coupon && model.order.coupon.id==coupon.id ? 'selected' : '')>@coupon.percentage% (유효기간: @model.moment(coupon.expires_at).format("YYYY/MM/DD"))</option>
-										}
-									})
-								</select>
-							</div>
-						}
+						<div class="input-field col s12">
+							<select id="coupon" name="coupon">
+								<option value="">쿠폰 선택</option>
+								@model.coupons.forEach(function(coupon) {
+									@if(coupon.type == 1 && model.order.totalOrderAmt < 50000) {
+										<option value="@coupon.id" @(model.order.coupon && model.order.coupon.id==coupon.id ? 'selected' : '')>무료 배송 (유효기간: @model.moment(coupon.expires_at).format("YYYY/MM/DD"))</option>
+									}
+									else if (coupon.type == 2) {
+										<option value="@coupon.id" @(model.order.coupon && model.order.coupon.id==coupon.id ? 'selected' : '')>@coupon.price 원 (유효기간: @model.moment(coupon.expires_at).format("YYYY/MM/DD"))</option>
+									}
+									else if (coupon.type == 3) {
+										<option value="@coupon.id" @(model.order.coupon && model.order.coupon.id==coupon.id ? 'selected' : '')>@coupon.percentage% (유효기간: @model.moment(coupon.expires_at).format("YYYY/MM/DD"))</option>
+									}
+								})
+							</select>
+						</div>
 					</form>
 				</div>
+				}
 				<!-- .row -->
 				<br>
 				<div class="blue-grey-text text-darken-3">
-					<h5>배송정보</h5>
-					<span class="check-name">@(model.user ? model.user.shipping.full_name : model.order.shipping.full_name)</span>
-					<br><span class="check-number">@(model.user? model.user.shipping.phone_number : model.order.shipping.phone_number)</span>
-					<br><span class="check-address">@(model.user ? model.user.shipping.address : model.order.shipping.address)</span>
-					<br><span class="check-address">(우)@(model.user ? model.user.shipping.zipcode : model.order.shipping.zipcode)</span>
-					<br>
-					<br><span class="check-address">대한민국</span>
-					<div class="btn-shipping-edit">
-						<a class="waves-effect waves-light btn blue-grey darken-2" href="/shipping">배송정보 수정</a>
+					<h5 class="left">배송정보</h5>
+					<div class="white z-depth-1 col s12">
+						<span class="check-name">@(model.user ? model.user.shipping.full_name : model.order.shipping.full_name)</span>
+						<br><span class="check-number">@(model.user? model.user.shipping.phone_number : model.order.shipping.phone_number)</span>
+						<br><span class="check-address">@(model.user ? model.user.shipping.address : model.order.shipping.address)</span>
+						<br><span class="check-address">(우)@(model.user ? model.user.shipping.zipcode : model.order.shipping.zipcode)</span>
+						<br>
+						<br><span class="check-address">대한민국</span>
+						<div class="btn-shipping-edit">
+							<a class="waves-effect waves-light btn blue-grey darken-2" href="/shipping">배송정보 수정</a>
+						</div>
 					</div>
+					<br/>
 					<!-- Comments -->
-					<div class="row">
+					<h5 class="left">고객문의 사항</h5>
+					<div class="white z-depth-1 col s12 checkout-comment">
 						<form class="col s12" action="" id="new_comment">
-							<hr>
-							<br>
 							<div class="row blue-grey-text text-darken-2">
 								<div class="col s12 m6 l8">
 									<!-- <h5>고객요청 사항</h5> -->
-									<h5>고객문의 사항</h5>
 								</div>
 								<div class="input-field col s12 m6 l8 hide">
 									<select id="request_select" name="request_select">
@@ -100,12 +111,14 @@
 					</div>
 					<!-- .row -->
 					@if(!model.is_phone && model.getLocale() != 'vi') {
-					<br><b style="font-size: 1.2em;">PAYCO 결제 순서</b>
-					<ul class="payco-info">
-						<li>우측 하단에 있는 <b>"PAYCO 구매하기"</b> 버튼을 클릭해주세요.</li>
-						<li>주문정보내역 확인 후 구매하기 버튼 클릭 시 <b>'PAYCO'</b> 결제 인증창이 뜹니다.</li>
-						<li><b>'PAYCO'</b> 결제 인증창에서 정보를 입력하신 후 결제해주세요.</li>
-					</ul>
+					<div class="col s12">
+						<br><b style="font-size: 1.2em;">PAYCO 결제 순서</b>
+						<ul class="payco-info">
+							<li>우측 하단에 있는 <b>"PAYCO 구매하기"</b> 버튼을 클릭해주세요.</li>
+							<li>주문정보내역 확인 후 구매하기 버튼 클릭 시 <b>'PAYCO'</b> 결제 인증창이 뜹니다.</li>
+							<li><b>'PAYCO'</b> 결제 인증창에서 정보를 입력하신 후 결제해주세요.</li>
+						</ul>
+					</div>
 					}
 				</div>
 				<!-- .row -->
@@ -143,7 +156,7 @@
 				</div>
 				<!-- .row -->
 				@if(model.is_phone && model.getLocale() != 'vi') {
-					<div class="payco-box-bottom">
+					<div class="payco-box-bottom col s12">
 						<b style="font-size: 1.2em;">PAYCO 결제 순서</b>
 						<ol class="payco-info">
 							<li>아래 하단에 있는 <b>"PAYCO 구매하기"</b> 버튼을 클릭해주세요.</li>
@@ -238,6 +251,26 @@
 						success: function (res) {
 							Materialize.toast(res.message, 4000);
 							$('form textarea').val("");
+						},
+						error: function (res) {
+							Materialize.toast(res.responseJSON.message, 4000);
+						}
+					});
+				});
+				
+				$('.product-quantity').on("change", function() {
+					var index = $(this).data("index");
+					var quantity = $(this).find('option:selected').val();
+					$.ajax({
+						type: "POST",
+						url: "/mall/update_cart",
+						dataType: "json",
+						data: {
+							index: index,
+							quantity: quantity
+						},
+						success: function (res) {
+							location.reload();
 						},
 						error: function (res) {
 							Materialize.toast(res.responseJSON.message, 4000);

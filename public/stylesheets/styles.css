@@ -1377,9 +1377,9 @@ input[type=number]::-webkit-outer-spin-button {
 @media only screen and (min-width: 992px)  {
   .add-cart-sticky {
     position: fixed;
-    bottom: 20px;
+    bottom: 20%;
     right: 5%;
-    width: 200px;
+    width: 300px;
     z-index: 1000;
     background: white;
     padding: 10px;
@@ -1405,6 +1405,10 @@ input[type=number]::-webkit-outer-spin-button {
     border: solid 1px black;
     height: auto;
     padding: 5px !important;
+  }
+  
+  .add-cart-sticky .product-price {
+    font-size: 20px;
   }
   
   #modal-cart-added .btn {
@@ -1905,8 +1909,13 @@ input[type=number]::-webkit-outer-spin-button {
     position: relative;
   }
   
+  .checkout-mall h5 {
+    margin-top: 30px;
+  }
+  
   .cart {
     padding: 0 !important;
+    margin-bottom: 30px;
   }
   
   .cart-header {
@@ -1918,6 +1927,28 @@ input[type=number]::-webkit-outer-spin-button {
   .cart-item {
     border-bottom: 1px solid #b3b3b3;
     padding: 10px 0 !important;
+  }
+  
+  .cart-item .product-name {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .cart-item select {
+    display: inline;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+    width: auto;
+    height: auto;
+    border: none;
+    margin: 0;
+    background: none;
+    border-radius: 0;
+  }
+  
+  .checkout-comment {
+    padding: 20px !important;
   }
   
   .pay-card {

@@ -79,7 +79,7 @@ var getOrderTotal = function(order) {
 var getOrderCartTotal = function(order) {
   order.totalOrderAmt = 0;
   order.cart.forEach(function(item) {
-    order.totalOrderAmt += item.product.price;
+    order.totalOrderAmt += item.product.price * item.quantity;
   });
   if (order.totalOrderAmt < 50000)
     order.totalOrderAmt += 2500;
@@ -134,8 +134,8 @@ var reserveCartPayco = function(order) {
     payco.orderProducts.push({
       "cpId": config.get("Payco.cpId"),
       "productId": config.get("Payco.productId"),
-      "productAmt": item.product.price,
-      "productPaymentAmt": item.product.price,
+      "productAmt": item.product.price * item.quantity,
+      "productPaymentAmt": item.product.price *item.quantity,
       "sortOrdering": 1,
       "productName": item.product.name+"("+item.product.options[item.option].name+")",
       "orderQuantity": item.quantity,
@@ -285,6 +285,25 @@ router.get('/mall/checkout', function(req, res) {
                   res.redirect('/mall');
             }
         );
+    });
+  }
+});
+
+router.post('/mall/update_cart', function(req, res) {
+  if (typeof req.session.cart_order === 'undefined' || !req.session.cart_order) {
+    return res.status(500).json({});
+  }
+  else {
+    Order.findOne({ _id: req.session.cart_order }).populate('cart.product').exec(function(err, order) {
+      if (err)
+        console.log(err);
+      order.cart[req.body.index].quantity = req.body.quantity;
+      order.markModified('cart');
+      order.save(function(err) {
+        if (err)
+          console.log(err);
+        return res.status(200).json({});
+      });
     });
   }
 });
