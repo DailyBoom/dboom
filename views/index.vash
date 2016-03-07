@@ -272,7 +272,7 @@ else {
 					@if (model.progress < 100) {
 						<div class="hide-on-med-and-up">
 							<a class="modal-trigger" href="/checkout?product_id=@model.product.id">
-								<img class="btn-buy-mobile" src="/images/themes/btn-buy-mobile.png" alt="데일리 붐 쇼핑 몰"/>
+								<img class="btn-buy-mobile" src="/images/btn-buy-mobile_2.png" alt="데일리 붐 쇼핑 몰"/>
 							</a>
 						</div>
 					}
@@ -281,7 +281,7 @@ else {
 					@if (model.progress < 100) {
 						<div class="hide-on-med-and-up">
 							<a class="modal-trigger" href="#modal-check">
-								<img class="btn-buy-mobile" src="/images/themes/btn-buy-mobile.png" alt="" style="width:100%;"/>
+								<img class="btn-buy-mobile" src="/images/btn-buy-mobile_2.png" alt="" style="width:100%;"/>
 							</a>
 						</div>
 					}
