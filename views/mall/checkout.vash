@@ -44,7 +44,7 @@
 						</div>
 					})
 				</div>
-				@if(model.coupons) {
+				@if(model.coupons && model.coupons.length > 0) {
 				<h5 class="left">쿠폰 선택</h5>
 				<div class="blue-grey-text text-darken-3 white z-depth-1 col s12">
 					<form method="post">

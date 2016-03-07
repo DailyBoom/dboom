@@ -52,7 +52,7 @@
 									}
 								</select>
 							</div>
-							@if(model.coupons) {
+							@if(model.coupons && model.coupons.length > 0) {
 								<div class="input-field col s12">
 									<select id="coupon" name="coupon">
 										<option value="">쿠폰 선택</option>

@@ -82,7 +82,7 @@ var getOrderCartTotal = function(order) {
     order.totalOrderAmt += item.product.price * item.quantity;
   });
   if (order.totalOrderAmt < 50000)
-    order.totalOrderAmt += 2500;
+     order.totalOrderAmt += 2500;
   console.log(order.totalOrderAmt);
 };
 
@@ -141,7 +141,19 @@ var reserveCartPayco = function(order) {
       "productImageUrl": "http://dailyboom.co/"+item.product.images[0]
     });
   });
-
+  
+  if (order.totalOrderAmt < 50000) {
+    payco.orderProducts.push({
+      "cpId": config.get("Payco.cpId"),
+      "productId": config.get("Payco.productId"),
+      "productAmt": 2500,
+      "productPaymentAmt": 2500,
+      "sortOrdering": 1,
+      "productName": "delivery fee",
+      "orderQuantity": 1,
+      "sellerOrderProductReferenceKey": order._id
+    });
+  }
   console.log(payco);
   return payco;
 };
@@ -604,15 +616,22 @@ router.post('/deposit_checkout', function(req, res) {
   }
 });
 
-router.get('/payco_callback', function (req, res) {
-  console.log(req.query);
-  if (req.query.code == 0) {
+router.all('/payco_callback', function (req, res) {
+  var resp;
+  if (req.query.code) {
+    resp = req.query;
+  }
+  else {
+    resp = req.body;
+  }
+  console.log(resp);
+  if (resp.code == 0) {
     var payco = {
       "sellerKey": config.get("Payco.sellerKey"),
-      "reserveOrderNo": req.query.reserveOrderNo,
-      "sellerOrderReferenceKey": req.query.sellerOrderReferenceKey,
-      "paymentCertifyToken": req.query.paymentCertifyToken,
-      "totalPaymentAmt": req.query.totalPaymentAmt
+      "reserveOrderNo": resp.reserveOrderNo,
+      "sellerOrderReferenceKey": resp.sellerOrderReferenceKey,
+      "paymentCertifyToken": resp.paymentCertifyToken,
+      "totalPaymentAmt": resp.totalPaymentAmt
     }
     request.post(
       config.get("Payco.host") + '/outseller/payment/approval',
@@ -620,7 +639,7 @@ router.get('/payco_callback', function (req, res) {
       function (error, response, body) {
         console.log(body)
         if (!error && body.code == 0) {
-          Order.findOne({ _id: req.query.order_id }).populate('user product coupon').exec(function (err, order) {
+          Order.findOne({ _id: resp.order_id }).populate('user product coupon').exec(function (err, order) {
             if (req.user)
               order.shipping = req.user.shipping;
             order.payco.orderNo = body.result.orderNo;
@@ -667,7 +686,7 @@ router.get('/payco_callback', function (req, res) {
                       if (err) { console.log(err); }
                       //console.log('Message sent: ' + info.response);
                       transporter.close();
-                      res.render('payco_callback', { code: req.query.code });
+                      res.render('payco_callback', { code: resp.code });
                     });
                   });
                 });
@@ -676,26 +695,33 @@ router.get('/payco_callback', function (req, res) {
           });
         }
         else {
-          res.render('payco_callback', { msg: body.message, code: req.query.code });
+          res.render('payco_callback', { msg: body.message, code: resp.code });
         }
       }
       );
   }
   else {
-    res.render('payco_callback', { msg: "ERROR", code: req.query.code });
+    res.render('payco_callback', { msg: resp.message, code: resp.code });
   }
 });
 
 // Callback for payco on a mall checkout
-router.get('/mall/payco_callback', function (req, res) {
-  console.log(req.query);
-  if (req.query.code == 0) {
+router.all('/mall/payco_callback', function (req, res) {
+  var resp;
+  if (req.query.code) {
+    resp = req.query;
+  }
+  else {
+    resp = req.body;
+  }
+  console.log(resp);
+  if (resp.code == 0) {
     var payco = {
       "sellerKey": config.get("Payco.sellerKey"),
-      "reserveOrderNo": req.query.reserveOrderNo,
-      "sellerOrderReferenceKey": req.query.sellerOrderReferenceKey,
-      "paymentCertifyToken": req.query.paymentCertifyToken,
-      "totalPaymentAmt": req.query.totalPaymentAmt
+      "reserveOrderNo": resp.reserveOrderNo,
+      "sellerOrderReferenceKey": resp.sellerOrderReferenceKey,
+      "paymentCertifyToken": resp.paymentCertifyToken,
+      "totalPaymentAmt": resp.totalPaymentAmt
     }
     request.post(
       config.get("Payco.host") + '/outseller/payment/approval',
@@ -703,7 +729,7 @@ router.get('/mall/payco_callback', function (req, res) {
       function (error, response, body) {
         console.log(body)
         if (!error && body.code == 0) {
-          Order.findOne({ _id: req.query.order_id }).populate('user cart.product coupon').exec(function (err, order) {
+          Order.findOne({ _id: resp.order_id }).populate('user cart.product coupon').exec(function (err, order) {
             if (req.user)
               order.shipping = req.user.shipping;
             order.payco.orderNo = body.result.orderNo;
@@ -748,20 +774,20 @@ router.get('/mall/payco_callback', function (req, res) {
                   if (err) { console.log(err); }
                   //console.log('Message sent: ' + info.response);
                   transporter.close();
-                  res.render('payco_callback', { code: req.query.code });
+                  res.render('payco_callback', { code: resp.code });
                 });
               });
             });
           });
         }
         else {
-          res.render('payco_callback', { msg: body.message, code: req.query.code });
+          res.render('payco_callback', { msg: body.message, code: resp.code });
         }
       }
       );
   }
   else {
-    res.render('payco_callback', { msg: "ERROR", code: req.query.code });
+    res.render('payco_callback', { msg: resp.message, code: resp.code });
   }
 });
 
