@@ -178,7 +178,7 @@
 		<div class="modal-content center">
 			<i class="fa fa-times fa-fw right modal-close"></i>
 			<h4>무통장입금</h4>
-			<form action="/mall/deposit_checkout" method="post">
+			<form action="/deposit_checkout" method="post">
 				<div class="row">
 					<div class="input-field col s12 m8 offset-m2">
 						<input id="deposit_name" name="deposit_name" type="text" class="validate" required>

@@ -560,7 +560,7 @@ router.post('/checkout', function(req, res) {
 
 router.post('/deposit_checkout', function(req, res) {
   if (req.session.order) {
-    Order.findOne({ '_id': req.session.order }).populate('product coupon user').exec(function(err, order) {
+    Order.findOne({ '_id': req.session.order || req.session.cart_order }).populate('product coupon user').exec(function(err, order) {
         if (order.status == "Waiting")
           return res.redirect('/success');
         if (err)
