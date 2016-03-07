@@ -117,7 +117,7 @@
   </head>
   <body>
 		<div class="navbar">
-			<nav class="@(model.product && model.product.color ? model.product.color : 'light-blue') darken-3 snow">
+			<nav class="@(model.product && model.product.color ? model.product.color : 'light-blue') darken-3">
 				<div class="container">
 					<a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
 					<a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_03.png" /></a>

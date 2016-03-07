@@ -29,6 +29,7 @@ nav {
   background-position: center;
   background-repeat: repeat-x;
   background-size: contain;
+  background-image: none; 
 }
 .snow {
 	background: none;

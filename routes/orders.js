@@ -90,7 +90,6 @@ var reservePayco = function(order) {
   var payco = {
     "sellerKey": config.get("Payco.sellerKey"),
     "sellerOrderReferenceKey": order._id,
-    "totalOrderAmt": order.totalOrderAmt,
     "totalDeliveryFeeAmt": 0,
     "totalPaymentAmt": order.totalOrderAmt,
     "returnUrl": config.get("Payco.returnUrl"),
@@ -120,8 +119,7 @@ var reserveCartPayco = function(order) {
   var payco = {
     "sellerKey": config.get("Payco.sellerKey"),
     "sellerOrderReferenceKey": order._id,
-    "totalOrderAmt": order.totalOrderAmt,
-    "totalDeliveryFeeAmt": 0,
+    "totalDeliveryFeeAmt": order.totalOrderAmt < 50000 ? 2500 : 0,
     "totalPaymentAmt": order.totalOrderAmt,
     "returnUrl": config.get("Payco.returnMallUrl"),
     "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
@@ -265,26 +263,31 @@ router.get('/mall/checkout', function(req, res) {
     Order.findOne({ _id: req.session.cart_order }).populate('cart.product').exec(function(err, order) {
       if (err)
         console.log(err);
-      getOrderCartTotal(order);
-      var payco = reserveCartPayco(order);
-      request.post(
-            config.get("Payco.host")+'/outseller/order/reserve',
-            { json: payco },
-            function (error, response, body) {
-                console.log(body)
-                if (!error && body.code == 0) {
-                    if (req.user) {
-                      Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
-                        res.render('mall/checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, title: "주문결제", coupons: coupons });
-                      });
-                    }
-                    else
-                      res.render('mall/checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, title: "주문결제" });
-                }
-                else
-                  res.redirect('/mall');
+      if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
+        getOrderCartTotal(order);
+        var payco = reserveCartPayco(order);
+        request.post(
+          config.get("Payco.host")+'/outseller/order/reserve',
+          { json: payco },
+          function (error, response, body) {
+            console.log(body)
+            if (!error && body.code == 0) {
+              if (req.user) {
+                Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
+                  res.render('mall/checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, title: "주문결제", coupons: coupons });
+                });
+              }
+              else
+                res.render('mall/checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, title: "주문결제" });
             }
+            else
+              res.redirect('/mall');
+          }
         );
+      }
+      else {
+        res.redirect('/shipping');
+      }
     });
   }
 });
@@ -1013,16 +1016,16 @@ router.get('/orders/cancel_deposit/:id', function(req, res) {
 });
 
 router.get('/shipping', function(req, res) {
-  if (!req.session.order)
+  if (!req.session.order && !req.session.cart_order)
     res.redirect('/');
   else
     res.render('shipping', { title: "배송지 정보" });
 });
 
 router.post('/shipping', function(req, res) {
-  if (!req.session.order)
+  if (!req.session.order && !req.session.cart_order)
     return res.redirect('/');
-  Order.findOne({ '_id': req.session.order }, function(err, order) {
+  Order.findOne({ '_id': req.session.order || req.session.cart_order }, function(err, order) {
     if (err) {
       console.log(err);
       return res.redirect('/');
@@ -1132,7 +1135,10 @@ router.post('/shipping', function(req, res) {
                             if (err) {
                               console.log(err);
                             }
-                            return res.redirect('/checkout');
+                            if (req.session.cart_order)
+                              return res.redirect('/mall/checkout')
+                            else
+                              return res.redirect('/checkout');
                           });
                       });
                     });
@@ -1179,7 +1185,10 @@ router.post('/shipping', function(req, res) {
                       res.render('shipping', { errors: err, title: "배송지 정보" });
                     }
                     else {
-                      res.redirect('/checkout');
+                      if (req.session.cart_order)
+                        return res.redirect('/mall/checkout')
+                      else
+                        return res.redirect('/checkout');
                     }
                   });
                 }
@@ -1211,7 +1220,10 @@ router.post('/shipping', function(req, res) {
                 res.render('shipping', { errors: err, title: "배송지 정보" });
               }
               else {
-                  res.redirect('/checkout');
+                if (req.session.cart_order)
+                  return res.redirect('/mall/checkout')
+                else
+                  return res.redirect('/checkout');
               }
             });
           }
