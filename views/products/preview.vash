@@ -94,13 +94,17 @@
 					else {
 						<div class="item-name name-lg">@model.product.name</div>
 					}
-					<div class="hide-on-small-only m-item right">
-						<div class="item-price-o mod red-text text-lighten-2">SALE</div>
-						<div class="item-price white-text">@model.sale%</div>
-					</div>
+					@if (model.sale > 0) {
+						<div class="hide-on-small-only m-item right">
+							<div class="item-price-o mod red-text text-lighten-2">SALE</div>
+							<div class="item-price white-text">@model.sale%</div>
+						</div>
+					}
 					<span class="hide-on-small-only">&nbsp;</span>
 					<div class="hide-on-small-only m-item right">
-						<div class="item-price-o desk red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
+						@if (model.sale > 0) {
+							<div class="item-price-o desk red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
+						}
 						<div class="item-price desk white-text" id="product_price_mobile">@model.product.price</div>
 					</div>
 			</div>
@@ -182,12 +186,16 @@
 
 			<!-- Mobile -->
 			<div class="hide-on-med-and-up mobile-buy @(model.product.color ? model.product.color : 'light-blue') darken-3">
+				@if (model.sale > 0) {
+					<div class="m-item">
+						<div class="item-price-o mod red-text text-lighten-2">SALE</div>
+						<div class="item-price white-text">@model.sale%</div>
+					</div>
+				}
 				<div class="m-item">
-					<div class="item-price-o mod red-text text-lighten-2">SALE</div>
-					<div class="item-price white-text">@model.sale%</div>
-				</div>&nbsp;
-				<div class="m-item">
-					<div class="item-price-o red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
+					@if (model.sale > 0) {
+						<div class="item-price-o red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
+					}
 					<div class="item-price white-text" id="product_price_mobile">@model.product.price</div>
 				</div>
 				@if (model.user) {
