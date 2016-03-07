@@ -32,6 +32,7 @@ var device = require('express-device');
 var User = require('./models/user');
 var Token = require('./models/token');
 var Coupon = require('./models/coupon');
+var Order = require('./models/order');
 //var materialize = require('materialize-css');
 
 var routes = require('./routes/index');
@@ -112,7 +113,14 @@ app.use(function(req, res, next) {
   moment.locale('ko');
   res.locals.moment = moment;
   res.locals.url = req.url;
-  next();
+  if (req.session.cart_order) {
+    Order.findOne({ _id: req.session.cart_order }).populate('cart.product').exec(function(err, order) {
+      res.locals.cart = order.cart;
+      next();
+    });
+  }
+  else
+    next();
 });
 app.use('/', orders);
 app.use('/', routes);

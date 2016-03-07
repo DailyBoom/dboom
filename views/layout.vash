@@ -122,6 +122,23 @@
 					<a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
 					<a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
         	<span id="time-left-mobile" class="hide-on-med-and-up d-clock white-text left"></span>
+          @if(@model.cart) {
+            <ul class="right hide-on-small-only">
+              <li class="nav-item">
+                <!-- Cart dropdown trigger -->
+                <a class='dropdown-button white-text z-depth-1 right' data-beloworigin="true" href='#' data-activates='dropdown-cart'>
+                <i class="fa fa-shopping-cart fa-cx"></i>@if(@model.cart) {<span class="cart-badge badge">@model.cart.length</span>}
+                </a>
+                <!-- Dropdown Structure -->
+                <ul id="dropdown-cart" class="dropdown-content">
+                    @model.cart.forEach(function(item) {
+                      <li><a href="/mall/@item.product.brand/@item.product.id">@item.product.name</a></li>
+                      <li class="divider"></li>
+                    })
+                </ul>
+              </li>
+            </ul>
+          }
 					@if (model.user) {
 						<ul class="right hide-on-small-only">
 							<li class="nav-item">
