@@ -162,7 +162,9 @@
 				</div>
 				<span class="min col s3"><i class="fa fa-minus"></i></span><input type="number" value="1" id="quantity" class="col s6"/><span class="add col s3"><i class="fa fa-plus"></i></span>
 				<p class="center col s12">총 상품금액: <b class="product-price">@model.product.price</b>원</p>
-				<a class="btn red white-text add_to_cart">장바구니 담기 <i class="fa fa-cart-plus"></i></a>
+				<a class="btn orange white-text add_to_cart">장바구니 담기 <i class="fa fa-cart-plus"></i></a>
+				<br/><br/>
+				<a class="btn red white-text" href="/checkout?product_id=@model.product.id">바로구매하기 <i class="fa fa-chevron-right"></i></a>
 			</div>
 		</div>
 		<div class="col s12">
