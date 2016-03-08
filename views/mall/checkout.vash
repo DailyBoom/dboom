@@ -280,21 +280,23 @@
 				});
 				
 				$('.cart-remove').on("click", function() {
-					var index = $(this).data("index");
-					$.ajax({
-						type: "POST",
-						url: "/mall/remove_from_cart",
-						dataType: "json",
-						data: {
-							index: index
-						},
-						success: function (res) {
-							location.reload();
-						},
-						error: function (res) {
-							Materialize.toast(res.responseJSON.message, 4000);
-						}
-					});
+					if (confirm('are you sure?')) {
+						var index = $(this).data("index");
+						$.ajax({
+							type: "POST",
+							url: "/mall/remove_from_cart",
+							dataType: "json",
+							data: {
+								index: index
+							},
+							success: function (res) {
+								location.reload();
+							},
+							error: function (res) {
+								Materialize.toast(res.responseJSON.message, 4000);
+							}
+						});
+					}
 				});
 
 				$("#order_option, #order_quantity, #coupon").on('change', function() {

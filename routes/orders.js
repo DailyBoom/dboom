@@ -342,6 +342,51 @@ router.post('/mall/remove_from_cart', function(req, res) {
   }
 });
 
+// I'mport callback for mall checkout
+router.post('/mall/iamport_callback', function (req, res) {
+  Order.findOne({ _id: req.body.id }).populate('user cart.product').exec(function (err, order) {
+    console.log(order);
+    console.log(req.body);
+    order.status = "Paid";
+    order.save(function (err) {
+      order.cart.forEach(function (item) {
+        item.product.options[item.option].quantity -= item.quantity;
+        item.product.markModified('options');
+        item.product.save();
+      });
+      if (app.get("env") === "production") {
+        slack.send({
+          channel: '#dailyboom-new-order',
+          icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
+          text: 'New order <http://dailyboom.co/orders/view/' + order._id + '>',
+          unfurl_links: 1,
+          username: 'DailyBoom-bot'
+        });
+      }
+      fs.readFile('./views/mailer/buy_success.vash', "utf8", function (err, file) {
+        if (err) {
+          //handle errors
+          console.log('ERROR!');
+          return res.send('ERROR!');
+        }
+        var html = vash.compile(file);
+        transporter.sendMail({
+          from: '데일리 붐 <contact@dailyboom.co>',
+          to: order.user ? order.user.email : order.email,
+          subject: '데일리 붐 구매 안내.',
+          html: html({ full_name: order.user ? order.user.shipping.full_name : order.shipping.full_name, i18n: i18n })
+        }, function (err, info) {
+          if (err) { console.log(err); }
+          //console.log('Message sent: ' + info.response);
+          transporter.close();
+          return res.status(200).json({ success: true });
+        });
+      });
+    });
+  });
+});
+
+// I'mport callback for regular checkout
 router.post('/iamport_callback', function (req, res) {
   Order.findOne({ _id: req.body.id }).populate('user').exec(function (err, order) {
     console.log(order);
