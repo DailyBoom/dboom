@@ -127,15 +127,20 @@
               <li class="nav-item">
                 <!-- Cart dropdown trigger -->
                 <a class='dropdown-button white-text z-depth-1 right' data-beloworigin="true" href='#' data-activates='dropdown-cart'>
-                <i class="fa fa-shopping-cart fa-cx"></i>@if(@model.cart) {<span class="cart-badge badge">@model.cart.length</span>}
+                  <i class="fa fa-cart-arrow-down fa-cx"></i>@if(@model.cart) {<span class="cart-badge">@model.cart.length</span>}
                 </a>
                 <!-- Dropdown Structure -->
-                <ul id="dropdown-cart" class="dropdown-content">
+                <ul id="dropdown-cart" class="row dropdown-content">
                     @model.cart.forEach(function(item) {
-                      <li><a href="/mall/@item.product.brand/@item.product.id">@item.product.name</a></li>
+                      <li class="col s12">
+                        <a href="/mall/@item.product.brand/@item.product.id" class="left">
+                          <img class="col s4" src="/@item.product.images[0]"/>
+                          <span class="col s8">@item.product.name</span>
+                        </a>
+                      </li>
                       <li class="divider"></li>
                     })
-                    <li><a href="/mall/checkout" class="btn green">구매하기</a></li>
+                    <li class="col s12 checkout"><a href="/mall/checkout" class="btn green right">구매하기 <i class="fa fa-chevron-right"></i></a></li>
                 </ul>
               </li>
             </ul>
