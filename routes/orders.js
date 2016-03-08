@@ -343,7 +343,7 @@ router.post('/mall/remove_from_cart', function(req, res) {
 });
 
 router.post('/iamport_callback', function (req, res) {
-  Order.findOne({ _id: req.body.id }, function (err, order) {
+  Order.findOne({ _id: req.body.id }).populate('user').exec(function (err, order) {
     console.log(order);
     console.log(req.body);
     order.status = "Paid";
