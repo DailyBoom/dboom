@@ -348,7 +348,7 @@ router.post('/iamport_callback', function (req, res) {
     console.log(req.body);
     order.status = "Paid";
     order.save(function (err) {
-      Product.findOne({ _id: order.product.id }, function (err, product) {
+      Product.findOne({ _id: order.product }, function (err, product) {
         product.options.forEach(function (option) {
           if (option.name === order.option)
             option.quantity -= order.quantity;
