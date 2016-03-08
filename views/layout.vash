@@ -135,6 +135,7 @@
                       <li><a href="/mall/@item.product.brand/@item.product.id">@item.product.name</a></li>
                       <li class="divider"></li>
                     })
+                    <li><a href="/mall/checkout" class="btn green">구매하기</a></li>
                 </ul>
               </li>
             </ul>

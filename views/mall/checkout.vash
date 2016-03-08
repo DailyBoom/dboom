@@ -38,6 +38,7 @@
 												<option value="@i" @(item.quantity == i ? 'selected="selected"' : '') >@i</option>
 											}
 										</select>
+										<i class="fa fa-times fa-fw right cart-remove" data-index="@index"></i>
 								</div>
 							</div>
 							<div class="col s3 center"><p class="product-price">@(item.product.price * item.quantity)</p></div>
@@ -268,6 +269,24 @@
 						data: {
 							index: index,
 							quantity: quantity
+						},
+						success: function (res) {
+							location.reload();
+						},
+						error: function (res) {
+							Materialize.toast(res.responseJSON.message, 4000);
+						}
+					});
+				});
+				
+				$('.cart-remove').on("click", function() {
+					var index = $(this).data("index");
+					$.ajax({
+						type: "POST",
+						url: "/mall/remove_from_cart",
+						dataType: "json",
+						data: {
+							index: index
 						},
 						success: function (res) {
 							location.reload();

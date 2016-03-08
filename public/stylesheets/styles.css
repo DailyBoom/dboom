@@ -1947,6 +1947,10 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: 0;
   }
   
+  .cart-remove {
+    cursor: pointer;
+  }
+  
   .checkout-comment {
     padding: 20px !important;
   }

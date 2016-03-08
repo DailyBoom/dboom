@@ -323,9 +323,29 @@ router.post('/mall/update_cart', function(req, res) {
   }
 });
 
+router.post('/mall/remove_from_cart', function(req, res) {
+  if (typeof req.session.cart_order === 'undefined' || !req.session.cart_order) {
+    return res.status(500).json({});
+  }
+  else {
+    Order.findOne({ _id: req.session.cart_order }).populate('cart.product').exec(function(err, order) {
+      if (err)
+        console.log(err);
+      order.cart.splice(req.body.index, 1);
+      order.markModified('cart');
+      order.save(function(err) {
+        if (err)
+          console.log(err);
+        return res.status(200).json({});
+      });
+    });
+  }
+});
+
 router.post('/iamport_callback', function (req, res) {
-  Order.find({ _id: req.body.id }, function (err, order) {
-    console.log(req.body.imp);
+  Order.findOne({ _id: req.body.id }, function (err, order) {
+    console.log(order);
+    console.log(req.body);
     order.status = "Paid";
     order.save(function (err) {
       Product.findOne({ _id: order.product.id }, function (err, product) {
