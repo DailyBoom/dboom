@@ -41,7 +41,7 @@
 			<tbody class="blue-grey lighten-5 blue-grey-text text-darken-3">
 				<tr>
 					<td class="db-mail-body">
-						<h1>@model.i18n.__('email.buy_success.1', model.full_name)</h1>
+						<h1>@html.raw(model.i18n.__('email.buy_success.1', model.full_name))</h1>
 						<br>
 						<h3>
 							@model.i18n.__('email.buy_success.2')
