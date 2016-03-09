@@ -144,16 +144,16 @@
             <ul class="right hide-on-small-only">
               <li class="nav-item">
                 <!-- Cart dropdown trigger -->
-                <a class='dropdown-button white-text z-depth-1 right' data-beloworigin="true" href='#' data-activates='dropdown-cart'>
+                <a class='btn btn-floating cart-top white-text right' data-beloworigin="true" href='#' data-activates='dropdown-cart'>
                   <i class="fa fa-cart-arrow-down fa-cx"></i>@if(@model.cart) {<span class="cart-badge">@model.cart.length</span>}
                 </a>
                 <!-- Dropdown Structure -->
                 <ul id="dropdown-cart" class="row dropdown-content">
                     @model.cart.forEach(function(item) {
                       <li class="col s12">
-                        <a href="/mall/@item.product.brand/@item.product.id" class="left">
+                        <a href="/mall/@item.product.brand/@item.product.id" class="row m-b-0">
                           <img class="col s4" src="/@item.product.images[0]"/>
-                          <span class="col s8">@item.product.name</span>
+                          <span class="col s8 truncate">@item.product.name</span>
                         </a>
                       </li>
                       <li class="divider"></li>
@@ -206,7 +206,7 @@
                     </a>
                   </li>
                 }
-                <li class="divider"></li>                
+                <li class="divider"></li>
                 @if (model.user.admin == 1) {
                   <li><a class="deep-purple-text text-darken-2" href="/coupons/new">New Coupon <i class="fa fa-plus right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/coupons/list">Coupons <i class="fa fa-list right"></i></a></li>
@@ -328,7 +328,7 @@
           edge: 'right',
           closeOnClick: true
         });
-        $('.dropdown-button').dropdown({
+        $('.cart-top').dropdown({
   					inDuration: 300,
   					outDuration: 225,
   					constrain_width: false, // Does not change width of dropdown to that of the activator
