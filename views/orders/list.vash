@@ -58,6 +58,9 @@
 				@if(order.product) {
 					<td><span class="truncate">&nbsp;@order.product.name</span></td>
 				}
+				else if (order.cart) {
+					<td>쇼핑몰 장바구니</td>
+				}
 				else {
 					<td>&nbsp;</td>
 				}

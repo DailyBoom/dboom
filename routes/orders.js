@@ -168,7 +168,7 @@ router.get('/orders/shipped', isAdmin, function(req, res) {
 
 router.get('/merchants/orders/list', isMerchant, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
-  var query = Order.find({ status: {$in: ["Paid", "Sent"]}, merchant_id: req.user.id }, {}, { sort: { 'created_at': -1 } }).populate('product');
+  var query = Order.find({ status: { $in: ["Paid", "Sent"]}, $or: [ { cart_merchants: req.user.id }, { merchant_id: req.user.id }] }, {}, { sort: { 'created_at': -1 } }).populate('product');
   if (req.query.order_date)
     query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
   query.paginate(page, 10, function(err, orders, total) {
@@ -187,7 +187,7 @@ router.get('/orders/list', isAdmin, function(req, res) {
 });
 
 router.get('/orders/view/:id', isMerchantOrAdmin, function(req, res) {
-  Order.findOne({ _id: req.params.id }).populate('product user').exec(function(err, order) {
+  Order.findOne({ _id: req.params.id }).populate('product user cart.product').exec(function(err, order) {
     if (err)
       console.log(err);
     if (!order)

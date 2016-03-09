@@ -55,19 +55,42 @@
 			 	</div><!-- .row -->
 			 </div><!-- .col -->
 
-			 <div class="col s12 m6 l4">
-				 <div class="row blue-grey-text text-darken-3">
-					 <div class="summary-box white z-depth-1 right center-align">
-						 <img class="responsive-img" src="/@model.order.product.images[0]" alt="" />
-						 <div class="check-price-box center">
-							 <span class="check-item-name blue-grey-text text-darken-1 truncate"><b>@model.order.product.brand</b></span>
-							 <span class="check-item-name blue-grey-text text-darken-2 truncate">@model.order.product.name<br>@model.order.option</span>
-							 <span class="check-item-name blue-grey-text text-darken-2">+ <span id="delivery_price">@model.order.product.delivery_price</span> 배송비</span><br>
-							 <span class="check-price blue-grey-text text-darken-3" id="product_price"> @(model.order.quantity * model.order.product.price + model.order.product.delivery_price)</span>
-						 </div>
-					 </div>
-				 </div><!-- .row -->
-			 </div><!-- .col -->
+			@if (model.order.product) {
+				<div class="col s12 m6 l4">
+					<div class="row blue-grey-text text-darken-3">
+						<div class="summary-box white z-depth-1 right center-align">
+							<img class="responsive-img" src="/@model.order.product.images[0]" alt="" />
+							<div class="check-price-box center">
+								<span class="check-item-name blue-grey-text text-darken-1 truncate"><b>@model.order.product.brand</b></span>
+								<span class="check-item-name blue-grey-text text-darken-2 truncate">@model.order.product.name<br>@model.order.option</span>
+								<span class="check-item-name blue-grey-text text-darken-2">+ <span id="delivery_price">@model.order.product.delivery_price</span> 배송비</span><br>
+								<span class="check-price blue-grey-text text-darken-3" id="product_price"> @(model.order.quantity * model.order.product.price + model.order.product.delivery_price)</span>
+							</div>
+						</div>
+					</div><!-- .row -->
+				</div><!-- .col -->
+			 }
+			 else if (model.order.cart) {
+				<div class="row checkout-mall">
+					<div class="col s12 m6 l8 blue-grey-text text-darken-3">
+						<h5>장바구니</h5>
+						<div class="col s12 white z-depth-1 cart">
+							<div class="col s12 cart-header center"><span class="col s9">상품정보</span><span class="col s3">상품금액</span></div>
+							@model.order.cart.forEach(function(item, index) {
+								@if(model.user.admin || (model.user.role == 'merchant' && model.user.id == item.product.merchant_id))
+								<div class="col s12 cart-item">
+									<a href="/mall/product/@item.product.id"><img class="col s3" src="/@item.product.images[0]" /></a>
+									<div class="col s6">
+										<a href="/mall/product/@item.product.id" class="product-name blue-grey-text col s12">@item.product.name (@item.product.options[item.option].name)</a>
+										<div class="col s12">수량: @item.quantity</div>
+									</div>
+									<div class="col s3 center"><p class="product-price">@(item.product.price * item.quantity)</p></div>
+								</div>
+							})
+						</div>
+					</div>
+				</div>
+			 }
 		 </div><!-- .row -->
 
 	@if (model.user.admin == 1) {
