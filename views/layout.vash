@@ -116,6 +116,24 @@
     </script>
   </head>
   <body>
+    @if(@model.cart) {
+      <div id="cart-modal" class="modal">
+        <div class="modal-header-c light-blue darken-2 white-text center">
+          <li class="fa fa-shopping-cart"></li>장바구니
+        </div>
+        <ul class="row">
+            @model.cart.forEach(function(item) {
+              <li class="col s12">
+                <a href="/mall/@item.product.brand/@item.product.id" class="left">
+                  <img class="col s4" src="/@item.product.images[0]"/>
+                  <span class="col s8">@item.product.name</span>
+                </a>
+              </li>
+            })
+            <div class="col s12 checkout"><a href="/mall/checkout" class="btn green right">구매하기 <i class="fa fa-chevron-right"></i></a></div>
+        </ul>
+      </div>
+    }
 		<div class="navbar">
 			<nav class="@(model.product && model.product.color ? model.product.color : 'light-blue') darken-3">
 				<div class="container">
@@ -181,6 +199,14 @@
                 <a href="#" data-activates="slide-out" class="button-collapse mod"><i class="fa fa-bars fa-fw"></i></a>
                 <ul id="slide-out" class="side-nav">
 									<a class="@(model.product && model.product.color ? model.product.color : 'light-blue') darken-4 white-text center" href="#!">@model.user.username</a>
+                @if(@model.cart) {
+                  <li>
+                    <a class='deep-purple-text text-darken-2 modal-trigger' href='#cart-modal'>
+                      <i class="fa fa-cart-arrow-down fa-cx"></i>@if(@model.cart) {<span class="cart-badge badge">@model.cart.length</span>}
+                    </a>
+                  </li>
+                }
+                <li class="divider"></li>                
                 @if (model.user.admin == 1) {
                   <li><a class="deep-purple-text text-darken-2" href="/coupons/new">New Coupon <i class="fa fa-plus right"></i></a></li>
                   <li><a class="deep-purple-text text-darken-2" href="/coupons/list">Coupons <i class="fa fa-list right"></i></a></li>
@@ -202,6 +228,7 @@
 					}
 					else {
             <ul class="right hide-on-med-and-up">
+
 							<li class="nav-item">
 								<!-- Dropdown Trigger -->
 								<!-- <a class='dropdown-button btn btn-flat btn-mobile white-text' href='#' data-activates='dropdown-profile'>
@@ -211,6 +238,13 @@
 								<!-- Dropdown Structure -->
 								<!-- <ul id="dropdown-profile" class="dropdown-content @(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2"> -->
                 <ul id="slide-out" class="side-nav">
+                  @if(@model.cart) {
+                    <li>
+                      <a class="modal-trigger waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href='#cart-modal'>
+                        <i class="fa fa-cart-arrow-down fa-cx"></i>@if(@model.cart) {<span class="cart-badge badge">@model.cart.length</span>}
+                      </a>
+                    </li>
+                  }
 									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href="/login">로그인 <i class="fa fa-sign-in right"></i></a></li>
 									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href="/signup">회원가입 <i class="fa fa-user-plus right"></i></a></li>
 								</ul>
@@ -279,6 +313,15 @@
 			</div>
 		</footer><!-- .footer -->
     <script>
+      $(document).ready(function(){
+        $('.modal-trigger').leanModal({
+          dismissible: true, // Modal can be dismissed by clicking outside of the modal
+          opacity: .5, // Opacity of modal background
+          in_duration: 300, // Transition in duration
+          out_duration: 200, // Transition out duration
+          ready: function() { $('#share_url').select(); }
+        });
+      });
     $(window).load(function() {
         $(".button-collapse").sideNav({
           menuWidth: 200,

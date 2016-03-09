@@ -237,27 +237,27 @@
 			<!-- Merchant xInfo -->
 			<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
 		    <li>
-					<div class="collapsible-header @(model.product.color ? model.product.color : 'light-blue') darken-1 white-text">
-						<span>@model.__('shipping_info') <i class="fa fa-info-circle fa-fw right"></i></span>
-					</div>
-					<div class="collapsible-body @(model.product.color ? model.product.color : 'light-blue') lighten-5">
-						@if(model.product.delivery_info) {
-							<img class="responsive-img" src="@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - 데일리 붐" />
-						}
-						else {
-							<div class="item-shipping-info-box">
-								<p><b>배송 진행상황 조회</b></p>
-								<ol class="item-shipping-info">
-									<li>처리상황이 [발송완료]일 때 배송진행사항은 주문내역의 송장번호로 해당 택배사 홈페이지를 통해 확인하실 수 있습니다.</li>
-									<li>발송완료 등록 및 발송완료 SMS 문자 메시지를 받으신 후 고객님께 배달완료 되기까지 1~2일정도 소요됩니다. (토요일, 공휴일 제외)</li>
-									<li>택배사 또는 고객사정(고객님 연락이 되지 않을 경우)으로 인해 배송이 지연되는 경우가 있으니 해당 택배사로 전화문의를 하시면 배송상태를 확인 하실 수 있습니다.</li>
-								</ol>
-								<p><b>제품 교환/환불 정책</b></p>
-								<span>모든 제품은 해당 제품 회사의 물품 환불 및 교환 정책에 따릅니다.</span>
-								<br><span>해당 제품 회사가 아직 배송관련 교환 및 환불 정책이 없을 때, 모든 물품은 수령한지 10일 이내에 사용하지 않은 새 것 일 때 교환및 환불이 가능합니다. 환불을 원하는 경우, 해당 회사에 직접 연락을 하거나 데일리 붐 회계팀(contact@dailyboom.co)로 연락주시기 바랍니다.</span>
-							</div>
-						}
-					</div>
+				<div class="collapsible-header @(model.product.color ? model.product.color : 'light-blue') darken-1 white-text">
+					<span>@model.__('shipping_info') <i class="fa fa-info-circle fa-fw right"></i></span>
+				</div>
+				<div class="collapsible-body @(model.product.color ? model.product.color : 'light-blue') lighten-5">
+					@if(model.product.delivery_info) {
+						<img class="responsive-img" src="@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - 데일리 붐" />
+					}
+					else {
+						<div class="item-shipping-info-box">
+							<p><b>배송 진행상황 조회</b></p>
+							<ol class="item-shipping-info">
+								<li>처리상황이 [발송완료]일 때 배송진행사항은 주문내역의 송장번호로 해당 택배사 홈페이지를 통해 확인하실 수 있습니다.</li>
+								<li>발송완료 등록 및 발송완료 SMS 문자 메시지를 받으신 후 고객님께 배달완료 되기까지 1~2일정도 소요됩니다. (토요일, 공휴일 제외)</li>
+								<li>택배사 또는 고객사정(고객님 연락이 되지 않을 경우)으로 인해 배송이 지연되는 경우가 있으니 해당 택배사로 전화문의를 하시면 배송상태를 확인 하실 수 있습니다.</li>
+							</ol>
+							<p><b>제품 교환/환불 정책</b></p>
+							<span>모든 제품은 해당 제품 회사의 물품 환불 및 교환 정책에 따릅니다.</span>
+							<br><span>해당 제품 회사가 아직 배송관련 교환 및 환불 정책이 없을 때, 모든 물품은 수령한지 10일 이내에 사용하지 않은 새 것 일 때 교환및 환불이 가능합니다. 환불을 원하는 경우, 해당 회사에 직접 연락을 하거나 데일리 붐 회계팀(contact@dailyboom.co)로 연락주시기 바랍니다.</span>
+						</div>
+					}
+				</div>
 		    </li>
 		  </ul>
 
@@ -277,18 +277,17 @@
 
 		@if (model.pastProducts) {
 			<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text">
-				@model.__('featured_items')
-				<a class="hide white-text right" href="/mall"><i class="fa fa-shopping-bag fa-fw white-text"></i> 쇼핑몰 보기</a>
+				@model.product.brand 관련 상품
 			</div>
 			<div class="row">
 				<div class="col s12 m12 l12">
 					<div class="row">
 						<div id="db-past" class="owl-carousel owl-theme">
-
 									@model.pastProducts.forEach(function(product) {
 										<div class="col s12 m12 l12">
 											<div class="card past">
 												<div class="card-image">
+													<a href="/mall/@product.brand/@product.id">
 													<div class="past-date-box @(model.product.color ? model.product.color : 'light-blue') darken-1 white-text">
 														@model.moment(product.scheduled_at).format("YYYY/MM/DD")@(model.moment(product.scheduled_at).day() == 6 ? model.moment(product.scheduled_at).add(1, 'days').format('-DD') : '')@(model.moment(product.scheduled_at).isSame('2016-02-08') ? '-09-10' : '')
 													</div>
@@ -300,32 +299,13 @@
 															@product.price
 														</div>
 													</div><!-- .card-image-ol -->
-													<img class="" src="@product.images[0]" alt="" />
+													<img class="" src="/@product.images[0]" alt="" />
+													</a>
 												</div>
 												<div class="card-content past">
 													<div class="blue-grey-text text-darken-1 truncate"><b>@product.name</b></div>
 													<span class="blue-grey-text text-darken-1">@product.description</span>
 												</div>
-													@if(product.extend == 1 && model.moment().isBefore(model.moment(product.scheduled_at).add(3, 'days'), 'days')){
-														<div class="card-action mod center green">
-															<a class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/extend/@product.id">@model.__('available')! (<span class="time-left"></span>)</a>
-														</div>
-													}
-													else if (product.extend == 2){
-														<div class="card-action mod center green">
-															<a class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3" href="/extend/@product.id">@model.__('available')!</a>
-														</div>
-													}
-													else if (model.user && product.wanna_buy.indexOf(model.user.id) != -1) {
-														<div class="card-action mod center want cyan" data-id="@product.id">
-															<span class="white-text waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3">@model.__('bring_back') <i class="fa fa-thumbs-up fa-fw right"></i></span>
-														</div>
-													}
-													else {
-														<div class="card-action mod center want" data-id="@product.id">
-															<span class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3">@model.__('bring_back') <i class="fa fa-thumbs-o-up fa-fw right"></i></span>
-														</div>
-													}
 											</div>
 										</div>
 									})
@@ -335,62 +315,6 @@
 				</div><!-- /.col s12 m9 l9 -->
 			</div><!-- .row -->
 		}
-			<!-- Featured section -->
-			<div class="row">
-				<div class="col s12">
-					<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text">
-						@model.__('featured')
-					</div>
-					<br>
-				</div>
-				<div id="db-partners" class="owl-carousel owl-theme">
-					<div class="col s12">
-						<a href="http://www.medihealshop.com/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/mediheal.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="https://www.my-memoirs.com/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/mymemoirs.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="http://www.candyroo.com/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/candyroo_2.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="http://www.craft-link.co.kr/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/craftlink.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="https://www.pinterest.com/ddam_living/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/ddam.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="http://bodyfantasies.kr/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/sexiest.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="http://www.varyd.com/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/varyd.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="http://www.tkbr.co.kr/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/tkbr.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="www.zonecode.org" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/zone.png');"></div>
-						</a>
-					</div><!-- .col -->
-				</div><!-- /.owl-carousel -->
-			</div><!-- .row -->
 			<br>
 			<br>
 			@if(!model.is_phone) {
@@ -506,13 +430,6 @@
 		$('.iframe-video').each(function(){
 			var url = $(this).attr("src");
 			$(this).attr("src",url+"?wmode=transparent");
-		});
-		$('.modal-trigger').leanModal({
-			dismissible: true, // Modal can be dismissed by clicking outside of the modal
-			opacity: .5, // Opacity of modal background
-			in_duration: 300, // Transition in duration
-			out_duration: 200, // Transition out duration
-			ready: function() { $('#share_url').select(); }
 		});
 		$('.collapsible').collapsible({
 			accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style

@@ -87,17 +87,20 @@ router.get('/mall/:brand', function(req, res, next) {
 
 router.get('/mall/:brand/:product_id', function(req, res, next) {
   Product.findOne({ extend: 4, _id: req.params.product_id }, function(err, product) {
-    if (err)
-      console.log(err);
-    if (!product || product.length == 0)
-      return res.redirect('/mall');
-    var current_quantity = 0;
-    product.options.forEach(function(option) {
-      current_quantity += parseInt(option.quantity);
-    });
-    var progress = (product.quantity - current_quantity) / product.quantity * 100;
-    var sale = (product.old_price - product.price) / product.old_price * 100;
-    res.render('extended_m', { product: product, title: product.brand + ' - ' + product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: true, cover: product.images[0], mall: true });
+    Product.find({ extend: 4, brand: product.brand, _id: { $ne: product.id } }, {}, { sort: { 'created_at' : -1 }}, function(err, pastProducts) {
+      console.log(pastProducts);
+      if (err)
+        console.log(err);
+      if (!product || product.length == 0)
+        return res.redirect('/mall');
+      var current_quantity = 0;
+      product.options.forEach(function(option) {
+        current_quantity += parseInt(option.quantity);
+      });
+      var progress = (product.quantity - current_quantity) / product.quantity * 100;
+      var sale = (product.old_price - product.price) / product.old_price * 100;
+      res.render('extended_m', { product: product, title: product.brand + ' - ' + product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: true, cover: product.images[0], mall: true, pastProducts: pastProducts });
+    });    
   });
 });
 

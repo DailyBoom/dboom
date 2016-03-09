@@ -200,10 +200,30 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .nav-item { padding: 0px; }
   nav ul a.mod { padding: 0; }
-  .side-nav a {
-    height: 50px;
-    line-height: 50px;
+
+  .side-nav li {
+    height: 50px;    
   }
+
+  .side-nav a {
+    height: auto;
+    line-height: 15px;
+    padding: 17px;
+  }
+  
+  #cart-modal .fa-shopping-cart {
+    margin-right: 10px;
+  }
+  
+  #cart-modal ul > li {
+    padding: 10px;
+    border-bottom: 1px solid #b3b3b3;
+  }
+  
+  #cart-modal .checkout {
+    padding-top: 10px;
+  }
+  
   /*i.right {
     line-height: 50px;
     vertical-align: middle;
@@ -1926,6 +1946,10 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 0 2rem;
     max-width: 300px;
     color: white;
+  }
+  
+  #dropdown-cart li img {
+    padding: 0;
   }
   
   .checkout-mall {
