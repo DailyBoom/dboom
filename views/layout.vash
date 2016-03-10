@@ -321,8 +321,6 @@
           out_duration: 200, // Transition out duration
           ready: function() { $('#share_url').select(); }
         });
-      });
-      $(window).load(function() {
         $(".button-collapse").sideNav({
           menuWidth: 200,
           edge: 'right',
