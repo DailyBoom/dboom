@@ -322,7 +322,7 @@
           ready: function() { $('#share_url').select(); }
         });
       });
-    $(window).load(function() {
+      $(window).load(function() {
         $(".button-collapse").sideNav({
           menuWidth: 200,
           edge: 'right',

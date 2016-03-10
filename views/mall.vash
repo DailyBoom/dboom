@@ -64,7 +64,7 @@
 										<div class="mall-card-img" style="background-image: url('/@product.images[0]')"></div>
 									</a>
 								</div>
-								<div class="card-content">
+								<div class="card-content mall">
 									<a href="/mall/@product.brand"><span>@product.brand</span></a>
 									<div class="mall-title left"><a href="/mall/@product.brand/@product.id"><b>@product.name</b></a></div>
 									<!--<a class="right" href="/mall/@product.brand/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>-->
