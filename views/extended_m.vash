@@ -85,7 +85,7 @@
 					})
 				</select>
 			</div>
-			<span class="center min col s2"><i class="fa fa-minus"></i></span><input type="number" value="1" id="quantity" class="col s8"/><span class="add col s2 center"><i class="fa fa-plus"></i></span>
+			<span class="center min col s2"><i class="fa fa-minus"></i></span><input type="number" value="1" id="quantity" class="col s8 center"/><span class="add col s2 center"><i class="fa fa-plus"></i></span>
 			<p class="center col s12">총 상품금액: <span class="product-price">@model.product.price</span>원</p>
 			<a class="btn red white-text add_to_cart">장바구니 담기 <i class="fa fa-cart-plus"></i></a>
 		</div>
@@ -144,9 +144,12 @@
 <div class="container">
 	<div class="row">
 		<div class="add-cart-sticky hide-on-small-only" >
-			<h5>옵션선택</h5>
+			<div class="col s12">
+				<span class="add-cart-title">옵션선택</span>
+				<hr>
+			</div>
 			<div class="row">
-				<div class="input-field col s12">
+				<div class="input-field col s12" style="margin-top: 0;">
 					<select id="options">
 						@{ var i = 0; }
 						@model.product.options.forEach(function(option) {
@@ -160,11 +163,10 @@
 						})
 					</select>
 				</div>
-				<span class="min col s3"><i class="fa fa-minus"></i></span><input type="number" value="1" id="quantity" class="col s6"/><span class="add col s3"><i class="fa fa-plus"></i></span>
+				<span class="min col s3"><i class="fa fa-minus"></i></span><input type="number" value="1" id="quantity" class="col s6 center"/><span class="add col s3"><i class="fa fa-plus"></i></span>
 				<p class="center col s12">총 상품금액: <b class="product-price">@model.product.price</b>원</p>
-				<a class="btn orange white-text add_to_cart">장바구니 담기 <i class="fa fa-cart-plus"></i></a>
-				<br/><br/>
-				<a class="btn red white-text" href="/checkout?product_id=@model.product.id">바로구매하기 <i class="fa fa-chevron-right"></i></a>
+				<a class="btn btn-block orange white-text add_to_cart">장바구니 담기 <i class="fa fa-cart-plus right"></i></a>
+				<a class="btn btn-block red white-text" href="/checkout?product_id=@model.product.id">바로구매하기 <i class="fa fa-chevron-right right"></i></a>
 			</div>
 		</div>
 		<div class="col s12">
@@ -288,9 +290,9 @@
 											<div class="card past">
 												<div class="card-image">
 													<a href="/mall/@product.brand/@product.id">
-													<div class="past-date-box @(model.product.color ? model.product.color : 'light-blue') darken-1 white-text">
-														@model.moment(product.scheduled_at).format("YYYY/MM/DD")@(model.moment(product.scheduled_at).day() == 6 ? model.moment(product.scheduled_at).add(1, 'days').format('-DD') : '')@(model.moment(product.scheduled_at).isSame('2016-02-08') ? '-09-10' : '')
-													</div>
+													<!-- <div class="past-date-box @(model.product.color ? model.product.color : 'light-blue') darken-1 white-text">
+														model.moment(product.scheduled_at).format("YYYY/MM/DD")@(model.moment(product.scheduled_at).day() == 6 ? model.moment(product.scheduled_at).add(1, 'days').format('-DD') : '')@(model.moment(product.scheduled_at).isSame('2016-02-08') ? '-09-10' : '')
+													</div> -->
 													<div class="card-image-ol">
 														<div class="ol-old-p">
 															@product.old_price
