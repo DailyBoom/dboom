@@ -41,6 +41,9 @@
 					<div class="card-image">
 						<div class="past-date-box blue-grey darken-1 white-text">
 							@model.moment(product.scheduled_at).format("YYYY/MM/DD")
+							@if(!product.is_published && model.user.admin) {
+								<span class="right red-text">Not Published</span>
+							}
 						</div>
 						<img class="" src="/@product.images[0]" alt="@product.name" />
 					</div><!-- .card-image -->

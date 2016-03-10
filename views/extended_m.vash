@@ -292,7 +292,7 @@
 
 		@if (model.pastProducts) {
 			<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text">
-				@model.product.brand 관련 상품
+				<a href="/mall/@model.product.brand" class="white-text">@model.product.brand</a> 관련 상품
 			</div>
 			<div class="row">
 				<div class="col s12 m12 l12">
@@ -303,13 +303,12 @@
 											<div class="card past">
 												<div class="card-image">
 													<a href="/mall/@product.brand/@product.id">
-													<!-- <div class="past-date-box @(model.product.color ? model.product.color : 'light-blue') darken-1 white-text">
-														model.moment(product.scheduled_at).format("YYYY/MM/DD")@(model.moment(product.scheduled_at).day() == 6 ? model.moment(product.scheduled_at).add(1, 'days').format('-DD') : '')@(model.moment(product.scheduled_at).isSame('2016-02-08') ? '-09-10' : '')
-													</div> -->
 													<div class="card-image-ol">
-														<div class="ol-old-p">
-															@product.old_price
-														</div>
+														@if(product.old_price != product.price) {
+															<div class="ol-old-p">
+																@product.old_price
+															</div>
+														}
 														<div class="ol-new-p">
 															@product.price
 														</div>
@@ -320,6 +319,9 @@
 												<div class="card-content past">
 													<div class="blue-grey-text text-darken-1 truncate"><b>@product.name</b></div>
 													<span class="blue-grey-text text-darken-1">@product.description</span>
+												</div>
+												<div class="card-action mod center green">
+													<a class="waves-effect waves-light btn-flat white-text text-darken-3" href="/mall/@product.brand/@product.id">@model.__('available')!</a>
 												</div>
 											</div>
 										</div>
