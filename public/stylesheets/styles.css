@@ -1363,7 +1363,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .item-price.desk.mod {
     font-size: 2.5em;
-    line-height: 1.5;
+    line-height: 1;
     margin-right: 20px;
   }
   .past-box-wrapper {
