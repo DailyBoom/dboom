@@ -313,7 +313,7 @@
 															@product.price
 														</div>
 													</div><!-- .card-image-ol -->
-													<img class="" src="/@product.images[0]" alt="" />
+													<img class="img-past" src="/@product.images[0]" alt="" />
 													</a>
 												</div>
 												<div class="card-content past">
@@ -484,6 +484,17 @@
 		// Custom Navigation Events
 		$(".next").click(function(){owl.trigger('owl.next');});
 		$(".prev").click(function(){owl.trigger('owl.prev');});
+	});
+	// fit sizes of image overlay
+	$(document).ready(function() {
+		var ih = $(".img-past").height();
+		$(".card-image-ol").css("height", ih);
+		console.log(ih);
+	});
+	$(window).resize(function() {
+		var ih = $(".img-past").height();
+		$(".card-image-ol").css("height", ih);
+		console.log(ih);
 	});
 </script>
 	})
