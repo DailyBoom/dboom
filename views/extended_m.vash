@@ -59,7 +59,7 @@
 	<div class="modal-content-c">
 		<div class="row">
 			<div class="col s12 center">
-				<a href="/mall" class="btn blue col s12 m6">계속 쇼핑하기</a><a href="/mall/checkout" class="col s12 m4 btn green">구매하기</a>
+				<a href="/mall/@model.product.brand" class="btn blue col s12 m6">계속 쇼핑하기</a><a href="/mall/checkout" class="col s12 m4 btn green">구매하기</a>
 			</div>
 		</div>
 	</div>
