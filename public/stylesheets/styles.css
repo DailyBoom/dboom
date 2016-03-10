@@ -1110,6 +1110,10 @@ input[type=number]::-webkit-outer-spin-button {
   #modal-add-to-cart #quantity {
     border: 1px solid black;
   }
+  
+  #modal-add-to-cart .add_to_cart {
+    margin-bottom: 10px;
+  }
 
   .mobile-buy {
     display: block;
