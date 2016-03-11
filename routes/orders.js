@@ -280,25 +280,27 @@ router.get('/mall/checkout', function(req, res) {
         console.log(err);
       if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
         getOrderCartTotal(order);
-        var payco = reserveCartPayco(order);
-        request.post(
-          config.get("Payco.host")+'/outseller/order/reserve',
-          { json: payco },
-          function (error, response, body) {
-            console.log(body)
-            if (!error && body.code == 0) {
-              if (req.user) {
-                Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
-                  res.render('mall/checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, title: "주문결제", coupons: coupons });
-                });
+        order.save(function(err) {
+          var payco = reserveCartPayco(order);
+          request.post(
+            config.get("Payco.host")+'/outseller/order/reserve',
+            { json: payco },
+            function (error, response, body) {
+              console.log(body)
+              if (!error && body.code == 0) {
+                if (req.user) {
+                  Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
+                    res.render('mall/checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, title: "주문결제", coupons: coupons });
+                  });
+                }
+                else
+                  res.render('mall/checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, title: "주문결제" });
               }
               else
-                res.render('mall/checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, title: "주문결제" });
+                res.redirect('/mall');
             }
-            else
-              res.redirect('/mall');
-          }
-        );
+          );
+        });
       }
       else {
         res.redirect('/shipping');
