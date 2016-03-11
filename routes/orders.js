@@ -348,6 +348,8 @@ router.post('/mall/iamport_callback', function (req, res) {
     console.log(order);
     console.log(req.body);
     order.status = "Paid";
+    if (req.user)
+      order.shipping = req.user.shipping;
     order.save(function (err) {
       order.cart.forEach(function (item) {
         item.product.options[item.option].quantity -= item.quantity;
@@ -857,14 +859,15 @@ router.all('/mall/payco_callback', function (req, res) {
 });
 
 router.get('/success', function(req, res) {
-  if (!req.session.order)
+  if (!req.session.order && !req.session.cart_order)
     return res.redirect('/');
-  Order.findOne({_id: req.session.order, status: {$in : ['Paid', 'Waiting']}}).populate('product').exec(function(err, order) {
+  Order.findOne({_id: req.session.order || req.session.cart_order, status: {$in : ['Paid', 'Waiting']}}).populate('product cart.product').exec(function(err, order) {
     if (err)
       console.log(err)
     if (!order)
       return res.redirect('/');
     delete req.session.order;
+    delete req.session.cart_order;
     res.render('success', { code: req.query.code, order: order, title: "주문 완료", description: "고객님, 데일리 붐을 이용해 주셔서 감사합니다." });
   });
 });
