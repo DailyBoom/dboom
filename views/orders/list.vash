@@ -64,7 +64,17 @@
 				else {
 					<td>&nbsp;</td>
 				}
+				&nbsp;
+				@if(order.product) {
 					<td>&nbsp;@order.quantity</td>
+				}
+				else if (order.cart) {
+					@{ var qty = 0; }
+					@order.cart.forEach(function(item) {
+						@{ qty += item.quantity };
+					})
+					<td>&nbsp;@qty</td>
+				}
 					<td>
 						&nbsp;
 					@if(order.payco.totalOrderAmt) {
