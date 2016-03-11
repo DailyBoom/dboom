@@ -50,7 +50,7 @@
 											<div class="o-name">@order.quantity</div><br>
 
 											<div class="o-label">@model.__('user.order.price')&nbsp;:&nbsp;</div>
-											<div class="o-name" id="p_price">@order.product.price 원</div><br>
+											<div class="o-name" id="p_price">@order.totalOrderAmt 원</div><br>
 
 											<div class="o-label">@model.__('user.recipient')&nbsp;:&nbsp;</div>
 											<div class="o-name">@model.user.shipping.full_name</div><br>

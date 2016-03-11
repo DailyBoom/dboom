@@ -245,6 +245,9 @@ router.post('/add_to_cart', function(req, res) {
         cart: [{ product: product._id, quantity: req.body.quantity, option: req.body.option }],
         status: "Submitted"
       });
+      if (req.user) {
+        order.user = req.user;
+      }
       order.save(function(err) {
         req.session.cart_order = order._id;
         return res.status(200).json({ success: true, message: "Product added" });
