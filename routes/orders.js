@@ -883,6 +883,9 @@ router.get('/orders/paid/:id', isAdmin, function(req, res) {
         console.log(err);
       if (!order)
         return res.redirect('/orders/list');
+      if (order.status == "Paid") {
+        return res.redirect('/orders/list');
+      }
       order.merchant_id = order.product.merchant_id;
       order.status = "Paid";
       order.save(function(err) {
