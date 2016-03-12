@@ -882,7 +882,7 @@ router.get('/orders/paid/:id', isAdmin, function(req, res) {
       if (err)
         console.log(err);
       if (!order)
-        return res.redirect('/mypage');
+        return res.redirect('/orders/list');
       order.merchant_id = order.product.merchant_id;
       order.status = "Paid";
       order.save(function(err) {
@@ -910,7 +910,7 @@ router.get('/orders/paid/:id', isAdmin, function(req, res) {
                     from: '데일리 붐 <contact@dailyboom.co>',
                     to: order.user ? order.user.email : order.email,
                     subject: '데일리 붐 구매 안내.',
-                    html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment })
+                    html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment, i18n: i18n })
                   }, function (err, info) {
                       if (err) { console.log(err); }
                       //console.log('Message sent: ' + info.response);
