@@ -52,6 +52,14 @@
 					<span class="col s9 order-label">
 						&nbsp;대한민국
 					</span>
+					@if(model.order.status == "Waiting") {
+						<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
+							입금자 이름:
+						</span>
+						<span class="col s9 order-label">
+							&nbsp;@model.order.deposit_name
+						</span>
+					}
 			 	</div><!-- .row -->
 			 </div><!-- .col -->
 

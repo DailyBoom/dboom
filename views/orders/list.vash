@@ -16,17 +16,29 @@
 		</h3>
 		<form method="get">
 			<div class="row">
-				<div class="col s8 m3 l3">
+				<div class="col s12 m3 l3">
 					<label for="order_date">주문 날짜 조희</label>
 					<input type="date" class="datepicker" id="order_date" name="order_date" value="">
 				</div><!-- .col -->
+				@if(model.user.admin == 1){
+					<div class="col s12 m3 l3">
+						<label for="order_date">주문 날짜 조희</label>
+						<select name="status" id="status">
+							<option value="Submitted">Submitted</option>
+							<option value="Waiting">Waiting</option>
+							<option value="Paid">Paid</option>
+							<option value="Sent">Sent</option>
+							<option value="Cancelled">Cancelled</option>
+						</select>
+					</div>
+				}
 				<div class="col s2 m2 l2">
-					<button type="submit" name="action" class="waves-effect waves-light btn btn-large blue-grey darken-2">
+					<button type="submit" class="waves-effect waves-light btn btn-large blue-grey darken-2">
 						<i class="fa fa-search"></i>
 					</button>
 				</div><!-- .col -->
-				<div class="col s12 m7 l7">
-					<div class="fa-2x right">
+				<div class="col s12 m4 l4 right">
+					<div class="fa-2x">
 						@if(model.user.role == 'merchant'){
 							<a href="/orders/merchants/export/@(model.date != '' ? '?date='+model.date : '')">주문 목록 내려받기 <i class="fa fa-floppy-o fa-fw"></i></a>
 						}
@@ -133,12 +145,13 @@
 		<br>
    </div><!-- .container -->
 	 <script>
-	 $('.datepicker').pickadate({
-		format: 'mm/dd/yyyy',
-		selectMonths: true, // Creates a dropdown to control month
-		selectYears: 15 // Creates a dropdown of 15 years to control year
-	 });
-	 $(".product_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
+		$('#status').material_select();
+		$('.datepicker').pickadate({
+			format: 'mm/dd/yyyy',
+			selectMonths: true, // Creates a dropdown to control month
+			selectYears: 15 // Creates a dropdown of 15 years to control year
+		});
+		$(".product_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
 	 </script>
   })
 })

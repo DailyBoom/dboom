@@ -181,6 +181,8 @@ router.get('/orders/list', isAdmin, function(req, res) {
   var query = Order.find({}, {}, { sort: { 'created_at': -1 } }).populate('product');
   if (req.query.order_date)
     query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
+  if (req.query.status)
+    query.where('status').equals(req.query.status);
   query.paginate(page, 10, function(err, orders, total) {
     res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
   });
@@ -355,6 +357,7 @@ router.post('/mall/iamport_callback', function (req, res) {
     order.status = "Paid";
     if (req.user)
       order.shipping = req.user.shipping;
+    order.created_at = Date.now();
     order.save(function (err) {
       order.cart.forEach(function (item) {
         item.product.options[item.option].quantity -= item.quantity;
@@ -399,6 +402,7 @@ router.post('/iamport_callback', function (req, res) {
     console.log(order);
     console.log(req.body);
     order.status = "Paid";
+    order.created_at = Date.now();
     order.save(function (err) {
       Product.findOne({ _id: order.product }, function (err, product) {
         product.options.forEach(function (option) {
@@ -640,6 +644,7 @@ router.post('/deposit_checkout', function(req, res) {
         console.log(order);
         order.status = "Waiting";
         order.deposit_name = req.body.deposit_name;
+        order.created_at = Date.now();
         if (req.user)
           order.shipping = req.user.shipping;
         getOrderTotal(order);
@@ -720,6 +725,7 @@ router.all('/payco_callback', function (req, res) {
             order.payco.totalOrderAmt = body.result.totalOrderAmt;
             order.payco.paymentDetails = body.result.paymentDetails;
             order.merchant_id = order.product.merchant_id;
+            order.created_at = Date.now();
             order.status = "Paid";
             if (order.coupon) {
               order.coupon.used = true;
@@ -811,6 +817,7 @@ router.all('/mall/payco_callback', function (req, res) {
             order.payco.paymentDetails = body.result.paymentDetails;
             order.merchant_id = order.product.merchant_id;
             order.status = "Paid";
+            order.created_at = Date.now();
             if (order.coupon) {
               order.coupon.used = true;
               order.coupon.save();
@@ -975,7 +982,7 @@ router.get('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
     if (err)
       console.log(err);
     if (!order)
-      return res.redirect('/mypage');
+      return res.redirect('/orders/list');
     order.status = "Sent";
     order.save(function(err) {
       fs.readFile('./views/mailer/shipped.vash', "utf8", function(err, file) {
@@ -995,7 +1002,7 @@ router.get('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
             if (err) { console.log(err); }
             //console.log('Message sent: ' + info.response);
             transporter.close();
-            res.redirect('/mypage');
+            res.redirect('/orders/list');
         });
       });
     });
