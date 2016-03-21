@@ -83,7 +83,6 @@ var getOrderCartTotal = function(order) {
   });
   if (order.totalOrderAmt < 50000)
      order.totalOrderAmt += 2500;
-  console.log(order.totalOrderAmt);
 };
 
 var reservePayco = function(order) {
@@ -272,7 +271,6 @@ router.post('/add_to_cart', function(req, res) {
 });
 
 router.get('/mall/checkout', function(req, res) {
-  console.log(req.session.cart_order);
   if (typeof req.session.cart_order === 'undefined' || !req.session.cart_order) {
     return res.redirect('/mall');
   }
@@ -352,8 +350,6 @@ router.post('/mall/remove_from_cart', function(req, res) {
 // I'mport callback for mall checkout
 router.post('/mall/iamport_callback', function (req, res) {
   Order.findOne({ _id: req.body.id }).populate('user cart.product').exec(function (err, order) {
-    console.log(order);
-    console.log(req.body);
     order.status = "Paid";
     if (req.user)
       order.shipping = req.user.shipping;
@@ -399,8 +395,6 @@ router.post('/mall/iamport_callback', function (req, res) {
 // I'mport callback for regular checkout
 router.post('/iamport_callback', function (req, res) {
   Order.findOne({ _id: req.body.id }).populate('user').exec(function (err, order) {
-    console.log(order);
-    console.log(req.body);
     order.status = "Paid";
     order.created_at = Date.now();
     order.save(function (err) {
@@ -547,7 +541,6 @@ router.get('/checkout', function(req, res) {
           console.log(err);
         if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
           order.populate('product coupon', function(err, orderPop) {
-            console.log(orderPop.product.options);
             if (!req.session.product)
               req.session.product = orderPop.product.id;
             getOrderTotal(order);
@@ -560,7 +553,6 @@ router.get('/checkout', function(req, res) {
                     if (!error && body.code == 0) {
                         var leftQuantity;
                         orderPop.product.options.forEach(function(option){
-                          console.log(orderPop.option);
                           if (option.name === orderPop.option)
                           leftQuantity = parseInt(option.quantity);
                         });
@@ -641,7 +633,6 @@ router.post('/deposit_checkout', function(req, res) {
           return res.redirect('/success');
         if (err)
           console.log(err);
-        console.log(order);
         order.status = "Waiting";
         order.deposit_name = req.body.deposit_name;
         order.created_at = Date.now();
@@ -672,7 +663,6 @@ router.post('/deposit_checkout', function(req, res) {
             }
             var html = vash.compile(file);
             moment.locale('ko');
-            console.log(order);
             transporter.sendMail({
               from: '데일리 붐 <contact@dailyboom.co>',
               to: order.user ? order.user.email : order.email,
@@ -899,11 +889,9 @@ router.get('/orders/paid/:id', isAdmin, function(req, res) {
         if (err)
           console.log(err);
         Product.findOne({ _id: order.product }, function(err, product) {
-          console.log(product.options);
           product.options.forEach(function(option){
             if (option.name === order.option) {
               option.quantity -= order.quantity;
-              console.log(product.options);
               product.markModified('options');
               product.save(function(err) {
                 if (err)
@@ -1236,7 +1224,7 @@ router.post('/shipping', function(req, res) {
                         from: '데일리 붐 <contact@dailyboom.co>',
                         to: user.email,
                         subject: user.username+'님 회원가입을 축하드립니다.',
-                        html: html({ user : user })
+                        html: html({ user : user, i18n: i18n })
                       }, function (err, info) {
                           if (err) { console.log(err); }
                           //console.log('Message sent: ' + info.response);
