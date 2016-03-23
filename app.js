@@ -98,6 +98,7 @@ if (app.get('env') === 'production') {
   app.listen(3000);
 }
 else {
+  app.listen(3000);    
   mongoose.set('debug', true);
 }
 app.use(function(req, res, next) {
