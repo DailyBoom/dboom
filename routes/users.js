@@ -7,6 +7,7 @@ var moment = require('moment');
 var smtpTransport = require('nodemailer-smtp-transport');
 var User = require("../models/user");
 var Product = require("../models/product");
+var Partner = require("../models/partner");
 var Order = require("../models/order");
 var Coupon = require("../models/coupon");
 var Comment = require("../models/comment");
