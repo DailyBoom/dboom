@@ -271,51 +271,13 @@
 					<br>
 				</div>
 				<div id="db-partners" class="owl-carousel owl-theme">
-					<div class="col s12">
-						<a href="http://www.medihealshop.com/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/mediheal.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="https://www.my-memoirs.com/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/mymemoirs.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="http://www.candyroo.com/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/candyroo_2.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="http://www.craft-link.co.kr/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/craftlink.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="https://www.pinterest.com/ddam_living/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/ddam.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="http://bodyfantasies.kr/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/sexiest.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="http://www.varyd.com/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/varyd.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="http://www.tkbr.co.kr/" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/tkbr.png');"></div>
-						</a>
-					</div><!-- .col -->
-					<div class="col s12">
-						<a href="www.zonecode.org" target="_blank">
-							<div class="partner-logo" style="background-image: url('/images/partners/zone.png');"></div>
-						</a>
-					</div><!-- .col -->
+					@model.partners.forEach(function(partner) {
+						<div class="col s12">
+							<a href="@partner.url" target="_blank">
+								<div class="partner-logo" style="background-image: url('/@partner.logo');"></div>
+							</a>
+						</div><!-- .col -->
+					})
 				</div><!-- /.owl-carousel -->
 			</div><!-- .row -->
 			<br>

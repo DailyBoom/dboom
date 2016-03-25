@@ -182,7 +182,9 @@ router.get('/extend/:id', function(req, res, next) {
     else {
       res.redirect('/');
     }
-    res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2, cover: product.images[0] });
+    Partner.find({}, function(err, partners) {
+        res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2, cover: product.images[0], partners: partners });
+    });
   });
 });
 
