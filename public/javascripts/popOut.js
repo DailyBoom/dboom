@@ -9,6 +9,8 @@ $(document).ready(function() {
 				window.clearInterval(pollTimer);
 				if ($("#facebook").attr('data-product'))
 					window.location.href = "/checkout?product_id="+$("#facebook").data('product');
+                else if ($('#facebook').attr('data-mall'))
+                    window.location.href = "/mall/checkout";
 				else
 					location.reload();
 			}
@@ -24,6 +26,8 @@ $(document).ready(function() {
 				window.clearInterval(pollTimer);
 				if ($("#kakao").attr('data-product'))
 					window.location.href = "/checkout?product_id"+$("#kakao").data('product');
+                else if ($('#kakao').attr('data-mall'))
+                    window.location.href = "/mall/checkout";
 				else
 					location.reload();
 			}

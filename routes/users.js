@@ -38,6 +38,35 @@ var isAdmin = function (req, res, next) {
   res.redirect('/login');
 }
 
+router.get('/mall/login', function(req, res, next) {
+  if (req.user)
+    return res.redirect('/mall');
+  var message = req.session.messages || [];
+  delete req.session.messages;
+  res.render('mall/login', { title: '로그인', errors: message });
+});
+
+router.post('/mall/login', passport.authenticate('local', {
+    failureRedirect: '/login',
+    failureMessage: '죄송합니다. 로그인에 실패했습니다. 아이디와 비밀번호를 확인하고 다시 로그인해주세요.'
+    }), function(req, res, next) {
+    // issue a remember me cookie if the option was checked
+    console.log(next);
+    if (!req.body.remember_me) { return next(); }
+
+    var token = new Token({
+      token: crypto.randomBytes(64).toString('hex'),
+      userId: req.user._id
+    });
+    token.save(function(err) {
+      if (err) { return next(err); }
+      res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days
+      return next();
+    });
+  }, function(req, res) {
+    res.redirect('/mall/checkout');
+});
+
 router.get('/login', function(req, res, next) {
   if (req.user)
     return res.redirect('/');
@@ -49,7 +78,7 @@ router.get('/login', function(req, res, next) {
 router.post('/login', passport.authenticate('local', {
     failureRedirect: '/login',
     failureMessage: '죄송합니다. 로그인에 실패했습니다. 아이디와 비밀번호를 확인하고 다시 로그인해주세요.'
-}), function(req, res, next) {
+    }), function(req, res, next) {
     // issue a remember me cookie if the option was checked
     console.log(next);
     if (!req.body.remember_me) { return next(); }

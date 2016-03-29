@@ -123,9 +123,9 @@ app.use(function(req, res, next) {
   else
     next();
 });
+app.use('/', users);
 app.use('/', orders);
 app.use('/', routes);
-app.use('/', users);
 app.use('/', products);
 app.use('/', partners);
 

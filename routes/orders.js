@@ -275,6 +275,13 @@ router.get('/mall/checkout', function(req, res) {
     return res.redirect('/mall');
   }
   else {
+    if (req.query.no_login && req.query.no_login == 1) {
+        console.log(req.query.no_login);
+        req.session.no_login = true;
+    }
+    if (!req.user && !req.session.no_login) {
+        return res.redirect('/mall/login');
+    }
     Order.findOne({ _id: req.session.cart_order }).populate('cart.product').exec(function(err, order) {
       if (err)
         console.log(err);
