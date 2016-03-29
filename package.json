@@ -13,7 +13,7 @@
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
     "vash": "~0.9.3",
-    "mongoose": "~4.2.8",
+    "mongoose": "~4.4.10",
     "materialize-css": "~0.96.1",
     "bcrypt": "~0.8.5",
     "passport": "~0.3.0",
@@ -39,7 +39,12 @@
     "express-sitemap": "~1.6.1",
     "mongoose-pagination": "~1.0.0",
     "express-paginate": "~0.1.0",
-    "mime-types": "~2.1.8"
+    "mime-types": "~2.1.8",
+    "mongoose-unique-validator": "~1.0.2",
+    "mongoose-i18n": "~0.2.1",
+    "mongoose-to-csv": "~0.1.0",
+    "csv-transform": "0.0.8",
+    "accounting": "~0.4.1"
   },
   "description": "",
   "main": "app.js",
