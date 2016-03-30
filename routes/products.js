@@ -8,7 +8,7 @@ var i18n = require('i18n');
 var mime = require('mime-types');
 var crypto = require("crypto");
 var config = require('config-heroku');
-var slack = require('slack-notify')(config.get("Slack.webhookUrl"));
+var slack = require('slack-notify')(config.Slack.webhookUrl);
 var paginate = require('express-paginate');
 var app = express();
 

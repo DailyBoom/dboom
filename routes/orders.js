@@ -87,18 +87,18 @@ var getOrderCartTotal = function(order) {
 
 var reservePayco = function(order) {
   var payco = {
-    "sellerKey": config.get("Payco.sellerKey"),
+    "sellerKey": config.Payco.sellerKey,
     "sellerOrderReferenceKey": order._id,
     "totalDeliveryFeeAmt": 0,
     "totalPaymentAmt": order.totalOrderAmt,
-    "returnUrl": config.get("Payco.returnUrl"),
+    "returnUrl": config.Payco.returnUrl,
     "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
     "orderMethod": "EASYPAY",
     "payMode": "PAY2",
     "orderProducts": [
         {
-          "cpId": config.get("Payco.cpId"),
-          "productId": config.get("Payco.productId"),
+          "cpId": config.Payco.cpId,
+          "productId": config.Payco.productId,
           "productAmt": order.totalOrderAmt,
           "productPaymentAmt": order.totalOrderAmt,
           "sortOrdering": 1,
@@ -116,11 +116,11 @@ var reservePayco = function(order) {
 
 var reserveCartPayco = function(order) {
   var payco = {
-    "sellerKey": config.get("Payco.sellerKey"),
+    "sellerKey": config.Payco.sellerKey,
     "sellerOrderReferenceKey": order._id,
     "totalDeliveryFeeAmt": order.totalOrderAmt < 50000 ? 2500 : 0,
     "totalPaymentAmt": order.totalOrderAmt,
-    "returnUrl": config.get("Payco.returnMallUrl"),
+    "returnUrl": config.Payco.returnMallUrl,
     "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
     "orderMethod": "EASYPAY",
     "payMode": "PAY2",
@@ -129,8 +129,8 @@ var reserveCartPayco = function(order) {
 
   order.cart.forEach(function(item) {
     payco.orderProducts.push({
-      "cpId": config.get("Payco.cpId"),
-      "productId": config.get("Payco.productId"),
+      "cpId": config.Payco.cpId,
+      "productId": config.Payco.productId,
       "productAmt": item.product.price * item.quantity,
       "productPaymentAmt": item.product.price *item.quantity,
       "sortOrdering": 1,
@@ -143,8 +143,8 @@ var reserveCartPayco = function(order) {
   
   if (order.totalOrderAmt < 50000) {
     payco.orderProducts.push({
-      "cpId": config.get("Payco.cpId"),
-      "productId": config.get("Payco.productId"),
+      "cpId": config.Payco.cpId,
+      "productId": config.Payco.productId,
       "productAmt": 2500,
       "productPaymentAmt": 2500,
       "sortOrdering": 1,
@@ -290,7 +290,7 @@ router.get('/mall/checkout', function(req, res) {
         order.save(function(err) {
           var payco = reserveCartPayco(order);
           request.post(
-            config.get("Payco.host")+'/outseller/order/reserve',
+            config.Payco.host+'/outseller/order/reserve',
             { json: payco },
             function (error, response, body) {
               console.log(body)
@@ -513,7 +513,7 @@ router.get('/checkout', function(req, res) {
               if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
                 var payco = reservePayco(orderPop);
                 request.post(
-                    config.get("Payco.host")+'/outseller/order/reserve',
+                    config.Payco.host+'/outseller/order/reserve',
                     { json: payco },
                     function (error, response, body) {
                         console.log(body)
@@ -553,7 +553,7 @@ router.get('/checkout', function(req, res) {
             getOrderTotal(order);
             var payco = reservePayco(orderPop);
             request.post(
-                config.get("Payco.host")+'/outseller/order/reserve',
+                config.Payco.host+'/outseller/order/reserve',
                 { json: payco },
                 function (error, response, body) {
                     console.log(body);
@@ -602,7 +602,7 @@ router.post('/checkout', function(req, res) {
             getOrderTotal(order);
             var payco = reservePayco(order);
             request.post(
-                config.get("Payco.host")+'/outseller/order/reserve',
+                config.Payco.host+'/outseller/order/reserve',
                 { json: payco },
                 function (error, response, body) {
                     console.log(body)
@@ -701,14 +701,14 @@ router.all('/payco_callback', function (req, res) {
   console.log(resp);
   if (resp.code == 0) {
     var payco = {
-      "sellerKey": config.get("Payco.sellerKey"),
+      "sellerKey": config.Payco.sellerKey,
       "reserveOrderNo": resp.reserveOrderNo,
       "sellerOrderReferenceKey": resp.sellerOrderReferenceKey,
       "paymentCertifyToken": resp.paymentCertifyToken,
       "totalPaymentAmt": resp.totalPaymentAmt
     }
     request.post(
-      config.get("Payco.host") + '/outseller/payment/approval',
+      config.Payco.host + '/outseller/payment/approval',
       { json: payco },
       function (error, response, body) {
         console.log(body)
@@ -792,14 +792,14 @@ router.all('/mall/payco_callback', function (req, res) {
   console.log(resp);
   if (resp.code == 0) {
     var payco = {
-      "sellerKey": config.get("Payco.sellerKey"),
+      "sellerKey": config.Payco.sellerKey,
       "reserveOrderNo": resp.reserveOrderNo,
       "sellerOrderReferenceKey": resp.sellerOrderReferenceKey,
       "paymentCertifyToken": resp.paymentCertifyToken,
       "totalPaymentAmt": resp.totalPaymentAmt
     }
     request.post(
-      config.get("Payco.host") + '/outseller/payment/approval',
+      config.Payco.host + '/outseller/payment/approval',
       { json: payco },
       function (error, response, body) {
         console.log(body)
@@ -1011,14 +1011,14 @@ router.get('/orders/cancel/:id', function(req, res) {
     if (!order || moment().isAfter(order.created_at, 'days'))
       return res.redirect('/mypage');
     var payco = {
-      "sellerKey" : config.get("Payco.sellerKey"),
+      "sellerKey" : config.Payco.sellerKey,
       "orderNo" : order.payco.orderNo,
       "sellerOrderReferenceKey": order.payco.sellerOrderReferenceKey,
       "orderCertifyKey" : order.payco.orderCertifyKey,
       "cancelTotalAmt": order.payco.totalOrderAmt
     };
     request.post(
-      config.get("Payco.host")+'/outseller/order/cancel',
+      config.Payco.host+'/outseller/order/cancel',
       { json: payco },
       function (error, response, body) {
         console.log(body);

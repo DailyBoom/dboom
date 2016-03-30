@@ -155,9 +155,9 @@ passport.use(new LocalStrategy(
 ));
 
 passport.use(new FacebookStrategy({
-    clientID: config.get("Facebook.clientID"),
-    clientSecret: config.get("Facebook.clientSecret"),
-    callbackURL: config.get("Facebook.callbackURL"),
+    clientID: config.Facebook.clientID,
+    clientSecret: config.Facebook.clientSecret,
+    callbackURL: config.Facebook.callbackURL,
     profileFields: ['id', 'displayName'],
     passReqToCallback: true
   },
@@ -193,8 +193,8 @@ passport.use(new FacebookStrategy({
 ));
 
 passport.use(new KakaoStrategy({
-    clientID : config.get("Kakao.clientID"),
-    callbackURL : config.get("Kakao.callbackURL"),
+    clientID : config.Kakao.clientID,
+    callbackURL : config.Kakao.callbackURL,
     passReqToCallback: true    
   },
   function(req, accessToken, refreshToken, profile, done){
