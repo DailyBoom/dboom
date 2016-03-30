@@ -365,6 +365,7 @@ else {
 					<br>
 				</div>
 				<div id="db-partners" class="owl-carousel owl-theme">
+                    @if (model.partners) {
 					@model.partners.forEach(function(partner) {
 						<div class="col s12">
 							<a href="@partner.url" target="_blank">
@@ -372,6 +373,7 @@ else {
 							</a>
 						</div><!-- .col -->
 					})
+                    }
 				</div><!-- /.owl-carousel -->
 			</div><!-- .row -->
 			<br>
