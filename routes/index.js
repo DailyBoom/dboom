@@ -39,10 +39,10 @@ router.get('/', function(req, res, next) {
     var toast = "크리스마스/연말 이벤트 - 가입시 무료 배송 쿠폰!";
   }
   var date = null;
-  if (moment().format("MM/DD/YYYY") == "03/31/2016")
+  if (now == "03/30/2016" || now == "03/31/2016")
   {
-      now = moment().subtract(1, 'days').format("MM/DD/YYYY");
-      date = "03/31/2016";
+      now = "03/30/2016";
+      date = "03/30/2016";
   }
   Product.findOne({scheduled_at: now, is_published: true }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
     Product.find({scheduled_at: {$lt: now} }).limit(6).sort({ 'scheduled_at' : -1 }).exec(function (err, pastProducts) {
