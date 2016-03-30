@@ -99,7 +99,7 @@ app.use(passport.authenticate('remember-me'));
 // }
 // else {
 //   app.listen(3000);    
-//   mongoose.set('debug', true);
+mongoose.set('debug', true);
 // }
 app.use(function(req, res, next) {
   console.log(i18n.getLocale(res));
