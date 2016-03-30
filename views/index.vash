@@ -433,9 +433,9 @@ $(window).load(function() {
 		var is_mobile = @model.is_phone;
 		var momentTom = '@(model.date ? model.date : null)';
 		if (momentTom)
-		momentTom = moment(momentTom).tz("Asia/Seoul").add(3, 'days').hours(0).minutes(0).seconds(0);
+		    momentTom = moment(momentTom).tz("Asia/Seoul").add(2, 'days').hours(0).minutes(0).seconds(0);
 		else if (now.day() == 6) {
-		momentTom = moment().tz("Asia/Seoul").add(2, 'days').hours(0).minutes(0).seconds(0);
+		    momentTom = moment().tz("Asia/Seoul").add(2, 'days').hours(0).minutes(0).seconds(0);
 		}
 		else
 		momentTom = moment().tz("Asia/Seoul").add(1, 'days').hours(0).minutes(0).seconds(0);

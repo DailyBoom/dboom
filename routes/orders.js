@@ -459,6 +459,10 @@ router.get('/checkout', function(req, res) {
     now = moment().subtract(1, 'days').format("MM/DD/YYYY");
   else
     now = moment().format("MM/DD/YYYY");
+  if (moment().format("MM/DD/YYYY") == "03/31/2016")
+  {
+      now = moment().subtract(1, 'days').format("MM/DD/YYYY");
+  }
   Product.findOne({_id: req.query.product_id ? req.query.product_id : req.session.product, is_published: true}, function(err, product) {
     if (err)
       console.log(err);
