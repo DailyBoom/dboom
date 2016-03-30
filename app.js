@@ -26,7 +26,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var KakaoStrategy = require('passport-kakao').Strategy;
 var RememberMeStrategy = require('passport-remember-me').Strategy;
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://heroku_p56bmdfp:o8m3es0g4d@ds025429.mlab.com:25429/heroku_p56bmdfp');
+mongoose.connect('mongodb://dailyboom:Dailyboom1!@ds025429.mlab.com:25429/heroku_p56bmdfp');
 var paginate = require('express-paginate');
 var device = require('express-device');
 var User = require('./models/user');
@@ -98,7 +98,7 @@ app.use(passport.authenticate('remember-me'));
 //   app.listen(3000);
 // }
 // else {
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 3000);
 mongoose.set('debug', true);
 // }
 app.use(function(req, res, next) {
