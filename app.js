@@ -98,7 +98,7 @@ app.use(passport.authenticate('remember-me'));
 //   app.listen(3000);
 // }
 // else {
-//   app.listen(3000);    
+app.listen(process.env.PORT);
 mongoose.set('debug', true);
 // }
 app.use(function(req, res, next) {
