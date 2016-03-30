@@ -14,7 +14,7 @@ var nodemailer = require('nodemailer');
 var util = require("util");
 
 var transporter = nodemailer.createTransport(smtpTransport({
-    host: config.get('Nodemailer.host'),
+    host: config.Nodemailer.host,
     auth: {
         user: config.get('Nodemailer.auth.user'),
         pass: config.get('Nodemailer.auth.pass')
