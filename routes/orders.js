@@ -16,17 +16,17 @@ var i18n = require('i18n');
 var config = require('config-heroku');
 var extend = require('util')._extend;
 var request = require("request");
-var slack = require('slack-notify')(config.get("Slack.webhookUrl"));
+var slack = require('slack-notify')(config.Slack.webhookUrl);
 var CSVTransform = require('csv-transform');
 var accounting = require('accounting');
 var paginate = require('express-paginate');
 require('mongoose-pagination');
 
 var transporter = nodemailer.createTransport(smtpTransport({
-    host: config.get('Nodemailer.host'),
+    host: config.Nodemailer.host,
     auth: {
-        user: config.get('Nodemailer.auth.user'),
-        pass: config.get('Nodemailer.auth.pass')
+        user: config.Nodemailer.auth.user,
+        pass: config.Nodemailer.auth.pass
     }
 }));
 

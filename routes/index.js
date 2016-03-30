@@ -16,8 +16,8 @@ var util = require("util");
 var transporter = nodemailer.createTransport(smtpTransport({
     host: config.Nodemailer.host,
     auth: {
-        user: config.get('Nodemailer.auth.user'),
-        pass: config.get('Nodemailer.auth.pass')
+        user: config.Nodemailer.auth.user,
+        pass: config.Nodemailer.auth.pass
     }
 }));
 // As with any middleware it is quintessential to call next()

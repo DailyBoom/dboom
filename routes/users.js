@@ -19,10 +19,10 @@ var fs = require('fs');
 var paginate = require('express-paginate');
 require('mongoose-pagination');
 var transporter = nodemailer.createTransport(smtpTransport({
-    host: config.get('Nodemailer.host'),
+    host: config.Nodemailer.host,
     auth: {
-        user: config.get('Nodemailer.auth.user'),
-        pass: config.get('Nodemailer.auth.pass')
+        user: config.Nodemailer.auth.user,
+        pass: config.Nodemailer.auth.pass
     }
 }));
 
