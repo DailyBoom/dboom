@@ -12,7 +12,7 @@ var crypto = require('crypto');
 var sitemap = require('express-sitemap')({url: 'dailyboom.co'});
 var i18n = require('i18n');
 i18n.configure({
-    defaultLocale: 'ko',
+    defaultLocale: 'vi',
     locales: ['ko', 'en', 'vi'],
     directory: path.join(__dirname, 'locales'),
     cookie: 'dboom_locale'
@@ -49,7 +49,7 @@ app.set('view engine', 'vash');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 var validateOptions = {
   i18n: {
-    defaultLocale: 'ko',
+    defaultLocale: 'vi',
     directory: path.join(__dirname, 'locales')
   }
 }
@@ -108,10 +108,10 @@ app.use(function(req, res, next) {
     i18n.setLocale(req, req.query.lang);
   }
   else if (!req.cookies.dboom_locale) {
-    i18n.setLocale(req, 'ko');
+    i18n.setLocale(req, 'vi');
   }
   res.locals.user = req.user;
-  moment.locale('ko');
+  moment.locale('vi');
   res.locals.moment = moment;
   res.locals.url = req.url;
   if (req.session.cart_order) {
