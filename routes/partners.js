@@ -3,18 +3,31 @@ var router = express.Router();
 var Partner = require("../models/partner");
 var multer  = require('multer');
 var mime = require('mime-types');
+var s3 = require('multer-s3');
 var crypto = require("crypto");
 
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './uploads/')
-  },
-  filename: function (req, file, cb) {
-    crypto.pseudoRandomBytes(16, function (err, raw) {
-      cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
-    });
-  }
-});
+var storage = s3({
+    dirname: 'uploads',
+    bucket: 'dailyboom',
+    secretAccessKey: config.Amazon.secretAccessKey,
+    accessKeyId: config.Amazon.accessKeyId,
+    region: 'ap-northeast-2',
+    filename: function (req, file, cb) {
+        console.log(file);
+        cb(null, Date.now() + file.originalname);
+    }
+})
+
+// multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, './uploads/')
+//   },
+//   filename: function (req, file, cb) {
+//     crypto.pseudoRandomBytes(16, function (err, raw) {
+//       cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+//     });
+//   }
+// });
 
 var upload = multer({ storage: storage });
 
@@ -46,7 +59,7 @@ router.post("/partners/edit/:id", isAdmin, upload.single('logo'), function(req, 
     partner.url = req.body.url;
     console.log(req.file);
     if (req.file)
-      partner.logo = req.file.path;
+      partner.logo = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.file.key;
     console.log(partner)
     partner.save(function(err) {
       res.redirect('/partners');
@@ -57,7 +70,7 @@ router.post("/partners/edit/:id", isAdmin, upload.single('logo'), function(req, 
 router.post("/partners/new", isAdmin, upload.single('logo'), function(req, res, next) {
   var partner = new Partner({
     name: req.body.name,
-    logo: req.file.path,
+    logo: "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.file.key,
     url: req.body.url
   })
   
