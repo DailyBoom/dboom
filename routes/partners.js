@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Partner = require("../models/partner");
 var multer  = require('multer');
+var config = require('config-heroku');
 var mime = require('mime-types');
 var s3 = require('multer-s3');
 var crypto = require("crypto");
