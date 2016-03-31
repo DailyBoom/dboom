@@ -152,7 +152,7 @@
                     @model.cart.forEach(function(item) {
                       <li class="col s12">
                         <a href="/mall/@item.product.brand/@item.product.id" class="row m-b-0">
-                          <img class="col s4" src="/@item.product.images[0]"/>
+                          <img class="col s4" src="@item.product.images[0]"/>
                           <span class="col s8 truncate">@item.product.name</span>
                         </a>
                       </li>

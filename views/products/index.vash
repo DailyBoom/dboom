@@ -45,7 +45,7 @@
 								<span class="right red-text">Not Published</span>
 							}
 						</div>
-						<img class="" src="/@product.images[0]" alt="@product.name" />
+						<img class="" src="@product.images[0]" alt="@product.name" />
 					</div><!-- .card-image -->
 					<div class="card-content past mall">
 						<p class="blue-grey-text text-darken-1 truncate"><b>@product.name</b></p>

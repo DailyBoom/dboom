@@ -107,7 +107,7 @@
 		<div class="hero-left">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
 				@model.product.images.forEach(function(img) {
-					<div class="slide" style="background-image: url(/@img);">
+					<div class="slide" style="background-image: url(@img);">
 						@if(model.progress >= 100) {
 							<img class="sold-out" src="/images/sold-out.png" />
 						}
@@ -125,7 +125,7 @@
 			@{ var x = 0; }
 			@model.product.images.forEach(function(img) {
 				<a class="hero-img" data-slide-index="@x">
-					<div class="hero-thumbnail" style="background-image: url(/@img);"></div>
+					<div class="hero-thumbnail" style="background-image: url(@img);"></div>
 				</a>
 				@{ x++; }
 			})
@@ -313,7 +313,7 @@
 															@product.price
 														</div>
 													</div><!-- .card-image-ol -->
-													<img class="img-past" src="/@product.images[0]" alt="" />
+													<img class="img-past" src="@product.images[0]" alt="" />
 													</a>
 												</div>
 												<div class="card-content past">

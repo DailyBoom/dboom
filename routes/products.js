@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var multer  = require('multer');
+var s3 = require('multer-s3');
 var moment = require("moment");
 var Product = require("../models/product");
 var User = require("../models/user");
@@ -13,16 +14,28 @@ var paginate = require('express-paginate');
 var app = express();
 
 
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './uploads/')
-  },
-  filename: function (req, file, cb) {
-    crypto.pseudoRandomBytes(16, function (err, raw) {
-      cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
-    });
-  }
-});
+var storage = s3({
+    dirname: 'uploads',
+    bucket: 'dailyboom',
+    secretAccessKey: config.Amazon.secretAccessKey,
+    accessKeyId: config.Amazon.accessKeyId,
+    region: 'ap-northeast-2',
+    filename: function (req, file, cb) {
+        console.log(file);
+        cb(null, Date.now() + file.originalname);
+    }
+})
+
+// multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, './uploads/')
+//   },
+//   filename: function (req, file, cb) {
+//     crypto.pseudoRandomBytes(16, function (err, raw) {
+//       cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+//     });
+//   }
+// });
 
 var upload = multer({ storage: storage });
 
@@ -130,7 +143,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
     else {
       if (req.files['photosmain']) {
         var paths = req.files['photosmain'].map(function(item) {
-            return item.path;
+            return "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + item.key;
         });
       }
       var quantity = 0;
@@ -147,9 +160,9 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         images: paths,
         scheduled_at: req.body.selldate,
         brand: req.body.brandname,
-        brand_logo: req.files['brandlogo'] ? req.files['brandlogo'][0].path : '',
-        delivery_info: req.files['deliveryinfo'] ? req.files['deliveryinfo'][0].path : '',
-        description_image: req.files['description_image'] ? req.files['description_image'][0].path : '',
+        brand_logo: req.files['brandlogo'] ? "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['brandlogo'][0].key : '',
+        delivery_info: req.files['deliveryinfo'] ? "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['deliveryinfo'][0].key : '',
+        description_image: req.files['description_image'] ? "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['description_image'][0].key : '',
         options: req.body.options,
         is_published: false,
         video: req.body.videoUrl,
@@ -228,21 +241,22 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
 
     if (req.files['photosmain']) {
       var paths = req.files['photosmain'].map(function(item) {
-          return item.path;
+          console.log(item);
+          return "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + item.key;
       });
       product.images = paths;
     }
 
     if (req.files['brandlogo']) {
-      product.brand_logo = req.files['brandlogo'][0].path;
+      product.brand_logo = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['brandlogo'][0].key;
     }
 
     if (req.files['deliveryinfo']) {
-      product.delivery_info = req.files['deliveryinfo'][0].path;
+      product.delivery_info = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['deliveryinfo'][0].key;
     }
     
     if (req.files['description_image']) {
-      product.description_image = req.files['description_image'][0].path;
+      product.description_image = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['description_image'][0].key;
     }
 
     console.log(product);

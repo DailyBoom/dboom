@@ -30,7 +30,7 @@
 					<div class="col s12 cart-header center"><span class="col s9">상품정보</span><span class="col s3">상품금액</span></div>
 					@model.order.cart.forEach(function(item, index) {
 						<div class="col s12 cart-item">
-							<a href="/mall/product/@item.product.id"><img class="col s3" src="/@item.product.images[0]" /></a>
+							<a href="/mall/product/@item.product.id"><img class="col s3" src="@item.product.images[0]" /></a>
 							<div class="col s6">
 								<a href="/mall/product/@item.product.id" class="product-name blue-grey-text col s12">@item.product.name (@item.product.options[item.option].name)</a>
 								<div class="col s12">수량: <select data-index="@index" autocomplete="off" class="browser-default product-quantity">
