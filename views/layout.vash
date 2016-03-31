@@ -137,8 +137,8 @@
 		<div class="navbar">
 			<nav class="@(model.product && model.product.color ? model.product.color : 'light-blue') darken-3">
 				<div class="container">
-					<a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
-					<a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
+					<a href="/" class="logo-d"><img class="logo-img left" src="/images/dboom_logo_english.png" /></a>
+					<a href="/" class="logo-m"><img class="logo-img left" src="/images/dboom_logo_english.png" /></a>
         	<span id="time-left-mobile" class="hide-on-med-and-up d-clock white-text left"></span>
           @if(@model.cart) {
             <ul class="right hide-on-small-only">
