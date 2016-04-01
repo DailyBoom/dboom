@@ -245,8 +245,8 @@
                       </a>
                     </li>
                   }
-									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href="/login">로그인 <i class="fa fa-sign-in right"></i></a></li>
-									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href="/signup">회원가입 <i class="fa fa-user-plus right"></i></a></li>
+									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href="/login">@model.__('login') <i class="fa fa-sign-in right"></i></a></li>
+									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href="/signup">@model.__('signup') <i class="fa fa-user-plus right"></i></a></li>
 								</ul>
 							</li>
 						</ul>
