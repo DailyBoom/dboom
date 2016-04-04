@@ -38,13 +38,13 @@
 			<div class="row" id="j_pickdate">
 				<div class="input-field col s12 m12 l12">
 					<input id="selldate" type="date" class="datepicker" name="selldate">
-					<label for="selldate" style="margin-top: -1.75rem;">판매 희망 날짜 *</label>
+					<label for="selldate" style="margin-top: -1.75rem;">@model.__('product.sellDate') *</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12 m8 l8">
 					<input id="brandname" type="text" class="validate" name="brandname" required>
-					<label for="brandname">브랜드 명 *</label>
+					<label for="brandname">@model.__('product.brandName') *</label>
 				</div>
 				<div class="file-field input-field col s12 m4 l4">
 					<span class="hide-on-med-and-up"><br></span>
@@ -68,7 +68,7 @@
 								<option value="@merchant.id">@merchant.username / @merchant.name</option>
 							})
 						</select>
-						<label for="merchant_id">판매자 아이디 *</label>
+						<label for="merchant_id">@model.__('product.merchantId') *</label>
 					}
 					else {
 						<input id="merchant_id" name="merchant_id" type="hidden" value="@model.user.id" />
@@ -79,14 +79,14 @@
 			<div class="row">
 				<div class="input-field col s12">
 					<input id="name" type="text" class="validate" name="name" required="true" maxlength="30">
-					<label for="name">상품 이름 *</label>
+					<label for="name">@model.__('product.name') *</label>
 				</div>
 			</div>
 			<!-- .row -->
 			<div class="row">
 				<div class="input-field col s12">
 					<textarea id="description" type="text" class="validate materialize-textarea" name="description" required></textarea>
-					<label for="description">상품 정보 *</label>
+					<label for="description">@model.__('product.description') *</label>
 				</div>
 			</div>
 			<div class="file-field input-field">
@@ -126,11 +126,11 @@
 				<div class="row options_row">
 					<div class="input-field col s12 m6 l6">
 						<input id="option_name" type="text" class="validate" name="options[0][name]" required>
-						<label for="option_name">옵션 * 예) 상품 색성</label>
+						<label for="option_name">@model.__('product.optionName')</label>
 					</div>
 					<div class="input-field col s12 m6 l6">
 						<input id="o_quantity" type="number" class="validate" name="options[0][quantity]" required>
-						<label for="o_quantity">옵션 수량 *</label>
+						<label for="o_quantity">@model.__('product.optionQuantity') *</label>
 					</div>
 				</div>
 			</div>
@@ -141,19 +141,19 @@
 				<div class="input-field col s12 m6 l6">
 					<i class="fa fa-krw prefix"></i>
 					<input id="oldPrice" type="number" class="validate" name="oldPrice" required>
-					<label for="oldPrice">정상 가격 *</label>
+					<label for="oldPrice">@model.__('product.oldPrice') *</label>
 				</div>
 				<div class="input-field col s12 m6 l6">
 					<i class="fa fa-krw prefix"></i>
 					<input id="price" type="number" class="validate" name="price" required>
-					<label for="price">데일리 붐 가격 *</label>
+					<label for="price">@model.__('product.price') *</label>
 				</div>
 			</div>
 			<!-- .row -->
 			<div class="file-field input-field">
 				<br>
 				<span class="hide-on-small-only"><br></span>
-				<span for="photosmain" class="input-file-mod grey-text">상품 사진 기본 (Max: 4) *</span>
+				<span for="photosmain" class="input-file-mod grey-text">@model.__('product.photosMain') (Max: 4) *</span>
 				<div class="btn blue-grey darken-2">
 					<span><i class="fa fa-image left"></i>선택</span>
 					<input id="photosmain" type="file" class="validate" name="photosmain" multiple required>
@@ -253,7 +253,7 @@
 		$(add_button).click(function(e){ //on add input button click
 			e.preventDefault();
 			if(x++ < max_fields) { //max input box allowed
-				$(wrapper).append('<div class="row options_row"><div class="input-field col s12 m6 l6"><input id="option_name'+x+'" type="text" class="validate" name="options['+x+'][name]"><label for="option_name'+x+'">옵션 * 예) 상품 색성</label></div><div class="input-field col s12 m6 l6"><input id="o_quatity'+x+'" type="number" class="validate" name="options['+x+'][quantity]"><label for="o_quantity'+x+'">옵션 수량 *</label></div></div>'); //add input box
+				$(wrapper).append('<div class="row options_row"><div class="input-field col s12 m6 l6"><input id="option_name'+x+'" type="text" class="validate" name="options['+x+'][name]"><label for="option_name'+x+'">@model.__("product.optionName")</label></div><div class="input-field col s12 m6 l6"><input id="o_quatity'+x+'" type="number" class="validate" name="options['+x+'][quantity]"><label for="o_quantity'+x+'">@model.__("product.optionQuantity") *</label></div></div>'); //add input box
 			}
 		});
 		$(wrapper).on("click","#remove_option", function(e){ //user click on remove text

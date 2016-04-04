@@ -49,13 +49,13 @@
 				<br>
 				<div class="input-field col s12 m12 l12">
 					<input id="selldate" type="date" class="datepicker" name="selldate" value="@(model.product.scheduled_at ? model.moment(model.product.scheduled_at).format('MM/DD/YYYY') : '')">
-					<label for="selldate" style="margin-top: -1.75rem;">판매 희망 날짜 *</label>
+					<label for="selldate" style="margin-top: -1.75rem;">@model.__('product.sellDate') *</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12 m8 l8">
 					<input id="brandname" type="text" class="validate" name="brandname" value="@model.product.brand">
-					<label for="brandname">브랜드 명 *</label>
+					<label for="brandname">@model.__('product.brandName') *</label>
 				</div>
 				<div class="file-field input-field col s12 m4 l4">
 					<span class="hide-on-med-and-up"><br></span>
@@ -74,7 +74,7 @@
 				<div class="input-field col s12">
 					@if(@model.user.admin) {
 						<input id="merchant_id" type="text" class="validate" name="merchant_id" value="@model.product.merchant_id">
-						<label for="merchant_id">판매자 아이디 *</label>
+						<label for="merchant_id">@model.__('product.merchantId') *</label>
 					}
 					else {
 						<input id="merchant_id" name="merchant_id" type="hidden" value="@model.user.id" />
@@ -85,14 +85,14 @@
 			<div class="row">
 				<div class="input-field col s12">
 					<input id="name" type="text" class="validate" name="name" required="true" maxlength="30" value="@model.product.name">
-					<label for="name">상품 이름 *</label>
+					<label for="name">@model.__('product.name') *</label>
 				</div>
 			</div>
 			<!-- .row -->
 			<div class="row">
 				<div class="input-field col s12">
 					<textarea id="description" type="text" class="validate materialize-textarea" name="description">@model.product.description</textarea>
-					<label for="description">상품 정보 *</label>
+					<label for="description">@model.__('product.description') *</label>
 				</div>
 			</div>
 			<div class="file-field input-field">
@@ -135,11 +135,11 @@
 						<div class="row options_row">
 							<div class="input-field col s12 m6 l6">
 								<input id="option_name" type="text" class="validate" name="options[@i][name]" value="@option.name">
-								<label for="option_name">옵션 * 예) 상품 색성</label>
+								<label for="option_name">@model.__('product.optionName')</label>
 							</div>
 							<div class="input-field col s12 m6 l6">
 								<input id="o_quatity" type="number" class="validate" name="options[@i][quantity]" value="@option.quantity">
-								<label for="o_quantity">옵션 수량 *</label>
+								<label for="o_quantity">@model.__('product.optionQuantity') *</label>
 							</div>
 						</div>
 						@{ i++; }
@@ -153,18 +153,18 @@
 				<div class="input-field col s12 m6 l6">
 					<i class="fa fa-krw prefix"></i>
 					<input id="oldPrice" type="number" class="validate" name="oldPrice" value="@model.product.old_price">
-					<label for="oldPrice">정상 가격 *</label>
+					<label for="oldPrice">@model.__('product.oldPrice') *</label>
 				</div>
 				<div class="input-field col s12 m6 l6">
 					<i class="fa fa-krw prefix"></i>
 					<input id="price" type="number" class="validate" name="price" value="@model.product.price">
-					<label for="price">데일리 붐 가격 (배송 포함) *</label>
+					<label for="price">@model.__('product.price') *</label>
 				</div>
 			</div>
 			<!-- .row -->
 			@if (model.product.images) {
 				<br>
-				<h5>상품 사진</h5>
+				<h5>@model.__('product.photosMain')</h5>
 				<div class="row">
 				@model.product.images.forEach(function(img) {
 					<div class="col s6 m3 l3">
