@@ -72,18 +72,18 @@
 </div><!-- #modal-check -->
 <!-- Buy Wrapper -->
 <div id="buy-sticky" class="hide-on-small-only buy-sticky-wrapper center @(model.product.color ? model.product.color : 'light-blue')">
-	<a href="#modal-ask" class="buy-help-d modal-trigger">Can't Read Korean? Click here.</a>
+	<a href="#modal-ask" class="buy-help-d modal-trigger hide">Can't Read Korean? Click here.</a>
 	@if (model.user) {
 		@if (model.progress < 100) {
 			<a href="/checkout?product_id=@model.product.id">
-				<img class="buy-mod-img right" src="/images/db_buy_btn.png" alt="Buy Button Daily Boom Korea 데일리 붐" />
+				<img class="buy-mod-img right" src="/images/btn-buy-mobile_2.png" alt="Buy Button Daily Boom Korea 데일리 붐" />
 			</a>
 		}
 	}
 	else {
 		@if (model.progress < 100) {
 			<a href="#modal-check" class="modal-trigger right">
-				<img class="buy-mod-img right" src="/images/db_buy_btn.png" alt="Buy Button Daily Boom Korea 데일리 붐" />
+				<img class="buy-mod-img right" src="/images/btn-buy-mobile_2.png" alt="Buy Button Daily Boom Korea 데일리 붐" />
 			</a>
 		}
 	}
@@ -211,7 +211,7 @@ else {
 					}
 				}
 					<br><br>
-					<a href="#modal-ask" class="hide-on-small-only btn btn-flat buy-help-dd modal-trigger">Can't Read Korean? Click here.</a>
+					<a href="#modal-ask" class="hide btn btn-flat buy-help-dd modal-trigger">Can't Read Vietnamese? Click here.</a>
 				</div>
 			</div>
 			<div class="buy-box-footer @(model.product.color ? model.product.color : 'light-blue') lighten-3">
@@ -295,7 +295,7 @@ else {
 					}
 				}
 			</div>
-			<a href="#modal-ask" class="hide-on-med-and-up buy-help modal-trigger">Can't Read Korean? Click here.</a>
+			<a href="#modal-ask" class="hide buy-help modal-trigger">Can't Read Vietnamese? Click here.</a>
 
 			<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text">
 				@model.__('past_items')
