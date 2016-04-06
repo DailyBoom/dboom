@@ -117,6 +117,10 @@ app.use(function(req, res, next) {
   if (req.session.cart_order) {
     Order.findOne({ _id: req.session.cart_order }).populate('cart.product').exec(function(err, order) {
       res.locals.cart = order.cart;
+      res.locals.cart_total = 0;      
+      order.cart.forEach(function(item) {
+        res.locals.cart_total += item.product.price * item.quantity;
+      });
       next();
     });
   }

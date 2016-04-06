@@ -403,6 +403,8 @@ router.post('/mall/iamport_callback', function (req, res) {
 router.post('/iamport_callback', function (req, res) {
   Order.findOne({ _id: req.body.id }).populate('user').exec(function (err, order) {
     order.status = "Paid";
+    if (req.user)
+      order.shipping = req.user.shipping;
     order.created_at = Date.now();
     order.save(function (err) {
       Product.findOne({ _id: order.product }, function (err, product) {

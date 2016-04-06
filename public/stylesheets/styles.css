@@ -1965,10 +1965,10 @@ input[type=number]::-webkit-outer-spin-button {
     margin-left: 5px;
   }
   #dropdown-cart {
-    min-width: 300px;
+    width: 450px;
   }
   #dropdown-cart li {
-    max-width: 300px;
+    max-width: 450px;
   }
   #dropdown-cart .checkout {
     padding: 10px;

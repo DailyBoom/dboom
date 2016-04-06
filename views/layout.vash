@@ -149,15 +149,23 @@
                 </a>
                 <!-- Dropdown Structure -->
                 <ul id="dropdown-cart" class="row dropdown-content">
+                    <li class="col s12 cart-header">
+                        <span class="col s7 center">상품</span>
+                        <span class="col s2 center">수량</span>
+                        <span class="col s3 center">소계</span>
+                    </li>
                     @model.cart.forEach(function(item) {
                       <li class="col s12">
                         <a href="/mall/@item.product.brand/@item.product.id" class="row m-b-0">
-                          <img class="col s4" src="/@item.product.images[0]"/>
-                          <span class="col s8 truncate">@item.product.name</span>
+                          <img class="col s3" src="/@item.product.images[0]"/>
+                          <span class="col s5 truncate">@item.product.name</span>
+                          <span class="col s1">@item.quantity</span>
+                          <span class="col s3 cart-price">@(item.product.price * item.quantity) 원</span>
                         </a>
                       </li>
                       <li class="divider"></li>
                     })
+                    <li class="col s12 checkout"><span class="right">합계: @model.cart_total 원</span></li>
                     <li class="col s12 checkout"><a href="/mall/checkout" class="btn green right">구매하기 <i class="fa fa-chevron-right"></i></a></li>
                 </ul>
               </li>
