@@ -284,7 +284,7 @@
             <a class="footer-link white-text" href="/terms">@model.__('terms')</a>&#149;
             <a class="footer-link white-text" href="/merchant">@model.__('merchant_contact')</a>
           </div><!-- .col -->
-          <div class="col s12 m4 l4 box-3">
+          <div class="col s12 m4 l4 box-3 hide">
             <p class="text-footer">
               폭스트론 (주)
               <br>대표이사: 김지완
@@ -295,7 +295,7 @@
               <br>Fax: 02-985-1257
             </p>
           </div>
-          <div class="col s12 m5 l5 box-4">
+          <div class="col s12 m5 l5 box-4 right">
             <p class="text-footer">
               @model.__('footer_1')
               <br><br>
