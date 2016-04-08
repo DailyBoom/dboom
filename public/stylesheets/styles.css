@@ -1395,6 +1395,7 @@ input[type=number]::-webkit-outer-spin-button {
     overflow-y: scroll;
   }
   .card .card-image img {
+    height: 191px;
     border-radius: 0;
   }
   .card .card-action.mod {
