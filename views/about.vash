@@ -30,7 +30,7 @@
 			</div>
 			<br>
 			<br>
-			<img class="responsive-img z-depth-1" src="/images/db_cover.jpg">
+			<img class="responsive-img z-depth-1" src="/images/db_about_cover.png">
 		</div><!-- .container -->
 		<script>
 			$(document).ready(function(){
