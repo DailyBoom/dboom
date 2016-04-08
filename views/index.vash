@@ -321,7 +321,7 @@ else {
 															@product.price
 														</div>
 													</div><!-- .card-image-ol -->
-													<img class="" src="@product.images[0]" alt="" />
+													<div class="past-img" style="background-image: url(@product.images[0])" alt=""></div>
 												</div>
 												<div class="card-content past">
 													<div class="blue-grey-text text-darken-1 truncate"><b>@product.name</b></div>
