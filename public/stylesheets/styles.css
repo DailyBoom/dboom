@@ -259,7 +259,7 @@ input[type=number]::-webkit-outer-spin-button {
       position: relative;
       background-position: center center;
       background-size: 100%;
-      height: 191px; 
+      height: 210px; 
   }
 }
 @media only screen and (min-width: 601px) {
@@ -307,6 +307,10 @@ input[type=number]::-webkit-outer-spin-button {
   .buy-mod-img {
     height: 80px;
     margin-top: 15px;
+  }
+  
+  .past-img {
+      height: 191px; 
   }
 }
 @media only screen and (min-width: 992px) {
