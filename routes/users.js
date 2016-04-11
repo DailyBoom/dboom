@@ -29,12 +29,14 @@ var transporter = nodemailer.createTransport(smtpTransport({
 var isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
     return next();
+  req.session.redirect_to = req.originalUrl;
   res.redirect('/login');
 }
 
 var isAdmin = function (req, res, next) {
   if (req.isAuthenticated() && req.user.admin === true)
     return next();
+  req.session.redirect_to = req.originalUrl;
   res.redirect('/login');
 }
 
@@ -95,8 +97,11 @@ router.post('/login', passport.authenticate('local', {
   }, function(req, res) {
   if (req.query.product_id)
     res.redirect('/checkout?product_id=' + req.query.product_id);
-  else
-    res.redirect('/');
+  else {
+    var redirect_to = req.session.redirect_to ? req.session.redirect_to : '/';
+    delete req.session.redirect_to;
+    res.redirect(redirect_to);
+  }
 });
 
 router.get('/logout', function(req, res){

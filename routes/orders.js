@@ -35,24 +35,28 @@ var transporter = nodemailer.createTransport(smtpTransport({
 var isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
     return next();
+  req.session.redirect_to = req.originalUrl;
   res.redirect('/login');
 }
 
 var isAdmin = function (req, res, next) {
   if (req.isAuthenticated() && req.user.admin === true)
     return next();
+  req.session.redirect_to = req.originalUrl;
   res.redirect('/login');
 }
 
 var isMerchantOrAdmin = function (req, res, next) {
   if (req.isAuthenticated() && (req.user.admin === true || req.user.role === "merchant"))
     return next();
+  req.session.redirect_to = req.originalUrl;
   res.redirect('/login');
 }
 
 var isMerchant = function (req, res, next) {
   if (req.isAuthenticated() && req.user.role === "merchant")
     return next();
+  req.session.redirect_to = req.originalUrl;
   res.redirect('/login');
 }
 
