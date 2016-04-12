@@ -20,9 +20,7 @@ var orderSchema = new Schema({
 		phone_number: String
   	},
 	email: String,
-	imp: {
-		id: Number
-	},
+	imp: Object,
 	payco: {
 		orderNo: String,
 		sellerOrderReferenceKey: String,

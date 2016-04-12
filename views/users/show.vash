@@ -75,8 +75,10 @@
 											}
 											<br/>
 											@if(order.payco.orderNo) {
-											<div class="payco"><button class="btn blue-grey darken-2 receipt" data-orderno="@order.payco.orderNo" >PAYCO 영수증</button>@if(!order.payco.cancelTradeSeq && order.status == "Paid" && model.moment().isSame(order.created_at, 'day')){<a class="btn red darken-2 right cancel" href="/orders/cancel/@order.id" onclick="return confirm('정말 취소하시겠습니까?')">결제 취소</a>}</div>
-											} else if (order.status == "Waiting") {
+											    <div class="payco"><button class="btn blue-grey darken-2 receipt" data-orderno="@order.payco.orderNo" >PAYCO 영수증</button>@if(!order.payco.cancelTradeSeq && order.status == "Paid" && model.moment().isSame(order.created_at, 'day')){<a class="btn red darken-2 right cancel" href="/orders/cancel/@order.id" onclick="return confirm('정말 취소하시겠습니까?')">결제 취소</a>}</div>
+											} else if (order.imp) {
+												<a class="btn red darken-2 right cancel" href="/orders/cancel_iamport/@order.id" onclick="return confirm('정말 취소하시겠습니까?')">결제 취소</a>                                                
+                                            } else if (order.status == "Waiting") {
 												<a class="btn red darken-2 right cancel" href="/orders/cancel_deposit/@order.id" onclick="return confirm('정말 취소하시겠습니까?')">무통장입금 취소</a>
 											}
 										</div>
