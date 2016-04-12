@@ -144,7 +144,7 @@
 							<div id="payco_btn_type_A1" class="btn-payco center"></div>
 							<div class="bank-box">
 								<button class="btn btn-large btn-block purple" id="iamport_btn">INICIS 바로결제</button><br/>
-                                <button class="btn btn-large btn-block blue" id="iamport_danal_btn">Danal 바로결제</button>
+                                <button class="btn btn-large btn-block blue" id="iamport_danal_btn">Danal 휴대폰 결제</button>
 								<img class="responsive-img" src="/images/or_2.png" alt="데일리 붐 or" />
 								<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">무통장입금</a>
 							</div>
