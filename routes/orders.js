@@ -1402,7 +1402,7 @@ router.get('/orders/merchants/export', isMerchant, function(req, res) {
   res.set('Content-Type', 'text/csv; charset=utf-8'); 
   res.write(new Buffer('EFBBBF', 'hex'));
   res.status(200);
-  var query = Order.find({status: "Sent"}, merchant_id: req.user.id}, {}, {sort: {created_at: -1}}).populate('user product');
+  var query = Order.find({status: "Sent", merchant_id: req.user.id}, {}, {sort: {created_at: -1}}).populate('user product');
   if (req.query.date)
     query.where('created_at').gte(req.query.date).lt(moment(req.query.date).add(1, 'days'));
   query.stream().pipe(Order.csvTransformStream()).pipe(res);
