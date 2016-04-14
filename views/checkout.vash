@@ -254,12 +254,12 @@
 					if ($(this).find("option:selected").val() != 0)
 						$("#options").submit();
 				});
-				$('.modal-trigger').leanModal({
-			      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-			      opacity: .5, // Opacity of modal background
-			      in_duration: 300, // Transition in duration
-			      out_duration: 200 // Transition out duration
-			    }
+				// $('.modal-trigger').leanModal({
+			    //   dismissible: true, // Modal can be dismissed by clicking outside of the modal
+			    //   opacity: .5, // Opacity of modal background
+			    //   in_duration: 300, // Transition in duration
+			    //   out_duration: 200 // Transition out duration
+			    // }
 			  );
 				$('select').material_select();
 			});
