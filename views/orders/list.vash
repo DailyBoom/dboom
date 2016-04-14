@@ -92,7 +92,7 @@
                 @if(order.totalOrderAmt) {
                     <span class="product_price">@order.totalOrderAmt</span>
                 }
-                else {
+                else if (order.product){
                     <span class="product_price">@(order.quantity * order.product.price + order.product.delivery_price)</span>
                 }
                 </td>

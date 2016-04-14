@@ -18,7 +18,7 @@
 					</span>
 					<span class="col s9 order-label">
                         &nbsp;
-                        @if(model.order.shipping || model.order.user) {
+                        @if(model.order.shipping.full_name || (model.order.user && model.order.user.shipping)) {
     						@(model.order.shipping.full_name ? model.order.shipping.full_name : model.order.user.shipping.full_name)
                         }
 					</span>
@@ -27,7 +27,7 @@
 					</span>
 					<span class="col s9 order-label">
 						&nbsp;
-						@if(model.order.email || model.order.user) {
+						@if(model.order.email || (model.order.user && model.order.user.shipping)) {
 							@(model.order.email ? model.order.email : model.order.user.email)
 						}
 					</span>
@@ -36,7 +36,7 @@
 					</span>
 					<span class="col s9 order-label">
                         &nbsp;
-                        @if(model.order.shipping || model.order.user) {
+                        @if(model.order.shipping.phone_number || (model.order.user && model.order.user.shipping)) {
 						    @(model.order.shipping.phone_number ? model.order.shipping.phone_number : model.order.user.shipping.phone_number)
                         }
 					</span>
@@ -45,7 +45,7 @@
 					</span>
 					<span class="col s9 order-label">
                         &nbsp;
-                        @if(model.order.shipping || model.order.user) {
+                        @if(model.order.shipping.address || (model.order.user && model.order.user.shipping)) {
     						@(model.order.shipping.address ? model.order.shipping.address : model.order.user.shipping.address)
                         }
 					</span>
@@ -54,7 +54,7 @@
 					</span>
 					<span class="col s9 order-label">
                         &nbsp;
-                        @if(model.order.shipping || model.order.user) {
+                        @if(model.order.shipping.zipcode || (model.order.user && model.order.user.shipping)) {
 						    @(model.order.shipping.zipcode ? model.order.shipping.zipcode : model.order.user.shipping.zipcode)
                         }
 					</span>
