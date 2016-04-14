@@ -1099,6 +1099,8 @@ input[type=number]::-webkit-outer-spin-button {
 }
 @media only screen and (min-width: 0) {
 
+  .bxslider-wrap { visibility: hidden; }
+
   .no-login {
       margin: 0px !important;
   }

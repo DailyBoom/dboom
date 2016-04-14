@@ -106,9 +106,9 @@
 else {
 	<!-- L Slider -->
 	<div class="hero-wrapper">
-		<div class="hero-left">
+		<div class="hero-left bxslider-wrap">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
-				@model.product.images.forEach(function(img) {
+				@model.product.images.forEach(function(img, index) {
 					<div class="slide" style="background-image: url(@img);">
 						@if(model.progress >= 100) {
 							<img class="sold-out" src="/images/sold-out.png" />
@@ -488,7 +488,10 @@ $(window).scroll(function() {
 			easing:'ease-in-out',
 			auto:true,
 			autoHover:true,
-			controls:false
+			controls:false,
+            onSliderLoad: function(){
+                $(".bxslider-wrap").css("visibility", "visible");
+            }
 		});
 	});
 	$(document).ready(function(){
