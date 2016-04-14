@@ -17,7 +17,9 @@
 						받는 분 :
 					</span>
 					<span class="col s9 order-label">
-						&nbsp;@model.order.shipping.full_name
+                        @if(model.order.shipping || model.order.user) {
+    						&nbsp;@(model.order.shipping.full_name ? model.order.shipping.full_name : model.order.user.shipping.full_name)
+                        }
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						@model.__('user.email') :
@@ -32,19 +34,25 @@
 						전화번호 :
 					</span>
 					<span class="col s9 order-label">
-						&nbsp;@(model.order.shipping.phone_number ? model.order.shipping.phone_number : model.order.user.shipping.phone_number)
+                        @if(model.order.shipping || model.order.user) {
+						    &nbsp;@(model.order.shipping.phone_number ? model.order.shipping.phone_number : model.order.user.shipping.phone_number)
+                        }
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						배송주소 :
 					</span>
 					<span class="col s9 order-label">
-						&nbsp;@(model.order.shipping.address ? model.order.shipping.address : model.order.user.shipping.address)
+                        @if(model.order.shipping || model.order.user) {
+    						&nbsp;@(model.order.shipping.address ? model.order.shipping.address : model.order.user.shipping.address)
+                        }
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						우편번호 :
 					</span>
 					<span class="col s9 order-label">
-						&nbsp;@(model.order.shipping.zipcode ? model.order.shipping.zipcode : model.order.user.shipping.zipcode)
+                        @if(model.order.shipping || model.order.user) {
+						    &nbsp;@(model.order.shipping.zipcode ? model.order.shipping.zipcode : model.order.user.shipping.zipcode)
+                        }
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						배송국가 :
