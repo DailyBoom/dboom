@@ -273,9 +273,7 @@
 				<div id="db-partners" class="owl-carousel owl-theme">
 					@model.partners.forEach(function(partner) {
 						<div class="col s12">
-							<a href="@partner.url" target="_blank">
-								<div class="partner-logo" style="background-image: url('/@partner.logo');"></div>
-							</a>
+                            <div class="partner-logo" style="background-image: url('/@partner.logo');"></div>
 						</div><!-- .col -->
 					})
 				</div><!-- /.owl-carousel -->
