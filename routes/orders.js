@@ -367,7 +367,7 @@ router.post('/mall/remove_from_cart', function(req, res) {
 router.post('/mall/iamport_callback', function (req, res) {
   Order.findOne({ _id: req.body.id }).populate('user cart.product').exec(function (err, order) {
     order.status = "Paid";
-    order.imp = req.body.imp;
+    order.imp = JSON.parse(req.body.imp);
     if (req.user)
       order.shipping = req.user.shipping;
     order.created_at = Date.now();
@@ -412,8 +412,9 @@ router.post('/mall/iamport_callback', function (req, res) {
 // I'mport callback for regular checkout
 router.post('/iamport_callback', function (req, res) {
   Order.findOne({ _id: req.body.id }).populate('user').exec(function (err, order) {
+    console.log(req.body);
     order.status = "Paid";
-    order.imp = req.body.imp;
+    order.imp = JSON.parse(req.body.imp);
     if (req.user)
       order.shipping = req.user.shipping;
     order.created_at = Date.now();
@@ -461,31 +462,36 @@ router.post('/iamport_callback', function (req, res) {
 
 router.get('/orders/cancel_iamport/:id', function(req, res) {
   Order.findOne({ '_id': req.params.id }).populate('product user').exec(function(err, order) {
+      console.log(order.imp);
       iamport.cancelPayment(order.imp.imp_uid)
         .then(function(response){
             console.log(response);
-            fs.readFile('./views/mailer/order_cancelled.vash', "utf8", function(err, file) {
-                if(err){
-                //handle errors
-                console.log('ERROR!');
-                return res.send('ERROR!');
-                }
-                var html = vash.compile(file);
-                moment.locale('ko');
-                transporter.sendMail({
-                from: '데일리 붐 <contact@dailyboom.co>',
-                to: order.user ? order.user.email : order.email,
-                subject: '데일리 붐 주문 취소 안내',
-                html: html({ moment: moment, order: order, accounting: accounting })
-                }, function (err, info) {
-                    if (err) { console.log(err);}
-                    //console.log('Message sent: ' + info.response);
-                    transporter.close();
-                    res.redirect('/mypage');
+            order.status = "Cancelled";
+            order.save(function(err) {
+                fs.readFile('./views/mailer/order_cancelled.vash', "utf8", function(err, file) {
+                    if(err){
+                    //handle errors
+                    console.log('ERROR!');
+                    return res.send('ERROR!');
+                    }
+                    var html = vash.compile(file);
+                    moment.locale('ko');
+                    transporter.sendMail({
+                    from: '데일리 붐 <contact@dailyboom.co>',
+                    to: order.user ? order.user.email : order.email,
+                    subject: '데일리 붐 주문 취소 안내',
+                    html: html({ moment: moment, order: order, accounting: accounting })
+                    }, function (err, info) {
+                        if (err) { console.log(err);}
+                        //console.log('Message sent: ' + info.response);
+                        transporter.close();
+                        res.redirect('/mypage');
+                    });
                 });
             });
         }).catch(function(error){
             console.log(error);
+            res.redirect('/mypage');
         });
   });
 });

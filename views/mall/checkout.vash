@@ -406,7 +406,7 @@
 							dataType: "json",
 							data: {
 								id: '@model.order.id',
-								imp: rsp
+								imp: JSON.stringify(rsp)
 							},
 							success: function (res) {
 								window.location = '/success';
@@ -454,7 +454,7 @@
 							dataType: "json",
 							data: {
 								id: '@model.order.id',
-								imp: rsp
+								imp: JSON.stringify(rsp)
 							},
 							success: function (res) {
 								window.location = '/success';
