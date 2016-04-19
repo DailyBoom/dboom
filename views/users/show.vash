@@ -268,7 +268,7 @@
 				</div><!-- .row -->
 			</div><!-- #mypage3 -->
 			@if(!model.is_phone) {
-			<div class="a-wrapper">
+			<div class="a-wrapper hide">
 				<script type='text/javascript'>
 					<!--//<![CDATA[
 					document.MAX_ct0 ='';
@@ -292,6 +292,7 @@
 			</div>
 			}
 			else {
+            <div class="hide">
 				<script type='text/javascript'>
 					<!--//<![CDATA[
 					document.MAX_ct0 ='';
@@ -312,6 +313,7 @@
 					document.write ("'></scr"+"ipt>");
 					//]]>-->
 				</script>
+            </div>
 			}
 		</div><!-- .container -->
 		<script>
