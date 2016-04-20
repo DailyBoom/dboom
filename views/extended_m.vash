@@ -335,7 +335,7 @@
 			<br>
 			<br>
 			@if(!model.is_phone) {
-				<div class="a-wrapper hide">
+				<div class="a-wrapper">
 					<script type='text/javascript'>
 					<!--//<![CDATA[
 					document.MAX_ct0 ='';
@@ -358,7 +358,7 @@
 				</div>
 			}
 			else {
-            <div class="hide">
+            <div class="">
 				<script type='text/javascript'>
 				<!--//<![CDATA[
 				   document.MAX_ct0 ='';
