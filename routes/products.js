@@ -301,4 +301,11 @@ router.post('/products/wanna_buy', function(req, res) {
   });
 });
 
+router.get('/products/naver', function(req, res) {
+    Product.findOne({_id: "568a78411502e2b570306355"}, function(err, product){
+       res.render('products/naver', { product: product }); 
+    });
+});
+
+
 module.exports = router;
