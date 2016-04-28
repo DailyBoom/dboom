@@ -1821,6 +1821,9 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0 5px;
     cursor: pointer;
   }
+  .parallax img {
+      width: 100%;
+  }
   .parallax-container {
     height: 260px;
   }
@@ -1913,6 +1916,9 @@ input[type=number]::-webkit-outer-spin-button {
     height: 2.5em;
     line-height: 2.5;
     vertical-align: middle;
+  }
+  .index-parallax-container {
+    height: 820px;
   }
   .parallax-container {
     height: 500px;

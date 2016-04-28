@@ -94,6 +94,13 @@
 </div>
 }
 <!-- End Login Modal -->
+@if(model.product.images.length == 1) {
+    <div class="index-parallax-container">
+        <div class="parallax">
+        	<img class="ie-fix" src="/@model.product.images[0]" alt="@model.product.name" />
+        </div>
+    </div>
+}
 <div class="container">
 	@if(model.progress >= 50){
 		 <div class="progress-wrapper">
@@ -102,6 +109,7 @@
 			<div class="progress-h-text white-text hide">@model.progress% 팔림</div>
 		</div>
 	}
+@if(model.product.images.length > 1) {    
 	<!-- L Slider -->
 	<div class="hero-wrapper">
 		<div class="hero-left bxslider-wrap">
@@ -141,6 +149,7 @@
 			}
 		</div><!-- .hero-right -->
 	</div><!-- .hero-wrapper -->
+}
 </div><!-- .container -->
 <div class="container">
 	<div class="row">
@@ -449,6 +458,7 @@
 		$(".product-price").html(price * parseInt($(this).val()));
 	});
 	$(document).ready(function(){
+        $('.parallax').parallax();
 		$('.iframe-video').each(function(){
 			var url = $(this).attr("src");
 			$(this).attr("src",url+"?wmode=transparent");

@@ -34,6 +34,13 @@
 	</div>
 </div><!-- .preview-bar -->
 }
+@if(model.product.images.length == 1) {
+    <div class="index-parallax-container">
+        <div class="parallax">
+        	<img class="ie-fix" src="/@model.product.images[0]" alt="@model.product.name" />
+        </div>
+    </div>
+}
 <div class="container">
 	@if(model.progress >= 50){
 		 <div class="progress-wrapper">
@@ -42,6 +49,7 @@
 			<div class="progress-h-text white-text hide">@model.progress% 팔림</div>
 		</div>
 	}
+    @if(model.product.images.length > 1) {
 	<!-- L Slider -->
 	<div class="hero-wrapper">
 		<div class="hero-left bxslider-wrap">
@@ -81,6 +89,7 @@
 			}
 		</div><!-- .hero-right -->
 	</div><!-- .hero-wrapper -->
+    }
 </div><!-- .container -->
 <!-- b4 -->
 <div class="container">
@@ -247,6 +256,7 @@
 	</script>
 	<script>
 		$(document).ready(function(){
+            $('.parallax').parallax();
 			$("#main-slider").bxSlider({
 				mode:'horizontal',
 				pagerCustom: '#bx-pager',

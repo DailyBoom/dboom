@@ -90,7 +90,13 @@
 	<span id="time-left-label" class="d-clock label @(model.product.color ? model.product.color : 'light-blue') white-text">@model.__('time_left')</span>
 	<br><span id="time-left" class="d-clock white-text"></span>
 </div>
-
+@if(model.product.images.length == 1) {
+    <div class="index-parallax-container">
+        <div class="parallax">
+        	<img class="ie-fix" src="@model.product.images[0]" alt="@model.product.name" />
+        </div>
+    </div>
+}
 <div class="container">
 	@if(model.progress >= 50){
 		 <div class="progress-wrapper">
@@ -100,11 +106,8 @@
 		</div>
 	}
 
-@if(model.product.images.length == 1) {
-	<img class="responsive-img" src="@model.product.images[0]" alt="@model.product.name" />
-}
-else {
-	<!-- L Slider -->
+@if(model.product.images.length > 1) {
+    <!-- L Slider -->
 	<div class="hero-wrapper">
 		<div class="hero-left bxslider-wrap">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
@@ -485,7 +488,6 @@ $(window).scroll(function() {
 			mode:'horizontal',
 			pagerCustom: '#bx-pager',
 			infiniteLoop:true,
-			easing:'ease-in-out',
 			auto:true,
 			autoHover:true,
 			controls:false,
@@ -524,6 +526,7 @@ $(window).scroll(function() {
 		});
 	});
 	$(document).ready(function(){
+        $('.parallax').parallax();
 		$('.tooltipped').tooltip({delay: 0});
 		$('.iframe-video').each(function(){
 			var url = $(this).attr("src");
