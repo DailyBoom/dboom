@@ -1,0 +1,19 @@
+<<<begin>>>
+<<<mapid>>>568a78411502e2b570306355
+<<<pname>>>티트리케어 솔루션 에센셜 마스크팩
+<<<price>>>10000
+<<<pgurl>>>http://www.dailyboom.co.kr/mall/메디힐 /568a78411502e2b570306355
+<<<igurl>>>http://www.dailyboom.co.kr/5f8d0c38e01f8bf40b9ca7e2ca1f464c1451918492283.jpeg
+<<<cate1>>>미용
+<<<cate2>>>기초화장품
+<<<cate3>>>마스크/팩
+<<<cate4>>>마스크시트
+<<<caid1>>>01
+<<<caid2>>>001
+<<<caid3>>>0001
+<<<caid4>>>10001
+<<<brand>>>메디힐
+<<<origi>>>한국
+<<<deliv>>>2500
+<<<mpric>>>10000
+<<<ftend>>>
