@@ -81,7 +81,7 @@
 		<script src="/javascripts/materialize.min.js"></script>
     <!-- Slider JS -->
 		<script src="/javascripts/owl.carousel.min.js"></script>
-		<script src="/javascripts/bxslider.min.js"></script>
+		<script src="/javascripts/jquery.bxslider.min.js"></script>
 		<script src="/javascripts/fitvids.js"></script>
 		<script src="/javascripts/moment.js"></script>
 		<script src="/javascripts/moment-timezone-with-data.js"></script>

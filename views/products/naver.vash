@@ -12,7 +12,7 @@
 @('<<<caid2>>>')001
 @('<<<caid3>>>')0001
 @('<<<caid4>>>')10001
-@('<<<brand>>>')@model.product.brand_name
+@('<<<brand>>>')@model.product.brand
 @('<<<origi>>>')한국
 @('<<<deliv>>>')2500
 @('<<<mpric>>>')@model.product.price

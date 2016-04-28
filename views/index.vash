@@ -480,7 +480,7 @@ $(window).scroll(function() {
 });
 </script>
 <script>
-	$(document).ready(function() {
+	$(document).ready(function(){
 		$("#main-slider").bxSlider({
 			mode:'horizontal',
 			pagerCustom: '#bx-pager',
@@ -489,11 +489,13 @@ $(window).scroll(function() {
 			auto:true,
 			autoHover:true,
 			controls:false,
+            video:false,
+            useCss: true,
             onSliderLoad: function(){
                 $(".bxslider-wrap").css("visibility", "visible");
             }
 		});
-	});
+    });
 	$(document).ready(function(){
 		$('.want').on('click', function(){
 			var btn = $(this);
