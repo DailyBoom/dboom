@@ -163,12 +163,12 @@
 					}
 						<div class="hide-on-small-only m-item right">
 							<div class="item-price-o mod red-text text-lighten-2">SALE</div>
-							<div class="item-price white-text">@model.sale%</div>
+							<div class="item-price">@model.sale%</div>
 						</div>
 					<span class="hide-on-small-only">&nbsp;</span>
 					<div class="hide-on-small-only m-item right">
 							<div class="item-price-o desk red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
-						<div class="item-price desk white-text" id="product_price_mobile">@model.product.price</div>
+						<div class="item-price desk" id="product_price_mobile">@model.product.price</div>
 					</div>
 			</div>
 			<div class="buy-box-info @(model.product.color ? model.product.color : 'light-blue') lighten-5 blue-grey-text text-darken-4">
