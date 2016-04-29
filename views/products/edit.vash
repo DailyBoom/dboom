@@ -209,6 +209,7 @@
 						<option @(model.product.color=='brown' ? 'selected' : '') value="brown">Brown</option>
 						<option @(model.product.color=='blue-grey' ? 'selected' : '') value="blue-grey">Blue Grey</option>
 						<option @(model.product.color=='grey' ? 'selected' : '') value="grey">Grey</option>
+						<option @(model.product.color=='white' ? 'selected' : '') value="white">White</option>
 					</select>
 					<label for="color">테마 색상</label>
 				</div>
