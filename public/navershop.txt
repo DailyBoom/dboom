@@ -1,6 +1,6 @@
 <<<begin>>>
 <<<mapid>>>568a78411502e2b570306355
-<<<pname>>>티트리케어 솔루션 에센셜 마스크팩
+<<<pname>>>티트리케어 솔루션 에센셜 마스크팩 10매
 <<<price>>>10000
 <<<pgurl>>>http://www.dailyboom.co.kr/mall/메디힐 /568a78411502e2b570306355
 <<<igurl>>>http://www.dailyboom.co.kr/uploads/5f8d0c38e01f8bf40b9ca7e2ca1f464c1451918492283.jpeg
