@@ -2,7 +2,7 @@
 	@html.block("body", function(model) {
 <!-- Login Modal Structure -->
 <div id="modal-check" class="modal">
-	<div class="modal-header-c @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text center">
+	<div class="modal-header-c @(model.product.color ? model.product.color : 'light-blue') darken-2 @(model.product.color == 'white' ? 'black-text' : 'white-text') center">
 		로그인
 	</div>
 	<div class="modal-content-c">
@@ -87,23 +87,26 @@
 			</a>
 		}
 	}
-	<span id="time-left-label" class="d-clock label @(model.product.color ? model.product.color : 'light-blue') white-text">@model.__('time_left')</span>
-	<br><span id="time-left" class="d-clock white-text"></span>
+	<span id="time-left-label" class="d-clock label @(model.product.color ? model.product.color : 'light-blue') @(model.product.color == 'white' ? 'black-text' : 'white-text')">@model.__('time_left')</span>
+	<br><span id="time-left" class="d-clock @(model.product.color == 'white' ? 'black-text' : 'white-text')"></span>
 </div>
-
+@if(model.product.images.length == 1) {
+    <div class="index-parallax-container">
+        <div class="parallax">
+        	<img class="ie-fix" src="@model.product.images[0]" alt="@model.product.name" />
+        </div>
+    </div>
+}
 <div class="container">
 	@if(model.progress >= 50){
 		 <div class="progress-wrapper">
 			<div class="progress-h red lighten-4"></div>
 			<div class="determinate-h red darken-2" style=""></div>
-			<div class="progress-h-text white-text hide">@model.progress% 팔림</div>
+			<div class="progress-h-text @(model.product.color == 'white' ? 'black-text' : 'white-text') hide">@model.progress% 팔림</div>
 		</div>
 	}
 
-@if(model.product.images.length == 1) {
-	<img class="responsive-img" src="@model.product.images[0]" alt="@model.product.name" />
-}
-else {
+@if(model.product.images.length > 1) {
 	<!-- L Slider -->
 	<div class="hero-wrapper">
 		<div class="hero-left">
@@ -150,7 +153,7 @@ else {
 <div class="container">
 	<div class="row">
 		<div class="col s12">
-			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-3 white-text">
+			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-3 @(model.product.color == 'white' ? 'black-text' : 'white-text')">
 				<img class="brand-img" src="@model.product.brand_logo" alt="@model.product.brand - Logo" />
 					@if (model.product.name.length >= 12) {
 						<div class="item-name name-md">@model.product.name</div>
@@ -161,7 +164,7 @@ else {
 					@if (model.sale > 0) {
 						<div class="hide-on-small-only m-item right">
 							<div class="item-price-o mod red-text text-lighten-2">SALE</div>
-							<div class="item-price white-text">@model.sale%</div>
+							<div class="item-price @(model.product.color == 'white' ? 'black-text' : 'white-text')">@model.sale%</div>
 						</div>
 					}
 					<span class="hide-on-small-only">&nbsp;</span>
@@ -169,7 +172,7 @@ else {
 						@if (model.sale > 0) {
 							<div class="item-price-o desk red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
 						}
-						<div class="item-price desk white-text" id="product_price_mobile">@model.product.price</div>
+						<div class="item-price desk @(model.product.color == 'white' ? 'black-text' : 'white-text')" id="product_price_mobile">@model.product.price</div>
 					</div>
 			</div>
 			<div class="buy-box-info @(model.product.color ? model.product.color : 'light-blue') lighten-5 blue-grey-text text-darken-4">
@@ -216,7 +219,7 @@ else {
 			</div>
 			<div class="buy-box-footer @(model.product.color ? model.product.color : 'light-blue') lighten-3">
 				<div class="center">
-					<span class="share-text white-text">상품 공유하기</span>
+					<span class="share-text @(model.product.color == 'white' ? 'black-text' : 'white-text')">상품 공유하기</span>
 					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
 					<img id="sharekakao" class="social" src="/images/icon_kakao.png" alt="Kakao Logo" />
 					<a href="mailto:?subject=데일리 붐: 오늘 뭐 사지?&body=http://dailyboom.co"><img id="sharemail"  class="social" src="/images/icon_email.png" alt="Email Image" /></a>
@@ -225,7 +228,7 @@ else {
 			</div><!-- .buy-box-footer -->
 			<!-- Modal Structure -->
 		  <div id="share_url_modal" class="modal">
-				<div class="modal-header @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text center">
+				<div class="modal-header @(model.product.color ? model.product.color : 'light-blue') darken-2 @(model.product.color == 'white' ? 'black-text' : 'white-text') center">
 					공유하기
 				</div>
 		    <div class="modal-content">
@@ -238,7 +241,7 @@ else {
 			<!-- Merchant xInfo -->
 			<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
 		    <li>
-					<div class="collapsible-header @(model.product.color ? model.product.color : 'light-blue') darken-1 white-text">
+					<div class="collapsible-header @(model.product.color ? model.product.color : 'light-blue') darken-1 @(model.product.color == 'white' ? 'black-text' : 'white-text')">
 						<span>@model.__('shipping_info') <i class="fa fa-info-circle fa-fw right"></i></span>
 					</div>
 					<div class="collapsible-body @(model.product.color ? model.product.color : 'light-blue') lighten-5">
@@ -267,14 +270,14 @@ else {
 				@if (model.sale > 0) {
 					<div class="m-item">
 						<div class="item-price-o mod red-text text-lighten-2">SALE</div>
-						<div class="item-price white-text">@model.sale%</div>
+						<div class="item-price @(model.product.color == 'white' ? 'black-text' : 'white-text')">@model.sale%</div>
 					</div>
 				}
 				<div class="m-item">
 					@if (model.sale > 0) {
 						<div class="item-price-o red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
 					}
-					<div class="item-price white-text" id="product_price_mobile">@model.product.price</div>
+					<div class="item-price @(model.product.color == 'white' ? 'black-text' : 'white-text')" id="product_price_mobile">@model.product.price</div>
 				</div>
 				@if (model.user) {
 					@if (model.progress < 100) {
@@ -297,9 +300,9 @@ else {
 			</div>
 			<a href="#modal-ask" class="hide buy-help modal-trigger">Can't Read Vietnamese? Click here.</a>
 
-			<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text">
+			<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 @(model.product.color == 'white' ? 'black-text' : 'white-text')">
 				@model.__('past_items')
-				<a class="hide white-text right" href="/mall"><i class="fa fa-shopping-bag fa-fw white-text"></i> 쇼핑몰 보기</a>
+				<a class="hide @(model.product.color == 'white' ? 'black-text' : 'white-text') right" href="/mall"><i class="fa fa-shopping-bag fa-fw @(model.product.color == 'white' ? 'black-text' : 'white-text')"></i> 쇼핑몰 보기</a>
 			</div>
 			<div class="row">
 				<div class="col s12 m12 l12">
@@ -310,7 +313,7 @@ else {
 										<div class="col s12 m12 l12">
 											<div class="card past">
 												<div class="card-image">
-													<div class="past-date-box @(model.product.color ? model.product.color : 'light-blue') darken-1 white-text">
+													<div class="past-date-box @(model.product.color ? model.product.color : 'light-blue') darken-1 @(model.product.color == 'white' ? 'black-text' : 'white-text')">
 														@model.moment(product.scheduled_at).format("YYYY/MM/DD")@(model.moment(product.scheduled_at).day() == 6 ? model.moment(product.scheduled_at).add(1, 'days').format('-DD') : '')@(model.moment(product.scheduled_at).isSame('2016-02-08') ? '-09-10' : '')
 													</div>
 													<div class="card-image-ol">
@@ -359,7 +362,7 @@ else {
 			<!-- Featured section -->
 			<div class="row">
 				<div class="col s12">
-					<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text">
+					<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 @(model.product.color == 'white' ? 'black-text' : 'white-text')">
 						@model.__('featured')
 					</div>
 					<br>
@@ -491,6 +494,7 @@ $(window).scroll(function() {
 </script>
 <script>
 	$(document).ready(function() {
+        $('.parallax').parallax();
 		$("#main-slider").bxSlider({
 			mode:'horizontal',
 			pagerCustom: '#bx-pager',

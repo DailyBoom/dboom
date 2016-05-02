@@ -138,9 +138,15 @@
 		<div class="navbar">
 			<nav class="@(model.product && model.product.color ? model.product.color : 'light-blue') darken-3">
 				<div class="container">
-					<a href="/" class="logo-d"><img class="logo-img left" src="/images/dboom_logo_english.png" /></a>
-					<a href="/" class="logo-m"><img class="logo-img left" src="/images/dboom_logo_english.png" /></a>
-        	<span id="time-left-mobile" class="hide-on-med-and-up d-clock white-text left"></span>
+                    @if (model.product && model.product.color == 'white') {
+                        <a href="/" class="logo-d"><img class="logo-img left" src="/images/dboom_logo_english_b.png" /></a>
+                        <a href="/" class="logo-m"><img class="logo-img left" src="/images/dboom_logo_english_b.png" /></a>
+                    }
+                    else {
+                        <a href="/" class="logo-d"><img class="logo-img left" src="/images/dboom_logo_english.png" /></a>
+                        <a href="/" class="logo-m"><img class="logo-img left" src="/images/dboom_logo_english.png" /></a>
+                    }
+        	<span id="time-left-mobile" class="hide-on-med-and-up d-clock @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text') left"></span>
           @if(@model.cart) {
             <ul class="right hide-on-small-only">
               <li class="nav-item">
@@ -173,7 +179,7 @@
 								</a>
 								<!-- Dropdown Structure -->
 								<ul id="dropdown-profile" class="dropdown-content">
-									<a class="@(model.product && model.product.color ? model.product.color : 'light-blue') darken-4 white-text" href="#!">@model.user.username</a>
+									<a class="@(model.product && model.product.color ? model.product.color : 'light-blue') darken-4 @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="#!">@model.user.username</a>
                 @if (model.user.admin || model.user.role == "merchant") {
 									<li class="divider"></li>
                   <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus fa-fw right"></i></a></li>
@@ -181,8 +187,8 @@
                   <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck fa-fw right"></i></a></li>
                 }
 									<li class="divider"></li>
-									<li><a class="@(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href="/mypage">마이 페이지 <i class="fa fa-user fa-fw right"></i></a></li>
-									<li><a class="@(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href="/logout">로그아웃 <i class="fa fa-sign-out fa-fw right"></i></a></li>
+									<li><a class="text-darken-2 @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/mypage">마이 페이지 <i class="fa fa-user fa-fw right"></i></a></li>
+									<li><a class="text-darken-2 @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/logout">로그아웃 <i class="fa fa-sign-out fa-fw right"></i></a></li>
                 @if (model.user.admin == 1) {
                   <li class="divider"></li>
                   <li><a class="deep-purple-text text-darken-2" href="/orders/list">Orders List <i class="fa fa-shopping-cart fa-fw right"></i></a></li>
@@ -199,7 +205,7 @@
 								<!-- Mobile Slider Menu -->
                 <a href="#" data-activates="slide-out" class="button-collapse mod"><i class="fa fa-bars fa-fw"></i></a>
                 <ul id="slide-out" class="side-nav">
-									<a class="@(model.product && model.product.color ? model.product.color : 'light-blue') darken-4 white-text center" href="#!">@model.user.username</a>
+                <a class="@(model.product && model.product.color ? model.product.color : 'light-blue') darken-4 @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text') center" href="#!">@model.user.username</a>
                 @if(@model.cart) {
                   <li>
                     <a class='deep-purple-text text-darken-2 modal-trigger' href='#cart-modal'>
@@ -221,8 +227,8 @@
                   <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck right"></i></a></li>
                 }
 									<li class="divider"></li>
-									<li><a class="@(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href="/mypage">마이 페이지 <i class="fa fa-user right"></i></a></li>
-									<li><a class="@(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href="/logout">로그아웃 <i class="fa fa-sign-out right"></i></a></li>
+									<li><a class="text-darken-2 @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/mypage">마이 페이지 <i class="fa fa-user right"></i></a></li>
+									<li><a class="text-darken-2 @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/logout">로그아웃 <i class="fa fa-sign-out right"></i></a></li>
 								</ul>
 							</li>
 						</ul>
@@ -246,14 +252,14 @@
                       </a>
                     </li>
                   }
-									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href="/login">@model.__('login') <i class="fa fa-sign-in right"></i></a></li>
-									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href="/signup">@model.__('signup') <i class="fa fa-user-plus right"></i></a></li>
+									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2 @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/login">@model.__('login') <i class="fa fa-sign-in right"></i></a></li>
+									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2 @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/signup">@model.__('signup') <i class="fa fa-user-plus right"></i></a></li>
 								</ul>
 							</li>
 						</ul>
             <ul class="right hide-on-small-only user-link">
-              <li class="nav-item mod"><a class="white-text" href="/login">@model.__('login')</a></li>
-              <li class="nav-item mod"><a class="white-text" href="/signup">@model.__('signup')</a></li>
+              <li class="nav-item mod"><a class="@(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/login">@model.__('login')</a></li>
+              <li class="nav-item mod"><a class="@(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/signup">@model.__('signup')</a></li>
             </ul>
 					}
 				</div><!-- .container -->
@@ -264,28 +270,28 @@
 			<div class="container">
         <div class="row flex-s">
           <div class="col s12 m3 l3 box-2">
-            <p class="follow-us white-text">Follow Us</p>
-  					<span>
-  						<a href="https://www.facebook.com/dailyboomkorea" target="_blank">
-                <img class="footer-social" src="/images/facebook.png" />
-              </a>
-  						<a href="http://instagram.com/dailyboomkorea" target="_blank">
-                <img class="footer-social" src="/images/insta.png" />
-              </a>
-              <a href="http://blog.naver.com/dailyboomkorea" target="_blank">
-                <img class="footer-social" src="/images/nblog.png" />
-              </a>
-  					</span>
+            <p class="follow-us @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')">Follow Us</p>
+            <span>
+                <a href="https://www.facebook.com/dailyboomkorea" target="_blank">
+                    <img class="footer-social" src="@(model.product && model.product.color == 'white' ? '/images/facebook_b.png' : '/images/facebook.png')" />
+                </a>
+                <a href="http://instagram.com/dailyboomkorea" target="_blank">
+                    <img class="footer-social" src="@(model.product && model.product.color == 'white' ? '/images/insta_b.png' : '/images/insta.png')" />
+                </a>
+                <a href="http://blog.naver.com/dailyboomkorea" target="_blank">
+                    <img class="footer-social" src="@(model.product && model.product.color == 'white' ? '/images/nblog_b.png' : '/images/nblog.png')" />
+                </a>
+            </span>
           </div><!-- .col -->
-          <div class="col s12 m9 l9 footer-box white-text box-1">
-            <a class="footer-link white-text" href="/about">@model.__('about')</a>&#149;
-            <a class="footer-link white-text" href="/advertise">@model.__('advertise')</a>&#149;
-            <a class="footer-link white-text" href="/privacy">@model.__('privacy')</a>&#149;
-            <a class="footer-link white-text" href="/terms">@model.__('terms')</a>&#149;
-            <a class="footer-link white-text" href="/merchant">@model.__('merchant_contact')</a>
+          <div class="col s12 m9 l9 footer-box @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text') box-1">
+            <a class="footer-link @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/about">@model.__('about')</a>&#149;
+            <a class="footer-link @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/advertise">@model.__('advertise')</a>&#149;
+            <a class="footer-link @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/privacy">@model.__('privacy')</a>&#149;
+            <a class="footer-link @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/terms">@model.__('terms')</a>&#149;
+            <a class="footer-link @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/merchant">@model.__('merchant_contact')</a>
           </div><!-- .col -->
           <div class="col s12 m4 l4 box-3 hide">
-            <p class="text-footer">
+            <p class="text-footer @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')">
               폭스트론 (주)
               <br>대표이사: 김지완
               <br>서울특별시 성북구 삼양로22, 국민대학교 기린빌딩 103호
@@ -296,7 +302,7 @@
             </p>
           </div>
           <div class="col s12 m5 l5 box-4 right">
-            <p class="text-footer">
+            <p class="text-footer @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')">
               @model.__('footer_1')
               <br><br>
               @model.__('footer_2')
@@ -305,7 +311,7 @@
         </div><!-- .row -->
 			</div><!-- .container -->
 			<div class="footer-copyright">
-				<div class="container">
+				<div class="container @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')">
 					<span class="text-footer">Copyright &copy; 2015 Daily Boom. All rights reserved.</span>
 				</div>
 			</div>

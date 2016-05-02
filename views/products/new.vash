@@ -185,6 +185,7 @@
 						<option value="brown">Brown</option>
 						<option value="blue-grey">Blue Grey</option>
 						<option value="grey">Grey</option>
+						<option value="white">White</option>
 					</select>
 					<label for="color">테마 색상</label>
 				</div>

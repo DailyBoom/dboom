@@ -1830,6 +1830,15 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0 5px;
     cursor: pointer;
   }
+  .parallax img {
+      width: 100%;
+  }
+  .index-parallax-container {
+    height: 260px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
   .parallax-container {
     height: 260px;
   }
@@ -1884,6 +1893,9 @@ input[type=number]::-webkit-outer-spin-button {
     line-height: 2.5;
     vertical-align: middle;
   }
+  .index-parallax-container {
+    height: 360px;
+  }
   .parallax-container {
     height: 360px;
   }
@@ -1922,6 +1934,9 @@ input[type=number]::-webkit-outer-spin-button {
     height: 2.5em;
     line-height: 2.5;
     vertical-align: middle;
+  }
+  .index-parallax-container {
+    height: 500px;
   }
   .parallax-container {
     height: 500px;
