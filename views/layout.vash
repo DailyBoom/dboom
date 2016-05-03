@@ -194,8 +194,8 @@
                                         <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck fa-fw right"></i></a></li>
                                     }
 									<li class="divider"></li>
-									<li><a class="text-darken-2 @(model.product && model.product.color == 'white' ? 'black' : 'white')-text" href="/mypage">마이 페이지 <i class="fa fa-user fa-fw right"></i></a></li>
-									<li><a class="text-darken-2 @(model.product && model.product.color == 'white' ? 'black' : 'white')-text" href="/logout">로그아웃 <i class="fa fa-sign-out fa-fw right"></i></a></li>
+									<li><a class="text-darken-2 black-text" href="/mypage">마이 페이지 <i class="fa fa-user fa-fw right"></i></a></li>
+									<li><a class="text-darken-2 black-text" href="/logout">로그아웃 <i class="fa fa-sign-out fa-fw right"></i></a></li>
                                     @if (model.user.admin == 1) {
                                         <li class="divider"></li>
                                         <li><a class="deep-purple-text text-darken-2" href="/orders/list">Orders List <i class="fa fa-shopping-cart fa-fw right"></i></a></li>
@@ -234,8 +234,8 @@
                         <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck right"></i></a></li>
                     }
 									<li class="divider"></li>
-									<li><a class="text-darken-2 @(model.product && model.product.color == 'white' ? 'black' : 'white')-text" href="/mypage">마이 페이지 <i class="fa fa-user right"></i></a></li>
-									<li><a class="text-darken-2 @(model.product && model.product.color == 'white' ? 'black' : 'white')-text" href="/logout">로그아웃 <i class="fa fa-sign-out right"></i></a></li>
+									<li><a class="text-darken-2 black-text" href="/mypage">마이 페이지 <i class="fa fa-user right"></i></a></li>
+									<li><a class="text-darken-2 black-text" href="/logout">로그아웃 <i class="fa fa-sign-out right"></i></a></li>
 								</ul>
 							</li>
 						</ul>
