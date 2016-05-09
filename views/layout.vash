@@ -259,8 +259,8 @@
                       </a>
                     </li>
                   }
-									<li><a class="waves-effect waves-light @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text') text-darken-2" href="/login">@model.__('login') <i class="fa fa-sign-in right"></i></a></li>
-									<li><a class="waves-effect waves-light @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text') text-darken-2" href="/signup">@model.__('signup') <i class="fa fa-user-plus right"></i></a></li>
+									<li><a class="waves-effect waves-light black-text text-darken-2" href="/login">@model.__('login') <i class="fa fa-sign-in right"></i></a></li>
+									<li><a class="waves-effect waves-light black-text text-darken-2" href="/signup">@model.__('signup') <i class="fa fa-user-plus right"></i></a></li>
 								</ul>
 							</li>
 						</ul>

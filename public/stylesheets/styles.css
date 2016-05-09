@@ -78,8 +78,11 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /* Container Reset */
-@media only screen and (min-width: 0) {
-  .container { width: 94%; }
+@media only screen and (max-width: 600px) {
+  .container-fluid { width: 100%; }
+  .container-fluid .row .col {
+    padding: 0;
+  }
 }
 @media only screen and (min-width: 601px) {
   .container { width: 90%; }
@@ -181,12 +184,12 @@ input[type=number]::-webkit-outer-spin-button {
  *  Navbar
  */
 .d-clock {
-  font-family: 'BulkyPixels', sans-serif;
+  /*font-family: 'BulkyPixels', sans-serif; */
   clear: none;
 }
 @media only screen and (min-width: 0) {
   .logo-d { display: none; }
-  .logo-m { display: block; }
+  .logo-m { display: block; margin-left: 5px; }
   .logo-img { height: 36px; margin-top: 6px;}
   nav {
     height: 51px;
@@ -249,7 +252,7 @@ input[type=number]::-webkit-outer-spin-button {
     position: absolute;
     font-size: 2em;
     line-height: 51px;
-    margin-top: 5px;
+    margin-top: 0px;
     margin-left: 20px;
   }
   .btn-mobile {
@@ -535,9 +538,8 @@ input[type=number]::-webkit-outer-spin-button {
   .buy-help {
     display: block;
     position: fixed;
-    width: 100%;
     height: 25px;
-    bottom: 0;
+    bottom: 21px;
     left: 0;
     right: 0;
     padding: 0;
@@ -1026,7 +1028,11 @@ input[type=number]::-webkit-outer-spin-button {
     z-index: 10;
   }
 }
-@media only screen and (min-width: 601px) {}
+@media only screen and (min-width: 601px) {
+  .past-img {
+      height: 191px; 
+  }
+}
 @media only screen and (min-width: 992px) {}
 @media only screen and (min-width: 1200px) {}
 /*6d6e70*/
@@ -1068,6 +1074,48 @@ input[type=number]::-webkit-outer-spin-button {
   .toast-coupon {
     height: 100px;
   }
+  .past-img {
+      position: relative;
+      background-position: center center;
+      background-size: 130%;
+      height: 191px; 
+  }
+}
+@media only screen and (max-width: 600px) {
+  .bx-wrapper {
+    margin: 0;
+  }
+  
+  .mt-info {
+    width: 100%;
+    background: white;
+    padding: 15px 0px;
+  }
+  
+  .mt-info .collapsible {
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  .sale-item {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: #ff4b46;
+    padding: 10px;
+    color: white;
+    border-radius: 50px;
+    border: 1px solid white;
+  }
+  
+  .sale-item .mod {
+    text-align: center;
+  }
+  
+  .sale-item .item-price {
+    font-size: 1.7em;
+    font-weight: bold;
+  }
 }
 @media only screen and (min-width: 601px) {}
 @media only screen and (min-width: 992px) {
@@ -1088,7 +1136,7 @@ input[type=number]::-webkit-outer-spin-button {
 .brand-img {
   display: inline-block;
   border: 2px solid #fff;
-  border-radius: 5px;
+  border-radius: 50px;
   background-color: rgba(96, 125, 139, .5);
   z-index: 10;
 }
@@ -1123,18 +1171,34 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   .mobile-buy {
+    background: #0084ff;
     display: block;
     position: fixed;
-    bottom: 25px;
+    bottom: 45px;
     left: 0;
     right: 0;
     height: 62px;
-    padding: 0 10px;
+    padding: 0 30px;
     border-top: 2px solid #fff;
     border-bottom: 2px solid #fff;
-    font-size: 2em;
+    font-size: 1.7em;
     z-index: 900;
   }
+  
+  .mobile-buy a {
+    color: white;
+    display: block;
+  }
+  
+  .mobile-buy .buy-text {
+    margin-top: 8px;
+    font-weight: bold;
+  }
+  
+  .mobile-buy .m-item {
+    margin-top: 5px;
+  }
+  
   .btn-buy-mobile {
     height: auto;
     width: 120px !important;
@@ -1148,7 +1212,7 @@ input[type=number]::-webkit-outer-spin-button {
     line-height: 2.5;
     vertical-align: middle;
     width: 100%;
-    margin-top: -60px;
+    /* margin-top: -60px; */
     padding: 0 5px;
     z-index: 10;
   }
@@ -1181,10 +1245,10 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: 50%;
   }
   .brand-img {
-    height: 80px;
-    width: 80px;
+    height: 50px;
+    width: 50px;
     bottom: 0px;
-    margin-top: -15px;
+    margin-top: 0px;
     padding: 2px;
   }
   .item-name {
@@ -1241,6 +1305,8 @@ input[type=number]::-webkit-outer-spin-button {
   .past-date-box {
     padding: 5px 20px;
     font-size: 1.4em;
+    display: inline-block;
+    width: 100%;
   }
   /* custom card */
   .card.past .card-image-ol {
@@ -1612,9 +1678,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 /** Shipping xInfo **/
 @media only screen and (min-width: 0)      {
-  .collapsible.mod {
+  /*.collapsible.mod {
     margin: -1px;
-  }
+  }*/
   .collapsible-header { padding: 0 0 0 20px; }
   .collapsible.mod .collapsible-body {
     padding: 0px;
