@@ -1640,7 +1640,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
   /* custom card */
   .card.past .card-image-ol {
-    height: 191px;
+    height: 210px;
     padding-top: 60px;
   }
   .card .card-content.past {
