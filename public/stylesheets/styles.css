@@ -539,7 +539,7 @@ input[type=number]::-webkit-outer-spin-button {
     display: block;
     position: fixed;
     height: 25px;
-    bottom: 21px;
+    bottom: 0px;
     left: 0;
     right: 0;
     padding: 0;
@@ -1174,7 +1174,7 @@ input[type=number]::-webkit-outer-spin-button {
     background: #0084ff;
     display: block;
     position: fixed;
-    bottom: 45px;
+    bottom: 23px;
     left: 0;
     right: 0;
     height: 62px;
