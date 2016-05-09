@@ -1248,7 +1248,7 @@ input[type=number]::-webkit-outer-spin-button {
     height: 50px;
     width: 50px;
     bottom: 0px;
-    margin-top: 0px;
+    margin-top: -2px;
     padding: 2px;
   }
   .item-name {
