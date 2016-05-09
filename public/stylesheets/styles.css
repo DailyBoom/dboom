@@ -1078,7 +1078,7 @@ input[type=number]::-webkit-outer-spin-button {
       position: relative;
       background-position: center center;
       background-size: 130%;
-      height: 191px; 
+      height: 210px; 
   }
 }
 @media only screen and (max-width: 600px) {
