@@ -1252,7 +1252,8 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 2px;
   }
   .item-name {
-    width: 70%;
+    width: 84%;
+    font-weight: bold;
     display: inline-block;
     position: absolute;
     margin-left: 5px;
