@@ -2,7 +2,9 @@
 	@html.block("body", function(model) {
    <div class="container min-h-lg">
 		 <div class="row">
-
+			@if(model.user.admin){
+			 <a href="/orders/edit/@model.order.id" class="btn right">EDIT</a>
+			}
 			 <h3 class="blue-grey-text text-darken-4">주문정보</h3>
 			 <br>
 			 <div class="col s12 m8 l8">

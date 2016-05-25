@@ -135,17 +135,17 @@
       </div>
     }
 		<div class="navbar">
-			<nav class="@(model.product && model.product.color ? model.product.color : 'light-blue') darken-3">
+			<nav class="@(model.product && model.product.color ? model.product.color : 'white') darken-3">
 				<div class="container">
-                    @if (model.product && model.product.color == 'white') {
-                        <a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_05.png" /></a>
-                        <a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_05.png" /></a>
-                    }
-                    else {
+                    @if (model.product && model.product.color && model.product.color != 'white') {
                         <a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
                         <a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
                     }
-        	<span id="time-left-mobile" class="hide-on-med-and-up d-clock @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text') left"></span>
+                    else {
+                        <a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_05.png" /></a>
+                        <a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_05.png" /></a>
+                    }
+        	<span id="time-left-mobile" class="hide-on-med-and-up d-clock @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') left"></span>
           @if(@model.cart) {
             <ul class="right hide-on-small-only">
               <li class="nav-item">
@@ -186,7 +186,7 @@
 								</a>
 								<!-- Dropdown Structure -->
 								<ul id="dropdown-profile" class="dropdown-content">
-									<a class="@(model.product && model.product.color ? model.product.color : 'light-blue') darken-4 @((model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="#!">@model.user.username</a>
+									<a class="@(model.product && model.product.color ? model.product.color : 'white') darken-4 @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="#!">@model.user.username</a>
                                     @if (model.user.admin || model.user.role == "merchant") {
                                         <li class="divider"></li>
                                         <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus fa-fw right"></i></a></li>
@@ -210,9 +210,9 @@
                         <ul class="right hide-on-med-and-up">
 							<li class="nav-item">
 								<!-- Mobile Slider Menu -->
-                <a href="#" data-activates="slide-out" class="button-collapse mod"><i class="fa fa-bars fa-fw @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')"></i></a>
+                <a href="#" data-activates="slide-out" class="button-collapse mod"><i class="fa fa-bars fa-fw @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></i></a>
                 <ul id="slide-out" class="side-nav">
-                    <a class="@(model.product && model.product.color ? model.product.color : 'light-blue') darken-4 @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text') center" href="#!">@model.user.username</a>
+                    <a class="@(model.product && model.product.color ? model.product.color : 'white') darken-4 @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') center" href="#!">@model.user.username</a>
                     @if(@model.cart) {
                         <li>
                         <a class='deep-purple-text text-darken-2 modal-trigger' href='#cart-modal'>
@@ -248,13 +248,13 @@
 								<!-- <a class='dropdown-button btn btn-flat btn-mobile white-text' href='#' data-activates='dropdown-profile'>
 									<i class="fa fa-bars fa-fw fa-4x"></i>
 								</a> -->
-                <a href="#" data-activates="slide-out" class="button-collapse mod"><i class="fa fa-bars fa-fw @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')"></i></a>
+                <a href="#" data-activates="slide-out" class="button-collapse mod"><i class="fa fa-bars fa-fw @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></i></a>
 								<!-- Dropdown Structure -->
 								<!-- <ul id="dropdown-profile" class="dropdown-content @(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2"> -->
                 <ul id="slide-out" class="side-nav">
                   @if(@model.cart) {
                     <li>
-                      <a class="modal-trigger waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2" href='#cart-modal'>
+                      <a class="modal-trigger waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'white')-text text-darken-2" href='#cart-modal'>
                         <i class="fa fa-cart-arrow-down fa-cx"></i>@if(@model.cart) {<span class="cart-badge badge">@model.cart.length</span>}
                       </a>
                     </li>
@@ -265,40 +265,40 @@
 							</li>
 						</ul>
                         <ul class="right hide-on-small-only user-link">
-                            <li class="nav-item mod"><a class="@(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/login">@model.__('login')</a></li>
-                            <li class="nav-item mod"><a class="@(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/signup">@model.__('signup')</a></li>
+                            <li class="nav-item mod"><a class="@(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/login">@model.__('login')</a></li>
+                            <li class="nav-item mod"><a class="@(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/signup">@model.__('signup')</a></li>
                         </ul>
 					}
 				</div><!-- .container -->
 			</nav>
 		</div><!-- .navbar -->
       @html.block("body")
-		<footer class="page-footer @(model.product && model.product.color ? model.product.color : 'light-blue') darken-3">
+		<footer class="page-footer @(model.product && model.product.color ? model.product.color : 'white') darken-3">
 			<div class="container">
         <div class="row flex-s">
           <div class="col s12 m3 l3 box-2">
-            <p class="follow-us @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')">Follow Us</p>
+            <p class="follow-us @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Follow Us</p>
             <span>
                 <a href="https://www.facebook.com/dailyboomkorea" target="_blank">
-                    <img class="footer-social" src="@(model.product && model.product.color == 'white' ? '/images/facebook_b.png' : '/images/facebook.png')" />
+                    <img class="footer-social" src="@(model.product && model.product.color && model.product.color != 'white' ? '/images/facebook.png' : '/images/facebook_b.png')" />
                 </a>
                 <a href="http://instagram.com/dailyboomkorea" target="_blank">
-                    <img class="footer-social" src="@(model.product && model.product.color == 'white' ? '/images/insta_b.png' : '/images/insta.png')" />
+                    <img class="footer-social" src="@(model.product && model.product.color && model.product.color != 'white' ? '/images/insta.png' : '/images/insta_b.png')" />
                 </a>
                 <a href="http://blog.naver.com/dailyboomkorea" target="_blank">
-                    <img class="footer-social" src="@(model.product && model.product.color == 'white' ? '/images/nblog_b.png' : '/images/nblog.png')" />
+                    <img class="footer-social" src="@(model.product && model.product.color && model.product.color != 'white' ? '/images/nblog.png' : '/images/nblog_b.png')" />
                 </a>
             </span>
           </div><!-- .col -->
-          <div class="col s12 m9 l9 footer-box @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text') box-1">
-            <a class="footer-link @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/about">@model.__('about')</a>&#149;
-            <a class="footer-link @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/advertise">@model.__('advertise')</a>&#149;
-            <a class="footer-link @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/privacy">@model.__('privacy')</a>&#149;
-            <a class="footer-link @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/terms">@model.__('terms')</a>&#149;
-            <a class="footer-link @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')" href="/merchant">@model.__('merchant_contact')</a>
+          <div class="col s12 m9 l9 footer-box @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') box-1">
+            <a class="footer-link @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/about">@model.__('about')</a>&#149;
+            <a class="footer-link @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/advertise">@model.__('advertise')</a>&#149;
+            <a class="footer-link @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/privacy">@model.__('privacy')</a>&#149;
+            <a class="footer-link @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/terms">@model.__('terms')</a>&#149;
+            <a class="footer-link @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/merchant">@model.__('merchant_contact')</a>
           </div><!-- .col -->
           <div class="col s12 m4 l4 box-3">
-            <p class="text-footer @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')">
+            <p class="text-footer @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
               폭스트론 (주)
               <br>대표이사: 김지완
               <br>서울특별시 성북구 삼양로 22, 국민대 창업보육센터 103호(길음동)
@@ -309,7 +309,7 @@
             </p>
           </div>
           <div class="col s12 m5 l5 box-4">
-            <p class="text-footer @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')">
+            <p class="text-footer @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
               @model.__('footer_1')
               <br><br>
               @model.__('footer_2')
@@ -319,7 +319,7 @@
 			</div><!-- .container -->
 			<div class="footer-copyright">
 				<div class="container">
-					<span class="text-footer @(model.product && model.product.color == 'white' ? 'black-text' : 'white-text')">Copyright &copy; 2015 Daily Boom. All rights reserved.</span>
+					<span class="text-footer @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Copyright &copy; 2015 Daily Boom. All rights reserved.</span>
 				</div>
 			</div>
 			<div class="hide-on-med-and-up">

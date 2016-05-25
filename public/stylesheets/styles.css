@@ -830,6 +830,14 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 @media only screen and (min-width: 0) {
+  .mobile-wrap .bx-wrapper .bx-viewport {
+    height: 500px !important;
+  }
+  
+  .mobile-wrap .slide {
+    height: 500px !important;    
+  }
+  
   .bx-wrapper .bx-viewport {
     height: 218px !important;
   }

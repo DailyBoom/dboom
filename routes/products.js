@@ -94,7 +94,7 @@ router.get('/products/preview', isMerchantOrAdmin, function(req, res) {
   res.render("products/preview");
 });
 
-router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: "brandlogo", maxCount: 1}, {name: "deliveryinfo", maxCount: 1}, { name: "description_image", maxCount: 1}]), function(req, res) {
+router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: 'photosmobile', maxCount: 4}, {name: "brandlogo", maxCount: 1}, {name: "deliveryinfo", maxCount: 1}, { name: "description_image", maxCount: 1}]), function(req, res) {
   console.log(req.body);
   // req.Validator.validate('selldate', i18n.__('product.sellDate'), {
   //   required: true
@@ -135,6 +135,14 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
             return item.path;
         });
       }
+      
+      if (req.files['photosmobile']) {
+        var paths = req.files['photosmobile'].map(function(item) {
+            return item.path;
+        });
+        product.mobile_images = paths;
+      }
+      
       var quantity = 0;
       req.body.options.forEach(function(option) {
         quantity += parseInt(option.quantity);
@@ -192,7 +200,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
   });
 });
 
-router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: "brandlogo", maxCount: 1}, {name: "deliveryinfo", maxCount: 1}, { name: "description_image", maxCount: 1}]), function(req, res) {
+router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: 'photosmobile', maxCount: 4}, {name: "brandlogo", maxCount: 1}, {name: "deliveryinfo", maxCount: 1}, { name: "description_image", maxCount: 1}]), function(req, res) {
   Product.findOne({_id: req.params.id}, function (err, product) {
     if (err)
       console.log(err);
@@ -233,6 +241,13 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
           return item.path;
       });
       product.images = paths;
+    }
+    
+    if (req.files['photosmobile']) {
+      var paths = req.files['photosmobile'].map(function(item) {
+          return item.path;
+      });
+      product.mobile_images = paths;
     }
 
     if (req.files['brandlogo']) {

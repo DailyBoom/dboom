@@ -2,7 +2,7 @@
 	@html.block("body", function(model) {
 <!-- Login Modal Structure -->
 <div id="modal-check" class="modal">
-	<div class="modal-header-c @(model.product.color ? model.product.color : 'light-blue') darken-2 @(model.product.color == 'white' ? 'black-text' : 'white-text') center">
+	<div class="modal-header-c @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') center">
 		로그인
 	</div>
 	<div class="modal-content-c">
@@ -22,7 +22,7 @@
 						<label for="remember-me">아이디 저장</label>
 					</span>
 					<span class="right">
-						<button class="waves-effect waves-light btn @(model.product.color ? model.product.color : 'light-blue') darken-2" type="submit" name="action">로그인</button>
+						<button class="waves-effect waves-light btn @(model.product.color ? model.product.color : 'white') darken-2" type="submit" name="action">로그인</button>
 					</span>
 				</div><!-- .col -->
 				<div class="col s12">
@@ -47,14 +47,14 @@
 			</form>
 		</div><!-- .row -->
 	</div><!-- .modal-content -->
-	<div class="modal-footer-c @(model.product.color ? model.product.color : 'light-blue') lighten-5 red-text text-darken-3">
+	<div class="modal-footer-c @(model.product.color ? model.product.color : 'white') lighten-5 red-text text-darken-3">
 		<a class="red-text text-darken-3 left" href="/forgot">비밀번호를 잊으셨나요?</a>
 		<!-- <a class="red-text text-darken-3 right" href="/signup">회원가입</a> -->
 	</div>
 </div><!-- #modal-check -->
 <!-- End Login Modal -->
 @if(!model.no_time){
-	<div class="hide-on-small-only buy-sticky-wrapper @(model.product.color ? model.product.color : 'light-blue')">
+	<div class="hide-on-small-only buy-sticky-wrapper @(model.product.color ? model.product.color : 'white')">
 		@if (model.user) {
 			@if (model.progress < 100) {
 				<a class="center btn btn-large buy-mod red darken-1 right" href="/checkout?product_id=@model.product.id"> 구매하기 <i class="fa fa-chevron-right fa-fw"></i> </a>
@@ -65,8 +65,8 @@
 				<a class="center btn btn-large buy-mod red darken-1 right modal-trigger" href="#modal-check"> 구매하기 <i class="fa fa-chevron-right fa-fw"></i> </a>
 			}
 		}
-		<span id="time-left-label" class="hide d-clock label @(model.product.color ? model.product.color : 'light-blue') @(model.product.color == 'white' ? 'black-text' : 'white-text') left">남은시간</span>
-		<br><span id="time-left" class="hide d-clock @(model.product.color == 'white' ? 'black-text' : 'white-text') left"></span>
+		<span id="time-left-label" class="hide d-clock label @(model.product.color ? model.product.color : 'white') @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') left">남은시간</span>
+		<br><span id="time-left" class="hide d-clock @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') left"></span>
 	</div>
 }
 @if(model.product.images.length == 1) {
@@ -132,7 +132,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col s12">
-			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-3 @(model.product.color == 'white' ? 'black-text' : 'white-text')">
+			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'white') darken-3 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
 				<img class="brand-img" src="/@model.product.brand_logo" alt="@model.product.brand - Logo" />
 					@if (model.product.name.length >= 12) {
 						<div class="item-name name-md">@model.product.name</div>
@@ -142,15 +142,15 @@
 					}
 					<div class="hide-on-small-only m-item right">
 						<div class="item-price-o mod red-text text-lighten-2">SALE</div>
-						<div class="item-price @(model.product.color == 'white' ? 'black-text' : 'white-text')">@model.sale%</div>
+						<div class="item-price @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.sale%</div>
 					</div>
 					<span class="hide-on-small-only">&nbsp;</span>
 					<div class="hide-on-small-only m-item right">
 						<div class="item-price-o desk red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
-						<div class="item-price desk @(model.product.color == 'white' ? 'black-text' : 'white-text')" id="product_price_mobile">@model.product.price</div>
+						<div class="item-price desk @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" id="product_price_mobile">@model.product.price</div>
 					</div>
 			</div>
-			<div class="buy-box-info @(model.product.color ? model.product.color : 'light-blue') lighten-5 blue-grey-text text-darken-4">
+			<div class="buy-box-info @(model.product.color ? model.product.color : 'white') lighten-5 blue-grey-text text-darken-4">
 				<div class="item-info">@html.raw(model.product.description)</div>
 				<div class="item-info-links">
 					@if(model.product.review_url) {
@@ -192,7 +192,7 @@
 					<a href="#modal-ask" class="hide-on-small-only btn btn-flat buy-help-dd modal-trigger">Can't Read Korean? Click here.</a>
 				</div>
 			</div>
-			<div class="buy-box-footer @(model.product.color ? model.product.color : 'light-blue') lighten-3">
+			<div class="buy-box-footer @(model.product.color ? model.product.color : 'white') lighten-3">
 				<div class="center">
 					<!-- <span class="share-text white-text">share</span> -->
 					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
@@ -203,23 +203,23 @@
 			</div><!-- .buy-box-footer -->
 			<!-- Modal Structure -->
 		  <div id="share_url_modal" class="modal">
-				<div class="modal-header @(model.product.color ? model.product.color : 'light-blue') darken-2 @(model.product.color == 'white' ? 'black-text' : 'white-text') center">
+				<div class="modal-header @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') center">
 					공유하기
 				</div>
 		    <div class="modal-content">
 					<input readonly type="text" id="share_url" value="http://dailyboom.co">
 					<br>
 					<br>
-					<a href="#!" class="modal-action modal-close waves-effect waves-light btn @(model.product.color ? model.product.color : 'light-blue') darken-2">닫기</a>
+					<a href="#!" class="modal-action modal-close waves-effect waves-light btn @(model.product.color ? model.product.color : 'white') darken-2">닫기</a>
 		    </div>
 		  </div>
 			<!-- Merchant xInfo -->
 			<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
 		    <li>
-					<div class="collapsible-header @(model.product.color ? model.product.color : 'light-blue') darken-1 @(model.product.color == 'white' ? 'black-text' : 'white-text')">
+					<div class="collapsible-header @(model.product.color ? model.product.color : 'white') darken-1 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
 						<span>@model.__('shipping_info') <i class="fa fa-info-circle fa-fw right"></i></span>
 					</div>
-					<div class="collapsible-body @(model.product.color ? model.product.color : 'light-blue') lighten-5">
+					<div class="collapsible-body @(model.product.color ? model.product.color : 'white') lighten-5">
 						@if(model.product.delivery_info) {
 							<img class="responsive-img" src="@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - 데일리 붐" />
 						}
@@ -241,40 +241,23 @@
 		  </ul>
 
 			<!-- Mobile -->
-			<div class="hide-on-med-and-up mobile-buy @(model.product.color ? model.product.color : 'light-blue') darken-3">
-				<div class="m-item">
-					<div class="item-price-o mod red-text text-lighten-2">SALE</div>
-					<div class="item-price @(model.product.color == 'white' ? 'black-text' : 'white-text')">@model.sale%</div>
-				</div>&nbsp;
-				<div class="m-item">
-					<div class="item-price-o red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
-					<div class="item-price @(model.product.color == 'white' ? 'black-text' : 'white-text')" id="product_price_mobile">@model.product.price</div>
-				</div>
-				@if (model.user) {
-					@if (model.progress < 100) {
-						<div class="hide-on-med-and-up">
-							<a class="modal-trigger" href="/checkout?product_id=@model.product.id">
-								<img class="btn-buy-mobile" src="/images/themes/btn-buy-mobile.png" alt="데일리 붐 쇼핑 몰"/>
-							</a>
-						</div>
-					}
-				}
-				else {
-					@if (model.progress < 100) {
-						<div class="hide-on-med-and-up">
-							<a class="modal-trigger" href="#modal-check">
-								<img class="btn-buy-mobile" src="/images/themes/btn-buy-mobile.png" alt="" style="width:100%;"/>
-							</a>
-						</div>
-					}
-				}
+			<div class="hide-on-med-and-up mobile-buy white-text">
+				<a class="modal-trigger" href="@(model.user ? '/checkout?product_id=@model.product.id' : '#modal-check')">
+					<div class="m-item">
+						<div class="item-price-o" id="product_old_price_mobile">@model.product.old_price</div>
+						<div class="item-price" id="product_price_mobile">@model.product.price</div>
+					</div>
+					<div class="hide-on-med-and-up right buy-text">
+							Buy Now
+					</div>
+				</a>
 			</div>
 			<a href="#modal-ask" class="hide-on-med-and-up buy-help modal-trigger">Can't Read Korean? Click here.</a>
 
 			<!-- Featured section -->
 			<div class="row">
 				<div class="col s12">
-					<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 @(model.product.color == 'white' ? 'black-text' : 'white-text')">
+					<div class="past-box-wrapper @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
 						@model.__('featured')
 					</div>
 					<br>

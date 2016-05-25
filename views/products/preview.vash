@@ -95,7 +95,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col s12">
-			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-3 @(model.product.color == 'white' ? 'black-text' : 'white-text')">
+			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'white') darken-3 @(model.product.color  && model.product.color != 'white' ? 'white-text' : 'black-text')">
 				<img class="brand-img" src="/@model.product.brand_logo" alt="@model.product.brand - Logo" />
 					@if (model.product.name.length >= 12) {
 						<div class="item-name name-md">@model.product.name</div>
@@ -106,7 +106,7 @@
 					@if (model.sale > 0) {
 						<div class="hide-on-small-only m-item right">
 							<div class="item-price-o mod red-text text-lighten-2">SALE</div>
-							<div class="item-price @(model.product.color == 'white' ? 'black-text' : 'white-text')">@model.sale%</div>
+							<div class="item-price @(model.product.color  && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.sale%</div>
 						</div>
 					}
 					<span class="hide-on-small-only">&nbsp;</span>
@@ -114,10 +114,10 @@
 						@if (model.sale > 0) {
 							<div class="item-price-o desk red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
 						}
-						<div class="item-price desk @(model.product.color == 'white' ? 'black-text' : 'white-text')" id="product_price_mobile">@model.product.price</div>
+						<div class="item-price desk @(model.product.color  && model.product.color != 'white' ? 'white-text' : 'black-text')" id="product_price_mobile">@model.product.price</div>
 					</div>
 			</div>
-			<div class="buy-box-info @(model.product.color ? model.product.color : 'light-blue') lighten-5 blue-grey-text text-darken-4">
+			<div class="buy-box-info @(model.product.color ? model.product.color : 'white') lighten-5 blue-grey-text text-darken-4">
 				<div class="item-info">@html.raw(model.product.description)</div>
 				<div class="item-info-links">
 					@if(model.product.review_url) {
@@ -145,7 +145,7 @@
 					<img class="responsive-img" src="/@model.product.description_image" alt="" />
 				}
 			</div>
-			<div class="buy-box-footer @(model.product.color ? model.product.color : 'light-blue') lighten-3">
+			<div class="buy-box-footer @(model.product.color ? model.product.color : 'white') lighten-3">
 				<div class="center">
 					<!-- <span class="share-text white-text">share</span> -->
 					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
@@ -156,23 +156,23 @@
 			</div><!-- .buy-box-footer -->
 			<!-- Modal Structure -->
 		  <div id="share_url_modal" class="modal">
-				<div class="modal-header @(model.product.color ? model.product.color : 'light-blue') darken-2 @(model.product.color == 'white' ? 'black-text' : 'white-text') center">
+				<div class="modal-header @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color  && model.product.color != 'white' ? 'white-text' : 'black-text') center">
 					공유하기
 				</div>
 		    <div class="modal-content">
 					<input readonly type="text" id="share_url" value="http://dailyboom.co">
 					<br>
 					<br>
-					<a href="#!" class="modal-action modal-close waves-effect waves-light btn @(model.product.color ? model.product.color : 'light-blue') darken-2">닫기</a>
+					<a href="#!" class="modal-action modal-close waves-effect waves-light btn @(model.product.color ? model.product.color : 'white') darken-2">닫기</a>
 		    </div>
 		  </div>
 			<!-- Merchant xInfo -->
 			<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
 		    <li>
-					<div class="collapsible-header @(model.product.color ? model.product.color : 'light-blue') darken-1 @(model.product.color == 'white' ? 'black-text' : 'white-text')">
+					<div class="collapsible-header @(model.product.color ? model.product.color : 'white') darken-1 @(model.product.color  && model.product.color != 'white' ? 'white-text' : 'black-text')">
 						<span>배송 진행상황 조회 및 제품 교환/환불 정책 <i class="fa fa-info-circle fa-fw right"></i></span>
 					</div>
-					<div class="collapsible-body @(model.product.color ? model.product.color : 'light-blue') lighten-5">
+					<div class="collapsible-body @(model.product.color ? model.product.color : 'white') lighten-5">
 						@if(model.product.delivery_info) {
 							<img class="responsive-img" src="@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - 데일리 붐" />
 						}
@@ -194,18 +194,18 @@
 		  </ul>
 
 			<!-- Mobile -->
-			<div class="hide-on-med-and-up mobile-buy @(model.product.color ? model.product.color : 'light-blue') darken-3">
+			<div class="hide-on-med-and-up mobile-buy @(model.product.color ? model.product.color : 'white') darken-3">
 				@if (model.sale > 0) {
 					<div class="m-item">
 						<div class="item-price-o mod red-text text-lighten-2">SALE</div>
-						<div class="item-price @(model.product.color == 'white' ? 'black-text' : 'white-text')">@model.sale%</div>
+						<div class="item-price @(model.product.color  && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.sale%</div>
 					</div>
 				}
 				<div class="m-item">
 					@if (model.sale > 0) {
 						<div class="item-price-o red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
 					}
-					<div class="item-price @(model.product.color == 'white' ? 'black-text' : 'white-text')" id="product_price_mobile">@model.product.price</div>
+					<div class="item-price @(model.product.color  && model.product.color != 'white' ? 'white-text' : 'black-text')" id="product_price_mobile">@model.product.price</div>
 				</div>
 				@if (model.user) {
 					@if (model.progress < 100) {

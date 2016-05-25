@@ -209,7 +209,7 @@ router.get('/orders/view/:id', isMerchantOrAdmin, function(req, res) {
 });
 
 router.get('/orders/edit/:id', isAdmin, function(req, res) {
-  Order.findOne({ _id: req.params.id }).exec(function(err, order) {
+  Order.findOne({ _id: req.params.id }).populate('user').exec(function(err, order) {
     if (err)
       console.log(err);
     if (!order)

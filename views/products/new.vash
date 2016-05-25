@@ -92,6 +92,30 @@
 			<div class="file-field input-field">
 				<br>
 				<span class="hide-on-small-only"><br></span>
+				<span for="photosmain" class="input-file-mod grey-text">상품 사진 기본 (Max: 4) *</span>
+				<div class="btn blue-grey darken-2">
+					<span><i class="fa fa-image left"></i>선택</span>
+					<input id="photosmain" type="file" class="validate" name="photosmain" multiple required>
+				</div>
+				<div class="file-path-wrapper">
+					<input class="file-path validate" type="text">
+				</div>
+			</div>
+			<div class="file-field input-field">
+				<br>
+				<span class="hide-on-small-only"><br></span>
+				<span for="photosmobile" class="input-file-mod grey-text">모바일 상품 사진 기본 (Max: 4) *</span>
+				<div class="btn blue-grey darken-2">
+					<span><i class="fa fa-image left"></i>선택</span>
+					<input id="photosmobile" type="file" class="validate" name="photosmobile" multiple>
+				</div>
+				<div class="file-path-wrapper">
+					<input class="file-path validate" type="text">
+				</div>
+			</div>
+			<div class="file-field input-field">
+				<br>
+				<span class="hide-on-small-only"><br></span>
 				<span for="description_image" class="input-file-mod grey-text">상품정보 이미지</span>
 				<div class="btn blue-grey darken-2">
 					<span><i class="fa fa-image left"></i>선택</span>
@@ -150,18 +174,6 @@
 				</div>
 			</div>
 			<!-- .row -->
-			<div class="file-field input-field">
-				<br>
-				<span class="hide-on-small-only"><br></span>
-				<span for="photosmain" class="input-file-mod grey-text">상품 사진 기본 (Max: 4) *</span>
-				<div class="btn blue-grey darken-2">
-					<span><i class="fa fa-image left"></i>선택</span>
-					<input id="photosmain" type="file" class="validate" name="photosmain" multiple required>
-				</div>
-				<div class="file-path-wrapper">
-					<input class="file-path validate" type="text">
-				</div>
-			</div>
 			<br>
 			<div class="row">
 				<div class="input-field col s12">

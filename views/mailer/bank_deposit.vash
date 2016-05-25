@@ -57,7 +57,7 @@
 							<br>@model.order.option
 							<br>@model.order.quantity
 							<br>
-              <br>@model.order.shipping.full_name
+              				<br>@model.order.shipping.full_name
 							<br>@model.order.shipping.phone_number
 							<br>@model.order.shipping.address
 							<br>@model.order.shipping.zipcode
@@ -66,6 +66,7 @@
 							<br>데일리 붐을 사용해주셔서 감사합니다.
 							<br>
 							<br>주문내역 및 기타정보는 <span class="amber-text text-darken-3">마이페이지 > 주문내역</span>에서 확인가능 합니다.
+							<br/><a class="btn red darken-2 right cancel" href="http://dailyboom.co.kr/orders/cancel_deposit/@model.order.id">무통장입금 취소</a>
 						</h3>
 					</td>
 				</tr>
