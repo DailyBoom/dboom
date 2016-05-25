@@ -93,7 +93,7 @@
 @if(model.product.images.length == 1) {
     <div class="index-parallax-container">
         <div class="parallax">
-        	<img class="ie-fix" src="@(model.is_mobile && model.product.mobile_images ? model.product.mobile_images[0] : model.product.images[0])" alt="@model.product.name" />
+        	<img class="ie-fix" src="@model.product.images[0]" alt="@model.product.name" />
 			<div class="sale-item">
 				<div class="mod">Sale</div>
 				<div class="item-price">@model.sale%</div>
@@ -113,7 +113,7 @@
 @if(model.product.images.length > 1) {
     <!-- L Slider -->
 	<div class="hero-wrapper">
-		@if(model.is_mobile && model.product.mobile_images) {
+		@if(model.is_mobile && model.product.mobile_images.length > 0) {
 		<div class="hero-left bxslider-wrap mobile-wrap">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
 				@model.product.mobile_images.forEach(function(img, index) {
