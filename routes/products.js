@@ -136,13 +136,6 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         });
       }
       
-      if (req.files['photosmobile']) {
-        var paths = req.files['photosmobile'].map(function(item) {
-            return item.path;
-        });
-        product.mobile_images = paths;
-      }
-      
       var quantity = 0;
       req.body.options.forEach(function(option) {
         quantity += parseInt(option.quantity);
@@ -173,6 +166,13 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         is_hot: req.body.is_hot,
         color: req.body.color
       });
+    
+      if (req.files['photosmobile']) {
+        var paths = req.files['photosmobile'].map(function(item) {
+            return item.path;
+        });
+        product.mobile_images = paths;
+      }
     
       if (product.price >= 50000)
         product.delivery_price = 0;
