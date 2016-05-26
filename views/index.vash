@@ -332,7 +332,7 @@
 															@product.price
 														</div>
 													</div><!-- .card-image-ol -->
-													<div class="past-img" style="background-image: url(@product.mobile_images[0])" alt=""></div>
+													<div class="past-img" style="background-image: url(@product.images[0])" alt=""></div>
 												</div>
 												<div class="card-content past">
 													<div class="blue-grey-text text-darken-1 truncate"><b>@product.name</b></div>
