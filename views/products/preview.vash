@@ -52,12 +52,39 @@
     @if(model.product.images.length > 1) {
 	<!-- L Slider -->
 	<div class="hero-wrapper">
-		<div class="hero-left bxslider-wrap">
+				@if(model.is_mobile && model.product.mobile_images.length > 0) {
+		<div class="hero-left bxslider-wrap mobile-wrap">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
-				@model.product.images.forEach(function(img) {
-					<div class="slide" style="background-image: url(/@img);">
+				@model.product.mobile_images.forEach(function(img, index) {
+					<div class="slide" style="background-image: url(@img);">
 						@if(model.progress >= 100) {
 							<img class="sold-out" src="/images/sold-out.png" />
+						}
+						else {
+							<div class="sale-item hide-on-med-and-up">
+								<div class="mod">Sale</div>
+								<div class="item-price">@model.sale%</div>
+							</div>
+						}
+					</div>
+				})
+				
+			</div><!-- #main-slider -->
+		</div><!-- .hero-left -->
+		}
+		else{
+		<div class="hero-left bxslider-wrap mobile-wrap">
+			<div id="main-slider" class="slider-wrapper z-depth-1">
+				@model.product.images.forEach(function(img, index) {
+					<div class="slide" style="background-image: url(@img);">
+						@if(model.progress >= 100) {
+							<img class="sold-out" src="/images/sold-out.png" />
+						}
+						else {
+							<div class="sale-item hide-on-med-and-up">
+								<div class="mod">Sale</div>
+								<div class="item-price">@model.sale%</div>
+							</div>
 						}
 					</div>
 				})
@@ -69,6 +96,7 @@
 				}
 			</div><!-- #main-slider -->
 		</div><!-- .hero-left -->
+		}
 		<div class="hero-right" id="bx-pager">
 			@{ var x = 0; }
 			@model.product.images.forEach(function(img) {

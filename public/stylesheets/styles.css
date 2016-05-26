@@ -1037,9 +1037,9 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 @media only screen and (min-width: 601px) {
-  .past-img {
+  /*.past-img {
       height: 191px; 
-  }
+  }*/
 }
 @media only screen and (min-width: 992px) {}
 @media only screen and (min-width: 1200px) {}
@@ -1086,7 +1086,7 @@ input[type=number]::-webkit-outer-spin-button {
       position: relative;
       background-position: center center;
       background-size: 130%;
-      height: 210px; 
+      height: 400px; 
   }
 }
 @media only screen and (max-width: 600px) {
@@ -1319,9 +1319,18 @@ input[type=number]::-webkit-outer-spin-button {
   }
   /* custom card */
   .card.past .card-image-ol {
-    height: 210px;
-    padding-top: 75px;
+    height: 400px;
+    padding-top: 140px;
   }
+  
+  .past-divider {
+    height: 3px;
+    overflow: hidden;
+    width: 15%;
+    background-color: #e0e0e0;
+    margin: 20px auto;
+  }
+    
   .card .card-content.past {
     height: 141px;
     overflow-y: scroll;
@@ -1649,8 +1658,11 @@ input[type=number]::-webkit-outer-spin-button {
   }
   /* custom card */
   .card.past .card-image-ol {
-    height: 210px;
-    padding-top: 60px;
+    height: 325px;
+    padding-top: 90px;
+  }
+  .past-img {
+    height: 325px;
   }
   .card .card-content.past {
     height: 228px;
