@@ -90,9 +90,9 @@
 	<span id="time-left-label" class="d-clock label @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.__('time_left')</span>
 	<br><span id="time-left" class="d-clock @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></span>
 </div>
-@if(model.product.images.length == 1) {
+@if(model.product.images.length == 1 || model.is_mobile && model.product.mobile_images.length == 1) {
 <!-- Parallax -->
-	@if(model.is_mobile && model.product.mobile_images.length > 0) {
+	@if(model.is_mobile && model.product.mobile_images.length == 1) {
 		<div class="index-mobile-parallax-container">
 			<div class="parallax">
 				<img class="ie-fix" src="@model.product.mobile_images[0]" alt="@model.product.name" />
