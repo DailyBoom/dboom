@@ -147,7 +147,7 @@
 			</div><!-- #main-slider -->
 		</div><!-- .hero-left -->
 		}
-		else{
+		else if (!model.is_mobile && model.product.images.length > 1){
 		<div class="hero-left bxslider-wrap mobile-wrap">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
 				@model.product.images.forEach(function(img, index) {
@@ -171,7 +171,6 @@
 				}
 			</div><!-- #main-slider -->
 		</div><!-- .hero-left -->
-		}
 		<div class="hero-right" id="bx-pager">
 			@{ var x = 0; }
 			@model.product.images.forEach(function(img) {
@@ -191,6 +190,7 @@
 				</a>
 			}
 		</div><!-- .hero-right -->
+		}
 	</div><!-- .hero-wrapper -->
 }
 </div><!-- .container -->
