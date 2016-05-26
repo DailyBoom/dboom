@@ -90,7 +90,7 @@
 	<span id="time-left-label" class="d-clock label @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.__('time_left')</span>
 	<br><span id="time-left" class="d-clock @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></span>
 </div>
-@if(model.product.images.length == 1 || (model.is_mobile && model.product.mobile_images.length == 1)) {
+@if(model.product.images.length == 1 || model.product.mobile_images.length == 1) {
 <!-- Parallax -->
 	@if(model.is_mobile && model.product.mobile_images.length == 1) {
 		<div class="index-mobile-parallax-container">
@@ -103,7 +103,7 @@
 			</div>
 		</div>
 	}
-	else {
+	else if (!model.is_mobile && model.product.images.length == 1) {
 		<div class="index-parallax-container">
 			<div class="parallax">
 				<img class="ie-fix" src="@model.product.images[0]" alt="@model.product.name" />
@@ -124,7 +124,7 @@
 		</div>
 	}
 
-@if(model.product.images.length > 1) {
+@if(model.product.images.length > 1 || model.product.mobile_images.length > 1) {
     <!-- L Slider -->
 	<div class="hero-wrapper">
 		@if(model.is_mobile && model.product.mobile_images.length > 0) {
