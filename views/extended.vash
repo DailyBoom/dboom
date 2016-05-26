@@ -70,13 +70,31 @@
 	</div>
 }
 @if(model.product.images.length == 1) {
-    <div class="index-parallax-container">
-        <div class="parallax">
-        	<img class="ie-fix" src="/@model.product.images[0]" alt="@model.product.name" />
-        </div>
-    </div>
+<!-- Parallax -->
+	@if(model.is_mobile && model.product.mobile_images.length > 0) {
+		<div class="index-mobile-parallax-container">
+			<div class="parallax">
+				<img class="ie-fix" src="/@model.product.mobile_images[0]" alt="@model.product.name" />
+				<div class="sale-item">
+					<div class="mod">Sale</div>
+					<div class="item-price">@model.sale%</div>
+				</div>
+			</div>
+		</div>
+	}
+	else {
+		<div class="index-parallax-container">
+			<div class="parallax">
+				<img class="ie-fix" src="/@model.product.images[0]" alt="@model.product.name" />
+				<div class="sale-item">
+					<div class="mod">Sale</div>
+					<div class="item-price">@model.sale%</div>
+				</div>
+			</div>
+		</div>
+	}
 }
-<div class="container">
+<div class="container@(model.is_mobile ? '-fluid' : '')">
 	@if(model.mall) {
 		<a href="/mall" class="btn mall-back"><i class="fa fa-chevron-left fa-fw"></i>몰 다시가기</a>
 	}
@@ -90,12 +108,39 @@
     @if(model.product.images.length > 1) {
 	<!-- L Slider -->
 	<div class="hero-wrapper">
-		<div class="hero-left bxslider-wrap">
+		@if(model.is_mobile && model.product.mobile_images.length > 0) {
+		<div class="hero-left bxslider-wrap mobile-wrap">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
-				@model.product.images.forEach(function(img) {
-					<div class="slide" style="background-image: url(/@img);">
+				@model.product.mobile_images.forEach(function(img, index) {
+					<div class="slide" style="background-image: url(@img);">
 						@if(model.progress >= 100) {
 							<img class="sold-out" src="/images/sold-out.png" />
+						}
+						else {
+							<div class="sale-item hide-on-med-and-up">
+								<div class="mod">Sale</div>
+								<div class="item-price">@model.sale%</div>
+							</div>
+						}
+					</div>
+				})
+				
+			</div><!-- #main-slider -->
+		</div><!-- .hero-left -->
+		}
+		else{
+		<div class="hero-left bxslider-wrap mobile-wrap">
+			<div id="main-slider" class="slider-wrapper z-depth-1">
+				@model.product.images.forEach(function(img, index) {
+					<div class="slide" style="background-image: url(@img);">
+						@if(model.progress >= 100) {
+							<img class="sold-out" src="/images/sold-out.png" />
+						}
+						else {
+							<div class="sale-item hide-on-med-and-up">
+								<div class="mod">Sale</div>
+								<div class="item-price">@model.sale%</div>
+							</div>
 						}
 					</div>
 				})
@@ -107,6 +152,7 @@
 				}
 			</div><!-- #main-slider -->
 		</div><!-- .hero-left -->
+		}
 		<div class="hero-right" id="bx-pager">
 			@{ var x = 0; }
 			@model.product.images.forEach(function(img) {
@@ -129,7 +175,7 @@
 	</div><!-- .hero-wrapper -->
     }
 </div><!-- .container -->
-<div class="container">
+<div class="container@(model.is_mobile ? '-fluid' : '')">
 	<div class="row">
 		<div class="col s12">
 			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'white') darken-3 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
@@ -214,16 +260,16 @@
 		    </div>
 		  </div>
 			<!-- Merchant xInfo -->
-			<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
-		    <li>
-					<div class="collapsible-header @(model.product.color ? model.product.color : 'white') darken-1 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
-						<span>@model.__('shipping_info') <i class="fa fa-info-circle fa-fw right"></i></span>
-					</div>
-					<div class="collapsible-body @(model.product.color ? model.product.color : 'white') lighten-5">
-						@if(model.product.delivery_info) {
-							<img class="responsive-img" src="@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - 데일리 붐" />
-						}
-						else {
+			<div class="mt-info">
+				<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
+					<li>
+						<div class="collapsible-header @(model.product.color ? model.product.color : 'white') darken-1 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
+							<span>@model.__('shipping_info') <i class="fa fa-chevron-down fa-fw right"></i></span>
+						</div>
+						<div class="collapsible-body @(model.product.color ? model.product.color : 'white') lighten-5">
+							@if(model.product.delivery_info) {
+							<img class="responsive-img" src="@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - 데일리 붐"/> }
+							else {
 							<div class="item-shipping-info-box">
 								<p><b>배송 진행상황 조회</b></p>
 								<ol class="item-shipping-info">
@@ -235,10 +281,11 @@
 								<span>모든 제품은 해당 제품 회사의 물품 환불 및 교환 정책에 따릅니다.</span>
 								<br><span>해당 제품 회사가 아직 배송관련 교환 및 환불 정책이 없을 때, 모든 물품은 수령한지 10일 이내에 사용하지 않은 새 것 일 때 교환및 환불이 가능합니다. 환불을 원하는 경우, 해당 회사에 직접 연락을 하거나 데일리 붐 회계팀(contact@dailyboom.co)로 연락주시기 바랍니다.</span>
 							</div>
-						}
-					</div>
-		    </li>
-		  </ul>
+							}
+						</div>
+					</li>
+				</ul>
+			</div>
 
 			<!-- Mobile -->
 			<div class="hide-on-med-and-up mobile-buy white-text">
