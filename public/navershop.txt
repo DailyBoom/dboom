@@ -17,3 +17,22 @@
 <<<deliv>>>2500
 <<<mpric>>>10000
 <<<ftend>>>
+<<<begin>>>
+<<<mapid>>>56026fb1ad79928905a6998e
+<<<pname>>>W3 Set (블랙 +아이보리)
+<<<price>>>35000
+<<<pgurl>>>http://dailyboom.co/mall/Zonecode/56026fb1ad79928905a6998e
+<<<igurl>>>http://dailyboom.co/uploads/b2b7e068670ea4c71edbf6d6b75d76e21455979663590.jpeg
+<<<cate1>>>미용
+<<<cate2>>>뷰티소품
+<<<cate3>>>헤어소품
+<<<cate4>>>헤어브러시
+<<<caid1>>>01
+<<<caid2>>>001
+<<<caid3>>>0001
+<<<caid4>>>10001
+<<<brand>>>Zonecode
+<<<origi>>>한국
+<<<deliv>>>2500
+<<<mpric>>>35000
+<<<ftend>>>
