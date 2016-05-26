@@ -87,19 +87,33 @@
 			</a>
 		}
 	}
-	<span id="time-left-label" class="d-clock label @(model.product.color ? model.product.color : 'white') @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.__('time_left')</span>
+	<span id="time-left-label" class="d-clock label @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.__('time_left')</span>
 	<br><span id="time-left" class="d-clock @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></span>
 </div>
 @if(model.product.images.length == 1) {
-    <div class="index-parallax-container">
-        <div class="parallax">
-        	<img class="ie-fix" src="@model.product.images[0]" alt="@model.product.name" />
-			<div class="sale-item">
-				<div class="mod">Sale</div>
-				<div class="item-price">@model.sale%</div>
+<!-- Parallax -->
+	@if(model.is_mobile && model.product.mobile_images.length > 0) {
+		<div class="index-mobile-parallax-container">
+			<div class="parallax">
+				<img class="ie-fix" src="@model.product.mobile_images[0]" alt="@model.product.name" />
+				<div class="sale-item">
+					<div class="mod">Sale</div>
+					<div class="item-price">@model.sale%</div>
+				</div>
 			</div>
-        </div>
-    </div>
+		</div>
+	}
+	else {
+		<div class="index-parallax-container">
+			<div class="parallax">
+				<img class="ie-fix" src="@model.product.images[0]" alt="@model.product.name" />
+				<div class="sale-item">
+					<div class="mod">Sale</div>
+					<div class="item-price">@model.sale%</div>
+				</div>
+			</div>
+		</div>
+	}
 }
 <div class="container@(model.is_mobile ? '-fluid' : '')">
 	@if(model.progress >= 50){

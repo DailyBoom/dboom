@@ -275,6 +275,9 @@ input[type=number]::-webkit-outer-spin-button {
     line-height: 3.5;
     vertical-align: middle;
   }
+  #buy-sticky.white {
+    background: rgba(250, 250, 250, 0.7) !important;
+  }
   .buy-sticky-wrapper {
     display: block;
     position: fixed;
@@ -1913,6 +1916,12 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .index-parallax-container {
     height: 260px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+  .index-mobile-parallax-container {
+    height: 400px;
     position: relative;
     overflow: hidden;
     width: 100%;
