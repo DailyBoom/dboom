@@ -319,7 +319,7 @@
 			</div><!-- .container -->
 			<div class="footer-copyright">
 				<div class="container">
-					<span class="text-footer @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Copyright &copy; 2015 Daily Boom. All rights reserved.</span>
+					<span class="text-footer @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Copyright &copy; 2016 Dailyboom. All rights reserved.</span>
 				</div>
 			</div>
 			<div class="hide-on-med-and-up">
