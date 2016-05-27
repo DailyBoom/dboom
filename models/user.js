@@ -32,7 +32,7 @@ var userSchema = new Schema({
   person_in_charge: String,
   company_name: String,
   business_reg: String,
-  last_connec: Date,
+  last_connec: { type : Date, default : Date.now },
   wallet: { type: Number, default: 0 }
 });
 

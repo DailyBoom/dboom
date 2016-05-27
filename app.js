@@ -151,7 +151,17 @@ passport.use(new LocalStrategy(
           return done(null, false, { message: 'Incorrect password.' });
         }
         else {
-          return done(null, user);
+          if (moment().isAfter(user.last_connec, 'day')) {
+            if (user.wallet < 2500) {
+              user.wallet += 100
+            }
+          }
+          user.last_connec = moment();
+          user.save(function(err) {
+            if (err)
+              console.log(err);
+            return done(null, user);
+          });
         }
       });
     });
@@ -190,7 +200,17 @@ passport.use(new FacebookStrategy({
               });
           } else {
               //found user. Return
+            if (moment().isAfter(user.last_connec, 'day')) {
+              if (user.wallet < 2500) {
+                user.wallet += 100
+              }
+            }
+            user.last_connec = moment();
+            user.save(function(err) {
+              if (err)
+                console.log(err);
               return done(err, user);
+            });
           }
       });
   }
@@ -224,7 +244,17 @@ passport.use(new KakaoStrategy({
               });
           } else {
               //found user. Return
+            if (moment().isAfter(user.last_connec, 'day')) {
+              if (user.wallet < 2500) {
+                user.wallet += 100
+              }
+            }
+            user.last_connec = moment();
+            user.save(function(err) {
+              if (err)
+                console.log(err);
               return done(err, user);
+            });
           }
       });
   }
