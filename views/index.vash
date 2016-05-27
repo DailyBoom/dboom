@@ -148,7 +148,7 @@
 		</div><!-- .hero-left -->
 		}
 		else if (!model.is_mobile && model.product.images.length > 1){
-		<div class="hero-left bxslider-wrap mobile-wrap">
+		<div class="hero-left bxslider-wrap">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
 				@model.product.images.forEach(function(img, index) {
 					<div class="slide" style="background-image: url(@img);">

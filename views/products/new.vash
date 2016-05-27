@@ -19,16 +19,16 @@
 					판매 선택
 				</div>
 			@if(@model.user.admin) {
-				<div class="input-field col s3">
+				<div class="input-field col s4">
 			      <input name="is_hot" type="checkbox" id="is_hot" />
 			      <label for="is_hot">Hot Item (* Mall Only)</label>
 				</div>
 			}
-				<div class="input-field col s3">
+				<div class="input-field col s4">
 					<input name="extend" type="radio" id="extend_db" value="3"/>
 					<label for="extend_db">데일리 붐 메인</label>
 				</div>
-				<div class="input-field col s3">
+				<div class="input-field col s4">
 					<input name="extend" type="radio" id="extend_mall" value="4"/>
 					<label for="extend_mall">Mall (데일리 붐 몰에서 판매)</label>
 				</div>
@@ -92,7 +92,7 @@
 			<div class="file-field input-field">
 				<br>
 				<span class="hide-on-small-only"><br></span>
-				<span for="photosmain" class="input-file-mod grey-text">상품 사진 기본 (Max: 4) *</span>
+				<span for="photosmain" class="input-file-mod grey-text">상품 사진 기본 (Max: 4) * (1 image: 1900x800px, 2~4 images: 750x460px)</span>
 				<div class="btn blue-grey darken-2">
 					<span><i class="fa fa-image left"></i>선택</span>
 					<input id="photosmain" type="file" class="validate" name="photosmain" multiple required>
@@ -104,7 +104,7 @@
 			<div class="file-field input-field">
 				<br>
 				<span class="hide-on-small-only"><br></span>
-				<span for="photosmobile" class="input-file-mod grey-text">모바일 상품 사진 기본 (Max: 4) *</span>
+				<span for="photosmobile" class="input-file-mod grey-text">모바일 상품 사진 기본 (Max: 4) * (~400x400px)</span>
 				<div class="btn blue-grey darken-2">
 					<span><i class="fa fa-image left"></i>선택</span>
 					<input id="photosmobile" type="file" class="validate" name="photosmobile" multiple>
@@ -178,7 +178,8 @@
 			<div class="row">
 				<div class="input-field col s12">
 					<select id="color" class="validate" name="color">
-						<option value="">Light Blue (default)</option>
+						<option value="white" selected>White (default)</option>
+						<option value="light-blue">Light Blue</option>
 						<option value="red">Red</option>
 						<option value="pink">Pink</option>
 						<option value="purple">Purple</option>
@@ -197,7 +198,6 @@
 						<option value="brown">Brown</option>
 						<option value="blue-grey">Blue Grey</option>
 						<option value="grey">Grey</option>
-						<option value="white">White</option>
 					</select>
 					<label for="color">테마 색상</label>
 				</div>
