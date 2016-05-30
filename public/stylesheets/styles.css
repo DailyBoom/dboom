@@ -884,6 +884,16 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 @media only screen and (min-width: 601px)  {
+   #top_banner .close-banner {
+    font-size: 47px;
+    padding-right: 10px;
+    cursor: pointer;
+  }
+  
+  #top_banner b {
+    font-size: 42px;
+  }
+  
   .bx-wrapper .bx-viewport {
     height: 400px !important;
   }
@@ -1048,7 +1058,7 @@ input[type=number]::-webkit-outer-spin-button {
 @media only screen and (min-width: 1200px) {}
 /*6d6e70*/
 /** Buy Box **/
-.card.past .card-image-ol {
+.card.past .card-image-ol, .card.list .card-image-ol {
   position: absolute;
   display: block;
   width: 100%;
@@ -1078,6 +1088,22 @@ input[type=number]::-webkit-outer-spin-button {
   z-index: 900;
 }
 @media only screen and (min-width: 0) {
+  #top_banner {
+    height: 71px;
+    width: 100%;
+    word-break: keep-all;
+  }
+  
+  #top_banner .close-banner {
+    font-size: 47px;
+    padding-right: 10px;
+    cursor: pointer;
+  }
+  
+  #top_banner b {
+    font-size: 24px;
+  }
+  
   .coupon-wrapper {
     top: 40%;
     right: 10px;
@@ -1093,6 +1119,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 @media only screen and (max-width: 600px) {
+  
   .bx-wrapper {
     margin: 0;
   }
@@ -1324,6 +1351,15 @@ input[type=number]::-webkit-outer-spin-button {
   .card.past .card-image-ol {
     height: 400px;
     padding-top: 140px;
+  }
+  
+  .card.list .card-image-ol {
+    height: 190px;
+    padding-top: 80px;
+  }
+  
+  .card.list .card-image img {
+    height: 190px;
   }
   
   .past-divider {

@@ -116,7 +116,15 @@
     </script>
   </head>
   <body>
-    @if(@model.cart) {
+    @if (model.top_banner) {
+      <div id="top_banner" class="cyan white-text">
+        <span class="right close-banner"><li class="fa fa-times"></li></span>
+        <div class="container center">
+          <a href="/login" class="white-text"><b>하루 한번 로그인으로 매일 100원씩 받자!</b></a>
+        </div>
+      </div>
+    }
+    @if(model.cart) {
       <div id="cart-modal" class="modal">
         <div class="modal-header-c light-blue darken-2 white-text center">
           <li class="fa fa-shopping-cart"></li>장바구니
@@ -328,6 +336,13 @@
 		</footer><!-- .footer -->
     <script>
       $(document).ready(function(){
+        $('.close-banner').on("click", function() {
+          $('#top_banner').hide("slow");
+          var d = new Date();
+          d.setTime(d.getTime() + (1*24*60*60*1000));
+          var expires = "expires="+d.toUTCString();
+          document.cookie = "top_banner=true; " + expires;
+        });
         $('.modal-trigger').leanModal({
           dismissible: true, // Modal can be dismissed by clicking outside of the modal
           opacity: .5, // Opacity of modal background

@@ -1260,7 +1260,8 @@ router.post('/shipping', function(req, res) {
                   country: req.body.country,
                   zipcode: req.body.zipcode,
                   phone_number: req.body.phone_number
-                }
+                },
+                wallet: 100
               });
               user.save(function(err) {
                 if (err) {

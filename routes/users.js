@@ -373,6 +373,7 @@ router.post('/signup', function(req, res) {
           phone_number: req.body.phone_number
         }
       }
+      user.wallet = 100;
       user.save(function(err) {
         if (err) {
           console.log(err);

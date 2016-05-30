@@ -102,7 +102,6 @@ else {
   mongoose.set('debug', true);
 }
 app.use(function(req, res, next) {
-  console.log(i18n.getLocale(res));
   if (req.query.lang) {
     res.cookie('dboom_locale', req.query.lang, { maxAge: 900000, httpOnly: true });
     i18n.setLocale(req, req.query.lang);
@@ -110,6 +109,7 @@ app.use(function(req, res, next) {
   else if (!req.cookies.dboom_locale) {
     i18n.setLocale(req, 'ko');
   }
+  res.locals.top_banner = req.cookies.top_banner;
   res.locals.user = req.user;
   moment.locale('ko');
   res.locals.moment = moment;
