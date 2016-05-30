@@ -70,7 +70,7 @@
     @if(model.product.images.length > 1 || model.product.mobile_images.length > 1) {
 	<!-- L Slider -->
 	<div class="hero-wrapper">
-		@if(model.is_mobile && model.product.mobile_images.length > 0) {
+		@if(model.is_mobile && model.product.mobile_images.length > 1) {
 		<div class="hero-left bxslider-wrap mobile-wrap">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
 				@model.product.mobile_images.forEach(function(img, index) {
