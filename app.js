@@ -153,7 +153,8 @@ passport.use(new LocalStrategy(
         else {
           if (moment().isAfter(user.last_connec, 'day')) {
             if (user.wallet < 2500) {
-              user.wallet += 100
+              user.wallet += 100;
+              res.locals.toast = "100원 받기";
             }
           }
           user.last_connec = moment();
@@ -202,7 +203,8 @@ passport.use(new FacebookStrategy({
               //found user. Return
             if (moment().isAfter(user.last_connec, 'day')) {
               if (user.wallet < 2500) {
-                user.wallet += 100
+                user.wallet += 100;
+                res.locals.toast = "100원 받기";
               }
             }
             user.last_connec = moment();
@@ -246,7 +248,8 @@ passport.use(new KakaoStrategy({
               //found user. Return
             if (moment().isAfter(user.last_connec, 'day')) {
               if (user.wallet < 2500) {
-                user.wallet += 100
+                user.wallet += 100;
+                res.locals.toast = "100원 받기";
               }
             }
             user.last_connec = moment();

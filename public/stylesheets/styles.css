@@ -884,16 +884,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 @media only screen and (min-width: 601px)  {
-   #top_banner .close-banner {
-    font-size: 47px;
-    padding-right: 10px;
-    cursor: pointer;
-  }
-  
-  #top_banner b {
-    font-size: 42px;
-  }
-  
+ 
   .bx-wrapper .bx-viewport {
     height: 400px !important;
   }
@@ -1155,7 +1146,17 @@ input[type=number]::-webkit-outer-spin-button {
     font-weight: bold;
   }
 }
-@media only screen and (min-width: 601px) {}
+@media only screen and (min-width: 601px) {
+  #top_banner .close-banner {
+    font-size: 47px;
+    padding-right: 10px;
+    cursor: pointer;
+  }
+  
+  #top_banner b {
+    font-size: 42px;
+  }
+}
 @media only screen and (min-width: 992px) {
   .coupon-wrapper {
     top: 10%;

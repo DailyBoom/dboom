@@ -83,6 +83,9 @@ var getOrderTotal = function(order) {
     else if (order.coupon.type == 3)
       order.totalOrderAmt -= order.totalOrderAmt * (order.coupon.percentage / 100);
   }
+  if (order.user && order.wallet_dc && order.wallet_dc <= order.user.wallet) {
+      order.totalOrderAmt -= order.wallet_dc;    
+  }
 }
 
 var getOrderCartTotal = function(order) {
@@ -418,6 +421,14 @@ router.post('/iamport_callback', function (req, res) {
     if (req.user)
       order.shipping = req.user.shipping;
     order.created_at = Date.now();
+    if (order.coupon) {
+      order.coupon.used = true;
+      order.coupon.save();
+    }
+    if (order.user && order.wallet_dc) {
+      order.user.wallet -= order.wallet_dc;
+      order.user.save();
+    }
     order.save(function (err) {
       Product.findOne({ _id: order.product }, function (err, product) {
         product.options.forEach(function (option) {
@@ -641,7 +652,7 @@ router.get('/checkout', function(req, res) {
 
 router.post('/checkout', function(req, res) {
   if (req.session.order) {
-    Order.findOne({ '_id': req.session.order }).populate('product').exec(function(err, order) {
+    Order.findOne({ '_id': req.session.order }).populate('product user').exec(function(err, order) {
         if (err)
           console.log(err);
         order.option = req.body.order_option;
@@ -649,6 +660,8 @@ router.post('/checkout', function(req, res) {
         order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price;
         if (req.body.coupon)
           order.coupon = req.body.coupon;
+        if (req.body.wallet_dc && req.body.wallet_dc <= req.user.wallet)
+          order.wallet_dc = req.body.wallet_dc;
         order.save(function(err) {
           if (!req.session.product)
             req.session.product = order.product.id;
@@ -703,6 +716,10 @@ router.post('/deposit_checkout', function(req, res) {
         if (order.coupon) {
           order.coupon.used = true;
           order.coupon.save();
+        }
+        if (order.user && order.wallet_dc) {
+          order.user.wallet -= order.wallet_dc;
+          order.user.save();
         }
         order.save(function(err) {
           if (err)
@@ -781,6 +798,10 @@ router.all('/payco_callback', function (req, res) {
             if (order.coupon) {
               order.coupon.used = true;
               order.coupon.save();
+            }
+            if (order.user && order.wallet_dc) {
+              order.user.wallet -= order.wallet_dc;
+              order.user.save();
             }
             order.save(function (err) {
               Product.findOne({ _id: order.product.id }, function (err, product) {

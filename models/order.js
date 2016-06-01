@@ -35,7 +35,8 @@ var orderSchema = new Schema({
 	coupon: { type: Schema.Types.ObjectId, ref: 'Coupon' },
 	totalOrderAmt: Number,
 	cart_merchants: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-	cart: [{ product: { type: Schema.Types.ObjectId, ref: 'Product' }, quantity: Number, option: Number }]
+	cart: [{ product: { type: Schema.Types.ObjectId, ref: 'Product' }, quantity: Number, option: Number }],
+	wallet_dc: Number
 });
 
 orderSchema.plugin(mongooseToCsv, {

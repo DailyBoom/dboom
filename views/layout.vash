@@ -334,6 +334,11 @@
 				<p class="section"></p>
 			</div>
 		</footer><!-- .footer -->
+    @if (model.toast) {
+      <script>
+         Materialize.toast('@model.toast', 4000);
+      </script>
+    }
     <script>
       $(document).ready(function(){
         $('.close-banner').on("click", function() {

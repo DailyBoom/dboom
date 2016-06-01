@@ -113,27 +113,27 @@
 					<iframe width="560" height="315" src="https://www.youtube.com/embed/4ZU_BZMt87k" frameborder="0" allowfullscreen></iframe>
 				}
 			</div><!-- #main-slider -->
-		</div><!-- .hero-left -->
+			</div><!-- .hero-left -->
+					<div class="hero-right" id="bx-pager">
+				@{ var x = 0; }
+				@model.product.images.forEach(function(img) {
+					<a class="hero-img" data-slide-index="@x">
+						<div class="hero-thumbnail" style="background-image: url(/@img);"></div>
+					</a>
+					@{ x++; }
+				})
+				@if(model.product.video) {
+					<a class="hero-img" data-slide-index="@x">
+						<div class="hero-thumbnail" style="background-image: url('http://img.youtube.com/vi/@model.product.video/sddefault.jpg');"></div>
+					</a>
+				}
+				else {
+					<a class="hero-img" data-slide-index="@x">
+						<div class="hero-thumbnail" style="background-image: url('http://img.youtube.com/vi/4ZU_BZMt87k/sddefault.jpg');"></div>
+					</a>
+				}
+			</div><!-- .hero-right -->
 		}
-		<div class="hero-right" id="bx-pager">
-			@{ var x = 0; }
-			@model.product.images.forEach(function(img) {
-				<a class="hero-img" data-slide-index="@x">
-					<div class="hero-thumbnail" style="background-image: url(/@img);"></div>
-				</a>
-				@{ x++; }
-			})
-			@if(model.product.video) {
-				<a class="hero-img" data-slide-index="@x">
-					<div class="hero-thumbnail" style="background-image: url('http://img.youtube.com/vi/@model.product.video/sddefault.jpg');"></div>
-				</a>
-			}
-			else {
-				<a class="hero-img" data-slide-index="@x">
-					<div class="hero-thumbnail" style="background-image: url('http://img.youtube.com/vi/4ZU_BZMt87k/sddefault.jpg');"></div>
-				</a>
-			}
-		</div><!-- .hero-right -->
 	</div><!-- .hero-wrapper -->
     }
 </div><!-- .container -->

@@ -70,6 +70,13 @@
 									</select>
 								</div>
 							}
+							@if (model.user && model.user.wallet < 0) {
+								<div class="input-field col s12">
+									<label>Wallet (current @model.user.wallet)</label>
+									<input type="number" max="@model.user.wallet" name="wallet_dc" class="col m4 s12" value="@model.order.wallet_dc"/>
+									<button type="submit" class="btn col m3 s12">Use Wallet</button>
+								</div>		
+							}
 							<input type="hidden" value="@model.order.product.id" />
 						</form>
 					</div><!-- .row -->
@@ -136,6 +143,10 @@
 								}
 								else if (model.order.product.delivery_price > 0){
 								    <span class="check-item-name blue-grey-text text-darken-2">+ <span id="delivery_price">@model.order.product.delivery_price</span> 배송비</span><br>
+								}
+								<!-- wallet -->
+								@if (model.order.wallet_dc) {
+								     <span class="check-item-name blue-grey-text text-darken-2">Wallet Discount: @model.order.wallet_dc</span><br>									
 								}
 								<span class="check-price blue-grey-text text-darken-3" id="product_price">@model.order.totalOrderAmt</span>
 							</div>

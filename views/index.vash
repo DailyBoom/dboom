@@ -22,7 +22,7 @@
 						<label for="remember-me">아이디 저장</label>
 					</span>
 					<span class="right">
-						<button class="waves-effect waves-light btn @(model.product.color ? model.product.color : 'white') darken-2" type="submit" name="action">로그인</button>
+						<button class="waves-effect waves-light btn light-blue darken-2" type="submit" name="action">로그인</button>
 					</span>
 				</div><!-- .col -->
 				<div class="col s12">
@@ -39,7 +39,7 @@
 							<img class="circle z-depth-1" src="/images/icon_buy.png" />
 						</a>
 						<img class="responsive-img hide-on-med-and-up" src="/images/buynow.png" alt="비회원 바로구매 - 데일리 붐" />
-						<div class="right @(model.product.color ? model.product.color : 'light-blue')-text hide-on-med-and-up">
+						<div class="right light-blue-text hide-on-med-and-up">
 							<i class="fa fa-info-circle fa-fw"></i> 비회원 바로구매
 						</div>
 					</div>
@@ -47,8 +47,8 @@
 			</form>
 		</div><!-- .row -->
 	</div><!-- .modal-content -->
-	<div class="modal-footer-c @(model.product.color ? model.product.color : 'white') lighten-5 red-text text-darken-3">
-		<a class="@(model.product.color ? model.product.color : 'light-blue')-text text-darken-3 left" href="/forgot">비밀번호를 잊으셨나요?</a>
+	<div class="modal-footer-c white lighten-5 red-text text-darken-3">
+		<a class="black-text text-darken-3 left" href="/forgot">비밀번호를 잊으셨나요?</a>
 		<!-- <a class="red-text text-darken-3 right" href="/signup">회원가입</a> -->
 	</div>
 </div><!-- #modal-check -->
@@ -310,13 +310,13 @@
 
 			<!-- Mobile -->
 			<div class="hide-on-med-and-up mobile-buy white-text">
-				<a class="modal-trigger" href="@(model.user ? '/checkout?product_id=@model.product.id' : '#modal-check')">
+				<a class="modal-trigger" href="@(model.user ? '/checkout?product_id='+model.product.id : '#modal-check')">
 					<div class="m-item">
 						<div class="item-price-o" id="product_old_price_mobile">@model.product.old_price</div>
 						<div class="item-price" id="product_price_mobile">@model.product.price</div>
 					</div>
 					<div class="hide-on-med-and-up right buy-text">
-							Buy Now
+						Buy Now
 					</div>
 				</a>
 			</div>
