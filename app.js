@@ -156,10 +156,13 @@ passport.use(new LocalStrategy(
           return done(null, false, { message: 'Incorrect password.' });
         }
         else {
-          if (moment().isAfter(user.last_connec, 'day')) {
+          if (moment().isAfter(user.last_connec, 'minute')) {
             if (user.wallet < 2500) {
               user.wallet += 100;
               req.session.toast = "100원 적립되었습니다!";
+            }
+            if (user.wallet >= 2500) {
+              req.session.toast = "최대 적립금액에 도달했습니다.";              
             }
           }
           user.last_connec = moment();
@@ -211,6 +214,9 @@ passport.use(new FacebookStrategy({
                 user.wallet += 100;
                 req.session.toast = "100원 적립되었습니다!";
               }
+              if (user.wallet >= 2500) {
+                req.session.toast = "최대 적립금액에 도달했습니다.";              
+              }
             }
             user.last_connec = moment();
             user.save(function(err) {
@@ -255,6 +261,9 @@ passport.use(new KakaoStrategy({
               if (user.wallet < 2500) {
                 user.wallet += 100;
                 req.session.toast = "100원 적립되었습니다!";
+              }
+              if (user.wallet >= 2500) {
+                req.session.toast = "최대 적립금액에 도달했습니다.";              
               }
             }
             user.last_connec = moment();
