@@ -116,7 +116,7 @@
     </script>
   </head>
   <body>
-    @if (model.top_banner) {
+    @if (!model.user && !model.top_banner) {
       <div id="top_banner" class="cyan white-text">
         <span class="right close-banner"><li class="fa fa-times"></li></span>
         <div class="container center">

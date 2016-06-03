@@ -205,7 +205,7 @@
 						<div class="col s12 m5 l5">
 							<div class="card">
 								<div class="card-content">
-									<span class="card-title black-text">Wallet</span>
+									<span class="card-title black-text">자연 Point</span>
 									<b class="card-title black-text right">@model.user.wallet 원</b>
 								</div>
 							</div>

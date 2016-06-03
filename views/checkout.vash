@@ -28,7 +28,7 @@
 					<br>
 				</div>
 				<div class="col s12 m6 l8">
-					<div class="blue-grey-text text-darken-3">
+					<div class="col s12 blue-grey-text text-darken-3">
 						<h5>옵션 및 수량 선택</h5>
 						<form method="post" id="options">
 							<div class="input-field col s12 m8 l9">
@@ -70,18 +70,19 @@
 									</select>
 								</div>
 							}
-							@if (model.user && model.user.wallet < 0) {
-								<div class="input-field col s12">
-									<label>Wallet (current @model.user.wallet)</label>
-									<input type="number" max="@model.user.wallet" name="wallet_dc" class="col m4 s12" value="@model.order.wallet_dc"/>
-									<button type="submit" class="btn col m3 s12">Use Wallet</button>
-								</div>		
+							@if (model.user && model.user.wallet > 0) {
+								<div class="input-field col s12 m7 @(model.is_mobile ? '': 'right')'">
+									<label for="wallet_dc">자연 Point @model.user.wallet 원</label>
+									<input type="number" id="wallet_dc" max="@model.user.wallet" min="0" name="wallet_dc" class="col m7 s12" value="@model.order.wallet_dc"/>
+									<button type="submit" class="btn col m5 s12">Point 사용</button>
+								</div>
 							}
 							<input type="hidden" value="@model.order.product.id" />
 						</form>
 					</div><!-- .row -->
 					<br>
-					<div class="blue-grey-text text-darken-3">
+					<div class="col s12 blue-grey-text text-darken-3">
+					<hr>
 						<h5>배송정보</h5>
 						<span class="check-name">@(model.user ? model.user.shipping.full_name : model.order.shipping.full_name)</span>
 						<br><span class="check-number">@(model.user? model.user.shipping.phone_number : model.order.shipping.phone_number)</span>
@@ -146,7 +147,7 @@
 								}
 								<!-- wallet -->
 								@if (model.order.wallet_dc) {
-								     <span class="check-item-name blue-grey-text text-darken-2">Wallet Discount: @model.order.wallet_dc</span><br>									
+								     <span class="check-item-name blue-grey-text text-darken-2">Point 할인: @model.order.wallet_dc 원</span><br>									
 								}
 								<span class="check-price blue-grey-text text-darken-3" id="product_price">@model.order.totalOrderAmt</span>
 							</div>
