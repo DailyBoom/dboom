@@ -156,7 +156,7 @@ passport.use(new LocalStrategy(
           return done(null, false, { message: 'Incorrect password.' });
         }
         else {
-          if (moment().isAfter(user.last_connec, 'minute')) {
+          if (moment().isAfter(user.last_connec, 'day')) {
             if (user.wallet < 2500) {
               user.wallet += 100;
               req.session.toast = "100원 적립되었습니다!";
