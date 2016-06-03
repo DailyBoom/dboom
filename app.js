@@ -159,7 +159,7 @@ passport.use(new LocalStrategy(
           if (moment().isAfter(user.last_connec, 'day')) {
             if (user.wallet < 2500) {
               user.wallet += 100;
-              req.session.toast = "100원 받기";
+              req.session.toast = "100원 적립되었습니다!";
             }
           }
           user.last_connec = moment();
@@ -209,7 +209,7 @@ passport.use(new FacebookStrategy({
             if (moment().isAfter(user.last_connec, 'day')) {
               if (user.wallet < 2500) {
                 user.wallet += 100;
-                req.session.toast = "100원 받기";
+                req.session.toast = "100원 적립되었습니다!";
               }
             }
             user.last_connec = moment();
@@ -254,7 +254,7 @@ passport.use(new KakaoStrategy({
             if (moment().isAfter(user.last_connec, 'day')) {
               if (user.wallet < 2500) {
                 user.wallet += 100;
-                req.session.toast = "100원 받기";
+                req.session.toast = "100원 적립되었습니다!";
               }
             }
             user.last_connec = moment();
