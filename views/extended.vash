@@ -112,7 +112,7 @@
 		<div class="hero-left bxslider-wrap mobile-wrap">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
 				@model.product.mobile_images.forEach(function(img, index) {
-					<div class="slide" style="background-image: url(@img);">
+					<div class="slide" style="background-image: url(/@img);">
 						@if(model.progress >= 100) {
 							<img class="sold-out" src="/images/sold-out.png" />
 						}
@@ -132,7 +132,7 @@
 		<div class="hero-left bxslider-wrap">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
 				@model.product.images.forEach(function(img, index) {
-					<div class="slide" style="background-image: url(@img);">
+					<div class="slide" style="background-image: url(/@img);">
 						@if(model.progress >= 100) {
 							<img class="sold-out" src="/images/sold-out.png" />
 						}
@@ -156,7 +156,7 @@
 			@{ var x = 0; }
 			@model.product.images.forEach(function(img) {
 				<a class="hero-img" data-slide-index="@x">
-					<div class="hero-thumbnail" style="background-image: url(@img);"></div>
+					<div class="hero-thumbnail" style="background-image: url(/@img);"></div>
 				</a>
 				@{ x++; }
 			})
