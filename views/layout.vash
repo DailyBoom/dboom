@@ -336,11 +336,17 @@
 		</footer><!-- .footer -->
     @if (model.toast) {
       <script>
-         Materialize.toast('@model.toast', 4000);
+         Materialize.toast('@model.toast<li class="fa fa-times toast-close right"></li>', 4000);
       </script>
     }
     <script>
       $(document).ready(function(){
+        $(document).on('click', '.toast-close', function() {
+            $(this).parent().fadeOut(function(){
+                $(this).remove();
+            });
+        });
+
         $('.close-banner').on("click", function() {
           $('#top_banner').hide("slow");
           var d = new Date();

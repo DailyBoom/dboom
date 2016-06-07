@@ -1084,6 +1084,11 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: #00bcd4 !important;
   }
   
+  .toast-close {
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
   .default-tab {
     height: 400px;
   }
