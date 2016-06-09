@@ -286,6 +286,21 @@ router.get('/users/delete/:id', isAdmin, function(req, res) {
   });
 });
 
+router.post('/users/delete', isAuthenticated, function(req, res) {
+  req.user.comparePassword(req.body.password, function(err, isMatch) {
+    if (isMatch === false) {
+      req.session.toast = '로그인에 실패했습니다. 비밀번호를 확인하고 다시 로그인해주세요.';
+      return res.redirect('/mypage#mypage2');
+    }
+    else {
+      User.findOneAndRemove({ _id: req.user.id }, function(err, user) {
+        req.session.toast = '탈퇴 되었습니다.';
+        return res.redirect('/');
+      });
+    }
+  });
+});
+
 router.get('/signup', function(req, res, next) {
   if (req.user)
     res.redirect('/');

@@ -123,6 +123,21 @@
 			</div><!-- #mypage1 -->
 <!-- #mypage2 = User Account Info -->
 			<div id="mypage2" class="col s12 m12 l12 set-min-h">
+				<div id="user_delete_modal" class="modal">
+					<div class="modal-content center">
+						<i class="fa fa-times fa-fw right modal-close"></i>
+						<form action="/users/delete" method="post">
+							탈퇴 하시겠습니까?
+							<div class="row">
+								<div class="input-field col s12 m8 offset-m2">
+									<input id="password" name="password" type="password" required>
+									<label for="password">비밀번호를 입력해주세요.</label>
+								</div>
+								<button type="submit" class="waves-effect waves-light btn green darken-2">확인</a>
+							</div>
+						</form>
+					</div>
+				</div>
 				<div class="row">
 					<div class="user-title green darken-2 white-text z-depth-1">
 						나의 정보
@@ -184,6 +199,7 @@
 									<br>
 									<!-- edit form page -->
 									<a class="waves-effect waves-light btn blue-grey darken-2 white-text" href="/users/edit">@model.__('settings.edit') <i class="fa fa-pencil-square-o fa-fw right"></i></a>
+									<a class="waves-effect waves-light btn right red darken-2 white-text modal-trigger" href="#user_delete_modal">탈퇴하기 <i class="fa fa-ban right"></i></a>
 								</div>
 							</div><!-- .card -->
 						</div><!-- Left Card -->
