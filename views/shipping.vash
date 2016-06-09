@@ -33,9 +33,6 @@
 								<li>@error</li>
 							})
 						}
-						else {
-							<li>@model.errors</li>
-						}
 						</ul>
 					}
 					<div class="row">

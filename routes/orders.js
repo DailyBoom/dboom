@@ -1341,7 +1341,9 @@ router.post('/shipping', function(req, res) {
           }
           else {
              User.findOne({ _id: req.user._id }, {}, function(err, user) {
-              user.email = req.body.email;
+              if (!req.user.email) {
+                user.email = req.body.email;
+              }
               user.shipping = {
                 full_name: req.body.full_name,
                 address: req.body.address1,
