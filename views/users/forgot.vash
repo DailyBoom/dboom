@@ -4,11 +4,15 @@
 			<div class="container min-h-lg">
 				<form class="col s12 m6 offset-m3 l6 offset-l3" method="post" action="/forgot">
 					@if (model.message) {
-						<div>@model.message</div>
+						<div class="card">
+							<div class="card-content">
+								@model.message
+							</div>
+						</div>
 					}
 					<div class="row">
 						<br>
-						<h4>비밀번호를 잊으셨나요?</h4>
+						<h4>아이디/비밀번호를 잊으셨나요?</h4>
 						<br />
 						<br />
 						<br />
