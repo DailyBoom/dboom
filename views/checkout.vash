@@ -28,7 +28,7 @@
 					<br>
 				</div>
 				<div class="col s12 m6 l8">
-					<div class="blue-grey-text text-darken-3">
+					<div class="col s12 blue-grey-text text-darken-3">
 						<h5>옵션 및 수량 선택</h5>
 						<form method="post" id="options">
 							<div class="input-field col s12 m8 l9">
@@ -70,11 +70,19 @@
 									</select>
 								</div>
 							}
+							@if (model.user && model.user.wallet > 0) {
+								<div class="input-field col s12 m7 @(model.is_mobile ? '': 'right')'">
+									<label for="wallet_dc">자연 Point @model.user.wallet 원</label>
+									<input type="number" id="wallet_dc" max="@model.user.wallet" min="0" name="wallet_dc" class="col m7 s12" value="@model.order.wallet_dc"/>
+									<button type="submit" class="btn col m5 s12">Point 사용</button>
+								</div>
+							}
 							<input type="hidden" value="@model.order.product.id" />
 						</form>
 					</div><!-- .row -->
 					<br>
-					<div class="blue-grey-text text-darken-3">
+					<div class="col s12 blue-grey-text text-darken-3">
+					<hr>
 						<h5>배송정보</h5>
 						<span class="check-name">@(model.user ? model.user.shipping.full_name : model.order.shipping.full_name)</span>
 						<br><span class="check-number">@(model.user? model.user.shipping.phone_number : model.order.shipping.phone_number)</span>
@@ -137,14 +145,21 @@
 								else if (model.order.product.delivery_price > 0){
 								    <span class="check-item-name blue-grey-text text-darken-2">+ <span id="delivery_price">@model.order.product.delivery_price</span> 배송비</span><br>
 								}
+								<!-- wallet -->
+								@if (model.order.wallet_dc) {
+								     <span class="check-item-name blue-grey-text text-darken-2">Point 할인: @model.order.wallet_dc 원</span><br>									
+								}
 								<span class="check-price blue-grey-text text-darken-3" id="product_price">@model.order.totalOrderAmt</span>
 							</div>
 							@if(model.getLocale() != 'vi') {
 								<div id="payco_btn_type_A1" class="btn-payco center"></div>
 								<div class="bank-box">
-									<button class="btn btn-large btn-block purple" id="iamport_btn">INICIS 바로결제</button>
+									<button class="btn btn-large btn-block purple" id="iamport_btn">신용카드 결제</button><br/>
+									<button class="btn btn-large btn-block blue" id="iamport_danal_btn">휴대폰 결제</button>
 									<img class="responsive-img" src="/images/or_2.png" alt="데일리 붐 or" />
-									<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">무통장입금</a>
+									<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">무통장입금</a><br/><br/>
+									<button class="btn blue col s6 btn-block" id="iamport_trans_btn">실시간계좌이체</button>
+									<button class="btn blue col s6 btn-block" id="iamport_vbank_btn">가상계좌</button><br/><br/>
 								</div>
 							}
 							else {
@@ -253,13 +268,12 @@
 					if ($(this).find("option:selected").val() != 0)
 						$("#options").submit();
 				});
-				$('.modal-trigger').leanModal({
-			      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-			      opacity: .5, // Opacity of modal background
-			      in_duration: 300, // Transition in duration
-			      out_duration: 200 // Transition out duration
-			    }
-			  );
+				// $('.modal-trigger').leanModal({
+			    //   dismissible: true, // Modal can be dismissed by clicking outside of the modal
+			    //   opacity: .5, // Opacity of modal background
+			    //   in_duration: 300, // Transition in duration
+			    //   out_duration: 200 // Transition out duration
+			    // });
 				$('select').material_select();
 			});
 			var lang = '@model.getLocale()';
@@ -335,6 +349,7 @@
 							'uplus':LG유플러스
 						*/
 					pay_method : 'card', // 'card':신용카드, 'trans':실시간계좌이체, 'vbank':가상계좌, 'phone':휴대폰소액결제
+                    escrow : true,
 					merchant_uid : 'merchant_' + '@model.order.id',
 					name : '@model.order.product.name',
 					amount : @model.order.totalOrderAmt,
@@ -345,18 +360,145 @@
 					buyer_postcode : '@(model.user ? model.user.shipping.zipcode : model.order.shipping.zipcode)'
 				}, function(rsp) {
 					if ( rsp.success ) {
-						var msg = '결제가 완료되었습니다.';
-						msg += '고유ID : ' + rsp.imp_uid;
-						msg += '상점 거래ID : ' + rsp.merchant_uid;
-						msg += '결제 금액 : ' + rsp.paid_amount;
-						msg += '카드 승인번호 : ' + rsp.apply_num;
 						$.ajax({
 							type: "POST",
 							url: "/iamport_callback",
 							dataType: "json",
 							data: {
 								id: '@model.order.id',
-								imp: rsp
+								imp: JSON.stringify(rsp)
+							},
+							success: function (res) {
+								window.location = '/success';
+							},
+							error: function (res) {
+								Materialize.toast(res.responseJSON.message, 4000);
+							}
+						})
+					} else {
+						var msg = '결제에 실패하였습니다.';
+						msg += '에러내용 : ' + rsp.error_msg;
+						alert(msg);
+					}
+				});
+			});
+            $("#iamport_trans_btn").on("click", function() {
+				IMP.request_pay({
+					pg : 'html5_inicis', // version 1.1.0부터 지원.
+						/*
+							'kakao':카카오페이,
+							'inicis':이니시스, 'html5_inicis':이니시스(웹표준결제), 
+							'nice':나이스, 
+							'jtnet':jtnet, 
+							'uplus':LG유플러스
+						*/
+					pay_method : 'trans', // 'card':신용카드, 'trans':실시간계좌이체, 'vbank':가상계좌, 'phone':휴대폰소액결제
+                    escrow : true,
+					merchant_uid : 'merchant_' + '@model.order.id',
+					name : '@model.order.product.name',
+					amount : @model.order.totalOrderAmt,
+					buyer_email : '@(model.user ? model.user.email : model.order.email)',
+					buyer_name : '@(model.user ? model.user.shipping.full_name : model.order.shipping.full_name)',
+					buyer_tel : '@(model.user ? model.user.shipping.phone_number : model.order.shipping.phone_number)',
+					buyer_addr : '@(model.user ? model.user.shipping.address : model.order.shipping.address)',
+					buyer_postcode : '@(model.user ? model.user.shipping.zipcode : model.order.shipping.zipcode)'
+				}, function(rsp) {
+					if ( rsp.success ) {
+						$.ajax({
+							type: "POST",
+							url: "/iamport_callback",
+							dataType: "json",
+							data: {
+								id: '@model.order.id',
+								imp: JSON.stringify(rsp)
+							},
+							success: function (res) {
+								window.location = '/success';
+							},
+							error: function (res) {
+								Materialize.toast(res.responseJSON.message, 4000);
+							}
+						})
+					} else {
+						var msg = '결제에 실패하였습니다.';
+						msg += '에러내용 : ' + rsp.error_msg;
+						alert(msg);
+					}
+				});
+			});
+            $("#iamport_vbank_btn").on("click", function() {
+				IMP.request_pay({
+					pg : 'html5_inicis', // version 1.1.0부터 지원.
+						/*
+							'kakao':카카오페이,
+							'inicis':이니시스, 'html5_inicis':이니시스(웹표준결제), 
+							'nice':나이스, 
+							'jtnet':jtnet, 
+							'uplus':LG유플러스
+						*/
+					pay_method : 'vbank', // 'card':신용카드, 'trans':실시간계좌이체, 'vbank':가상계좌, 'phone':휴대폰소액결제
+                    escrow : true,
+					merchant_uid : 'merchant_' + '@model.order.id',
+					name : '@model.order.product.name',
+					amount : @model.order.totalOrderAmt,
+					buyer_email : '@(model.user ? model.user.email : model.order.email)',
+					buyer_name : '@(model.user ? model.user.shipping.full_name : model.order.shipping.full_name)',
+					buyer_tel : '@(model.user ? model.user.shipping.phone_number : model.order.shipping.phone_number)',
+					buyer_addr : '@(model.user ? model.user.shipping.address : model.order.shipping.address)',
+					buyer_postcode : '@(model.user ? model.user.shipping.zipcode : model.order.shipping.zipcode)'
+				}, function(rsp) {
+					if ( rsp.success ) {
+						$.ajax({
+							type: "POST",
+							url: "/iamport_callback",
+							dataType: "json",
+							data: {
+								id: '@model.order.id',
+								imp: JSON.stringify(rsp)
+							},
+							success: function (res) {
+								$('#bank_modal').openModal();
+							},
+							error: function (res) {
+								Materialize.toast(res.responseJSON.message, 4000);
+							}
+						})
+					} else {
+						var msg = '결제에 실패하였습니다.';
+						msg += '에러내용 : ' + rsp.error_msg;
+						alert(msg);
+					}
+				});
+			});
+            $("#iamport_danal_btn").on("click", function() {
+				IMP.request_pay({
+					pg : 'danal', // version 1.1.0부터 지원.
+						/*
+							'kakao':카카오페이,
+							'inicis':이니시스, 'html5_inicis':이니시스(웹표준결제), 
+							'nice':나이스, 
+							'jtnet':jtnet, 
+							'uplus':LG유플러스
+						*/
+					pay_method : 'card', // 'card':신용카드, 'trans':실시간계좌이체, 'vbank':가상계좌, 'phone':휴대폰소액결제
+                    escrow : true,
+					merchant_uid : 'merchant_' + '@model.order.id',
+					name : '@model.order.product.name',
+					amount : @model.order.totalOrderAmt,
+					buyer_email : '@(model.user ? model.user.email : model.order.email)',
+					buyer_name : '@(model.user ? model.user.shipping.full_name : model.order.shipping.full_name)',
+					buyer_tel : '@(model.user ? model.user.shipping.phone_number : model.order.shipping.phone_number)',
+					buyer_addr : '@(model.user ? model.user.shipping.address : model.order.shipping.address)',
+					buyer_postcode : '@(model.user ? model.user.shipping.zipcode : model.order.shipping.zipcode)'
+				}, function(rsp) {
+					if ( rsp.success ) {
+						$.ajax({
+							type: "POST",
+							url: "/iamport_callback",
+							dataType: "json",
+							data: {
+								id: '@model.order.id',
+								imp: JSON.stringify(rsp)
 							},
 							success: function (res) {
 								window.location = '/success';

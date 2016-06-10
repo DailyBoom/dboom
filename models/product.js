@@ -20,6 +20,7 @@ var productSchema = new Schema({
   old_price: Number,
   quantity: Number,
   images: { type: Array },
+  mobile_images: { type: Array },
   scheduled_at: Date,
   options: Object,
   video: String,

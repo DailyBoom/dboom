@@ -14,8 +14,22 @@
 					<div class="user-title green darken-2 white-text z-depth-1">
 						@model.__('user.orders')
 					</div>
-						<ul class="collapsible" data-collapsible="expandable">
-							@if (model.orders) {
+							@if (model.orders.length == 0) {
+								<div class="row">
+									<div class="col s12">
+										<div class="default-tab card blue-grey-text text-darken-2">
+											<div class="card-content center">
+												<i class="fa fa-shopping-cart fa-fw fa-3x"></i>
+												<div class="card-title blue-grey-text text-darken-2">
+													주문내역이 없습니다.
+												</div>
+											</div>
+										</div><!-- .card -->
+									</div><!-- .col -->
+								</div><!-- .row -->
+							}
+							else{
+							<ul class="collapsible" data-collapsible="expandable">
 							@model.orders.forEach(function(order) {
 							<li class="lighten-4">
 								<div class="collapsible-header">
@@ -74,18 +88,21 @@
 												<div class="o-name green-text">배송 완료</div>
 											}
 											<br/>
-											@if(order.payco.orderNo) {
-											<div class="payco"><button class="btn blue-grey darken-2 receipt" data-orderno="@order.payco.orderNo" >PAYCO 영수증</button>@if(!order.payco.cancelTradeSeq && order.status == "Paid" && model.moment().isSame(order.created_at, 'day')){<a class="btn red darken-2 right cancel" href="/orders/cancel/@order.id" onclick="return confirm('정말 취소하시겠습니까?')">결제 취소</a>}</div>
-											} else if (order.status == "Waiting") {
+											@if(order.payco.orderNo && order.status == "Paid") {
+											    <div class="payco"><button class="btn blue-grey darken-2 receipt" data-orderno="@order.payco.orderNo" >PAYCO 영수증</button>@if(!order.payco.cancelTradeSeq && order.status == "Paid" && model.moment().isSame(order.created_at, 'day')){<a class="btn red darken-2 right cancel" href="/orders/cancel/@order.id" onclick="return confirm('정말 취소하시겠습니까?')">결제 취소</a>}</div>
+											} else if (order.imp && order.status == "Paid") {
+												<a class="btn red darken-2 right cancel" href="/orders/cancel_iamport/@order.id" onclick="return confirm('정말 취소하시겠습니까?')">결제 취소</a>                                                
+                                            } else if (order.status == "Waiting") {
 												<a class="btn red darken-2 right cancel" href="/orders/cancel_deposit/@order.id" onclick="return confirm('정말 취소하시겠습니까?')">무통장입금 취소</a>
 											}
 										</div>
 									</div>
 								</div>
 							</li>
-							}) }
+							}) 
+							</ul>							
+							}
 	<!-- end loop -->
-						</ul>
 					<!-- pagination goes here -->
 					<br>
 					<div class="col s12">
@@ -106,6 +123,21 @@
 			</div><!-- #mypage1 -->
 <!-- #mypage2 = User Account Info -->
 			<div id="mypage2" class="col s12 m12 l12 set-min-h">
+				<div id="user_delete_modal" class="modal">
+					<div class="modal-content center">
+						<i class="fa fa-times fa-fw right modal-close"></i>
+						<form action="/users/delete" method="post">
+							탈퇴 하시겠습니까?
+							<div class="row">
+								<div class="input-field col s12 m8 offset-m2">
+									<input id="password" name="password" type="password" required>
+									<label for="password">비밀번호를 입력해주세요.</label>
+								</div>
+								<button type="submit" class="waves-effect waves-light btn green darken-2">확인</a>
+							</div>
+						</form>
+					</div>
+				</div>
 				<div class="row">
 					<div class="user-title green darken-2 white-text z-depth-1">
 						나의 정보
@@ -167,6 +199,7 @@
 									<br>
 									<!-- edit form page -->
 									<a class="waves-effect waves-light btn blue-grey darken-2 white-text" href="/users/edit">@model.__('settings.edit') <i class="fa fa-pencil-square-o fa-fw right"></i></a>
+									<a class="waves-effect waves-light btn right red darken-2 white-text modal-trigger" href="#user_delete_modal">탈퇴하기 <i class="fa fa-ban right"></i></a>
 								</div>
 							</div><!-- .card -->
 						</div><!-- Left Card -->
@@ -200,6 +233,17 @@
 								</div>
 							</div><!-- .card -->
 						</div><!-- Right Card -->
+						<div class="col s12 m5 l5">
+							<div class="card">
+								<div class="card-content">
+									<span class="card-title black-text">자연 Point</span>
+									<b class="card-title black-text right">@model.user.wallet 원</b>
+								</div>
+							</div>
+						</div>
+						<div class="col s12 m5 l5">
+							<a href="/" class="btn right">Point 사용하기</a>
+						</div>
 					</div><!-- .row -->
 				</div><!-- .row -->
 			</div><!-- #mypage2 -->
@@ -209,7 +253,7 @@
 						나의 쿠폰함
 					</div>
 					<!-- coupons -->
-					@if(model.coupons) {
+					@if (model.coupons.length > 0) {
 						@model.coupons.forEach(function(coupon) {
 							<div class="col s12 m4 l4">
 								<div class="card blue-grey-text text-darken-2">
@@ -240,7 +284,7 @@
 					else {
 						<div class="row">
 							<div class="col s12">
-								<div class="card blue-grey-text text-darken-2">
+								<div class="default-tab card blue-grey-text text-darken-2">
 									<div class="card-content center">
 										<i class="fa fa-ticket fa-fw fa-3x"></i>
 										<div class="card-title blue-grey-text text-darken-2">
@@ -290,6 +334,7 @@
 			</div>
 			}
 			else {
+            <div class="">
 				<script type='text/javascript'>
 					<!--//<![CDATA[
 					document.MAX_ct0 ='';
@@ -310,6 +355,7 @@
 					document.write ("'></scr"+"ipt>");
 					//]]>-->
 				</script>
+            </div>
 			}
 		</div><!-- .container -->
 		<script>

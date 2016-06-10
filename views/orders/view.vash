@@ -2,7 +2,9 @@
 	@html.block("body", function(model) {
    <div class="container min-h-lg">
 		 <div class="row">
-
+			@if(model.user.admin){
+			 <a href="/orders/edit/@model.order.id" class="btn right">EDIT</a>
+			}
 			 <h3 class="blue-grey-text text-darken-4">주문정보</h3>
 			 <br>
 			 <div class="col s12 m8 l8">
@@ -17,14 +19,17 @@
 						받는 분 :
 					</span>
 					<span class="col s9 order-label">
-						&nbsp;@model.order.shipping.full_name
+                        &nbsp;
+                        @if(model.order.shipping.full_name || (model.order.user && model.order.user.shipping)) {
+    						@(model.order.shipping.full_name ? model.order.shipping.full_name : model.order.user.shipping.full_name)
+                        }
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						@model.__('user.email') :
 					</span>
 					<span class="col s9 order-label">
 						&nbsp;
-						@if(model.order.email || model.order.user) {
+						@if(model.order.email || (model.order.user && model.order.user.shipping)) {
 							@(model.order.email ? model.order.email : model.order.user.email)
 						}
 					</span>
@@ -32,19 +37,28 @@
 						전화번호 :
 					</span>
 					<span class="col s9 order-label">
-						&nbsp;@model.order.shipping.phone_number
+                        &nbsp;
+                        @if(model.order.shipping.phone_number || (model.order.user && model.order.user.shipping)) {
+						    @(model.order.shipping.phone_number ? model.order.shipping.phone_number : model.order.user.shipping.phone_number)
+                        }
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						배송주소 :
 					</span>
 					<span class="col s9 order-label">
-						&nbsp;@model.order.shipping.address
+                        &nbsp;
+                        @if(model.order.shipping.address || (model.order.user && model.order.user.shipping)) {
+    						@(model.order.shipping.address ? model.order.shipping.address : model.order.user.shipping.address)
+                        }
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						우편번호 :
 					</span>
 					<span class="col s9 order-label">
-						&nbsp;@model.order.shipping.zipcode
+                        &nbsp;
+                        @if(model.order.shipping.zipcode || (model.order.user && model.order.user.shipping)) {
+						    @(model.order.shipping.zipcode ? model.order.shipping.zipcode : model.order.user.shipping.zipcode)
+                        }
 					</span>
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						배송국가 :
@@ -67,7 +81,7 @@
 				<div class="col s12 m6 l4">
 					<div class="row blue-grey-text text-darken-3">
 						<div class="summary-box white z-depth-1 right center-align">
-							<img class="responsive-img" src="/@model.order.product.images[0]" alt="" />
+							<img class="responsive-img" src="@model.order.product.images[0]" alt="" />
 							<div class="check-price-box center">
 								<span class="check-item-name blue-grey-text text-darken-1 truncate"><b>@model.order.product.brand</b></span>
 								<span class="check-item-name blue-grey-text text-darken-2 truncate">@model.order.product.name<br>@model.order.option</span>
@@ -87,7 +101,7 @@
 							@model.order.cart.forEach(function(item, index) {
 								@if(model.user.admin || (model.user.role == 'merchant' && model.user.id == item.product.merchant_id))
 								<div class="col s12 cart-item">
-									<a href="/mall/product/@item.product.id"><img class="col s3" src="/@item.product.images[0]" /></a>
+									<a href="/mall/product/@item.product.id"><img class="col s3" src="@item.product.images[0]" /></a>
 									<div class="col s6">
 										<a href="/mall/product/@item.product.id" class="product-name blue-grey-text col s12">@item.product.name (@item.product.options[item.option].name)</a>
 										<div class="col s12">수량: @item.quantity</div>

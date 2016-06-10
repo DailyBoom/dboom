@@ -31,7 +31,9 @@ var userSchema = new Schema({
   eventNumber: { type: Number, default: 1 },
   person_in_charge: String,
   company_name: String,
-  business_reg: String
+  business_reg: String,
+  last_connec: { type : Date, default : Date.now },
+  wallet: { type: Number, default: 0 }
 });
 
 userSchema.plugin(uniqueValidator);

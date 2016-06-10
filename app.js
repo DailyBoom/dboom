@@ -102,7 +102,6 @@ app.listen(process.env.PORT || 3000);
 mongoose.set('debug', true);
 // }
 app.use(function(req, res, next) {
-  console.log(i18n.getLocale(res));
   if (req.query.lang) {
     res.cookie('dboom_locale', req.query.lang, { maxAge: 900000, httpOnly: true });
     i18n.setLocale(req, req.query.lang);
@@ -110,13 +109,22 @@ app.use(function(req, res, next) {
   else if (!req.cookies.dboom_locale) {
     i18n.setLocale(req, 'vi');
   }
+  res.locals.top_banner = req.cookies.top_banner;
   res.locals.user = req.user;
   moment.locale('vi');
   res.locals.moment = moment;
   res.locals.url = req.url;
+  if (req.session.toast) {
+    res.locals.toast = req.session.toast;
+    delete req.session.toast;
+  }
   if (req.session.cart_order) {
     Order.findOne({ _id: req.session.cart_order }).populate('cart.product').exec(function(err, order) {
       res.locals.cart = order.cart;
+      res.locals.cart_total = 0;      
+      order.cart.forEach(function(item) {
+        res.locals.cart_total += item.product.price * item.quantity;
+      });
       next();
     });
   }
@@ -135,7 +143,8 @@ if (app.get('env') === 'production') {
 }
 
 passport.use(new LocalStrategy(
-  function (username, password, done) {
+  { passReqToCallback: true },
+  function (req, username, password, done) {
     User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
@@ -147,7 +156,21 @@ passport.use(new LocalStrategy(
           return done(null, false, { message: 'Incorrect password.' });
         }
         else {
-          return done(null, user);
+          if (moment().isAfter(user.last_connec, 'day')) {
+            if (user.wallet < 2500) {
+              user.wallet += 100;
+              req.session.toast = "100원 적립되었습니다!";
+            }
+            if (user.wallet >= 2500) {
+              req.session.toast = "최대 적립금액에 도달했습니다.";              
+            }
+          }
+          user.last_connec = moment();
+          user.save(function(err) {
+            if (err)
+              console.log(err);
+            return done(null, user);
+          });
         }
       });
     });
@@ -186,7 +209,21 @@ passport.use(new FacebookStrategy({
               });
           } else {
               //found user. Return
+            if (moment().isAfter(user.last_connec, 'day')) {
+              if (user.wallet < 2500) {
+                user.wallet += 100;
+                req.session.toast = "100원 적립되었습니다!";
+              }
+              if (user.wallet >= 2500) {
+                req.session.toast = "최대 적립금액에 도달했습니다.";              
+              }
+            }
+            user.last_connec = moment();
+            user.save(function(err) {
+              if (err)
+                console.log(err);
               return done(err, user);
+            });
           }
       });
   }
@@ -220,7 +257,21 @@ passport.use(new KakaoStrategy({
               });
           } else {
               //found user. Return
+            if (moment().isAfter(user.last_connec, 'day')) {
+              if (user.wallet < 2500) {
+                user.wallet += 100;
+                req.session.toast = "100원 적립되었습니다!";
+              }
+              if (user.wallet >= 2500) {
+                req.session.toast = "최대 적립금액에 도달했습니다.";              
+              }
+            }
+            user.last_connec = moment();
+            user.save(function(err) {
+              if (err)
+                console.log(err);
               return done(err, user);
+            });
           }
       });
   }

@@ -37,7 +37,7 @@
 		@model.products.forEach(function(product){
 
 			<div class="col s12 m4 l4">
-				<div class="card">
+				<div class="card list">
 					<div class="card-image">
 						<div class="past-date-box blue-grey darken-1 white-text">
 							@model.moment(product.scheduled_at).format("YYYY/MM/DD")
@@ -45,6 +45,11 @@
 								<span class="right red-text">Not Published</span>
 							}
 						</div>
+						<div class="card-image-ol">
+							<div>
+								<span class="ol-new-p">@product.price</span> (<span class="ol-old-p">@product.old_price</span>)
+							</div>
+						</div><!-- .card-image-ol -->
 						<img class="" src="@product.images[0]" alt="@product.name" />
 					</div><!-- .card-image -->
 					<div class="card-content past mall">
@@ -85,6 +90,7 @@
 </div><!-- .container -->
 <script>
 $(document).ready(function() {
+	$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile, .ol-old-p, .ol-new-p").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
 	$('select').material_select();
 	$('#type').on('change', function() {
 		$('#type_form').submit();

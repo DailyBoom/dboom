@@ -89,10 +89,13 @@
 				}
 					<td>
 						&nbsp;
-					@if(order.payco.totalOrderAmt) {
-						<span class="product_price">@order.payco.totalOrderAmt</span>
-					}
-					</td>
+                @if(order.totalOrderAmt) {
+                    <span class="product_price">@order.totalOrderAmt</span>
+                }
+                else if (order.product){
+                    <span class="product_price">@(order.quantity * order.product.price + order.product.delivery_price)</span>
+                }
+                </td>
 				@if(order.status=='Sent'){
 					<td class="blue-text text-darken-3"><b>&nbsp;Sent</b></td>
 				}

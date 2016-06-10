@@ -20,9 +20,7 @@ var orderSchema = new Schema({
 		phone_number: String
   	},
 	email: String,
-	imp: {
-		id: Number
-	},
+	imp: Object,
 	payco: {
 		orderNo: String,
 		sellerOrderReferenceKey: String,
@@ -37,17 +35,24 @@ var orderSchema = new Schema({
 	coupon: { type: Schema.Types.ObjectId, ref: 'Coupon' },
 	totalOrderAmt: Number,
 	cart_merchants: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-	cart: [{ product: { type: Schema.Types.ObjectId, ref: 'Product' }, quantity: Number, option: Number }]
+	cart: [{ product: { type: Schema.Types.ObjectId, ref: 'Product' }, quantity: Number, option: Number }],
+	wallet_dc: Number
 });
 
 orderSchema.plugin(mongooseToCsv, {
-	headers: ['주문번호', '주문날짜', '상태', '옵션', '수량', '받는 분', '배송주소', '배송국가', '우편번호', '전화번호'],
+	headers: ['주문번호', '주문날짜', '상태', '옵션', '수량', '합계', '받는 분', '배송주소', '배송국가', '우편번호', '전화번호'],
 	constraints: {
 		'주문번호': 'id',
 		'옵션': 'option',
 		'수량': 'quantity'
 	},
 	virtuals: {
+        '합계': function (doc) {
+            if (doc.totalOrderAmt)
+                return doc.totalOrderAmt;
+            else
+                return (doc.quantity * doc.product.price + doc.product.delivery_price)
+        },
 		'상태': function(doc) {
 			if (doc.status == "Paid")
 				return '결제 완료';
@@ -55,11 +60,11 @@ orderSchema.plugin(mongooseToCsv, {
 				return '배송 완료';
 		},
 		'주문날짜': function(doc) { return moment(doc.created_at).format("YYYY.DD.MM"); },
-		'받는 분': function(doc) { return doc.shipping.full_name; },
-		'배송주소': function(doc) { if (doc.shipping.address) return doc.shipping.address.replace(/,/g , ""); },
-		'전화번호': function(doc) { if (doc.shipping.phone_number) return doc.shipping.phone_number.toString(); },
-		'배송국가': function(doc) { return doc.shipping.country; },
-		'우편번호': function(doc) { return doc.shipping.zipcode; }
+		'받는 분': function(doc) { return doc.shipping.full_name ? doc.shipping.full_name : doc.user.shipping.full_name; },
+		'배송주소': function(doc) { return doc.shipping.address ? doc.shipping.address.replace(/,/g , "") : doc.user.shipping.address.replace(/,/g , ""); },
+		'전화번호': function(doc) { return doc.shipping.phone_number ? doc.shipping.phone_number.toString() : doc.user.shipping.phone_number.toString(); },
+		'배송국가': function(doc) { return doc.shipping.country ? doc.shipping.country : doc.user.shipping.country; },
+		'우편번호': function(doc) { return doc.shipping.zipcode ? doc.shipping.zipcode : doc.user.shipping.zipcode; }
 	}
 });
 

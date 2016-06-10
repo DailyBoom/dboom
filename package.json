@@ -46,7 +46,8 @@
     "csv-transform": "0.0.8",
     "accounting": "~0.4.1",
     "config-heroku": "~0.1.1-a",
-    "multer-s3": "~1.4.1"
+    "multer-s3": "~1.4.1",
+    "iamport": "git+https://git@github.com/iamport/iamport-rest-client-nodejs.git"
   },
   "description": "",
   "main": "app.js",

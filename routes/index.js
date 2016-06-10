@@ -35,10 +35,12 @@ router.get('/', function(req, res, next) {
     now = moment().subtract(1, 'days').format("MM/DD/YYYY");
   else
     now = moment().format("MM/DD/YYYY");
-  if (!req.user) {
-    var toast = "크리스마스/연말 이벤트 - 가입시 무료 배송 쿠폰!";
-  }
   var date = null;
+  if (now == "03/30/2016" || now == "03/31/2016")
+  {
+      now = "03/30/2016";
+      date = "03/30/2016";
+  }
   Product.findOne({scheduled_at: now, is_published: true }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
     Product.find({scheduled_at: {$lt: now} }).limit(6).sort({ 'scheduled_at' : -1 }).exec(function (err, pastProducts) {
       if (!product) {
@@ -49,7 +51,7 @@ router.get('/', function(req, res, next) {
           });
           var progress = (product.quantity - current_quantity) / product.quantity * 100;
           var sale = (product.old_price - product.price) / product.old_price * 100;
-          res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, pastProducts: pastProducts, toast: toast });
+          res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, pastProducts: pastProducts, title: "오늘 뭐 사지?" });
         });
       }
       else {
@@ -59,8 +61,9 @@ router.get('/', function(req, res, next) {
         });
         var progress = (product.quantity - current_quantity) / product.quantity * 100;
         var sale = (product.old_price - product.price) / product.old_price * 100;
+        console.log(sale);
         Partner.find({}, function(err, partners) {
-          res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, pastProducts: pastProducts, toast: toast, partners: partners, date: date });
+          res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, pastProducts: pastProducts, partners: partners, date: date });
         });
       }
     });

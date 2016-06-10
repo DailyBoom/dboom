@@ -64,12 +64,12 @@ nav {
 }
 
 /* Home */
-.buy-box-info {
+/*.buy-box-info {
   background-image: url('/images/themes/xmas-info.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
+}*/
 .snowpile {
   background-image: url('/images/themes/snow.png');
   background-position: top;

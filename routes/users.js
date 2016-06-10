@@ -29,12 +29,14 @@ var transporter = nodemailer.createTransport(smtpTransport({
 var isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
     return next();
+  req.session.redirect_to = req.originalUrl;
   res.redirect('/login');
 }
 
 var isAdmin = function (req, res, next) {
   if (req.isAuthenticated() && req.user.admin === true)
     return next();
+  req.session.redirect_to = req.originalUrl;
   res.redirect('/login');
 }
 
@@ -95,8 +97,11 @@ router.post('/login', passport.authenticate('local', {
   }, function(req, res) {
   if (req.query.product_id)
     res.redirect('/checkout?product_id=' + req.query.product_id);
-  else
-    res.redirect('/');
+  else {
+    var redirect_to = req.session.redirect_to ? req.session.redirect_to : '/';
+    delete req.session.redirect_to;
+    res.redirect(redirect_to);
+  }
 });
 
 router.get('/logout', function(req, res){
@@ -281,6 +286,21 @@ router.get('/users/delete/:id', isAdmin, function(req, res) {
   });
 });
 
+router.post('/users/delete', isAuthenticated, function(req, res) {
+  req.user.comparePassword(req.body.password, function(err, isMatch) {
+    if (isMatch === false) {
+      req.session.toast = '로그인에 실패했습니다. 비밀번호를 확인하고 다시 로그인해주세요.';
+      return res.redirect('/mypage#mypage2');
+    }
+    else {
+      User.findOneAndRemove({ _id: req.user.id }, function(err, user) {
+        req.session.toast = '탈퇴 되었습니다.';
+        return res.redirect('/');
+      });
+    }
+  });
+});
+
 router.get('/signup', function(req, res, next) {
   if (req.user)
     res.redirect('/');
@@ -368,6 +388,7 @@ router.post('/signup', function(req, res) {
           phone_number: req.body.phone_number
         }
       }
+      user.wallet = 100;
       user.save(function(err) {
         if (err) {
           console.log(err);
@@ -559,7 +580,7 @@ router.post('/forgot', function(req, res, next) {
 
   User.findOne({ email: req.body.email }, function(err, user) {
     if (!user) {
-      res.render('users/forgot', { message: "No account with that email address exists." });
+      res.render('users/forgot', { message: "존재하지 않는 계정입니다. 다시 한번 확인해 주십시오." });
       return res.end();
     }
 
@@ -567,17 +588,22 @@ router.post('/forgot', function(req, res, next) {
     user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
     user.save(function(err) {
-      var mailOptions = {
-        to: user.email,
-        from: '데일리 붐 <contact@dailyboom.co>',
-        subject: '데일리 붐 비밀번호 재신청',
-        text: 'Y데일리 붐 회원님의 비밀번호 변경 요청 메일입니다.\n\n' +
-          '아래의 링크를 클릭하여 회원 님의 비밀번호를 변경하십시오.:\n\n' +
-          'http://' + req.headers.host + '/reset/' + token + '\n\n'
-      };
-      transporter.sendMail(mailOptions, function(err) {
-        if (err) return next(err);
-        res.render('users/forgot', { message: "reset sent" });
+      fs.readFile('./views/mailer/pass_reset.vash', "utf8", function(err, file) {
+        if(err){
+          //handle errors
+          console.log('ERROR!');
+          return res.send('ERROR!');
+        }
+        var html = vash.compile(file);
+        transporter.sendMail({
+          from: '데일리 붐 <contact@dailyboom.co>',
+          to: user.email,
+          subject: '데일리 붐 비밀번호 재신청',
+          html: html({ host : req.headers.host, token: token, user: user })
+        }, function (err, info) {
+            if (err) return next(err);
+            return res.render('users/forgot', { message: "메일이 발송되었습니다. 확인해 주시기 바랍니다." });
+        });
       });
     });
   });
@@ -613,12 +639,12 @@ router.post('/reset/:token', function(req, res) {
         var mailOptions = {
         to: user.email,
         from: '데일리 붐 <contact@dailyboom.co>',
-        subject: 'Your password has been changed',
-        text: 'Hello,\n\n' +
-          'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+        subject: '비밀번호 변경 되었습니다',
+        text: user.username + '님,\n\n' +
+          '데일리 붐 회원님의 비밀번호 변경 확인 메일입니다.\n\n'
         };
         transporter.sendMail(mailOptions, function(err) {
-          res.redirect('/');
+          res.redirect('/login');
         });
       });
     });

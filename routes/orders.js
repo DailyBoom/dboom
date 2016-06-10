@@ -35,24 +35,28 @@ var transporter = nodemailer.createTransport(smtpTransport({
 var isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
     return next();
+  req.session.redirect_to = req.originalUrl;
   res.redirect('/login');
 }
 
 var isAdmin = function (req, res, next) {
   if (req.isAuthenticated() && req.user.admin === true)
     return next();
+  req.session.redirect_to = req.originalUrl;
   res.redirect('/login');
 }
 
 var isMerchantOrAdmin = function (req, res, next) {
   if (req.isAuthenticated() && (req.user.admin === true || req.user.role === "merchant"))
     return next();
+  req.session.redirect_to = req.originalUrl;
   res.redirect('/login');
 }
 
 var isMerchant = function (req, res, next) {
   if (req.isAuthenticated() && req.user.role === "merchant")
     return next();
+  req.session.redirect_to = req.originalUrl;
   res.redirect('/login');
 }
 
@@ -73,6 +77,9 @@ var getOrderTotal = function(order) {
       order.totalOrderAmt -= order.coupon.price;
     else if (order.coupon.type == 3)
       order.totalOrderAmt -= order.totalOrderAmt * (order.coupon.percentage / 100);
+  }
+  if (order.user && order.wallet_dc && order.wallet_dc <= order.user.wallet) {
+      order.totalOrderAmt -= order.wallet_dc;    
   }
 }
 
@@ -200,7 +207,7 @@ router.get('/orders/view/:id', isMerchantOrAdmin, function(req, res) {
 });
 
 router.get('/orders/edit/:id', isAdmin, function(req, res) {
-  Order.findOne({ _id: req.params.id }).exec(function(err, order) {
+  Order.findOne({ _id: req.params.id }).populate('user').exec(function(err, order) {
     if (err)
       console.log(err);
     if (!order)
@@ -354,97 +361,6 @@ router.post('/mall/remove_from_cart', function(req, res) {
   }
 });
 
-// I'mport callback for mall checkout
-router.post('/mall/iamport_callback', function (req, res) {
-  Order.findOne({ _id: req.body.id }).populate('user cart.product').exec(function (err, order) {
-    order.status = "Paid";
-    if (req.user)
-      order.shipping = req.user.shipping;
-    order.created_at = Date.now();
-    order.save(function (err) {
-      order.cart.forEach(function (item) {
-        item.product.options[item.option].quantity -= item.quantity;
-        item.product.markModified('options');
-        item.product.save();
-      });
-      if (app.get("env") === "production") {
-        slack.send({
-          channel: '#dailyboom-new-order',
-          icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
-          text: 'New order <http://dailyboom.co/orders/view/' + order._id + '>',
-          unfurl_links: 1,
-          username: 'DailyBoom-bot'
-        });
-      }
-      fs.readFile('./views/mailer/buy_success.vash', "utf8", function (err, file) {
-        if (err) {
-          //handle errors
-          console.log('ERROR!');
-          return res.send('ERROR!');
-        }
-        var html = vash.compile(file);
-        transporter.sendMail({
-          from: '데일리 붐 <contact@dailyboom.co>',
-          to: order.user ? order.user.email : order.email,
-          subject: '데일리 붐 구매 안내.',
-          html: html({ full_name: order.user ? order.user.shipping.full_name : order.shipping.full_name, i18n: i18n })
-        }, function (err, info) {
-          if (err) { console.log(err); }
-          //console.log('Message sent: ' + info.response);
-          transporter.close();
-          return res.status(200).json({ success: true });
-        });
-      });
-    });
-  });
-});
-
-// I'mport callback for regular checkout
-router.post('/iamport_callback', function (req, res) {
-  Order.findOne({ _id: req.body.id }).populate('user').exec(function (err, order) {
-    order.status = "Paid";
-    order.created_at = Date.now();
-    order.save(function (err) {
-      Product.findOne({ _id: order.product }, function (err, product) {
-        product.options.forEach(function (option) {
-          if (option.name === order.option)
-            option.quantity -= order.quantity;
-        });
-        product.markModified('options');
-        product.save(function (err) {
-          if (app.get("env") === "production") {
-            slack.send({
-              channel: '#dailyboom-new-order',
-              icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
-              text: 'New order <http://dailyboom.co/orders/view/' + order._id + '>',
-              unfurl_links: 1,
-              username: 'DailyBoom-bot'
-            });
-          }
-          fs.readFile('./views/mailer/buy_success.vash', "utf8", function (err, file) {
-            if (err) {
-              //handle errors
-              console.log('ERROR!');
-              return res.send('ERROR!');
-            }
-            var html = vash.compile(file);
-            transporter.sendMail({
-              from: '데일리 붐 <contact@dailyboom.co>',
-              to: order.user ? order.user.email : order.email,
-              subject: '데일리 붐 구매 안내.',
-              html: html({ full_name: order.user ? order.user.shipping.full_name : order.shipping.full_name, i18n: i18n })
-            }, function (err, info) {
-              if (err) { console.log(err); }
-              //console.log('Message sent: ' + info.response);
-              transporter.close();
-              return res.status(200).json({ success: true });
-            });
-          });
-        });
-      });
-    });
-  });
-});
 
 router.get('/checkout', function(req, res) {
   if (!req.query.product_id && !req.session.product && !req.session.order)
@@ -459,6 +375,10 @@ router.get('/checkout', function(req, res) {
     now = moment().subtract(1, 'days').format("MM/DD/YYYY");
   else
     now = moment().format("MM/DD/YYYY");
+  if (now == "03/31/2016")
+  {
+      now = "03/30/2016";
+  }
   Product.findOne({_id: req.query.product_id ? req.query.product_id : req.session.product, is_published: true}, function(err, product) {
     if (err)
       console.log(err);
@@ -587,7 +507,7 @@ router.get('/checkout', function(req, res) {
 
 router.post('/checkout', function(req, res) {
   if (req.session.order) {
-    Order.findOne({ '_id': req.session.order }).populate('product').exec(function(err, order) {
+    Order.findOne({ '_id': req.session.order }).populate('product user').exec(function(err, order) {
         if (err)
           console.log(err);
         order.option = req.body.order_option;
@@ -595,6 +515,8 @@ router.post('/checkout', function(req, res) {
         order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price;
         if (req.body.coupon)
           order.coupon = req.body.coupon;
+        if (req.body.wallet_dc && req.body.wallet_dc <= req.user.wallet && req.body.wallet_dc > 0)
+          order.wallet_dc = req.body.wallet_dc;
         order.save(function(err) {
           if (!req.session.product)
             req.session.product = order.product.id;
@@ -649,6 +571,10 @@ router.post('/deposit_checkout', function(req, res) {
         if (order.coupon) {
           order.coupon.used = true;
           order.coupon.save();
+        }
+        if (order.user && order.wallet_dc) {
+          order.user.wallet -= order.wallet_dc;
+          order.user.save();
         }
         order.save(function(err) {
           if (err)
@@ -727,6 +653,10 @@ router.all('/payco_callback', function (req, res) {
             if (order.coupon) {
               order.coupon.used = true;
               order.coupon.save();
+            }
+            if (order.user && order.wallet_dc) {
+              order.user.wallet -= order.wallet_dc;
+              order.user.save();
             }
             order.save(function (err) {
               Product.findOne({ _id: order.product.id }, function (err, product) {
@@ -1206,7 +1136,8 @@ router.post('/shipping', function(req, res) {
                   country: req.body.country,
                   zipcode: req.body.zipcode,
                   phone_number: req.body.phone_number
-                }
+                },
+                wallet: 100
               });
               user.save(function(err) {
                 if (err) {
@@ -1265,7 +1196,9 @@ router.post('/shipping', function(req, res) {
           }
           else {
              User.findOne({ _id: req.user._id }, {}, function(err, user) {
-              user.email = req.body.email;
+              if (!req.user.email) {
+                user.email = req.body.email;
+              }
               user.shipping = {
                 full_name: req.body.full_name,
                 address: req.body.address1,
@@ -1343,7 +1276,7 @@ router.get('/orders/export', isAdmin, function(req, res) {
   res.set('Content-Type', 'text/csv; charset=utf-8'); 
   res.write(new Buffer('EFBBBF', 'hex'));
   res.status(200);
-  var query = Order.find({status: {$in: ["Paid", "Sent"]}}, {}, {sort: {created_at: -1}});
+  var query = Order.find({status: "Sent"}, {}, {sort: {created_at: -1}}).populate('user product');
   if (req.query.date)
     query.where('created_at').gte(req.query.date).lt(moment(req.query.date).add(1, 'days'));
   query.stream().pipe(Order.csvTransformStream()).pipe(res);
@@ -1354,7 +1287,7 @@ router.get('/orders/merchants/export', isMerchant, function(req, res) {
   res.set('Content-Type', 'text/csv; charset=utf-8'); 
   res.write(new Buffer('EFBBBF', 'hex'));
   res.status(200);
-  var query = Order.find({status: {$in: ["Paid", "Sent"]}, merchant_id: req.user.id}, {}, {sort: {created_at: -1}});
+  var query = Order.find({status: "Sent", merchant_id: req.user.id}, {}, {sort: {created_at: -1}}).populate('user product');
   if (req.query.date)
     query.where('created_at').gte(req.query.date).lt(moment(req.query.date).add(1, 'days'));
   query.stream().pipe(Order.csvTransformStream()).pipe(res);

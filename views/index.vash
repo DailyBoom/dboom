@@ -2,27 +2,27 @@
 	@html.block("body", function(model) {
 <!-- Login Modal Structure -->
 <div id="modal-check" class="modal">
-	<div class="modal-header-c @(model.product.color ? model.product.color : 'light-blue') darken-2 @(model.product.color == 'white' ? 'black-text' : 'white-text') center">
-		로그인
+	<div class="modal-header-c @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') center">
+		@model.__('login')
 	</div>
 	<div class="modal-content-c">
 		<div class="row">
 			<form method="post" action="/login?product_id=@model.product.id">
 				<div class="input-field col s12">
 					<input id="username" type="text" class="validate" name="username">
-					<label for="username">아이디</label>
+					<label for="username">@model.__('user.username')</label>
 				</div>
 				<div class="input-field col s12">
 					<input id="password" type="password" class="validate" name="password">
-					<label for="password">비밀번호</label>
+					<label for="password">@model.__('user.password')</label>
 				</div>
 				<div class="col s12">
 					<span class="left">
 						<input type="checkbox" id="remember-me" name="remember_me"/>
-						<label for="remember-me">아이디 저장</label>
+						<label for="remember-me">@model.__('remember_me')</label>
 					</span>
 					<span class="right">
-						<button class="waves-effect waves-light btn @(model.product.color ? model.product.color : 'light-blue') darken-2" type="submit" name="action">로그인</button>
+						<button class="waves-effect waves-light btn light-blue darken-2" type="submit" name="action">@model.__('login')</button>
 					</span>
 				</div><!-- .col -->
 				<div class="col s12">
@@ -39,7 +39,7 @@
 							<img class="circle z-depth-1" src="/images/icon_buy.png" />
 						</a>
 						<img class="responsive-img hide-on-med-and-up" src="/images/buynow.png" alt="비회원 바로구매 - 데일리 붐" />
-						<div class="right @(model.product.color ? model.product.color : 'light-blue')-text hide-on-med-and-up">
+						<div class="right light-blue-text hide-on-med-and-up">
 							<i class="fa fa-info-circle fa-fw"></i> 비회원 바로구매
 						</div>
 					</div>
@@ -47,8 +47,8 @@
 			</form>
 		</div><!-- .row -->
 	</div><!-- .modal-content -->
-	<div class="modal-footer-c @(model.product.color ? model.product.color : 'light-blue') lighten-5 red-text text-darken-3">
-		<a class="@(model.product.color ? model.product.color : 'light-blue')-text text-darken-3 left" href="/forgot">비밀번호를 잊으셨나요?</a>
+	<div class="modal-footer-c white lighten-5 red-text text-darken-3">
+		<a class="black-text text-darken-3 left" href="/forgot">@model.__('forgot_pass')</a>
 		<!-- <a class="red-text text-darken-3 right" href="/signup">회원가입</a> -->
 	</div>
 </div><!-- #modal-check -->
@@ -71,8 +71,8 @@
 	</div><!-- .modal-content -->
 </div><!-- #modal-check -->
 <!-- Buy Wrapper -->
-<div id="buy-sticky" class="hide-on-small-only buy-sticky-wrapper center @(model.product.color ? model.product.color : 'light-blue')">
-	<a href="#modal-ask" class="buy-help-d modal-trigger hide">Can't Read Korean? Click here.</a>
+<div id="buy-sticky" class="hide-on-small-only buy-sticky-wrapper center @(model.product.color ? model.product.color : 'white')">
+	<a href="#modal-ask" class="hide buy-help-d modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Can't Read Korean? Click here.</a>
 	@if (model.user) {
 		@if (model.progress < 100) {
 			<a href="/checkout?product_id=@model.product.id">
@@ -87,17 +87,35 @@
 			</a>
 		}
 	}
-	<span id="time-left-label" class="d-clock label @(model.product.color ? model.product.color : 'light-blue') @(model.product.color == 'white' ? 'black-text' : 'white-text')">@model.__('time_left')</span>
-	<br><span id="time-left" class="d-clock @(model.product.color == 'white' ? 'black-text' : 'white-text')"></span>
+	<span id="time-left-label" class="d-clock label @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.__('time_left')</span>
+	<br><span id="time-left" class="d-clock @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></span>
 </div>
-@if(model.product.images.length == 1) {
-    <div class="index-parallax-container">
-        <div class="parallax">
-        	<img class="ie-fix" src="@model.product.images[0]" alt="@model.product.name" />
-        </div>
-    </div>
+@if(model.product.images.length == 1 || model.product.mobile_images.length == 1) {
+<!-- Parallax -->
+	@if(model.is_mobile && model.product.mobile_images.length == 1) {
+		<div class="index-mobile-parallax-container">
+			<div class="parallax">
+				<img class="ie-fix" src="@model.product.mobile_images[0]" alt="@model.product.name" />
+				<div class="sale-item">
+					<div class="mod">Sale</div>
+					<div class="item-price">@model.sale%</div>
+				</div>
+			</div>
+		</div>
+	}
+	else if (!model.is_mobile && model.product.images.length == 1) {
+		<div class="index-parallax-container">
+			<div class="parallax">
+				<img class="ie-fix" src="@model.product.images[0]" alt="@model.product.name" />
+				<div class="sale-item">
+					<div class="mod">Sale</div>
+					<div class="item-price">@model.sale%</div>
+				</div>
+			</div>
+		</div>
+	}
 }
-<div class="container">
+<div class="container@(model.is_mobile ? '-fluid' : '')">
 	@if(model.progress >= 50){
 		 <div class="progress-wrapper">
 			<div class="progress-h red lighten-4"></div>
@@ -106,15 +124,42 @@
 		</div>
 	}
 
-@if(model.product.images.length > 1) {
-	<!-- L Slider -->
+@if(model.product.images.length > 1 || model.product.mobile_images.length > 1) {
+    <!-- L Slider -->
 	<div class="hero-wrapper">
-		<div class="hero-left">
+		@if(model.is_mobile && model.product.mobile_images.length > 1) {
+		<div class="hero-left bxslider-wrap mobile-wrap">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
-				@model.product.images.forEach(function(img) {
+				@model.product.mobile_images.forEach(function(img, index) {
 					<div class="slide" style="background-image: url(@img);">
 						@if(model.progress >= 100) {
 							<img class="sold-out" src="/images/sold-out.png" />
+						}
+						else {
+							<div class="sale-item hide-on-med-and-up">
+								<div class="mod">Sale</div>
+								<div class="item-price">@model.sale%</div>
+							</div>
+						}
+					</div>
+				})
+				
+			</div><!-- #main-slider -->
+		</div><!-- .hero-left -->
+		}
+		else if (!model.is_mobile && model.product.images.length > 1){
+		<div class="hero-left bxslider-wrap">
+			<div id="main-slider" class="slider-wrapper z-depth-1">
+				@model.product.images.forEach(function(img, index) {
+					<div class="slide" style="background-image: url(@img);">
+						@if(model.progress >= 100) {
+							<img class="sold-out" src="/images/sold-out.png" />
+						}
+						else {
+							<div class="sale-item hide-on-med-and-up">
+								<div class="mod">Sale</div>
+								<div class="item-price">@model.sale%</div>
+							</div>
 						}
 					</div>
 				})
@@ -145,37 +190,34 @@
 				</a>
 			}
 		</div><!-- .hero-right -->
+		}
 	</div><!-- .hero-wrapper -->
 }
 </div><!-- .container -->
 
 <!-- b4 -->
-<div class="container">
+<div class="container@(model.is_mobile ? '-fluid' : '')">
 	<div class="row">
 		<div class="col s12">
-			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-3 @(model.product.color == 'white' ? 'black-text' : 'white-text')">
-				<img class="brand-img" src="@model.product.brand_logo" alt="@model.product.brand - Logo" />
+			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'white') darken-3 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
+					<img class="brand-img" src="@model.product.brand_logo" alt="@model.product.brand - Logo" />
 					@if (model.product.name.length >= 12) {
 						<div class="item-name name-md">@model.product.name</div>
 					}
 					else {
 						<div class="item-name name-lg">@model.product.name</div>
 					}
-					@if (model.sale > 0) {
 						<div class="hide-on-small-only m-item right">
 							<div class="item-price-o mod red-text text-lighten-2">SALE</div>
-							<div class="item-price @(model.product.color == 'white' ? 'black-text' : 'white-text')">@model.sale%</div>
+							<div class="item-price">@model.sale%</div>
 						</div>
-					}
 					<span class="hide-on-small-only">&nbsp;</span>
 					<div class="hide-on-small-only m-item right">
-						@if (model.sale > 0) {
-							<div class="item-price-o desk red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
-						}
-						<div class="item-price desk @(model.product.color == 'white' ? 'black-text' : 'white-text')" id="product_price_mobile">@model.product.price</div>
+						<div class="item-price-o desk red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
+						<div class="item-price desk" id="product_price_mobile">@model.product.price</div>
 					</div>
 			</div>
-			<div class="buy-box-info @(model.product.color ? model.product.color : 'light-blue') lighten-5 blue-grey-text text-darken-4">
+			<div class="buy-box-info @(model.product.color ? model.product.color : 'white') lighten-5 blue-grey-text text-darken-4">
 				<div class="item-info">@html.raw(model.product.description)</div>
 				<div class="item-info-links">
 					@if(model.product.review_url) {
@@ -200,7 +242,7 @@
 					}
 				</div>
 				@if(model.product.description_image) {
-					<img class="responsive-img" src="/@model.product.description_image" alt="" />
+					<img class="responsive-img" src="@model.product.description_image" alt="" />
 				}
 				<div class="right-align">
 				@if (model.user) {
@@ -214,12 +256,12 @@
 					}
 				}
 					<br><br>
-					<a href="#modal-ask" class="hide btn btn-flat buy-help-dd modal-trigger">Can't Read Vietnamese? Click here.</a>
+					<a href="#modal-ask" class="hide btn btn-flat buy-help-dd modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Can't Read Korean? Click here.</a>
 				</div>
 			</div>
-			<div class="buy-box-footer @(model.product.color ? model.product.color : 'light-blue') lighten-3">
+			<div class="buy-box-footer @(model.product.color ? model.product.color : 'white') lighten-3">
 				<div class="center">
-					<span class="share-text @(model.product.color == 'white' ? 'black-text' : 'white-text')">상품 공유하기</span>
+					<span class="share-text @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">상품 공유하기</span>
 					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
 					<img id="sharekakao" class="social" src="/images/icon_kakao.png" alt="Kakao Logo" />
 					<a href="mailto:?subject=데일리 붐: 오늘 뭐 사지?&body=http://dailyboom.co"><img id="sharemail"  class="social" src="/images/icon_email.png" alt="Email Image" /></a>
@@ -228,27 +270,27 @@
 			</div><!-- .buy-box-footer -->
 			<!-- Modal Structure -->
 		  <div id="share_url_modal" class="modal">
-				<div class="modal-header @(model.product.color ? model.product.color : 'light-blue') darken-2 @(model.product.color == 'white' ? 'black-text' : 'white-text') center">
+				<div class="modal-header @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') center">
 					공유하기
 				</div>
 		    <div class="modal-content">
 					<input readonly type="text" id="share_url" value="http://dailyboom.co">
 					<br>
 					<br>
-					<a href="#!" class="modal-action modal-close waves-effect waves-light btn @(model.product.color ? model.product.color : 'light-blue') darken-2">닫기</a>
+					<a href="#!" class="modal-action modal-close waves-effect waves-light btn @(model.product.color ? model.product.color : 'white') darken-2">닫기</a>
 		    </div>
 		  </div>
 			<!-- Merchant xInfo -->
-			<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
-		    <li>
-					<div class="collapsible-header @(model.product.color ? model.product.color : 'light-blue') darken-1 @(model.product.color == 'white' ? 'black-text' : 'white-text')">
-						<span>@model.__('shipping_info') <i class="fa fa-info-circle fa-fw right"></i></span>
-					</div>
-					<div class="collapsible-body @(model.product.color ? model.product.color : 'light-blue') lighten-5">
-						@if(model.product.delivery_info) {
-							<img class="responsive-img" src="@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - 데일리 붐" />
-						}
-						else {
+			<div class="mt-info">
+				<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
+					<li>
+						<div class="collapsible-header @(model.product.color ? model.product.color : 'white') darken-1 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
+							<span>@model.__('shipping_info') <i class="fa fa-chevron-down fa-fw right"></i></span>
+						</div>
+						<div class="collapsible-body @(model.product.color ? model.product.color : 'white') lighten-5">
+							@if(model.product.delivery_info) {
+							<img class="responsive-img" src="@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - 데일리 붐"/> }
+							else {
 							<div class="item-shipping-info-box">
 								<p><b>배송 진행상황 조회</b></p>
 								<ol class="item-shipping-info">
@@ -260,49 +302,29 @@
 								<span>모든 제품은 해당 제품 회사의 물품 환불 및 교환 정책에 따릅니다.</span>
 								<br><span>해당 제품 회사가 아직 배송관련 교환 및 환불 정책이 없을 때, 모든 물품은 수령한지 10일 이내에 사용하지 않은 새 것 일 때 교환및 환불이 가능합니다. 환불을 원하는 경우, 해당 회사에 직접 연락을 하거나 데일리 붐 회계팀(contact@dailyboom.co)로 연락주시기 바랍니다.</span>
 							</div>
-						}
-					</div>
-		    </li>
-		  </ul>
+							}
+						</div>
+					</li>
+				</ul>
+			</div>
 
 			<!-- Mobile -->
-			<div class="hide-on-med-and-up mobile-buy @(model.product.color ? model.product.color : 'light-blue') darken-3">
-				@if (model.sale > 0) {
+			<div class="hide-on-med-and-up mobile-buy white-text">
+				<a class="modal-trigger" href="@(model.user ? '/checkout?product_id='+model.product.id : '#modal-check')">
 					<div class="m-item">
-						<div class="item-price-o mod red-text text-lighten-2">SALE</div>
-						<div class="item-price @(model.product.color == 'white' ? 'black-text' : 'white-text')">@model.sale%</div>
+						<div class="item-price-o" id="product_old_price_mobile">@model.product.old_price</div>
+						<div class="item-price" id="product_price_mobile">@model.product.price</div>
 					</div>
-				}
-				<div class="m-item">
-					@if (model.sale > 0) {
-						<div class="item-price-o red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
-					}
-					<div class="item-price @(model.product.color == 'white' ? 'black-text' : 'white-text')" id="product_price_mobile">@model.product.price</div>
-				</div>
-				@if (model.user) {
-					@if (model.progress < 100) {
-						<div class="hide-on-med-and-up">
-							<a class="modal-trigger" href="/checkout?product_id=@model.product.id">
-								<img class="btn-buy-mobile" src="/images/btn-buy-mobile_2.png" alt="데일리 붐 쇼핑 몰"/>
-							</a>
-						</div>
-					}
-				}
-				else {
-					@if (model.progress < 100) {
-						<div class="hide-on-med-and-up">
-							<a class="modal-trigger" href="#modal-check">
-								<img class="btn-buy-mobile" src="/images/btn-buy-mobile_2.png" alt="" style="width:100%;"/>
-							</a>
-						</div>
-					}
-				}
+					<div class="hide-on-med-and-up right buy-text">
+						Buy Now
+					</div>
+				</a>
 			</div>
-			<a href="#modal-ask" class="hide buy-help modal-trigger">Can't Read Vietnamese? Click here.</a>
+			<a href="#modal-ask" class="hide-on-med-and-up buy-help modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Can't Read Korean? Click here.</a>
 
-			<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 @(model.product.color == 'white' ? 'black-text' : 'white-text')">
+			<div class="hide-on-small-only past-box-wrapper @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
 				@model.__('past_items')
-				<a class="hide @(model.product.color == 'white' ? 'black-text' : 'white-text') right" href="/mall"><i class="fa fa-shopping-bag fa-fw @(model.product.color == 'white' ? 'black-text' : 'white-text')"></i> 쇼핑몰 보기</a>
+				<a class="hide @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') right" href="/mall"><i class="fa fa-shopping-bag fa-fw @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></i> 쇼핑몰 보기</a>
 			</div>
 			<div class="row">
 				<div class="col s12 m12 l12">
@@ -313,41 +335,36 @@
 										<div class="col s12 m12 l12">
 											<div class="card past">
 												<div class="card-image">
-													<div class="past-date-box @(model.product.color ? model.product.color : 'light-blue') darken-1 @(model.product.color == 'white' ? 'black-text' : 'white-text')">
+													<div class="past-date-box @(model.product.color ? model.product.color : 'white') darken-1 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
 														@model.moment(product.scheduled_at).format("YYYY/MM/DD")@(model.moment(product.scheduled_at).day() == 6 ? model.moment(product.scheduled_at).add(1, 'days').format('-DD') : '')@(model.moment(product.scheduled_at).isSame('2016-02-08') ? '-09-10' : '')
 													</div>
 													<div class="card-image-ol">
-														<div class="ol-old-p">
-															@product.old_price
-														</div>
-														<div class="ol-new-p">
-															@product.price
+														<h5 class="white-text truncate"><b>@product.name</b></h5>
+														<div class="past-divider"></div>
+														<div>
+															<span class="ol-new-p">@product.price</span> (<span class="ol-old-p">@product.old_price</span>)
 														</div>
 													</div><!-- .card-image-ol -->
-													<div class="past-img" style="background-image: url(@product.images[0])" alt=""></div>
-												</div>
-												<div class="card-content past">
-													<div class="blue-grey-text text-darken-1 truncate"><b>@product.name</b></div>
-													<span class="blue-grey-text text-darken-1">@product.description</span>
+													<div class="past-img" style="background-image: url(@(product.mobile_images[0] ? product.mobile_images[0] : product.images[0]))" alt=""></div>
 												</div>
 													@if(product.extend == 1 && model.moment().isBefore(model.moment(product.scheduled_at).add(3, 'days'), 'days')){
 														<div class="card-action mod center green">
-															<a class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/extend/@product.id">@model.__('available')! (<span class="time-left"></span>)</a>
+															<a class="waves-effect waves-light btn-flat white-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/extend/@product.id">@model.__('available')! (<span class="time-left"></span>)</a>
 														</div>
 													}
 													else if (product.extend == 2){
 														<div class="card-action mod center green">
-															<a class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3" href="/extend/@product.id">@model.__('available')!</a>
+															<a class="waves-effect waves-light btn-flat white-text text-darken-3" href="/extend/@product.id">@model.__('available')!</a>
 														</div>
 													}
 													else if (model.user && product.wanna_buy.indexOf(model.user.id) != -1) {
 														<div class="card-action mod center want cyan" data-id="@product.id">
-															<span class="white-text waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3">@model.__('bring_back') <i class="fa fa-thumbs-up fa-fw right"></i></span>
+															<span class=" waves-effect waves-light btn-flat white-text text-darken-3">@model.__('bring_back') <i class="fa fa-thumbs-up fa-fw right"></i></span>
 														</div>
 													}
 													else {
-														<div class="card-action mod center want" data-id="@product.id">
-															<span class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'light-blue')-text text-darken-3">@model.__('bring_back') <i class="fa fa-thumbs-o-up fa-fw right"></i></span>
+														<div class="card-action mod center want cyan" data-id="@product.id">
+															<span class="waves-effect waves-light btn-flat white-text text-darken-3">@model.__('bring_back') <i class="fa fa-thumbs-o-up fa-fw right"></i></span>
 														</div>
 													}
 											</div>
@@ -362,7 +379,7 @@
 			<!-- Featured section -->
 			<div class="row">
 				<div class="col s12">
-					<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 @(model.product.color == 'white' ? 'black-text' : 'white-text')">
+					<div class="past-box-wrapper @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
 						@model.__('featured')
 					</div>
 					<br>
@@ -371,9 +388,7 @@
                     @if (model.partners) {
 					@model.partners.forEach(function(partner) {
 						<div class="col s12">
-							<a href="@partner.url" target="_blank">
-								<div class="partner-logo" style="background-image: url('@partner.logo');"></div>
-							</a>
+                            <div class="partner-logo" style="background-image: url('/@partner.logo');"></div>
 						</div><!-- .col -->
 					})
                     }
@@ -406,6 +421,7 @@
 			</div>
 			}
 			else {
+            <div class="center">
 				<script type='text/javascript'>
 					<!--//<![CDATA[
 					document.MAX_ct0 ='';
@@ -426,21 +442,22 @@
 					document.write ("'></scr"+"ipt>");
 					//]]>-->
 				</script>
+            </div>
 			}
 		</div><!-- .col -->
 	</div><!-- .row -->
 </div><!-- .container -->
 @if(!model.no_time){
 <script>
+var is_mobile = @model.is_phone;
 $(window).load(function() {
 	// $('#time-left-label').fadeOut(2500, function(){
 		var now = moment();
-		var is_mobile = @model.is_phone;
 		var momentTom = '@(model.date ? model.date : null)';
 		if (momentTom)
-		momentTom = moment(momentTom).tz("Asia/Seoul").add(3, 'days').hours(0).minutes(0).seconds(0);
+		    momentTom = moment(momentTom).tz("Asia/Seoul").add(2, 'days').hours(0).minutes(0).seconds(0);
 		else if (now.day() == 6) {
-		momentTom = moment().tz("Asia/Seoul").add(2, 'days').hours(0).minutes(0).seconds(0);
+		    momentTom = moment().tz("Asia/Seoul").add(2, 'days').hours(0).minutes(0).seconds(0);
 		}
 		else
 		momentTom = moment().tz("Asia/Seoul").add(1, 'days').hours(0).minutes(0).seconds(0);
@@ -493,18 +510,21 @@ $(window).scroll(function() {
 });
 </script>
 <script>
-	$(document).ready(function() {
-        $('.parallax').parallax();
+	$(document).ready(function(){
 		$("#main-slider").bxSlider({
 			mode:'horizontal',
 			pagerCustom: '#bx-pager',
 			infiniteLoop:true,
-			easing:'ease-in-out',
 			auto:true,
 			autoHover:true,
-			controls:false
+			controls:false,
+            video:false,
+            useCss: true,
+            onSliderLoad: function(){
+                $(".bxslider-wrap").css("visibility", "visible");
+            }
 		});
-	});
+    });
 	$(document).ready(function(){
 		$('.want').on('click', function(){
 			var btn = $(this);
@@ -533,18 +553,19 @@ $(window).scroll(function() {
 		});
 	});
 	$(document).ready(function(){
+		$('.parallax').parallax();
 		$('.tooltipped').tooltip({delay: 0});
 		$('.iframe-video').each(function(){
 			var url = $(this).attr("src");
 			$(this).attr("src",url+"?wmode=transparent");
 		});
-		$('.modal-trigger').leanModal({
-			dismissible: true, // Modal can be dismissed by clicking outside of the modal
-			opacity: .5, // Opacity of modal background
-			in_duration: 300, // Transition in duration
-			out_duration: 200, // Transition out duration
-			ready: function() { $('#share_url').select(); }
-		});
+		// $('.modal-trigger').leanModal({
+		// 	dismissible: true, // Modal can be dismissed by clicking outside of the modal
+		// 	opacity: .5, // Opacity of modal background
+		// 	in_duration: 300, // Transition in duration
+		// 	out_duration: 200, // Transition out duration
+		// 	ready: function() { $('#share_url').select(); }
+		// });
 		$('.collapsible').collapsible({
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
