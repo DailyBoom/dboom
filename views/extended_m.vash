@@ -2,7 +2,7 @@
 	@html.block("body", function(model) {
 <!-- Login Modal Structure -->
 <div id="modal-check" class="modal">
-	<div class="modal-header-c @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text center">
+	<div class="modal-header-c @(model.product.color ? model.product.color : 'light-blue') darken-2 @(model.product.color == 'white' ? 'black-text' : 'white-text') center">
 		로그인
 	</div>
 	<div class="modal-content-c">
@@ -171,7 +171,7 @@
 			</div>
 		</div>
 		<div class="col s12">
-			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-3 white-text">
+			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-3 @(model.product.color == 'white' ? 'black-text' : 'white-text')">
 				<img class="brand-img" src="/@model.product.brand_logo" alt="@model.product.brand - Logo" />
 					@if (model.product.name.length >= 12) {
 						<div class="item-name name-md">@model.product.name</div>
@@ -182,7 +182,7 @@
 					@if (model.sale > 0) {
 						<div class="hide-on-small-only m-item right">
 							<div class="item-price-o mod red-text text-lighten-2">SALE</div>
-							<div class="item-price white-text">@model.sale%</div>
+							<div class="item-price @(model.product.color == 'white' ? 'black-text' : 'white-text')">@model.sale%</div>
 						</div>
 					}
 					<!-- <span class="hide-on-small-only">&nbsp;</span> -->
@@ -190,7 +190,7 @@
 						@if (model.sale > 0) {
 							<div class="item-price-o desk red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
 						}
-						<div class="item-price desk mod white-text" id="product_price_mobile">@model.product.price</div>
+						<div class="item-price desk mod @(model.product.color == 'white' ? 'black-text' : 'white-text')" id="product_price_mobile">@model.product.price</div>
 					</div>
 			</div>
 			<div class="buy-box-info @(model.product.color ? model.product.color : 'light-blue') lighten-5 blue-grey-text text-darken-4">
@@ -235,7 +235,7 @@
 			</div><!-- .buy-box-footer -->
 			<!-- Modal Structure -->
 		  <div id="share_url_modal" class="modal">
-				<div class="modal-header @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text center">
+				<div class="modal-header @(model.product.color ? model.product.color : 'light-blue') darken-2 @(model.product.color == 'white' ? 'black-text' : 'white-text') center">
 					공유하기
 				</div>
 		    <div class="modal-content">
@@ -248,7 +248,7 @@
 			<!-- Merchant xInfo -->
 			<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
 		    <li>
-				<div class="collapsible-header @(model.product.color ? model.product.color : 'light-blue') darken-1 white-text">
+				<div class="collapsible-header @(model.product.color ? model.product.color : 'light-blue') darken-1 @(model.product.color == 'white' ? 'black-text' : 'white-text')">
 					<span>@model.__('shipping_info') <i class="fa fa-info-circle fa-fw right"></i></span>
 				</div>
 				<div class="collapsible-body @(model.product.color ? model.product.color : 'light-blue') lighten-5">
@@ -277,22 +277,22 @@
 				@if (model.sale > 0) {
 					<div class="m-item">
 						<div class="item-price-o mod red-text text-lighten-2">SALE</div>
-						<div class="item-price white-text">@model.sale%</div>
+						<div class="item-price @(model.product.color == 'white' ? 'black-text' : 'white-text')">@model.sale%</div>
 					</div>
 				}
 				<div class="m-item">
 					@if (model.sale > 0) {
 						<div class="item-price-o red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
 					}
-					<div class="item-price white-text" id="product_price_mobile">@model.product.price</div>
+					<div class="item-price @(model.product.color == 'white' ? 'black-text' : 'white-text')" id="product_price_mobile">@model.product.price</div>
 				</div>
-				<a class="btn red white-text right modal-trigger" id="add_to_cart_m" href="#modal-add-to-cart">옵션선택</a>
+				<a class="btn red @(model.product.color == 'white' ? 'black-text' : 'white-text') right modal-trigger" id="add_to_cart_m" href="#modal-add-to-cart">옵션선택</a>
 			</div>
 			<a href="#modal-ask" class="hide-on-med-and-up buy-help modal-trigger">Can't Read Korean? Click here.</a>
 
 		@if (model.pastProducts) {
-			<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 white-text">
-				<a href="/mall/@model.product.brand" class="white-text">@model.product.brand</a> 관련 상품
+			<div class="past-box-wrapper @(model.product.color ? model.product.color : 'light-blue') darken-2 @(model.product.color == 'white' ? 'black-text' : 'white-text')">
+				<a href="/mall/@model.product.brand" class="@(model.product.color == 'white' ? 'black-text' : 'white-text')">@model.product.brand</a> 관련 상품
 			</div>
 			<div class="row">
 				<div class="col s12 m12 l12">
