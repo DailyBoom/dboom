@@ -597,7 +597,8 @@ router.get('/checkout', function(req, res) {
                               res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity, title: "주문결제" });
                         }
                         else
-                          res.redirect('/');
+                          res.render('checkout', { order: orderPop, orderSheetUrl: body.result.orderSheetUrl, leftQuantity: leftQuantity, title: "주문결제" });                        
+//                          res.redirect('/');
                     }
                 );
               }

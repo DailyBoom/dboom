@@ -1,18 +1,18 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-		<div class="row">
-			<div class="container">
-				<form class="col s12 m6 offset-m1 l6 offset-l1" method="post" action="/reset/@model.token">
+		<div class="container">
+			<div class="row">
+				<form class="col s12 m6 l6 offset-l3" method="post" action="/reset/@model.token">
 					<div class="row">
-						<h4>Reset password</h4>
+						<h4>비밀번호 재신청</h4>
 						<br />
 						<div class="input-field">
 							<input id="password" type="password" class="validate" name="password">
-							<label for="password">Password</label>
+							<label for="password">@model.__('user.password')</label>
 						</div>
 						<div class="input-field">
 							<input id="confirmpassword" type="password" class="validate" name="confirmpassword">
-							<label for="confirmpassword">Password</label>
+							<label for="confirmpassword">@model.__('user.confirmPassword')</label>
 						</div>
 						<div class="row">
 							<button class="col s12 btn-large waves-effect waves-light cyan darken-3 left" type="submit" name="action">

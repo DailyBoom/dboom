@@ -617,7 +617,6 @@ router.get('/reset/:token', function(req, res) {
     }
     console.log(req.params.token);
     res.render('users/reset', {
-      user: user,
       token: req.params.token
     });
   });
@@ -635,17 +634,16 @@ router.post('/reset/:token', function(req, res) {
     user.resetPasswordExpires = undefined;
 
     user.save(function(err) {
-      req.login(user, function(err) {
-        var mailOptions = {
-        to: user.email,
-        from: '데일리 붐 <contact@dailyboom.co>',
-        subject: '비밀번호 변경 되었습니다',
-        text: user.username + '님,\n\n' +
-          '데일리 붐 회원님의 비밀번호 변경 확인 메일입니다.\n\n'
-        };
-        transporter.sendMail(mailOptions, function(err) {
-          res.redirect('/login');
-        });
+      var mailOptions = {
+      to: user.email,
+      from: '데일리 붐 <contact@dailyboom.co>',
+      subject: '비밀번호 변경 되었습니다',
+      text: user.username + '님,\n\n' +
+        '데일리 붐 회원님의 비밀번호 변경 확인 메일입니다.\n\n'
+      };
+      transporter.sendMail(mailOptions, function(err) {
+        req.session.toast = "비밀번호 변경 되었습니다";
+        res.redirect('/login');
       });
     });
   });

@@ -40,7 +40,10 @@
     "mongoose-pagination": "~1.0.0",
     "express-paginate": "~0.1.0",
     "mime-types": "~2.1.8",
-    "iamport": "git+https://git@github.com/iamport/iamport-rest-client-nodejs.git"
+    "iamport": "git+https://git@github.com/iamport/iamport-rest-client-nodejs.git",
+    "mocha": "~2.5.3",
+    "superagent": "~2.0.0",
+    "expect.js": "~0.3.1"
   },
   "description": "",
   "main": "app.js",
