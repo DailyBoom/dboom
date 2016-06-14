@@ -152,7 +152,7 @@
 								<span class="check-price blue-grey-text text-darken-3" id="product_price">@model.order.totalOrderAmt</span>
 							</div>
 							<div class="bank-box">
-								<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">Cash on demand</a>
+								<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">Cash on delivery</a>
 							</div>
 						</div>
 					</div><!-- .row -->
@@ -175,7 +175,7 @@
 		<div id="bank_modal" class="modal">
 			<div class="modal-content center">
 				<i class="fa fa-times fa-fw right modal-close"></i>
-				<h4>Cash on demand</h4>
+				<h4>Cash on delivery</h4>
 				<form action="/deposit_checkout" method="post">
 					<div class="row">
 						<div class="col s12 m8 offset-m2">
