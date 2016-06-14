@@ -455,32 +455,19 @@ router.get('/checkout', function(req, res) {
             if (!req.session.product)
               req.session.product = orderPop.product.id;
             getOrderTotal(order);
-            var payco = reservePayco(orderPop);
-            request.post(
-                config.Payco.host+'/outseller/order/reserve',
-                { json: payco },
-                function (error, response, body) {
-                    console.log(body);
-                    if (!error && body.code == 0) {
-                        var leftQuantity;
-                        orderPop.product.options.forEach(function(option){
-                          if (option.name === orderPop.option)
-                          leftQuantity = parseInt(option.quantity);
-                        });
-                        if (req.user) {
-                          Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
-                            res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: "주문결제", coupons: coupons });
-                          });
-                        }
-                        else
-                        res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: "주문결제" });
-                    }
-                    else
-                        res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: "주문결제" });
-                      //res.redirect('/');
-                }
-            );
-          })
+            var leftQuantity;
+            orderPop.product.options.forEach(function(option){
+              if (option.name === orderPop.option)
+              leftQuantity = parseInt(option.quantity);
+            });
+            if (req.user) {
+              Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
+                res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: "주문결제", coupons: coupons });
+              });
+            }
+            else
+            res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: "주문결제" });
+          });
         }
         else
           res.redirect('/shipping');

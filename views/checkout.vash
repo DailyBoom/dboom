@@ -151,22 +151,9 @@
 								}
 								<span class="check-price blue-grey-text text-darken-3" id="product_price">@model.order.totalOrderAmt</span>
 							</div>
-							@if(model.getLocale() != 'vi') {
-								<div id="payco_btn_type_A1" class="btn-payco center"></div>
-								<div class="bank-box">
-									<button class="btn btn-large btn-block purple" id="iamport_btn">신용카드 결제</button><br/>
-									<button class="btn btn-large btn-block blue" id="iamport_danal_btn">휴대폰 결제</button>
-									<img class="responsive-img" src="/images/or_2.png" alt="데일리 붐 or" />
-									<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">무통장입금</a><br/><br/>
-									<button class="btn blue col s6 btn-block" id="iamport_trans_btn">실시간계좌이체</button>
-									<button class="btn blue col s6 btn-block" id="iamport_vbank_btn">가상계좌</button><br/><br/>
-								</div>
-							}
-							else {
-								<div class="bank-box">
-									<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">Next</a>
-								</div>
-							}
+							<div class="bank-box">
+								<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">Cash on demand</a>
+							</div>
 						</div>
 					</div><!-- .row -->
 					@if(model.is_phone && model.getLocale() != 'vi') {
@@ -188,27 +175,19 @@
 		<div id="bank_modal" class="modal">
 			<div class="modal-content center">
 				<i class="fa fa-times fa-fw right modal-close"></i>
-				<h4>무통장입금</h4>
+				<h4>Cash on demand</h4>
 				<form action="/deposit_checkout" method="post">
 					<div class="row">
-						<div class="input-field col s12 m8 offset-m2">
-							<input id="deposit_name" name="deposit_name" type="text" class="validate" required>
-							<label for="deposit_name">입금자 이름</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="bank-title">폭스트론 (주)</div>
-						<div class="bank-number">043-105437-04-016</div>
-						<div class="bank-title">IBK 기업은행</div>
-						<br>
-						<button type="submit" class="waves-effect waves-light btn green darken-2">확인</a>
-						<br>
 						<div class="col s12 m8 offset-m2">
 							<p class="bank-info blue-grey-text text-darken-1 center">
-								@model.moment().add(1, 'days').format('LL') 오후 12시까지 이내에 입금을 완료하셔야 신청 처리가 정상적으로 접수됩니다.
-								<br>데일리 붐을 사용해주셔서 감사합니다.
+								By clicking the "confirm" button, you are confirming that you will have your payment ready upon item delivery.<br/>
+								If you have any questions please call at 123-456-7890<br/>
+								Thank you.
 							</p>
 						</div>
+						<br>
+						<br>
+						<button type="submit" class="waves-effect waves-light btn green darken-2">Confirm</a>
 					</div>
 				</form>
 			</div>
