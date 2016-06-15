@@ -253,7 +253,7 @@
 						나의 쿠폰함
 					</div>
 					<!-- coupons -->
-					@if (model.coupons.length > 0) {
+					@if (model.coupons && model.coupons.length > 0) {
 						@model.coupons.forEach(function(coupon) {
 							<div class="col s12 m4 l4">
 								<div class="card blue-grey-text text-darken-2">
