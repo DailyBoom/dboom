@@ -72,7 +72,7 @@
 </div><!-- #modal-check -->
 <!-- Buy Wrapper -->
 <div id="buy-sticky" class="hide-on-small-only buy-sticky-wrapper center @(model.product.color ? model.product.color : 'white')">
-	<a href="#modal-ask" class="hide buy-help-d modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Can't Read Korean? Click here.</a>
+	<a href="/wholesale" class="hide buy-help-d modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Can't Read Korean? Click here.</a>
 	@if (model.user) {
 		@if (model.progress < 100) {
 			<a href="/checkout?product_id=@model.product.id">
@@ -256,7 +256,7 @@
 					}
 				}
 					<br><br>
-					<a href="#modal-ask" class="hide btn btn-flat buy-help-dd modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Can't Read Korean? Click here.</a>
+					<a href="/wholesale" class="hide btn btn-flat buy-help-dd modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Can't Read Korean? Click here.</a>
 				</div>
 			</div>
 			<div class="buy-box-footer @(model.product.color ? model.product.color : 'white') lighten-3">
@@ -320,7 +320,7 @@
 					</div>
 				</a>
 			</div>
-			<a href="#modal-ask" class="hide-on-med-and-up buy-help modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Can't Read Korean? Click here.</a>
+			<a href="/wholesale" class="hide-on-med-and-up buy-help modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Can't Read Korean? Click here.</a>
 
 			<div class="hide-on-small-only past-box-wrapper @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
 				@model.__('past_items')
