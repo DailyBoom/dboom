@@ -538,15 +538,15 @@ router.post('/deposit_checkout', function(req, res) {
         order.save(function(err) {
           if (err)
             console.log(err);
-          if (app.get("env") === "production") {
-            slack.send({
-              channel: '#dailyboom-new-order',
-              icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
-              text: 'New order via deposit <http://dailyboom.co/orders/view/'+order._id+'>',
-              unfurl_links: 1,
-              username: 'DailyBoom-bot'
-            });
-          }
+          // if (app.get("env") === "production") {
+          //   slack.send({
+          //     channel: '#dailyboom-new-order',
+          //     icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
+          //     text: 'New order via deposit <http://dailyboom.co/orders/view/'+order._id+'>',
+          //     unfurl_links: 1,
+          //     username: 'DailyBoom-bot'
+          //   });
+          // }
           fs.readFile('./views/mailer/bank_deposit.vash', "utf8", function(err, file) {
             if(err){
               //handle errors
