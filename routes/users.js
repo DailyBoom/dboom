@@ -629,21 +629,49 @@ router.post('/reset/:token', function(req, res) {
       return res.redirect('back');
     }
 
-    user.password = req.body.password;
-    user.resetPasswordToken = undefined;
-    user.resetPasswordExpires = undefined;
+    req.Validator.validate('password', i18n.__('user.password'), {
+        length: {
+          min: 8,
+          max: 15
+        },
+        required: true
+      })
+      .validate('confirmpassword', i18n.__('user.confirmPassword'), {
+        length: {
+          min: 8,
+          max: 15
+        },
+        isConfirm: function(field, fieldName, value, fn) {
+          var errors;
+          if (value !== req.body.password) {
+            errors = i18n.__('passNotConfirmed', fieldName, i18n.__('user.password'));
+          }
+          fn(errors);
+        },
+        required: true
+      });
 
-    user.save(function(err) {
-      var mailOptions = {
-      to: user.email,
-      from: '데일리 붐 <contact@dailyboom.co>',
-      subject: '비밀번호 변경 되었습니다',
-      text: user.username + '님,\n\n' +
-        '데일리 붐 회원님의 비밀번호 변경 확인 메일입니다.\n\n'
-      };
-      transporter.sendMail(mailOptions, function(err) {
-        req.session.toast = "비밀번호 변경 되었습니다";
-        res.redirect('/login');
+    req.Validator.getErrors(function(errors) {
+
+      if (errors.length > 0) {
+        res.render('users/reset', { token: req.params.token });
+      }
+      user.password = req.body.password;
+      user.resetPasswordToken = undefined;
+      user.resetPasswordExpires = undefined;
+
+      user.save(function(err) {
+        var mailOptions = {
+        to: user.email,
+        from: '데일리 붐 <contact@dailyboom.co>',
+        subject: '비밀번호 변경 되었습니다',
+        text: user.username + '님,\n\n' +
+          '데일리 붐 회원님의 비밀번호 변경 확인 메일입니다.\n\n'
+        };
+        transporter.sendMail(mailOptions, function(err) {
+          req.session.toast = "비밀번호 변경 되었습니다";
+          res.redirect('/login');
+        });
       });
     });
   });
