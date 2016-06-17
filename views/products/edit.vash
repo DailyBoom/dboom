@@ -72,18 +72,6 @@
 			<!-- .row -->
 			<div class="row">
 				<div class="input-field col s12">
-					@if(@model.user.admin) {
-						<input id="merchant_id" type="text" class="validate" name="merchant_id" value="@model.product.merchant_id">
-						<label for="merchant_id">@model.__('product.merchantId') *</label>
-					}
-					else {
-						<input id="merchant_id" name="merchant_id" type="hidden" value="@model.user.id" />
-					}
-				</div>
-			</div>
-			<!-- .row -->
-			<div class="row">
-				<div class="input-field col s12">
 					<input id="name" type="text" class="validate" name="name" required="true" maxlength="30" value="@model.product.name">
 					<label for="name">@model.__('product.name') *</label>
 				</div>
@@ -259,10 +247,6 @@
 				<div class="input-field col s12 m12 l12">
 					<input id="igUrl" name="igUrl" type="url" class="validate" value="@model.product.company_instagram">
 					<label for="igUrl">Instagram 링크</label>
-				</div>
-				<div class="input-field col s12 m12 l12">
-					<input id="kakaoUrl" name="kakaoUrl" type="text" class="validate" value="@model.product.company_kakaostory">
-					<label for="kakaoUrl">Kakao Story 링크</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
 					<input id="reviewUrl" name="reviewUrl" type="text" class="validate" value="@model.product.review_url">

@@ -61,23 +61,6 @@
 			<!-- .row -->
 			<div class="row">
 				<div class="input-field col s12">
-					@if(@model.user.admin) {
-						<select id="merchant_id" class="validate" name="merchant_id">
-							<option value=""></option>
-							@model.merchants.forEach(function(merchant) {
-								<option value="@merchant.id">@merchant.username / @merchant.name</option>
-							})
-						</select>
-						<label for="merchant_id">@model.__('product.merchantId') *</label>
-					}
-					else {
-						<input id="merchant_id" name="merchant_id" type="hidden" value="@model.user.id" />
-					}
-				</div>
-			</div>
-			<!-- .row -->
-			<div class="row">
-				<div class="input-field col s12">
 					<input id="name" type="text" class="validate" name="name" required="true" maxlength="30">
 					<label for="name">@model.__('product.name') *</label>
 				</div>
@@ -223,10 +206,6 @@
 				<div class="input-field col s12 m12 l12">
 					<input id="igUrl" name="igUrl" type="url" class="validate">
 					<label for="igUrl">Instagram 링크</label>
-				</div>
-				<div class="input-field col s12 m12 l12">
-					<input id="kakaoUrl" name="kakaoUrl" type="text" class="validate">
-					<label for="kakaoUrl">Kakao Story 링크</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
 					<input id="reviewUrl" name="reviewUrl" type="text" class="validate">

@@ -321,7 +321,6 @@
 				</a>
 			</div>
 			<a href="/wholesale" class="hide-on-med-and-up buy-help modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
-
 			<div class="hide-on-small-only past-box-wrapper @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
 				@model.__('past_items')
 				<a class="hide @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') right" href="/mall"><i class="fa fa-shopping-bag fa-fw @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></i> 쇼핑몰 보기</a>
