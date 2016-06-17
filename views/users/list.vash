@@ -59,6 +59,9 @@
 			<br>
 			<div class="row">
 				<ul class="pagination">
+					@if(model.currentPage >= 5) {
+						<li class="waves-effect"><a href="/users/list?page=1&limit=10">First</a></li>
+					}
 					@model.pages.forEach(function(page) { 
 						@if(model.currentPage == page.number) {
 							<li class="active">@page.number</li>
