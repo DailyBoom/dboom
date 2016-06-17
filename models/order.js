@@ -33,6 +33,7 @@ var orderSchema = new Schema({
 	deposit_name: String,
 	merchant_id: { type: Schema.Types.ObjectId, ref: 'User' },
 	coupon: { type: Schema.Types.ObjectId, ref: 'Coupon' },
+	productTotal: Number,
 	totalOrderAmt: Number,
 	cart_merchants: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 	cart: [{ product: { type: Schema.Types.ObjectId, ref: 'Product' }, quantity: Number, option: Number }],

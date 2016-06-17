@@ -27,7 +27,9 @@
 				border-collapse: collapse;
 				width: 100%;
 			}
-
+			strong {
+				font-weight: bold;
+			}
 		</style>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	</head>
@@ -45,8 +47,21 @@
 						<br>
 						<h3>
 							@model.i18n.__('email.buy_success.2')
-							<br>
-							<br>
+							<br/>
+							<br/>
+							주문번호 : @model.order.id<br/><br/>
+							<strong>배송지정보</strong>
+							받는 분 : @(model.order.shipping.full_name ? model.order.shipping.full_name : model.order.user.shipping.full_name)<br/>
+							@model.i18n.__('user.email') : @(model.order.email ? model.order.email : model.order.user.email)<br/>
+							전화번호 : @(model.order.shipping.phone_number ? model.order.shipping.phone_number : model.order.user.shipping.phone_number)<br/>
+							배송주소 : @(model.order.shipping.address ? model.order.shipping.address : model.order.user.shipping.address)<br/>
+							우편번호 : @(model.order.shipping.zipcode ? model.order.shipping.zipcode : model.order.user.shipping.zipcode)<br/>
+
+							상품금액 : @(model.order.productTotal)원<br/>
+							할인금액 : @(model.order.productTotal - model.order.totalOrderAmt)원<br/>
+							<strong>결제금액 : @(model.order.totalOrderAmt)원</strong><br/>
+							<br/>
+							<br/>
 							@html.raw(model.i18n.__('email.buy_success.3'))
 						</h3>
 					</td>

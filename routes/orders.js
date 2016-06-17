@@ -74,7 +74,8 @@ var hasShipping = function(obj) {
 }
 
 var getOrderTotal = function(order) {
-  order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price;  
+  order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price;
+  order.productTotal = order.product.price * order.quantity + order.product.delivery_price;
   if (order.coupon) {
     if (order.coupon.type == 1)
       order.totalOrderAmt -= order.product.delivery_price;
@@ -86,6 +87,7 @@ var getOrderTotal = function(order) {
   if (order.user && order.wallet_dc && order.wallet_dc <= order.user.wallet) {
       order.totalOrderAmt -= order.wallet_dc;    
   }
+  order.save();
 }
 
 var getOrderCartTotal = function(order) {
@@ -400,7 +402,7 @@ router.post('/mall/iamport_callback', function (req, res) {
           from: '데일리 붐 <contact@dailyboom.co>',
           to: order.user ? order.user.email : order.email,
           subject: '데일리 붐 구매 안내.',
-          html: html({ full_name: order.user ? order.user.shipping.full_name : order.shipping.full_name, i18n: i18n })
+          html: html({ order: order, full_name: order.user ? order.user.shipping.full_name : order.shipping.full_name, i18n: i18n })
         }, function (err, info) {
           if (err) { console.log(err); }
           //console.log('Message sent: ' + info.response);
@@ -457,7 +459,7 @@ router.post('/iamport_callback', function (req, res) {
               from: '데일리 붐 <contact@dailyboom.co>',
               to: order.user ? order.user.email : order.email,
               subject: '데일리 붐 구매 안내.',
-              html: html({ full_name: order.user ? order.user.shipping.full_name : order.shipping.full_name, i18n: i18n })
+              html: html({ order: order, full_name: order.user ? order.user.shipping.full_name : order.shipping.full_name, i18n: i18n })
             }, function (err, info) {
               if (err) { console.log(err); }
               //console.log('Message sent: ' + info.response);
@@ -573,7 +575,7 @@ router.get('/checkout', function(req, res) {
               });
             }
             orderPop.quantity = 1;
-            getOrderTotal(order);
+            getOrderTotal(orderPop);
             orderPop.save(function(err) {
               if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
                 var payco = reservePayco(orderPop);
@@ -658,7 +660,7 @@ router.post('/checkout', function(req, res) {
           console.log(err);
         order.option = req.body.order_option;
         order.quantity = parseInt(req.body.order_quantity);
-        order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price;
+        order.productTotal = order.product.price * order.quantity + order.product.delivery_price;
         if (req.body.coupon)
           order.coupon = req.body.coupon;
         if (req.body.wallet_dc && req.body.wallet_dc <= req.user.wallet && req.body.wallet_dc > 0)
@@ -832,7 +834,7 @@ router.all('/payco_callback', function (req, res) {
                       from: '데일리 붐 <contact@dailyboom.co>',
                       to: order.user ? order.user.email : order.email,
                       subject: '데일리 붐 구매 안내.',
-                      html: html({ full_name: order.user ? order.user.shipping.full_name : order.shipping.full_name, i18n: i18n })
+                      html: html({ order: order, full_name: order.user ? order.user.shipping.full_name : order.shipping.full_name, i18n: i18n })
                     }, function (err, info) {
                       if (err) { console.log(err); }
                       //console.log('Message sent: ' + info.response);
@@ -921,7 +923,7 @@ router.all('/mall/payco_callback', function (req, res) {
                   from: '데일리 붐 <contact@dailyboom.co>',
                   to: order.user ? order.user.email : order.email,
                   subject: '데일리 붐 구매 안내.',
-                  html: html({ full_name: order.user ? order.user.shipping.full_name : order.shipping.full_name, i18n: i18n })
+                  html: html({ order: order, full_name: order.user ? order.user.shipping.full_name : order.shipping.full_name, i18n: i18n })
                 }, function (err, info) {
                   if (err) { console.log(err); }
                   //console.log('Message sent: ' + info.response);
@@ -991,7 +993,7 @@ router.get('/orders/paid/:id', isAdmin, function(req, res) {
                     from: '데일리 붐 <contact@dailyboom.co>',
                     to: order.user ? order.user.email : order.email,
                     subject: '데일리 붐 구매 안내.',
-                    html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment, i18n: i18n })
+                    html: html({ order: order, full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment, i18n: i18n })
                   }, function (err, info) {
                       if (err) { console.log(err); }
                       //console.log('Message sent: ' + info.response);
@@ -1036,7 +1038,7 @@ router.get('/orders/cart_paid/:id', isAdmin, function(req, res) {
             from: '데일리 붐 <contact@dailyboom.co>',
             to: order.user ? order.user.email : order.email,
             subject: '데일리 붐 구매 안내.',
-            html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment })
+            html: html({ order: order, full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment })
           }, function (err, info) {
               if (err) { console.log(err); }
               //console.log('Message sent: ' + info.response);
