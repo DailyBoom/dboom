@@ -6,6 +6,7 @@
 		{
 			// Name of configuration; appears in the launch configuration drop down menu.
 			"name": "Launch",
+			"request": "launch",
 			// Type of configuration. Possible values: "node", "mono".
 			"type": "node",
 			// Workspace relative or absolute path to the program.
@@ -31,6 +32,7 @@
 		},
 		{
 			"name": "Attach",
+			"request": "attach",
 			"type": "node",
 			// TCP/IP address. Default is "localhost".
 			"address": "localhost",
