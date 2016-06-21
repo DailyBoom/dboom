@@ -37,36 +37,73 @@
 					}
 					<div class="row">
 						<div class="input-field col s12 m6 l6">
-							<input id="full_name" name="full_name" type="text" class="validate" placeholder="홍길동" value="@(model.user && model.user.shipping.full_name ? model.user.shipping.full_name : model.Validator.getValue('full_name'))">
+							<input id="full_name" name="full_name" type="text" class="validate" placeholder="홍길동" value="@(model.order.shipping.full_name ? model.order.shipping.full_name : model.Validator.getValue('full_name'))">
 							<label for="full_name">@model.__('user.fullName')</label>
 						</div>
 						<div class="input-field col s12 m6 l6">
-							<input id="phone_number" name="phone_number" type="text" class="validate" placeholder="01021345678" value="@(model.user && model.user.shipping.phone_number ? model.user.shipping.phone_number : model.Validator.getValue('phone_number'))">
+							<input id="phone_number" name="phone_number" type="text" class="validate" placeholder="01021345678" value="@(model.order.shipping.phone_number ? model.order.shipping.phone_number : model.Validator.getValue('phone_number'))">
 							<label for="phone_number">@model.__('user.phoneNumber') @html.raw(model.__('user.phone_warning'))</label>
 						</div>
 					</div>
 					<div class="row">
-						<div class="input-field col s12 m9 l9">
-							<input id="address1" name="address1" type="text" class="validate" placeholder="시 . 구 . 동 . " value="@(model.user && model.user.shipping.address ? model.user.shipping.address : model.Validator.getValue('address1'))">
-							<label for="address1">@model.__('user.address1')</label>
+						<div class="input-field col s12 m6 l6">
+							<select id="area" name="area" class="area">
+								<option value="" @(!model.order.shipping.area ? 'selected' : '') >Please select an area</option>
+								<option value="area1" @(model.order.shipping.area && model.order.shipping.area == 'area1' ? 'selected' : '') >Inside Ho Chi Minh City (VND 5,000)</option>
+								<option value="area2" @(model.order.shipping.area && model.order.shipping.area == 'area2' ? 'selected' : '')>Adjacent Ho Chi Minh City (VND 10,000)</option>
+								<option value="area3" @(model.order.shipping.area && model.order.shipping.area == 'area3' ? 'selected' : '')>Outside Ho Chi Minh City (VND 20,000)</option>
+								<option value="pickup">Pick Up</option>															
+							</select>
+							<label for="area">Area</label>
 						</div>
-						<div class="input-field col s12 m3 l3">
-							<input id="zipcode" name="zipcode" type="text" class="validate" placeholder="100123" value="@(model.user && model.user.shipping.zipcode ? model.user.shipping.zipcode : model.Validator.getValue('zipcode'))" maxlength="6">
-							<label for="zipcode">@model.__('user.zipcode')</label>
+						<div class="input-field col s12 m6 l6">
+							<select id="area1" name="@(model.order.shipping.area == 'area1' ? 'country' : '')" class="area1 @(model.order.shipping.area != 'area1' ? 'hide' : '')">
+								<option value="Quan 1" @(model.order.shipping.country && model.order.shipping.country == 'Quan 1' ? 'selected' : '')>Quan 1</option>
+								<option value="Quan 2" @(model.order.shipping.country && model.order.shipping.country == 'Quan 2' ? 'selected' : '')>Quan 2</option>
+								<option value="Quan 3" @(model.order.shipping.country && model.order.shipping.country == 'Quan 3' ? 'selected' : '')>Quan 3</option>
+								<option value="Quan 4" @(model.order.shipping.country && model.order.shipping.country == 'Quan 4' ? 'selected' : '')>Quan 4</option>
+								<option value="Quan 5" @(model.order.shipping.country && model.order.shipping.country == 'Quan 5' ? 'selected' : '')>Quan 5</option>
+								<option value="Quan 6" @(model.order.shipping.country && model.order.shipping.country == 'Quan 6' ? 'selected' : '')>Quan 6</option>
+								<option value="Quan 7" @(model.order.shipping.country && model.order.shipping.country == 'Quan 7' ? 'selected' : '')>Quan 7</option>
+								<option value="Quan 8" @(model.order.shipping.country && model.order.shipping.country == 'Quan 8' ? 'selected' : '')>Quan 8</option>
+								<option value="Quan 9" @(model.order.shipping.country && model.order.shipping.country == 'Quan 9' ? 'selected' : '')>Quan 9</option>
+								<option value="Quan 10" @(model.order.shipping.country && model.order.shipping.country == 'Quan 10' ? 'selected' : '')>Quan 10</option>
+								<option value="Quan 11" @(model.order.shipping.country && model.order.shipping.country == 'Quan 11' ? 'selected' : '')>Quan 11</option>
+								<option value="Quan 12" @(model.order.shipping.country && model.order.shipping.country == 'Quan 12' ? 'selected' : '')>Quan 12</option>
+							</select>
+							<select id="area2" name="@(model.order.shipping.area == 'area2' ? 'country' : '')" class="area2 @(model.order.shipping.area != 'area2' ? 'hide' : '')">
+								<option value="Go Vap" @(model.order.shipping.country && model.order.shipping.country == 'Go Vap' ? 'selected' : '')>Go Vap</option>
+								<option value="Tan Binh" @(model.order.shipping.country && model.order.shipping.country == 'Tan Binh' ? 'selected' : '')>Tan Binh</option>
+								<option value="Tan Phu" @(model.order.shipping.country && model.order.shipping.country == 'Tan Phu' ? 'selected' : '')>Tan Phu</option>
+								<option value="Binh Thanh" @(model.order.shipping.country && model.order.shipping.country == 'Binh Thanh' ? 'selected' : '')>Binh Thanh</option>
+								<option value="Phu Nhuan" @(model.order.shipping.country && model.order.shipping.country == 'Phu Nhuan' ? 'selected' : '')>Phu Nhuan</option>
+								<option value="Thu Duc" @(model.order.shipping.country && model.order.shipping.country == 'Thu Duc' ? 'selected' : '')>Thu Duc</option>
+								<option value="Binh Tan" @(model.order.shipping.country && model.order.shipping.country == 'Binh Tan' ? 'selected' : '')>Binh Tan</option>
+							</select>
+							<select id="area3" name="@(model.order.shipping.area == 'area3' ? 'country' : '')" class="area3 @(model.order.shipping.area != 'area3' ? 'hide' : '')">
+								<option value="Cu Chi" @(model.order.shipping.country && model.order.shipping.country == 'Cu Chi' ? 'selected' : '')>Cu Chi</option>
+								<option value="Hoc Mon" @(model.order.shipping.country && model.order.shipping.country == 'Hoc Mon' ? 'selected' : '')>Hoc Mon</option>
+								<option value="Binh Chanh" @(model.order.shipping.country && model.order.shipping.country == 'Binh Chanh' ? 'selected' : '')>Binh Chanh</option>
+								<option value="Nha Be" @(model.order.shipping.country && model.order.shipping.country == 'Nha Be' ? 'selected' : '')>Nha Be</option>
+								<option value="Can Gio" @(model.order.shipping.country && model.order.shipping.country == 'Can Gio' ? 'selected' : '')>Can Gio</option>
+							</select>
+							<label for="country">@model.__('user.country')</label>
 						</div>
 					</div>
 					<div class="row">
-						<div class="input-field col s12">
-							<select id="country" name="country">
-								<option value="대한민국">대한민국</option>
-							</select>
-							<label>@model.__('user.country')</label>
+						<div class="input-field col s12 m9 l9">
+							<input id="address1" name="address1" type="text" class="validate" placeholder="시 . 구 . 동 . " value="@(model.order.shipping.address ? model.order.shipping.address : model.Validator.getValue('address1'))">
+							<label for="address1">@model.__('user.address1')</label>
+						</div>
+						<div class="input-field col s12 m3 l3">
+							<input id="zipcode" name="zipcode" type="text" class="validate" placeholder="100123" value="@(model.order.shipping.zipcode ? model.order.shipping.zipcode : model.Validator.getValue('zipcode'))" maxlength="6">
+							<label for="zipcode">@model.__('user.zipcode')</label>
 						</div>
 					</div>
 					@if (!model.user || !model.user.email) {
 						<div class="row">
 							<div class="input-field col s12">
-								<input id="email" name="email" type="email" class="validate" placeholder="someone@dailyboom.co" value="@model.Validator.getValue('email')">
+								<input id="email" name="email" type="email" class="validate" placeholder="someone@dailyboom.co" value="@(model.order.email ? model.order.email : model.Validator.getValue('email'))">
 								<label for="email">@model.__('user.email')</label>
 							</div>
 						</div>
@@ -135,7 +172,25 @@
 		</div>
 		<script>
 			$(document).ready(function() {
-				$('select').material_select({name:"country"});
+				$('select').material_select();
+				if ($('#area option:selected').val() != '') {
+					var area = $("."+$('#area option:selected').val());
+					area.parent().find(".select-wrapper").addClass('hide');
+					area.removeClass('hide');
+				}
+				$('#area').on('change', function() {
+					if ($('#area option:selected').val() == 'pickup') {
+						$("#address1").val("Address Vietnam Office");
+						$('.select-wrapper').not('.area').addClass('hide');
+					}
+					else if ($('#area option:selected').val() != '') {
+						var area = $("."+$('#area option:selected').val());
+						area.parent().find(".select-wrapper").addClass('hide');
+						area.parent().find("select").attr('name', '');
+						area.removeClass('hide');
+						$("#"+$('#area option:selected').val()).attr('name', 'country');
+					}
+				});
 				$("#agree-add-id").on("change", function() {
 					$('#add-id').toggleClass('hide');
 					$('#add-id input').prop('required', this.checked);

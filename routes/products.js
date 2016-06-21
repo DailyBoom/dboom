@@ -182,7 +182,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
     
       if (req.files['photosmobile']) {
         var paths = req.files['photosmobile'].map(function(item) {
-            return item.path;
+            return "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + item.key;
         });
         product.mobile_images = paths;
       }
@@ -251,15 +251,14 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
 
     if (req.files['photosmain']) {
       var paths = req.files['photosmain'].map(function(item) {
-          console.log(item);
-          return "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + item.key;
+        return "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + item.key;
       });
       product.images = paths;
     }
     
     if (req.files['photosmobile']) {
       var paths = req.files['photosmobile'].map(function(item) {
-          return item.path;
+        return "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + item.key;
       });
       product.mobile_images = paths;
     }

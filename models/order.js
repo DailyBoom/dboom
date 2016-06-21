@@ -16,6 +16,7 @@ var orderSchema = new Schema({
 		address: String,
 		address_extra: String,
 		country: String,
+		area: String,
 		zipcode: String,
 		phone_number: String
   	},
@@ -34,6 +35,7 @@ var orderSchema = new Schema({
 	merchant_id: { type: Schema.Types.ObjectId, ref: 'User' },
 	coupon: { type: Schema.Types.ObjectId, ref: 'Coupon' },
 	totalOrderAmt: Number,
+	shipping_cost: Number,
 	cart_merchants: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 	cart: [{ product: { type: Schema.Types.ObjectId, ref: 'Product' }, quantity: Number, option: Number }],
 	wallet_dc: Number

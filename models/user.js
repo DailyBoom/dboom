@@ -18,6 +18,7 @@ var userSchema = new Schema({
     address: String,
     address_extra: String,
     country: String,
+    area: String,
     zipcode: String,
     phone_number: String
   },

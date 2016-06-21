@@ -69,7 +69,7 @@ var hasShipping = function(obj) {
 }
 
 var getOrderTotal = function(order) {
-  order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price;  
+  order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price + order.shipping_cost;  
   if (order.coupon) {
     if (order.coupon.type == 1)
       order.totalOrderAmt -= order.product.delivery_price;
@@ -403,6 +403,18 @@ router.get('/checkout', function(req, res) {
   
       if (req.user) {
         order.user = req.user.id;
+        if (req.user.shipping) {
+          order.shipping = JSON.parse(JSON.stringify(req.user.shipping));
+          console.log(order);
+          if (req.user.shipping.area) {
+            if (req.user.shipping.area == 'area1')
+              order.shipping_cost = 5000;
+            else if (req.user.shipping.area == 'area2')
+              order.shipping_cost = 10000;
+            else if (req.user.shipping.area == 'area3')
+              order.shipping_cost = 20000;
+          }
+        }
       }
   
       order.save(function(err) {
@@ -1012,7 +1024,9 @@ router.get('/shipping', function(req, res) {
   if (!req.session.order && !req.session.cart_order)
     res.redirect('/');
   else
-    res.render('shipping', { title: "배송지 정보" });
+    Order.findOne({ '_id': req.session.order || req.session.cart_order }, function(err, order) {
+      res.render('shipping', { title: "배송지 정보", order: order });
+    });
 });
 
 router.post('/shipping', function(req, res) {
@@ -1081,7 +1095,7 @@ router.post('/shipping', function(req, res) {
 
           req.Validator.getErrors(function(errors){
             if (errors.length > 0) {
-              res.render('shipping', { errors: errors });
+              res.render('shipping', { errors: errors, order: order });
             }
             else {
               var user = new User({
@@ -1093,6 +1107,7 @@ router.post('/shipping', function(req, res) {
                   full_name: req.body.full_name,
                   address: req.body.address1,
                   country: req.body.country,
+                  area: req.body.area,
                   zipcode: req.body.zipcode,
                   phone_number: req.body.phone_number
                 },
@@ -1105,10 +1120,17 @@ router.post('/shipping', function(req, res) {
                   for (var path in err.errors) {
                     errors.push(i18n.__("unique", i18n.__("user."+path)));
                   }
-                  res.render('shipping', { errors: errors, title: "배송지 정보" });
+                  res.render('shipping', { errors: errors, title: "배송지 정보", order: order });
                 }
                 else {
                   order.user = user.id;
+                  order.shipping = JSON.parse(JSON.stringify(user.shipping));
+                  if (order.shipping.area == 'area1')
+                    order.shipping_cost = 5000;
+                  else if (order.shipping.area == 'area2')
+                    order.shipping_cost = 10000;
+                  else if (order.shipping.area == 'area3')
+                    order.shipping_cost = 20000;
                   order.save(function(err) {
                     fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
                       if(err){
@@ -1151,7 +1173,7 @@ router.post('/shipping', function(req, res) {
 
         req.Validator.getErrors(function(errors){
           if (errors.length > 0) {
-            res.render('shipping', { errors: errors, title: "배송지 정보" });
+            res.render('shipping', { errors: errors, title: "배송지 정보", order: order });
           }
           else {
              User.findOne({ _id: req.user._id }, {}, function(err, user) {
@@ -1162,6 +1184,7 @@ router.post('/shipping', function(req, res) {
                 full_name: req.body.full_name,
                 address: req.body.address1,
                 country: req.body.country,
+                area: req.body.area,
                 zipcode: req.body.zipcode,
                 phone_number: req.body.phone_number
               };
@@ -1172,13 +1195,20 @@ router.post('/shipping', function(req, res) {
                     for (var path in err.errors) {
                       errors.push(i18n.__("unique", i18n.__("user."+path)));
                     }
-                  res.render('shipping', { errors: errors, title: "배송지 정보" });
+                  res.render('shipping', { errors: errors, title: "배송지 정보", order: order });
                 }
                 else {
                   order.user = user.id;
+                  if (order.shipping.area == 'area1')
+                    order.shipping_cost = 5000;
+                  else if (order.shipping.area == 'area2')
+                    order.shipping_cost = 10000;
+                  else if (order.shipping.area == 'area3')
+                    order.shipping_cost = 20000;
+                  order.shipping = JSON.parse(JSON.stringify(user.shipping));
                   order.save(function(err) {
                     if (err) {
-                      res.render('shipping', { errors: err, title: "배송지 정보" });
+                      res.render('shipping', { errors: err, title: "배송지 정보", order: order });
                     }
                     else {
                       if (req.session.cart_order)
@@ -1200,20 +1230,27 @@ router.post('/shipping', function(req, res) {
 
         req.Validator.getErrors(function(errors){
           if (errors.length > 0) {
-            res.render('shipping', { errors: errors, title: "배송지 정보" });
+            res.render('shipping', { errors: errors, title: "배송지 정보", order: order });
           }
           else {
             order.shipping = {
                 full_name: req.body.full_name,
                 address: req.body.address1,
                 country: req.body.country,
+                area: req.body.area,
                 zipcode: req.body.zipcode,
                 phone_number: req.body.phone_number
             }
             order.email = req.body.email;
+            if (order.shipping.area == 'area1')
+              order.shipping_cost = 5000;
+            else if (order.shipping.area == 'area2')
+              order.shipping_cost = 10000;
+            else if (order.shipping.area == 'area3')
+              order.shipping_cost = 20000;
             order.save(function(err) {
               if (err) {
-                res.render('shipping', { errors: err, title: "배송지 정보" });
+                res.render('shipping', { errors: err, title: "배송지 정보", order: order });
               }
               else {
                 if (req.session.cart_order)
