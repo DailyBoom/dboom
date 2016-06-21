@@ -4,6 +4,8 @@
 			<div class="row">
 				<form class="col s12" method="post" action="/signup">
 					<a href="/merchant_signup" class="right merchant_signup">@model.__('merchant.signup')</a>
+					<a href="#" id="kakao" class="btn yellow black-text right merchant_signup">카카오톡 계정으로 회원가입</a>
+					<a href="#" id="facebook" class="btn blue right merchant_signup">페이스북 계정으로 회원가입</a>
 					<h3>@model.__('signup')</h3>
 					@if (model.errors) {
 						<ul class="red-text">
