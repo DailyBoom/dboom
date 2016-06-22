@@ -15,6 +15,15 @@
 					<span class="col s9 order-label">
 						&nbsp;@model.order.id
 					</span>
+					@if (model.order.user) {
+						<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
+							@model.__('user.username') :
+						</span>
+						<span class="col s9 order-label">
+							&nbsp;
+							@model.order.user.username
+						</span>
+					}
 					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
 						받는 분 :
 					</span>
