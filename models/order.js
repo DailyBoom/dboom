@@ -38,7 +38,8 @@ var orderSchema = new Schema({
 	shipping_cost: Number,
 	cart_merchants: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 	cart: [{ product: { type: Schema.Types.ObjectId, ref: 'Product' }, quantity: Number, option: Number }],
-	wallet_dc: Number
+	wallet_dc: Number,
+	pickup_date: Date
 });
 
 orderSchema.plugin(mongooseToCsv, {

@@ -47,7 +47,8 @@
     "accounting": "~0.4.1",
     "config-heroku": "~0.1.1-a",
     "multer-s3": "~1.4.1",
-    "iamport": "git+https://git@github.com/iamport/iamport-rest-client-nodejs.git"
+    "iamport": "git+https://git@github.com/iamport/iamport-rest-client-nodejs.git",
+    "passport-google-oauth": "~1.0.0"
   },
   "description": "",
   "main": "app.js",

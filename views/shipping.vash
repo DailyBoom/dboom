@@ -87,7 +87,9 @@
 								<option value="Nha Be" @(model.order.shipping.country && model.order.shipping.country == 'Nha Be' ? 'selected' : '')>Nha Be</option>
 								<option value="Can Gio" @(model.order.shipping.country && model.order.shipping.country == 'Can Gio' ? 'selected' : '')>Can Gio</option>
 							</select>
-							<label for="country">@model.__('user.country')</label>
+							<label for="country" class="country-label @(model.order.shipping.area == 'pickup' ? 'hide' : '')">@model.__('user.country')</label>
+							<input id="pickup_date" type="date" name="pickup_date" value="@(model.order.pickup_date ? model.moment(model.order.pickup_date).format('MM/DD/YYYY') : '')" class="@(model.order.shipping.area != 'pickup' ? 'hide' : '')">
+							<label for="pickup_date" class="pickup-date-label @(model.order.shipping.area != 'pickup' ? 'hide' : '')">Pickup Date</label>
 						</div>
 					</div>
 					<div class="row">
@@ -173,22 +175,49 @@
 		<script>
 			$(document).ready(function() {
 				$('select').material_select();
+				$('#pickup_date').pickadate({
+					min: true,
+					max: +7,
+					format: 'mm/dd/yyyy',
+					selectMonths: true, // Creates a dropdown to control month
+					selectYears: 15, // Creates a dropdown of 15 years to control year
+				});
 				if ($('#area option:selected').val() != '') {
-					var area = $("."+$('#area option:selected').val());
-					area.parent().find(".select-wrapper").addClass('hide');
-					area.removeClass('hide');
-				}
-				$('#area').on('change', function() {
 					if ($('#area option:selected').val() == 'pickup') {
 						$("#address1").val("Address Vietnam Office");
 						$('.select-wrapper').not('.area').addClass('hide');
+						$('.country-label').addClass('hide');
+						$('.pickup-date-label').removeClass('hide');
+						$('#pickup_date').removeClass('hide');
 					}
 					else if ($('#area option:selected').val() != '') {
 						var area = $("."+$('#area option:selected').val());
 						area.parent().find(".select-wrapper").addClass('hide');
 						area.parent().find("select").attr('name', '');
 						area.removeClass('hide');
+						$('.country-label').removeClass('hide');
+						$('.pickup-date-label').addClass('hide');
 						$("#"+$('#area option:selected').val()).attr('name', 'country');
+						$('#pickup_date').addClass('hide');
+					}
+				}
+				$('#area').on('change', function() {
+					if ($('#area option:selected').val() == 'pickup') {
+						$("#address1").val("Address Vietnam Office");
+						$('.select-wrapper').not('.area').addClass('hide');
+						$('#pickup_date').removeClass('hide');
+						$('.country-label').addClass('hide');
+						$('.pickup-date-label').removeClass('hide');
+					}
+					else if ($('#area option:selected').val() != '') {
+						var area = $("."+$('#area option:selected').val());
+						area.parent().find(".select-wrapper").addClass('hide');
+						area.parent().find("select").attr('name', '');
+						area.removeClass('hide');
+						$('.country-label').removeClass('hide');
+						$('.pickup-date-label').addClass('hide');
+						$("#"+$('#area option:selected').val()).attr('name', 'country');
+						$('#pickup_date').addClass('hide');
 					}
 				});
 				$("#agree-add-id").on("change", function() {

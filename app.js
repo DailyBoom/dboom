@@ -23,7 +23,7 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-var KakaoStrategy = require('passport-kakao').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var RememberMeStrategy = require('passport-remember-me').Strategy;
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://dailyboom:Dailyboom1!@ds025429.mlab.com:25429/heroku_p56bmdfp');
@@ -229,15 +229,17 @@ passport.use(new FacebookStrategy({
   }
 ));
 
-passport.use(new KakaoStrategy({
-    clientID : config.Kakao.clientID,
-    callbackURL : config.Kakao.callbackURL,
+passport.use(new GoogleStrategy({
+    clientID : config.Google.clientID,
+    clientSecret: config.Google.clientSecret,
+    callbackURL : config.Google.callbackURL,
     passReqToCallback: true    
   },
   function(req, accessToken, refreshToken, profile, done){
      //check user table for anyone with a facebook ID of profile.id
+     console.log(profile);
       User.findOne({
-          'kakaoId': profile.id
+          'googleId': profile.id
       }, function(err, user) {
           if (err) {
               return done(err);
@@ -245,11 +247,12 @@ passport.use(new KakaoStrategy({
           //No user was found... so create a new user with values from Facebook (all the profile. stuff)
           if (!user) {
               user = new User({
-                  name: profile.username,
+                  name: profile.displayName,
                   username: 'DBU'+profile.id,
                   role: 'user',
+                  email: profile.emails[0].value,
                   //now in the future searching on User.findOne({'facebook.id': profile.id } will match because of this next line
-                  kakaoId: profile.id
+                  googleId: profile.id
               });
               user.save(function(err) {
                 if (err) console.log(err);

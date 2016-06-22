@@ -1131,6 +1131,7 @@ router.post('/shipping', function(req, res) {
                     order.shipping_cost = 10000;
                   else if (order.shipping.area == 'area3')
                     order.shipping_cost = 20000;
+                  order.pickup_date = req.body.pickup_date;
                   order.save(function(err) {
                     fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
                       if(err){
@@ -1206,6 +1207,7 @@ router.post('/shipping', function(req, res) {
                   else if (order.shipping.area == 'area3')
                     order.shipping_cost = 20000;
                   order.shipping = JSON.parse(JSON.stringify(user.shipping));
+                  order.pickup_date = req.body.pickup_date;
                   order.save(function(err) {
                     if (err) {
                       res.render('shipping', { errors: err, title: "배송지 정보", order: order });
@@ -1248,6 +1250,7 @@ router.post('/shipping', function(req, res) {
               order.shipping_cost = 10000;
             else if (order.shipping.area == 'area3')
               order.shipping_cost = 20000;
+            order.pickup_date = req.body.pickup_date;
             order.save(function(err) {
               if (err) {
                 res.render('shipping', { errors: err, title: "배송지 정보", order: order });

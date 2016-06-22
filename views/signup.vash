@@ -4,7 +4,17 @@
 			<div class="row">
 				<form class="col s12" method="post" action="/signup">
 					<a href="/merchant_signup" class="right merchant_signup">@model.__('merchant.signup')</a>
+					@if (!model.is_mobile) {
+						<a href="#" id="facebook" class="btn blue right merchant_signup">Login with Facebook</a>
+						<a href="#" id="google" class="btn deep-orange darken-4 right merchant_signup">Sign in with Google</a>
+					}
 					<h3>@model.__('signup')</h3>
+					@if (model.is_mobile) {
+						<div class="row center">
+							<a href="#" id="facebook" class="btn blue">Login with Facebook</a>
+							<a href="#" id="google" class="btn deep-orange darken-4">Sign in with Google</a>
+						</div>
+					}
 					@if (model.errors) {
 						<ul class="red-text">
 							@model.errors.forEach(function(error) {
