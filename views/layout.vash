@@ -147,11 +147,11 @@
 				<div class="container">
                     @if (model.product && model.product.color && model.product.color != 'white') {
                         <a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
-                        <a href="/" class="logo-m"><img class="logo-img left" src="/images/mobile_white_logo.png" /></a>
+                        <a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
                     }
                     else {
                         <a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_05.png" /></a>
-                        <a href="/" class="logo-m"><img class="logo-img left" src="/images/mobile_logo.png" /></a>
+                        <a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_05.png" /></a>
                     }
         	<span id="time-left-mobile" class="hide-on-med-and-up d-clock @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') left"></span>
           @if(@model.cart) {

@@ -190,7 +190,7 @@ input[type=number]::-webkit-outer-spin-button {
 @media only screen and (min-width: 0) {
   .logo-d { display: none; }
   .logo-m { display: block; margin-left: 5px; }
-  .logo-img { height: 36px; margin-top: 6px;}
+  .logo-img { height: 40px; margin-top: 6px;}
   nav {
     height: 51px;
     line-height: 51px;
@@ -318,7 +318,7 @@ input[type=number]::-webkit-outer-spin-button {
   .logo-m { display: none; }
   .logo-d { display: block; }
   .logo-img {
-    height: 50px;
+    height: 60px;
     margin-top: 13px;
   }
   nav {
