@@ -1126,6 +1126,22 @@ input[type=number]::-webkit-outer-spin-button {
 }
 @media only screen and (max-width: 600px) {
   
+  .responsive-table {
+    display: inline-block !important;
+  }
+
+  .responsive-table thead {
+    width: 20% !important;
+  }
+
+  .responsive-table tbody {
+    width: 80% !important;
+  }
+
+  .responsive-table tbody tr {
+    width: 100% !important;
+  }
+
   .bx-wrapper {
     margin: 0;
   }
