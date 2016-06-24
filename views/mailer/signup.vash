@@ -62,9 +62,9 @@
 				<tr class="blue-grey darken-1 white-text">
 					<td>
 						<h4>
-							@html.raw(model.i18n.__('email.signup.4'))
+							@html.raw(model.i18n.__('email.contact'))
 							<br><br>
-							@model.i18n.__('email.signup.5')
+							@model.i18n.__('email.goto')
 						</h4>
 					</td>
 				</tr>

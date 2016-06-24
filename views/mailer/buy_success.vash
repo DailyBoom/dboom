@@ -54,9 +54,9 @@
 				<tr class="blue-grey darken-1 white-text">
 					<td>
 						<h4>
-							@model.i18n.__('email.buy_success.4')
+							@model.i18n.__('email.contact')
 							<br><br>
-							@html.raw(model.i18n.__('email.buy_success.5'))
+							@html.raw(model.i18n.__('email.goto'))
 						</h4>
 					</td>
 				</tr>
