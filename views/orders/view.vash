@@ -9,70 +9,76 @@
 			 <br>
 			 <div class="col s12 m8 l8">
 			 	<div class="row blue-grey-text text-darken-3">
-					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
+					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
 						주문번호 :
 					</span>
-					<span class="col s9 order-label">
+					<span class="col s8 order-label">
 						&nbsp;@model.order.id
 					</span>
-					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
-						받는 분 :
+					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+						@model.__('user.recipient') :
 					</span>
-					<span class="col s9 order-label">
+					<span class="col s8 order-label">
                         &nbsp;
                         @if(model.order.shipping.full_name || (model.order.user && model.order.user.shipping)) {
     						@(model.order.shipping.full_name ? model.order.shipping.full_name : model.order.user.shipping.full_name)
                         }
 					</span>
-					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
+					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
 						@model.__('user.email') :
 					</span>
-					<span class="col s9 order-label">
+					<span class="col s8 order-label">
 						&nbsp;
 						@if(model.order.email || (model.order.user && model.order.user.shipping)) {
 							@(model.order.email ? model.order.email : model.order.user.email)
 						}
 					</span>
-					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
-						전화번호 :
+					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+						@model.__('user.phoneNumber') :
 					</span>
-					<span class="col s9 order-label">
+					<span class="col s8 order-label">
                         &nbsp;
                         @if(model.order.shipping.phone_number || (model.order.user && model.order.user.shipping)) {
 						    @(model.order.shipping.phone_number ? model.order.shipping.phone_number : model.order.user.shipping.phone_number)
                         }
 					</span>
-					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
-						배송주소 :
+					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+						@model.__('user.address1') :
 					</span>
-					<span class="col s9 order-label">
+					<span class="col s8 order-label">
                         &nbsp;
                         @if(model.order.shipping.address || (model.order.user && model.order.user.shipping)) {
     						@(model.order.shipping.address ? model.order.shipping.address : model.order.user.shipping.address)
                         }
 					</span>
-					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
-						우편번호 :
+					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+						@model.__('user.zipcode') :
 					</span>
-					<span class="col s9 order-label">
+					<span class="col s8 order-label">
                         &nbsp;
                         @if(model.order.shipping.zipcode || (model.order.user && model.order.user.shipping)) {
 						    @(model.order.shipping.zipcode ? model.order.shipping.zipcode : model.order.user.shipping.zipcode)
                         }
 					</span>
-					<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
-						배송국가 :
+					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+						@model.__('user.country') :
 					</span>
-					<span class="col s9 order-label">
-						&nbsp;대한민국
+					<span class="col s8 order-label">
+						&nbsp;@model.order.country
 					</span>
 					@if(model.order.status == "Waiting") {
-						<span class="col s3 order-label blue-grey-text text-darken-2 right-align">
+						<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
 							입금자 이름:
 						</span>
-						<span class="col s9 order-label">
+						<span class="col s8 order-label">
 							&nbsp;@model.order.deposit_name
 						</span>
+					}
+					@if (model.order.pickup_date) {
+						<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+							Pickup date:
+						</span>
+						<span class="col s8 order-label">Pickup : @model.moment(model.order.pickup_date).format('MM/DD/YYYY')</span>
 					}
 			 	</div><!-- .row -->
 			 </div><!-- .col -->

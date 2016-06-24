@@ -83,13 +83,18 @@
 					<br>
 					<div class="col s12 blue-grey-text text-darken-3">
 					<hr>
-						<h5>@model.__('checkout.memo')</h5>
+						<h5>@model.__('checkout.address')</h5>
 						<span class="check-name">@(model.user ? model.user.shipping.full_name : model.order.shipping.full_name)</span>
 						<br><span class="check-number">@(model.user? model.user.shipping.phone_number : model.order.shipping.phone_number)</span>
 						<br><span class="check-address">@(model.user ? model.user.shipping.address : model.order.shipping.address)</span>
 						<br><span class="check-address">@(model.user ? model.user.shipping.zipcode : model.order.shipping.zipcode)</span>
 						<br>
 						<br><span class="check-address">@model.order.shipping.country</span>
+						<br>
+						<br>
+						@if (model.order.pickup_date) {
+							<span class="check-address">Pickup : @model.moment(model.order.pickup_date).format('MM/DD/YYYY')</span>
+						}
 						<div class="btn-shipping-edit">
 							<a class="waves-effect waves-light btn blue-grey darken-2" href="/shipping">@model.__('checkout.addressEdit')</a>
 						</div>
