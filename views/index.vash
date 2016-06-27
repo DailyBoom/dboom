@@ -287,21 +287,53 @@
 							<span>@model.__('shipping_info') <i class="fa fa-chevron-down fa-fw right"></i></span>
 						</div>
 						<div class="collapsible-body @(model.product.color ? model.product.color : 'white') lighten-5">
-							@if(model.product.delivery_info) {
-							<img class="responsive-img" src="@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - 데일리 붐"/> }
-							else {
 							<div class="item-shipping-info-box">
-								<p><b>배송 진행상황 조회</b></p>
+								<p><b>[Shipping Policy]</b></p>
+								<p class="item-shipping-info">
+									Hệ thống giao hàng tận nơi của Dailyboom Vietnam<br/>
+									Một trong những ưu điểm của việc mua sắm qua các trang thương mại điện tử đó là bạn sẽ được giao hàng ngay tại nhà mà không phải tốn công sức. Điều này rõ ràng là một lợi thế nếu như bạn là người sống ở tỉnh lẻ, hệ thống siêu thị còn thưa thớt và ít đa dạng sản phẩm, cùng với đó là khoảng cách quá xa từ nhà bạn khi đến những siêu thị để mua sắm những món đồ hằng ngày như dầu gội, thời trang đồ gia dụng Magic Korea,... Điều đó cho thấy việc ra đời của thương mại điện tử lại trở nên dễ dàng cho chúng ta hơn rất nhiều. Mua sắm qua các trang web thương mại điện tử thường được tiến hành theo các quy trình nhất định. Ở Dailyboom Vietnam, sau khi chọn ra được những sản phẩm bạn ưa thích, bạn thực hiện những thao tác đặt mua và chọn phương thức thanh toán. Sau khi đã hoàn tất thì hệ thống giao nhận sẽ giao hàng cho bạn trong thời gian từ khoảng 3 - 4 ngày làm việc và còn tùy thuộc vào loại hàng trong đơn hàng của bạn như thế nào. Khác với những phương thức bán hàng phổ thông, khi mua hàng qua các trang web thương mại điện tử thì người trực tiếp tương tác với khách hàng chính là đội ngũ giao nhận. Cách thức chúng ta giao nhận như thế nào với khách hàng cũng là một yếu tố vô cùng quan trọng. Và Dailyboom Vietnam tự hào với khách hàng rằng đây chính là trang web thương mại điện tử có thể hệ thống giao nhận phục vụ khách hàng tốt nhất.								
+								</p>
+								<p><b>[Return or Exchange Policy] </b></p>
 								<ol class="item-shipping-info">
-									<li>처리상황이 [발송완료]일 때 배송진행사항은 주문내역의 송장번호로 해당 택배사 홈페이지를 통해 확인하실 수 있습니다.</li>
-									<li>발송완료 등록 및 발송완료 SMS 문자 메시지를 받으신 후 고객님께 배달완료 되기까지 1~2일정도 소요됩니다. (토요일, 공휴일 제외)</li>
-									<li>택배사 또는 고객사정(고객님 연락이 되지 않을 경우)으로 인해 배송이 지연되는 경우가 있으니 해당 택배사로 전화문의를 하시면 배송상태를 확인 하실 수 있습니다.</li>
+									<li>Return and Refund policy at Dailyboom Vietnam.vn</li>
 								</ol>
-								<p><b>제품 교환/환불 정책</b></p>
-								<span>모든 제품은 해당 제품 회사의 물품 환불 및 교환 정책에 따릅니다.</span>
-								<br><span>해당 제품 회사가 아직 배송관련 교환 및 환불 정책이 없을 때, 모든 물품은 수령한지 10일 이내에 사용하지 않은 새 것 일 때 교환및 환불이 가능합니다. 환불을 원하는 경우, 해당 회사에 직접 연락을 하거나 데일리 붐 회계팀(contact@dailyboom.co)로 연락주시기 바랍니다.</span>
+								<p class="item-shipping-info">
+									Bảo lãnh Dailyboom Việt Nam mà tất cả các sản phẩm đã mua chính hãng, thương hiệu mới và không bị lỗi. Các sản phẩm bạn nhận được phải không bị hư hỏng, làm việc tốt và phù hợp với mô tả sản phẩm trên website Dailyboom Việt Nam.
+								</p>
+								<ul class="item-shipping-info">
+									<li>- Nếu sản phẩm nhận được không phải là ở các điều kiện được mô tảở trên, xin vui lòng thông báo cho chúng tôi trong vòng 48 giờ kể từ khi bạn nhận được hàng. Dailyboom Việt Nam có quyền từ chối bất kỳ hỗ trợ nếu khách hàng không thông báo cho chúng tôi trong giai đoạn cửa sổ thông báo đã nêu.									
+									</li>
+									<li>
+										- Trong trường hợp sản phẩm bạn nhận được không đáp ứng cam kết của chúng tôi như đã nêu ở trên, bạn sẽ có một trong hai 7 ngày để trả lại sản phẩm, phụ thuộc vào trở lại chính sách được áp dụng như sau:
+									</li>
+									<li>
+										- Các mặt hàng hoàn trả phải được gửi đến Dailyboom Việt Nam để kiểm tra chất lượng (QC). Dailyboom Việt Nam sẽ thay thế nó bằng một cái mới hoặc hoàn trả lại giá thanh toán của hàng trả lại nếu nó đáp ứng các điều khoản và điều kiện Return của chúng tôi.
+									</li>
+									<li>
+										- Yêu cầu đối với lợi nhuận hợp lệ như sau:
+									</li>
+								</ul>
+								<ol class="item-shipping-info lower-roman">
+									<li>
+										Các sản phẩm phải được trả lại với hình thức trả và Dailyboom Việt Nam hóa đơn hoặc biên lai của người bán (nếu có).
+									</li>
+									<li>
+										Các sản phẩm phải không có dấu hiệu sử dụng hoặc sửa chữa, full box, đầy đủ phụ kiện, hướng dẫn sử dụng, tem và / hoặc thẻ bảo hành và quà tặng miễn phí (nếu có).
+									</li>
+									<li>
+										cửa sổ trở lại là không quá 7 ngày kể từ ngày giao hàng. Tùy thuộc vào các chính sách Return áp dụng, bạn có thể quay trở lại mục bạn cho chúng tôi trong vòng 7 ngày. Bắt đầu đếm ngược từ ngày bạn nhận được các mục vào dấu bưu điện ghi trên bưu kiện bạn quay trở lại với chúng ta.
+									</li>
+									<li>
+										lý do Return có phải là hợp lệ và đáp ứng các điều khoản và điều kiện.
+									</li>
+									<li>
+										Sản phẩm này không thuộc sự trở lại đặc biệt và chính sách hoàn lại tiền của một số thương hiệu / nhà cung cấp / chuyên mục nhất định.
+									</li>
+									<li>
+										Sản phẩm không được trả tiền bởi góp. các sản phẩm trả góp không được áp dụng cho sự trở lại do thay đổi của tâm.
+									</li>
+								</ol>
 							</div>
-							}
 						</div>
 					</li>
 				</ul>

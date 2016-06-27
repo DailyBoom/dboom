@@ -212,13 +212,6 @@
 					<label for="reviewUrl">Review 링크</label>
 				</div>
 			</div>
-			<div class="row">
-				<div class="input-field col s12">
-					<input id="shippinginfo" type="text" class="validate">
-					<label for="shippinginfo">배송/반품/교환 문의정보 링크</label>
-				</div>
-			</div>
-			<!-- .row -->
 			<br>
 			<button class="btn btn-large waves-effect waves-light green darken-3 add-margin-bottom-md" type="submit" name="action">
 				등록하기 <i class="fa fa-send fa-fw right"></i>

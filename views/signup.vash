@@ -91,11 +91,11 @@
 						<div class="col s12">
 							<span class="red-text">@model.__('required')</span>
 							<p class="grey-text">
-								<input type="checkbox" id="agree-all" />
+								<input type="checkbox" id="agree-all" checked/>
 								<label for="agree-all">@model.__('agree_all')</label>
 							</p>
 							<p class="grey-text">
-								<input class="agree-check" type="checkbox" id="agree-terms-1" name="agree-terms-1" required/>
+								<input class="agree-check" type="checkbox" id="agree-terms-1" name="agree-terms-1" required checked/>
 								<label for="agree-terms-1">@model.__('user.agreeTerms1')</label><a class="right" href="/terms" target="_blank">보기</a>
 							</p>
 							<!-- <p class="grey-text">
@@ -103,7 +103,7 @@
 								<label for="agree-terms-2">전자금웅서비스 이용약관.</label><a class="right" href="#!terms2">보기</a>
 							</p> -->
 							<p class="grey-text">
-								<input class="agree-check" type="checkbox" id="agree-terms-3" name="agree-terms-3" required/>
+								<input class="agree-check" type="checkbox" id="agree-terms-3" name="agree-terms-3" required checked/>
 								<label for="agree-terms-3">@model.__('user.agreeTerms3')</label><a class="right" href="/privacy" target="_blank">보기</a>
 							</p>
 							<br>
