@@ -793,7 +793,7 @@ router.get('/success', function(req, res) {
       moment.locale('ko');
       transporter.sendMail({
         from: '데일리 붐 <contact@dailyboom.co>',
-        to: "captainmaumau@gmail.com",
+        to: "lairwin@novazest.com",
         subject: 'You received a new order',
         html: html({ order: order, moment: moment, i18n: i18n })
       }, function (err, info) {
