@@ -232,7 +232,9 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
     
     if (product.price >= 50000)
       product.delivery_price = 0;
-
+    else
+      product.delivery_price = 2500;
+      
     if (quantity > product.quantity || !product.quantity)
       product.quantity = quantity;
 
