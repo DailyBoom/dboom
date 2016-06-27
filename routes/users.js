@@ -40,15 +40,15 @@ var isAdmin = function (req, res, next) {
   res.redirect('/login');
 }
 
-router.get('/mall/login', function(req, res, next) {
+router.get('/blushop/login', function(req, res, next) {
   if (req.user)
-    return res.redirect('/mall');
+    return res.redirect('/blushop');
   var message = req.session.messages || [];
   delete req.session.messages;
-  res.render('mall/login', { title: '로그인', errors: message });
+  res.render('blushop/login', { title: '로그인', errors: message });
 });
 
-router.post('/mall/login', passport.authenticate('local', {
+router.post('/blushop/login', passport.authenticate('local', {
     failureRedirect: '/login',
     failureMessage: '죄송합니다. 로그인에 실패했습니다. 아이디와 비밀번호를 확인하고 다시 로그인해주세요.'
     }), function(req, res, next) {
@@ -66,7 +66,7 @@ router.post('/mall/login', passport.authenticate('local', {
       return next();
     });
   }, function(req, res) {
-    res.redirect('/mall/checkout');
+    res.redirect('/blushop/checkout');
 });
 
 router.get('/login', function(req, res, next) {

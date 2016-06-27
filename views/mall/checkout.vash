@@ -30,9 +30,9 @@
 					<div class="col s12 cart-header center"><span class="col s9">상품정보</span><span class="col s3">상품금액</span></div>
 					@model.order.cart.forEach(function(item, index) {
 						<div class="col s12 cart-item">
-							<a href="/mall/product/@item.product.id"><img class="col s3" src="/@item.product.images[0]" /></a>
+							<a href="/blushop/product/@item.product.id"><img class="col s3" src="/@item.product.images[0]" /></a>
 							<div class="col s6">
-								<a href="/mall/product/@item.product.id" class="product-name blue-grey-text col s12">@item.product.name (@item.product.options[item.option].name)</a>
+								<a href="/blushop/product/@item.product.id" class="product-name blue-grey-text col s12">@item.product.name (@item.product.options[item.option].name)</a>
 								<div class="col s12">수량: <select data-index="@index" autocomplete="off" class="browser-default product-quantity">
 											@for(var i = 1; i <= 10 ; i++) {
 												<option value="@i" @(item.quantity == i ? 'selected="selected"' : '') >@i</option>
@@ -265,7 +265,7 @@
 					var quantity = $(this).find('option:selected').val();
 					$.ajax({
 						type: "POST",
-						url: "/mall/update_cart",
+						url: "/blushop/update_cart",
 						dataType: "json",
 						data: {
 							index: index,
@@ -285,7 +285,7 @@
 						var index = $(this).data("index");
 						$.ajax({
 							type: "POST",
-							url: "/mall/remove_from_cart",
+							url: "/blushop/remove_from_cart",
 							dataType: "json",
 							data: {
 								index: index
@@ -403,7 +403,7 @@
 						msg += '카드 승인번호 : ' + rsp.apply_num;
 						$.ajax({
 							type: "POST",
-							url: "/mall/iamport_callback",
+							url: "/blushop/iamport_callback",
 							dataType: "json",
 							data: {
 								id: '@model.order.id',
@@ -452,7 +452,7 @@
 						msg += '카드 승인번호 : ' + rsp.apply_num;
 						$.ajax({
 							type: "POST",
-							url: "/mall/iamport_callback",
+							url: "/blushop/iamport_callback",
 							dataType: "json",
 							data: {
 								id: '@model.order.id',

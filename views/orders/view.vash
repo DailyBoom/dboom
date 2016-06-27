@@ -110,9 +110,9 @@
 							@model.order.cart.forEach(function(item, index) {
 								@if(model.user.admin || (model.user.role == 'merchant' && model.user.id == item.product.merchant_id))
 								<div class="col s12 cart-item">
-									<a href="/mall/product/@item.product.id"><img class="col s3" src="/@item.product.images[0]" /></a>
+									<a href="/blushop/product/@item.product.id"><img class="col s3" src="/@item.product.images[0]" /></a>
 									<div class="col s6">
-										<a href="/mall/product/@item.product.id" class="product-name blue-grey-text col s12">@item.product.name (@item.product.options[item.option].name)</a>
+										<a href="/blushop/product/@item.product.id" class="product-name blue-grey-text col s12">@item.product.name (@item.product.options[item.option].name)</a>
 										<div class="col s12">수량: @item.quantity</div>
 									</div>
 									<div class="col s3 center"><p class="product-price">@(item.product.price * item.quantity)</p></div>
