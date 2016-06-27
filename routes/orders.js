@@ -63,13 +63,17 @@ var isMerchant = function (req, res, next) {
 var hasShipping = function(obj) {
   if (!obj.shipping)
     return false;
-  if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.country && obj.shipping.address && obj.email)
+  if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.country && obj.shipping.address && obj.email && obj.shipping.area)
     return true;
   return false;
 }
 
 var getOrderTotal = function(order) {
-  order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price + order.shipping_cost;  
+  order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price + order.shipping_cost;
+  console.log(order.quantity);
+  console.log(order.product.delivery_price);
+  console.log(order.shipping_cost);
+  console.log(order.product.price);
   if (order.coupon) {
     if (order.coupon.type == 1)
       order.totalOrderAmt -= order.product.delivery_price;
@@ -405,8 +409,8 @@ router.get('/checkout', function(req, res) {
         order.user = req.user.id;
         if (req.user.shipping) {
           order.shipping = JSON.parse(JSON.stringify(req.user.shipping));
-          console.log(order);
           if (req.user.shipping.area) {
+            console.log(req.user.shipping.area);
             if (req.user.shipping.area == 'area1')
               order.shipping_cost = 5000;
             else if (req.user.shipping.area == 'area2')
@@ -441,8 +445,9 @@ router.get('/checkout', function(req, res) {
               if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
                   var leftQuantity;
                   orderPop.product.options.forEach(function(option){
-                    if (option.name === orderPop.option)
-                    leftQuantity = parseInt(option.quantity);
+                    if (option.name === orderPop.option) {
+                      leftQuantity = parseInt(option.quantity);
+                    }
                   });
                   if (req.user) {
                     Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
@@ -470,7 +475,7 @@ router.get('/checkout', function(req, res) {
             var leftQuantity;
             orderPop.product.options.forEach(function(option){
               if (option.name === orderPop.option)
-              leftQuantity = parseInt(option.quantity);
+                leftQuantity = parseInt(option.quantity);
             });
             if (req.user) {
               Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
@@ -771,14 +776,33 @@ router.all('/mall/payco_callback', function (req, res) {
 router.get('/success', function(req, res) {
   if (!req.session.order && !req.session.cart_order)
     return res.redirect('/');
-  Order.findOne({_id: req.session.order || req.session.cart_order, status: {$in : ['Paid', 'Waiting']}}).populate('product cart.product').exec(function(err, order) {
+  Order.findOne({_id: req.session.order || req.session.cart_order, status: {$in : ['Paid', 'Waiting']}}).populate('product cart.product user').exec(function(err, order) {
     if (err)
       console.log(err)
     if (!order)
       return res.redirect('/');
     delete req.session.order;
     delete req.session.cart_order;
-    res.render('success', { code: req.query.code, order: order, title: "주문 완료", description: "고객님, 데일리 붐을 이용해 주셔서 감사합니다." });
+    fs.readFile('./views/mailer/admin_buy_success.vash', "utf8", function(err, file) {
+      if(err){
+        //handle errors
+        console.log('ERROR!');
+        return res.send('ERROR!');
+      }
+      var html = vash.compile(file);
+      moment.locale('ko');
+      transporter.sendMail({
+        from: '데일리 붐 <contact@dailyboom.co>',
+        to: "captainmaumau@gmail.com",
+        subject: 'You received a new order',
+        html: html({ order: order, moment: moment, i18n: i18n })
+      }, function (err, info) {
+          if (err) { console.log(err); }
+          //console.log('Message sent: ' + info.response);
+          transporter.close();
+          res.render('success', { code: req.query.code, order: order, title: "주문 완료", description: "고객님, 데일리 붐을 이용해 주셔서 감사합니다." });
+      });
+    });
   });
 });
 
