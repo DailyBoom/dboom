@@ -21,6 +21,7 @@
 }
 body {
   font-family: 'Dotum', sans-serif;
+  word-break: keep-all;
 }
 
 @media only screen and (min-width: 0) {}
