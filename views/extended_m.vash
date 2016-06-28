@@ -335,12 +335,6 @@
 
 			<!-- Mobile -->
 			<div class="hide-on-med-and-up mobile-buy @(model.product.color ? model.product.color : 'white') darken-3">
-				@if (model.sale > 0) {
-					<div class="m-item">
-						<div class="item-price-o mod red-text text-lighten-2">SALE</div>
-						<div class="item-price @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.sale%</div>
-					</div>
-				}
 				<div class="m-item">
 					@if (model.sale > 0) {
 						<div class="item-price-o red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
