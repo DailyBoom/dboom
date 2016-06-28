@@ -14,9 +14,11 @@
 			else {
 				<div class="row center">
 					<img class="img-brand-mall" src="/images/BluSHOP_Logo.png" alt="BluSHOP - 데일리 붐 판매자" />							
-					<div class="col s12 center">
-						<h4 class="m-t-3 p-y-1">추천 아이템</h4>
-					</div>
+					@if (model.hotProducts.length > 0) {
+						<div class="col s12 center">
+							<h4 class="m-t-3 p-y-1">추천 아이템</h4>
+						</div>
+					}
 				</div><!-- .row -->
 			}
 		</div><!-- .container -->
