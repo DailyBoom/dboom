@@ -131,8 +131,8 @@ router.get('/merchant', function(req, res, next) {
 
 router.post('/advertise', function(req, res, next) {
   transporter.sendMail({
-    from: '데일리 붐 <contact@dailyboom.co>',
-    to: 'contact@dailyboom.co',
+    from: req.body.email,
+    to: 'lairwin@novazest.com',
     subject: 'Advertise contact.',
     html: '<p>회사 명: '+req.body.company+'</p><p>이름: '+req.body.fullname+'</p><p>이메일: '+req.body.email+'</p><p>내용: '+req.body.details+'</p>'
   }, function (err, info) {
@@ -145,8 +145,8 @@ router.post('/advertise', function(req, res, next) {
 
 router.post('/merchant', function(req, res, next) {
   transporter.sendMail({
-    from: '데일리 붐 <contact@dailyboom.co>',
-    to: 'contact@dailyboom.co',
+    from: req.body.email,
+    to: 'lairwin@novazest.com',
     subject: 'Merchant contact.',
     html: '<p>회사 명: '+req.body.company+'</p><p>이름: '+req.body.fullname+'</p><p>이메일: '+req.body.email+'</p><p>내용: '+req.body.details+'</p>'
   }, function (err, info) {
