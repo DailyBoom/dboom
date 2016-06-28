@@ -45,7 +45,7 @@ router.get('/blushop/login', function(req, res, next) {
     return res.redirect('/blushop');
   var message = req.session.messages || [];
   delete req.session.messages;
-  res.render('blushop/login', { title: '로그인', errors: message });
+  res.render('mall/login', { title: '로그인', errors: message });
 });
 
 router.post('/blushop/login', passport.authenticate('local', {
