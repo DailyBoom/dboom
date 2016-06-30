@@ -147,5 +147,15 @@
 	"email.shipped.3": "Bạn có thể kiểm tra thông tin đặt hàng <a class='amber-text text-darken-3' href='http://dailyboom.co/mypage'>trên trang thông tin >> đơn hàng của tôi</a>.",
 	"email.signup.1": "%s, chào mừng bạn đến với DailyBoom!",
 	"email.signup.2": "Dailyboom không tiết lộ thông tin của bạn cho bên thứ ba.",
-	"email.signup.3": "Bạn có thể bắt đầu mua sắm ngay trên DailyBoom!"
+	"email.signup.3": "Bạn có thể bắt đầu mua sắm ngay trên DailyBoom!",
+	"success.intro": "Cảm ơn quý vị đã đặt hàng tại Dailyboom.",
+	"success.company_name": "Tien Mei Wu",
+	"success.bank_account": "Số tài khoản : 0000-000-00000",
+	"success.bank_name": "Tên ngân hàng : Vietcombank",
+	"success.order_detail": "Chi tiết đơn hàng của bạn.",
+	"success.product": "Sản phẩm : %s",
+	"success.option": "Loại : %s",
+	"success.order_date": "Ngày đặt hàng : %s",
+	"success.payment": "Số tiền thanh toán : ",
+	"success.thanks": "Chúng tôi tận tâm phục vụ vì niềm vui của khách hàng"
 }
