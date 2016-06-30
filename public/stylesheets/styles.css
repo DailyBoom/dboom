@@ -2095,7 +2095,7 @@ input[type=number]::-webkit-outer-spin-button {
     vertical-align: middle;
   }
   .index-parallax-container {
-    height: 820px;
+    height: auto;
     position: relative;
     overflow: hidden;
   }

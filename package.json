@@ -47,7 +47,9 @@
   },
   "description": "",
   "main": "app.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha-mongodb": "~0.1.2"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/DailyBoom/dboom.git"
