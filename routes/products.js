@@ -279,7 +279,7 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
   });
 });
 
-router.get('/products/preview/:id', function(req, res) {
+router.get('/products/preview/:id', isMerchantOrAdmin, function(req, res) {
   var query = Product.findOne({ _id: req.params.id });
   if (req.user && req.user.role == 'merchant') {
     query.where('merchant_id').equals(req.user._id);
