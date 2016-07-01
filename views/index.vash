@@ -256,7 +256,7 @@
 					}
 				}
 					<br><br>
-					<a href="/wholesale" class="btn btn-flat buy-help-dd modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
+					<a href="/wholesale" class="hide-on-small-only btn btn-flat buy-help-dd modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
 				</div>
 			</div>
 			<div class="buy-box-footer @(model.product.color ? model.product.color : 'white') lighten-3">
