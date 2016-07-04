@@ -584,8 +584,10 @@ $(window).scroll(function() {
 	});
 	$(document).ready(function(){
 		$('.parallax').parallax();
-		$('.index-parallax-container').css('height', $('.parallax img')[0].clientHeight + 'px');
-		$('.parallax img').css('transform', 'translate3d(-50%, 0px, 0px)');
+		if ($('.index-parallax-container').length) {
+			$('.index-parallax-container').css('height', $('.parallax img')[0].clientHeight + 'px');
+			$('.parallax img').css('transform', 'translate3d(-50%, 0px, 0px)');
+		}
 		$('.tooltipped').tooltip({delay: 0});
 		$('.iframe-video').each(function(){
 			var url = $(this).attr("src");
