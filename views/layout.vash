@@ -192,11 +192,13 @@
                       <li class="divider"></li>
                       <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus fa-fw right"></i></a></li>
                       <li><a class="deep-purple-text text-darken-2" href="/products/list">Products <i class="fa fa-list fa-fw right"></i></a></li>
-                      <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck fa-fw right"></i></a></li>
                   }
 									<li class="divider"></li>
-									<li><a class="text-darken-2 black-text" href="/mypage">마이 페이지 <i class="fa fa-user fa-fw right"></i></a></li>
-									<li><a class="text-darken-2 black-text" href="/logout">로그아웃 <i class="fa fa-sign-out fa-fw right"></i></a></li>
+                  @if (model.user.role == "merchant") {
+                      <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">Order List <i class="fa fa-truck fa-fw right"></i></a></li>
+                  }
+									<li><a class="text-darken-2 black-text" href="/mypage">My Page <i class="fa fa-user fa-fw right"></i></a></li>
+									<li><a class="text-darken-2 black-text" href="/logout">Logout <i class="fa fa-sign-out fa-fw right"></i></a></li>
                   @if (model.user.admin == 1) {
                       <li class="divider"></li>
                       <li><a class="deep-purple-text text-darken-2" href="/orders/list">Orders List <i class="fa fa-shopping-cart fa-fw right"></i></a></li>
@@ -229,14 +231,16 @@
                         <li><a class="deep-purple-text text-darken-2" href="/orders/list">Orders List <i class="fa fa-shopping-cart right"></i></a></li>
                     }
                     @if (model.user.admin || model.user.role == "merchant") {
-                                        <li class="divider"></li>
+                        <li class="divider"></li>
                         <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus right"></i></a></li>
                         <li><a class="deep-purple-text text-darken-2" href="/products/list">Products <i class="fa fa-list right"></i></a></li>
-                        <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck right"></i></a></li>
                     }
 									<li class="divider"></li>
-									<li><a class="text-darken-2 black-text" href="/mypage">마이 페이지 <i class="fa fa-user right"></i></a></li>
-									<li><a class="text-darken-2 black-text" href="/logout">로그아웃 <i class="fa fa-sign-out right"></i></a></li>
+                  @if (model.user.role == "merchant") {
+                    <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">Order List <i class="fa fa-truck right"></i></a></li>
+                  }
+									<li><a class="text-darken-2 black-text" href="/mypage">My Page <i class="fa fa-user right"></i></a></li>
+									<li><a class="text-darken-2 black-text" href="/logout">Logout <i class="fa fa-sign-out right"></i></a></li>
 								</ul>
 							</li>
 						</ul>
