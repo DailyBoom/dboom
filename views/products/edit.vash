@@ -36,7 +36,7 @@
 						</div>
 						<div class="input-field col s4 m2 p-b-3 add-border-t add-border-b add-border-r">
 							<input name="extend" type="radio" id="extend_sold_out" value="2" @(model.product.extend == 2 ? 'checked' : '')/>
-							<label for="extend_sold_out">Sold Out<br>(품절)</label>
+							<label for="extend_sold_out">Until Sold Out<br>(품절까지)</label>
 						</div>
 					</div>
 				</div><!-- .row -->

@@ -73,7 +73,7 @@ router.get('/', function(req, res, next) {
 router.get('/blushop', function(req, res, next) {
   Product.find({ extend: 4, is_published: true, is_hot: null }, {}, { sort: { 'price' : -1 }}, function(err, products) {
     Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
-      res.render('mall', { title: "데일리 붐 쇼핑 몰", description: "데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다.", products: products, hotProducts: hotProducts });
+      res.render('mall', { title: "BluSHOP", description: 'BluSHOP은 "최고"의 품질, "최저"의 가격을 보장하는 리퍼폰 전문 샵입니다.', products: products, hotProducts: hotProducts });
     });
   });
 });
