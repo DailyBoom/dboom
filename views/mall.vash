@@ -12,13 +12,13 @@
 				</div><!-- .row -->
 			}
 			else {
-				<div class="row center">
-					@if (model.hotProducts.length > 0) {
+				@if (model.hotProducts.length > 0) {
+					<div class="row center">
 						<div class="col s12 center">
 							<h4 class="m-t-3 p-y-1">추천 아이템</h4>
 						</div>
-					}
-				</div><!-- .row -->
+					</div><!-- .row -->
+				}
 			}
 		</div><!-- .container -->
 
@@ -46,7 +46,7 @@
 				</div><!-- .row -->
 				<div class="row">
 					<div class="col s12 center m-t-3 p-y-1">
-						<h4>믿고 안심할 수 있는 리퍼폰, 중고폰은 오직 블루샵에서만</h4>
+						<img src="/images/blushop_cover.png" class="col s12"/>
 					</div>
 				</div><!-- .row -->
 			}
