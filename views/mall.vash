@@ -95,7 +95,7 @@
 			infiniteLoop:true,
 			auto:true,
 			autoHover:true,
-			controls:false,
+			controls:true,
             video:false,
             useCss: true,
             onSliderLoad: function(){
