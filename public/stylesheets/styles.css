@@ -839,8 +839,12 @@ input[type=number]::-webkit-outer-spin-button {
     height: 400px !important;
   }
   
+  .cover-slider .bx-wrapper .bx-viewport {
+    height: auto !important;
+  }
+
   .mobile-wrap .slide {
-    height: 400px !important;    
+    height: 400px !important;
   }
   
   .bx-wrapper .bx-viewport {

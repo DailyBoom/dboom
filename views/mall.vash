@@ -44,9 +44,12 @@
 						</div>
 					})
 				</div><!-- .row -->
-				<div class="row">
-					<div class="col s12 center m-t-3 p-y-1">
-						<img src="/images/blushop_cover.png" class="col s12"/>
+				<div class="row cover-slider">
+					<div class="slider">
+						<img src="/images/blushop_cover.png" />
+						<img src="/images/blushop_slider_1.png" />
+						<img src="/images/blushop_slider_2.png" />
+						<img src="/images/blushop_slider_3.png" />
 					</div>
 				</div><!-- .row -->
 			}
@@ -84,6 +87,22 @@
 	})
 })
 <script>
+    $(document).ready(function(){
+      $(".slider").bxSlider({
+			mode:'horizontal',
+			pagerCustom: '#bx-pager',
+			speed: 1000,
+			infiniteLoop:true,
+			auto:true,
+			autoHover:true,
+			controls:false,
+            video:false,
+            useCss: true,
+            onSliderLoad: function(){
+                $(".bxslider-wrap").css("visibility", "visible");
+            }
+		});
+    });
 	$(".mall-price-o, .mall-price-n").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
 	$(".add_cart").on("click", function() {
 		var id = $(this).data("id");
