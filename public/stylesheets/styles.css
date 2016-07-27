@@ -329,7 +329,6 @@ input[type=number]::-webkit-outer-spin-button {
   .logo-d { display: block; }
   .logo-img {
     height: 60px;
-    margin-top: 13px;
   }
   nav {
     height: 75px;
@@ -1962,6 +1961,14 @@ input[type=number]::-webkit-outer-spin-button {
 
 /*** Login and Other Pages ***/
 @media only screen and (min-width: 0) {
+  .circle-list {
+    padding: 0 40px;
+  }
+
+  .circle-list li {
+    list-style-type: circle;
+  }
+
   .section { padding: 20px 0; }
   .modal-c {
     display: block;

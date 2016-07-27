@@ -20,17 +20,25 @@
 			</div>
 			<div>
 				<p class="info-title amber-text text-darken-3">@model.__('about.title')</p>
-				<ul class="info-details text-justify blue-grey-text text-darken-2">
+				<ul class="info-details text-justify black-text text-darken-2">
 					<li>@model.__('about.text_1')</li>
 					<li>@model.__('about.text_2')</li>
 					<li>@model.__('about.text_3')</li>
 					<li>@model.__('about.text_4')</li>
+					<ul class="blue-grey-text circle-list">
+						<li>@model.__('about.text_5')</li>
+						<li>@model.__('about.text_6')</li>
+						<li>@model.__('about.text_7')</li>
+						<li>@model.__('about.text_8')</li>
+						<li>@model.__('about.text_9')</li>
+						<li>@model.__('about.text_10')</li>
+						<li>@model.__('about.text_11')</li>
+					</ul>
+					<li>@model.__('about.text_12')</li>
 				</ul>
-				<p class="info-title amber-text text-darken-3">Happy Shopping! <i class="fa fa-smile-o"></i></p>
 			</div>
 			<br>
 			<br>
-			<img class="responsive-img z-depth-1" src="/images/db_about_cover.png">
 		</div><!-- .container -->
 		<script>
 			$(document).ready(function(){
