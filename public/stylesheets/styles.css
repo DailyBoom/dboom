@@ -19,11 +19,19 @@
         url('/fonts/hcrdotum-webfont.woff') format('woff'),
         url('/fonts/hcrdotum-webfont.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'Cotdien Typeface';
+  src: url('/fonts/cotdien-typeface.ttf');
+}
 body {
   font-family: 'Dotum', sans-serif;
 }
 
-@media only screen and (min-width: 0) {}
+@media only screen and (min-width: 0) {
+  body {
+    font-family: 'Cotdien Typeface';
+  }
+}
 @media only screen and (min-width: 601px) {}
 @media only screen and (min-width: 992px) {}
 @media only screen and (min-width: 1200px) {}

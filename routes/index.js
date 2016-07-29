@@ -44,7 +44,7 @@ router.get('/', function(req, res, next) {
   Product.findOne({scheduled_at: now, is_published: true }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
     Product.find({scheduled_at: {$lt: now} }).limit(6).sort({ 'scheduled_at' : -1 }).exec(function (err, pastProducts) {
       if (!product) {
-        Product.findOne({ _id: "56fb9a9a47d32ca348fa489a" }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
+        Product.findOne({ _id: "579968ba4bcec003004c41d4" }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
           var current_quantity = 0;
           product.options.forEach(function(option) {
             current_quantity += parseInt(option.quantity);
