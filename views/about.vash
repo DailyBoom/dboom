@@ -35,6 +35,8 @@
 						<li>@model.__('about.text_11')</li>
 					</ul>
 					<li>@model.__('about.text_12')</li>
+					<li>Thân Ái</li>
+					<li>Ypppuna</li> 
 				</ul>
 			</div>
 			<br>
