@@ -71,7 +71,7 @@
 	</div><!-- .modal-content -->
 </div><!-- #modal-check -->
 <!-- Buy Wrapper -->
-<div id="buy-sticky" class="hide-on-small-only buy-sticky-wrapper center @(model.product.color ? model.product.color : 'white')">
+<div id="buy-sticky" class="hide buy-sticky-wrapper center @(model.product.color ? model.product.color : 'white')">
 	<a href="/wholesale" class="buy-help-d modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
 	@if (model.user) {
 		@if (model.progress < 100) {
