@@ -17,7 +17,7 @@
 	   	<meta itemprop="name" content="@model.__('title') - @model.title" />
       <meta property="og:title" content="@model.__('title') - @model.title" />
     }
-    <meta name="copyright" content="Copyright 2015 Yppuna">
+    <meta name="copyright" content="Copyright 2016 Yppuna">
     @if(!model.description){
       <meta name="description" content="@model.__('about.text_1')">
   		<meta itemprop="description" content="@model.__('about.text_1')" />

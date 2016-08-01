@@ -259,7 +259,7 @@
 				<div class="center">
 					<span class="share-text @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">상품 공유하기</span>
 					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
-					<a href="mailto:?subject=데일리 붐: 오늘 뭐 사지?&body=http://dailyboom.co"><img id="sharemail"  class="social" src="/images/icon_email.png" alt="Email Image" /></a>
+					<a href="mailto:?subject=Yppuna&body=http://dailyboom.co"><img id="sharemail"  class="social" src="/images/icon_email.png" alt="Email Image" /></a>
 					<a class="modal-trigger" href="#share_url_modal"><img id="shareurl" class="social" src="/images/link_icon.png" alt="Link Image" /></a>
 				</div>
 			</div><!-- .buy-box-footer -->
