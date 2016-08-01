@@ -348,61 +348,6 @@
 				</a>
 			</div>
 			<a href="/wholesale" class="hide-on-med-and-up buy-help modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
-			<div class="hide-on-small-only past-box-wrapper @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
-				@model.__('past_items')
-				<a class="hide @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') right" href="/mall"><i class="fa fa-shopping-bag fa-fw @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></i> 쇼핑몰 보기</a>
-			</div>
-			<div class="row">
-				<div class="col s12 m12 l12">
-					<div class="row">
-						<div id="db-past" class="owl-carousel owl-theme">
-								@if (model.pastProducts) {
-									@model.pastProducts.forEach(function(product) {
-										<div class="col s12 m12 l12">
-											<div class="card past">
-												<div class="card-image">
-													<div class="past-date-box @(model.product.color ? model.product.color : 'white') darken-1 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
-														@model.moment(product.scheduled_at).format("YYYY/MM/DD")@(model.moment(product.scheduled_at).day() == 6 ? model.moment(product.scheduled_at).add(1, 'days').format('-DD') : '')@(model.moment(product.scheduled_at).isSame('2016-02-08') ? '-09-10' : '')
-													</div>
-													<div class="card-image-ol">
-														<h5 class="white-text truncate"><b>@product.name</b></h5>
-														<div class="past-divider"></div>
-														<div>
-															<span class="ol-new-p">@product.price</span> (<span class="ol-old-p">@product.old_price</span>)
-														</div>
-													</div><!-- .card-image-ol -->
-													<div class="past-img" style="background-image: url(@(product.mobile_images[0] ? product.mobile_images[0] : product.images[0]))" alt=""></div>
-												</div>
-													@if(product.extend == 1 && model.moment().isBefore(model.moment(product.scheduled_at).add(3, 'days'), 'days')){
-														<div class="card-action mod center green">
-															<a class="waves-effect waves-light btn-flat white-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/extend/@product.id">@model.__('available')! (<span class="time-left"></span>)</a>
-														</div>
-													}
-													else if (product.extend == 2){
-														<div class="card-action mod center green">
-															<a class="waves-effect waves-light btn-flat white-text text-darken-3" href="/extend/@product.id">@model.__('available')!</a>
-														</div>
-													}
-													else if (model.user && product.wanna_buy.indexOf(model.user.id) != -1) {
-														<div class="card-action mod center want cyan" data-id="@product.id">
-															<span class=" waves-effect waves-light btn-flat white-text text-darken-3">@model.__('bring_back') <i class="fa fa-thumbs-up fa-fw right"></i></span>
-														</div>
-													}
-													else {
-														<div class="card-action mod center want cyan" data-id="@product.id">
-															<span class="waves-effect waves-light btn-flat white-text text-darken-3">@model.__('bring_back') <i class="fa fa-thumbs-o-up fa-fw right"></i></span>
-														</div>
-													}
-											</div>
-										</div>
-									})
-								}
-							<?}?>
-						</div><!-- /.owl-carousel -->
-					</div><!-- .row -->
-				</div><!-- /.col s12 m9 l9 -->
-			</div><!-- .row -->
-			<!-- Featured section -->
 			<div class="row">
 				<div class="col s12">
 					<div class="past-box-wrapper @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
