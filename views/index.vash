@@ -284,51 +284,24 @@
 						</div>
 						<div class="collapsible-body @(model.product.color ? model.product.color : 'white') lighten-5">
 							<div class="item-shipping-info-box">
-								<p><b>[Shipping Policy]</b></p>
+								<p><b>Shipping, return and exchange policy</b></p>
 								<p class="item-shipping-info">
-									Hệ thống giao hàng tận nơi của Dailyboom Vietnam<br/>
-									Một trong những ưu điểm của việc mua sắm qua các trang thương mại điện tử đó là bạn sẽ được giao hàng ngay tại nhà mà không phải tốn công sức. Điều này rõ ràng là một lợi thế nếu như bạn là người sống ở tỉnh lẻ, hệ thống siêu thị còn thưa thớt và ít đa dạng sản phẩm, cùng với đó là khoảng cách quá xa từ nhà bạn khi đến những siêu thị để mua sắm những món đồ hằng ngày như dầu gội, thời trang đồ gia dụng Magic Korea,... Điều đó cho thấy việc ra đời của thương mại điện tử lại trở nên dễ dàng cho chúng ta hơn rất nhiều. Mua sắm qua các trang web thương mại điện tử thường được tiến hành theo các quy trình nhất định. Ở Dailyboom Vietnam, sau khi chọn ra được những sản phẩm bạn ưa thích, bạn thực hiện những thao tác đặt mua và chọn phương thức thanh toán. Sau khi đã hoàn tất thì hệ thống giao nhận sẽ giao hàng cho bạn trong thời gian từ khoảng 3 - 4 ngày làm việc và còn tùy thuộc vào loại hàng trong đơn hàng của bạn như thế nào. Khác với những phương thức bán hàng phổ thông, khi mua hàng qua các trang web thương mại điện tử thì người trực tiếp tương tác với khách hàng chính là đội ngũ giao nhận. Cách thức chúng ta giao nhận như thế nào với khách hàng cũng là một yếu tố vô cùng quan trọng. Và Dailyboom Vietnam tự hào với khách hàng rằng đây chính là trang web thương mại điện tử có thể hệ thống giao nhận phục vụ khách hàng tốt nhất.								
+									<b>Chính sách giao hàng</b><br/>
+									Địa chỉ giao hàng cần được điền đầy đủ khi đặt hàng, trước khi thanh toán đơn hàng.<br/>
+									Mọi thay đổi cần phải liên hệ trực tiếp qua XYZ hoặc email XYZ<br/>
+									– Giao hàng miễn phí tại các quận nội thành HCM: quận 1,2,3,4,5,6,7,8,10,11, Bình Thạnh, Gò Vấp, Phú Nhuận, Tân Bình, Tân Phú<br/>
+									– Tính phí giao hàng 10.000 vnđ/hộp đối với các quận ngoại thành: quận 9, 12, Thủ Đức, Bình Tân,Hóc Môn, Bình Chánh, Nhà Bè, Củ Chi<br/>
+									– Tính phí giao hàng 30.000 vnđ/hộp đối với nội thành Hà Nội và Đà Nẵng<br/>
+									– Tính phí giao hàng 50.000 vnđ/hộp đối với các tỉnh, thành khác trên toàn quốc<br/>
+									Phí giao hàng tới các vùng lận cận/tỉnh xa phụ thuộc vào địa chỉ giao hàng.
 								</p>
-								<p><b>[Return or Exchange Policy] </b></p>
-								<ol class="item-shipping-info">
-									<li>Return and Refund policy at Dailyboom Vietnam.vn</li>
-								</ol>
 								<p class="item-shipping-info">
-									Bảo lãnh Dailyboom Việt Nam mà tất cả các sản phẩm đã mua chính hãng, thương hiệu mới và không bị lỗi. Các sản phẩm bạn nhận được phải không bị hư hỏng, làm việc tốt và phù hợp với mô tả sản phẩm trên website Dailyboom Việt Nam.
+									<b>Chính sách đổi hoặc trả hàng</b><br/>
+									Với những sản phẩm có tem của Yppuna  nếu phát hiện là nhái fake/không đúng hãng, chúng tôi sẽ hoàn trả lại tiền 100%.<br/> 
+									Những đơn hàng đã được nhận và mở rồi sẽ không được chấp nhận đổi hoặc trả.<br/>
+									Những sản phẩm bị lỗi do bộ phận giao hàng (hộp bị hỏng, vỡ) nên được hoàn trả lại cho bộ phận giao hàng ngay lập tức.<br/>
+									Đối với những lỗi sản phẩm bên trong hộp, bao gồm sản phẩm đã bị chảy, đã mở, không sử dụng được, khách hàng hoàn trả lại cho Yppuna và sẽ được gửi sản phẩm mới thay thế. Với những trường hợp này, bạn có thể liên hệ qua email yppuna@gmail.com cùng với hình ảnh của sản phẩm bị lỗi. 
 								</p>
-								<ul class="item-shipping-info">
-									<li>- Nếu sản phẩm nhận được không phải là ở các điều kiện được mô tảở trên, xin vui lòng thông báo cho chúng tôi trong vòng 48 giờ kể từ khi bạn nhận được hàng. Dailyboom Việt Nam có quyền từ chối bất kỳ hỗ trợ nếu khách hàng không thông báo cho chúng tôi trong giai đoạn cửa sổ thông báo đã nêu.									
-									</li>
-									<li>
-										- Trong trường hợp sản phẩm bạn nhận được không đáp ứng cam kết của chúng tôi như đã nêu ở trên, bạn sẽ có một trong hai 7 ngày để trả lại sản phẩm, phụ thuộc vào trở lại chính sách được áp dụng như sau:
-									</li>
-									<li>
-										- Các mặt hàng hoàn trả phải được gửi đến Dailyboom Việt Nam để kiểm tra chất lượng (QC). Dailyboom Việt Nam sẽ thay thế nó bằng một cái mới hoặc hoàn trả lại giá thanh toán của hàng trả lại nếu nó đáp ứng các điều khoản và điều kiện Return của chúng tôi.
-									</li>
-									<li>
-										- Yêu cầu đối với lợi nhuận hợp lệ như sau:
-									</li>
-								</ul>
-								<ol class="item-shipping-info lower-roman">
-									<li>
-										Các sản phẩm phải được trả lại với hình thức trả và Dailyboom Việt Nam hóa đơn hoặc biên lai của người bán (nếu có).
-									</li>
-									<li>
-										Các sản phẩm phải không có dấu hiệu sử dụng hoặc sửa chữa, full box, đầy đủ phụ kiện, hướng dẫn sử dụng, tem và / hoặc thẻ bảo hành và quà tặng miễn phí (nếu có).
-									</li>
-									<li>
-										cửa sổ trở lại là không quá 7 ngày kể từ ngày giao hàng. Tùy thuộc vào các chính sách Return áp dụng, bạn có thể quay trở lại mục bạn cho chúng tôi trong vòng 7 ngày. Bắt đầu đếm ngược từ ngày bạn nhận được các mục vào dấu bưu điện ghi trên bưu kiện bạn quay trở lại với chúng ta.
-									</li>
-									<li>
-										lý do Return có phải là hợp lệ và đáp ứng các điều khoản và điều kiện.
-									</li>
-									<li>
-										Sản phẩm này không thuộc sự trở lại đặc biệt và chính sách hoàn lại tiền của một số thương hiệu / nhà cung cấp / chuyên mục nhất định.
-									</li>
-									<li>
-										Sản phẩm không được trả tiền bởi góp. các sản phẩm trả góp không được áp dụng cho sự trở lại do thay đổi của tâm.
-									</li>
-								</ol>
 							</div>
 						</div>
 					</li>
