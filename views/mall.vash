@@ -96,6 +96,7 @@
 			autoHover:true,
             video:false,
             useCss: true,
+			controls:true,
             onSliderLoad: function(){
                 $(".bxslider-wrap").css("visibility", "visible");
             }
