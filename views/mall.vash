@@ -90,12 +90,10 @@
     $(document).ready(function(){
       $(".slider").bxSlider({
 			mode:'horizontal',
-			pagerCustom: '#bx-pager',
 			speed: 1000,
 			infiniteLoop:true,
 			auto:true,
 			autoHover:true,
-			controls:true,
             video:false,
             useCss: true,
             onSliderLoad: function(){
