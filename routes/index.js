@@ -30,43 +30,31 @@ var isAuthenticated = function (req, res, next) {
 
 /* GET Home Page */
 router.get('/', function(req, res, next) {
-  var now;
-  if (moment().day() == 0)
-    now = moment().subtract(1, 'days').format("MM/DD/YYYY");
-  else
-    now = moment().format("MM/DD/YYYY");
-  var date = null;
-  if (now == "03/30/2016" || now == "03/31/2016")
-  {
-      now = "03/30/2016";
-      date = "03/30/2016";
-  }
-  Product.findOne({scheduled_at: now, is_published: true }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
-    Product.find({scheduled_at: {$lt: now} }).limit(6).sort({ 'scheduled_at' : -1 }).exec(function (err, pastProducts) {
-      if (!product) {
-        Product.findOne({ _id: "579968ba4bcec003004c41d4" }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
-          var current_quantity = 0;
-          product.options.forEach(function(option) {
-            current_quantity += parseInt(option.quantity);
-          });
-          var progress = (product.quantity - current_quantity) / product.quantity * 100;
-          var sale = (product.old_price - product.price) / product.old_price * 100;
-          res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, pastProducts: pastProducts });
-        });
-      }
-      else {
+  var date = moment().startOf('isoweek').format("MM/DD/YYYY");
+  Product.findOne({scheduled_at: date, is_published: true }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
+    if (!product) {
+      Product.findOne({ _id: "579968ba4bcec003004c41d4" }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
         var current_quantity = 0;
         product.options.forEach(function(option) {
           current_quantity += parseInt(option.quantity);
         });
         var progress = (product.quantity - current_quantity) / product.quantity * 100;
         var sale = (product.old_price - product.price) / product.old_price * 100;
-        console.log(sale);
-        Partner.find({}, function(err, partners) {
-          res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, pastProducts: pastProducts, partners: partners, date: date });
-        });
-      }
-    });
+        res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product });
+      });
+    }
+    else {
+      var current_quantity = 0;
+      product.options.forEach(function(option) {
+        current_quantity += parseInt(option.quantity);
+      });
+      var progress = (product.quantity - current_quantity) / product.quantity * 100;
+      var sale = (product.old_price - product.price) / product.old_price * 100;
+      console.log(sale);
+      Partner.find({}, function(err, partners) {
+        res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, partners: partners, date: date });
+      });
+    }
   });
 });
 

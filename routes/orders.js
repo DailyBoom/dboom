@@ -374,30 +374,11 @@ router.get('/checkout', function(req, res) {
     delete req.session.product;
   }
   
-  var now;
-  if (moment().day() == 0)
-    now = moment().subtract(1, 'days').format("MM/DD/YYYY");
-  else
-    now = moment().format("MM/DD/YYYY");
-  Product.findOne({_id: req.query.product_id ? req.query.product_id : req.session.product, is_published: true}, function(err, product) {
+  var date = moment().startOf('isoweek').format("MM/DD/YYYY");
+  Product.findOne({_id: req.query.product_id ? req.query.product_id : req.session.product, scheduled_at: date, is_published: true}, function(err, product) {
     if (err)
       console.log(err);
     if (!product)
-      return res.redirect('/');
-    if (product.extend == 1) {
-      if (moment().isAfter(moment(product.scheduled_at).add(3, 'days'), 'days'))
-        return res.redirect('/');
-    }
-    else if (product.extend == 2 || product.extend == 4) {
-      var current_quantity = 0;
-      product.options.forEach(function(option) {
-        current_quantity += parseInt(option.quantity);
-      });
-      if (current_quantity <= 0) {
-        return res.redirect('/');
-      }
-    }
-    else if (moment(product.scheduled_at).format("MM/DD/YYYY") != now)
       return res.redirect('/');
     if (typeof req.session.order === 'undefined' || !req.session.order) {
       var order = new Order({
