@@ -55,7 +55,6 @@ var validateOptions = {
 }
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join('/home/deploy/app/dboom/public')));
 app.use(cookieParser('keyboard cat'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -63,6 +62,7 @@ app.use(device.capture());
 device.enableDeviceHelpers(app)
 app.use(session({ store: new MongoStore({ mongooseConnection: mongoose.connection }), secret: 'keyboard cat', name: 'session_id', saveUninitialized: true, resave: true })); // store: new RedisStore({ host: '127.0.0.1',  port: 6379 }),
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/blushop', express.static(path.join(__dirname, 'public')));
 app.use(validate(app, validateOptions))
 app.use(paginate.middleware(10, 50));
 app.use(i18n.init);
