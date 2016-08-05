@@ -103,7 +103,7 @@ else {
 }
 app.use(function(req, res, next) {
   console.log(req.headers.host);
-  if (req.headers.host == "blushop.co.kr") {
+  if (req.headers.host == "blushop.co.kr" || req.headers.host == "www.blushop.co.kr") {
     res.locals.layout = "mall/layout";
   }
   else {
