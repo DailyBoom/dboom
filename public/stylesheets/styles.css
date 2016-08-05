@@ -23,13 +23,17 @@
   font-family: 'Cotdien Typeface';
   src: url('/fonts/cotdien-typeface.ttf');
 }
+@font-face{
+	font-family:"Century Gothic";
+	src:url("/fonts/CenturyGothic.ttf");
+}
 body {
   font-family: 'Dotum', sans-serif;
 }
 
 @media only screen and (min-width: 0) {
   body {
-    font-family: 'Cotdien Typeface';
+    font-family: 'Century Gothic';
   }
 }
 @media only screen and (min-width: 601px) {}
