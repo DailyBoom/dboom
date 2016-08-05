@@ -1,5 +1,5 @@
 
-@html.extend("layout", function(model) {
+@html.extend(model.layout, function(model) {
 	@html.block("body", function(model) {
 		@if(!model.is_phone) {
 			<div class="parallax-container">

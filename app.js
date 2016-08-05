@@ -102,6 +102,13 @@ else {
   mongoose.set('debug', true);
 }
 app.use(function(req, res, next) {
+  console.log(req.headers.host);
+  if (req.headers.host == "blushop.co.kr") {
+    res.locals.layout = "mall/layout";
+  }
+  else {
+    res.locals.layout = "layout";
+  }
   if (req.query.lang) {
     res.cookie('dboom_locale', req.query.lang, { maxAge: 900000, httpOnly: true });
     i18n.setLocale(req, req.query.lang);

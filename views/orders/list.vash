@@ -1,4 +1,4 @@
-@html.extend("layout", function(model) {
+@html.extend(model.layout, function(model) {
 	@html.block("body", function(model) {
    <div class="container min-h-lg">
 		<h3 class="blue-grey-text text-darken-3">주문내역

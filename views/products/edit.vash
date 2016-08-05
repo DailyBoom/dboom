@@ -1,4 +1,4 @@
-@html.extend("layout", function(model) { @html.block("body", function(model) {
+@html.extend(model.layout, function(model) { @html.block("body", function(model) {
 <div class="container">
 	<div class="set-margin-xl">
 	</div>
