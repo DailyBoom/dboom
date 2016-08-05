@@ -62,7 +62,6 @@ app.use(device.capture());
 device.enableDeviceHelpers(app)
 app.use(session({ store: new MongoStore({ mongooseConnection: mongoose.connection }), secret: 'keyboard cat', name: 'session_id', saveUninitialized: true, resave: true })); // store: new RedisStore({ host: '127.0.0.1',  port: 6379 }),
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use('/blushop', express.static(path.join(__dirname)));
 app.use(validate(app, validateOptions))
 app.use(paginate.middleware(10, 50));
 app.use(i18n.init);
