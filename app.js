@@ -55,6 +55,7 @@ var validateOptions = {
 }
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join('/home/deploy/app/dboom/public')));
 app.use(cookieParser('keyboard cat'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
