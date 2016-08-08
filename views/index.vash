@@ -255,7 +255,7 @@
 					<a href="/wholesale" class="hide-on-small-only btn btn-flat buy-help-dd modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
 				</div>
 			</div>
-			<div class="buy-box-footer @(model.product.color ? model.product.color : 'white') lighten-3">
+			<div class="hide buy-box-footer @(model.product.color ? model.product.color : 'white') lighten-3">
 				<div class="center">
 					<span class="share-text @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Share Product</span>
 					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
@@ -321,7 +321,7 @@
 				</a>
 			</div>
 			<a href="/wholesale" class="hide-on-med-and-up buy-help modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
-			<div class="row">
+			<div class="hide row">
 				<div class="col s12">
 					<div class="past-box-wrapper @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
 						@model.__('featured')
