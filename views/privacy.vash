@@ -3,14 +3,14 @@
 		@if(!model.is_phone) {
 			<div class="parallax-container">
 	      <div class="parallax">
-					<img class="ie-fix" src="/images/hero03.jpg">
+					<img class="ie-fix" src="/images/cover_logo_desktop.png">
 				</div>
 	    </div>
 		}
 		else {
 			<div class="parallax-container">
 	      <div class="parallax">
-					<img class="ie-fix" src="/images/hero03m.jpg">
+					<img class="ie-fix" src="/images/cover_photo_mobile.png">
 				</div>
 	    </div>
 		}
