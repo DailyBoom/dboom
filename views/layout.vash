@@ -19,9 +19,9 @@
     }
     <meta name="copyright" content="Copyright 2016 Yppuna">
     @if(!model.description){
-      <meta name="description" content="Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp.">
-  		<meta itemprop="description" content="Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp." />
-      <meta property="og:description" content="Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp." />
+      <meta name="description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp.">
+  		<meta itemprop="description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp." />
+      <meta property="og:description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp." />
     }
     else {
       <meta name="description" content="@model.description">
