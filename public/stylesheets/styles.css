@@ -276,6 +276,18 @@ input[type=number]::-webkit-outer-spin-button {
       background-size: 100%;
       height: 191px; 
   }
+  #sns-fixed {
+    position: fixed;
+    left: 10px;
+    top: 50%;
+    width: 8em;
+    margin-top: -2.5em;
+    z-index: 9999;
+  }
+
+  #sns-fixed li a img {
+    height: 30px;
+  }
 }
 @media only screen and (min-width: 601px) {
   .logo-d { display: block; }

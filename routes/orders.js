@@ -16,7 +16,6 @@ var i18n = require('i18n');
 var config = require('config-heroku');
 var extend = require('util')._extend;
 var request = require("request");
-var slack = require('slack-notify')(config.Slack.webhookUrl);
 var CSVTransform = require('csv-transform');
 var accounting = require('accounting');
 var paginate = require('express-paginate');
@@ -536,15 +535,7 @@ router.post('/deposit_checkout', function(req, res) {
         order.save(function(err) {
           if (err)
             console.log(err);
-          // if (app.get("env") === "production") {
-          //   slack.send({
-          //     channel: '#dailyboom-new-order',
-          //     icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
-          //     text: 'New order via deposit <http://dailyboom.co/orders/view/'+order._id+'>',
-          //     unfurl_links: 1,
-          //     username: 'DailyBoom-bot'
-          //   });
-          // }
+
           fs.readFile('./views/mailer/bank_deposit.vash', "utf8", function(err, file) {
             if(err){
               //handle errors
@@ -623,15 +614,7 @@ router.all('/payco_callback', function (req, res) {
                 });
                 product.markModified('options');
                 product.save(function (err) {
-                  // if (app.get("env") === "production") {
-                  //   slack.send({
-                  //     channel: '#dailyboom-new-order',
-                  //     icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
-                  //     text: 'New order <http://dailyboom.co/orders/view/' + order._id + '>',
-                  //     unfurl_links: 1,
-                  //     username: 'DailyBoom-bot'
-                  //   });
-                  // }
+
                   fs.readFile('./views/mailer/buy_success.vash', "utf8", function (err, file) {
                     if (err) {
                       //handle errors
@@ -712,15 +695,7 @@ router.all('/mall/payco_callback', function (req, res) {
                 item.product.markModified('options');
                 item.product.save();
               });
-              // if (app.get("env") === "production") {
-              //   slack.send({
-              //     channel: '#dailyboom-new-order',
-              //     icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
-              //     text: 'New order <http://dailyboom.co/orders/view/' + order._id + '>',
-              //     unfurl_links: 1,
-              //     username: 'DailyBoom-bot'
-              //   });
-              // }
+
               fs.readFile('./views/mailer/buy_success.vash', "utf8", function (err, file) {
                 if (err) {
                   //handle errors
@@ -942,15 +917,7 @@ router.get('/orders/cancel/:id', function(req, res) {
               });
               product.markModified('options');                          
               product.save(function(err) {
-                // if (app.get("env") === "production") {
-                //   slack.send({
-                //     channel: '#dailyboom-new-order',
-                //     icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
-                //     text: 'Cancel order #'+order._id,
-                //     unfurl_links: 1,
-                //     username: 'DailyBoom-bot'
-                //   });
-                // }
+
                 fs.readFile('./views/mailer/order_cancelled.vash', "utf8", function(err, file) {
                   if(err){
                     //handle errors
@@ -992,15 +959,7 @@ router.get('/orders/cancel_deposit/:id', function(req, res) {
     order.save(function(err) {
       if (err)
         console.log(err);
-      // if (app.get("env") === "production") {
-      //   slack.send({
-      //     channel: '#dailyboom-new-order',
-      //     icon_url: 'http://dailyboom.co/images/favicon/favicon-96x96.png',
-      //     text: 'Cancel deposit order #'+order._id,
-      //     unfurl_links: 1,
-      //     username: 'DailyBoom-bot'
-      //   });
-      // }
+
       fs.readFile('./views/mailer/order_cancelled.vash', "utf8", function(err, file) {
         if(err){
           //handle errors

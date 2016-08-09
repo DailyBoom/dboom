@@ -277,6 +277,23 @@
 				</div><!-- .container -->
 			</nav>
 		</div><!-- .navbar -->
+    <ul id="sns-fixed" class="hide-on-small-only">
+      <li>
+        <a href="https://www.facebook.com/yppuna" target="_blank">
+          <img class="footer-social" src="@(model.product && model.product.color && model.product.color != 'white' ? '/images/facebook.png' : '/images/facebook_b.png')" />
+        </a>
+      </li>
+      <li>
+        <a href="http://instagram.com/yppuna" target="_blank">
+          <img class="footer-social" src="@(model.product && model.product.color && model.product.color != 'white' ? '/images/insta.png' : '/images/insta_b.png')" />
+        </a>
+      </li>
+      <li>
+        <a href="https://www.youtube.com/channel/UCqFV0hp7cnYA0tZMAGq9paA" target="_blank">
+          <img class="footer-social" src="/images/youtube_logo_b.png" />
+        </a>
+      </li>
+    </ul>
       @html.block("body")
 		<footer class="page-footer @(model.product && model.product.color ? model.product.color : 'white') darken-3">
 			<div class="container">
