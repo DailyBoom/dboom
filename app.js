@@ -105,9 +105,11 @@ app.use(function(req, res, next) {
   console.log(req.headers.host);
   if (req.headers.host == "blushop.co.kr" || req.headers.host == "www.blushop.co.kr") {
     res.locals.layout = "mall/layout";
+    res.locals.mailer = "./views/mailer/blushop/"
   }
   else {
     res.locals.layout = "layout";
+    res.locals.mailer = "./views/mailer/"
   }
   if (req.query.lang) {
     res.cookie('dboom_locale', req.query.lang, { maxAge: 900000, httpOnly: true });

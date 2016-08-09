@@ -214,7 +214,7 @@ router.post('/coupons/new', function(req, res, next) {
       coupon.populate('user', function(err, coupon) {
         console.log(coupon);
         if (coupon.user.email) {
-          fs.readFile('./views/mailer/coupon_new.vash', "utf8", function(err, file) {
+          fs.readFile(res.locals.mailer+'coupon_new.vash', "utf8", function(err, file) {
             if(err){
               //handle errors
               console.log('ERROR!');

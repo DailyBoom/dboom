@@ -399,7 +399,7 @@ router.post('/signup', function(req, res) {
           res.render('signup', { errors: errors, title: "회원가입" });
         }
         else {
-          fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
+          fs.readFile(res.locals.mailer+'signup.vash', "utf8", function(err, file) {
             if(err){
               //handle errors
               console.log('ERROR!');
@@ -519,7 +519,7 @@ router.post('/merchant_signup', function(req, res) {
           res.render('users/new_merchant', { errors: errors, title: "판매자 가입하기" });
         }
         else {
-          fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
+          fs.readFile(res.locals.mailer+'signup.vash', "utf8", function(err, file) {
             if(err){
               //handle errors
               console.log('ERROR!');
@@ -588,7 +588,7 @@ router.post('/forgot', function(req, res, next) {
     user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
     user.save(function(err) {
-      fs.readFile('./views/mailer/pass_reset.vash', "utf8", function(err, file) {
+      fs.readFile(res.locals.mailer+'pass_reset.vash', "utf8", function(err, file) {
         if(err){
           //handle errors
           console.log('ERROR!');

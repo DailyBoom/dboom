@@ -391,7 +391,7 @@ router.post('/blushop/iamport_callback', function (req, res) {
           username: 'DailyBoom-bot'
         });
       }
-      fs.readFile('./views/mailer/buy_success.vash', "utf8", function (err, file) {
+      fs.readFile(res.locals.mailer+'/buy_success.vash', "utf8", function (err, file) {
         if (err) {
           //handle errors
           console.log('ERROR!');
@@ -448,7 +448,7 @@ router.post('/iamport_callback', function (req, res) {
               username: 'DailyBoom-bot'
             });
           }
-          fs.readFile('./views/mailer/buy_success.vash', "utf8", function (err, file) {
+          fs.readFile(res.locals.mailer+'buy_success.vash', "utf8", function (err, file) {
             if (err) {
               //handle errors
               console.log('ERROR!');
@@ -481,7 +481,7 @@ router.get('/orders/cancel_iamport/:id', function(req, res) {
             console.log(response);
             order.status = "Cancelled";
             order.save(function(err) {
-                fs.readFile('./views/mailer/order_cancelled.vash', "utf8", function(err, file) {
+                fs.readFile(res.locals.mailer+'order_cancelled.vash', "utf8", function(err, file) {
                     if(err){
                     //handle errors
                     console.log('ERROR!');
@@ -746,7 +746,8 @@ router.post('/deposit_checkout', function(req, res) {
               username: 'DailyBoom-bot'
             });
           }
-          fs.readFile('./views/mailer/bank_deposit.vash', "utf8", function(err, file) {
+          console.log(res.locals.mailer);
+          fs.readFile(res.locals.mailer+'bank_deposit.vash', "utf8", function(err, file) {
             if(err){
               //handle errors
               console.log('ERROR!');
@@ -833,7 +834,7 @@ router.all('/payco_callback', function (req, res) {
                       username: 'DailyBoom-bot'
                     });
                   }
-                  fs.readFile('./views/mailer/buy_success.vash', "utf8", function (err, file) {
+                  fs.readFile(res.locals.mailer+'buy_success.vash', "utf8", function (err, file) {
                     if (err) {
                       //handle errors
                       console.log('ERROR!');
@@ -922,7 +923,7 @@ router.all('/blushop/payco_callback', function (req, res) {
                   username: 'DailyBoom-bot'
                 });
               }
-              fs.readFile('./views/mailer/buy_success.vash', "utf8", function (err, file) {
+              fs.readFile(res.locals.mailer+'buy_success.vash', "utf8", function (err, file) {
                 if (err) {
                   //handle errors
                   console.log('ERROR!');
@@ -991,7 +992,7 @@ router.get('/orders/paid/:id', isAdmin, function(req, res) {
               product.save(function(err) {
                 if (err)
                   console.log(err);
-                fs.readFile('./views/mailer/buy_success.vash', "utf8", function(err, file) {
+                fs.readFile(res.locals.mailer+'buy_success.vash', "utf8", function(err, file) {
                   if(err){
                     //handle errors
                     console.log('ERROR!');
@@ -1036,7 +1037,7 @@ router.get('/orders/cart_paid/:id', isAdmin, function(req, res) {
           item.product.markModified('options');
           item.product.save();
         });
-        fs.readFile('./views/mailer/buy_success.vash', "utf8", function(err, file) {
+        fs.readFile(res.locals.mailer+'buy_success.vash', "utf8", function(err, file) {
           if(err){
             //handle errors
             console.log('ERROR!');
@@ -1068,7 +1069,7 @@ router.get('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
       return res.redirect('/orders/list');
     order.status = "Sent";
     order.save(function(err) {
-      fs.readFile('./views/mailer/shipped.vash', "utf8", function(err, file) {
+      fs.readFile(res.locals.mailer+'shipped.vash', "utf8", function(err, file) {
         if(err){
           //handle errors
           console.log('ERROR!');
@@ -1133,7 +1134,7 @@ router.get('/orders/cancel/:id', function(req, res) {
                     username: 'DailyBoom-bot'
                   });
                 }
-                fs.readFile('./views/mailer/order_cancelled.vash', "utf8", function(err, file) {
+                fs.readFile(res.locals.mailer+'order_cancelled.vash', "utf8", function(err, file) {
                   if(err){
                     //handle errors
                     console.log('ERROR!');
@@ -1183,7 +1184,7 @@ router.get('/orders/cancel_deposit/:id', function(req, res) {
           username: 'DailyBoom-bot'
         });
       }
-      fs.readFile('./views/mailer/order_cancelled.vash', "utf8", function(err, file) {
+      fs.readFile(res.locals.mailer+'order_cancelled.vash', "utf8", function(err, file) {
         if(err){
           //handle errors
           console.log('ERROR!');
@@ -1309,7 +1310,7 @@ router.post('/shipping', function(req, res) {
                 else {
                   order.user = user.id;
                   order.save(function(err) {
-                    fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
+                    fs.readFile(res.locals.mailer+'signup.vash', "utf8", function(err, file) {
                       if(err){
                         //handle errors
                         console.log('ERROR!');
