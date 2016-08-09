@@ -112,7 +112,7 @@
 				<br>
 				<h5>@model.__('product.photosMobile')</h5>
 				<div class="row">
-				@model.product.mobile_images.forEach(function(img) {
+				@model.product.mobile_images.forEach(function(img, index) {
 					<div class="col s6 m3 l3">
 						<a href="@img" target="_blank"><img class="responsive-img" src="@img" alt="" /></a>
 						<a href="/products/@model.product.id/delete_mobile_img/@index">Delete</a>
