@@ -391,6 +391,12 @@ input[type=number]::-webkit-outer-spin-button {
     margin-bottom: 10px;
     line-height: 1.5;
   }
+  .d-day.label {
+    width: auto;
+    font-size: 5.5em;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
   .buy-mod-img {
     height: 120px;
     margin-right: 50px;
@@ -2048,7 +2054,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 3rem;
     line-height: 3rem;
   }
-  .info-title { font-size: 2.2rem; }
+  .info-title { font-size: 2.2rem; color: #ef9e9f; }
   .info-details { font-size: 1rem; }
   .info-details li { margin: 10px 0; }
   .info-terms { font-size: .6em; }

@@ -15,11 +15,8 @@
 	    </div>
 		}
 		<div class="container">
-			<div class="parallax-title">
-				About Us
-			</div>
 			<div>
-				<p class="info-title amber-text text-darken-3">@model.__('about.title')</p>
+				<p class="info-title text-darken-3">@model.__('about.title')</p>
 				<ul class="info-details text-justify black-text text-darken-2">
 					<li>@model.__('about.text_1')</li>
 					<li>@model.__('about.text_2')</li>

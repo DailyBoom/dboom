@@ -47,49 +47,11 @@
 					</div>
 					<div class="row">
 						<div class="input-field col s12 m6 l6">
-							<select id="area" name="area" class="area">
-								<option value="" @(!model.order.shipping.area ? 'selected' : '') >Please select an area</option>
-								<option value="area1" @(model.order.shipping.area && model.order.shipping.area == 'area1' ? 'selected' : '') >Inside Ho Chi Minh City (VND 5,000)</option>
-								<option value="area2" @(model.order.shipping.area && model.order.shipping.area == 'area2' ? 'selected' : '')>Adjacent Ho Chi Minh City (VND 10,000)</option>
-								<option value="area3" @(model.order.shipping.area && model.order.shipping.area == 'area3' ? 'selected' : '')>Outside Ho Chi Minh City (VND 20,000)</option>
-								<option value="pickup">Pick Up</option>															
+							<select id="city" name="@(model.order.shipping.area == 'area1' ? 'country' : '')" class="area1 @(model.order.shipping.area != 'area1' ? 'hide' : '')">
+								<option value="Hồ Chí Minh" @(model.order.shipping.city && model.order.shipping.city == 'Hồ Chí Minh' ? 'selected' : '')>Hồ Chí Minh</option>
+								<option value="Hà Nội" @(model.order.shipping.city && model.order.shipping.city == 'Hà Nội' ? 'selected' : '')>Hà Nội</option>
 							</select>
-							<label for="area">Area</label>
-						</div>
-						<div class="input-field col s12 m6 l6">
-							<select id="area1" name="@(model.order.shipping.area == 'area1' ? 'country' : '')" class="area1 @(model.order.shipping.area != 'area1' ? 'hide' : '')">
-								<option value="Quan 1" @(model.order.shipping.country && model.order.shipping.country == 'Quan 1' ? 'selected' : '')>Quan 1</option>
-								<option value="Quan 2" @(model.order.shipping.country && model.order.shipping.country == 'Quan 2' ? 'selected' : '')>Quan 2</option>
-								<option value="Quan 3" @(model.order.shipping.country && model.order.shipping.country == 'Quan 3' ? 'selected' : '')>Quan 3</option>
-								<option value="Quan 4" @(model.order.shipping.country && model.order.shipping.country == 'Quan 4' ? 'selected' : '')>Quan 4</option>
-								<option value="Quan 5" @(model.order.shipping.country && model.order.shipping.country == 'Quan 5' ? 'selected' : '')>Quan 5</option>
-								<option value="Quan 6" @(model.order.shipping.country && model.order.shipping.country == 'Quan 6' ? 'selected' : '')>Quan 6</option>
-								<option value="Quan 7" @(model.order.shipping.country && model.order.shipping.country == 'Quan 7' ? 'selected' : '')>Quan 7</option>
-								<option value="Quan 8" @(model.order.shipping.country && model.order.shipping.country == 'Quan 8' ? 'selected' : '')>Quan 8</option>
-								<option value="Quan 9" @(model.order.shipping.country && model.order.shipping.country == 'Quan 9' ? 'selected' : '')>Quan 9</option>
-								<option value="Quan 10" @(model.order.shipping.country && model.order.shipping.country == 'Quan 10' ? 'selected' : '')>Quan 10</option>
-								<option value="Quan 11" @(model.order.shipping.country && model.order.shipping.country == 'Quan 11' ? 'selected' : '')>Quan 11</option>
-								<option value="Quan 12" @(model.order.shipping.country && model.order.shipping.country == 'Quan 12' ? 'selected' : '')>Quan 12</option>
-							</select>
-							<select id="area2" name="@(model.order.shipping.area == 'area2' ? 'country' : '')" class="area2 @(model.order.shipping.area != 'area2' ? 'hide' : '')">
-								<option value="Go Vap" @(model.order.shipping.country && model.order.shipping.country == 'Go Vap' ? 'selected' : '')>Go Vap</option>
-								<option value="Tan Binh" @(model.order.shipping.country && model.order.shipping.country == 'Tan Binh' ? 'selected' : '')>Tan Binh</option>
-								<option value="Tan Phu" @(model.order.shipping.country && model.order.shipping.country == 'Tan Phu' ? 'selected' : '')>Tan Phu</option>
-								<option value="Binh Thanh" @(model.order.shipping.country && model.order.shipping.country == 'Binh Thanh' ? 'selected' : '')>Binh Thanh</option>
-								<option value="Phu Nhuan" @(model.order.shipping.country && model.order.shipping.country == 'Phu Nhuan' ? 'selected' : '')>Phu Nhuan</option>
-								<option value="Thu Duc" @(model.order.shipping.country && model.order.shipping.country == 'Thu Duc' ? 'selected' : '')>Thu Duc</option>
-								<option value="Binh Tan" @(model.order.shipping.country && model.order.shipping.country == 'Binh Tan' ? 'selected' : '')>Binh Tan</option>
-							</select>
-							<select id="area3" name="@(model.order.shipping.area == 'area3' ? 'country' : '')" class="area3 @(model.order.shipping.area != 'area3' ? 'hide' : '')">
-								<option value="Cu Chi" @(model.order.shipping.country && model.order.shipping.country == 'Cu Chi' ? 'selected' : '')>Cu Chi</option>
-								<option value="Hoc Mon" @(model.order.shipping.country && model.order.shipping.country == 'Hoc Mon' ? 'selected' : '')>Hoc Mon</option>
-								<option value="Binh Chanh" @(model.order.shipping.country && model.order.shipping.country == 'Binh Chanh' ? 'selected' : '')>Binh Chanh</option>
-								<option value="Nha Be" @(model.order.shipping.country && model.order.shipping.country == 'Nha Be' ? 'selected' : '')>Nha Be</option>
-								<option value="Can Gio" @(model.order.shipping.country && model.order.shipping.country == 'Can Gio' ? 'selected' : '')>Can Gio</option>
-							</select>
-							<label for="country" class="country-label @(model.order.shipping.area == 'pickup' ? 'hide' : '')">@model.__('user.country')</label>
-							<input id="pickup_date" type="date" name="pickup_date" value="@(model.order.pickup_date ? model.moment(model.order.pickup_date).format('MM/DD/YYYY') : '')" class="@(model.order.shipping.area != 'pickup' ? 'hide' : '')">
-							<label for="pickup_date" class="pickup-date-label @(model.order.shipping.area != 'pickup' ? 'hide' : '')">Pickup Date</label>
+							<label for="city" class="country-label">@model.__('user.city') <span class='signup-info red-text'><i class='fa fa-exclamation-circle'></i> Xin lỗi, hiện tại chúng tôi chỉ giao hàng tại Hồ Chí Minh và Hà Nội. Chúng tôi sẽ sớm giao hàng trên toàn quốc.</span></label>
 						</div>
 					</div>
 					<div class="row">

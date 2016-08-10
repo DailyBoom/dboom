@@ -50,7 +50,6 @@ router.get('/', function(req, res, next) {
       });
       var progress = (product.quantity - current_quantity) / product.quantity * 100;
       var sale = (product.old_price - product.price) / product.old_price * 100;
-      console.log(sale);
       Partner.find({}, function(err, partners) {
         res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, partners: partners, date: date });
       });

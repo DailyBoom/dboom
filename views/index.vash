@@ -71,8 +71,8 @@
 	</div><!-- .modal-content -->
 </div><!-- #modal-check -->
 <!-- Buy Wrapper -->
-<div id="buy-sticky" class="hide buy-sticky-wrapper center @(model.product.color ? model.product.color : 'white')">
-	<a href="/wholesale" class="buy-help-d modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
+<div id="buy-sticky" class="buy-sticky-wrapper center @(model.product.color ? model.product.color : 'white')">
+	<a href="/wholesale" class="hide buy-help-d modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
 	@if (model.user) {
 		@if (model.progress < 100) {
 			<a href="/checkout?product_id=@model.product.id">
@@ -87,8 +87,14 @@
 			</a>
 		}
 	}
-	<span id="time-left-label" class="d-clock label @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.__('time_left')</span>
-	<br><span id="time-left" class="d-clock @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></span>
+	<!-- time left -->
+	@if (model.moment().day() == 6) {
+		<span id="time-left-label" class="d-clock label @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.__('time_left')</span>
+		<br><span id="time-left" class="d-clock @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></span>
+	}
+	else {
+		<span id="time-left-label" class="d-day label @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.moment().endOf('isoweek').diff(model.moment(), 'days') days left</span>		
+	}
 </div>
 @if(model.product.images.length == 1 || model.product.mobile_images.length == 1) {
 <!-- Parallax -->
@@ -252,10 +258,10 @@
 					}
 				}
 					<br><br>
-					<a href="/wholesale" class="hide-on-small-only btn btn-flat buy-help-dd modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
+					<a href="/wholesale" class="hide hide-on-small-only btn btn-flat buy-help-dd modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
 				</div>
 			</div>
-			<div class="hide buy-box-footer @(model.product.color ? model.product.color : 'white') lighten-3">
+			<div class="buy-box-footer @(model.product.color ? model.product.color : 'white') lighten-3">
 				<div class="center">
 					<span class="share-text @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Share Product</span>
 					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
@@ -320,8 +326,8 @@
 					</div>
 				</a>
 			</div>
-			<a href="/wholesale" class="hide-on-med-and-up buy-help modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
-			<div class="hide row">
+			<a href="/wholesale" class="hide hide-on-med-and-up buy-help modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
+			<div class="row">
 				<div class="col s12">
 					<div class="past-box-wrapper @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
 						@model.__('featured')
@@ -330,11 +336,11 @@
 				</div>
 				<div id="db-partners" class="owl-carousel owl-theme">
                     @if (model.partners) {
-					@model.partners.forEach(function(partner) {
-						<div class="col s12">
-                            <div class="partner-logo" style="background-image: url('/@partner.logo');"></div>
-						</div><!-- .col -->
-					})
+						@model.partners.forEach(function(partner) {
+							<div class="col s12">
+								<div class="partner-logo" style="background-image: url('@partner.logo');"></div>
+							</div><!-- .col -->
+						})
                     }
 				</div><!-- /.owl-carousel -->
 			</div><!-- .row -->
@@ -397,33 +403,28 @@ var is_mobile = @model.is_phone;
 $(window).load(function() {
 	// $('#time-left-label').fadeOut(2500, function(){
 		var now = moment();
-		var momentTom = '@(model.date ? model.date : null)';
-		if (momentTom)
-		    momentTom = moment(momentTom).tz("Asia/Seoul").add(2, 'days').hours(0).minutes(0).seconds(0);
-		else if (now.day() == 6) {
-		    momentTom = moment().tz("Asia/Seoul").add(2, 'days').hours(0).minutes(0).seconds(0);
-		}
-		else
-		momentTom = moment().tz("Asia/Seoul").add(1, 'days').hours(0).minutes(0).seconds(0);
-		var timeLeft = moment.duration(momentTom.diff(now), 'milliseconds');
-		if (!is_mobile) {
-		$('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-		}
-		else {
-		$('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-		}
-		var interval = setInterval(function() {
-		timeLeft = moment.duration(momentTom.diff(moment().tz("Asia/Seoul"), 'milliseconds'));
-		if (timeLeft._milliseconds == 0) {
-			window.location = '/';
-		}
-		if (!is_mobile) {
+		if (now.day() == 6) {
+			momentTom = moment().tz("Asia/Seoul").add(1, 'days').hours(0).minutes(0).seconds(0);
+			var timeLeft = moment.duration(momentTom.diff(now), 'milliseconds');
+			if (!is_mobile) {
 			$('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-		}
-		else {
+			}
+			else {
 			$('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+			}
+			var interval = setInterval(function() {
+				timeLeft = moment.duration(momentTom.diff(moment().tz("Asia/Seoul"), 'milliseconds'));
+				if (timeLeft._milliseconds == 0) {
+					window.location = '/';
+				}
+				if (!is_mobile) {
+					$('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+				}
+				else {
+					$('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+				}
+			}, 1000);
 		}
-		}, 1000);
 	// });
 });
 </script>

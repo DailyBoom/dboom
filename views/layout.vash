@@ -274,23 +274,24 @@
                 <li class="nav-item mod"><a class="@(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/signup">@model.__('signup')</a></li>
             </ul>
 					}
+          <span class="nav-item mod hide-on-small-only right @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Hotline Hỗ Trợ 0169 987 6023</span>          
 				</div><!-- .container -->
 			</nav>
 		</div><!-- .navbar -->
     <ul id="sns-fixed" class="hide-on-small-only">
       <li>
         <a href="https://www.facebook.com/yppuna" target="_blank">
-          <img class="footer-social" src="@(model.product && model.product.color && model.product.color != 'white' ? '/images/facebook.png' : '/images/facebook_b.png')" />
+          <img class="footer-social" src="/images/facebook_o.png" />
         </a>
       </li>
       <li>
         <a href="http://instagram.com/yppuna" target="_blank">
-          <img class="footer-social" src="@(model.product && model.product.color && model.product.color != 'white' ? '/images/insta.png' : '/images/insta_b.png')" />
+          <img class="footer-social" src="/images/insta_o.png" />
         </a>
       </li>
       <li>
         <a href="https://www.youtube.com/channel/UCqFV0hp7cnYA0tZMAGq9paA" target="_blank">
-          <img class="footer-social" src="/images/youtube_logo_b.png" />
+          <img class="footer-social" src="/images/youtube_o.png" />
         </a>
       </li>
     </ul>

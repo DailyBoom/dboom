@@ -12,7 +12,7 @@
 			<div class="col s12 m3 l3">
 				<div class="card">
 					<div class="card-image">
-						<div class="partner-logo" style="background-image: url('/@partner.logo');"></div>
+						<div class="partner-logo" style="background-image: url('@partner.logo');"></div>
 					</div><!-- .card-image -->
 					<div class="card-content">
 						<p class="blue-grey-text text-darken-1 truncate"><b>@partner.name</b></p>
