@@ -35,6 +35,7 @@
 						}
 						</ul>
 					}
+					<span class='signup-info red-text'><i class='fa fa-exclamation-circle'></i> Xin lỗi, hiện tại chúng tôi chỉ giao hàng tại Hồ Chí Minh và Hà Nội. Chúng tôi sẽ sớm giao hàng trên toàn quốc.</span>
 					<div class="row">
 						<div class="input-field col s12 m6 l6">
 							<input id="full_name" name="full_name" type="text" class="validate" placeholder="홍길동" value="@(model.order.shipping.full_name ? model.order.shipping.full_name : model.Validator.getValue('full_name'))">
@@ -51,7 +52,7 @@
 								<option value="Hồ Chí Minh" @(model.order.shipping.city && model.order.shipping.city == 'Hồ Chí Minh' ? 'selected' : '')>Hồ Chí Minh</option>
 								<option value="Hà Nội" @(model.order.shipping.city && model.order.shipping.city == 'Hà Nội' ? 'selected' : '')>Hà Nội</option>
 							</select>
-							<label for="city" class="country-label">@model.__('user.city') <span class='signup-info red-text'><i class='fa fa-exclamation-circle'></i> Xin lỗi, hiện tại chúng tôi chỉ giao hàng tại Hồ Chí Minh và Hà Nội. Chúng tôi sẽ sớm giao hàng trên toàn quốc.</span></label>
+							<label for="city" class="country-label">@model.__('user.city') </label>
 						</div>
 					</div>
 					<div class="row">
