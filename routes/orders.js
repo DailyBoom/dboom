@@ -62,7 +62,7 @@ var isMerchant = function (req, res, next) {
 var hasShipping = function(obj) {
   if (!obj.shipping)
     return false;
-  if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.country && obj.shipping.address && obj.email && obj.shipping.city)
+  if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.address && obj.email && obj.shipping.city)
     return true;
   return false;
 }
