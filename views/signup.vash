@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="row">
 				<form class="col s12" method="post" action="/signup">
-					<a href="/merchant_signup" class="right merchant_signup">@model.__('merchant.signup')</a>
+					<a href="/merchant_signup" class="hide right merchant_signup">@model.__('merchant.signup')</a>
 					@if (!model.is_mobile) {
 						<a href="#" id="facebook" class="btn blue right merchant_signup">Đăng Ký Bằng Tài Khoản Facebook</a>
 						<a href="#" id="google" class="btn deep-orange darken-4 right merchant_signup">Đăng Ký Bằng Tài Khoản Google</a>
