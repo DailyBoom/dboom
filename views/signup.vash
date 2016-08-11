@@ -77,10 +77,11 @@
 								</div>
 								<div class="row">
 									<div class="input-field col s12">
-										<select name="country">
-											<option value="1">대한민국</option>
+										<select id="city" name="city" class="area1">
+											<option value="Hồ Chí Minh" >Hồ Chí Minh</option>
+											<option value="Hà Nội" >Hà Nội</option>
 										</select>
-										<label>@model.__('user.country')</label>
+										<label for="city" class="country-label">@model.__('user.city') </label>
 									</div>
 								</div>
 							</div>
