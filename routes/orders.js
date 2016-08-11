@@ -387,6 +387,8 @@ router.get('/checkout', function(req, res) {
   
       if (req.user) {
         order.user = req.user.id;
+        if (req.user.shipping)
+          order.shipping = req.user.shipping;
       }
   
       order.save(function(err) {

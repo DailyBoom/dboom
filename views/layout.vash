@@ -210,7 +210,7 @@
 								</ul>
 							</li>
 						</ul>
-                        <ul class="right hide-on-med-and-up">
+            <ul class="right hide-on-med-and-up">
 							<li class="nav-item">
 								<!-- Mobile Slider Menu -->
                 <a href="#" data-activates="slide-out" class="button-collapse mod"><i class="fa fa-bars fa-fw @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></i></a>
@@ -241,6 +241,7 @@
                   }
 									<li><a class="text-darken-2 black-text" href="/mypage">My Page <i class="fa fa-user right"></i></a></li>
 									<li><a class="text-darken-2 black-text" href="/logout">Logout <i class="fa fa-sign-out right"></i></a></li>
+                  <li><a href="#hiw_modal" class="modal-trigger">How it works <i class="fa fa-cogs right"></i></a></li>
 								</ul>
 							</li>
 						</ul>
@@ -266,7 +267,8 @@
                   }
 									<li><a class="waves-effect waves-light black-text text-darken-2" href="/login">@model.__('login') <i class="fa fa-sign-in right"></i></a></li>
 									<li><a class="waves-effect waves-light black-text text-darken-2" href="/signup">@model.__('signup') <i class="fa fa-user-plus right"></i></a></li>
-								</ul>
+                  <li><a href="#hiw_modal" class="modal-trigger">How it works <i class="fa fa-cogs right"></i></a></li>
+                </ul>
 							</li>
 						</ul>
             <ul class="right hide-on-small-only user-link">
@@ -278,7 +280,20 @@
 				</div><!-- .container -->
 			</nav>
 		</div><!-- .navbar -->
+    <div id="hiw_modal" class="modal">
+				<div class="modal-header @((model.product && model.product.color ? model.product.color : 'white') darken-2 @((model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') center">
+					How It Works
+				</div>
+		    <div class="modal-content">
+		  		<img class="hiw" src="/images/how_it_works.png" />
+		    </div>
+    </div>
     <ul id="sns-fixed" class="hide-on-small-only">
+      <li>
+        <a href="#hiw_modal" class="modal-trigger">
+          <img class="footer-social" src="/images/hiw_o.png" />
+        </a>
+      </li>
       <li>
         <a href="https://www.facebook.com/yppuna" target="_blank">
           <img class="footer-social" src="/images/facebook_o.png" />

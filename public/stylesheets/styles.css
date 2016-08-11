@@ -2197,6 +2197,22 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 @media only screen and (min-width: 0) {
+  nav .fa {
+    height: auto;
+  }
+
+  #hiw_modal {
+    height: auto;
+  }
+
+  #hiw_modal .modal-content {
+    padding: 0;
+  }
+
+  #hiw_modal img {
+    width: 100%;
+  }
+
   .cart-badge {
     margin-left: 5px;
   }
