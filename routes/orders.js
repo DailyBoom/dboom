@@ -68,10 +68,9 @@ var hasShipping = function(obj) {
 }
 
 var getOrderTotal = function(order) {
-  order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price + order.shipping_cost;
+  order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price;
   console.log(order.quantity);
   console.log(order.product.delivery_price);
-  console.log(order.shipping_cost);
   console.log(order.product.price);
   if (order.coupon) {
     if (order.coupon.type == 1)
