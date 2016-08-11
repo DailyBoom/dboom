@@ -19,7 +19,7 @@
 				<form class="col s12 m12 l12 add-margin-bottom-md">
 		      <div class="row grey-text text-darken-3">
 						<div class="col s12 m8 offset-m2 l8 offset-l2">
-							<p class="info-title amber-text text-darken-3">@model.__('advertise')</p>
+							<p class="info-title text-darken-3">@model.__('advertise')</p>
 							<br>
 						</div>
 		        <div class="input-field col s12 m8 offset-m2 l8 offset-l2">

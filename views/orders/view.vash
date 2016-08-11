@@ -61,10 +61,10 @@
                         }
 					</span>
 					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
-						@model.__('user.country') :
+						@model.__('user.city') :
 					</span>
 					<span class="col s8 order-label">
-						&nbsp;@model.order.country
+						&nbsp;@model.order.city
 					</span>
 					@if(model.order.status == "Waiting") {
 						<span class="col s4 order-label blue-grey-text text-darken-2 right-align">

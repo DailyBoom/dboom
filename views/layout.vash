@@ -276,7 +276,7 @@
                 <li class="nav-item mod"><a class="@(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/signup">@model.__('signup')</a></li>
             </ul>
 					}
-          <span class="nav-item mod hide-on-small-only right @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Hotline Hỗ Trợ 0169 987 6023</span>          
+          <span class="nav-item mod hide-on-small-only right @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'core-text')">Hotline Hỗ Trợ 0169 987 6023</span>          
 				</div><!-- .container -->
 			</nav>
 		</div><!-- .navbar -->
@@ -311,6 +311,7 @@
       </li>
     </ul>
       @html.block("body")
+    <span class="hide-on-med-and-up buy-help white-text core-color">Hotline Hỗ Trợ 0169 987 6023</span>
 		<footer class="page-footer @(model.product && model.product.color ? model.product.color : 'white') darken-3">
 			<div class="container">
         <div class="row flex-s">

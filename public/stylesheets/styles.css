@@ -1991,6 +1991,14 @@ input[type=number]::-webkit-outer-spin-button {
 
 /*** Login and Other Pages ***/
 @media only screen and (min-width: 0) {
+  .core-text {
+    color: #ef9e9f;
+  }
+  
+  .core-color {
+    background-color: #ef9e9f;
+  }
+
   .circle-list {
     padding: 0 40px;
   }

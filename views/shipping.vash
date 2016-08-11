@@ -48,7 +48,7 @@
 					</div>
 					<div class="row">
 						<div class="input-field col s12 m6 l6">
-							<select id="city" name="@(model.order.shipping.area == 'area1' ? 'country' : '')" class="area1 @(model.order.shipping.area != 'area1' ? 'hide' : '')">
+							<select id="city" name="city" class="area1">
 								<option value="Hồ Chí Minh" @(model.order.shipping.city && model.order.shipping.city == 'Hồ Chí Minh' ? 'selected' : '')>Hồ Chí Minh</option>
 								<option value="Hà Nội" @(model.order.shipping.city && model.order.shipping.city == 'Hà Nội' ? 'selected' : '')>Hà Nội</option>
 							</select>

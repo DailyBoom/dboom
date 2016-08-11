@@ -89,7 +89,7 @@
 						<br><span class="check-address">@(model.user ? model.user.shipping.address : model.order.shipping.address)</span>
 						<br><span class="check-address">@(model.user ? model.user.shipping.zipcode : model.order.shipping.zipcode)</span>
 						<br>
-						<br><span class="check-address">@model.order.shipping.country</span>
+						<br><span class="check-address">@model.order.shipping.city</span>
 						<br>
 						<br>
 						@if (model.order.pickup_date) {
