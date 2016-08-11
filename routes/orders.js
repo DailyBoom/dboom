@@ -1004,7 +1004,7 @@ router.post('/shipping', function(req, res) {
       .validate('zipcode', i18n.__('user.zipcode'), {
         numeric: true
       })
-      .validate('country', i18n.__('user.country'), {
+      .validate('city', i18n.__('user.city'), {
         required: true
       });
 
