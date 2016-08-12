@@ -282,7 +282,7 @@
 		</div><!-- .navbar -->
     <div id="hiw_modal" class="modal">
 				<div class="modal-header @((model.product && model.product.color ? model.product.color : 'white') darken-2 @((model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') center">
-					How It Works
+					Đặt Hàng Thế Nào
 				</div>
 		    <div class="modal-content">
 		  		<img class="hiw" src="/images/how_it_works.png" />
@@ -291,7 +291,7 @@
     <ul id="sns-fixed" class="hide-on-small-only">
       <li>
         <a href="#hiw_modal" class="modal-trigger">
-          <img class="footer-social" src="/images/hiw_o.png" />
+          <img class="footer-social" src="/images/db_ko_05.png" title="Đặt Hàng Thế Nào"/>
         </a>
       </li>
       <li>

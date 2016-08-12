@@ -1,12 +1,12 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
    <div class="container min-h-lg">
-		<h3 class="blue-grey-text text-darken-3">주문내역
+		<h3 class="blue-grey-text text-darken-3">Order list
 			<div class="legend right right-align">
-				<span class="blue-grey-text text-darken-2">주문 보기 <i class="fa fa-eye fa-fw"></i></span>
-				<span class="red-text text-darken-3">주문 취소 <i class="fa fa-ban fa-fw"></i></span>
+				<span class="blue-grey-text text-darken-2">View Order <i class="fa fa-eye fa-fw"></i></span>
+				<span class="red-text text-darken-3">Cancel Order <i class="fa fa-ban fa-fw"></i></span>
 			@if(model.user.admin == 1){
-				<span class="red-text text-darken-3">주문 삭제 <i class="fa fa-times fa-fw"></i></span>
+				<span class="red-text text-darken-3">Delete Order <i class="fa fa-times fa-fw"></i></span>
 			}
 			@if(model.user.role == "merchant"){
 				<br>
@@ -40,10 +40,10 @@
 				<div class="col s12 m4 l4 right">
 					<div class="fa-2x">
 						@if(model.user.role == 'merchant'){
-							<a href="/orders/merchants/export/@(model.date != '' ? '?date='+model.date : '')">주문 목록 내려받기 <i class="fa fa-floppy-o fa-fw"></i></a>
+							<a href="/orders/merchants/export/@(model.date != '' ? '?date='+model.date : '')">Export Orders <i class="fa fa-floppy-o fa-fw"></i></a>
 						}
 						else {
-							<a href="/orders/export/@(model.date != '' ? '?date='+model.date : '')">주문 목록 내려받기 <i class="fa fa-floppy-o fa-fw"></i></a>
+							<a href="/orders/export/@(model.date != '' ? '?date='+model.date : '')">Export Orders <i class="fa fa-floppy-o fa-fw"></i></a>
 						}
 					</div>
 				</div>
@@ -52,13 +52,13 @@
 		<table class="responsive-table bordered highlight table-sm table-orders">
 			<thead class="blue-grey darken-2 blue-grey-text text-lighten-5">
 				<tr>
-					<th>주문날짜</th>
-					<th>주문자</th>
-					<th>상품명</th>
-					<th>수량</th>
-					<th>합계</th>
-					<th>상태</th>
-					<th>관리</th>
+					<th>Order Date</th>
+					<th>User Name</th>
+					<th>Product Name</th>
+					<th>Quantity</th>
+					<th>Total</th>
+					<th>Status</th>
+					<th class="center">Manage</th>
 				</tr>
 			</thead>
 
@@ -154,7 +154,7 @@
 			selectMonths: true, // Creates a dropdown to control month
 			selectYears: 15 // Creates a dropdown of 15 years to control year
 		});
-		$(".product_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
+		$(".product_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
 	 </script>
   })
 })

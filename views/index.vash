@@ -286,7 +286,7 @@
 				<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
 					<li>
 						<div class="collapsible-header @(model.product.color ? model.product.color : 'white') darken-1 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
-							<span>@model.__('shipping_info') <i class="fa fa-chevron-down fa-fw right"></i></span>
+							<span class="truncate">@model.__('shipping_info') <i class="fa fa-chevron-down fa-fw right"></i></span>
 						</div>
 						<div class="collapsible-body @(model.product.color ? model.product.color : 'white') lighten-5">
 							<div class="item-shipping-info-box">
@@ -322,7 +322,7 @@
 						<div class="item-price" id="product_price_mobile">@model.product.price</div>
 					</div>
 					<div class="hide-on-med-and-up right buy-text">
-						Buy Now
+						Mua Ngay
 					</div>
 				</a>
 			</div>

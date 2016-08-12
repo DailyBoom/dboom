@@ -209,7 +209,7 @@ router.post('/coupons/new', function(req, res, next) {
             }
             var html = vash.compile(file);
             transporter.sendMail({
-              from: '데일리 붐 <contact@dailyboom.co>',
+              from: 'Yppuna <hello@yppuna.vn>',
               to: coupon.user.email,
               subject: '쿠폰이 발급되었습니다.',
               html: html({ user: coupon.user })

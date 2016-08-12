@@ -304,7 +304,7 @@
                     $(".bxslider-wrap").css("visibility", "visible");
                 }
 			});
-			$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile").formatCurrency({region: 'ko-KR', symbole: "", roundToDecimalPlace: 0});
+			$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
 		});
 	</script>
 	})
