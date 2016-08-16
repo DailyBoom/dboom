@@ -255,7 +255,10 @@ passport.use(new GoogleStrategy({
                   googleId: profile.id
               });
               user.save(function(err) {
-                if (err) console.log(err);
+                if (err) {
+                  
+                  console.log(err);
+                }
                 return done(err, user);
               });
           } else {

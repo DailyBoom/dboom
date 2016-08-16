@@ -61,7 +61,7 @@
 												<option value="@coupon.id" @(model.order.coupon && model.order.coupon.id == coupon.id ? 'selected' : '') >무료 배송 (유효기간: @model.moment(coupon.expires_at).format("YYYY/MM/DD"))</option>
 											}
 											else if (coupon.type == 2) {
-												<option value="@coupon.id" @(model.order.coupon && model.order.coupon.id == coupon.id ? 'selected' : '') >@coupon.price 원 (유효기간: @model.moment(coupon.expires_at).format("YYYY/MM/DD"))</option>
+												<option value="@coupon.id" @(model.order.coupon && model.order.coupon.id == coupon.id ? 'selected' : '') >@coupon.price ₫ (유효기간: @model.moment(coupon.expires_at).format("YYYY/MM/DD"))</option>
 											}
 											else if (coupon.type == 3) {
 												<option value="@coupon.id" @(model.order.coupon && model.order.coupon.id == coupon.id ? 'selected' : '') >@coupon.percentage% (유효기간: @model.moment(coupon.expires_at).format("YYYY/MM/DD"))</option>
@@ -108,19 +108,9 @@
 								<!-- <h5>고객요청 사항</h5> -->
 								<h5>@model.__('checkout.memo')</h5>
 								</div>
-								<div class="input-field col s12 m6 l8 hide">
-									<select id="request_select" name="request_select">
-										<option value="" disabled selected>배송시 요청사항을 선택해 주세요.</option>
-										<option value="1">배송전 연락바랍니다.</option>
-										<option value="2">경비실에 맡겨주시기 바랍니다.</option>
-										<option value="3">택배함에 놔주세요.</option>
-										<option value="4">집앞에 놔주세요.</option>
-										<option value="5">직접입력...</option>
-									</select>
-								</div>
 								<div class="input-field col s12 m6 l8">
-								<textarea id="comment_body" class="materialize-textarea" name="comment_body" required></textarea>
-								<label for="comment_body">@model.__('checkout.memoExample')</label>
+									<textarea id="comment_body" class="materialize-textarea" name="comment_body" required></textarea>
+									<label for="comment_body">@model.__('checkout.memoExample')</label>
 								</div>
 							</div>
 							<button type="submit" class="waves-effect waves-light btn blue-grey darken-3">@model.__('checkout.memoSend')<i class="fa fa-paper-plane fa-fw right"></i></button>
@@ -137,14 +127,14 @@
 								<span class="check-item-name blue-grey-text text-darken-1 truncate"><b>@model.order.product.brand</b></span>
 								<span class="check-item-name blue-grey-text text-darken-2 truncate">@model.order.option</span>
 								@if (model.order.product.delivery_price <= 0 || (model.order.coupon && model.order.coupon.type == 1)) {
-								     <span class="check-item-name blue-grey-text text-darken-2">무료 배송</span><br>
+								     <span class="check-item-name blue-grey-text text-darken-2">free shipping</span><br>
 								}
 								else if (model.order.product.delivery_price > 0){
-								    <span class="check-item-name blue-grey-text text-darken-2">+ <span id="delivery_price">@model.order.product.delivery_price</span> 배송비</span><br>
+								    <span class="check-item-name blue-grey-text text-darken-2">+ <span id="delivery_price">@model.order.product.delivery_price</span> delivery</span><br>
 								}
 								<!-- wallet -->
 								@if (model.order.wallet_dc) {
-								     <span class="check-item-name blue-grey-text text-darken-2">Point 할인: @model.order.wallet_dc 원</span><br>									
+								     <span class="check-item-name blue-grey-text text-darken-2">Point DC: @model.order.wallet_dc ₫</span><br>									
 								}
 								<span class="check-price blue-grey-text text-darken-3" id="product_price">@model.order.totalOrderAmt</span>
 							</div>

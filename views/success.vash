@@ -53,11 +53,11 @@
 		        <form class="col s12" action="" id="new_comment">
 		          <div class="row blue-grey-text text-darken-2">
 		            <div class="col col s12 m6 l8">
-		              <h5>데일리 붐 피드백</h5>
+		              <h5>@model.__('checkout.memo')</h5>
 		            </div>
 		            <div class="input-field col s12 m6 l8">
 		              <textarea id="comment_body" class="materialize-textarea" name="comment_body"></textarea>
-		              <label for="comment_body">예)  결제 시스템이 편해요, 결제 방법 추가해주세요, 영문 버전도 만들어주세요 등</label>
+		              <label for="comment_body">@model.__('checkout.memoExample')</label>
 		            </div>
 		          </div>
 		          <button type="submit" class="waves-effect waves-light btn blue-grey darken-2">보내기 <i class="fa fa-paper-plane fa-fw right"></i></button>
