@@ -58,6 +58,7 @@
 							<br>@model.order.shipping.phone_number
 							<br>@model.order.shipping.address
 							<br>@model.order.shipping.zipcode
+							<br>@model.order.shipping.city
 							<br>
 							<br>Hàng sẽ được gửi khi tuần khuyến mãi kết thúc. Hàng sẽ về đến tận cửa nhà/văn phòng của quý khách từ 1-3 ngày (tùy thuộc địa chỉ người nhận).
 							<br>Quý khách có thể thay đổi địa chỉ giao hàng trong 24 giờ sau khi mua hàng. Để thay đổi địa chỉ giao hàng làm ơn email : yppun@gmail.com hoặc gọi hotline: 0169 987 6023.

@@ -91,7 +91,7 @@
 		<br><span id="time-left" class="d-clock @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></span>
 	}
 	else {
-		<span id="time-left-label" class="d-day label @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.moment().add(1, 'weeks').startOf('isoweek').diff(model.moment(), 'days') days left</span>		
+		<span id="time-left-label" class="d-day label @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.moment().add(1, 'weeks').startOf('isoweek').diff(model.moment(), 'days') Ngày Nữa</span>		
 	}
 </div>
 @if(model.product.images.length == 1 || model.product.mobile_images.length == 1) {

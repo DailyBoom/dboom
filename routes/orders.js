@@ -532,6 +532,7 @@ router.post('/deposit_checkout', function(req, res) {
               return res.send('ERROR!');
             }
             var html = vash.compile(file);
+            console.log(order.user ? order.user.email : order.email);
             moment.locale('vi');
             transporter.sendMail({
               from: 'Yppuna <hello@yppuna.vn>',
