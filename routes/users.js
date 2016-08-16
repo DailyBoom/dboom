@@ -361,7 +361,7 @@ router.post('/signup', function(req, res) {
     .validate('zipcode', i18n.__('user.zipcode'), {
       numeric: true
     })
-    .validate('country', i18n.__('user.country'), {
+    .validate('city', i18n.__('user.city'), {
       required: true
     });
   }
@@ -383,7 +383,7 @@ router.post('/signup', function(req, res) {
         user.shipping = {
           full_name: req.body.full_name,
           address: req.body.address1,
-          country: req.body.country,
+          city: req.body.city,
           zipcode: req.body.zipcode,
           phone_number: req.body.phone_number
         }

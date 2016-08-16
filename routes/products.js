@@ -276,6 +276,39 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
   });
 });
 
+router.get('/products/:id/delete_img/:pos', isAdmin, function(req, res) {
+  Product.findOne({ _id: req.params.id }, function(err, product) {
+    if (err)
+      console.log(err);
+    product.images.splice(req.params.pos, 1);
+    product.save(function (err){
+      res.redirect('/products/edit/'+req.params.id);
+    });
+  });
+});
+
+router.get('/products/:id/delete_mobile_img/:pos', isAdmin, function(req, res) {
+  Product.findOne({ _id: req.params.id }, function(err, product) {
+    if (err)
+      console.log(err);
+    product.mobile_images.splice(req.params.pos, 1);
+    product.save(function (err){
+      res.redirect('/products/edit/'+req.params.id);
+    });
+  });
+});
+
+router.get('/products/:id/delete_desc_img', isAdmin, function(req, res) {
+  Product.findOne({ _id: req.params.id }, function(err, product) {
+    if (err)
+      console.log(err);
+    product.description_image = undefined;;
+    product.save(function (err){
+      res.redirect('/products/edit/'+req.params.id);
+    });
+  });
+});
+
 router.get('/products/preview/:id', function(req, res) {
   var query = Product.findOne({ _id: req.params.id });
   if (req.user && req.user.role == 'merchant') {

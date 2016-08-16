@@ -40,7 +40,9 @@ router.get('/', function(req, res, next) {
         });
         var progress = (product.quantity - current_quantity) / product.quantity * 100;
         var sale = (product.old_price - product.price) / product.old_price * 100;
-        res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product });
+        Partner.find({}, function(err, partners) {
+          res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, partners: partners });
+        });
       });
     }
     else {

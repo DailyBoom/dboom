@@ -133,6 +133,9 @@
 					<input class="file-path validate" type="text">
 				</div>
 			</div>
+			@if (model.product.description_image) {
+				<a href="/products/@model.product.id/delete_desc_img">Delete</a>				
+			}			
 			<div class="file-field input-field">
 				<br>
 				<span class="hide-on-small-only"><br></span>

@@ -34,14 +34,12 @@
 					<div class="social-login-wrapper">
 						<a class="btn-social-login tooltipped" data-position="top" data-delay="0" data-tooltip="Login with Facebook" href="#!"><img class="circle z-depth-1" src="/images/icon_fb_social.png" id="facebook" data-product="@model.product.id" /></a>
 						<a class="btn-social-login tooltipped" data-position="top" data-delay="0" data-tooltip="Sign in with Google" href="#!"><img class="circle z-depth-1" src="/images/g-logo.png" id="google" data-product="@model.product.id" /></a>
-						<a class="btn-social-login mod hide-on-small-only" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;"><img class="rounded z-depth-1" src="/images/icon_buy_2.png" /></a>
-						<a class="btn-social-login hide-on-med-and-up" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;">
-							<img class="circle z-depth-1" src="/images/icon_buy.png" />
+						<a class="btn core-color mod hide-on-small-only" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;">
+							Mua Ngay Không Cần Đăng Ký
 						</a>
-						<img class="responsive-img hide-on-med-and-up" src="/images/buynow.png" alt="비회원 바로구매 - 데일리 붐" />
-						<div class="right light-blue-text hide-on-med-and-up">
-							<i class="fa fa-info-circle fa-fw"></i> 비회원 바로구매
-						</div>
+						<a class="btn core-color hide-on-med-and-up" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;">
+							Mua Ngay Không Cần Đăng Ký
+						</a>
 					</div>
 				</div>
 			</form>
