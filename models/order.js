@@ -15,7 +15,7 @@ var orderSchema = new Schema({
 		full_name: String,
 		address: String,
 		address_extra: String,
-		country: String,
+		city: String,
 		area: String,
 		zipcode: String,
 		phone_number: String
