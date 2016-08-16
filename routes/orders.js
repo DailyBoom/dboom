@@ -536,11 +536,11 @@ router.post('/deposit_checkout', function(req, res) {
             transporter.sendMail({
               from: 'Yppuna <hello@yppuna.vn>',
               to: order.user ? order.user.email : order.email,
-              subject: '무통장입금 안내',
+              subject: 'Cảm ơn quý vị đã đặt hàng tại Yppuna.',
               html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment, order: order, accounting: accounting })
             }, function (err, info) {
                 if (err) { console.log(err); }
-                //console.log('Message sent: ' + info.response);
+                console.log('Message sent: ' + info.response);
                 transporter.close();
                 res.redirect('/success');
             });
