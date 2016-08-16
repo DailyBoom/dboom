@@ -31,19 +31,15 @@
 				<p class="deposit-text blue-grey-text text-darken-3">
 					<span class="deposit-title">@model.__('success.intro')</span>
 					<br>
-					<br>@model.__('success.company_name')
-					<br>@model.__('success.bank_account')
-					<br>@model.__('success.bank_name')
 					<br/>
 					<br/>@model.__('success.order_detail')
 					<br/>@model.__('success.product', model.order.product.name)
 					<br/>@model.__('success.option', model.order.option)
 					<br>@model.__('success.payment')<span id="deposit_price">@model.order.totalOrderAmt</span>
-					<br>@model.__('success.order_date', model.moment().format('LL'))
 					<br>
 					<br>@model.__('success.thanks')
 					<br>
-					<br>Daily Boom
+					<br>Yppuna
 				</p>
 				}
 
@@ -60,20 +56,20 @@
 		              <label for="comment_body">@model.__('checkout.memoExample')</label>
 		            </div>
 		          </div>
-		          <button type="submit" class="waves-effect waves-light btn blue-grey darken-2">보내기 <i class="fa fa-paper-plane fa-fw right"></i></button>
+		          <button type="submit" class="waves-effect waves-light btn blue-grey darken-2">@model.__('checkout.memoSend') <i class="fa fa-paper-plane fa-fw right"></i></button>
 		        </form>
 		      </div><!-- .row -->
 		    </div><!-- .container -->
 
 				<div class="row @if(model.is_phone) { center }else{ left }">
-					<a class="waves-effect waves-light btn btn-large blue-grey darken-2" href="/mypage">주문보기 <i class="fa fa-list right"></i></a>
-					<a class="waves-effect waves-light btn btn-large blue-grey lighten-5 blue-grey-text text-darken-3" href="/">홈으로 <i class="fa fa-home right"></i></a>
+					<a class="waves-effect waves-light btn btn-large blue-grey darken-2" href="/mypage">My Page <i class="fa fa-list right"></i></a>
+					<a class="waves-effect waves-light btn btn-large blue-grey lighten-5 blue-grey-text text-darken-3" href="/">Home <i class="fa fa-home right"></i></a>
 				</div>
 				<div class="row @if(model.is_phone) { center }else{ right }">
 					@if(model.is_phone) { <br> }
 					<img class="s-social" src="/images/icon_fb.png" id="sharefb"/>
 					<img class="s-social" src="/images/icon_kakao.png" id="sharekakao" />
-					<a href="mailto:?subject=데일리 붐: 오늘 뭐 사지?&body=http://dailyboom.co"><img class="s-social" src="/images/icon_email.png" /></a>
+					<a href="mailto:?subject=Yppuna?&body=http://yppuna.vn"><img class="s-social" src="/images/icon_email.png" /></a>
 					<a href="#shareurl"><img class="s-social" src="/images/link_icon.png" /></a>
 					<div class="section-sm"></div>
 				</div>

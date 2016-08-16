@@ -78,7 +78,7 @@
 							@if (!model.user) {
 								<p>
 									<input type="checkbox" id="agree-add-id" name="add_id" />
-									<label for="agree-add-id">정보 저장하기</label>
+									<label for="agree-add-id">Mua Hàng Bằng Tài Khoản</label>
 								</p>
 								<div id="add-id" class="hide">
 									<div class="row">
@@ -99,7 +99,7 @@
 								<script>
 
 								</script>
-								<p class="grey-text">
+								<p class="hide grey-text">
 									* 정보 저장시 이메일로 회원가입이 쉽게 가능합니다.
 								</p>
 							}
@@ -128,7 +128,7 @@
 							</div><!-- .row -->
 							<br>
 							<button class="waves-effect waves-light btn btn-large blue-grey darken-3 right" type="submit" name="action">
-								다음 <i class="fa fa-chevron-right right"></i>
+								Tiếp Theo <i class="fa fa-chevron-right right"></i>
 							</button>
 						</div>
 					</div>
