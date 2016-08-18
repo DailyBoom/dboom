@@ -1,9 +1,14 @@
 var mongoose = require('mongoose');
 var mongooseToCsv = require("mongoose-to-csv");
 var moment = require("moment");
+var shortid = require('shortid');
 var Schema = mongoose.Schema;
 
 var orderSchema = new Schema({
+	_id: {
+    	type: String,
+    	'default': shortid.generate
+	},
 	user: { type: Schema.Types.ObjectId, ref: 'User' },
 	product: { type: Schema.Types.ObjectId, ref: 'Product' },
 	status: String,

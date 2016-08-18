@@ -91,7 +91,7 @@
 		<br><span id="time-left" class="d-clock @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></span>
 	}
 	else {
-		<span id="time-left-label" class="d-day label @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.moment().add(1, 'weeks').startOf('isoweek').diff(model.moment(), 'days') Ngày Nữa</span>		
+		<span id="time-left-label" class="d-day label @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.moment().add(1, 'weeks').startOf('isoweek').add(1, 'days').diff(model.moment(), 'days') Ngày Nữa</span>		
 	}
 </div>
 @if(model.product.images.length == 1 || model.product.mobile_images.length == 1) {
@@ -405,10 +405,10 @@ $(window).load(function() {
 			momentTom = moment().tz("Asia/Seoul").add(1, 'days').hours(0).minutes(0).seconds(0);
 			var timeLeft = moment.duration(momentTom.diff(now), 'milliseconds');
 			if (!is_mobile) {
-			$('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+				$('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
 			}
 			else {
-			$('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+				$('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
 			}
 			var interval = setInterval(function() {
 				timeLeft = moment.duration(momentTom.diff(moment().tz("Asia/Seoul"), 'milliseconds'));

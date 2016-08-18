@@ -146,7 +146,14 @@
               <a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_05.png" /></a>
               <a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_05.png" /></a>
           }
-        	<span id="time-left-mobile" class="hide-on-med-and-up d-clock @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') left"></span>
+          <!-- Time Left Mobile -->
+          @if (model.moment().day() == 6) {
+        	  <span id="time-left-mobile" class="hide-on-med-and-up d-clock @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') left"></span>
+          }
+          else {
+        	  <span id="time-left-mobile" class="hide-on-med-and-up d-clock @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') left">@model.moment().add(1, 'weeks').startOf('isoweek').add(1, 'days').diff(model.moment(), 'days') Ngày Nữa</span>
+          }
+          <!-- cart -->
           @if(@model.cart) {
             <ul class="right hide-on-small-only">
               <li class="nav-item">
