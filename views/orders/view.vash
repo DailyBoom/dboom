@@ -126,9 +126,11 @@
 			 <div class="col s12 m12 l12">
 			 	<h4>고객요청 사항</h4>
 				<div class="blue-grey-text text-darken-3">
-					@model.comments.forEach(function(comment) {
-						<p>@comment.body</p>
-					})
+					@if (model.comments) {
+						@model.comments.forEach(function(comment) {
+							<p>@comment.body</p>
+						})
+					}
 				</div>
 			 </div>
 		 </div><!-- .row -->
