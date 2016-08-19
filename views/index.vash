@@ -117,7 +117,7 @@
 }
 <div class="container@(model.is_mobile ? '-fluid' : '')">
 	@if(model.progress >= 50){
-		 <div class="progress-wrapper">
+		 <div class="hide progress-wrapper">
 			<div class="progress-h red lighten-4"></div>
 			<div class="determinate-h red darken-2" style=""></div>
 			<div class="progress-h-text @(model.product.color == 'white' ? 'black-text' : 'white-text') hide">@model.progress% 팔림</div>
