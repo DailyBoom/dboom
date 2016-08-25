@@ -29,66 +29,35 @@
 					<div class="row">
 						<br>
 						<div class="col s12">
-							<h4 class="card-title blue-grey-text text-darken-3">주소지</h4>
+							<h4 class="card-title blue-grey-text text-darken-3">Shipping information</h4>
 							<div class="">
 								<div class="row">
 									<div class="input-field col s12 m6 l6">
 										<input id="full_name" type="text" class="validate" name="full_name" value="@(model.user.shipping.full_name ? model.user.shipping.full_name : model.Validator.getValue('full_name'))">
-										<label for="full_name">받는분 이름</label>
+										<label for="full_name">@model.__('user.recipient')</label>
 									</div>
 									<div class="input-field col s12 m6 l6">
 										<input id="phone_number" type="text" class="validate" name="phone_number" value="@(model.user.shipping.phone_number ? model.user.shipping.phone_number : model.Validator.getValue('phone_number'))">
-										<label for="phone_number">전화번호</label>
+										<label for="phone_number">@model.__('user.phoneNumber')</label>
 									</div>
 								</div>
 								<div class="row">
 									<div class="input-field col s12 m9 l9">
 										<input id="address" type="text" class="validate" placeholder="시 . 구 . 동 . " name="address" value="@(model.user.shipping.address ? model.user.shipping.address : model.Validator.getValue('address1'))">
-										<label for="address">배송지 주소</label>
+										<label for="address">@model.__('user.address1')</label>
 									</div>
 									<div class="input-field col s12 m3 l3">
 										<input id="zipcode" type="text" class="validate" placeholder="123456" name="zipcode" value="@(model.user.shipping.zipcode ? model.user.shipping.zipcode : model.Validator.getValue('zipcode'))">
-										<label for="zipcode">우편번호</label>
+										<label for="zipcode">@model.__('user.zipcode')</label>
 									</div>
 								</div>
 								<div class="row">
 									<div class="input-field col s12">
-										<select id="country" name="country">
-											<optgroup label="Inside Ho Chi Minh City (VND 5,000)" class="area1">
-												<option value="Quan 1">Quan 1</option>
-												<option value="Quan 2">Quan 2</option>
-												<option value="Quan 3">Quan 3</option>
-												<option value="Quan 4">Quan 4</option>
-												<option value="Quan 5">Quan 5</option>
-												<option value="Quan 6">Quan 6</option>
-												<option value="Quan 7">Quan 7</option>
-												<option value="Quan 8">Quan 8</option>
-												<option value="Quan 9">Quan 9</option>
-												<option value="Quan 10">Quan 10</option>
-												<option value="Quan 11">Quan 11</option>
-												<option value="Quan 12">Quan 12</option>
-											</optgroup>
-											<optgroup label="Adjacent Ho Chi Minh City (VND 10,000)" class="area2">
-												<option value="Go Vap">Go Vap</option>
-												<option value="Tan Binh">Tan Binh</option>
-												<option value="Tan Phu">Tan Phu</option>
-												<option value="Binh Thanh">Binh Thanh</option>
-												<option value="Phu Nhuan">Phu Nhuan</option>
-												<option value="Thu Duc">Thu Duc</option>
-												<option value="Binh Tan">Binh Tan</option>
-											</optgroup>
-											<optgroup label="Outside Ho Chi Minh City (VND 20,000)" class="area3">
-												<option value="Cu Chi">Cu Chi</option>
-												<option value="Hoc Mon">Hoc Mon</option>
-												<option value="Binh Chanh">Binh Chanh</option>
-												<option value="Nha Be">Nha Be</option>
-												<option value="Can Gio">Can Gio</option>
-											</optgroup>
-											<optgroup label="Other">								
-												<option value="pickup">Pick Up</option>
-											</optgroup>
+										<select id="city" name="city">
+											<option value="Hồ Chí Minh" @(model.user.shipping && model.user.shipping.city == 'Hồ Chí Minh' ? 'selected' : '')>Hồ Chí Minh</option>
+											<option value="Hà Nội" @(model.user.shipping && model.user.shipping.city == 'Hà Nội' ? 'selected' : '')>Hà Nội</option>
 										</select>
-										<label>@model.__('user.country')</label>
+										<label>@model.__('user.city')</label>
 									</div>
 								</div>
 							</div>

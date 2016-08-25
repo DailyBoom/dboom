@@ -9,40 +9,41 @@
 				<br>
 				<div class="input-field col s12 m12 l12">
 					<input id="full_name" type="text" name="full_name" value="@(model.order.user && model.user.shipping ? model.order.user.shipping.full_name : model.order.shipping.full_name)" required>
-					<label for="full_name" style="margin-top: -1.75rem;">받는 분</label>
+					<label for="full_name" style="margin-top: -1.75rem;">@model.__('user.recipient')</label>
 				</div>
 			</div>
 			<div class="row">
 				<br>
 				<div class="input-field col s12 m12 l12">
 					<input id="phone_number" type="text" name="phone_number" value="@(model.order.user && model.user.email ? model.order.user.email : model.order.email)" required>
-					<label for="phone_number" style="margin-top: -1.75rem;">전화번호</label>
+					<label for="phone_number" style="margin-top: -1.75rem;">@model.__('user.phoneNumber')</label>
 				</div>
 			</div>
 			<div class="row">
 				<br>
 				<div class="input-field col s12 m12 l12">
 					<input id="address" type="text" name="address" value="@(model.order.user && model.user.shipping.address ? model.order.user.shipping.address : model.order.shipping.address)" required>
-					<label for="address" style="margin-top: -1.75rem;">배송주소</label>
+					<label for="address" style="margin-top: -1.75rem;">@model.__('user.address1')</label>
 				</div>
 			</div>
 			<div class="row">
 				<br>
 				<div class="input-field col s12 m12 l12">
 					<input id="zipcode" type="text" name="zipcode" value="@(model.order.user && model.user.shipping.zipcode ? model.order.user.shipping.zipcode : model.order.shipping.zipcode)">
-					<label for="zipcode" style="margin-top: -1.75rem;">우편번호</label>
+					<label for="zipcode" style="margin-top: -1.75rem;">@model.__('user.zipcode')</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
-					<select id="country" name="country">
-						<option value="대한민국">대한민국</option>
+					<select id="city" name="city">
+						<option value="Hồ Chí Minh"  @(model.order.shipping.city == 'Hồ Chí Minh' ? 'selected' : '')>Hồ Chí Minh</option>
+						<option value="Hà Nội"  @(model.order.shipping.city == 'Hà Nội' ? 'selected' : '')>Hà Nội</option>
 					</select>
-					<label>배송 국가</label>
+					<label>@model.__('user.city')</label>
 				</div>
 			</div>
 			<button class="waves-effect waves-light btn btn-large blue-grey darken-3 right" type="submit" name="action">
-				등록하기 <i class="fa fa-chevron-right right"></i>
+				Edit <i class="fa fa-chevron-right right"></i>
 			</button>
 		</form>
 	</div>

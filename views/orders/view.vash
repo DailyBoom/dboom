@@ -5,12 +5,12 @@
 			@if(model.user.admin){
 			 <a href="/orders/edit/@model.order.id" class="btn right">EDIT</a>
 			}
-			 <h3 class="blue-grey-text text-darken-4">주문정보</h3>
+			 <h3 class="blue-grey-text text-darken-4">Order View</h3>
 			 <br>
 			 <div class="col s12 m8 l8">
 			 	<div class="row blue-grey-text text-darken-3">
 					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
-						주문번호 :
+						Order Id :
 					</span>
 					<span class="col s8 order-label">
 						&nbsp;@model.order.id
@@ -139,7 +139,7 @@
    </div><!-- .container -->
 	 <script>
 	 $(document).ready(function(){
-		$("#product_price, #product_price_mobile, #delivery_price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
+		$("#product_price, #product_price_mobile, #delivery_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
 	 });
 	 </script>
   })

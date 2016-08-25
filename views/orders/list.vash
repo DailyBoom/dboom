@@ -100,16 +100,16 @@
 					<td class="blue-text text-darken-3"><b>&nbsp;Sent</b></td>
 				}
 				else if(order.status=='Paid'){
-					<td class="green-text text-darken-3"><b>&nbsp;결제 완료</b></td>
+					<td class="green-text text-darken-3"><b>&nbsp;@order.status</b></td>
 				}
 				else if(order.status=='Submitted'){
 					<td class="blue-grey-text text-darken-3"><b>&nbsp;@order.status</b></td>
 				}
 				else if(order.status=='Cancelled'){
-					<td class="red-text text-darken-3"><b>&nbsp;주문 취소</b></td>
+					<td class="red-text text-darken-3"><b>&nbsp;@order.status</b></td>
 				}
 				else if(order.status=='Waiting'){
-					<td class="amber-text text-darken-3"><b>&nbsp;결제 대기</b></td>
+					<td class="amber-text text-darken-3"><b>&nbsp;@order.status</b></td>
 				}
 					<td class="right">
 					@if(order.status == "Paid"){
