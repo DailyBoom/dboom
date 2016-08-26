@@ -45,12 +45,12 @@ router.get('/mall/login', function(req, res, next) {
     return res.redirect('/mall');
   var message = req.session.messages || [];
   delete req.session.messages;
-  res.render('mall/login', { title: '로그인', errors: message });
+  res.render('mall/login', { title: req.__('login'), errors: message });
 });
 
 router.post('/mall/login', passport.authenticate('local', {
     failureRedirect: '/login',
-    failureMessage: '죄송합니다. 로그인에 실패했습니다. 아이디와 비밀번호를 확인하고 다시 로그인해주세요.'
+    failureMessage: 'ID hoặc mật khẩu không hợp lệ.'
     }), function(req, res, next) {
     // issue a remember me cookie if the option was checked
     console.log(next);
@@ -74,12 +74,12 @@ router.get('/login', function(req, res, next) {
     return res.redirect('/');
   var message = req.session.messages || [];
   delete req.session.messages;
-  res.render('login', { title: '로그인', errors: message });
+  res.render('login', { title: req.__('login'), errors: message });
 });
 
 router.post('/login', passport.authenticate('local', {
     failureRedirect: '/login',
-    failureMessage: '죄송합니다. 로그인에 실패했습니다. 아이디와 비밀번호를 확인하고 다시 로그인해주세요.'
+    failureMessage: 'ID hoặc mật khẩu không hợp lệ.'
     }), function(req, res, next) {
     // issue a remember me cookie if the option was checked
     console.log(next);
