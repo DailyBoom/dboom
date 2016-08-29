@@ -37,13 +37,13 @@
   		<meta itemprop="image" content="http://www.yppuna.vn/@model.cover" />
       <meta property="og:image" content="http://www.yppuna.vn/@model.cover" />
     }
-    <meta property="og:site_name" content="Daily Boom">
+    <meta property="og:site_name" content="Yppuna">
     <meta property="og:url" content="http://www.yppuna.vn@model.url" />
     <meta property="og:type" content="product">
-    <meta property="fb:app_id" content="636096523200038">
+    <meta property="fb:app_id" content="1216374348393191">
 
     <link rel="canonical" href="http://www.yppuna.vn@model.url" />
-    <link rel="publisher" href="https://plus.google.com/107959815610933986765" />
+    <meta name="google-site-verification" content="yS0UpQrgmF43CA3mnxY8Qke583Hq_yJMSfw2USHiVxI" />
 
 		<!-- favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png" />
