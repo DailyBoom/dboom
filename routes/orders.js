@@ -12,6 +12,7 @@ var Product = require('../models/product');
 var Order = require('../models/order');
 var Coupon = require('../models/coupon');
 var Comment = require('../models/comment');
+var slack = require('slack-notify')(config.get("Slack.webhookUrl"));
 var i18n = require('i18n');
 var config = require('config-heroku');
 var extend = require('util')._extend;
@@ -729,6 +730,15 @@ router.get('/success', function(req, res) {
       return res.redirect('/');
     delete req.session.order;
     delete req.session.cart_order;
+    if (app.get("env") === "production") {
+      slack.send({
+        channel: '#new-order',
+        icon_url: 'http://www.yppuna.vn/images/favicon/favicon-96x96.png',
+        text: 'New order <http://www.yppuna.vn/orders/view/' + order._id + '>',
+        unfurl_links: 1,
+        username: 'Yppuna-bot'
+      });
+    }
     fs.readFile('./views/mailer/admin_buy_success.vash', "utf8", function(err, file) {
       if(err){
         //handle errors
@@ -739,7 +749,7 @@ router.get('/success', function(req, res) {
       moment.locale('vi');
       transporter.sendMail({
         from: 'Yppuna <hello@yppuna.vn>',
-        to: "lairwin@novazest.com",
+        to: "hello@yppuna.vn",
         subject: 'You received a new order',
         html: html({ order: order, moment: moment, i18n: i18n })
       }, function (err, info) {
