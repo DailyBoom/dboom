@@ -134,7 +134,7 @@
 								}
 								<!-- wallet -->
 								@if (model.order.wallet_dc) {
-								     <span class="check-item-name blue-grey-text text-darken-2">Point DC: @model.order.wallet_dc ₫</span><br>									
+								     <span class="hide check-item-name blue-grey-text text-darken-2">Point DC: @model.order.wallet_dc ₫</span><br>									
 								}
 								<span class="check-price blue-grey-text text-darken-3" id="product_price">@model.order.totalOrderAmt</span>
 							</div>

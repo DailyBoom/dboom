@@ -307,11 +307,11 @@ router.get('/mall/checkout', function(req, res) {
               if (!error && body.code == 0) {
                 if (req.user) {
                   Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
-                    res.render('mall/checkout', { order: order, title: "주문결제", coupons: coupons });
+                    res.render('mall/checkout', { order: order, title: req.__('payment'), coupons: coupons });
                   });
                 }
                 else
-                  res.render('mall/checkout', { order: order, title: "주문결제" });
+                  res.render('mall/checkout', { order: order, title: req.__('payment') });
               }
               else
                 res.redirect('/mall');
@@ -374,7 +374,7 @@ router.get('/checkout', function(req, res) {
   }
   
   var date = moment().startOf('isoweek').format("MM/DD/YYYY");
-  Product.findOne({_id: req.query.product_id ? req.query.product_id : req.session.product, scheduled_at: date, is_published: true}, function(err, product) {
+  Product.findOne({_id: req.query.product_id ? req.query.product_id : req.session.product, is_published: true}, function(err, product) {
     if (err)
       console.log(err);
     if (!product)
@@ -421,11 +421,11 @@ router.get('/checkout', function(req, res) {
                 });
                 if (req.user) {
                   Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
-                    res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: "주문결제", coupons: coupons });
+                    res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: req.__('payment'), coupons: coupons });
                   });
                 }
                 else
-                  res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: "주문결제" });
+                  res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: req.__('payment') });
               }
               else
                 res.redirect('/shipping');
@@ -449,11 +449,11 @@ router.get('/checkout', function(req, res) {
             });
             if (req.user) {
               Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
-                res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: "주문결제", coupons: coupons });
+                res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: req.__('payment'), coupons: coupons });
               });
             }
             else
-              res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: "주문결제" });
+              res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: req.__('payment') });
           });
         }
         else
@@ -487,11 +487,11 @@ router.post('/checkout', function(req, res) {
             });
             if (req.user) {
               Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
-                res.render('checkout', { order: order, leftQuantity: leftQuantity, title: "주문결제", coupons: coupons });
+                res.render('checkout', { order: order, leftQuantity: leftQuantity, title: req.__('payment'), coupons: coupons });
               });
             }
             else
-              res.render('checkout', { order: order, leftQuantity: leftQuantity, title: "주문결제" });
+              res.render('checkout', { order: order, leftQuantity: leftQuantity, title: req.__('payment') });
         });
       });
     });
@@ -756,7 +756,7 @@ router.get('/success', function(req, res) {
           if (err) { console.log(err); }
           //console.log('Message sent: ' + info.response);
           transporter.close();
-          res.render('success', { code: req.query.code, order: order, title: "주문 완료", description: "고객님, 데일리 붐을 이용해 주셔서 감사합니다." });
+          res.render('success', { code: req.query.code, order: order, title: req.__('confirm'), description: "Cảm ơn quý vị đã đặt hàng tại Yppuna." });
       });
     });
   });
@@ -989,7 +989,7 @@ router.get('/shipping', function(req, res) {
     res.redirect('/');
   else
     Order.findOne({ '_id': req.session.order || req.session.cart_order }, function(err, order) {
-      res.render('shipping', { title: "배송지 정보", order: order });
+      res.render('shipping', { title: req.__('shipping'), order: order });
     });
 });
 
@@ -1084,7 +1084,7 @@ router.post('/shipping', function(req, res) {
                   for (var path in err.errors) {
                     errors.push(i18n.__("unique", i18n.__("user."+path)));
                   }
-                  res.render('shipping', { errors: errors, title: "배송지 정보", order: order });
+                  res.render('shipping', { errors: errors, title: req.__('shipping'), order: order });
                 }
                 else {
                   order.user = user.id;
@@ -1131,7 +1131,7 @@ router.post('/shipping', function(req, res) {
 
         req.Validator.getErrors(function(errors){
           if (errors.length > 0) {
-            res.render('shipping', { errors: errors, title: "배송지 정보", order: order });
+            res.render('shipping', { errors: errors, title: req.__('shipping'), order: order });
           }
           else {
              User.findOne({ _id: req.user._id }, {}, function(err, user) {
@@ -1153,14 +1153,14 @@ router.post('/shipping', function(req, res) {
                     for (var path in err.errors) {
                       errors.push(i18n.__("unique", i18n.__("user."+path)));
                     }
-                  res.render('shipping', { errors: errors, title: "배송지 정보", order: order });
+                  res.render('shipping', { errors: errors, title: req.__('shipping'), order: order });
                 }
                 else {
                   order.user = user.id;
                   order.shipping = JSON.parse(JSON.stringify(user.shipping));
                   order.save(function(err) {
                     if (err) {
-                      res.render('shipping', { errors: err, title: "배송지 정보", order: order });
+                      res.render('shipping', { errors: err, title: req.__('shipping'), order: order });
                     }
                     else {
                       if (req.session.cart_order)
@@ -1182,7 +1182,7 @@ router.post('/shipping', function(req, res) {
 
         req.Validator.getErrors(function(errors){
           if (errors.length > 0) {
-            res.render('shipping', { errors: errors, title: "배송지 정보", order: order });
+            res.render('shipping', { errors: errors, title: req.__('shipping'), order: order });
           }
           else {
             order.shipping = {
@@ -1196,7 +1196,7 @@ router.post('/shipping', function(req, res) {
             order.email = req.body.email;
             order.save(function(err) {
               if (err) {
-                res.render('shipping', { errors: err, title: "배송지 정보", order: order });
+                res.render('shipping', { errors: err, title: req.__('shipping'), order: order });
               }
               else {
                 if (req.session.cart_order)
