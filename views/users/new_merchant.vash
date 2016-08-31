@@ -79,7 +79,7 @@
 							</p>
 							<p class="grey-text">
 								<input class="agree-check" type="checkbox" id="agree-terms-1" name="agree-terms-1" required/>
-								<label for="agree-terms-1">@model.__('user.agreeTerms1')</label><a class="right" href="/terms" target="_blank">보기</a>
+								<label for="agree-terms-1">@model.__('user.agreeTerms1')</label><a class="right" href="/terms" target="_blank">@model.__('view')</a>
 							</p>
 							<!-- <p class="grey-text">
 								<input class="agree-check" type="checkbox" id="agree-terms-2" name="agree-terms-2" required/>
@@ -87,7 +87,7 @@
 							</p> -->
 							<p class="grey-text">
 								<input class="agree-check" type="checkbox" id="agree-terms-3" name="agree-terms-3" required/>
-								<label for="agree-terms-3">@model.__('user.agreeTerms3')</label><a class="right" href="/privacy" target="_blank">보기</a>
+								<label for="agree-terms-3">@model.__('user.agreeTerms3')</label><a class="right" href="/privacy" target="_blank">@model.__('view')보기</a>
 							</p>
 							<br>
 							<button class="btn btn-large waves-effect waves-light btn-order blue-grey darken-3 right" type="submit" name="action">

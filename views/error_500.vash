@@ -9,17 +9,15 @@
 						<div class="icon-error"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 						<div class="error-details">
 							<br>
-							<span class="error-title">서버에 오류가 났습니다.</span>
+							<span class="hide error-title">서버에 오류가 났습니다.</span>
 							<br>
-							서비스 이용에 불편을 드려서 대단히 죄송합니다.
+							Chúng tôi rất xin lỗi, vì trang mà bạn đang tìm kiếm hiện không thể kết nối được. Bạn vui lòng thử lại trong vài phút sau.
 						</div>
 						<div class="error-actions">
 							<a href="/" class="waves-effect waves-light btn btn-large blue-grey darken-2">
-								데일리 붐<i class="fa fa-home fa-fw right"></i>
+								Home<i class="fa fa-home fa-fw right"></i>
 							</a>
-							<a href="mailto:contact@dailyboom.co" class="waves-effect waves-light btn btn-large blue-grey lighten-5 blue-grey-text text-darken-2">
-								고객 센터 <i class="fa fa-envelope fa-fw right"></i>
-							</a>
+							Hotline Hỗ Trợ 0169 987 6023
 						</div>
 					</div>
 				</div>
