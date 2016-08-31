@@ -63,7 +63,7 @@
 
 				<div class="row @if(model.is_phone) { center }else{ left }">
 					<a class="waves-effect waves-light btn btn-large blue-grey darken-2" href="/mypage">My Page <i class="fa fa-list right"></i></a>
-					<a class="waves-effect waves-light btn btn-large blue-grey lighten-5 blue-grey-text text-darken-3" href="/">Home <i class="fa fa-home right"></i></a>
+					<a class="waves-effect waves-light btn btn-large blue-grey lighten-5 blue-grey-text text-darken-3" href="/">Quay lại trang chủ <i class="fa fa-home right"></i></a>
 				</div>
 				<div class="row @if(model.is_phone) { center }else{ right }">
 					@if(model.is_phone) { <br> }
