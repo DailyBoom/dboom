@@ -120,7 +120,7 @@
 				</div><!-- .col -->
 				<div class="col s12 m6 l4">
 					<div class="blue-grey-text text-darken-3">
-						<h5 class="summary-title">상품정보</h5>
+						<h5 class="summary-title">@model.__('product.info')</h5>
 						<div class="summary-box white z-depth-1 right center-align">
 							<img class="responsive-img" src="@model.order.product.images[0]" alt="" />
 							<div class="check-price-box center">
