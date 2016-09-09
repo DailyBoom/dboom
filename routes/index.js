@@ -6,12 +6,31 @@ var User = require('../models/user');
 var Product = require('../models/product');
 var Coupon = require('../models/coupon');
 var Partner = require('../models/partner');
+var Article = require('../models/article');
 var smtpTransport = require('nodemailer-smtp-transport');
 var config = require('config-heroku');
 var fs = require("fs");
 var vash = require("vash");
 var nodemailer = require('nodemailer');
 var util = require("util");
+var multer = require('multer');
+var crypto = require('crypto');
+var mime = require('mime-types');
+var getSlug = require('speakingurl');
+  
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads/')
+  },
+  filename: function (req, file, cb) {
+    crypto.pseudoRandomBytes(16, function (err, raw) {
+      cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+    });
+  }
+});
+
+var upload = multer({ storage: storage });
+
 
 var transporter = nodemailer.createTransport(smtpTransport({
     host: config.Nodemailer.host,
@@ -25,6 +44,13 @@ var transporter = nodemailer.createTransport(smtpTransport({
 var isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
     return next();
+  res.redirect('/login');
+}
+
+var isAdmin = function (req, res, next) {
+  if (req.isAuthenticated() && req.user.admin === true)
+    return next();
+  req.session.redirect_to = req.originalUrl;
   res.redirect('/login');
 }
 
@@ -238,5 +264,90 @@ router.get('/test_iamport', function(req, res, next) {
   res.render('test_iamport');
 });
 
+var smart_substr = function(str, len) {
+    var temp = str.substr(0, len);
+    if(temp.lastIndexOf('<') > temp.lastIndexOf('>')) {
+        temp = str.substr(0, 1 + str.indexOf('>', temp.lastIndexOf('<')));
+    }
+    return temp;
+}
+
+router.get('/blog', function(req, res, next) {
+  Article.find({ published: true }, {}, { sort: { 'created_at': -1 } }, function(err, articles) {
+    console.log(articles);
+    res.render('articles/index', { articles: articles, smart_substr: smart_substr });
+  });
+});
+
+router.get('/blog/new', isAdmin, function(req, res, next) {
+  res.render('articles/new');
+});
+
+router.post('/blog/new', isAdmin, function(req, res, next) {
+  var content = "";
+  JSON.parse(req.body.article).data.forEach(function(data) {
+      if(data.type == "text") {
+          content += data.data.text;
+      }
+      else if(data.type == "image") {
+          content += '<img src="'+data.data.file.url+'" />';
+      }
+      else if(data.type == "video" && data.data.source == "youtube") {
+          content += '<iframe src="https://www.youtube.com/embed/'+data.data.remote_id+'" width="580" height="412" frameborder="0" allowfullscreen></iframe>'
+      }
+  });
+
+  var article = new Article({
+    title: req.body.title,
+    url: getSlug(req.body.title, { lang: 'vn' }),
+    data: content,
+    published: true
+  });
+  article.save(function(err){
+    res.redirect('/blog/list');
+  });
+});
+
+router.get('/blog/edit/:id', isAdmin, function(req, res, next) {
+  Article.findOne({ _id: req.params.id }, function(err, article) {
+    res.render('articles/edit', { article: article });
+  });
+});
+
+router.post('/blog/edit/:id', isAdmin, function(req, res, next) {
+  Article.findOne({ _id: req.params.id }, function(err, article) {
+    
+    var content = "";
+    JSON.parse(req.body.article).data.forEach(function(data) {
+      if(data.type == "text") {
+          content += data.data.text;
+      }
+      else if(data.type == "image") {
+          content += '<img src="'+data.data.file.url+'" />';
+      }
+      else if(data.type == "video" && data.data.source == "youtube") {
+          content += '<iframe src="https://www.youtube.com/embed/'+data.data.remote_id+'" width="580" height="412" frameborder="0" allowfullscreen></iframe>'
+      }
+    });
+
+    article.title = req.body.title;
+    article.url = getSlug(req.body.title, { lang: 'vn' });
+    article.data = content;
+    
+    article.save(function(err){
+      res.redirect('/blog/list');
+    });
+  });
+});
+
+router.post('/blog/image-upload', upload.single('attachment[file]'), function(req, res, next) {
+  res.json({ file: { url: '/' + req.file.path } });
+});
+
+router.get('/blog/:url', isAdmin, function(req, res, next) {
+  Article.findOne({ url: req.params.url }, function(err, article) {
+    res.render('articles/view', { article: article });
+  });
+});
 
 module.exports = router;

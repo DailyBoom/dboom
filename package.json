@@ -50,7 +50,8 @@
     "iamport": "git+https://git@github.com/iamport/iamport-rest-client-nodejs.git",
     "passport-google-oauth": "~1.0.0",
     "shortid": "~2.2.6",
-    "moment-timezone": "~0.5.5"
+    "moment-timezone": "~0.5.5",
+    "speakingurl": "~9.0.0"
   },
   "description": "",
   "main": "app.js",

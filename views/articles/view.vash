@@ -1,0 +1,9 @@
+@html.extend("layout", function(model) { @html.block("body", function(model) {
+    <div class="container" id="blog">
+        <h2 class="center">@model.article.title</h2>
+        <article class="row">
+            @html.raw(model.article.data)
+        </article>
+    </div>
+    })
+})

@@ -1,0 +1,33 @@
+@html.extend("layout", function(model) { @html.block("body", function(model) {
+    <div class="container">
+        <h2 class="center">New Blog Post</h2>
+        <form action="/blog/new" method="POST" class="st-form">
+            <div class="input-field col s12 m12 l12">
+                <input type="text" name="title" id="title"/>
+                <label for="title">Title</label>
+            </div>
+            <label for="article">Content</label>
+            <textarea name="article" id="article" class="js-st-instance"></textarea>
+            <button class="btn right">Post</button>
+        </form>
+    </div>
+    <script src="/bower/sir-trevor-js/build/sir-trevor.js"></script>
+    <link rel="stylesheet" type="text/css" href="/bower/sir-trevor-js/build/sir-trevor.css" />
+    <script>    
+        $(document).ready(function () {
+            
+            SirTrevor.setDefaults({
+                uploadUrl: "/blog/image-upload",
+                iconUrl: "/bower/sir-trevor-js/build/sir-trevor-icons.svg",
+                blockTypes: ["Text", "Image", "List", "Video"]
+            });
+
+            var editor = new SirTrevor.Editor( {
+                el: $('.js-st-instance')[0],
+                defaultType: "Text",
+            });
+
+        });
+    </script>
+    })
+})

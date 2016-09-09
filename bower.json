@@ -1,0 +1,9 @@
+{
+  "name": "dailyboom",
+  "dependencies": {
+    "sir-trevor-js": "~0.6.1"
+  },
+  "resolutions": {
+    "jquery": "~1.9.1"
+  }
+}
