@@ -1,0 +1,15 @@
+@html.extend("layout", function(model) { @html.block("body", function(model) {
+    <div class="container@(model.is_mobile ? '-fluid' : '')" id="blog">
+        <h1 class="center">BLOG LIST</h1>
+        @model.articles.forEach(function(article) {
+            <article>
+                <a href="/blog/@article.url" >@article.title</a>
+                <div class="right">
+                    <a href="/blog/edit/@article.id" class="blue-text">Edit</a>
+                    <a href="/blog/delete/@article.id" class="red-text">Delete</a>
+                </div>
+            </article>
+        })
+    </div>
+    })
+})

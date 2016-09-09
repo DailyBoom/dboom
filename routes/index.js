@@ -59,7 +59,7 @@ router.get('/', function(req, res, next) {
   var date = moment().startOf('isoweek').format("MM/DD/YYYY");
   Product.findOne({scheduled_at: date, is_published: true }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
     if (!product) {
-      Product.findOne({ _id: "579968ba4bcec003004c41d4" }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
+      Product.findOne({ _id: "57d27619e4af52823a8a073c" }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
         var current_quantity = 0;
         product.options.forEach(function(option) {
           current_quantity += parseInt(option.quantity);
@@ -274,8 +274,13 @@ var smart_substr = function(str, len) {
 
 router.get('/blog', function(req, res, next) {
   Article.find({ published: true }, {}, { sort: { 'created_at': -1 } }, function(err, articles) {
-    console.log(articles);
     res.render('articles/index', { articles: articles, smart_substr: smart_substr });
+  });
+});
+
+router.get('/blog/list', isAdmin, function(req, res, next) {
+  Article.find({ }, {}, { sort: { 'created_at': -1 } }, function(err, articles) {
+    res.render('articles/list', { articles: articles });
   });
 });
 
@@ -286,6 +291,7 @@ router.get('/blog/new', isAdmin, function(req, res, next) {
 router.post('/blog/new', isAdmin, function(req, res, next) {
   var content = "";
   JSON.parse(req.body.article).data.forEach(function(data) {
+      console.log(data);
       if(data.type == "text") {
           content += data.data.text;
       }
@@ -337,6 +343,12 @@ router.post('/blog/edit/:id', isAdmin, function(req, res, next) {
     article.save(function(err){
       res.redirect('/blog/list');
     });
+  });
+});
+
+router.get('/blog/delete/:id', isAdmin, function(req, res, next) {
+  Article.findOneAndRemove({ _id: req.params.id }, function(err, article) {
+    res.redirect('/blog/list');
   });
 });
 

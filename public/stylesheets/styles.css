@@ -2615,20 +2615,15 @@ input[type=number]::-webkit-outer-spin-button {
 
 /** Blog **/
 @media only screen and (min-width: 0) {
-
+  
   #blog {
     background: white;
-    padding: 50px 110px; 
-  }
-
-  #blog h1 {
-    border-bottom: 1px solid #cfd8dc;
-    font-weight: bold;
+    padding: 50px 0; 
   }
 
   #blog article {
     margin-top: 50px;
-    padding: 0 0 50px;
+    padding: 0 10px 50px;
     display: inline-block;
     width: 100%;
     border-bottom: 1px solid #cfd8dc;
@@ -2656,6 +2651,31 @@ input[type=number]::-webkit-outer-spin-button {
     width: 100%;
   }
 }
+
+@media only screen and (min-width: 992px) {
+
+  #blog {
+    background: white;
+    padding: 50px 110px; 
+  }
+
+  #blog h1 {
+    border-bottom: 1px solid #cfd8dc;
+    font-weight: bold;
+  }
+
+  #blog article {
+    margin-top: 50px;
+    padding: 0 0 50px;
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid #cfd8dc;
+  }
+
+
+}
+
+
 
 /** Errors **/
 @media only screen and (min-width: 0) {
