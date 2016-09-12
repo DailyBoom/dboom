@@ -926,7 +926,7 @@ input[type=number]::-webkit-outer-spin-button {
   .slide {
     height: 218px;
     width: 100%;
-    background-position: center center;
+    background-position: 0 0;
     background-repeat: no-repeat;
     background-size: cover;
   }
