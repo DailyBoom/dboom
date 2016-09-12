@@ -213,6 +213,7 @@
                       <li><a class="deep-purple-text text-darken-2" href="/coupons/list">Coupons <i class="fa fa-list fa-fw right"></i></a></li>
                       <li><a class="deep-purple-text text-darken-2" href="/coupons/new">New Coupon <i class="fa fa-plus fa-fw right"></i></a></li>
                       <li><a class="deep-purple-text text-darken-2" href="/partners/new">Add Partner <i class="fa fa-plus fa-fw right"></i></a></li>
+                      <li><a class="deep-purple-text text-darken-2" href="/blog/new">New Blog Post <i class="fa fa-paragraph right"></i></a></li>
                   }
 								</ul>
 							</li>
@@ -236,6 +237,7 @@
                         <li><a class="deep-purple-text text-darken-2" href="/coupons/list">Coupons <i class="fa fa-list right"></i></a></li>
                         <li><a class="deep-purple-text text-darken-2" href="/users/list">Users List <i class="fa fa-users right"></i></a></li>
                         <li><a class="deep-purple-text text-darken-2" href="/orders/list">Orders List <i class="fa fa-shopping-cart right"></i></a></li>
+                        <li><a class="deep-purple-text text-darken-2" href="/blog/new">New Blog Post <i class="fa fa-paragraph right"></i></a></li>
                     }
                     @if (model.user.admin || model.user.role == "merchant") {
                         <li class="divider"></li>
@@ -249,6 +251,7 @@
 									<li><a class="text-darken-2 black-text" href="/mypage">My Page <i class="fa fa-user right"></i></a></li>
 									<li><a class="text-darken-2 black-text" href="/logout">Logout <i class="fa fa-sign-out right"></i></a></li>
                   <li><a href="#hiw_modal" class="modal-trigger">How it works <i class="fa fa-cogs right"></i></a></li>
+                  <li><a href="/blog" class="waves-effect waves-light black-text text-darken-2">Blog <i class="fa fa-comment right"></i></a></li>                
 								</ul>
 							</li>
 						</ul>
@@ -275,6 +278,7 @@
 									<li><a class="waves-effect waves-light black-text text-darken-2" href="/login">@model.__('login') <i class="fa fa-sign-in right"></i></a></li>
 									<li><a class="waves-effect waves-light black-text text-darken-2" href="/signup">@model.__('signup') <i class="fa fa-user-plus right"></i></a></li>
                   <li><a href="#hiw_modal" class="modal-trigger">How it works <i class="fa fa-cogs right"></i></a></li>
+                  <li><a href="/blog" class="waves-effect waves-light black-text text-darken-2">Blog <i class="fa fa-comment right"></i></a></li>                
                 </ul>
 							</li>
 						</ul>
@@ -284,6 +288,7 @@
             </ul>
 					}
           <span class="nav-item mod hide-on-small-only right @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'core-text')">Hotline Hỗ Trợ 0169 987 6023</span>          
+          <a href="/blog" class="nav-item mod hide-on-small-only right @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'core-text')">Blog</a>          
 				</div><!-- .container -->
 			</nav>
 		</div><!-- .navbar -->
