@@ -5,10 +5,9 @@
             <article>
                 <h2 class="center"><a href="/blog/@article.url" >@article.title</a></h2>
                 <div class="content">
-                    @html.raw(model.smart_substr(article.content, 300))                    
-                </div>
-                <div class="info">
-
+                    <!-- blog post -->
+                    @html.raw(model.smart_substr(article.content, 400))                    
+                    <!-- blog post -->
                 </div>
             </article>
         })
