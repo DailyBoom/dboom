@@ -2,7 +2,7 @@
     <div class="container@(model.is_mobile ? '-fluid' : '')" id="blog">
         <h2 class="center">@model.article.title</h2>
         <article class="row">
-            @html.raw(model.article.data)
+            @html.raw(model.article.content)
         </article>
     </div>
     })

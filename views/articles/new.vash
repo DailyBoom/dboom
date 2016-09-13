@@ -19,7 +19,7 @@
             SirTrevor.setDefaults({
                 uploadUrl: "/blog/image-upload",
                 iconUrl: "/bower/sir-trevor-js/build/sir-trevor-icons.svg",
-                blockTypes: ["Text", "Image", "List", "Video"]
+                blockTypes: ["Text", "Image", "Video"]
             });
 
             var editor = new SirTrevor.Editor( {

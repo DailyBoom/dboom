@@ -306,7 +306,8 @@ router.post('/blog/new', isAdmin, function(req, res, next) {
   var article = new Article({
     title: req.body.title,
     url: getSlug(req.body.title, { lang: 'vn' }),
-    data: content,
+    content: content,
+    data: req.body.article,
     published: true
   });
   article.save(function(err){
@@ -338,7 +339,8 @@ router.post('/blog/edit/:id', isAdmin, function(req, res, next) {
 
     article.title = req.body.title;
     article.url = getSlug(req.body.title, { lang: 'vn' });
-    article.data = content;
+    article.data = req.body.article;
+    article.content = content;
     
     article.save(function(err){
       res.redirect('/blog/list');
