@@ -257,7 +257,9 @@ router.post('/add_to_cart', function(req, res) {
         status: "Submitted"
       });
       if (req.user) {
-        order.user = req.user;
+        order.user = req.user.id;
+        if (req.user.shipping)
+          order.shipping = req.user.shipping;
       }
       order.save(function(err) {
         req.session.cart_order = order._id;
@@ -298,25 +300,13 @@ router.get('/mall/checkout', function(req, res) {
       if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
         getOrderCartTotal(order);
         order.save(function(err) {
-          var payco = reserveCartPayco(order);
-          request.post(
-            config.Payco.host+'/outseller/order/reserve',
-            { json: payco },
-            function (error, response, body) {
-              console.log(body)
-              if (!error && body.code == 0) {
-                if (req.user) {
-                  Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
-                    res.render('mall/checkout', { order: order, title: req.__('payment'), coupons: coupons });
-                  });
-                }
-                else
-                  res.render('mall/checkout', { order: order, title: req.__('payment') });
-              }
-              else
-                res.redirect('/mall');
-            }
-          );
+          if (req.user) {
+            Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
+              res.render('mall/checkout', { order: order, title: req.__('payment'), coupons: coupons });
+            });
+          }
+          else
+            res.render('mall/checkout', { order: order, title: req.__('payment') });
         });
       }
       else {

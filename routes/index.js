@@ -58,8 +58,21 @@ var isAdmin = function (req, res, next) {
 router.get('/', function(req, res, next) {
   var date = moment().startOf('isoweek').format("MM/DD/YYYY");
   Product.findOne({scheduled_at: date, is_published: true }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
-    if (!product) {
-      Product.findOne({ _id: "57d27619e4af52823a8a073c" }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
+    Product.find({ is_published: true, extend: 4 }, {}, { sort : { 'created_at' : -1 } }, function(err, mallProducts) {
+      if (!product) {
+        Product.findOne({ _id: "57d27619e4af52823a8a073c" }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
+          var current_quantity = 0;
+          product.options.forEach(function(option) {
+            current_quantity += parseInt(option.quantity);
+          });
+          var progress = (product.quantity - current_quantity) / product.quantity * 100;
+          var sale = (product.old_price - product.price) / product.old_price * 100;
+          Partner.find({}, function(err, partners) {
+            res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, partners: partners, mallProducts: mallProducts });
+          });
+        });
+      }
+      else {
         var current_quantity = 0;
         product.options.forEach(function(option) {
           current_quantity += parseInt(option.quantity);
@@ -67,25 +80,14 @@ router.get('/', function(req, res, next) {
         var progress = (product.quantity - current_quantity) / product.quantity * 100;
         var sale = (product.old_price - product.price) / product.old_price * 100;
         Partner.find({}, function(err, partners) {
-          res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, partners: partners });
+          res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, partners: partners, date: date, mallProducts: mallProducts });
         });
-      });
-    }
-    else {
-      var current_quantity = 0;
-      product.options.forEach(function(option) {
-        current_quantity += parseInt(option.quantity);
-      });
-      var progress = (product.quantity - current_quantity) / product.quantity * 100;
-      var sale = (product.old_price - product.price) / product.old_price * 100;
-      Partner.find({}, function(err, partners) {
-        res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, partners: partners, date: date });
-      });
-    }
+      }
+    });
   });
 });
 
-router.get('/wholesale', function(req, res, next) {
+router.get('/mall', function(req, res, next) {
   Product.find({ extend: 4, is_published: true, is_hot: null }, {}, { sort: { 'created_at' : -1 }}, function(err, products) {
     Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
       res.render('mall', { title: "데일리 붐 쇼핑 몰", description: "데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다.", products: products, hotProducts: hotProducts });
@@ -93,34 +95,31 @@ router.get('/wholesale', function(req, res, next) {
   });
 });
 
-router.get('/wholesale/:brand', function(req, res, next) {
-  Product.find({ brand: req.params.brand, extend: 4, is_published: true }, {}, { sort: { 'created_at' : -1 }}, function(err, products) {
-    if (err)
-      console.log(err);
-    if (!products || products.length == 0)
-      return res.redirect('/wholesale');
-    res.render('mall', { title: "데일리 붐 쇼핑 몰", description: "데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다.", products: products, merchant: req.params.brand, cover: products[0].brand_logo });
-  });
-});
+// router.get('/wholesale/:brand', function(req, res, next) {
+//   Product.find({ brand: req.params.brand, extend: 4, is_published: true }, {}, { sort: { 'created_at' : -1 }}, function(err, products) {
+//     if (err)
+//       console.log(err);
+//     if (!products || products.length == 0)
+//       return res.redirect('/wholesale');
+//     res.render('mall', { title: "데일리 붐 쇼핑 몰", description: "데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다.", products: products, merchant: req.params.brand, cover: products[0].brand_logo });
+//   });
+// });
 
-router.get('/wholesale/:brand/:product_id', function(req, res, next) {
+router.get('/mall/:product_id', function(req, res, next) {
   Product.findOne({ extend: 4, _id: req.params.product_id, is_published: true }, function(err, product) {
     if (!product)
-      return res.redirect('/wholesale');
-    Product.find({ extend: 4, brand: product.brand, _id: { $ne: product.id } }, {}, { sort: { 'created_at' : -1 }}, function(err, pastProducts) {
-      console.log(pastProducts);
-      if (err)
-        console.log(err);
-      if (!product || product.length == 0)
-        return res.redirect('/wholesale');
-      var current_quantity = 0;
-      product.options.forEach(function(option) {
-        current_quantity += parseInt(option.quantity);
-      });
-      var progress = (product.quantity - current_quantity) / product.quantity * 100;
-      var sale = (product.old_price - product.price) / product.old_price * 100;
-      res.render('extended_m', { product: product, title: product.brand + ' - ' + product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: true, cover: product.images[0], mall: true, pastProducts: pastProducts });
-    });    
+      return res.redirect('/mall');
+    if (err)
+      console.log(err);
+    if (!product || product.length == 0)
+      return res.redirect('/mall');
+    var current_quantity = 0;
+    product.options.forEach(function(option) {
+      current_quantity += parseInt(option.quantity);
+    });
+    var progress = (product.quantity - current_quantity) / product.quantity * 100;
+    var sale = (product.old_price - product.price) / product.old_price * 100;
+    res.render('extended_m', { product: product, title: product.brand + ' - ' + product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: true, cover: product.images[0], mall: true });
   });
 });
 

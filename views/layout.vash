@@ -131,7 +131,7 @@
                 </a>
               </li>
             })
-            <div class="col s12 checkout"><a href="/mall/checkout" class="btn green right">구매하기 <i class="fa fa-chevron-right"></i></a></div>
+            <div class="col s12 checkout"><a href="/mall/checkout" class="btn green right">@model.__('mall.checkout') <i class="fa fa-chevron-right"></i></a></div>
         </ul>
       </div>
     }
@@ -164,9 +164,9 @@
                 <!-- Dropdown Structure -->
                 <ul id="dropdown-cart" class="row dropdown-content">
                     <li class="col s12 cart-header">
-                        <span class="col s7 center">상품</span>
-                        <span class="col s2 center">수량</span>
-                        <span class="col s3 center">소계</span>
+                        <span class="col s7 center">@model.__('mall.product')</span>
+                        <span class="col s2 center">@model.__('mall.quantity')</span>
+                        <span class="col s3 center">@model.__('mall.price')</span>
                     </li>
                     @model.cart.forEach(function(item) {
                       <li class="col s12">
@@ -174,13 +174,13 @@
                           <img class="col s3" src="@item.product.images[0]"/>
                           <span class="col s5 truncate">@item.product.name</span>
                           <span class="col s1">@item.quantity</span>
-                          <span class="col s3 cart-price">@(item.product.price * item.quantity) 원</span>
+                          <span class="col s3 cart-price">@(item.product.price * item.quantity)</span>
                         </a>
                       </li>
                       <li class="divider"></li>
                     })
-                    <li class="col s12 checkout"><span class="right">합계: @model.cart_total 원</span></li>
-                    <li class="col s12 checkout"><a href="/mall/checkout" class="btn green right">구매하기 <i class="fa fa-chevron-right"></i></a></li>
+                    <li class="col s12 checkout"><span class="right">@model.__('mall.total'): <span class="cart-price">@model.cart_total</span></span></li>
+                    <li class="col s12 checkout"><a href="/mall/checkout" class="btn green right">@model.__('mall.checkout') <i class="fa fa-chevron-right"></i></a></li>
                 </ul>
               </li>
             </ul>
@@ -214,6 +214,7 @@
                       <li><a class="deep-purple-text text-darken-2" href="/coupons/new">New Coupon <i class="fa fa-plus fa-fw right"></i></a></li>
                       <li><a class="deep-purple-text text-darken-2" href="/partners/new">Add Partner <i class="fa fa-plus fa-fw right"></i></a></li>
                       <li><a class="deep-purple-text text-darken-2" href="/blog/new">New Blog Post <i class="fa fa-paragraph right"></i></a></li>
+                      <li><a class="deep-purple-text text-darken-2" href="/blog/list">Blog List <i class="fa fa-list right"></i></a></li>
                   }
 								</ul>
 							</li>
@@ -223,7 +224,7 @@
 								<!-- Mobile Slider Menu -->
                 <a href="#" data-activates="slide-out" class="button-collapse mod"><i class="fa fa-bars fa-fw @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></i></a>
                 <ul id="slide-out" class="side-nav">
-                    <a class="@(model.product && model.product.color ? model.product.color : 'white') darken-4 @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') center" href="#!">@model.user.username</a>
+                    <a class="@(model.product && model.product.color ? model.product.color : 'white') darken-4 black-text center" href="#!">@model.user.username</a>
                     @if(@model.cart) {
                         <li>
                         <a class='deep-purple-text text-darken-2 modal-trigger' href='#cart-modal'>
@@ -238,6 +239,7 @@
                         <li><a class="deep-purple-text text-darken-2" href="/users/list">Users List <i class="fa fa-users right"></i></a></li>
                         <li><a class="deep-purple-text text-darken-2" href="/orders/list">Orders List <i class="fa fa-shopping-cart right"></i></a></li>
                         <li><a class="deep-purple-text text-darken-2" href="/blog/new">New Blog Post <i class="fa fa-paragraph right"></i></a></li>
+                        <li><a class="deep-purple-text text-darken-2" href="/blog/list">Blog List <i class="fa fa-list right"></i></a></li>
                     }
                     @if (model.user.admin || model.user.role == "merchant") {
                         <li class="divider"></li>
@@ -270,7 +272,7 @@
                 <ul id="slide-out" class="side-nav">
                   @if(@model.cart) {
                     <li>
-                      <a class="modal-trigger waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'white')-text text-darken-2" href='#cart-modal'>
+                      <a class="modal-trigger waves-effect waves-light black-text text-darken-2" href='#cart-modal'>
                         <i class="fa fa-cart-arrow-down fa-cx"></i>@if(@model.cart) {<span class="cart-badge badge">@model.cart.length</span>}
                       </a>
                     </li>
@@ -384,6 +386,7 @@
     }
     <script>
       $(document).ready(function(){
+        $(".cart-price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
         $(document).on('click', '.toast-close', function() {
             $(this).parent().fadeOut(function(){
                 $(this).remove();

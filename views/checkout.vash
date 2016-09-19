@@ -105,8 +105,7 @@
 										<br>
 							<div class="row blue-grey-text text-darken-2">
 								<div class="col s12 m6 l8">
-								<!-- <h5>고객요청 사항</h5> -->
-								<h5>@model.__('checkout.memo')</h5>
+									<h5>@model.__('checkout.memo')</h5>
 								</div>
 								<div class="input-field col s12 m6 l8">
 									<textarea id="comment_body" class="materialize-textarea" name="comment_body" required></textarea>

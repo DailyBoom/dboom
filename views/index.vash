@@ -143,7 +143,12 @@
 						}
 					</div>
 				})
-				
+				@if(model.product.video) {
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/@model.product.video" frameborder="0" allowfullscreen></iframe>
+				}
+				else {
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/4ZU_BZMt87k" frameborder="0" allowfullscreen></iframe>
+				}
 			</div><!-- #main-slider -->
 		</div><!-- .hero-left -->
 		}
@@ -325,6 +330,36 @@
 				</a>
 			</div>
 			<a href="/wholesale" class="hide hide-on-med-and-up buy-help modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
+			<div class="row">
+				<div class="col s12 m12 l12">
+					<div class="row">
+						<div id="db-past" class="owl-carousel owl-theme">
+								@if (model.mallProducts) {
+									@model.mallProducts.forEach(function(product) {
+										<div class="col s12 m12 l12">
+											<div class="card past">
+												<div class="card-image">
+													<div class="card-image-ol">
+														<h5 class="white-text truncate"><b>@product.name</b></h5>
+														<div class="past-divider"></div>
+														<div>
+															<span class="ol-new-p">@product.price</span> (<span class="ol-old-p">@product.old_price</span>)
+														</div>
+													</div><!-- .card-image-ol -->
+													<div class="past-img" style="background-image: url(@(product.mobile_images[0] ? product.mobile_images[0] : product.images[0]))" alt=""></div>
+												</div>
+												<div class="card-action mod center green">
+													<a class="waves-effect waves-light btn-flat white-text text-darken-3 extended-time" href="/mall/@product.id">@model.__('available')!</a>
+												</div>
+											</div>
+										</div>
+									})
+								}
+							<?}?>
+						</div><!-- /.owl-carousel -->
+					</div><!-- .row -->
+				</div><!-- /.col s12 m9 l9 -->
+			</div><!-- .row -->
 			<div class="row">
 				<div class="col s12">
 					<div class="past-box-wrapper @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">

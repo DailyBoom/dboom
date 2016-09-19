@@ -25,15 +25,15 @@
 		<!-- .row -->
 		<div class="row checkout-mall">
 			<div class="col s12 m6 l8 blue-grey-text text-darken-3">
-				<h5>장바구니</h5>
+				<h5>@model.__('mall.cart')</h5>
 				<div class="col s12 white z-depth-1 cart">
-					<div class="col s12 cart-header center"><span class="col s9">상품정보</span><span class="col s3">상품금액</span></div>
+					<div class="col s12 cart-header center"><span class="col s9">@model.__('product.info')</span><span class="col s3">@model.__('mall.product_price')</span></div>
 					@model.order.cart.forEach(function(item, index) {
 						<div class="col s12 cart-item">
 							<a href="/mall/product/@item.product.id"><img class="col s3" src="@item.product.images[0]" /></a>
 							<div class="col s6">
 								<a href="/mall/product/@item.product.id" class="product-name blue-grey-text col s12">@item.product.name (@item.product.options[item.option].name)</a>
-								<div class="col s12">수량: <select data-index="@index" autocomplete="off" class="browser-default product-quantity">
+								<div class="col s12">@model.__('mall.quantity'): <select data-index="@index" autocomplete="off" class="browser-default product-quantity">
 											@for(var i = 1; i <= 10 ; i++) {
 												<option value="@i" @(item.quantity == i ? 'selected="selected"' : '') >@i</option>
 											}
@@ -71,102 +71,53 @@
 				<!-- .row -->
 				<br>
 				<div class="blue-grey-text text-darken-3">
-					<h5 class="left">배송정보</h5>
+					<h5 class="left">@model.__('checkout.address')</h5>
 					<div class="white z-depth-1 col s12">
 						<span class="check-name">@(model.user ? model.user.shipping.full_name : model.order.shipping.full_name)</span>
 						<br><span class="check-number">@(model.user? model.user.shipping.phone_number : model.order.shipping.phone_number)</span>
 						<br><span class="check-address">@(model.user ? model.user.shipping.address : model.order.shipping.address)</span>
-						<br><span class="check-address">(우)@(model.user ? model.user.shipping.zipcode : model.order.shipping.zipcode)</span>
+						<br><span class="check-address">@(model.user ? model.user.shipping.zipcode : model.order.shipping.zipcode)</span>
 						<br>
-						<br><span class="check-address">대한민국</span>
+						<br><span class="check-address">@model.order.city</span>
 						<div class="btn-shipping-edit">
-							<a class="waves-effect waves-light btn blue-grey darken-2" href="/shipping">배송정보 수정</a>
+							<a class="waves-effect waves-light btn blue-grey darken-2" href="/shipping">@model.__('checkout.addressEdit')</a>
 						</div>
 					</div>
 					<br/>
 					<!-- Comments -->
-					<h5 class="left">고객문의 사항</h5>
+					<h5 class="left">@model.__('checkout.memo')</h5>
 					<div class="white z-depth-1 col s12 checkout-comment">
 						<form class="col s12" action="" id="new_comment">
 							<div class="row blue-grey-text text-darken-2">
 								<div class="col s12 m6 l8">
-									<!-- <h5>고객요청 사항</h5> -->
-								</div>
-								<div class="input-field col s12 m6 l8 hide">
-									<select id="request_select" name="request_select">
-										<option value="" disabled selected>배송시 요청사항을 선택해 주세요.</option>
-										<option value="1">배송전 연락바랍니다.</option>
-										<option value="2">경비실에 맡겨주시기 바랍니다.</option>
-										<option value="3">택배함에 놔주세요.</option>
-										<option value="4">집앞에 놔주세요.</option>
-										<option value="5">직접입력...</option>
-									</select>
+									<h5>@model.__('checkout.memo')</h5>
 								</div>
 								<div class="input-field col s12 m6 l8">
 									<textarea id="comment_body" class="materialize-textarea" name="comment_body" required></textarea>
-									<label for="comment_body">예) 상품 구매가 진행되지 않습니다, Payco 결제 시스템 추천합니다 등</label>
+									<label for="comment_body">@model.__('checkout.memoExample')</label>
 								</div>
 							</div>
-							<button type="submit" class="waves-effect waves-light btn blue-grey darken-3">메세지 보내기 <i class="fa fa-paper-plane fa-fw right"></i></button>
+							<button type="submit" class="waves-effect waves-light btn blue-grey darken-3">@model.__('checkout.memoSend') <i class="fa fa-paper-plane fa-fw right"></i></button>
 						</form>
 					</div>
 					<!-- .row -->
-					@if(!model.is_phone && model.getLocale() != 'vi') {
-					<div class="col s12">
-						<br><b style="font-size: 1.2em;">PAYCO 결제 순서</b>
-						<ul class="payco-info">
-							<li>우측 하단에 있는 <b>"PAYCO 구매하기"</b> 버튼을 클릭해주세요.</li>
-							<li>주문정보내역 확인 후 구매하기 버튼 클릭 시 <b>'PAYCO'</b> 결제 인증창이 뜹니다.</li>
-							<li><b>'PAYCO'</b> 결제 인증창에서 정보를 입력하신 후 결제해주세요.</li>
-						</ul>
-					</div>
-					}
 				</div>
 				<!-- .row -->
 			</div>
 			<!-- .col -->
 			<div class="col s12 m6 l4">
 				<div class="blue-grey-text text-darken-3 pg">
-					<h5 class="summary-title">총 주문금액</h5>
+					<h5 class="summary-title">@model.__('mall.total')</h5>
 					<div class="summary-box white z-depth-1 center-align">
 						<div class="check-price-box center">
-							@if (model.order.totalOrderAmt >= 50000 || (model.order.coupon && model.order.coupon.type == 1)) {
-								<span class="check-item-name blue-grey-text text-darken-2">무료 배송</span>
-								<br>
-							}
-							else {
-								<span class="check-item-name blue-grey-text text-darken-2">+ <span id="delivery_price">2500</span> 배송비</span>
-								<br>
-							}
 							<span class="check-price blue-grey-text text-darken-3" id="product_price">@model.order.totalOrderAmt</span>
 						</div>
-						@if(model.getLocale() != 'vi') {
-							<div id="payco_btn_type_A1" class="btn-payco center"></div>
-							<div class="bank-box">
-								<button class="btn btn-large btn-block purple" id="iamport_btn">INICIS 바로결제</button><br/>
-                                <button class="btn btn-large btn-block blue" id="iamport_danal_btn">Danal 휴대폰 결제</button>
-								<img class="responsive-img" src="/images/or_2.png" alt="데일리 붐 or" />
-								<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">무통장입금</a>
-							</div>
-						}
-						else {
-							<div class="bank-box">
-								<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">Next</a>
-							</div>
-						}
+						<div class="bank-box">
+							<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">@model.__('checkout.cash')</a>
+						</div>
 					</div>
 				</div>
 				<!-- .row -->
-				@if(model.is_phone && model.getLocale() != 'vi') {
-					<div class="payco-box-bottom col s12">
-						<b style="font-size: 1.2em;">PAYCO 결제 순서</b>
-						<ol class="payco-info">
-							<li>아래 하단에 있는 <b>"PAYCO 구매하기"</b> 버튼을 클릭해주세요.</li>
-							<li>주문정보내역 확인 후 구매하기 버튼 클릭 시 <b>'PAYCO'</b> 결제 인증페이지로 이동됩니다.</li>
-							<li><b>'PAYCO'</b> 결제 인증창에서 정보를 입력하신 후 결제해주세요.</li>
-						</ol>
-					</div>
-				}
 			</div>
 			<!-- .col -->
 		</div>
@@ -176,35 +127,27 @@
 	
 	<br>
 	<!-- Modal Structure -->
-	<div id="bank_modal" class="modal">
-		<div class="modal-content center">
-			<i class="fa fa-times fa-fw right modal-close"></i>
-			<h4>무통장입금</h4>
-			<form action="/deposit_checkout" method="post">
-				<div class="row">
-					<div class="input-field col s12 m8 offset-m2">
-						<input id="deposit_name" name="deposit_name" type="text" class="validate" required>
-						<label for="deposit_name">입금자 이름</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="bank-title">폭스트론 (주)</div>
-					<div class="bank-number">043-105437-04-016</div>
-					<div class="bank-title">IBK 기업은행</div>
-					<br>
-					<button type="submit" class="waves-effect waves-light btn green darken-2">확인</a>
-						<br>
+		<div id="bank_modal" class="modal">
+			<div class="modal-content center">
+				<i class="fa fa-times fa-fw right modal-close"></i>
+				<h4>@model.__('checkout.cash')</h4>
+				<form action="/deposit_checkout" method="post">
+					<div class="row">
 						<div class="col s12 m8 offset-m2">
 							<p class="bank-info blue-grey-text text-darken-1 center">
-								@model.moment().add(1, 'days').format('LL') 오후 12시까지 이내에 입금을 완료하셔야 신청 처리가 정상적으로 접수됩니다.
-								<br>데일리 붐을 사용해주셔서 감사합니다.
+								@model.__('checkout.confirmText1')<br/>
+								@model.__('checkout.confirmText2')<br/>
+								@model.__('checkout.confirmText3')
 							</p>
 						</div>
-				</div>
-			</form>
-		</div>
-		<!-- .modal -->
-	</div>
+						<br>
+						<br>
+						<button type="submit" class="waves-effect waves-light btn green darken-2">@model.__('checkout.confirm')</a>
+					</div>
+				</form>
+			</div>
+				<!-- .modal -->
+		</div><!-- .container -->
 	<!-- .container -->
 	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.0.js"></script>
 	<script type="text/javascript">
@@ -314,7 +257,7 @@
 			});
 			var lang = '@model.getLocale()';
 			if (lang == 'vi')
-				$("#product_price, #product_price_mobile, #delivery_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+				$("#product_price, #product_price_mobile, #delivery_price, .product-price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
 			else
 				$("#product_price, #product_price_mobile, #delivery_price, .product-price").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});			
 

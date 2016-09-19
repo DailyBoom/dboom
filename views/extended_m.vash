@@ -54,12 +54,12 @@
 </div><!-- #modal-check -->
 <div id="modal-cart-added" class="modal">
 	<div class="modal-header-c white darken-2 black-text center">
-		제품은 장바구니에 추가되었습니다
+		@model.__('mall.added')
 	</div>
 	<div class="modal-content-c">
 		<div class="row">
 			<div class="col s12 center">
-				<a href="/mall/@model.product.brand" class="btn blue col s12 m6">계속 쇼핑하기</a><a href="/mall/checkout" class="col s12 m4 btn green">구매하기</a>
+				<a href="/mall/@model.product.brand" class="btn blue col s12 m6">@model.__('mall.continue')</a><a href="/mall/checkout" class="col s12 m4 btn green">@model.__('mall.checkout')</a>
 			</div>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 @if(model.is_mobile) {
 <div id="modal-add-to-cart" class="modal">
 	<div class="modal-header-c white darken-2 black-text center">
-		옵션선택
+		@model.__('mall.options')
 	</div>
 	<div class="modal-content-c">
 		<div class="row center">
@@ -86,22 +86,36 @@
 				</select>
 			</div>
 			<span class="center min col s2"><i class="fa fa-minus"></i></span><input type="number" value="1" id="quantity" class="col s8 center"/><span class="add col s2 center"><i class="fa fa-plus"></i></span>
-			<p class="center col s12">총 상품금액: <span class="product-price">@model.product.price</span>원</p>
-			<a class="btn orange white-text add_to_cart hide">장바구니 담기 <i class="fa fa-cart-plus"></i></a>
-			<a class="btn red white-text" href="/checkout?product_id=@model.product.id">바로구매하기 <i class="fa fa-chevron-right right"></i></a>
+			<p class="center col s12">@model.__('mall.product_quantity'): <span class="product-price">@model.product.price</span>₫</p>
+			<a class="btn orange white-text add_to_cart">@model.__('mall.add_to_cart') <i class="fa fa-cart-plus"></i></a>
+			<a class="btn red white-text" href="/checkout?product_id=@model.product.id">@model.__('buy_now') <i class="fa fa-chevron-right right"></i></a>
 		</div>
 	</div>
 </div>
 }
 <!-- End Login Modal -->
-@if(model.product.images.length == 1) {
-    <div class="index-parallax-container">
-        <div class="parallax">
-        	<img class="ie-fix" src="@model.product.images[0]" alt="@model.product.name" />
-        </div>
-    </div>
+@if(model.product.images.length == 1 || model.product.mobile_images.length == 1) {
+<!-- Parallax -->
+	@if(model.is_mobile && model.product.mobile_images.length == 1) {
+		<div class="index-mobile-parallax-container">
+			<div class="parallax">
+				<img class="ie-fix" src="@model.product.mobile_images[0]" alt="@model.product.name" />
+				<div class="sale-item">
+					<div class="mod">Sale</div>
+					<div class="item-price">@model.sale%</div>
+				</div>
+			</div>
+		</div>
+	}
+	else if (!model.is_mobile && model.product.images.length == 1) {
+		<div class="index-parallax-container">
+			<div class="parallax">
+				<img class="ie-fix" src="@model.product.images[0]" alt="@model.product.name" />
+			</div>
+		</div>
+	}
 }
-<div class="container">
+<div class="container@(model.is_mobile ? '-fluid' : '')">
 	@if(model.progress >= 50){
 		 <div class="progress-wrapper">
 			<div class="progress-h red lighten-4"></div>
@@ -109,15 +123,47 @@
 			<div class="progress-h-text white-text hide">@model.progress% 팔림</div>
 		</div>
 	}
-@if(model.product.images.length > 1) {    
-	<!-- L Slider -->
+@if(model.product.images.length > 1 || model.product.mobile_images.length > 1) {
+    <!-- L Slider -->
 	<div class="hero-wrapper">
-		<div class="hero-left bxslider-wrap">
+		@if(model.is_mobile && model.product.mobile_images.length > 1) {
+		<div class="hero-left bxslider-wrap mobile-wrap">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
-				@model.product.images.forEach(function(img) {
+				@model.product.mobile_images.forEach(function(img, index) {
 					<div class="slide" style="background-image: url(@img);">
 						@if(model.progress >= 100) {
 							<img class="sold-out" src="/images/sold-out.png" />
+						}
+						else if (model.sale > 0) {
+							<div class="sale-item hide-on-med-and-up">
+								<div class="mod">Sale</div>
+								<div class="item-price">@model.sale%</div>
+							</div>
+						}
+					</div>
+				})
+				@if(model.product.video) {
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/@model.product.video" frameborder="0" allowfullscreen></iframe>
+				}
+				else {
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/4ZU_BZMt87k" frameborder="0" allowfullscreen></iframe>
+				}
+			</div><!-- #main-slider -->
+		</div><!-- .hero-left -->
+		}
+		else if (!model.is_mobile && model.product.images.length > 1){
+		<div class="hero-left bxslider-wrap">
+			<div id="main-slider" class="slider-wrapper z-depth-1">
+				@model.product.images.forEach(function(img, index) {
+					<div class="slide" style="background-image: url(@img);">
+						@if(model.progress >= 100) {
+							<img class="sold-out" src="/images/sold-out.png" />
+						}
+						else if (model.sale > 0) {
+							<div class="sale-item hide-on-med-and-up">
+								<div class="mod">Sale</div>
+								<div class="item-price">@model.sale%</div>
+							</div>
 						}
 					</div>
 				})
@@ -148,14 +194,15 @@
 				</a>
 			}
 		</div><!-- .hero-right -->
+		}
 	</div><!-- .hero-wrapper -->
 }
 </div><!-- .container -->
-<div class="container">
+<div class="container@(model.is_mobile ? '-fluid' : '')">
 	<div class="row">
 		<div class="add-cart-sticky hide-on-small-only" >
 			<div class="col s12">
-				<span class="add-cart-title">옵션선택</span>
+				<span class="add-cart-title">@model.__('mall.options')</span>
 				<hr>
 			</div>
 			<div class="row">
@@ -174,9 +221,9 @@
 					</select>
 				</div>
 				<span class="min col s3"><i class="fa fa-minus"></i></span><input type="number" value="1" id="quantity" class="col s6 center"/><span class="add col s3"><i class="fa fa-plus"></i></span>
-				<p class="center col s12">총 상품금액: <b class="product-price">@model.product.price</b>원</p>
-				<a class="btn btn-block orange white-text add_to_cart hide">장바구니 담기 <i class="fa fa-cart-plus right"></i></a>
-				<a class="btn btn-block red white-text" href="/checkout?product_id=@model.product.id">바로구매하기 <i class="fa fa-chevron-right right"></i></a>
+				<p class="center col s12">@model.__('mall.product_quantity'): <b class="product-price">@model.product.price</b>₫</p>
+				<a class="btn btn-block orange white-text add_to_cart">@model.__('mall.add_to_cart') <i class="fa fa-cart-plus right"></i></a>
+				<a class="btn btn-block red white-text" href="/checkout?product_id=@model.product.id">@model.__('buy_now') <i class="fa fa-chevron-right right"></i></a>
 			</div>
 		</div>
 		<div class="col s12">
@@ -229,9 +276,6 @@
 				@if(model.product.description_image) {
 					<img class="responsive-img" src="@model.product.description_image" alt="" />
 				}
-				<div class="right-align">
-					<a href="#modal-ask" class="hide-on-small-only btn btn-flat buy-help-dd modal-trigger">Can't Read Korean? Click here.</a>
-				</div>
 			</div>
 			<div class="buy-box-footer @(model.product.color ? model.product.color : 'white') lighten-3">
 				<div class="center">
@@ -255,49 +299,51 @@
 		    </div>
 		  </div>
 			<!-- Merchant xInfo -->
-			<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
-		    <li>
-				<div class="collapsible-header @(model.product.color ? model.product.color : 'white') darken-1 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
-					<span>@model.__('shipping_info') <i class="fa fa-info-circle fa-fw right"></i></span>
-				</div>
-				<div class="collapsible-body @(model.product.color ? model.product.color : 'white') lighten-5">
-					@if(model.product.delivery_info) {
-						<img class="responsive-img" src="@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - 데일리 붐" />
-					}
-					else {
-						<div class="item-shipping-info-box">
-							<p><b>배송 진행상황 조회</b></p>
-							<ol class="item-shipping-info">
-								<li>처리상황이 [발송완료]일 때 배송진행사항은 주문내역의 송장번호로 해당 택배사 홈페이지를 통해 확인하실 수 있습니다.</li>
-								<li>발송완료 등록 및 발송완료 SMS 문자 메시지를 받으신 후 고객님께 배달완료 되기까지 1~2일정도 소요됩니다. (토요일, 공휴일 제외)</li>
-								<li>택배사 또는 고객사정(고객님 연락이 되지 않을 경우)으로 인해 배송이 지연되는 경우가 있으니 해당 택배사로 전화문의를 하시면 배송상태를 확인 하실 수 있습니다.</li>
-							</ol>
-							<p><b>제품 교환/환불 정책</b></p>
-							<span>모든 제품은 해당 제품 회사의 물품 환불 및 교환 정책에 따릅니다.</span>
-							<br><span>해당 제품 회사가 아직 배송관련 교환 및 환불 정책이 없을 때, 모든 물품은 수령한지 10일 이내에 사용하지 않은 새 것 일 때 교환및 환불이 가능합니다. 환불을 원하는 경우, 해당 회사에 직접 연락을 하거나 데일리 붐 회계팀(contact@dailyboom.co)로 연락주시기 바랍니다.</span>
+			<div class="mt-info">
+				<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
+					<li>
+						<div class="collapsible-header @(model.product.color ? model.product.color : 'white') darken-1 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
+							<span>@model.__('shipping_info') <i class="fa fa-chevron-down fa-fw right"></i></span>
 						</div>
-					}
-				</div>
-		    </li>
-		  </ul>
+						<div class="collapsible-body @(model.product.color ? model.product.color : 'white') lighten-5">
+							<div class="item-shipping-info-box">
+								<p><b>Shipping, return and exchange policy</b></p>
+								<p class="item-shipping-info">
+									<b>Chính sách giao hàng</b><br/>
+									Địa chỉ giao hàng cần được điền đầy đủ khi đặt hàng, trước khi thanh toán đơn hàng.<br/>
+									Mọi thay đổi cần phải liên hệ trực tiếp qua XYZ hoặc email XYZ<br/>
+									– Giao hàng miễn phí tại các quận nội thành HCM: quận 1,2,3,4,5,6,7,8,10,11, Bình Thạnh, Gò Vấp, Phú Nhuận, Tân Bình, Tân Phú<br/>
+									– Tính phí giao hàng 10.000 vnđ/hộp đối với các quận ngoại thành: quận 9, 12, Thủ Đức, Bình Tân,Hóc Môn, Bình Chánh, Nhà Bè, Củ Chi<br/>
+									– Tính phí giao hàng 30.000 vnđ/hộp đối với nội thành Hà Nội và Đà Nẵng<br/>
+									– Tính phí giao hàng 50.000 vnđ/hộp đối với các tỉnh, thành khác trên toàn quốc<br/>
+									Phí giao hàng tới các vùng lận cận/tỉnh xa phụ thuộc vào địa chỉ giao hàng.
+								</p>
+								<p class="item-shipping-info">
+									<b>Chính sách đổi hoặc trả hàng</b><br/>
+									Với những sản phẩm có tem của Yppuna  nếu phát hiện là nhái fake/không đúng hãng, chúng tôi sẽ hoàn trả lại tiền 100%.<br/> 
+									Những đơn hàng đã được nhận và mở rồi sẽ không được chấp nhận đổi hoặc trả.<br/>
+									Những sản phẩm bị lỗi do bộ phận giao hàng (hộp bị hỏng, vỡ) nên được hoàn trả lại cho bộ phận giao hàng ngay lập tức.<br/>
+									Đối với những lỗi sản phẩm bên trong hộp, bao gồm sản phẩm đã bị chảy, đã mở, không sử dụng được, khách hàng hoàn trả lại cho Yppuna và sẽ được gửi sản phẩm mới thay thế. Với những trường hợp này, bạn có thể liên hệ qua email yppuna@gmail.com cùng với hình ảnh của sản phẩm bị lỗi. 
+								</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
 
 			<!-- Mobile -->
-			<div class="hide-on-med-and-up mobile-buy @(model.product.color ? model.product.color : 'white') darken-3">
-				@if (model.sale > 0) {
+			<div class="hide-on-med-and-up mobile-buy white-text">
+				<a class="modal-trigger" id="add_to_cart_m" href="#modal-add-to-cart">
 					<div class="m-item">
-						<div class="item-price-o mod red-text text-lighten-2">SALE</div>
-						<div class="item-price @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.sale%</div>
+						<div class="item-price-o" id="product_old_price_mobile">@model.product.old_price</div>
+						<div class="item-price" id="product_price_mobile">@model.product.price</div>
 					</div>
-				}
-				<div class="m-item">
-					@if (model.sale > 0) {
-						<div class="item-price-o red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
-					}
-					<div class="item-price @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" id="product_price_mobile">@model.product.price</div>
-				</div>
-				<a class="btn red @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') right modal-trigger" id="add_to_cart_m" href="#modal-add-to-cart">옵션선택</a>
+					<div class="hide-on-med-and-up right buy-text">
+						@model.__('buy_now')
+					</div>
+				</a>
 			</div>
-			<a href="#modal-ask" class="hide-on-med-and-up buy-help modal-trigger">Can't Read Korean? Click here.</a>
+			
 
 		@if (model.pastProducts) {
 			<div class="past-box-wrapper @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
