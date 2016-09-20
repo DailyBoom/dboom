@@ -346,7 +346,7 @@
 															<span class="ol-new-p">@product.price</span> (<span class="ol-old-p">@product.old_price</span>)
 														</div>
 													</div><!-- .card-image-ol -->
-													<div class="past-img" style="background-image: url(@(product.mobile_images[0] ? product.mobile_images[0] : product.images[0]))" alt=""></div>
+													<div class="past-img" style="background-image: url('@(product.mobile_images[0] ? product.mobile_images[0] : product.images[0])')" alt=""></div>
 												</div>
 												<div class="card-action mod center green">
 													<a class="waves-effect waves-light btn-flat white-text text-darken-3 extended-time" href="/mall/@product.id">@model.__('available')!</a>
