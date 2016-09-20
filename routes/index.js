@@ -17,6 +17,7 @@ var multer = require('multer');
 var crypto = require('crypto');
 var mime = require('mime-types');
 var getSlug = require('speakingurl');
+var striptags = require('striptags');
   
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -363,7 +364,22 @@ router.post('/blog/image-upload', upload.single('attachment[file]'), function(re
 
 router.get('/blog/:url', function(req, res, next) {
   Article.findOne({ url: req.params.url }, function(err, article) {
-    res.render('articles/view', { article: article, title: article.title });
+    var description;
+    var cover;
+    JSON.parse(article.data).data.some(function(data) {
+      if(data.type == "text") {
+          description = striptags(data.data.text);
+          return true;
+      }
+    });
+    JSON.parse(article.data).data.some(function(data) {
+      if(data.type == "image") {
+          cover = data.data.file.url;
+          return true;
+      }
+    });
+    console.log(cover);
+    res.render('articles/view', { article: article, title: article.title, description: description, cover: cover });
   });
 });
 

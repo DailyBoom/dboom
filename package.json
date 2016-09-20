@@ -51,7 +51,8 @@
     "passport-google-oauth": "~1.0.0",
     "shortid": "~2.2.6",
     "moment-timezone": "~0.5.5",
-    "speakingurl": "~9.0.0"
+    "speakingurl": "~9.0.0",
+    "striptags": "~2.1.1"
   },
   "description": "",
   "main": "app.js",
