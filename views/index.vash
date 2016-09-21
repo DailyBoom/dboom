@@ -343,7 +343,10 @@
 														<h5 class="white-text truncate"><b>@product.name</b></h5>
 														<div class="past-divider"></div>
 														<div>
-															<span class="ol-new-p">@product.price</span> (<span class="ol-old-p">@product.old_price</span>)
+															<span class="ol-new-p">@product.price</span> 
+															@if(product.old_price) {
+																@: (<span class="ol-old-p">@product.old_price</span>) 
+															}
 														</div>
 													</div><!-- .card-image-ol -->
 													<div class="past-img" style="background-image: url('@(product.mobile_images[0] ? product.mobile_images[0] : product.images[0])')" alt=""></div>
