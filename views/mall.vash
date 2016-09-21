@@ -15,7 +15,7 @@
 									</a>
 								</div>
 								<div class="card-content">
-									<a href="/mall/@product.brand"><span>@product.brand</span></a>
+									<span>@product.brand</span>
 									<div class="mall-title left"><a href="/mall/@product.id"><b>@product.name</b></a></div>
 									<!--<a class="right" href="/mall/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>-->
 									<p class="mall-price-o">@(product.old_price != product.price ? product.old_price : '')</p>
@@ -41,7 +41,7 @@
 									</a>
 								</div>
 								<div class="card-content mall">
-									<a href="/mall/@product.brand"><span>@product.brand</span></a>
+									<span>@product.brand</span>
 									<div class="mall-title left"><a href="/mall/@product.id"><b>@product.name</b></a></div>
 									<!--<a class="right" href="/mall/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>-->
 									<!--<button class="btn-xs add_cart right" data-id="@product.id">Add to cart <i class="fa fa-cart-plus"></i></button>-->
