@@ -2716,6 +2716,39 @@ input[type=number]::-webkit-outer-spin-button {
     background-repeat: no-repeat;
     background-size: cover;
   }
+
+  /* Comments */
+  #comments {
+    margin: 50px 0;
+  }
+
+  #comments form {
+    border: 1px solid #b3b3b3;
+    border-radius: 10px;
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+  }
+
+  #comments .comment_list .comment {
+    margin: 20px 0;
+  }
+
+  #comments .comment_list .comment .username {
+    margin-right: 5px;
+  }
+
+  #comments .comment_list .comment .time {
+    font-size: 10px;
+  }
+  
+  #comments .comment_list .comment .com_info {
+    margin-bottom: 10px;
+  }
+
+  #comments .comment_list .comment .com_text span {
+    margin-left: 20px;
+  }
 }
 @media only screen and (min-width: 601px) {
   .error-template {

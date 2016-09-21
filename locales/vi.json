@@ -179,5 +179,11 @@
 	"mall.product_price": "Giá của sản phẩm",
 	"mall.total": "Tổng số tiền đặt hàng",
 	"mall.product": "Sản phẩm",
-	"mall.price": "Giá của"
+	"mall.price": "Giá của",
+	"blog.share": "Chia sẻ",
+	"blog.comments": "Bình luận",
+	"blog.new_comment": "Những bình luận gần đây",
+	"blog.submit": "Gửi",
+	"blog.delete": "Xóa bỏ",
+	"blog.login": "Bạn phải <a href='/login'>đăng nhập</a> để bình luận"
 }

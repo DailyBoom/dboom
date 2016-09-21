@@ -5,6 +5,7 @@ var moment = require('moment');
 var User = require('../models/user');
 var Product = require('../models/product');
 var Coupon = require('../models/coupon');
+var Comment = require('../models/comment');
 var Partner = require('../models/partner');
 var Article = require('../models/article');
 var smtpTransport = require('nodemailer-smtp-transport');
@@ -358,9 +359,34 @@ router.get('/blog/delete/:id', isAdmin, function(req, res, next) {
   });
 });
 
+router.get('/blog/comments/delete/:id', isAdmin, function(req, res, next) {
+  Comment.findOneAndRemove({ _id: req.params.id }, function(err, article) {
+    res.redirect('back');
+  });
+});
+
 router.post('/blog/image-upload', upload.single('attachment[file]'), function(req, res, next) {
   res.json({ file: { url: '/' + req.file.path } });
 });
+
+router.post('/blog/new_comment', function(req, res, next) {
+  var comment = new Comment({
+    article: req.body.id,
+    user: req.user.id,
+    body: striptags(req.body.comment)
+  });
+
+  comment.save(function(err) {
+    console.log(comment.body);
+    if (err) {
+      console.log(err);
+      res.status(500).json({ error: err });
+    }
+    else {
+      res.status(200).json({ id: comment._id, body: comment.body, username: req.user.username });
+    }
+  });
+})
 
 router.get('/blog/:url', function(req, res, next) {
   Article.findOne({ url: req.params.url }, function(err, article) {
@@ -379,7 +405,9 @@ router.get('/blog/:url', function(req, res, next) {
       }
     });
     console.log(cover);
-    res.render('articles/view', { article: article, title: article.title, description: description, cover: cover });
+    Comment.find({ article: article._id }, {}, { sort: { created_at: -1 }}).populate('user').exec(function(err, comments) {
+      res.render('articles/view', { article: article, title: article.title, description: description, cover: cover, comments: comments });
+    });
   });
 });
 

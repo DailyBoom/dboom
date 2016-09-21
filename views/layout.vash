@@ -85,6 +85,7 @@
 		<script src="/javascripts/jquery.bxslider.min.js"></script>
 		<script src="/javascripts/fitvids.js"></script>
 		<script src="/javascripts/moment.js"></script>
+		<script src="/javascripts/moment-vi.js"></script>
 		<script src="/javascripts/moment-timezone-with-data.js"></script>
     <!-- Custom JS -->
 		<script src="/javascripts/formatCurrency/jquery.formatCurrency-1.4.0.min.js"></script>
