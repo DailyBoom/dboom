@@ -1,28 +1,11 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
-		<div class="container m-y-3">
-			@if(model.merchant) {
-				<div class="row">
-					<div class="col s12 center">
-						@if(model.products[0].brand_logo) {
-							<img class="img-brand-mall" src="@model.products[0].brand_logo" alt="@model.products[0].brand - 데일리 붐 판매자" />
-						}
-						<!-- <h3>@model.products[0].brand</h3> -->
-					</div>
-				</div><!-- .row -->
-			}
-			else {
+		<div class="container">
+			@if(model.hotProducts.length > 0) {
 				<div class="row">
 					<div class="col s12 center">
 						<h4 class="m-t-3 p-y-1">Hot Item</h4>
 					</div>
-				</div><!-- .row -->
-			}
-		</div><!-- .container -->
-
-		<div class="container">
-			@if(!model.merchant) {
-				<div class="row">
 					@model.hotProducts.forEach(function(product) {
 						<div class="col s12 m4 m-y-3">
 							<div class="card">
@@ -42,19 +25,12 @@
 						</div>
 					})
 				</div><!-- .row -->
+			}
 				<div class="row">
 					<div class="col s12 center m-t-3 p-y-1">
 						<h4>Yppuna Mall</h4>
 					</div>
 				</div><!-- .row -->
-			}
-			else {
-				<div class="row">
-					<div class="col s12 center m-t-3 p-t-2">
-						<h4>@model.products[0].brand Exclusive Store</h4>
-					</div>
-				</div><!-- .row -->
-			}
 				<div class="row">
 					@model.products.forEach(function(product) {
 						<div class="col s12 m4 m-y-3">
@@ -82,7 +58,7 @@
 	})
 })
 <script>
-	$(".mall-price-o, .mall-price-n").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
+	$(".mall-price-o, .mall-price-n").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
 	$(".add_cart").on("click", function() {
 		var id = $(this).data("id");
 		$.ajax({
