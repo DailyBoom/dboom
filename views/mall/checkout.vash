@@ -224,7 +224,7 @@
 				});
 				
 				$('.cart-remove').on("click", function() {
-					if (confirm('are you sure?')) {
+					if (confirm('Bạn có chắc muốn huỷ mua sản phẩm này ?')) {
 						var index = $(this).data("index");
 						$.ajax({
 							type: "POST",
