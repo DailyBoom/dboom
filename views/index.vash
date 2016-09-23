@@ -529,10 +529,12 @@ $(window).scroll(function() {
 			itemsDesktopSmall : [992,2],
 			itemsTablet: [600,1],
 			itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
-			navigation: false,
+			navigation: true,
+			navigationText: ["<", ">"],
 			pagination: false,
 			responsive: true,
-			rewindNav: false
+			rewindNav: true,
+			autoPlay: true
 		});
 		var partners = $("#db-partners");
 		partners.owlCarousel({

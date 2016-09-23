@@ -16,7 +16,7 @@
     <script>    
         $(document).ready(function () {
 
-            var data = '@html.raw(model.article.data)';
+            var data = `@html.raw(model.article.data)`;
             $('.js-st-instance').val(data);
             
             SirTrevor.setDefaults({
