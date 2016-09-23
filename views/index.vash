@@ -330,6 +330,7 @@
 				</a>
 			</div>
 			<a href="/wholesale" class="hide hide-on-med-and-up buy-help modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
+			<div class="mall-container"><h3 class="center core-text mall-title"><a href="/mall" class="core-text">Bán Chạy Nhất</a></h3></div>
 			<div class="row">
 				<div class="col s12 m12 l12">
 					<div class="row">
