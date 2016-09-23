@@ -292,6 +292,7 @@
 					}
           <span class="nav-item mod hide-on-small-only right @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'core-text')">Hotline Hỗ Trợ 0169 987 6023</span>          
           <a href="/blog" class="nav-item mod hide-on-small-only right @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'core-text')">Blog</a>          
+          <a href="/mall" class="nav-item mod hide-on-small-only right @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'core-text')">Bán Chạy Nhất</a>          
 				</div><!-- .container -->
 			</nav>
 		</div><!-- .navbar -->
