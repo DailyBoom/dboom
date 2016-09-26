@@ -606,13 +606,13 @@ input[type=number]::-webkit-outer-spin-button {
     text-align: center;
   }
 
-  .mall-title {
+  .mall-header {
     display: inline-block;
     padding: 0 15px;
     position: relative
   }
 
-  .mall-title:before, .mall-title:after {
+  .mall-header:before, .mall-header:after {
     content: "";
     display: block;
     height: 15px;
@@ -623,11 +623,11 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: #ef9e9f;
   }
 
-  .mall-title:before {
+  .mall-header:before {
     right: 100%;
   }
 
-  .mall-title:after {
+  .mall-header:after {
     left: 100%;
   }
 
@@ -1951,11 +1951,11 @@ input[type=number]::-webkit-outer-spin-button {
   width: 100%;
 }
 @media only screen and (min-width: 0) {
-  /*.mall-title {
+  .mall-title {
     width: 100%;
     font-size: 1.25em;
     margin-bottom: 3px;
-  }*/
+  }
   .mall-btn-buy {
     margin-top: 5px;
     height: 45px;
