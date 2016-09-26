@@ -7,7 +7,13 @@
                 <label for="title">Title</label>
             </div>
             <label for="article">Content</label>
-            <textarea name="article" id="article" class="js-st-instance"></textarea>
+            <textarea name="article" id="article" class="js-st-instance">@html.raw(model.article.data)</textarea>
+            <label for="tags">Tags</label>
+            <ul id="tags" name="tags"></ul>
+            <div class="input-field col s12 m12 l12">
+                <input type="checkbox" name="publish" id="publish" checked="@model.article.publish ? 'checked': ''"/>
+                <label for="publish">Publish</label>
+            </div>
             <button class="btn right">Post</button>
         </form>
     </div>
@@ -15,9 +21,10 @@
     <link rel="stylesheet" type="text/css" href="/bower/sir-trevor-js/build/sir-trevor.css" />
     <script>    
         $(document).ready(function () {
+            $("#tags").tagit();
 
-            var data = `@html.raw(model.article.data)`;
-            $('.js-st-instance').val(data);
+            // var data = `@html.raw(model.article.data)`;
+            // $('.js-st-instance').val(data);
             
             SirTrevor.setDefaults({
                 uploadUrl: "/blog/image-upload",

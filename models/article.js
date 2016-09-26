@@ -6,6 +6,7 @@ var articleSchema = new Schema({
     url: String,
     data: Object,
     content: String,
+    tags: [String],
     published: Boolean,
     created_at: { type: Date, default: Date.now }
 });

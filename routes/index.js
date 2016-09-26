@@ -294,6 +294,7 @@ router.get('/blog/new', isAdmin, function(req, res, next) {
 });
 
 router.post('/blog/new', isAdmin, function(req, res, next) {
+  console.log(req.body);
   var content = "";
   JSON.parse(req.body.article).data.forEach(function(data) {
       console.log(data);
@@ -313,7 +314,8 @@ router.post('/blog/new', isAdmin, function(req, res, next) {
     url: getSlug(req.body.title, { lang: 'vn' }),
     content: content,
     data: req.body.article,
-    published: true
+    tags: req.body.tags,
+    published: req.body.publish
   });
   article.save(function(err){
     res.redirect('/blog/list');
@@ -346,6 +348,7 @@ router.post('/blog/edit/:id', isAdmin, function(req, res, next) {
     article.url = getSlug(req.body.title, { lang: 'vn' });
     article.data = req.body.article;
     article.content = content;
+    article.tags = req.body.tags;
     
     article.save(function(err){
       res.redirect('/blog/list');

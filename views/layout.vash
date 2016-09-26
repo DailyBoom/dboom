@@ -68,6 +68,9 @@
 		<link rel="stylesheet" href="/stylesheets/materialize.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
+		<!-- Tag-it CSS -->
+		<link rel="stylesheet" href="/stylesheets/jquery.tagit.css" />
+    
 		<!-- Sliders CSS -->
 		<link rel="stylesheet" href="/stylesheets/owl.carousel.css" />
 		<link rel="stylesheet" href="/stylesheets/owl.theme.css" />
@@ -75,11 +78,15 @@
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="/stylesheets/styles.css">
 		<link rel="stylesheet" href="/stylesheets/theme.css">
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
 
 		<!-- jQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
 		<!-- Materialize CSS JS -->
 		<script src="/javascripts/materialize.min.js"></script>
+		<!-- Tag-itS JS -->
+		<script src="/javascripts/tag-it.min.js"></script>
     <!-- Slider JS -->
 		<script src="/javascripts/owl.carousel.min.js"></script>
 		<script src="/javascripts/jquery.bxslider.min.js"></script>
@@ -95,8 +102,6 @@
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <!-- Modernizr -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-    <!-- Payco -->
-    <script type="text/javascript" src="https://static-bill.nhnent.com/payco/checkout/js/payco.js" charset="UTF-8"></script>
     <!--[if IE 9]>
       <style>
       .ie-fix { left: 0 !important; top: 0 !important; }
