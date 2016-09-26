@@ -2659,6 +2659,10 @@ input[type=number]::-webkit-outer-spin-button {
     border-bottom: 1px solid #cfd8dc;
   }
 
+  #blog article .content {
+    margin-bottom: 30px;
+  }
+
   #blog article a {
     color: #ef9e9f;
   }
@@ -2680,6 +2684,11 @@ input[type=number]::-webkit-outer-spin-button {
   #blog article iframe {
     width: 100%;
   }
+
+  #blog .tags a {
+    padding: 5px;
+    margin-right: 5px;
+  }
 }
 
 @media only screen and (min-width: 992px) {
@@ -2699,7 +2708,6 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 0 0 50px;
     display: inline-block;
     width: 100%;
-    border-bottom: 1px solid #cfd8dc;
   }
 
 

@@ -9,7 +9,11 @@
             <label for="article">Content</label>
             <textarea name="article" id="article" class="js-st-instance">@html.raw(model.article.data)</textarea>
             <label for="tags">Tags</label>
-            <ul id="tags" name="tags"></ul>
+            <ul id="tags" name="tags">
+                @model.article.tags.forEach(function(tag) {
+                    <li>@tag</li>
+                })
+            </ul>
             <div class="input-field col s12 m12 l12">
                 <input type="checkbox" name="publish" id="publish" checked="@model.article.publish ? 'checked': ''"/>
                 <label for="publish">Publish</label>

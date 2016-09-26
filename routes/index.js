@@ -274,11 +274,14 @@ var smart_substr = function(str, len) {
 }
 
 router.get('/blog', function(req, res, next) {
-  Article.find({ published: true }, {}, { sort: { 'created_at': -1 } }, function(err, articles) {
+  var query = Article.find({ published: true }, {}, { sort: { 'created_at': -1 } });
+  if (req.query.tag) {
+    query.where('tags', req.query.tag);
+  }
+  query.exec(function(err, articles) {
     if (err) {
       console.log(err);
     }
-    console.log(articles.length)
     res.render('articles/index', { articles: articles, smart_substr: smart_substr });
   });
 });

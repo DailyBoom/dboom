@@ -5,10 +5,15 @@
             <article>
                 <h2 class="center"><a href="/blog/@article.url" >@article.title</a></h2>
                 <div class="content">
-                    <!-- blog post -->
-                    @html.raw(model.smart_substr(article.content, 400))                    
-                    <!-- blog post -->
+                    @html.raw(model.smart_substr(article.content, 400))...
                 </div>
+                @if(article.tags.length > 0) {
+                    <div class="tags">
+                        tags: @article.tags.forEach(function(tag) {
+                            <a href="/blog?tag=@tag" class="core-color white-text">@tag</a>
+                        })
+                    </div>
+                }
             </article>
         })
     </div>
