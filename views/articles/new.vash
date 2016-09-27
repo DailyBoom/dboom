@@ -1,4 +1,5 @@
 @html.extend("layout", function(model) { @html.block("body", function(model) {
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
     <div class="container">
         <h2 class="center">New Blog Post</h2>
         <form action="/blog/new" method="POST" class="st-form">
