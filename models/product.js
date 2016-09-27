@@ -7,6 +7,7 @@ var productSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
   description_image: String,
+  homepage_image: String,
   brand: { type: String, required: false },
   brand_logo: { type: String, required: false },
   company_url: { type: String, required: false },

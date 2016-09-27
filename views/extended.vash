@@ -53,22 +53,31 @@
 	</div>
 </div><!-- #modal-check -->
 <!-- End Login Modal -->
-@if(!model.no_time){
-	<div class="hide-on-small-only buy-sticky-wrapper @(model.product.color ? model.product.color : 'white')">
-		@if (model.user) {
-			@if (model.progress < 100) {
-				<a class="center btn btn-large buy-mod red darken-1 right" href="/checkout?product_id=@model.product.id"> 구매하기 <i class="fa fa-chevron-right fa-fw"></i> </a>
-			}
+<div id="buy-sticky" class="hide-on-small-only buy-sticky-wrapper center @(model.product.color ? model.product.color : 'white')">
+	<a href="/wholesale" class="hide buy-help-d modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
+	@if (model.user) {
+		@if (model.progress < 100) {
+			<a href="/checkout?product_id=@model.product.id">
+				<span class="buy-mod right core-color white-text btn" >MUA NGAY</span>
+			</a>
 		}
-		else {
-			@if (model.progress < 100) {
-				<a class="center btn btn-large buy-mod red darken-1 right modal-trigger" href="#modal-check"> 구매하기 <i class="fa fa-chevron-right fa-fw"></i> </a>
-			}
+	}
+	else {
+		@if (model.progress < 100) {
+			<a href="#modal-check" class="modal-trigger right">
+				<span class="buy-mod right core-color white-text btn" >MUA NGAY</span>
+			</a>
 		}
-		<span id="time-left-label" class="hide d-clock label @(model.product.color ? model.product.color : 'white') @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') left">@model.__('time_left')</span>
-		<br><span id="time-left" class="hide d-clock @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') left"></span>
-	</div>
-}
+	}
+	<!-- time left -->
+	@if (model.moment().day() == 6) {
+		<span id="time-left-label" class="d-clock label @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.__('time_left')</span>
+		<br><span id="time-left" class="d-clock @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></span>
+	}
+	else {
+		<span id="time-left-label" class="d-day label @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.moment().add(1, 'weeks').startOf('isoweek').add(1, 'days').diff(model.moment(), 'days') Ngày Nữa</span>		
+	}
+</div>
 @if(model.product.images.length == 1 || model.product.mobile_images.length == 1) {
 <!-- Parallax -->
 	@if(model.is_mobile && model.product.mobile_images.length == 1) {
@@ -226,31 +235,29 @@
 				<div class="right-align">
 				@if (model.user) {
 					@if (model.progress < 100) {
-						<a class="hide-on-small-only btn btn-large buy-mod red darken-1" href="/checkout?product_id=@model.product.id">구매하기 <i class="fa fa-chevron-right fa-fw"></i></a>
+						<a class="hide-on-small-only btn btn-large buy-mod core-color darken-1" href="/checkout?product_id=@model.product.id">@model.__('buy_today') <i class="fa fa-chevron-right fa-fw"></i></a>
 					}
 				}
 				else {
 					@if (model.progress < 100) {
-						<a class="hide-on-small-only btn btn-large buy-mod red darken-1 modal-trigger" href="#modal-check">구매하기 <i class="fa fa-chevron-right fa-fw"></i></a>
+						<a class="hide-on-small-only btn btn-large buy-mod core-color darken-1 modal-trigger" href="#modal-check">@model.__('buy_today') <i class="fa fa-chevron-right fa-fw"></i></a>
 					}
 				}
 					<br><br>
-					<a href="#modal-ask" class="hide-on-small-only btn btn-flat buy-help-dd modal-trigger">Can't Read Korean? Click here.</a>
 				</div>
 			</div>
 			<div class="buy-box-footer @(model.product.color ? model.product.color : 'white') lighten-3">
 				<div class="center">
-					<!-- <span class="share-text white-text">share</span> -->
+					<span class="share-text @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Share Product</span>
 					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
-					<img id="sharekakao" class="social" src="/images/icon_kakao.png" alt="Kakao Logo" />
-					<a href="mailto:?subject=데일리 붐: 오늘 뭐 사지?&body=http://dailyboom.co"><img id="sharemail"  class="social" src="/images/icon_email.png" alt="Email Image" /></a>
+					<a href="mailto:?subject=Yppuna&body=http://dailyboom.co"><img id="sharemail"  class="social" src="/images/icon_email.png" alt="Email Image" /></a>
 					<a class="modal-trigger" href="#share_url_modal"><img id="shareurl" class="social" src="/images/link_icon.png" alt="Link Image" /></a>
 				</div>
 			</div><!-- .buy-box-footer -->
 			<!-- Modal Structure -->
 		  <div id="share_url_modal" class="modal">
 				<div class="modal-header @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') center">
-					공유하기
+					Share Product
 				</div>
 		    <div class="modal-content">
 					<input readonly type="text" id="share_url" value="http://dailyboom.co">
@@ -267,21 +274,26 @@
 							<span>@model.__('shipping_info') <i class="fa fa-chevron-down fa-fw right"></i></span>
 						</div>
 						<div class="collapsible-body @(model.product.color ? model.product.color : 'white') lighten-5">
-							@if(model.product.delivery_info) {
-							<img class="responsive-img" src="@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - 데일리 붐"/> }
-							else {
 							<div class="item-shipping-info-box">
-								<p><b>배송 진행상황 조회</b></p>
-								<ol class="item-shipping-info">
-									<li>처리상황이 [발송완료]일 때 배송진행사항은 주문내역의 송장번호로 해당 택배사 홈페이지를 통해 확인하실 수 있습니다.</li>
-									<li>발송완료 등록 및 발송완료 SMS 문자 메시지를 받으신 후 고객님께 배달완료 되기까지 1~2일정도 소요됩니다. (토요일, 공휴일 제외)</li>
-									<li>택배사 또는 고객사정(고객님 연락이 되지 않을 경우)으로 인해 배송이 지연되는 경우가 있으니 해당 택배사로 전화문의를 하시면 배송상태를 확인 하실 수 있습니다.</li>
-								</ol>
-								<p><b>제품 교환/환불 정책</b></p>
-								<span>모든 제품은 해당 제품 회사의 물품 환불 및 교환 정책에 따릅니다.</span>
-								<br><span>해당 제품 회사가 아직 배송관련 교환 및 환불 정책이 없을 때, 모든 물품은 수령한지 10일 이내에 사용하지 않은 새 것 일 때 교환및 환불이 가능합니다. 환불을 원하는 경우, 해당 회사에 직접 연락을 하거나 데일리 붐 회계팀(contact@dailyboom.co)로 연락주시기 바랍니다.</span>
+								<p><b>Shipping, return and exchange policy</b></p>
+								<p class="item-shipping-info">
+									<b>Chính sách giao hàng</b><br/>
+									Địa chỉ giao hàng cần được điền đầy đủ khi đặt hàng, trước khi thanh toán đơn hàng.<br/>
+									Mọi thay đổi cần phải liên hệ trực tiếp qua XYZ hoặc email XYZ<br/>
+									– Giao hàng miễn phí tại các quận nội thành HCM: quận 1,2,3,4,5,6,7,8,10,11, Bình Thạnh, Gò Vấp, Phú Nhuận, Tân Bình, Tân Phú<br/>
+									– Tính phí giao hàng 10.000 vnđ/hộp đối với các quận ngoại thành: quận 9, 12, Thủ Đức, Bình Tân,Hóc Môn, Bình Chánh, Nhà Bè, Củ Chi<br/>
+									– Tính phí giao hàng 30.000 vnđ/hộp đối với nội thành Hà Nội và Đà Nẵng<br/>
+									– Tính phí giao hàng 50.000 vnđ/hộp đối với các tỉnh, thành khác trên toàn quốc<br/>
+									Phí giao hàng tới các vùng lận cận/tỉnh xa phụ thuộc vào địa chỉ giao hàng.
+								</p>
+								<p class="item-shipping-info">
+									<b>Chính sách đổi hoặc trả hàng</b><br/>
+									Với những sản phẩm có tem của Yppuna  nếu phát hiện là nhái fake/không đúng hãng, chúng tôi sẽ hoàn trả lại tiền 100%.<br/> 
+									Những đơn hàng đã được nhận và mở rồi sẽ không được chấp nhận đổi hoặc trả.<br/>
+									Những sản phẩm bị lỗi do bộ phận giao hàng (hộp bị hỏng, vỡ) nên được hoàn trả lại cho bộ phận giao hàng ngay lập tức.<br/>
+									Đối với những lỗi sản phẩm bên trong hộp, bao gồm sản phẩm đã bị chảy, đã mở, không sử dụng được, khách hàng hoàn trả lại cho Yppuna và sẽ được gửi sản phẩm mới thay thế. Với những trường hợp này, bạn có thể liên hệ qua email yppuna@gmail.com cùng với hình ảnh của sản phẩm bị lỗi. 
+								</p>
 							</div>
-							}
 						</div>
 					</li>
 				</ul>
@@ -300,33 +312,6 @@
 				</a>
 			</div>
 			<a href="#modal-ask" class="hide-on-med-and-up buy-help modal-trigger">Can't Read Korean? Click here.</a>
-
-			<!-- Featured section -->
-			<div class="row">
-				<div class="col s12">
-					<div class="past-box-wrapper @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
-						@model.__('featured')
-					</div>
-					<br>
-				</div>
-				<div id="db-partners" class="owl-carousel owl-theme">
-					@model.partners.forEach(function(partner) {
-						<div class="col s12">
-                            <div class="partner-logo" style="background-image: url('/@partner.logo');"></div>
-						</div><!-- .col -->
-					})
-				</div><!-- /.owl-carousel -->
-			</div><!-- .row -->
-			<br>
-			<br>
-			@if(!model.is_phone) {
-				<div class="a-wrapper">
-				</div>
-			}
-			else {
-            <div class="center">
-            </div>
-			}
 		</div><!-- .col -->
 	</div><!-- .row -->
 </div><!-- .container -->
@@ -338,18 +323,18 @@ $(window).load(function() {
 		var is_mobile = @model.is_phone;
 		var momentTom = '@(model.date ? model.date : null)';
 		if (momentTom)
-		momentTom = moment(momentTom).tz("Asia/Seoul").add(3, 'days').hours(0).minutes(0).seconds(0);
+			momentTom = moment(momentTom).tz("Asia/Seoul").add(3, 'days').hours(0).minutes(0).seconds(0);
 		else if (now.day() == 6) {
-		momentTom = moment().tz("Asia/Seoul").add(2, 'days').hours(0).minutes(0).seconds(0);
+			momentTom = moment().tz("Asia/Seoul").add(2, 'days').hours(0).minutes(0).seconds(0);
 		}
 		else
-		momentTom = moment().tz("Asia/Seoul").add(1, 'days').hours(0).minutes(0).seconds(0);
+			momentTom = moment().tz("Asia/Seoul").add(1, 'days').hours(0).minutes(0).seconds(0);
 		var timeLeft = moment.duration(momentTom.diff(now), 'milliseconds');
 		if (!is_mobile) {
-		$('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+			$('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
 		}
 		else {
-		$('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
+			$('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
 		}
 		var interval = setInterval(function() {
 		timeLeft = moment.duration(momentTom.diff(moment().tz("Asia/Seoul"), 'milliseconds'));

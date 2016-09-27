@@ -187,8 +187,8 @@
 						<br>
 					}
 				</div>
-				@if(model.product.description_image) {
-					<img class="responsive-img" src="@model.product.description_image" alt="" />
+				@if(model.product.homepage_image) {
+					<a href="/detailed/@model.product.id" ><img class="responsive-img" src="@model.product.homepage_image" alt="" /></a>
 				}
 			</div>
 			<div class="buy-box-footer @(model.product.color ? model.product.color : 'white') lighten-3">
