@@ -23,10 +23,9 @@
     </div>
     <script src="/bower/sir-trevor-js/build/sir-trevor.js"></script>
     <link rel="stylesheet" type="text/css" href="/bower/sir-trevor-js/build/sir-trevor.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
     <script>    
         $(document).ready(function () {
-            $("#tags").tagit();
+            // $("#tags").tagit();
 
             // var data = `@html.raw(model.article.data)`;
             // $('.js-st-instance').val(data);
