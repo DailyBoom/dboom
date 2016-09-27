@@ -25,7 +25,7 @@
     <link rel="stylesheet" type="text/css" href="/bower/sir-trevor-js/build/sir-trevor.css" />
     <script>    
         $(document).ready(function () {
-            // $("#tags").tagit();
+            $("#tags").tagit();
 
             // var data = `@html.raw(model.article.data)`;
             // $('.js-st-instance').val(data);
