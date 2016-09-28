@@ -1213,7 +1213,7 @@ input[type=number]::-webkit-outer-spin-button {
   .past-img {
       position: relative;
       background: no-repeat center center;
-      background-size: 130%;
+      background-size: 100%;
       height: 400px; 
   }
 }
@@ -1340,7 +1340,7 @@ input[type=number]::-webkit-outer-spin-button {
     left: 0;
     right: 0;
     height: 62px;
-    padding: 0 30px;
+    padding: 0 85px 0 30px;
     border-top: 2px solid #fff;
     border-bottom: 2px solid #fff;
     font-size: 1.7em;

@@ -246,8 +246,8 @@
 						<br>
 					}
 				</div>
-				@if(model.product.homepage_image) {
-					<a href="/detailed/@model.product.id" ><img class="responsive-img" src="@model.product.homepage_image" alt="" /></a>
+				@if(model.product.description_image) {
+					<img class="responsive-img" src="@model.product.description_image" alt="" />
 				}
 				<div class="right-align">
 				@if (model.user) {
