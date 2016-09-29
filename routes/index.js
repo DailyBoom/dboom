@@ -121,7 +121,7 @@ router.get('/mall/:product_id', function(req, res, next) {
     });
     var progress = (product.quantity - current_quantity) / product.quantity * 100;
     var sale = (product.old_price - product.price) / product.old_price * 100;
-    res.render('extended_m', { product: product, title: product.brand + ' - ' + product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: true, cover: product.images[0], mall: true });
+    res.render('extended_m', { product: product, title: product.brand + ' - ' + product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: true, ext_cover: product.images[0], mall: true });
   });
 });
 
