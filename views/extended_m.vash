@@ -100,10 +100,12 @@
 		<div class="index-mobile-parallax-container">
 			<div class="parallax">
 				<img class="ie-fix" src="@model.product.mobile_images[0]" alt="@model.product.name" />
-				<div class="sale-item">
-					<div class="mod">Sale</div>
-					<div class="item-price">@model.sale%</div>
-				</div>
+				@if (model.sale > 0) {
+					<div class="sale-item">
+						<div class="mod">Sale</div>
+						<div class="item-price">@model.sale%</div>
+					</div>
+				}
 			</div>
 		</div>
 	}
@@ -111,6 +113,12 @@
 		<div class="index-parallax-container">
 			<div class="parallax">
 				<img class="ie-fix" src="@model.product.images[0]" alt="@model.product.name" />
+				@if (model.sale > 0) {
+					<div class="sale-item">
+						<div class="mod">Sale</div>
+						<div class="item-price">@model.sale%</div>
+					</div>
+				}
 			</div>
 		</div>
 	}
