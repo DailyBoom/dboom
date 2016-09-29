@@ -461,7 +461,7 @@ $(window).scroll(function() {
 			auto:true,
 			autoHover:true,
 			controls:false,
-            video:false,
+            video:true,
             useCss: true,
             onSliderLoad: function(){
                 $(".bxslider-wrap").css("visibility", "visible");
