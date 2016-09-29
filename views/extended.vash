@@ -121,7 +121,7 @@
 		<div class="hero-left bxslider-wrap mobile-wrap">
 			<div id="main-slider" class="slider-wrapper z-depth-1">
 				@model.product.mobile_images.forEach(function(img, index) {
-					<div class="slide" style="background-image: url(/@img);">
+					<div class="slide" style="background-image: url(@img);">
 						@if(model.progress >= 100) {
 							<img class="sold-out" src="/images/sold-out.png" />
 						}
