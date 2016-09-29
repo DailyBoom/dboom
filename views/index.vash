@@ -451,8 +451,6 @@ $(window).scroll(function() {
 		.stop().animate({ bottom: '0' }, 300);
 	}
 });
-</script>
-<script>
 	$(document).ready(function(){
 		$("#main-slider").bxSlider({
 			mode:'horizontal',
@@ -461,7 +459,7 @@ $(window).scroll(function() {
 			auto:true,
 			autoHover:true,
 			controls:false,
-            video:true,
+            video: is_mobile,
             useCss: true,
             onSliderLoad: function(){
                 $(".bxslider-wrap").css("visibility", "visible");
