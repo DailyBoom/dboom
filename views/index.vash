@@ -144,10 +144,10 @@
 					</div>
 				})
 				@if(model.product.video) {
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/@model.product.video" frameborder="0" allowfullscreen></iframe>
+					<iframe width="560" height="@(model.is_mobile ? '400' : '315')" src="https://www.youtube.com/embed/@model.product.video" frameborder="0" allowfullscreen></iframe>
 				}
 				else {
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/4ZU_BZMt87k" frameborder="0" allowfullscreen></iframe>
+					<iframe width="560" height="@(model.is_mobile ? '400' : '315')" src="https://www.youtube.com/embed/4ZU_BZMt87k" frameborder="0" allowfullscreen></iframe>
 				}
 			</div><!-- #main-slider -->
 		</div><!-- .hero-left -->
@@ -439,7 +439,6 @@ footer.css({ display: 'block' });
 $(window).scroll(function() {
 	var scrolledLength = ( $(window).height() + extra ) + $(window).scrollTop(),
 	documentHeight = $(document).height();
-	console.log( 'Scroll length: ' + scrolledLength + ' Document height: ' + documentHeight )
 	if( scrolledLength >= documentHeight && footer.hasClass('bottom') ) {
 		footer
 		.removeClass('bottom')
@@ -458,9 +457,9 @@ $(window).scroll(function() {
 			infiniteLoop:true,
 			auto:true,
 			autoHover:true,
-			controls:false,
-            video: is_mobile,
-            useCss: true,
+			controls:is_mobile,
+            video: false,
+            useCss: !is_mobile,
             onSliderLoad: function(){
                 $(".bxslider-wrap").css("visibility", "visible");
             }
