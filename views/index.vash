@@ -191,7 +191,7 @@
 			}
 			else {
 				<a class="hero-img" data-slide-index="@x">
-					<div class="hero-thumbnail" style="background-image: url('http://img.youtube.com/vi/4ZU_BZMt87k/sddefault.jpg');"></div>
+					<div class="hero-thumbnail" style="background-image: url('http://img.youtube.com/vi/U-wvTn6Xe48/sddefault.jpg');"></div>
 				</a>
 			}
 		</div><!-- .hero-right -->
