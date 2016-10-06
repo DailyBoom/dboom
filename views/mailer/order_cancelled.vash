@@ -52,7 +52,7 @@
 							<br>@model.order.product.name
 							<br>@model.order.option
 							<br>@model.order.quantity
-							<br>@model.accounting.formatNumber(model.order.quantity * model.order.product.price + model.order.product.delivery_price) 원
+							<br>@model.accounting.formatNumber(model.order.quantity * model.order.product.prices) 원
 							<br>
 							<br>@model.order.shipping.full_name
 							<br>@model.order.shipping.phone_number

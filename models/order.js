@@ -59,13 +59,13 @@ orderSchema.plugin(mongooseToCsv, {
             if (doc.totalOrderAmt)
                 return doc.totalOrderAmt;
             else
-                return (doc.quantity * doc.product.price + doc.product.delivery_price)
+                return (doc.quantity * doc.product.price)
         },
 		'상태': function(doc) {
 			if (doc.status == "Paid")
-				return '결제 완료';
+				return 'paid';
 			else if (doc.status == "Sent")
-				return '배송 완료';
+				return 'sent';
 		},
 		'주문날짜': function(doc) { return moment(doc.created_at).format("YYYY.DD.MM"); },
 		'받는 분': function(doc) { return doc.shipping.full_name ? doc.shipping.full_name : doc.user.shipping.full_name; },
