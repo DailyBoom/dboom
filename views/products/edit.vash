@@ -166,8 +166,8 @@
 				<div class="row">
 					<!-- options button -->
 					<div class="col s12 m12 l12">
-						<a id="add_option" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>옵션 추가</a>
-						<a id="remove_option" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>옵션 삭제</a>
+						<a id="add_option" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>Add option (옵션 추가)</a>
+						<a id="remove_option" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>Remove last option (옵션 삭제)</a>
 					</div>
 				</div>
 				@if(model.product.options) {
