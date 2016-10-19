@@ -9,6 +9,7 @@
 						<div class="body">
 							@model.product.description
 						</div>
+						<a href="#" class="read-more">Xem chi tiết <i class="fa fa-caret-right"></i></a>
 					</div>
 				</div>
 				<div class="col s12 l4" id="center">
