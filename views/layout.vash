@@ -365,13 +365,12 @@
           </div><!-- .col -->
           <div class="col s12 m4 l4 box-3">
             <p class="text-footer @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
-              <!--폭스트론 (주)
-              <br>대표이사: 김지완
-              <br>서울특별시 성북구 삼양로 22, 국민대 창업보육센터 103호(길음동)
-              <br>사업자등록번호: 206-86-90012
-              <br>통신판매업신고: 2015-서울성북-00524호
-              <br>Office: 02-983-1257
-              <br>Fax: 02-985-1257-->
+              CÔNG TY TNHH YPPUNA (YPPUNA CO.LTD)
+              <br>Địa chỉ : 645/1 Điện Biên Phủ, Phường 1, Quận 3, TP.HCM
+              <br>Mã số thuế : 0313984714
+              <br>Hotline bán hàng 24/7 :  01699876023
+              <br>Email : hello@yppuna.vn
+              <br>Website : www.yppuna.vn
             </p>
           </div>
           <div class="col s12 m5 l5 box-4">
