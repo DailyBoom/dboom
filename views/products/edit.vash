@@ -27,16 +27,16 @@
 					</div>
 					<div id="main_sale" class="@(model.product.extend == 4 ? 'hide' : '')">
 						<div class="input-field col m2 s4 p-b-3 add-border-l add-border-t add-border-b">
-							<input name="extend" type="radio" id="extend_none" value="0" @(!model.product.extend || model.product.extend == 0 ? 'checked' : '')/>
-							<label for="extend_none">None<br>(판매 안함)</label>
+							<input name="boxZone" type="radio" id="extend_none" value="0" @(model.product.boxZone == 0 ? 'checked' : '')/>
+							<label for="extend_none">North</label>
 						</div>
 						<div class="input-field col s4 m2 p-b-3 add-border-t add-border-b">
-							<input name="extend" type="radio" id="extend_hour" value="1" @(model.product.extend == 1 ? 'checked' : '')/>
-							<label for="extend_hour">48h<br>(48시간 추가)</label>
+							<input name="boxZone" type="radio" id="extend_hour" value="1" @(model.product.boxZone == 1 ? 'checked' : '')/>
+							<label for="extend_hour">Central</label>
 						</div>
 						<div class="input-field col s4 m2 p-b-3 add-border-t add-border-b add-border-r">
-							<input name="extend" type="radio" id="extend_sold_out" value="2" @(model.product.extend == 2 ? 'checked' : '')/>
-							<label for="extend_sold_out">Sold Out<br>(품절)</label>
+							<input name="boxZone" type="radio" id="extend_sold_out" value="2" @(model.product.boxZone == 2 ? 'checked' : '')/>
+							<label for="extend_sold_out">South</label>
 						</div>
 					</div>
 				</div><!-- .row -->
@@ -52,7 +52,32 @@
 					<label for="selldate" style="margin-top: -1.75rem;">@model.__('product.sellDate') *</label>
 				</div>
 			</div>
-			<div class="row">
+			<div id="boxProducts" class="row @(model.product.extend == 4 ? 'hide' : '')">
+				<div class="input-field col s12 m12 l12">
+					<input id="boxProduct1" type="text" class="validate" name="boxProducts[0]" value="@model.product.boxProducts[0]" >
+					<label for="boxProduct1">Box Product 1 ID</label>
+				</div>
+				<div class="input-field col s12 m12 l12">
+					<input id="boxProduct2" type="text" class="validate" name="boxProducts[1]" value="@model.product.boxProducts[1]" >
+					<label for="boxProduct2">Box Product 2 ID</label>
+				</div>
+				<div class="input-field col s12 m12 l12">
+					<input id="boxProduct3" type="text" class="validate" name="boxProducts[2]" value="@model.product.boxProducts[2]" >
+					<label for="boxProduct3">Box Product 3 ID</label>
+				</div>
+			</div>
+			<div class="file-field input-field col s12 @(model.product.extend == 4 ? 'hide' : '')" id="boxHeader">
+				<span class="hide-on-med-and-up"><br></span>
+				<span for="box_header" class="input-file-mod grey-text">Box Header *</span>
+				<div class="btn blue-grey darken-2">
+					<span>선택 <i class="fa fa-image right"></i></span>
+					<input type="file" id="box_header" name="box_header">
+				</div>
+				<div class="file-path-wrapper">
+					<input class="file-path validate" type="text">
+				</div>
+			</div>
+			<div class="row" id="brand">
 				<div class="input-field col s12 m8 l8">
 					<input id="brandname" type="text" class="validate" name="brandname" value="@model.product.brand">
 					<label for="brandname">@model.__('product.brandName') *</label>
@@ -301,11 +326,17 @@
 			if (this.value == '3') {
 				$('#main_sale').removeClass('hide');
 				$('#j_pickdate').removeClass('hide');
+				$('#boxProducts').removeClass('hide');
+				$('#boxHeader').removeClass('hide');
+				$('#brand').addClass('hide');
 				addReq.attr('required', true);
 			}
 			else if (this.value == '4') {
 				$('#main_sale').addClass('hide');
 				$('#j_pickdate').addClass('hide');
+				$('#boxProducts').addClass('hide');
+				$('#boxHeader').addClass('hide');
+				$('#brand').removeClass('hide');
 				addReq.attr('required', false);
 			}
 		});
