@@ -198,6 +198,22 @@ router.get('/detailed/:id', function(req, res, next) {
   });
 });
 
+router.get('/box/:id', function(req, res, next) {
+  Product.findOne({_id: req.params.id}).populate('boxProducts').exec(function(err, product) {
+    Product.find({ extend: 4, is_hot: true }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
+      Comment.find( { product: req.params.id }).populate('user').exec(function(err, comments) {
+        var current_quantity = 0;
+        product.options.forEach(function(option) {
+          current_quantity += parseInt(option.quantity);
+        });
+        var progress = (product.quantity - current_quantity) / product.quantity * 100;
+        var sale = (product.old_price - product.price) / product.old_price * 100;
+        res.render('box', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2, cover: product.images[0], comments: comments, hotProducts: hotProducts });
+      });
+    });
+  });
+});
+
 router.get('/coupons/new', function(req, res, next) {
   User.find({ role: 'user' }, function(err, users) {
     res.render('coupons/new', { users: users });

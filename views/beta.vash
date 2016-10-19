@@ -32,7 +32,7 @@
 						<div class="item_price">@model.products[0].price<span class="currency">đ</span></div>
 					</div>
 					<div class="item_detail hide-on-small-only">
-						<a href="#">
+						<a href="/box/@model.products[0].id">
 							XEM CHI TIẾT
 						</a>
 					</div>
@@ -40,7 +40,7 @@
 				<div class="col s12 l8">
 					<div class="item_img"><img  src="@(model.is_mobile ? model.products[0].mobile_images[0] : model.products[0].images[0])"/></div>
 					<div class="item_detail hide-on-med-and-up">
-						<a href="#">
+						<a href="/box/@model.products[0].id">
 							XEM CHI TIẾT
 						</a>
 					</div>
@@ -81,7 +81,7 @@
 						<div class="item_price">@model.products[1].price<span class="currency">đ</span></div>
 					</div>
 					<div class="item_detail hide-on-small-only">
-						<a href="#">
+						<a href="/box/@model.products[1].id">
 							XEM CHI TIẾT
 						</a>
 					</div>
@@ -89,7 +89,7 @@
 				<div class="col s12 l8 hide-on-med-and-up">
 					<div class="item_img"><img src="@model.products[1].mobile_images[0]"/></div>
 					<div class="item_detail hide-on-med-and-up">
-						<a href="#">
+						<a href="/box/@model.products[1].id">
 							XEM CHI TIẾT
 						</a>
 					</div>
@@ -99,7 +99,7 @@
 		<section id="south">
 			<div class="area-header hide-on-small-only">
 				<div class="right">
-					<span>Miền Bắc</span>
+					<span>Miền Nam</span>
 					<img src="/images/south-logo.svg"/>
 				</div>
 			</div>
@@ -127,7 +127,7 @@
 						<div class="item_price">@model.products[2].price<span class="currency">đ</span></div>
 					</div>
 					<div class="item_detail hide-on-small-only">
-						<a href="#">
+						<a href="/box/@model.products[2].id">
 							XEM CHI TIẾT
 						</a>
 					</div>
@@ -135,7 +135,7 @@
 				<div class="col s12 l8">
 					<div class="item_img"><img src="@(model.is_mobile ? model.products[2].mobile_images[0] : model.products[2].images[0])"/></div>
 					<div class="item_detail hide-on-med-and-up">
-						<a href="#">
+						<a href="/box/@model.products[2].id">
 							XEM CHI TIẾT
 						</a>
 					</div>
