@@ -62,7 +62,7 @@ router.get('/', function(req, res, next) {
   Product.findOne({scheduled_at: date, is_published: true }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
     Product.find({ is_published: true, extend: 4 }, {}, { sort : { 'created_at' : -1 } }, function(err, mallProducts) {
       if (!product) {
-        Product.findOne({ _id: "57d27619e4af52823a8a073c" }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
+        Product.findOne({ _id: "57f1eb7a6ce348030092a6ac" }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
           var current_quantity = 0;
           product.options.forEach(function(option) {
             current_quantity += parseInt(option.quantity);
