@@ -18,8 +18,22 @@
                         }
                     </div>
 			    </div>
-				<div class="col s12 l4" id="left">
+				<div class="col s12 l4 area-row" id="left">
                     <img class="box-header" src="@model.product.box_header" />
+					<div class="item_names row center show-on-small-only">
+						<div class="col s4">
+							<div class="item_name truncate"><a href="#box_product_0">@model.product.boxProducts[0].name</a></div>
+							<div class="item_type">@model.product.boxProducts[0].brand</div>
+						</div>
+						<div class="col s4 ">
+							<div class="item_name truncate"><a href="#box_product_1">@model.product.boxProducts[1].name</a></div>
+							<div class="item_type">@model.product.boxProducts[1].brand</div>
+						</div>
+						<div class="col s4">
+							<div class="item_name truncate"><a href="#box_product_2">@model.product.boxProducts[2].name</a></div>
+							<div class="item_type">@model.product.boxProducts[2].brand</div>
+						</div>
+					</div>
 				</div>
 				<div class="col s12 l4" id="center">
 					<div class="img-wrapper">
@@ -29,17 +43,17 @@
 					</div>
 				</div>
 				<div class="col s12 l4 area-row" id="right">
-                    <div class="item_names row center">
+                    <div class="item_names row center hide-on-small-only">
 						<div class="col s4">
-							<div class="item_name truncate">@model.product.boxProducts[0].name</div>
+							<div class="item_name truncate"><a href="#box_product_0">@model.product.boxProducts[0].name</a></div>
 							<div class="item_type">@model.product.boxProducts[0].brand</div>
 						</div>
 						<div class="col s4 ">
-							<div class="item_name truncate">@model.product.boxProducts[1].name</div>
+							<div class="item_name truncate"><a href="#box_product_1">@model.product.boxProducts[1].name</a></div>
 							<div class="item_type">@model.product.boxProducts[1].brand</div>
 						</div>
 						<div class="col s4">
-							<div class="item_name truncate">@model.product.boxProducts[2].name</div>
+							<div class="item_name truncate"><a href="#box_product_2">@model.product.boxProducts[2].name</a></div>
 							<div class="item_type">@model.product.boxProducts[2].brand</div>
 						</div>
 					</div>
@@ -63,8 +77,8 @@
 				</div>
 			</div>
             <div class="box-products">
-                @model.product.boxProducts.forEach(function(product) {
-                    <div class="area-header hide-on-small-only">
+                @model.product.boxProducts.forEach(function(product, index) {
+                    <div id="box_product_@index" class="area-header hide-on-small-only">
                         <div class="right">
                             <img src="@model.product.box_header" />
                         </div>
@@ -81,7 +95,7 @@
                             </div>
                         </div>
                         <div class="col s12 l4" id="right">
-                            <div class="description">
+                            <div class="description hide-on-small-only">
                                 <h4>MÔ TẢ CHI TIẾT</h4>
                                 <div class="body">
                                     @product.description
@@ -101,10 +115,10 @@
 				    </div>
                 })
             </div>
-			<section id="individual">
+			<section id="individual" class="hide-on-small-only">
 				<h2>SẢN PHẨM BÁN LẺ</h2>
 				<div class="row">
-					@model.hotProducts.forEach(function(product) {
+					@model.hotProducts.forEach(function(product, index) {
 						<div class="">
 							<img src="@product.mobile_images[0]" />
 							<div class="prod_brand">@product.brand</div>

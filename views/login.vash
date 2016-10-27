@@ -11,42 +11,22 @@
 						</ul>
 					}
 					<div class="col l6 offset-l3">
-						<div class="modal-c z-depth-1">
-							<div class="modal-header blue-grey darken-2 white-text center">
-								@model.__('login')
+						<div id="login_row">
+							<div class="modal-header center">
+								<div class="col s6 active"><h3>@model.__('login')</h3></div>
+								<div class="col s6"><h3><a href="/signup">@model.__('signup')</a></h3></div>
 							</div>
 							<div class="modal-content">
 								<div class="row">
 									<form method="post" action="/login">
-										<div class="input-field col s12">
-											<input id="username" type="text" class="validate" name="username">
-											<label for="username">@model.__('user.username')</label>
-										</div>
-										<div class="input-field col s12">
-											<input id="password" type="password" class="validate" name="password">
-											<label for="password">@model.__('user.password')</label>
-										</div>
-										<div class="col s12">
-											<span class="left">
-												<input type="checkbox" id="remember-me" name="remember_me"/>
-												<label for="remember-me">@model.__('remember_me')</label>
-											</span>
-											<span class="right">
-												<button class="waves-effect waves-light btn blue-grey darken-2" type="submit" name="action">@model.__('login')</button>
-											</span>
-										</div><!-- .col -->
-										<div class="col s12">
-											<div class="or-wrapper">
-												<img class="responsive-img" src="/images/or_2.png" alt="" />
-											</div>
-										</div>
-										<div class="col s12 center">
-											<div class="social-login-wrapper">
-												<img class="social-login-btn circle z-depth-1" src="/images/icon_fb_social.png" id="facebook"/>
-												<img class="social-login-btn circle z-depth-1" src="/images/g-logo.png" id="google"/>
-											</div>
-										</div>
+										<label for="email">Email</label>
+										<input id="email" name="email" type="email" placeholder="Nhập email" />
+										<label for="password">Mật khẩu</label>
+										<input id="password" name="password" type="password" placeholder="Nhập mật khẩu" />
+										<div class="right"><a class="forgot" href="/forgot" >Quên mật khẩu?</a></div>
+										<button>ĐĂNG NHẬP</button>
 									</form>
+									<div id="facebook">Đăng nhập bằng Facebook</div>
 								</div><!-- .row -->
 							</div><!-- .modal-content -->
 							<div class="modal-footer blue-grey darken-1">

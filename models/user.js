@@ -12,6 +12,8 @@ var userSchema = new Schema({
   email: { type: String, unique: true },
   username: { type: String, required: true, unique: true },
   password: { type: String },
+  birthday: Date,
+  gender: Boolean,
   admin: Boolean,
   shipping: {
     full_name: String,
@@ -20,7 +22,9 @@ var userSchema = new Schema({
     country: String,
     city: String,
     zipcode: String,
-    phone_number: String
+    phone_number: String,
+    district: String,
+    ward: String
   },
   role: { type: String, required: true },
   created_at: { type : Date, default : Date.now },

@@ -1,91 +1,147 @@
-@html.extend("layout", function(model) {
+@html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
-		@if(!model.is_phone) {
-			<div class="parallax-container">
-	      <div class="parallax">
-					<img class="ie-fix" src="/images/cover_logo_desktop.png">
-				</div>
-	    </div>
-		}
-		else {
-			<div class="parallax-container">
-	      <div class="parallax">
-					<img class="ie-fix" src="/images/cover_photo_mobile.png">
-				</div>
-	    </div>
-		}
-		<div class="container">
-			<div class="info-terms text-ss text-justify grey-text text-darken-2">
-				<p class="terms">
-					Giới thiệu<br>
-					Chào mừng quý khách đã ghé thăm Yppuna.vn.<br>
-					Chúng tôi là Tian Mei Wu, địa chỉ trụ sở chính tại 111 Đề Thám, Phường Cô Giang Quận 1, Thành phố Hồ Chi Minh, Việt Nam, hoạt động kinh doanh thương mại điện tử qua trang web www.yppuna.vn.<br>
-					Những chính sách khách hàng và điều kiện này sẽ giúp bạn sử dụng trang web của chúng tôi. Khi bạn sử dụng trang web này, đồng nghĩa với việc bạn hoàn toàn chấp nhận những điều khoản sau đây (trong trường hợp bạn không đồng ý với 1 trong những điểm của điều khoản, đồng nghĩa với việc,bạn không thể tiếp tục sử dụng trang web của chúng tôi):<br>
-					Bạn phải đảm bảo mình trên 16 tuổi. Khi sử dụng và đồng ý với những điều khoản này, có nghĩa bạn đã đảm bảo rằng bạn đã đủ 16 tuổi.<br>
-					Trang web của Yppuna được sử dụng có kèm theo các điều khoản về chính sách bảo mật và quyền sử dụng. Vì vậy khi sử dụng trang web này, cũng đồng nghĩa với việc bạn hoàn toàn đồng ý với những chính sách bảo mật đó.
-				</p>
-				<p class="terms">
-					<b>Lưu ý</b><br/>
-					YPPUNA có thể sửa đổi những chính sách và điều khoản trong mục này trong thời gian tới để ngày càng hoàn thiện hơn. Những chính sách và điều khoản được duyệt lại sẽ được áp dụng kể từ ngày có  sự thay đổi trên website. Để đảm bảo được cập nhật thông tin đầy đủ, bạn hãy đọc những điều khoản này thường xuyên.
-				</p>
-				<p class="terms">
-					<b>Tính hợp lý</b><br/>
-					Bằng việc sử dụng trang web này, bạn đồng ý về giới hạn quyền sử dụng, phụ thuộc vào những điều khoản được liệt kê tại trang này.<br/>
-					Nếu bạn nghĩ rằng những điều khoản này không hợp lý, bạn có quyền từ chối sử dụng trang web này.
-				</p>
-				<p class="terms">
-					<b>Chính sách đặt hàng</b><br/>
-					Thông qua việc đặt hộp tại website của Ma Belle Box, nghĩa là bạn đã đồng ý thanh toán và mua 1 chiếc hộp làm đẹp và sẽ được giao tới địa chỉ bạn cung cấp.
-				</p>
-				<p class="terms">
-					<b>Cách thức thanh toán</b><br/>
-					<u><i>Thanh toán bằng tiền mặt khi nhận hàng (COD):</i></u><br/>
-					Thông qua sự lựa chọn phương thức thanh toán bằng tiền mặt khi nhận hàng, bạn đã hoàn toàn đồng ý với các điều kiện và phương thức thanh toán này. Tại thời điểm giao hàng, bạn có trách nhiệm thanh toán toàn bộ giá trị đơn hàng cho nhân viên giao hàng theo nội dung đã ghi trên hóa đơn, trước khi mở hộp.<br/>
-					Trong trường hợp từ chối nhận hàng (hộp còn nguyên chưa mở), bạn sẽ phải chịu 100% chi phí giao hàng và các chi phí phát sinh khác, tuỳ thuộc vào địa điểm giao hàng.<br/>
-				</p>
-				<p class="terms">
-					<b>Chính sách điều chỉnh đơn hàng</b><br/>
-					Bạn có quyền chỉnh sửa địa chỉ giao hàng <b>trong vòng 24 giờ sau khi đặt hàng tại www.yppuna.vn</b>. Mọi đơn hàng bị huỷ hay không tiếp nhận diễn ra sau 24 giờ kể từ lúc đặt hàng mà không có sự báo trước, sẽ không được chấp nhận, và khách hàng phải chịu toàn bộ chi phí phát sinh, tuỳ thuộc vào địa điểm giao hàng (bao gồm 100% phí giao hàng và trả lại hàng).
-				</p>
-				<p class="terms">
-					<b>Chính sách giao hàng</b><br/>
-					1/ Địa chỉ giao hàng cần được điền đầy đủ khi đặt hàng, trước khi thanh toán đơn hàng<br/>
-					 2/ Mọi thay đổi cần phải liên hệ trực tiếp qua số điện thoại 01699876023 hoặc email : <a href="mailto:yppuna@gmail.com">yppuna@gmail.com</a><br/><br/>
-					Biểu phí giao hàng : 
-					<ul>
-						<li>- Khu vực nội thành 18.000vnđ/1 hộp</li>
-						<li>- Khu vực ngoại thành 25.000vnđ/1 hộp</li>
-						<li>- Khu vực huyện ngoại thành 28.000 /1 hộp</li>
-						<li>- Khu vực liên tỉnh Tp.HCM đi Hà Nội ( và ngược lại) :</li>
-						<li>
-							<ul>
-								<li>* Khu vực nội thành 30.000vnđ/1 hộp</li>
-								<li>* Khu vực ngoại thành 35.000vnđ/1 hộp</li>
-								<li>* Khu vực huyện ngoại thành 40.000vnđ/1 hộp (Xin chú ý :  Cứ mỗi 0,5kg tiếp theo dịch vụ sẽ cộng thêm 10.000vnđ/1 hộp ,chỉ áp dụng phí cho khu vực liên tỉnh)</li>
-							</ul>
-						</li>
+		<div class="container" id="terms">
+			<div class="row">
+				<div class="col l3 hide-on-small-only tab-wrapper">
+					<ul class="section table-of-contents">
+						<li><a href="#general">ĐIỀU KHOẢN & QUY ĐINH CHUNG</a></li>
+						<li><a href="#account">TÀI KHOẢN/ THÔNG TIN BẢO MẬT</a></li>
+						<li><a href="#delivery">GIAO HÀNG TẬN NƠI COD</a></li>
+						<li><a href="#delivery_delay">TRƯỜNG HỢP GIAO HÀNG TRỄ</a></li>
+						<li><a href="#transport_fee">PHÍ VẬN CHUYỂN</a></li>
+						<li><a href="#initialization">BAO BÌ</a></li>
+						<li><a href="#initialization">ĐỔI TRẢ HÀNG/ HOÀN TIỀN</a></li>
+						<li><a href="#initialization">LƯU Ý</a></li>
 					</ul>
-				</p>
-				<p class="terms">
-					<b>Chính sách đổi hoặc trả hàng</b><br/>
-					Với những sản phẩm có tem của Yppuna  nếu phát hiện là nhái fake/không đúng hãng, chúng tôi sẽ hoàn trả lại tiền 100%.<br/> 
-					Những đơn hàng đã được nhận và mở rồi sẽ không được chấp nhận đổi hoặc trả.<br/>
-					Những sản phẩm bị lỗi do bộ phận giao hàng (hộp bị hỏng, vỡ) nên được hoàn trả lại cho bộ phận giao hàng ngay lập tức.<br/>
-					Đối với những lỗi sản phẩm bên trong hộp, bao gồm sản phẩm đã bị chảy, đã mở, không sử dụng được, khách hàng hoàn trả lại cho Yppuna và sẽ được gửi sản phẩm mới thay thế. Với những trường hợp này, bạn có thể liên hệ qua email <a href="mailto:yppuna@gmail.com">yppuna@gmail.com</a> cùng với hình ảnh của sản phẩm bị lỗi.
-				</p>
-				<p class="terms">
-					<b>Thoả thuận chính</b><br/>
-					Những điều khoản và chính sách khách hàng cùng với những chính sách bảo mật của YPPUNA tạo thành một bộ thoả thuận giữa bạn và YPPUNA, tôn trọng và đảm bảo quyền lợi của mỗi bên trong việc sử dụng trang web này.<br/>
-					Các điều khoản và chính sách khách hàng trên được soạn dựa trên mẫu tại: <a href="http://www.freenetlaw.com">http://www.freenetlaw.com</a>.
-				</p>
-				<div class="section-blank right-align">
-					<a class="waves-effect waves-light btn btn-large blue-grey darken-3" href="/">Quay lại trang chủ <i class="fa fa-home right"></i></a>
 				</div>
-			</div><!-- .info-terms -->
+				<div class="info-terms col s12 l8">
+					<h2>Điều Khoản và Cách Sử Dụng</h2>
+					<div id="general" class="section scrollspy">
+						<p class="title">
+							ĐIỀU KHOẢN & QUY ĐINH CHUNG
+						</p>
+						<p class="terms">
+							Chào mừng quý khách đã ghé thăm Yppuna INC. Chúng tôi hy vọng bạn sẽ có những trải nghiệm và mang về cho mình những sản phẩm ưng ý nhất.
+						</p>
+						<p class="terms">
+							Chúng tôi là Yppuna INC., địa chỉ trụ sở chính tại 645/1 Điện Biên Phủ, Phường 1,Quận 3, Thành phố Hồ Chi Minh, Việt Nam, hoạt động kinh doanh thương mại điện tử qua trang web www.yppuna.vn.
+						</p>
+						<p class="terms">
+							Những điều kiện và điều khoản sử dụng sau đây được áp dụng với trang web của chúng tôi ( www.yppuna.vn) và các thiết bị liên quan. Khi bạn quyết định sử dụng dịch vụ của chúng tôi, xin lưu ý rằng bạn đã đồng ý chấp nhận với mọi điều khoản mà chúng tôi liệt kê dưới đây. 
+						</p>
+					</div>
+					<div id="account" class="section scrollspy">
+						<p class="title">
+							TÀI KHOẢN/ THÔNG TIN BẢO MẬT
+						</p>
+						<p class="terms">
+							Khi bạn tạo một tài khoản trên trang web của Yppuna, bạn sẽ có trách nhiệm duy trì tính bảo mật của tài khoản và mật khẩu của bạn. Bạn đồng ý chịu trách nhiệm cho tất cả các hoạt động được thực hiện dưới tài khoản hoặc mật khẩu của bạn. Trong trường hợp phát hiện việc sử dụng trái phép tài khoản của bạn hoặc vi phạm tính bảo mật, vui lòng thông báo cho chúng tôi ngay lập tức.
+						</p>
+						<p class="terms">
+							Yppuna luôn đảm bảo an toàn cho thông tin và sử dụng cách thức bảo vệ tốt nhất cho các phương tiện thanh toán. Thông tin cá nhân của khách hàng trong quá trình thanh toán sẽ được bảo vệ một cách an toàn.
+						</p>
+						<p class="terms">
+							Bạn không nên sử dụng bất kỳ thiết bị hay công cụ nào nhằm cố gắng can thiệp để thay đổi cấu trúc dữ liệu. Tất cả các hoạt động phát tán hay khuyến khích truy cập trái phép hoặc phá hủy dữ liệu của chúng tôi sẽ bị nghiêm cấm. Xin vui lòng không sử dụng trang web của chúng tôi sai mục đích. Tất cả các hành vi vi phạm sẽ bị tước bỏ tất cả các quyền hoặc có thể bị xử lí theo pháp luật nếu cần thiết.
+						</p>
+						<p class="terms">
+							Bạn không nên sử dụng bất kỳ thiết bị hay công cụ nào nhằm cố gắng can thiệp để thay đổi cấu trúc dữ liệu. Tất cả các hoạt động phát tán hay khuyến khích truy cập trái phép hoặc phá hủy dữ liệu của chúng tôi sẽ bị nghiêm cấm. Xin vui lòng không sử dụng trang web của chúng tôi sai mục đích. Tất cả các hành vi vi phạm sẽ bị tước bỏ tất cả các quyền hoặc có thể bị xử lí theo pháp luật nếu cần thiết.
+						</p>
+					</div>
+					<div id="delivery" class="section scrollspy">
+						<p class="title">
+							GIAO HÀNG TẬN NƠI VỚI HÌNH THỨC COD
+						</p>
+						<p class="terms">
+							Chúng tôi sẽ giao hàng nhanh nhất có thể và luôn đảm bảo đúng ngày, giờ và địa điểm giao hàng thuận tiện nhất cho khách hàng. Các công ty vận chuyển của chúng tôi sẽ thông báo cho bạn về thời gian giao hàng ngay sau khi bạn hoàn tất việc đặt hàng. Bạn cũng sẽ được thông báo ngày giao hàng thuận tiện nhất cho bạn.
+						</p>
+						<p class="terms">
+							Khi bạn hoàn thành tất cả các bước của quá trình mua hàng, bạn sẽ nhận được điện hoại email xác nhận của chúng tôi về chi tiết đơn hàng. Trong trường hợp có những vấn đề ngoài ý muốn, chúng tôi sẽ chủ động liên hệ để thông báo cho bạn sớm nhất.<br />
+							Chúng tôi làm việc với đơn vị vận chuyển nhanh và chuyên nghiệp nhất; tùy thuộc vào địa chỉ giao hàng của bạn. Khi nhận hàng, bạn sẽ được yêu cầu ký nhận. Bạn nên kiểm tra sản phẩm của bạn một cách cẩn thận trước khi nhận hàng.<br />
+							Nếu bạn không thể có mặt để nhận hàng vì lý do đột xuất, xin vui lòng liên hệ với chúng tôi qua số 01699876023 hoặc email ngoc@yppuna.vn hoặc gọi vào số điện thoại của bên giao hàng ( nếu như họ đã gọi điện liên lạc với bạn rồi) để sắp xếp nơi vận chuyển khác hoặc thay đổi thời gian giao hàng thuận tiện cho bạn.
+						</p>
+						<p class="terms">
+							Mọi đơn hàng bị huỷ hay không tiếp nhận diễn ra sau 24 giờ kể từ lúc đặt hàng mà không có sự báo trước, sẽ không được chấp nhận, và khách hàng phải chịu toàn bộ chi phí phát sinh, tuỳ thuộc vào địa điểm giao hàng (bao gồm 100% phí giao hàng và trả lại hàng).
+						</p>
+					</div>
+					<div id="delivery_delay" class="section scrollspy">
+						<p class="title">
+							TRƯỜNG HỢP GIAO HÀNG CHẬM TRỄ
+						</p>
+						<p class="terms">
+							Yppuna luôn ước tính ngày vận chuyển và giao hàng cho khách hàng chính xác nhất có thể. Tuy nhiên, chúng tôi làm việc với các dịch vụ vận chuyển như đã đề cập ở trên, vì vậy mà đôi khi sẽ có một số vấn đề ảnh hưởng đến thời gian giao hàng.
+						</p>
+						<p class="terms">
+							Xin vui lòng liên hệ nếu thời gian giao hàng cho bạn bị chậm trễ. Chúng tôi sẽ cố gắng theo dõi đơn hàng để kịp thời thông báo cho bạn nếu xảy ra tình huống giao hàng trễ. Đối với trường hợp giao hàng chậm trễ mà không thông báo,Yppuna cam kết giải quyết các vấn đề và bồi thường thiệt hại cho bạn.
+						</p>
+					</div>
+					<div id="transport_fee" class="section scrollspy">
+						<p class="title">
+							PHÍ VẬN CHUYỂN
+						</p>
+						<div class="col s12 l7">
+							<div class="col s12 l4">
+								<div class="col s6 l12 title extra-pad">
+									KV NỘI THÀNH
+								</div>
+								<div class="col s6 l12 cell">
+									18.000/hộp
+								</div>
+							</div>
+							<div class="col s12 l4">
+								<div class="col s6 l12 title extra-pad">
+									KV NGOẠI THÀNH
+								</div>
+								<div class="col s6 l12 cell">
+									25.000/hộp
+								</div>
+							</div>
+							<div class="col s12 l4">
+								<div class="col s6 l12 title extra-pad">
+									KV HUYỆN NGOẠI THÀNH
+								</div>
+								<div class="col s6 l12 cell">
+									28.000/hộp
+								</div>
+							</div>
+						</div>
+						<div class="col s12 l5">
+							<div class="col s12 title">
+								KV LIÊN TỈNH TP.HCM ĐI HÀ NỘI (VÀ NGƯỢC LẠI)
+							</div>
+							<div class="col s12 l4">
+								<div class="col s6 l12 sub-title extra-pad">
+									Nội thành
+								</div>
+								<div class="col s6 l12 cell">
+									30.000/hộp
+								</div>
+							</div>
+							<div class="col s12 l4">
+								<div class="col s6 l12 sub-title extra-pad">
+									Ngoại thành
+								</div>
+								<div class="col s6 l12 cell">
+									35.000/hộp
+								</div>
+							</div>
+							<div class="col s12 l4">
+								<div class="col s6 l12 sub-title extra-pad">
+									Huyện ngoại thành
+								</div>
+								<div class="col s6 l12 cell">
+									40.000/hộp
+								</div>
+							</div>							
+						</div>
+					</div>
+				</div><!-- .info-terms -->
+			</div><!-- .row -->
 		</div><!-- .container -->
 		<script>
 			$(document).ready(function(){
 				$('.parallax').parallax();
+				$('.scrollspy').scrollSpy();
+				$('.table-of-contents').pushpin({ top: $('.table-of-contents').offset().top });
 			});
 		</script>
 	})

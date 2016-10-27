@@ -58,6 +58,7 @@ var isAdmin = function (req, res, next) {
 
 /* GET Home Page */
 router.get('/', function(req, res, next) {
+  return res.redirect('/beta');
   var date = moment().startOf('isoweek').format("MM/DD/YYYY");
   Product.findOne({scheduled_at: date, is_published: true }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
     Product.find({ is_published: true, extend: 4 }, {}, { sort : { 'created_at' : -1 } }, function(err, mallProducts) {

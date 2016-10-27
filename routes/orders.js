@@ -63,7 +63,7 @@ var isMerchant = function (req, res, next) {
 var hasShipping = function(obj) {
   if (!obj.shipping)
     return false;
-  if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.address && obj.email && obj.shipping.city)
+  if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.address && obj.shipping.city)
     return true;
   return false;
 }
@@ -282,31 +282,35 @@ router.post('/add_to_cart', function(req, res) {
   });
 });
 
-router.get('/mall/checkout', function(req, res) {
+router.get('/checkout', function(req, res) {
   if (typeof req.session.cart_order === 'undefined' || !req.session.cart_order) {
     return res.redirect('/mall');
   }
   else {
-    if (req.query.no_login && req.query.no_login == 1) {
-        console.log(req.query.no_login);
-        req.session.no_login = true;
-    }
-    if (!req.user && !req.session.no_login) {
-        return res.redirect('/mall/login');
-    }
+    // if (req.query.no_login && req.query.no_login == 1) {
+    //     console.log(req.query.no_login);
+    //     req.session.no_login = true;
+    // }
+    // if (!req.user && !req.session.no_login) {
+    //     return res.redirect('/mall/login');
+    // }
     Order.findOne({ _id: req.session.cart_order }).populate('cart.product').exec(function(err, order) {
       if (err)
         console.log(err);
       if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
         getOrderCartTotal(order);
+        if (!order.user) {
+          order.user = req.user;
+          order.shipping = req.user.shipping;
+        }
         order.save(function(err) {
           if (req.user) {
             Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
-              res.render('mall/checkout', { order: order, title: req.__('payment'), coupons: coupons });
+              res.render('checkout', { order: order, title: req.__('payment'), coupons: coupons });
             });
           }
           else
-            res.render('mall/checkout', { order: order, title: req.__('payment') });
+            res.render('checkout', { order: order, title: req.__('payment') });
         });
       }
       else {
@@ -355,9 +359,19 @@ router.post('/mall/remove_from_cart', function(req, res) {
 });
 
 
-router.get('/checkout', function(req, res) {
-  if (!req.query.product_id && !req.session.product && !req.session.order)
+router.get('/checkout/login', function(req, res) {
+  if (req.user) {
+    return res.redirect('/checkout');
+  }
+  if (!res.locals.cart) {
     return res.redirect('/');
+  }
+  res.render('checkout_login');
+});
+
+router.get('/mall/checkout', function(req, res) {
+  // if (!req.query.product_id && !req.session.product && !req.session.order)
+  //   return res.redirect('/');
   if (req.session.product && req.query.product_id && (req.session.product != req.query.product_id)) {
     delete req.session.order;
     delete req.session.product;
@@ -367,8 +381,8 @@ router.get('/checkout', function(req, res) {
   Product.findOne({_id: req.query.product_id ? req.query.product_id : req.session.product, is_published: true}, function(err, product) {
     if (err)
       console.log(err);
-    if (!product)
-      return res.redirect('/');
+    // if (!product)
+    //   return res.redirect('/');
     if (typeof req.session.order === 'undefined' || !req.session.order) {
       var order = new Order({
         product: product.id,
@@ -998,121 +1012,121 @@ router.post('/shipping', function(req, res) {
         required: true,
         numeric: true
       })
-      .validate('address1', i18n.__('user.address1'), {
+      .validate('address', i18n.__('user.address1'), {
         required: true
       })
-      .validate('zipcode', i18n.__('user.zipcode'), {
-        numeric: true
-      })
+      // .validate('zipcode', i18n.__('user.zipcode'), {
+      //   numeric: true
+      // })
       .validate('city', i18n.__('user.city'), {
         required: true
       });
 
-      if (req.body.add_id && !req.user) {
-          req.Validator.validate('username', i18n.__('user.username'), {
-            length: {
-              min: 3,
-              max: 20
-            },
-            required: true
-          })
-          .validate('email', i18n.__('user.email'), {
-            required: true
-          })
-          .validate('password', i18n.__('user.password'), {
-            length: {
-              min: 8,
-              max: 15
-            },
-            required: true
-          })
-          .validate('confirmpassword', i18n.__('user.confirmPassword'), {
-            length: {
-              min: 8,
-              max: 15
-            },
-            isConfirm: function(field, fieldName, value, fn) {
-              var errors;
-              if (value !== req.body.password) {
-                errors = i18n.__('passNotConfirmed', fieldName, i18n.__('user.password'));
-              }
-              fn(errors);
-            },
-            required: true
-          })
-          .validate('agree-terms-1', i18n.__('user.agreeTerms1'), {
-            required: true
-          })
-          .validate('agree-terms-3', i18n.__('user.agreeTerms3'), {
-            required: true
-          });
+      // if (req.body.add_id && !req.user) {
+      //     req.Validator.validate('username', i18n.__('user.username'), {
+      //       length: {
+      //         min: 3,
+      //         max: 20
+      //       },
+      //       required: true
+      //     })
+      //     .validate('email', i18n.__('user.email'), {
+      //       required: true
+      //     })
+      //     .validate('password', i18n.__('user.password'), {
+      //       length: {
+      //         min: 8,
+      //         max: 15
+      //       },
+      //       required: true
+      //     })
+      //     .validate('confirmpassword', i18n.__('user.confirmPassword'), {
+      //       length: {
+      //         min: 8,
+      //         max: 15
+      //       },
+      //       isConfirm: function(field, fieldName, value, fn) {
+      //         var errors;
+      //         if (value !== req.body.password) {
+      //           errors = i18n.__('passNotConfirmed', fieldName, i18n.__('user.password'));
+      //         }
+      //         fn(errors);
+      //       },
+      //       required: true
+      //     })
+      //     .validate('agree-terms-1', i18n.__('user.agreeTerms1'), {
+      //       required: true
+      //     })
+      //     .validate('agree-terms-3', i18n.__('user.agreeTerms3'), {
+      //       required: true
+      //     });
 
-          req.Validator.getErrors(function(errors){
-            if (errors.length > 0) {
-              res.render('shipping', { errors: errors, order: order });
-            }
-            else {
-              var user = new User({
-                username: req.body.username,
-                password: req.body.password,
-                email: req.body.email,
-                role: 'user',
-                shipping: {
-                  full_name: req.body.full_name,
-                  address: req.body.address1,
-                  country: req.body.country,
-                  city: req.body.city,
-                  zipcode: req.body.zipcode,
-                  phone_number: req.body.phone_number
-                },
-                wallet: 100
-              });
-              user.save(function(err) {
-                if (err) {
-                  console.log(err);
-                  var errors = [];
-                  for (var path in err.errors) {
-                    errors.push(i18n.__("unique", i18n.__("user."+path)));
-                  }
-                  res.render('shipping', { errors: errors, title: req.__('shipping'), order: order });
-                }
-                else {
-                  order.user = user.id;
-                  order.shipping = JSON.parse(JSON.stringify(user.shipping));
-                  order.save(function(err) {
-                    fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
-                      if(err){
-                        //handle errors
-                        console.log('ERROR!');
-                        return res.send('ERROR!');
-                      }
-                      var html = vash.compile(file);
-                      transporter.sendMail({
-                        from: 'Yppuna <hello@yppuna.vn>',
-                        to: user.email,
-                        subject: user.username+'님 회원가입을 축하드립니다.',
-                        html: html({ user : user, i18n: i18n })
-                      }, function (err, info) {
-                          if (err) { console.log(err); }
-                          //console.log('Message sent: ' + info.response);
-                          req.login(user, function(err) {
-                            if (err) {
-                              console.log(err);
-                            }
-                            if (req.session.cart_order)
-                              return res.redirect('/mall/checkout')
-                            else
-                              return res.redirect('/checkout');
-                          });
-                      });
-                    });
-                  });
-                }
-              });
-            }
-          });
-      }
-      else if (req.user) {
+      //     req.Validator.getErrors(function(errors){
+      //       if (errors.length > 0) {
+      //         res.render('shipping', { errors: errors, order: order });
+      //       }
+      //       else {
+      //         var user = new User({
+      //           username: req.body.username,
+      //           password: req.body.password,
+      //           email: req.body.email,
+      //           role: 'user',
+      //           shipping: {
+      //             full_name: req.body.full_name,
+      //             address: req.body.address1,
+      //             country: req.body.country,
+      //             city: req.body.city,
+      //             zipcode: req.body.zipcode,
+      //             phone_number: req.body.phone_number
+      //           },
+      //           wallet: 100
+      //         });
+      //         user.save(function(err) {
+      //           if (err) {
+      //             console.log(err);
+      //             var errors = [];
+      //             for (var path in err.errors) {
+      //               errors.push(i18n.__("unique", i18n.__("user."+path)));
+      //             }
+      //             res.render('shipping', { errors: errors, title: req.__('shipping'), order: order });
+      //           }
+      //           else {
+      //             order.user = user.id;
+      //             order.shipping = JSON.parse(JSON.stringify(user.shipping));
+      //             order.save(function(err) {
+      //               fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
+      //                 if(err){
+      //                   //handle errors
+      //                   console.log('ERROR!');
+      //                   return res.send('ERROR!');
+      //                 }
+      //                 var html = vash.compile(file);
+      //                 transporter.sendMail({
+      //                   from: 'Yppuna <hello@yppuna.vn>',
+      //                   to: user.email,
+      //                   subject: user.username+'님 회원가입을 축하드립니다.',
+      //                   html: html({ user : user, i18n: i18n })
+      //                 }, function (err, info) {
+      //                     if (err) { console.log(err); }
+      //                     //console.log('Message sent: ' + info.response);
+      //                     req.login(user, function(err) {
+      //                       if (err) {
+      //                         console.log(err);
+      //                       }
+      //                       if (req.session.cart_order)
+      //                         return res.redirect('/mall/checkout')
+      //                       else
+      //                         return res.redirect('/checkout');
+      //                     });
+      //                 });
+      //               });
+      //             });
+      //           }
+      //         });
+      //       }
+      //     });
+      // }
+      if (req.user) {
         if (!req.user.email) {
           req.Validator.validate('email', i18n.__('user.email'), {
             required: true
@@ -1130,11 +1144,12 @@ router.post('/shipping', function(req, res) {
               }
               user.shipping = {
                 full_name: req.body.full_name,
-                address: req.body.address1,
-                country: req.body.country,
+                address: req.body.address,
                 city: req.body.city,
                 zipcode: req.body.zipcode,
-                phone_number: req.body.phone_number
+                phone_number: req.body.phone_number,
+                district: req.body.district,
+                ward: req.body.ward
               };
               user.save(function(err) {
                 if (err) {
@@ -1167,7 +1182,7 @@ router.post('/shipping', function(req, res) {
       }
       else {
         req.Validator.validate('email', i18n.__('user.email'), {
-            required: true
+            required: false
         });
 
         req.Validator.getErrors(function(errors){
@@ -1177,21 +1192,19 @@ router.post('/shipping', function(req, res) {
           else {
             order.shipping = {
                 full_name: req.body.full_name,
-                address: req.body.address1,
+                address: req.body.address,
                 country: req.body.country,
                 city: req.body.city,
                 zipcode: req.body.zipcode,
                 phone_number: req.body.phone_number
             }
-            order.email = req.body.email;
+            //order.email = req.body.email;
             order.save(function(err) {
               if (err) {
                 res.render('shipping', { errors: err, title: req.__('shipping'), order: order });
               }
               else {
-                if (req.session.cart_order)
-                  return res.redirect('/mall/checkout')
-                else
+                console.log(order);
                   return res.redirect('/checkout');
               }
             });

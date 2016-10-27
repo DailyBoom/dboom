@@ -1,238 +1,102 @@
-@html.extend("layout", function(model) {
+@html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
-		<div class="container">
-			<div class="row blue-grey-text text-lighten-2 center">
-				<br>
-				<div class="col s4">
-					<h5 class="sm">
-						<i class="fa fa-truck fa-2x fa-fw"></i>
-						<br class="hide-on-med-and-up">1. @model.__('shipping')
-					</h5>
-				</div>
-				<div class="col s4 blink">
-					<h5 class="green-text text-darken-3 sm">
-						<i class="fa fa-credit-card fa-2x fa-fw green-text text-darken-3"></i>
-						<br class="hide-on-med-and-up">2. @model.__('payment')
-					</h5>
-				</div>
-				<div class="col s4">
-					<h5 class="sm">
-						<i class="fa fa-thumbs-o-up fa-2x fa-fw"></i>
-						<br class="hide-on-med-and-up">3. @model.__('confirm')
-					</h5>
-				</div>
-			</div><!-- .row -->
+		<div id="checkout" class="container">
+            <div class="checkout-progress">
+                <div class="row">
+                    <div class="col s4">
+                        <h3><span class="show-on-small-only">1. </span>ĐĂNG NHẬP</h3>
+                    </div>
+                    <div class="col s4">
+                        <h3><span class="show-on-small-only">2. </span>ĐỊA CHỈ</h3>
+                    </div>
+                    <div class="col s4 active">
+                        <h3><span class="show-on-small-only">3</span>THANH TOÁN</h3>
+                    </div>
+                </div>
+            </div>
 			<div class="row">
-				<div class="col s12">
-					<!-- <h3 class="blue-grey-text text-darken-4">주문결제</h3> -->
-					<br>
+				<div id="checkout_row" class="col s12 l4 offset-l1">
+					<form action="/checkout" method="POST">
+                        <div class="payment">
+						    <span class="title">Chọn phương thức thanh toán:</span>
+						    <input type="radio" name="pay_method" id="delivery" checked /><label for="delivery">Thanh toán khi nhận hàng</label>
+						    <input type="radio" name="pay_method" id="atm" /><label for="atm">Thanh toán bằng thẻ ATM</label>
+						    <input type="radio" name="pay_method" id="card" /><label for="card">Thanh toán bằng thẻ tín dụng</label>
+                        </div>
+                        <div class="delivery">
+						    <span class="title">Chọn phương thức giao sách:</span>
+						    <input type="radio" name="deliv_method" id="standard" checked /><label for="standard">Giao hàng tiêu chuẩn: Miễn phí</label>
+						    <input type="radio" name="deliv_method" id="fast" /><label for="fast">Giao hàng nhanh : <span class="delivery_price">15.000 đ</span></label>
+                        </div>
+                        <button>THANH TOÁN</button>
+					</form>
 				</div>
-				<div class="col s12 m6 l8">
-					<div class="col s12 blue-grey-text text-darken-3">
-						<h5>@model.__('checkout.options')</h5>
-						<form method="post" id="options">
-							<div class="input-field col s12 m8 l9">
-								<select id="order_option" name="order_option">
-									@{ var i = 0; }
-									@model.order.product.options.forEach(function(option) {
-										@if(parseInt(option.quantity) > 0) {
-											<option value="@option.name" @(model.order.option == option.name ? 'selected' : '')>@option.name</option>
-											@{ i++; }
-										}
-										else {
-											<option value="@option.name" disabled>@option.name (Sold Out)</option>
-										}
-									})
-								</select>
-							</div>
-							<div class="input-field col s12 m4 l3">
-								<select id="order_quantity" name="order_quantity">
-									@for(i = 1; i <= parseInt(model.leftQuantity) && i <= 10 ; i++) {
-										<option value="@i" @(model.order.quantity == i ? 'selected' : '') >@i</option>
-									}
-								</select>
-							</div>
-							@if(model.coupons && model.coupons.length > 0) {
-								<div class="input-field col s12">
-									<select id="coupon" name="coupon">
-										<option value="">@model.__('checkout.coupon')</option>
-										@model.coupons.forEach(function(coupon) {
-											@if(coupon.type == 1 && model.order.product.delivery_price > 0) {
-												<option value="@coupon.id" @(model.order.coupon && model.order.coupon.id == coupon.id ? 'selected' : '') >무료 배송 (유효기간: @model.moment(coupon.expires_at).format("YYYY/MM/DD"))</option>
-											}
-											else if (coupon.type == 2) {
-												<option value="@coupon.id" @(model.order.coupon && model.order.coupon.id == coupon.id ? 'selected' : '') >@coupon.price ₫ (유효기간: @model.moment(coupon.expires_at).format("YYYY/MM/DD"))</option>
-											}
-											else if (coupon.type == 3) {
-												<option value="@coupon.id" @(model.order.coupon && model.order.coupon.id == coupon.id ? 'selected' : '') >@coupon.percentage% (유효기간: @model.moment(coupon.expires_at).format("YYYY/MM/DD"))</option>
-											}
-										})
-									</select>
-								</div>
-							}
-							@if (model.user && model.user.wallet > 0) {
-								<div class="hide input-field col s12 m7 @(model.is_mobile ? '': 'right')'">
-									<label for="wallet_dc">자연 Point @model.user.wallet 원</label>
-									<input type="number" id="wallet_dc" max="@model.user.wallet" min="0" name="wallet_dc" class="col m7 s12" value="@model.order.wallet_dc"/>
-									<button type="submit" class="btn col m5 s12">Point 사용</button>
-								</div>
-							}
-							<input type="hidden" value="@model.order.product.id" />
-						</form>
-					</div><!-- .row -->
-					<br>
-					<div class="col s12 blue-grey-text text-darken-3">
-					<hr>
-						<h5>@model.__('checkout.address')</h5>
-						<span class="check-name">@(model.user ? model.user.shipping.full_name : model.order.shipping.full_name)</span>
-						<br><span class="check-number">@(model.user? model.user.shipping.phone_number : model.order.shipping.phone_number)</span>
-						<br><span class="check-address">@(model.user ? model.user.shipping.address : model.order.shipping.address)</span>
-						<br><span class="check-address">@(model.user ? model.user.shipping.zipcode : model.order.shipping.zipcode)</span>
-						<br>
-						<br><span class="check-address">@model.order.shipping.city</span>
-						<br>
-						<br>
-						@if (model.order.pickup_date) {
-							<span class="check-address">Pickup : @model.moment(model.order.pickup_date).format('MM/DD/YYYY')</span>
-						}
-						<div class="btn-shipping-edit">
-							<a class="waves-effect waves-light btn blue-grey darken-2" href="/shipping">@model.__('checkout.addressEdit')</a>
-						</div>
-								<!-- Comments -->
-						<div class="row">
-							<form class="col s12" action="" id="new_comment">
-										<hr>
-										<br>
-							<div class="row blue-grey-text text-darken-2">
-								<div class="col s12 m6 l8">
-									<h5>@model.__('checkout.memo')</h5>
-								</div>
-								<div class="input-field col s12 m6 l8">
-									<textarea id="comment_body" class="materialize-textarea" name="comment_body" required></textarea>
-									<label for="comment_body">@model.__('checkout.memoExample')</label>
-								</div>
-							</div>
-							<button type="submit" class="waves-effect waves-light btn blue-grey darken-3">@model.__('checkout.memoSend')<i class="fa fa-paper-plane fa-fw right"></i></button>
-							</form>
-						</div><!-- .row -->
-					</div><!-- .row -->
-				</div><!-- .col -->
-				<div class="col s12 m6 l4">
-					<div class="blue-grey-text text-darken-3">
-						<h5 class="summary-title">@model.__('product.info')</h5>
-						<div class="summary-box white z-depth-1 right center-align">
-							<img class="responsive-img" src="@model.order.product.images[0]" alt="" />
-							<div class="check-price-box center">
-								<span class="check-item-name blue-grey-text text-darken-1 truncate"><b>@model.order.product.brand</b></span>
-								<span class="check-item-name blue-grey-text text-darken-2 truncate">@model.order.option</span>
-								@if (model.order.product.delivery_price <= 0 || (model.order.coupon && model.order.coupon.type == 1)) {
-								     <span class="hide check-item-name blue-grey-text text-darken-2">free shipping</span><br>
-								}
-								else if (model.order.product.delivery_price > 0){
-								    <span class="check-item-name blue-grey-text text-darken-2">+ <span id="delivery_price">@model.order.product.delivery_price</span> delivery</span><br>
-								}
-								<!-- wallet -->
-								@if (model.order.wallet_dc) {
-								     <span class="hide check-item-name blue-grey-text text-darken-2">Point DC: @model.order.wallet_dc ₫</span><br>									
-								}
-								<span class="check-price blue-grey-text text-darken-3" id="product_price">@model.order.totalOrderAmt</span>
-							</div>
-							<div class="bank-box">
-								<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">@model.__('checkout.cash')</a>
-							</div>
-						</div>
-					</div><!-- .row -->
-				</div><!-- .col -->
-			</div><!-- .row -->
-		</div><!-- .container -->
-
-		<br>
-		<!-- Modal Structure -->
-		<div id="bank_modal" class="modal">
-			<div class="modal-content center">
-				<i class="fa fa-times fa-fw right modal-close"></i>
-				<h4>@model.__('checkout.cash')</h4>
-				<form action="/deposit_checkout" method="post">
-					<div class="row">
-						<div class="col s12 m8 offset-m2">
-							<p class="bank-info blue-grey-text text-darken-1 center">
-								@model.__('checkout.confirmText1')<br/>
-								@model.__('checkout.confirmText2')<br/>
-								@model.__('checkout.confirmText3')
-							</p>
-						</div>
-						<br>
-						<br>
-						<button type="submit" class="waves-effect waves-light btn green darken-2">@model.__('checkout.confirm')</a>
+				<div id="cart" class="col s12 l5 offset-l1">
+					<div class="shipping-header">
+						<a href="/shipping" class="right">SỬA</a>
+						<span class="sub">Địa chỉ giao hàng</span>
 					</div>
-				</form>
+					<div class="shipping-content">
+						<div class="full-name">@model.order.shipping.full_name</div>
+						<div class="address">@model.order.shipping.address</div>
+						<div class="city">@model.order.shipping.city</div>
+						<div class="phone">@model.order.phone_number</div>
+					</div>
+                    <div class="cart-header">
+                        <span class="right">SỬA</span>
+                        <h4>THÔNG TIN ĐƠN HÀNG</h4>
+                        <span class="sub">(@model.cart.length quyển sách trong túi hàng của bạn)</span>
+                    </div>
+                    <div class="cart-content">
+                        <div class="content-header hide-on-small-only">
+                            <div class="col s5">
+                                TÊN SẢN PHẨM
+                            </div>
+                            <div class="col s3">
+                                SỐ LƯỢNG
+                            </div>
+                            <div class="col s4">
+                                GIÁ
+                            </div>
+                        </div>
+                        <div class="cart-products">
+                            @model.cart.forEach(function(item) {
+                                <div class="col s5">
+                                    <div class="name">@item.product.name</div>
+                                    <div class="brand">@item.product.brand</div>
+                                </div>
+                                <div class="col s3">
+                                    <div class="quantity">@item.quantity</div>
+                                </div>
+                                <div class="col s4">
+                                    <div class="price">@item.product.price</div>
+                                </div>
+                            })
+                        </div>
+                        <div class="cart-total">
+                            <div class="col s8">
+                                <div>Tổng tiền:</div>
+                                <div>Khuyến mãi:</div>
+                                <div class="amount">Thành tiền:</div>
+                                <span>(Đã bao gồm VAT)</span>
+                            </div>
+                            <div class="col s4">
+                                <div class="total">@model.cart_total</div>
+                                <div class="total-dc">@model.cart_total</div>
+                                <div class="total-amount">@model.cart_total</div>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
 			</div>
-				<!-- .modal -->
-		</div><!-- .container -->
-		<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.0.js"></script>
-		<script type="text/javascript">
-	    $(document).ready(function() {
-	      $('select').material_select();
-	      $('#order_request').characterCounter();
-	    });
-			$('#request_select').on('change', function() {
-				if ($("#request_select option:selected").val() == 1) {
-					$('#comment_body').html('배송전 연락바랍니다.');
-					$('#comment_body').focus();
-				}
-				if ($("#request_select option:selected").val() == 2) {
-					$('#comment_body').html('경비실에 맡겨주시기 바랍니다.');
-					$('#comment_body').focus();
-				}
-				if ($("#request_select option:selected").val() == 3) {
-					$('#comment_body').html('택배함에 놔주세요.');
-					$('#comment_body').focus();
-				}
-				if ($("#request_select option:selected").val() == 4) {
-					$('#comment_body').html('집앞에 놔주세요.');
-					$('#comment_body').focus();
-				}
-				if ($("#request_select option:selected").val() == 5) {
-					$('#comment_body').html('');
-					$('#comment_body').focus();
-				}
-			});
-			$(document).ready(function() {
-				$('#new_comment').on("submit", function(event) {
-					event.preventDefault();
-					$.ajax({
-						type: "POST",
-						url: "/comments/new",
-						dataType: "json",
-						data: {
-							body: $("#comment_body").val(),
-							type: $("#request_select option:selected").val(),
-							order: "@model.order.id"
-						},
-						success: function (res) {
-							Materialize.toast(res.message, 4000);
-							$('form textarea').val("");
-						},
-						error: function (res) {
-							Materialize.toast(res.responseJSON.message, 4000);
-						}
-					});
-				});
-
-				$("#order_option, #order_quantity, #coupon").on('change', function() {
-					if ($(this).find("option:selected").val() != 0)
-						$("#options").submit();
-				});
-				// $('.modal-trigger').leanModal({
-			    //   dismissible: true, // Modal can be dismissed by clicking outside of the modal
-			    //   opacity: .5, // Opacity of modal background
-			    //   in_duration: 300, // Transition in duration
-			    //   out_duration: 200 // Transition out duration
-			    // });
-				$('select').material_select();
-			});
-			var lang = '@model.getLocale()';
-			$("#product_price, #product_price_mobile, #delivery_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+            <div class="">
+                
+            </div>
+		</div>
+		<script>
+			$(document).ready(function(){
+				$(".price, .total, .total-dc, .total-amount").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+			})
 		</script>
 	})
 })

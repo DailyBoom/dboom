@@ -4,13 +4,20 @@
 			<div class="row">
 				<div class="col s12 l4" id="left">
 					<h1>@model.product.name</h1>
+					<a href="#" class="read-less">Hình sản phẩm <i class="fa fa-caret-right"></i></a>					
 					<div class="description">
 						<h4>MÔ TẢ CHI TIẾT</h4>
 						<div class="body">
 							@model.product.description
 						</div>
-						<a href="#" class="read-more">Xem chi tiết <i class="fa fa-caret-right"></i></a>
 					</div>
+					<div class="how-to">
+						<h4>HƯỚNG DẪN SỬ DỤNG</h4>
+						<div class="body">
+							@model.product.how_to
+						</div>
+					</div>
+					<a href="#" class="read-more">Xem chi tiết <i class="fa fa-caret-right"></i></a>
 				</div>
 				<div class="col s12 l4" id="center">
 					<div class="img-wrapper">
@@ -87,6 +94,10 @@
 		</div>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			$('.read-more, .read-less').on('click', function() {
+				$('.description, .how-to, .read-more, .read-less, #center').toggle();
+			});
+
 			var cw = $('.main-img').width();
 			$('.main-img').css({'height':cw+'px'});
 			$(".price, .old_price, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});

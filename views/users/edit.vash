@@ -1,78 +1,47 @@
-@html.extend("layout", function(model) {
+@html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
-		<div class="container">
+		<div class="container user-edit" id="mypage">
 			<div class="row">
-				<form class="col s12" method="post" action="/users/edit/">
-					<h3>나의정보 수정</h3>
-					@if (model.errors) {
-						<ul class="red-text">
-						@if (model.errors.lenght > 0)
-							@model.errors.forEach(function(error) {
-								<li>@error</li>
-							})
-						}
-						else {
-							<li>@model.errors</li>
-						}
-						</ul>
-					}
-					<div class="row">
-						<div class="input-field col s12 m6 l6">
-							<input id="username" type="text" class="validate" name="username" value="@model.user.username" readonly required>
-							<label for="username">아이디</label>
-						</div>
-						<div class="input-field col s12 m6 l6">
-							<input id="email" type="email" class="validate" name="email" value="@model.user.email" required>
-							<label for="email">이메일</label>
-						</div>
-					</div>
-					<div class="row">
-						<br>
+				<div class="col l2 offset-l1 hide-on-small-only">
+					<div class="username">@model.user.username</div>
+					<div class="account"><a href="/mypage">Thông tin tài khoản</a></div>
+					<div class="history"><a href="/history">Đơn hàng của bạn</a></div>
+				</div>
+				<form method="post">
+					<div class="col l5 s12 offset-l1">
 						<div class="col s12">
-							<h4 class="card-title blue-grey-text text-darken-3">Shipping information</h4>
-							<div class="">
-								<div class="row">
-									<div class="input-field col s12 m6 l6">
-										<input id="full_name" type="text" class="validate" name="full_name" value="@(model.user.shipping.full_name ? model.user.shipping.full_name : model.Validator.getValue('full_name'))">
-										<label for="full_name">@model.__('user.recipient')</label>
-									</div>
-									<div class="input-field col s12 m6 l6">
-										<input id="phone_number" type="text" class="validate" name="phone_number" value="@(model.user.shipping.phone_number ? model.user.shipping.phone_number : model.Validator.getValue('phone_number'))">
-										<label for="phone_number">@model.__('user.phoneNumber')</label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="input-field col s12 m9 l9">
-										<input id="address" type="text" class="validate" placeholder="시 . 구 . 동 . " name="address" value="@(model.user.shipping.address ? model.user.shipping.address : model.Validator.getValue('address1'))">
-										<label for="address">@model.__('user.address1')</label>
-									</div>
-									<div class="input-field col s12 m3 l3">
-										<input id="zipcode" type="text" class="validate" placeholder="123456" name="zipcode" value="@(model.user.shipping.zipcode ? model.user.shipping.zipcode : model.Validator.getValue('zipcode'))">
-										<label for="zipcode">@model.__('user.zipcode')</label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="input-field col s12">
-										<select id="city" name="city">
-											<option value="Hồ Chí Minh" @(model.user.shipping && model.user.shipping.city == 'Hồ Chí Minh' ? 'selected' : '')>Hồ Chí Minh</option>
-											<option value="Hà Nội" @(model.user.shipping && model.user.shipping.city == 'Hà Nội' ? 'selected' : '')>Hà Nội</option>
-										</select>
-										<label>@model.__('user.city')</label>
-									</div>
-								</div>
-							</div>
-							<button class="btn btn-large waves-effect waves-light btn-order blue-grey darken-3 right" type="submit" name="action">
-								수정 하기 <i class="fa fa-pencil-square-o right"></i>
-							</button>
+							<h2>Thông tin cá nhân</h2>
+						</div>
+						<div class="user-info col s12">
+							<span class="col l4 s12 title">Họ và tên:</span><input type="text" placeholder="Văn Phạm Nhật Lan" class="content col l7 s12" value="@model.user.username" name="username" />
+							<span class="col l4 s12 title">Email:</span><input type="text" placeholder="nhatlanvan@gmail.com" class="content col l7 s12" value="@model.user.email" name="email" />
+							<div class="gender col s12"><span class="title col s4">Giới tính:</span><input name="gender" type="radio" value="0" id="c_male" /><label for="c_male" class="sub">Nam</label><input name="gender" type="radio" value="0" id="c_female" /><label for="c_female" class="sub">Nữ</label></div>
+							<span class="title col s12 l4">Ngày sinh:</span><input type="text" class="birthday" name="birthday" />
+						</div>
+						<div class="col s12">
+							<h2>Địa chỉ giao hàng</h2>
+						</div>
+						<div class="user-shipping col s12">
+							<span class="col l4 s12 title">Tên:</span><input type="text" placeholder="Họ và tên" class="content col l7 s12" value="@model.user.shipping.full_name" name="full_name" />
+							<span class="col l4 s12 title">Tỉnh/Thành phố:</span>
+							<select class="col s12 l7" id="city" name="city">
+								<option value="Hồ Chí Minh">Hồ Chí Minh</option>
+							</select>
+							<span class="col l4 s12 title">Quận/Huyện:</span>
+							<select class="col s12 l7" id="district" name="district">
+								<option value="1">Lựa chọn</option>
+							</select>
+							<span class="title col l4 s12">Phường/Xã:</span>
+							<select class="col s12 l7" id="ward" name="ward">
+								<option value="1">Lựa chọn</option>
+							</select>
+							<span class="title col l4 s12">Địa chỉ:</span><textarea name="address" class="content col l7 s12" placeholder="35a Trần Quốc Toản">@model.user.shipping.address</textarea>
+							<span class="title col l4 s12">Ngày sinh:</span><input placeholder="01225 985 446" class="content col l7 s12" value="@model.user.shipping.phone_number" name="phone_number"/>
+							<button class="right col s12">LƯU THAY ĐỔI</button>
 						</div>
 					</div>
 				</form>
-			</div><!-- .row -->
+			</div>
 		</div>
-		<script>
-			$(document).ready(function() {
-				$('select').material_select();
-			});
-		</script>
-  })
+	})
 })

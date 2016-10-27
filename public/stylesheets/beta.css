@@ -153,6 +153,29 @@ header, main {
   background: white;
 }
 
+#login_row .modal-header {
+  margin-top: -30px;
+  margin-bottom: 30px;
+  display: inline-block;
+  width: 100%;
+}
+
+#login_row .modal-header h3, #login_row .modal-header a {
+  font-family: SVN-Karla;
+  font-size: 25px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #b3c2cf;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+#login_row .modal-header .active h3 {
+  color: #f19996;
+}
+
 #login_modal .s12 {
   padding: 0;
 }
@@ -194,7 +217,7 @@ header, main {
   stroke: #2074bd;
 }
 
-#login_modal label {
+#login_modal label, #login_row label {
   padding-left: 20px;
   font-family: SVN-Karla;
   font-size: 14px;
@@ -204,7 +227,7 @@ header, main {
   color: #2074bd;
 }
 
-#login_modal input, #login_modal select {
+#login_modal input, #login_modal select, #login_row input {
   border-radius: 100px;
   box-shadow: inset 0 1px 3px 0 rgba(199, 199, 199, 0.5);
   border: solid 1px #b3c2cf;
@@ -218,15 +241,15 @@ header, main {
   height: auto;
 }
 
-#login_modal input {
+#login_modal input, #login_row input {
   width: calc(100% - 20px);
 }
 
-#login_modal .bday {
+#login_modal .bday, #login_row .bday {
   display: block;
 }
 
-#login_modal .select-wrapper {
+#login_modal .select-wrapper, #login_row .select-wrapper {
   margin-right: 20px;
   border-radius: 100px;
   box-shadow: inset 0 1px 3px 0 rgba(199, 199, 199, 0.5);
@@ -241,24 +264,24 @@ header, main {
   height: 30px;
 }
 
-#login_modal .select-wrapper.year {
+#login_modal .select-wrapper.year, #login_row .select-wrapper.year {
   margin: 0;
 }
 
-#login_modal .select-wrapper input {
+#login_modal .select-wrapper input, #login_row .select-wrapper input {
   border: none;
   box-shadow: none;
   padding: 0;
   line-height: 1;
 }
 
-#login_modal .select-wrapper .caret {
+#login_modal .select-wrapper .caret, #login_row .select-wrapper .caret {
   top: 6px;
   right: 10px;
   color: #2074bd;
 }
 
-#login_modal .select-wrapper .dropdown-content {
+#login_modal .select-wrapper .dropdown-content, #login_row .select-wrapper .dropdown-content {
   left: 0 !important;
   width: inherit !important;
   border-radius: 4px;
@@ -266,11 +289,11 @@ header, main {
   border: solid 1px #b3c2cf;
 }
 
-#login_modal .select-wrapper .dropdown-content li {
+#login_modal .select-wrapper .dropdown-content li, #login_row .select-wrapper .dropdown-content li {
   height: 30px;
 }
 
-#login_modal .select-wrapper .dropdown-content li span {
+#login_modal .select-wrapper .dropdown-content li span, #login_row .select-wrapper .dropdown-content li span {
   font-family: SVN-Karla;
   font-size: 14px;
   font-weight: normal;
@@ -280,7 +303,7 @@ header, main {
   padding: 0 16px 14px;
 }
 
-#login_modal .forgot {
+#login_modal .forgot, #login_row .forgot {
   font-family: SVN-Karla;
   font-size: 14px;
   font-weight: bold;
@@ -289,7 +312,7 @@ header, main {
   color: #f19996;
 }
 
-#login_modal button {
+#login_modal button, #login_row button {
   margin-top: 25px;
   width: 100%;
   text-align: center;
@@ -305,7 +328,7 @@ header, main {
   background-color: #3ebbed;
 }
 
-#login_modal #facebook {
+#login_modal #facebook, #login_row #facebook {
   margin-top: 11px;
   border-radius: 64px;
   border: solid 1px #3a589d;
@@ -320,31 +343,31 @@ header, main {
   color: #3a589d;
 }
 
-#login_modal #facebook .s2 {
+#login_modal #facebook .s2, #login_row #facebook .s2 {
   background: #3a589d;
 }
 
-#login_modal .gender {
+#login_modal .gender, #login_row .gender {
   margin-top: 19px;
 }
 
-#login_modal .gender label {
+#login_modal .gender label, #login_row .gender label {
   margin-right: 21px;
 }
 
-#login_modal .gender label.sub {
+#login_modal .gender label.sub, #login_row .gender label.sub {
   font-weight: normal;
   color: #5aa0d6;
 }
 
-#login_modal .gender input {
+#login_modal .gender input, #login_row .gender input {
   width: 10px;
   height: 10px;
   object-fit: contain;
   border: solid 1px #5aa0d6;
 }
 
-#login_modal .terms {
+#login_modal .terms, #login_row .terms {
   margin-top: 33px;
   font-family: SVN-Karla;
   font-size: 13px;
@@ -354,11 +377,413 @@ header, main {
   color: #b3c2cf;
 }
 
-#login_modal .terms a {
+#login_modal .terms a, #login_row .terms a {
   color: #fea3a3;
 }
 
-/*detailed_product*/
+/* Checkout */
+
+
+#login_row {
+  margin-top: 90px;
+}
+
+#login_row #c_login, #login_row #c_signup {
+  margin-top: 30px;
+}
+
+#cart {
+  margin-top: 90px;
+}
+
+#cart .cart-header {
+  margin-bottom: 25px;
+}
+
+#cart .cart-header h4 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-family: SVN-Karla;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.2;
+  color: #2074bd;
+}
+
+#cart .cart-header .sub, #cart .shipping-header .sub {
+  font-family: SVN-Karla;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+}
+
+#cart .cart-header .right, #cart .shipping-header .right {
+  border-radius: 21px;
+  background-color: #3ebbed;
+  text-align: center;
+  padding: 5px 21px;
+  color: white;
+}
+
+#cart .cart-content .content-header, #cart .cart-content .cart-products, #cart .cart-content .cart-total {
+  width: 100%;
+  display: inline-block;
+}
+
+#cart .cart-content .content-header {
+  padding: 13px 20px;
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.29;
+  color: #b3c2cf;
+}
+
+#cart .cart-content .col {
+  padding: 0;
+}
+
+#cart .cart-content .content-header .s3 {
+  text-align: center;
+}
+
+#cart .cart-content .content-header .s4 {
+  text-align: right;
+  padding-right: 8px;
+}
+
+#cart .cart-products, #cart .shipping-content {
+  border-radius: 2px;
+  background-color: #f4faff;
+  padding: 15px 21px;
+}
+
+#cart .cart-products .name {
+  font-family: SVN-Karla;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: left;
+  color: #2074bd;
+}
+
+#cart .cart-products .brand {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #b3c2cf;
+}
+
+#cart .cart-products .quantity {
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  font-family: SVN-Karla;
+  color: #b3c2cf;
+}
+
+#cart .cart-products .price {
+  font-family: SVN-Karla;
+  font-size: 22px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: right;
+  color: #fea3a3;
+}
+
+#cart .cart-total {
+  padding: 22px 20px;
+}
+
+#cart .cart-total .s8 div {
+  font-family: SVN-Karla;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: left;
+  color: #2074bd;
+}
+
+#cart .cart-total .amount {
+  margin-top: 32px;
+}
+
+#cart .cart-total .s8 span {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+}
+
+#cart .cart-total .total {
+  font-family: SVN-Karla;
+  font-size: 22px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #b3c2cf;
+  text-align: right;
+}
+
+#cart .cart-total .total-dc {
+  font-family: SVN-Karla;
+  font-size: 22px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #b3c2cf;
+  padding-bottom: 3px;
+  border-bottom:  dashed 1px #b3c2cf;
+  text-align: right;
+}
+
+#cart .cart-total .total-amount {
+  margin-top: 15px;
+  font-family: SVN-Karla;
+  font-size: 22px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #fea3a3;
+  text-align: right;
+}
+
+#shipping_row {
+  margin-top: 90px; 
+}
+
+#shipping_row form {
+  position: relative;
+}
+
+#shipping_row .title {
+  display: block;
+  margin-bottom: 40px; 
+  font-family: SVN-Karla;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: left;
+  color: #2074bd;
+}
+
+#shipping_row .select-wrapper + label {
+  position: relative;
+}
+
+#shipping_row .form-row {
+  margin-bottom: 9px;
+}
+
+#shipping_row label {
+  font-family: SVN-Karla;
+  font-size: 13px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.38;
+  color: #2074bd;
+  text-align: right;
+  padding-right: 11px !important; 
+  padding-top: 7px;
+}
+
+#shipping_row input {
+  border-radius: 100px;
+  box-shadow: inset 0 1px 3px 0 rgba(199, 199, 199, 0.5);
+  border: solid 1px #b3c2cf;
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+  padding: 5px 0 7px 20px !important;
+  height: auto;
+}
+
+#shipping_row textarea {
+  border-radius: 3px;
+  box-shadow: inset 0 1px 3px 0 rgba(199, 199, 199, 0.5);
+  border: solid 1px #b3c2cf;
+  padding-top: 5px;
+  padding-left: 14px;
+  margin-bottom: 7px;
+  height: 100px;
+}
+
+.combodate .select-wrapper {
+  padding: 0;
+}
+
+.combodate input.select-dropdown {
+  width: calc(100% - 20px) !important;
+  margin-right: 20px !important;
+  border-radius: 3px;
+  font-family: SVN-Karla !important;
+  font-size: 14px !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  font-stretch: normal !important;
+  color: #5aa0d6 !important;
+  height: 30px !important;
+}
+
+/*#shipping_row .select-wrapper input {
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  line-height: 1;
+}*/
+
+.combodate .select-wrapper .caret {
+  top: 14px;
+  right: 10px;
+  color: #2074bd;
+}
+
+.combodate .select-wrapper .dropdown-content {
+  left: 0 !important;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: solid 1px #b3c2cf;
+  width: 100% !important;
+}
+.combodate .select-wrapper .dropdown-content li {
+  padding: 5px 0 7px 20px;  
+  height: 30px;
+}
+
+.combodate .select-wrapper .dropdown-content li span {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+  padding: 0 16px 14px;
+}
+
+#shipping_row .info {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+}
+
+#shipping_row button, #checkout_row button {
+  border-radius: 100px;
+  background-color: #3ebbed;
+  font-family: SVN-Karla;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #ffffff;
+  padding: 6px 0 5px;
+  border: none;
+  margin-top: 24px;
+  width: 100%;
+}
+
+#checkout_row {
+  margin-top: 90px;
+}
+
+#checkout_row .title {
+  font-family: SVN-Karla;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: left;
+  color: #2074bd;
+  margin-bottom: 35px;
+  display: block;
+}
+
+#checkout_row input {
+  width: 15px;
+  height: 15px;
+}
+
+#checkout_row label {
+  font-family: SVN-Karla;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+}
+
+#checkout_row .payment {
+  margin-bottom: 56px;
+}
+
+#checkout_row .delivery_price {
+  font-weight: bold;
+}
+
+.shipping-header {
+  margin-bottom: 12px;
+  display: inline-block;
+  width: 100%;
+}
+
+.shipping-content {
+  margin-bottom: 34px;
+  padding: 21px 17px 34px;
+}
+
+.shipping-content .full-name {
+  font-family: SVN-Karla;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: left;
+  color: #2074bd;
+  margin-bottom: 16px;
+}
+
+.shipping-content .address, .shipping-content .city {
+  font-family: SVN-Karla;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+}
+
+.shipping-content .phone {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.29;
+  color: #b3c2cf;
+}
+
+/* detailed_product */
 
 #detailed_product {
   margin-top: 72px;
@@ -414,7 +839,7 @@ header, main {
   margin-bottom: 76px;
 }
 
-#detailed_product .read-more {
+#detailed_product .read-more, #detailed_product .read-less {
   font-family: SVN-Karla;
   font-size: 14px;
   font-weight: bold;
@@ -431,6 +856,10 @@ header, main {
   vertical-align: middle;
   overflow: hidden;
   height: auto;
+}
+
+#detailed_box .main-img {
+  overflow: visible;
 }
 
 #detailed_product .main-img img, #detailed_box .main-img img {
@@ -484,7 +913,7 @@ header, main {
 }
 
 #detailed_product .price, #detailed_box .price {
-  font-family: Karla;
+  font-family: SVN-Karla;
   font-size: 22px;
   font-weight: bold;
   font-style: normal;
@@ -493,7 +922,7 @@ header, main {
 }
 
 #detailed_product .old_price {
-  font-family: Karla;
+  font-family: SVN-Karla;
   font-size: 14px;
   font-weight: bold;
   font-style: normal;
@@ -591,6 +1020,367 @@ input[type=number]::-webkit-outer-spin-button {
 
 #detailed_box #individual {
   margin-top: 200px;
+}
+
+/* User page */
+
+#mypage {
+  margin-top: 81px; 
+}
+
+#mypage .username {
+  font-family: SVN-Karla;
+  font-size: 22px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #b3c2cf;
+  margin-bottom: 19px;
+}
+
+#mypage .account {
+  font-family: SVN-Karla;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 17px;
+}
+
+#mypage .account a {
+  color: #2074bd;
+}
+
+#mypage .history {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.29;
+  text-align: center;
+}
+
+#mypage .history a {
+  color: #5aa0d6;
+}
+
+#mypage h2 {
+  font-family: SVN-Karla;
+  font-size: 22px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: left;
+  color: #2074bd;
+  margin: 0;
+  padding: 6px 0 5px;
+}
+
+#mypage .edit {
+  border-radius: 21px;
+  background-color: #3ebbed;
+  font-family: SVN-Karla;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #ffffff;
+  padding: 6px 0 5px;
+}
+
+#mypage .edit a {
+  color: #ffffff;
+}
+
+#mypage .user-info {
+  margin-top: 20px;
+  margin-bottom: 42px;
+  padding-bottom: 43px;
+  border-bottom: dashed 1px #b3c2cf;
+}
+
+#mypage .user-shipping {
+  margin-top: 30px;
+}
+
+#mypage .title {
+  font-family: SVN-Karla;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.2;
+  color: #2074bd;
+  text-align: right;
+}
+
+#mypage .content {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+  margin-left: 15px;
+}
+
+#mypage.user-edit .title {
+  padding-top: 7px;
+}
+
+#mypage input, #mypage select {
+  border-radius: 100px;
+  box-shadow: inset 0 1px 3px 0 rgba(199, 199, 199, 0.5);
+  border: solid 1px #b3c2cf;
+  height: auto;
+  padding: 7px 15px 7px;
+}
+
+#mypage .gender {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+#mypage .gender span {
+  padding-top: 0 !important;
+}
+
+#mypage .combodate {
+  width: 60%;
+  display: inline-block;
+}
+
+#mypage .combodate .col {
+  padding: 0;
+  margin-right: 18px;
+}
+
+#mypage input.select-dropdown {
+  padding: 0 15px;
+}
+
+#mypage .caret {
+  top: 8px;
+  right: 4px;
+}
+
+#mypage textarea {
+  height: 103px;
+  padding-top: 5px;
+  padding-left: 14px;
+  font-family: SVN-Karla;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 3px 0 rgba(199, 199, 199, 0.5);
+  border: solid 1px #b3c2cf;
+  margin-bottom: 11px;
+}
+
+#mypage button.right {
+  font-family: SVN-Karla;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #ffffff;
+  border-radius: 21px;
+  background-color: #3ebbed;
+  padding: 6px 21px 5px;
+  border: none;
+}
+
+/* history */
+
+#mypage.history .indicator {
+  display: none;
+}
+
+#mypage.history .tabs {
+  padding-bottom: 11px;
+  border-bottom: dashed 1px #b3c2cf;
+}
+
+#mypage.history .tab a {
+  font-family: SVN-Karla;
+  font-size: 22px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: left;
+  color: #b3c2cf;
+}
+
+#mypage.history .tab a.active {
+  color: #f19996;
+}
+
+#mypage.history .collapsible {
+  border: none;
+  box-shadow: none;
+}
+
+#mypage.history .collapsible li {
+  border-bottom: dashed 1px #b3c2cf;
+}
+
+#mypage.history .collapsible-header {
+  border: none;
+  padding: 0;
+}
+
+#mypage.history .collapsible-body {
+  border: none;
+}
+
+#mypage.history .order-info {
+  padding: 0 18px 0 32px;
+}
+
+#mypage.history .order-id-title {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.29;
+  color: #5aa0d6;
+}
+
+#mypage.history .order-id {
+  font-family: SVN-Karla;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: left;
+  color: #fea3a3;
+}
+
+
+#mypage.history .order-date {
+  font-family: SVN-Karla;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: right;
+  color: #2074bd;
+}
+
+#mypage.history .order {
+  display: inline-block;
+  width: 100%;
+  border-radius: 2px;
+  background-color: #f4faff;
+  padding: 12px 17px 11px 31px;
+}
+
+#mypage.history .title {
+  text-align: left;
+  margin-bottom: 2px;
+}
+
+#mypage.history .sub {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+  line-height: 1;
+}
+
+#mypage.history .price {
+  text-align: right;
+  font-family: SVN-Karla;
+  font-size: 22px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #fea3a3;
+  line-height: 1;
+}
+
+#mypage.history #cart {
+  margin: 0;
+}
+
+#mypage.history #cart .cart-products, #mypage.history #cart .cart-total {
+  display: inline-block;
+  width: 100%;
+}
+
+#mypage.history #cart .cart-total .col {
+  padding: 0;
+}
+
+#mypage.history #cart .delivery-info {
+  padding: 0 20px 28px;
+  margin-bottom: 28px;
+}
+
+#mypage.history #cart .label {
+  font-family: SVN-Karla;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #b3c2cf;
+}
+
+#mypage.history #cart .order-cancel {
+  padding: 9px 21px;
+  font-family: SVN-Karla;
+  font-size: 13px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #ffffff;
+  border-radius: 100px;
+  background-color: #3ebbed;
+}
+
+/* Terms */
+
+#terms {
+  margin-top: 45px;
+}
+
+#terms h2 {
+  font-family: Estilo;
+  font-size: 80px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.81;
+  text-align: center;
+  color: #fea3a3;
+}
+
+#terms .tab-wrapper {
+  padding-top: 115px;
+}
+
+#terms .table-of-contents li a {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #b3c2cf;
+}
+
+#terms .table-of-contents li a.active {
+  color: #2074bd;
 }
 
 @media only screen and (max-width : 992px) {
@@ -845,7 +1635,261 @@ input[type=number]::-webkit-outer-spin-button {
     text-align: center;
     margin-top: 43px;
   }
+
+  #checkout_login, #shipping, #checkout {
+    padding: 0px 15px;
+  }
   
+  .checkout-progress {
+    margin-top: 28px;
+  }
+
+  .checkout-progress .row {
+    margin: 0;
+  }
+  
+  .checkout-progress .s4 {
+    padding: 0;
+  }
+
+  .checkout-progress h3 {
+    font-family: SVN-Karla;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: left;
+    color: #b5c4d1;
+  }
+
+  .checkout-progress .s4.active span {
+    color: white;
+    border-radius: 90px;
+    padding: 0px 6px;
+    margin-right: 5px;
+  }
+
+  #checkout_login .checkout-progress .s4.active h3 {
+    color: #fea3a3;    
+  }
+
+  #checkout_login .checkout-progress .s4.active span {
+    background-color:#fea3a3;
+  }
+
+  #shipping .checkout-progress .s4.active h3 {
+    color: #3ebbed;    
+  }
+
+  #shipping .checkout-progress .s4.active span {
+    background-color:#3ebbed;
+  }
+
+  #checkout .checkout-progress .s4.active h3 {
+    color: #64d1bf;    
+  }
+
+  #checkout .checkout-progress .s4.active span {
+    background-color:#64d1bf;
+  }
+
+  #login_row, #shipping_row, #checkout_row {
+    margin-top: 30px;
+  }
+
+  #login_row {
+    padding: 0px 14px;
+  }
+
+  #login_row .radios {
+    padding-bottom: 12px;
+    border-bottom: dashed 1px #b3c2cf;
+  }
+
+  #login_row .radio {
+    padding-left: 38px;
+    margin-bottom: 13px;
+  }
+
+  #checkout_row [type="radio"]:not(:checked)+label:after, #checkout_row [type="radio"]:not(:checked)+label:before, #checkout_row [type="radio"]:checked+label:before,
+  #login_row [type="radio"]:not(:checked)+label:after, #login_row [type="radio"]:not(:checked)+label:before, #login_row [type="radio"]:checked+label:before {
+    border: 1px solid #2074bd;
+    transform: scale(1.9);
+    -webkit-transform: scale(1.9);
+  }
+
+  #checkout_row [type="radio"]:checked+label:after, #login_row [type="radio"]:checked+label:after {
+    background-color: white;
+    border: 4px solid #2074bd;
+    transform: scale(1.9);
+    -webkit-transform: scale(1.9);
+  }
+
+  #login_row .radios label, #login_row .gender .sub {
+    padding-left: 54px;
+  }
+
+  #login_modal label, #login_row label {
+    padding-left: 9px;
+    margin-bottom: 8px;
+    display: inline-block;
+  }
+
+  #login_modal input, #login_row input {
+    padding-top: 11px;
+    padding-bottom: 13px;
+  }
+
+  #login_row .modal-header {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 23px;
+  }
+
+  #shipping_row label {
+    text-align: left;
+  }
+
+  #cart .cart-products .name, #cart .cart-products .brand, #cart .cart-products .price, #cart .cart-total .total, #cart .cart-total .total-dc, #cart .cart-total .total-amount {
+    font-size: 15px;
+  }
+
+  #cart .cart-products .quantity {
+    font-size: 18px;
+  }
+
+  #checkout_row label {
+    display: inline-block;
+    margin-bottom: 23px;
+  }
+
+  #checkout_row .title {
+    text-align: center;
+  }
+
+  /*Box page*/
+
+  #detailed_box {
+    margin-bottom: 66px;
+  }
+
+  #detailed_box .col {
+    padding: 0;
+  }
+
+  #detailed_box .box-header {
+    padding: 0 30px;
+  }
+
+  #detailed_box #left {
+    margin-top: 13px;
+  }
+
+  #detailed_box #center {
+    margin-top: 0px;
+  }
+
+  #detailed_box #right {
+    margin-top: 0px;
+  }
+
+  #detailed_box .area-row {
+    margin: 0;
+  }
+
+  #detailed_box .area-row .item_names {
+    margin: 15px 0 30px;
+  }
+
+  #detailed_box .img-wrapper {
+    padding: 37px 75px;
+  }
+
+  #detailed_box .prices {
+    text-align: center;
+  }
+
+  #detailed_box .box-products #left, #detailed_box .box-products #right, #detailed_box .box-products #center {
+    margin-top: 0px;
+  }
+
+  #detailed_box .box-products .row {
+    padding-top: 56px;
+  }
+
+  #detailed_box .box-products h2 {
+    text-align: center;
+    padding: 0 62px;
+    font-size: 50px;
+  }
+
+  .description, .how-to, .read-less {
+    display: none;
+  }
+
+  #mypage {
+    margin-top: 46px;
+  }
+
+  #mypage h2 {
+    text-align: center;
+    font-size: 18px;
+    color: #fea3a3;
+  }
+
+  #mypage.user-edit .title {
+    text-align: left;
+  }
+
+  #mypage .combodate {
+    width: 100%;
+  }
+
+  #mypage input, #mypage select, #mypage textarea {
+    margin-left: 0 !important;
+  }
+
+  #mypage .select-wrapper {
+    padding-left: 0;
+  }
+
+  #mypage .select-wrapper input {
+    width: calc(100% - 15px);
+  }
+
+  #mypage.history .tabs {
+    height: auto;
+    border-bottom: none;
+  }
+
+  #mypage.history .tabs .tab {
+    height: auto;
+    white-space: normal;
+    text-align: center;
+  }
+
+  #mypage.history .tabs .tab:nth-child(1) {
+    border-right: dashed 1px #b3c2cf;
+  }
+
+  #mypage.history .tabs .tab a {
+    text-align: center;    
+    text-overflow: unset;
+    overflow: visible;
+  }
+
+  #mypage.history .title {
+    font-size: 13px;
+  }
+
+  #mypage.history .sub {
+    display: none;
+  }
+
+  #mypage.history .price {
+    font-size: 15px;
+  }
+
 }
 
 @media only screen and (min-width : 992px) {
@@ -896,6 +1940,9 @@ input[type=number]::-webkit-outer-spin-button {
     font-style: normal;
     font-stretch: normal;
     color: #ffffff;
+    padding-top: 6px;
+    display: inline-block;
+    width: 100%;    
   }
 
   footer .copyright .right {
@@ -916,6 +1963,10 @@ input[type=number]::-webkit-outer-spin-button {
     color: #1b5eaf;
     margin-bottom: 13px;
     display: block;
+  }
+
+  footer .footer-bg img {
+    width: 50%;
   }
 
   footer .hotline {
@@ -1009,7 +2060,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   footer .cards img {
-    margin-right: 120px;
+    margin-right: 12px;
   }
 
   #central .area-row .item_cover {
@@ -1083,6 +2134,117 @@ input[type=number]::-webkit-outer-spin-button {
   .item_img img {
     max-height: 475px;    
   }
+
+  .checkout-progress {
+    counter-reset: step;
+    margin-top: 66px;
+  }
+
+  .checkout-progress .s4 {
+    position: relative;
+    text-align: center;
+  }
+
+  .checkout-progress .s4:before {
+      width: 45px;
+      height: 45px;
+      content: counter(step);
+      counter-increment: step;
+      line-height: 39px;
+      border: solid 1.5px #b3c2cf;
+      display: block;
+      text-align: center;
+      margin: 0 auto 10px auto;
+      border-radius: 50%;
+      background-color: white;
+      font-family: SVN-Karla;
+      font-size: 36px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      color: #b3c2cf;
+  }
+
+  #checkout_login .checkout-progress .s4.active:before {
+    color: white;
+    background-color: #fea3a3;
+    border: none;
+  }
+
+  #shipping .checkout-progress .s4.active:before {
+    color: white;
+    background-color: #3ebbed;
+    border: none;
+  }
+
+  #checkout .checkout-progress .s4.active:before {
+    color: white;
+    background-color: #64d1bf;
+    border: none;
+  }
+
+  .checkout-progress .s4:after {
+      width: 100%;
+      height: 3px;
+      content: '';
+      position: absolute;
+      background-color: white;
+      border-bottom: 3px dashed #b3c2cf;
+      top: 19px;
+      left: -50%;
+      z-index: -1;
+  }
+
+  #checkout_login .checkout-progress .s4.active + .s4:after {
+    background-color: #fea3a3;
+    border: none;
+  }
+
+  #shipping .checkout-progress .s4.active + .s4:after {
+    background-color: #3ebbed;
+    border: none;
+  }
+
+  #checkout_login .checkout-progress .s4.active {
+    color: #fea3a3 !important;
+  }
+
+  #shipping .checkout-progress .s4.active {
+    color: #3ebbed !important;
+  }
+
+  #checkout .checkout-progress .s4.active h3 {
+    color: #64d1bf !important;
+  }
+
+  .checkout-progress h3 {
+    font-family: SVN-Karla;
+    font-size: 22px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: center;
+    color: #b3c2cf;
+  }
+
+  .checkout-progress .s4:first-child:after {
+    content: none;
+  }
+
+  #checkout_row [type="radio"]:not(:checked)+label:after, #checkout_row [type="radio"]:not(:checked)+label:before, #checkout_row [type="radio"]:checked+label:before,
+  #login_row [type="radio"]:not(:checked)+label:after, #login_row [type="radio"]:not(:checked)+label:before, #login_row [type="radio"]:checked+label:before {
+    border: 1px solid #2074bd;
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+  }
+
+  #checkout_row [type="radio"]:checked+label:after, #login_row [type="radio"]:checked+label:after {
+    background-color: white;
+    border: 5px solid #2074bd;
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+  }
+
 }
 /* Top Nav */
 .top-nav {
@@ -1323,7 +2485,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .area-row .item_prices .item_price {
-  font-family: Karla;
+  font-family: SVN-Karla;
   font-size: 22px;
   font-weight: bold;
   font-style: normal;
@@ -1332,13 +2494,12 @@ input[type=number]::-webkit-outer-spin-button {
   margin-bottom: 17px;
 }
 
-.area-row .item_prices .item_price .currency {
+.currency {
   font-family: SVN-Karla;
   font-size: 15px;
   font-weight: bold;
   font-style: normal;
   font-stretch: normal;
-  color: #fea3a3;
   vertical-align: top;
 }
 
@@ -1370,7 +2531,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #individual .prod_brand {
-  font-family: Karla;
+  font-family: SVN-Karla;
   font-size: 14px;
   font-weight: bold;
   font-style: normal;
@@ -1385,7 +2546,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #individual .prod_name a {
-  font-family: Karla;
+  font-family: SVN-Karla;
   font-size: 14px;
   font-weight: bold;
   font-style: normal;
@@ -1395,7 +2556,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #individual .prod_price {
-  font-family: Karla;
+  font-family: SVN-Karla;
   font-size: 14px;
   font-weight: bold;
   font-style: normal;

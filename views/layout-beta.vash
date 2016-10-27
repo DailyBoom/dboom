@@ -139,6 +139,7 @@
         js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=636096523200038";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));</script>
+      @if(!model.user) {
       <div id="login_modal" class="modal">
         <div class="modal-content">
           <div class="row">
@@ -185,12 +186,13 @@
           </div>
         </div>
       </div>
+      }
       <nav class="hide-on-med-and-up">
         <div class="nav-wrapper">
           <a href="/" class="logo"><img class="svg svg-logo" src="/images/logo.svg"/></a>
           <ul id="nav-mobile" class="right">
-            <li><a href="#login_modal" class="modal-trigger"><img class="svg svg-account" src="/images/icon-account.svg" /></a></li>
-            <li><a href="#"><img class="svg svg-cart" src="/images/icon-cart.svg" /></a></li>
+            <li><a href="@(model.user ? '/mypage' : '#login_modal')" class="modal-trigger"><img class="svg svg-account" src="/images/icon-account.svg" /></a></li>
+            <li><a href="/checkout"><img class="svg svg-cart" src="/images/icon-cart.svg" /></a></li>
             <li><a href="#" data-activates="slide-out" class="button-collapse"><img class="svg" src="/images/menu.svg" /></a></li>
           </ul>
         </div>  
@@ -216,6 +218,9 @@
         </li>
         <li><a class="waves-effect side-header" href="/blog">blog</a></li>
         <li><a class="waves-effect side-header" href="#!">lien he</a></li>
+        @if(model.user) {
+          <li><a class="waves-effect side-header" href="/logout">@model.__('logout')</a></li>
+        }
         <div class="bottom-menu">
           <div class="search hide-on-small-only"><a href="#"><img class="svg svg-search" src="/images/icon_search.svg" /></a></div>
           <div class="sns">
@@ -231,8 +236,8 @@
         <a href="/" class="logo blue-text"><img src="/images/logo.svg" class="svg svg-logo"/></a>
         <div class="top-menu">
           <a href="#" data-activates="slide-out" class="button-collapse"><img class="svg svg-menu" src="/images/menu.svg" /></a>
-          <a href="#"><img class="svg svg-cart" src="/images/icon-cart.svg" /></a>
-          <a href="#login_modal" class="modal-trigger account"><img class="svg svg-account" src="/images/icon-account.svg" /></a>
+          <a href="/checkout"><img class="svg svg-cart" src="/images/icon-cart.svg" /></a>
+          <a href="@(model.user ? '/mypage' : '#login_modal')" class="modal-trigger account"><img class="svg svg-account" src="/images/icon-account.svg" /></a>
         </div>
         <div class="bottom-menu">
           <a href="#"><img class="svg svg-search" src="/images/icon_search.svg" /></a>
@@ -323,7 +328,7 @@
           </div>
           <div class="footer-info">
             <div class="container">
-              <span class="copyright">2016 Yppuna vietnam Copyright<span class="right">N˜I DUNG</span><span class="right">˚I˛U KHO˝N</span><span class="right">MADE IN VIETNAM</span></span>
+              <span class="copyright">2016 Yppuna vietnam Copyright<span class="right">NỘI DUNG</span><span class="right">ĐIÈU KHOẢN</span><span class="right">MADE IN VIETNAM</span></span>
             </div>
           </div>
         </div>
@@ -337,9 +342,10 @@
         });
         $(document).ready(function(){
           moment().locale('vi');
-          $("#birthday").combodate({
+          $("#birthday, .birthday").combodate({
               firtItem: 'name',
               template: "DD MM YYYY",
+              formate: "DD/MM/YYYY",
               smartDays: true,
               customClass: "col s3"
           });

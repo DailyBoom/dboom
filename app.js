@@ -132,6 +132,7 @@ app.use(function(req, res, next) {
   else
     next();
 });
+
 app.use('/', users);
 app.use('/', orders);
 app.use('/', routes);
@@ -143,13 +144,15 @@ if (app.get('env') === 'production') {
   sitemap.XMLtoFile('./public/sitemap/sitemap.xml');
 }
 
-passport.use(new LocalStrategy(
-  { passReqToCallback: true },
-  function (req, username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
+passport.use(new LocalStrategy({ 
+    usernameField: 'email',
+    passReqToCallback: true 
+  },
+  function (req, email, password, done) {
+    User.findOne({ email: email }, function (err, user) {
+      if (err) { console.log(err); return done(err); }
       if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
+        return done(null, false, { message: 'Incorrect email.' });
       }
       user.comparePassword(password, function(err, isMatch) {
         if (err) { return done(err); }
