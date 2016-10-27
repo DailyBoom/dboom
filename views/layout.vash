@@ -356,6 +356,7 @@
                     <img class="footer-social" src="/images/youtube_logo_b.png" />
                 </a>
             </span>
+            <div><img src="/images/dathongbao.png" style="width:100%;"></div>
           </div><!-- .col -->
           <div class="col s12 m9 l9 footer-box @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') box-1">
             <a class="footer-link @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/about">@model.__('about')</a>&#149;
