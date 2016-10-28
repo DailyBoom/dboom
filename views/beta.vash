@@ -178,6 +178,7 @@
 			rewindNav: true,
 			autoPlay: true
 		});
+		
 	</script>
   })
 })

@@ -19,6 +19,7 @@ var crypto = require('crypto');
 var mime = require('mime-types');
 var getSlug = require('speakingurl');
 var striptags = require('striptags');
+var paginate = require('express-paginate');
   
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -91,9 +92,14 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/mall', function(req, res, next) {
-  Product.find({ extend: 4, is_published: true, is_hot: null }, {}, { sort: { 'created_at' : -1 }}, function(err, products) {
-    Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
-      res.render('mall', { title: "Yppuna Mall", description: "", products: products, hotProducts: hotProducts });
+  var query = Product.find({ extend: 4, is_published: true, is_hot: null }, {}, { sort: { 'created_at' : -1 }});
+  var page = req.query.page ? req.query.page : 1;
+  var per_page = req.is_mobile ? 8 : 4;
+  query.paginate(page, per_page, function(err, products, total) {
+    Product.find({ $or: [{ boxZone: 0 }, { boxZone: 1 }, { boxZone: 2 }] }, {}, {}, function(err, boxes) {
+      Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
+        res.render('mall', { title: "Yppuna Mall", description: "", products: products, hotProducts: hotProducts, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });
+      });
     });
   });
 });

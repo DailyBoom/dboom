@@ -73,15 +73,17 @@
                         </div>
                         <div class="cart-products">
                             @model.cart.forEach(function(item) {
-                                <div class="col s5">
-                                    <div class="name">@item.product.name</div>
-                                    <div class="brand">@item.product.brand</div>
-                                </div>
-                                <div class="col s3">
-                                    <div class="quantity">@item.quantity</div>
-                                </div>
-                                <div class="col s4">
-                                    <div class="price">@item.product.price</div>
+                                <div class="col s12">
+                                    <div class="col s5">
+                                        <div class="name">@item.product.name</div>
+                                        <div class="brand">@item.product.brand</div>
+                                    </div>
+                                    <div class="col s3">
+                                        <div class="quantity">@item.quantity</div>
+                                    </div>
+                                    <div class="col s4">
+                                        <div class="price">@(item.product.price * item.quantity)</div>
+                                    </div>
                                 </div>
                             })
                         </div>

@@ -75,7 +75,7 @@
 	</div><!-- .row -->
 	<div class="row">
 		<ul class="pagination">
-			@model.pages.forEach(function(page) { 
+			@model.pages.forEach(function(page) {
 				@if(model.currentPage == page.number) {
 					<li class="active">@page.number</li>
 				} else {

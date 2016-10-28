@@ -242,7 +242,7 @@ router.get('/orders/delete/:id', isAdmin, function(req, res) {
 });
 
 router.post('/add_to_cart', function(req, res) {
-  Product.findOne({_id: req.body.product_id, is_published: true, extend: 4}, function(err, product) {
+  Product.findOne({_id: req.body.product_id, is_published: true}, function(err, product) {
     console.log(req.body);
     if (err)
       console.log(err);

@@ -108,6 +108,12 @@
 					<label for="description">@model.__('product.description') *</label>
 				</div>
 			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<textarea id="how_to" type="text" class="validate materialize-textarea" name="how_to" required>@model.product.how_to</textarea>
+					<label for="how_to">How to *</label>
+				</div>
+			</div>
 			@if (model.product.images) {
 				<br>
 				<h5>@model.__('product.photosMain')</h5>

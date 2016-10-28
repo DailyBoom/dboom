@@ -744,18 +744,20 @@ router.post('/comments/new', function(req, res) {
   console.log(req.body);
   var comment = new Comment({
     user: req.user ? req.user.id : null,
-    type: req.body.type,
-    order: req.body.order,
+    order: req.body.order ? req.body.order : null,
+    product: req.body.product ? req.body.product : null,
+    name: req.body.name ? req.body.name : null,
+    email: req.body.email ? req.body.email : null,
     body: req.body.body
   });
   
   comment.save(function(err) {
     if (err) {
       console.log(err);
-      res.status(500).json({ message: '죄송합니다. 오류가있었습다. 확인후 다시 시도해주세요.' });
+      res.redirect('back');
     }
     console.log(comment);
-    res.status(200).json({ message: '감사합니다. 성공적으로 전송이 되었습니다.' });
+    res.redirect('back');
   });
 });
 

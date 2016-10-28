@@ -9,9 +9,10 @@
 						<li><a href="#delivery">GIAO HÀNG TẬN NƠI COD</a></li>
 						<li><a href="#delivery_delay">TRƯỜNG HỢP GIAO HÀNG TRỄ</a></li>
 						<li><a href="#transport_fee">PHÍ VẬN CHUYỂN</a></li>
-						<li><a href="#initialization">BAO BÌ</a></li>
-						<li><a href="#initialization">ĐỔI TRẢ HÀNG/ HOÀN TIỀN</a></li>
-						<li><a href="#initialization">LƯU Ý</a></li>
+						<li><a href="#packaging">BAO BÌ</a></li>
+						<li><a href="#payment">ĐIỀU KHOẢN THANH TOÁN</a></li>
+						<li><a href="#refund">ĐỔI TRẢ HÀNG/ HOÀN TIỀN</a></li>
+						<li><a href="#note">LƯU Ý</a></li>
 					</ul>
 				</div>
 				<div class="info-terms col s12 l8">
@@ -105,11 +106,11 @@
 							</div>
 						</div>
 						<div class="col s12 l5">
-							<div class="col s12 title">
-								KV LIÊN TỈNH TP.HCM ĐI HÀ NỘI (VÀ NGƯỢC LẠI)
+							<div class="col s12 title province">
+								KV LIÊN TỈNH TP.HCM ĐI HÀ NỘI <br class="hide-on-small-only" />(VÀ NGƯỢC LẠI)
 							</div>
 							<div class="col s12 l4">
-								<div class="col s6 l12 sub-title extra-pad">
+								<div class="col s6 l12 sub title">
 									Nội thành
 								</div>
 								<div class="col s6 l12 cell">
@@ -117,7 +118,7 @@
 								</div>
 							</div>
 							<div class="col s12 l4">
-								<div class="col s6 l12 sub-title extra-pad">
+								<div class="col s6 l12 sub title">
 									Ngoại thành
 								</div>
 								<div class="col s6 l12 cell">
@@ -125,7 +126,7 @@
 								</div>
 							</div>
 							<div class="col s12 l4">
-								<div class="col s6 l12 sub-title extra-pad">
+								<div class="col s6 l12 sub title">
 									Huyện ngoại thành
 								</div>
 								<div class="col s6 l12 cell">
@@ -133,7 +134,80 @@
 								</div>
 							</div>							
 						</div>
+						<p class="col s12 l5 offset-l7 terms">
+							(Xin chú ý : Cứ mỗi 0,5kg tiếp theo dịch vụ sẽ cộng thêm 10.000vnđ/hộp ,chỉ áp dụng phí cho khu vực liên tỉnh)
+						</p>
 					</div>
+					<div id="packaging" class="section scrollspy">
+						<p class="title">
+							BAO BÌ
+						</p>
+						<p class="terms">
+							Hộp làm đẹp theo khí hậu của bạn sẽ được đóng gói trong bao bì theo thiết kế riêng của Yppuna. Trên thiết kế vỏ hộp có in hình logo của Yppuna , xung quanh nắp hộp được dán kỹ, để bảo đảm cho tính xác thực của sản phẩm. Hơn thế nữa, hộp còn được đặt trong lớp túi zip, phần tránh việc nước ngấm vào trong khi vận chuyển.
+						</p>
+					</div>
+					<div id="payment" class="section scrollspy">
+						<p class="title">
+							ĐIỀU KHOẢN THANH TOÁN
+						</p>
+						<p class="terms">
+							Điều Khoản Thanh Toán : Hiện nay Yppuna chỉ chấp nhận với hình thức mua bán dạng COD. Chúng tôi sẽ sớm mang đến cho các bạn nhiều dịch vụ thanh toán tiện lợi khác khi mua hàng trên website của Yppuna.
+						</p>
+					</div>
+					<div id="refund" class="section scrollspy">
+						<p class="title">
+							ĐỔI TRẢ HÀNG - HOÀN TIỀN
+						</p>
+						<p class="terms">
+							Yppuna.vn đảm bảo rằng tất cả các sản phẩm là chính hãng, hoàn toàn mới và không bị lỗi. Các sản phẩm bạn nhận được phải không bị hư hỏng, phù hợp với hình ảnh sản phẩm trên trang web của chúng tôi. Trong trường hợp các sản phẩm bạn nhận được không đáp ứng cam kết của chúng tôi,hãy chụp ảnh ngay và gửi vào email hello@yppuna.vn. Bạn sẽ có 2 ngày đối với TP.HCM và 3 ngày đối với Hà Nội để trả lại sản phẩm.
+						</p>
+						<p class="terms">
+							Các mặt hàng hoàn trả phải được gửi đến Yppuna để kiểm tra chất lượng. Yppuna sẽ hoàn trả lại giá thanh toán của sản phẩm nếu nó đáp ứng các điều khoản và điều kiện hoàn trả của chúng tôi. Trong trường hợp hủy bỏ đơn hàng, việc hoàn tiền sẽ được tiến hành trong vòng 24h sau khi bạn xác nhận hủy trên www.leflair.vn. Bạn thanh toán bằng hình thức COD (thánh toán tiền khi nhận hàng), bạn sẽ nhận lại tiền dưới phương thức chuyển khoản. Chúng tôi sẽ liên hệ với bạn, và bạn có trách nhiệm nói gửi thông tin tài khoản của bạn vào email hello@yppuna.vn. Yppuna sẽ xác thực và bạn sẽ nhận được tiền sau 5 - 10 ngày.
+						</p>
+					</div>
+					<div id="compensation" class="col offset-l1">
+						<p class="title">
+							BỒI THƯỜNG - CHÚNG TÔI SẼ TỰ BẢO VỆ MÌNH NẾU BẤT KỲ BÊN NÀO SỬ DỤNG SAI MỤC ĐÍCH DỊCH VỤ CỦA CHÚNG TÔI
+						</p>
+						<p class="terms">
+							Khi lựa chọn dịch vụ của chúng tôi, bạn đồng ý bồi thường và bảo vệ Yppuna từ bất kỳ khiếu nại, yêu cầu bồi thường, tổn thất, trách nhiệm, và tất cả các chi phí của một bên thứ ba phát sinh trong kết nối với việc sử dụng hoặc lạm dụng các dịch vụ của bạn hoặc khi bạn vi phạm các quy định sử dụng của chúng tôi. Nếu bạn vi phạm bất kỳ luật hoặc quyền của một bên thứ ba, bạn phải đồng ý hợp tác đầy đủ theo yêu cầu hợp lý và cam kết sự bồi thường. Chúng tôi cũng sẽ có quyền để bảo vệ bản thân nếu bất kỳ bên nào sử dụng sai mục đích dịch vụ của chúng tôi.
+						</p>
+					</div>
+					<div id="links" class="col offset-l1">
+						<p class="title">
+							LIÊN KẾT - CHÚNG TÔI KHÔNG CHỊU TRÁCH NHIỆM CHO ĐẠI DIỆN NÀO KHÁC GIẢ MẠO YPPUNA
+						</p>
+						<p class="terms">
+							Hiện tại, chúng tôi không liên kết với những đơn vị khác để bán, quảng cáo sản phẩm của chúng tôi mà không cần đàm phán thông qua hợp đồng. Nếu bạn sử dụng bất kỳ dịch vụ nào thông qua nhà cung cấp trái phép, chúng tôi không chịu trách nhiệm về bất kỳ thiệt hại nào của bạn.
+						</p>
+					</div>
+					<div id="risk" class="col offset-l1">
+						<p class="title">
+							NGUY CƠ MẤT - KHI ĐƠN VỊ VẬN CHUYỂN ĐÃ BÀN GIAO VÀ GIAO TỚI ĐỊA CHỈ NHẬN, KHÁCH HÀNG SẼ TỰ CHỊU TRÁCH NHIỆM
+						</p>
+						<p class="terms">
+							Nếu bưu kiện của bạn bị mất trong quá trình vận chuyển, chúng tôi sẽ gửi cho bạn một sản phẩm thay thế tương đương mà không cần trả thêm bất kỳ phí nào. Trong trường hợp đơn đặt hàng của bạn đã được chuyển giao bởi các đơn vị vận chuyển và bạn đã ký nhận hàng, chúng tôi sẽ không chịu trách nhiệm cho bất kỳ rủi ro mất mát nào.
+						</p>
+					</div>
+					<div id="change" class="col offset-l1">
+						<p class="title">
+							THAY ĐỔI CHÍNH SÁCH - LẦN CẬP NHẬT GẦN NHẤT, CÁC CẬP NHẬT TRONG TƯƠNG LAI
+						</p>
+						<p class="terms">
+							Những thông tin nêu trên chính là toàn bộ điều kiện và điều khoản sử dụng của Yppuna, xin vui lòng đọc kỹ để sử dụng và liên hệ với chúng tôi để biết thêm thông tin. Đây là bản cập nhật mới nhất của chúng tôi và được áp dụng mọi thời điểm bạn sử dụng dịch vụ.
+						</p>
+					</div>
+					<div id="note" class="section scrollspy">
+						<p class="title">
+							LƯU Ý
+						</p>
+						<p class="terms">
+							YPPUNA có thể sửa đổi những chính sách và điều khoản trong mục này trong thời gian tới để ngày càng hoàn thiện hơn. Những chính sách và điều khoản được duyệt lại sẽ được áp dụng kể từ ngày có sự thay đổi trên website. Để đảm bảo được cập nhật thông tin đầy đủ, bạn hãy đọc những điều khoản này thường xuyên. Nếu bạn thắc mắc ,xin hãy liên hệ với chúng tôi qua email hello@yppuna.vn.
+						</p>
+						<p class="terms">
+							Trân Trọng<br/>Yppuna INC.
+						</p>
+					</div>		
 				</div><!-- .info-terms -->
 			</div><!-- .row -->
 		</div><!-- .container -->

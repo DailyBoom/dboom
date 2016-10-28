@@ -1,59 +1,51 @@
-@html.extend("layout", function(model) {
+@html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
-		<div class="container">
-			@if(model.hotProducts.length > 0) {
-				<div class="row">
-					<div class="col s12 center">
-						<h4 class="m-t-3 p-y-1">Hot Item</h4>
+		<div class="container" id="individual">
+			<h2>SẢN PHẨM BÁN LẺ</h2>
+			<div class="row">
+				<div class="col offset-l1">
+				@model.products.forEach(function(product) {
+					<div class="col s6 l3">
+						<a href="/detailed/@product.id"><img src="@product.mobile_images[0]" /></a>
+						<div class="prod_brand">@product.brand</div>
+						<div class="prod_name"><a href="/detailed/@product.id">@product.name</a></div>
+						<div class="prod_price">@product.price<span class="currency">đ</span></div>
 					</div>
-					@model.hotProducts.forEach(function(product) {
-						<div class="col s12 m4 m-y-3">
-							<div class="card">
-								<div class="card-image">
-									<a href="/mall/@product.id">
-										<div class="mall-card-img" style="background-image: url('@product.images[0]')"></div>
-									</a>
-								</div>
-								<div class="card-content">
-									<span>@product.brand</span>
-									<div class="mall-title left"><a href="/mall/@product.id"><b>@product.name</b></a></div>
-									<!--<a class="right" href="/mall/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>-->
-									<p class="mall-price-o">@(product.old_price != product.price ? product.old_price : '')</p>
-									<p class="mall-price-n">@product.price</p>
-								</div>
-							</div>
-						</div>
+				})
+				
+				</div>
+				<ul class="pagination right">
+					@if(model.paginate.hasPreviousPages) {
+						<li class="previous"><i class="fa fa-caret-left"></i></li>
+					}
+					<!-- -->
+					@model.pages.forEach(function(page) {
+						@if(model.currentPage == page.number) {
+							<li class="active">@page.number</li>
+						}
+						else {
+							<li class="waves-effect"><a href="@page.url">@page.number</a></li>
+						}
 					})
-				</div><!-- .row -->
-			}
-				<div class="row">
-					<div class="col s12 center m-t-3 p-y-1">
-						<h4>Yppuna Mall</h4>
+					<!-- -->
+					@if(model.paginate.hasNextPages(model.lastPage)) {
+						<li class="next"><i class="fa fa-caret-right"></i></li>
+					}
+				</ul>
+				<div class="boxes col s12">
+					<h3 class="center">XEM BOX CÓ SẢN PHẨM</h3>
+					<div class="row">
+						@model.boxes.forEach(function(product) {
+							<div class="box">
+								<a href="/box/@product.id"><img src="@product.mobile_images[0]" /></a>
+								<div class="prod_brand">@product.brand</div>
+								<div class="prod_name"><a href="/box/@product.id">@product.name</a></div>
+								<div class="prod_price">@product.price<span class="currency">đ</span></div>
+							</div>
+						})
 					</div>
-				</div><!-- .row -->
-				<div class="row">
-					@model.products.forEach(function(product) {
-						<div class="col s12 m4 m-y-3">
-							<div class="card">
-								<div class="card-image">
-									<a href="/mall/@product.id">
-										<div class="mall-card-img" style="background-image: url('@product.images[0]')"></div>
-									</a>
-								</div>
-								<div class="card-content mall">
-									<span>@product.brand</span>
-									<div class="mall-title left"><a href="/mall/@product.id"><b>@product.name</b></a></div>
-									<!--<a class="right" href="/mall/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>-->
-									<!--<button class="btn-xs add_cart right" data-id="@product.id">Add to cart <i class="fa fa-cart-plus"></i></button>-->
-									<p class="mall-price-o">@(product.old_price != product.price ? product.old_price : '')</p>
-									<p class="mall-price-n">@product.price</p>
-								</div>
-							</div>
-						</div>
-					})
-				</div><!-- .row -->
-				<br>
-				<br>
+				</div>
+			</div>
 		</div><!-- container -->
 	})
 })
@@ -78,5 +70,19 @@
 				Materialize.toast(res.responseJSON.message, 4000);
 			}
 		});
+	});
+	var owl = $(".boxes .row");
+	owl.owlCarousel({
+		items : 3,
+		itemsDesktop : [1200, 3],
+		itemsDesktopSmall : [992,2],
+		itemsTablet: [600,2],
+		itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
+		navigation: true,
+		navigationText: ["<", ">"],
+		pagination: false,
+		responsive: true,
+		rewindNav: true,
+		autoPlay: true
 	});
 </script>

@@ -61,19 +61,34 @@
 					<div class="quantity">
 						<h4>SỐ LƯỢNG</h4>
 						<input type="number" id="quantity" />
-						<button id="checkout">THÊM VÀO GIỎ HÀNG</button>
+						<button type="button" id="checkout" class="add_cart" data-id="@model.product.id">THÊM VÀO GIỎ HÀNG</button>
 					</div>
 					<div class="comments">
 						<h4>ĐÁNH GIÁ CỦA KHÁCH HÀNG</h4>
 						@model.comments.forEach(function(comment) {
 							<div class="comment">
-								<span class="user-com">@comment.user.username</span>
-								<span class="date-com">@comment.created_at</span>
+								<span class="user-com">@(comment.user ? comment.user.username : comment.name)</span>
+								<span class="date-com">@model.moment(comment.created_at).format("DD.MM.YYYY")</span>
 								<div class="body">
 									@comment.body
 								</div>
 							</div>
 						})
+						<div class="new-comment">
+							<h4>THÊM ĐÁNH GIÁ SẢN PHẨM</h4>
+							<form action="/comments/new" method="post">
+								@if(!model.user) {
+									<label for="name">Tên</label>
+									<input id="name" name="name" placeholder="Tên của bạn" type="text" />
+									<label for="email">Email</label>
+									<input id="email" name="email" placeholder="Email của bạn" type="text" />
+								}
+								<label for="body">Đánh giá sản phẩm</label>
+								<textarea name="body" placeholder="Đánh giá của bạn" id="body"></textarea>
+								<input type="hidden" value="@model.product.id" name="product" />
+								<button class="right">GỬI ĐÁNH GIÁ</button>
+							</form>
+						</div>
 					</div>
 					
 				</div>
@@ -114,6 +129,25 @@
 				responsive: true,
 				rewindNav: true,
 				autoPlay: true
+			});
+			$(".add_cart").on("click", function() {
+				var id = $(this).data("id");
+				$.ajax({
+					type: "POST",
+					url: "/add_to_cart",
+					dataType: "json",
+					data: {
+						product_id: id,
+						quantity: $("#quantity").val(),
+						option: 1
+					},
+					success: function (res) {
+						window.location = '/checkout';
+					},
+					error: function (res) {
+						Materialize.toast(res.responseJSON.message, 4000);
+					}
+				});
 			});
 		});
 	</script>

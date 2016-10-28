@@ -199,11 +199,11 @@
       </nav>
       <ul id="slide-out" class="side-nav">
         <li class="hide-on-small-only"><a href="/" class="logo"><img class="svg svg-logo" src="/images/logo.svg"/></a></li>
-        <li><a class="waves-effect side-header" href="#!">trang chu</a></li>        
+        <li><a class="waves-effect side-header" href="#!">TRANG CHỦ</a></li>        
         <li class="no-padding">
           <ul class="collapsible collapsible-accordion">
             <li>
-              <a class="collapsible-header side-header">san pham ban le</a>
+              <a class="collapsible-header side-header">SẢN PHẨM BÁN LẺ</a>
               <div class="collapsible-body">
                 <ul>
                   <li><a href="#!">TRANG ĐIỂM</a></li>
@@ -217,7 +217,7 @@
           </ul>
         </li>
         <li><a class="waves-effect side-header" href="/blog">blog</a></li>
-        <li><a class="waves-effect side-header" href="#!">lien he</a></li>
+        <li><a class="waves-effect side-header" href="#!">LIÊN HỆ</a></li>
         @if(model.user) {
           <li><a class="waves-effect side-header" href="/logout">@model.__('logout')</a></li>
         }
@@ -285,7 +285,7 @@
                 <div class="col l4">
                   <div><a href="#">BOX CONCEPT</a></div>
                   <div><a href="#">NHÃN HIỆU</a></div>
-                  <div><a href="#">SẢN PHẨM BÁN LẺ</a></div>
+                  <div><a href="/mall">SẢN PHẨM BÁN LẺ</a></div>
                   <div class="footer-bg">
                     <img src="/images/footer_bg.png" />
                   </div>
@@ -295,6 +295,7 @@
                   <div><a href="#">TIN TỨC & SỰ KIỆN</a></div>
                   <div><a href="#">HỆ THỐNG CỬA HÀNG</a></div>
                   <div class="hotline">
+                    <img src="/images/hotline_icon.png" />
                     <div class="title">Hotline hỗ trợ</div>
                     <div class="phone">0871 062 999</div>
                   </div>

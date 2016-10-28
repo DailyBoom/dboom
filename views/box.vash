@@ -64,7 +64,7 @@
 					</div>
 					<div class="prices">
 						<span class="price">@model.product.price</span>
-						<button id="checkout">THÊM BOX VÀO GIỎ HÀNG</button>
+						<button  id="checkout" class="add_cart" data-id="@model.product.id" type="button">THÊM BOX VÀO GIỎ HÀNG</button>
 					</div>
 					<div class="options hide">
 						<h4>MÀU SẮC</h4>
@@ -109,7 +109,7 @@
                             </div>
                             <div class="prices">
                                 <span class="price">@product.price</span>
-                                <button id="checkout">THÊM BOX VÀO GIỎ HÀNG</button>                        
+                                <button id="checkout" class="add_cart" data-id="@model.product.id" type="button">THÊM BOX VÀO GIỎ HÀNG</button>                        
                             </div>
                         </div>
 				    </div>
@@ -147,6 +147,25 @@
 				responsive: true,
 				rewindNav: true,
 				autoPlay: true
+			});
+		});
+		$(".add_cart").on("click", function() {
+			var id = $(this).data("id");
+			$.ajax({
+				type: "POST",
+				url: "/add_to_cart",
+				dataType: "json",
+				data: {
+					product_id: id,
+					quantity: 1,
+					option: 0
+				},
+				success: function (res) {
+					window.location = '/checkout';
+				},
+				error: function (res) {
+					Materialize.toast(res.responseJSON.message, 4000);
+				}
 			});
 		});
 	</script>
