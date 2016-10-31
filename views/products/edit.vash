@@ -206,12 +206,12 @@
 					@model.product.options.forEach(function(option) {
 						<div class="row options_row">
 							<div class="input-field col s12 m6 l6">
-								<input id="option_name" type="text" class="validate" name="options[@i][name]" value="@option.name">
-								<label for="option_name">@model.__('product.optionName')</label>
+								<input id="option_name_@i" type="text" class="validate color-select" name="options[@i][name]" value="@option.name">
+								<label for="option_name_@i">@model.__('product.optionName')</label>
 							</div>
 							<div class="input-field col s12 m6 l6">
-								<input id="o_quatity" type="number" class="validate" name="options[@i][quantity]" value="@option.quantity">
-								<label for="o_quantity">@model.__('product.optionQuantity') *</label>
+								<input id="o_quatity_@i" type="number" class="validate" name="options[@i][quantity]" value="@option.quantity">
+								<label for="o_quantity_@i">@model.__('product.optionQuantity') *</label>
 							</div>
 						</div>
 						@{ i++; }
@@ -302,6 +302,10 @@
 <script>
 	$(document).ready(function() {
 		$('select').material_select();
+		$('.color-select').spectrum({
+    		preferredFormat: "hex",
+    		showInput: true,
+		});
 		$('.datepicker').pickadate({
 			//min: true,
 			format: 'mm/dd/yyyy',

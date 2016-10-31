@@ -283,7 +283,7 @@ router.post('/add_to_cart', function(req, res) {
 });
 
 router.get('/checkout', function(req, res) {
-  if (typeof req.session.cart_order === 'undefined' || !req.session.cart_order) {
+  if (!req.session.cart_order) {
     return res.redirect('/mall');
   }
   else {
@@ -369,104 +369,6 @@ router.get('/checkout/login', function(req, res) {
   res.render('checkout_login');
 });
 
-router.get('/mall/checkout', function(req, res) {
-  // if (!req.query.product_id && !req.session.product && !req.session.order)
-  //   return res.redirect('/');
-  if (req.session.product && req.query.product_id && (req.session.product != req.query.product_id)) {
-    delete req.session.order;
-    delete req.session.product;
-  }
-  
-  var date = moment().startOf('isoweek').format("MM/DD/YYYY");
-  Product.findOne({_id: req.query.product_id ? req.query.product_id : req.session.product, is_published: true}, function(err, product) {
-    if (err)
-      console.log(err);
-    // if (!product)
-    //   return res.redirect('/');
-    if (typeof req.session.order === 'undefined' || !req.session.order) {
-      var order = new Order({
-        product: product.id,
-        status: "Submitted",
-      });
-  
-      if (req.user) {
-        order.user = req.user.id;
-        if (req.user.shipping)
-          order.shipping = req.user.shipping;
-      }
-  
-      order.save(function(err) {
-        if (err)
-          return res.redirect("/");
-        req.session.order = order.id;
-        if (!req.session.product)
-          req.session.product = req.query.product_id;
-          order.populate('product coupon', function(err, orderPop) {
-            if (parseInt(orderPop.product.options[0].quantity) > 0) {
-              orderPop.option = orderPop.product.options[0].name;
-            }
-            else {
-              orderPop.product.options.some(function(option){
-                if (parseInt(option.quantity) > 0) {
-                    orderPop.option = option.name;
-                    return true;
-                }
-              });
-            }
-            orderPop.quantity = 1;
-            getOrderTotal(order);
-            orderPop.save(function(err) {
-              if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
-                var leftQuantity;
-                orderPop.product.options.forEach(function(option){
-                  if (option.name === orderPop.option) {
-                    leftQuantity = parseInt(option.quantity);
-                  }
-                });
-                if (req.user) {
-                  Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
-                    res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: req.__('payment'), coupons: coupons });
-                  });
-                }
-                else
-                  res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: req.__('payment') });
-              }
-              else
-                res.redirect('/shipping');
-          });
-        });
-      });
-    }
-    else {
-      Order.findOne({ '_id': req.session.order }, function(err, order) {
-        if (err)
-          console.log(err);
-        if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
-          order.populate('product coupon', function(err, orderPop) {
-            if (!req.session.product)
-              req.session.product = orderPop.product.id;
-            getOrderTotal(order);
-            var leftQuantity;
-            orderPop.product.options.forEach(function(option){
-              if (option.name === orderPop.option)
-                leftQuantity = parseInt(option.quantity);
-            });
-            if (req.user) {
-              Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
-                res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: req.__('payment'), coupons: coupons });
-              });
-            }
-            else
-              res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: req.__('payment') });
-          });
-        }
-        else
-          res.redirect('/shipping');
-      });
-    }
-  });
-});
-
 router.post('/checkout', function(req, res) {
   if (req.session.order) {
     Order.findOne({ '_id': req.session.order }).populate('product user').exec(function(err, order) {
@@ -506,10 +408,10 @@ router.post('/checkout', function(req, res) {
 });
 
 router.post('/deposit_checkout', function(req, res) {
-  if (req.session.order) {
-    Order.findOne({ '_id': req.session.order || req.session.cart_order }).populate('product coupon user').exec(function(err, order) {
+  if (req.session.cart_order) {
+    Order.findOne({ '_id': req.session.cart_order }).populate('product coupon user').exec(function(err, order) {
         if (order.status == "Waiting")
-          return res.redirect('/success');
+          return res.status(500).json({ });
         if (err)
           console.log(err);
         order.status = "Waiting";
@@ -517,7 +419,7 @@ router.post('/deposit_checkout', function(req, res) {
         order.created_at = Date.now();
         if (req.user)
           order.shipping = req.user.shipping;
-        getOrderTotal(order);
+        getOrderCartTotal(order);
         if (order.coupon) {
           order.coupon.used = true;
           order.coupon.save();
@@ -548,14 +450,15 @@ router.post('/deposit_checkout', function(req, res) {
                 if (err) { console.log(err); }
                 console.log('Message sent: ' + info.response);
                 transporter.close();
-                res.redirect('/success');
+                delete req.session.cart_order;                
+                res.status(200).json({ success: true });
             });
           });
         })
     });
   }
   else {
-    res.redirect('/');
+    return res.status(500).json({ });
   }
 });
 
@@ -760,7 +663,7 @@ router.get('/success', function(req, res) {
           if (err) { console.log(err); }
           //console.log('Message sent: ' + info.response);
           transporter.close();
-          res.render('success', { code: req.query.code, order: order, title: req.__('confirm'), description: "Cảm ơn quý vị đã đặt hàng tại Yppuna." });
+          res.status(200).json({ success: true });
       });
     });
   });
@@ -989,7 +892,10 @@ router.get('/orders/cancel_deposit/:id', function(req, res) {
 });
 
 router.get('/shipping', function(req, res) {
-  if (!req.session.order && !req.session.cart_order)
+  if (!req.user) {
+    return res.redirect('/checkout/login');
+  }
+  else if (!req.session.order && !req.session.cart_order)
     res.redirect('/');
   else
     Order.findOne({ '_id': req.session.order || req.session.cart_order }, function(err, order) {
@@ -1168,10 +1074,7 @@ router.post('/shipping', function(req, res) {
                       res.render('shipping', { errors: err, title: req.__('shipping'), order: order });
                     }
                     else {
-                      if (req.session.cart_order)
-                        return res.redirect('/mall/checkout')
-                      else
-                        return res.redirect('/checkout');
+                      return res.redirect('/checkout');
                     }
                   });
                 }

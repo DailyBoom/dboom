@@ -45,11 +45,7 @@
 						<br>
 						<h3>
 							Dưới đây là thông tin mua hàng của quý khách: 
-							<br>
-							<br>@model.order.product.brand
-							<br>@model.order.product.name
-							<br>@model.order.option
-							<br>@model.order.quantity
+							
 							<br>
 							<br>Giá Khuyến Mãi: @model.accounting.formatNumber(model.order.totalOrderAmt)đ
 							<br/>

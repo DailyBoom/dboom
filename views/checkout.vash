@@ -1,37 +1,71 @@
 @html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
 		<div id="checkout" class="container">
+            <div id="confirm_modal" class="modal">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="col s3">
+                            <img src="/images/confirm_checkout.svg" />
+                        </div>
+                        <div class="col s8 offset-s1">
+                            <span>Chúc mừng bạn đã đặt hàng thành công!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="confirm_transfer_modal" class="modal">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="col s3">
+                            <img src="/images/confirm_checkout.svg" />
+                        </div>
+                        <div class="col s8 offset-s1">
+                            <p>Thông Tin Chuyển Khoản :</p>
+                            <p>Chủ Tài Khoản : Ngô Thị Bích Ngọc</p>
+                            <p>Địa Chỉ : 645/1 Điện Biên Phủ , Phường 1, Quận 3, TP. HCM</p>
+                            <p>Tên Nhà Băng : Ngân Hàng TMCP Quốc Tế VN ( VIB ) - Chi Nhánh Cao Thắng</p>
+                            <p>Số Tài Khoản : 656704060031088</p>
+                            <p>Bước 1: Quý Khách tìm hiểu thông tin về sản phẩm, dịch vụ được đăng tin.</p>
+                            <p>Bước 2: Quý Khách xác thực đơn hàng (điện thoại, email).</p>
+                            <p>Bước 3: Yppuna xác nhận thông tin đơn hàng của Quý Khách.</p>
+                            <p>Bước 4: Quý Khách thanh toán tại ngân hàng.</p>
+                            <p>Bước 5: Yppuna nhận được khoản thanh toán và chuyển hàng.</p>
+                            <p>Bước 6: Quý Khách nhận hàng.</p>
+                            <span>Chúc mừng bạn đã đặt hàng thành công!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="checkout-progress">
                 <div class="row">
                     <div class="col s4">
-                        <h3><span class="show-on-small-only">1. </span>ĐĂNG NHẬP</h3>
+                        <h3><span class="hide-on-med-and-up">1. </span>ĐĂNG NHẬP</h3>
                     </div>
                     <div class="col s4">
-                        <h3><span class="show-on-small-only">2. </span>ĐỊA CHỈ</h3>
+                        <h3><span class="hide-on-med-and-up">2. </span>ĐỊA CHỈ</h3>
                     </div>
                     <div class="col s4 active">
-                        <h3><span class="show-on-small-only">3</span>THANH TOÁN</h3>
+                        <h3><span class="hide-on-med-and-up">3</span>THANH TOÁN</h3>
                     </div>
                 </div>
             </div>
 			<div class="row">
-				<div id="checkout_row" class="col s12 l4 offset-l1">
-					<form action="/checkout" method="POST">
-                        <div class="payment">
-						    <span class="title">Chọn phương thức thanh toán:</span>
-						    <input type="radio" name="pay_method" id="delivery" checked /><label for="delivery">Thanh toán khi nhận hàng</label>
-						    <input type="radio" name="pay_method" id="atm" /><label for="atm">Thanh toán bằng thẻ ATM</label>
-						    <input type="radio" name="pay_method" id="card" /><label for="card">Thanh toán bằng thẻ tín dụng</label>
-                        </div>
-                        <div class="delivery">
-						    <span class="title">Chọn phương thức giao sách:</span>
-						    <input type="radio" name="deliv_method" id="standard" checked /><label for="standard">Giao hàng tiêu chuẩn: Miễn phí</label>
-						    <input type="radio" name="deliv_method" id="fast" /><label for="fast">Giao hàng nhanh : <span class="delivery_price">15.000 đ</span></label>
-                        </div>
-                        <button>THANH TOÁN</button>
-					</form>
+				<div id="checkout_row" class="col s12 l3 offset-l1">
+                    <div class="payment">
+                        <span class="title">Chọn phương thức thanh toán:</span>
+                        <input type="radio" name="pay_method" id="delivery" checked /><label for="delivery">Thanh toán khi nhận hàng</label>
+                        <input type="radio" name="pay_method" id="transfer" /><label for="transfer">Thanh toán thông qua chuyển khoản</label>
+                        <!--<input type="radio" name="pay_method" id="atm" /><label for="atm">Thanh toán bằng thẻ ATM</label>
+                        <input type="radio" name="pay_method" id="card" /><label for="card">Thanh toán bằng thẻ tín dụng</label>-->
+                    </div>
+                    <div class="delivery">
+                        <span class="title">Chọn phương thức giao sách:</span>
+                        <input type="radio" name="deliv_method" id="standard" checked /><label for="standard">Giao hàng tiêu chuẩn: Miễn phí</label>
+                        <input type="radio" name="deliv_method" id="fast" /><label for="fast">Giao hàng nhanh : <span class="delivery_price">15.000 đ</span></label>
+                    </div>
+                    <button id="checkout_btn">THANH TOÁN</button>
 				</div>
-				<div id="cart" class="col s12 l5 offset-l1">
+				<div id="cart" class="col s12 l5 offset-l2">
 					<div class="shipping-header">
 						<a href="/shipping" class="right">SỬA</a>
 						<span class="sub">Địa chỉ giao hàng</span>
@@ -98,6 +132,35 @@
 		<script>
 			$(document).ready(function(){
 				$(".price, .total, .total-dc, .total-amount").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+                //$('.modal').modal();
+                $("#checkout_btn").on("click", function() {
+                    var shipping;
+                    if ($('#standard').is(':checked')) {
+                        shipping = 0; 
+                    }
+                    if ($('#fast').is(':checked')) {
+                        shipping = 15000; 
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: "/deposit_checkout",
+                        dataType: "json",
+                        data: {
+                            shipping: shipping
+                        },
+                        success: function (res) {
+                            if ($('#delivery').is(':checked')) {
+                                $('#confirm_modal').openModal();
+                            }
+                            else if ($('#transfer').is(':checked')) {
+                                $('#confirm_transfer_modal').openModal();
+                            }
+                        },
+                        error: function (res) {
+                            Materialize.toast(res.responseJSON.message, 4000);
+                        }
+                    });
+                });
 			})
 		</script>
 	})

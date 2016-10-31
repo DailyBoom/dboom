@@ -177,7 +177,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         extend: req.body.extend ? req.body.extend : 0,        
         is_hot: req.body.is_hot,
         color: req.body.color,
-        boxProducts: JSON.parse(JSON.stringify(req.body.boxProducts)),
+        boxProducts: req.body.extend == 3 ? JSON.parse(JSON.stringify(req.body.boxProducts)) : null,
         boxZone: req.body.boxZone
       });
     
@@ -235,7 +235,9 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
     product.is_hot = req.body.is_hot;
     product.color = req.body.color;
     product.boxZone = req.body.boxZone;
-    product.boxProducts = JSON.parse(JSON.stringify(req.body.boxProducts));
+    if(req.body.extend == 3) {
+      product.boxProducts = JSON.parse(JSON.stringify(req.body.boxProducts));
+    }
     
     if (product.price >= 50000)
       product.delivery_price = 0;

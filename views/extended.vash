@@ -4,20 +4,20 @@
 			<div class="row">
 				<div class="col s12 l4" id="left">
 					<h1>@model.product.name</h1>
-					<a href="#" class="read-less">Hình sản phẩm <i class="fa fa-caret-right"></i></a>					
+					<a href="#" class="read-less hide-on-med-and-up">Hình sản phẩm <i class="fa fa-caret-right"></i></a>					
 					<div class="description">
 						<h4>MÔ TẢ CHI TIẾT</h4>
 						<div class="body">
 							@model.product.description
 						</div>
 					</div>
-					<div class="how-to">
+					<div class="how-to hide-on-med-and-up">
 						<h4>HƯỚNG DẪN SỬ DỤNG</h4>
 						<div class="body">
 							@model.product.how_to
 						</div>
 					</div>
-					<a href="#" class="read-more">Xem chi tiết <i class="fa fa-caret-right"></i></a>
+					<a href="#" class="read-more hide-on-med-and-up">Xem chi tiết <i class="fa fa-caret-right"></i></a>
 				</div>
 				<div class="col s12 l4" id="center">
 					<div class="img-wrapper">
@@ -54,7 +54,7 @@
 						<h4>MÀU SẮC</h4>
 						<ul id="options">
 							@model.product.options.forEach(function(option, index){
-								<li data-option="@index" style="background-color:@option.name;"></li>
+								<li data-option="@index" style="background-color:@option.name;" class="@(index == 0 ? 'active' : '')"></li>
 							})
 						</ul>
 					</div>
@@ -109,6 +109,12 @@
 		</div>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
+			$('.options li').on('click', function() {
+				$('.options li').removeClass('active');
+				$(this).addClass('active');
+			})
+
 			$('.read-more, .read-less').on('click', function() {
 				$('.description, .how-to, .read-more, .read-less, #center').toggle();
 			});
@@ -139,7 +145,7 @@
 					data: {
 						product_id: id,
 						quantity: $("#quantity").val(),
-						option: 1
+						option: $('.options li.active').data('option')
 					},
 					success: function (res) {
 						window.location = '/checkout';

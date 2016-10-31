@@ -82,7 +82,7 @@
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="/stylesheets/beta.css">
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
-
+    <link rel='stylesheet' href='/stylesheets/spectrum.css' />
 		<!-- jQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script
@@ -101,6 +101,7 @@
 		<script src="/javascripts/moment-vi.js"></script>
 		<script src="/javascripts/moment-timezone-with-data.js"></script>
     <!-- Custom JS -->
+    <script src='/javascripts/spectrum.js'></script>
 		<script src="/javascripts/formatCurrency/jquery.formatCurrency-1.4.0.min.js"></script>
 		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.ko-KR.js"></script>
 		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.vi-VN.js"></script>
