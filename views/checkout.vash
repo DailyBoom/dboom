@@ -118,7 +118,7 @@
                             </div>
                             <div class="col s4">
                                 <div class="total">@model.cart_total</div>
-                                <div class="total-dc">@model.cart_total</div>
+                                <div class="total-dc">0</div>
                                 <div class="total-amount">@model.cart_total</div>                                
                             </div>
                         </div>
@@ -131,16 +131,22 @@
 		</div>
 		<script>
 			$(document).ready(function(){
+                var shipping = 0;
+                var cart_total = @model.cart_total;
 				$(".price, .total, .total-dc, .total-amount").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
-                //$('.modal').modal();
-                $("#checkout_btn").on("click", function() {
-                    var shipping;
+                $("input[type='radio'][name='deliv_method']").on('change', function() {
                     if ($('#standard').is(':checked')) {
-                        shipping = 0; 
+                        shipping = 0;
                     }
-                    if ($('#fast').is(':checked')) {
+                    else if ($('#fast').is(':checked')) {
                         shipping = 15000; 
                     }
+                    $('.total-amount').html(cart_total + shipping);
+                    $('.total-amount').formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+                });
+                //$('.modal').modal();
+                $("#checkout_btn").on("click", function() {
+                    
                     $.ajax({
                         type: "POST",
                         url: "/deposit_checkout",
