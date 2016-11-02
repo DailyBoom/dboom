@@ -34,13 +34,13 @@
 						</div>
 						<div class="form-row">
 							<label class="col s12 l4" for="district">Quận/Huyện</label>
-							<select disabled class="col s12 l8" id="district" name="district">
+							<select class="col s12 l8" id="district" name="district">
 								<option value="">Lựa chọn</option>
 							</select>
 						</div>
 						<div class="form-row">
 							<label class="col s12 l4" for="ward">Phường/Xã</label>
-							<select disabled class="col s12 l8" id="ward" name="ward">
+							<select class="col s12 l8" id="ward" name="ward">
 								<option value="">Lựa chọn</option>
 							</select>
 						</div>

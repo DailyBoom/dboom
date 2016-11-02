@@ -57,15 +57,15 @@
 			</div>
 			<div id="boxProducts" class="row">
 				<div class="input-field col s12 m12 l12">
-					<input id="boxProduct1" type="text" class="validate" name="boxProducts[0]" required>
+					<input id="boxProduct1" type="text" class="validate" name="boxProducts[0]" >
 					<label for="boxProduct1">Box Product 1 ID</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
-					<input id="boxProduct2" type="text" class="validate" name="boxProducts[1]" required>
+					<input id="boxProduct2" type="text" class="validate" name="boxProducts[1]" >
 					<label for="boxProduct2">Box Product 2 ID</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
-					<input id="boxProduct3" type="text" class="validate" name="boxProducts[2]" required>
+					<input id="boxProduct3" type="text" class="validate" name="boxProducts[2]" >
 					<label for="boxProduct3">Box Product 3 ID</label>
 				</div>
 			</div>
