@@ -26,7 +26,7 @@ var productSchema = new Schema({
   scheduled_at: Date,
   options: Object,
   options_skin: [String],
-  option_zone, Number,
+  option_zone: Number,
   video: String,
   delivery_info: String,
   is_published: Boolean,
