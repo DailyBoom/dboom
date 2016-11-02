@@ -137,6 +137,10 @@ button {
   margin-top: 36px; 
 }
 
+#slide-out .top-menu {
+  overflow-y: scroll;
+}
+
 #side-menu .bottom-menu, #slide-out .bottom-menu {
   position: absolute;
   bottom: 0;
@@ -173,7 +177,7 @@ button {
   margin-top: 9px; 
 }
 
-#slide-out, #slide-out .collapsible-body {
+#slide-out, #slide-out .collapsible-body, #slide-cart, #slide-cart .collapsible-body {
   background-color: #f3faff;
   box-shadow: none;
 }
@@ -198,6 +202,8 @@ button {
   text-align: left;
   color: #4a8dcc;
 }
+
+#slide-out 
 
 #slide-out.central a.side-header {
   color: #7cd8ca;
@@ -2745,6 +2751,7 @@ input[type=number]::-webkit-outer-spin-button {
     border-bottom: solid 1.5px #2074bd;
     padding: 0 0 3.5px;
     line-height: 1;
+    border-radius: 0;
   }
 
   footer .cards {

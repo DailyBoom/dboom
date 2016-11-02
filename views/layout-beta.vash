@@ -198,30 +198,37 @@
           </ul>
         </div>  
       </nav>
+      @if(model.cart) {
+      <ul id="slide-cart" class="side-nav">
+        <h3>GIO HANG CUA BAN</h3>
+      </ul>
+      }
       <ul id="slide-out" class="side-nav">
-        <li class="hide-on-small-only"><a href="/" class="logo"><img class="svg svg-logo" src="/images/logo.svg"/></a></li>
-        <li><a class="waves-effect side-header" href="#!">TRANG CHỦ</a></li>        
-        <li class="no-padding">
-          <ul class="collapsible collapsible-accordion">
-            <li>
-              <a class="collapsible-header side-header">SẢN PHẨM BÁN LẺ</a>
-              <div class="collapsible-body">
-                <ul>
-                  <li><a href="#!">TRANG ĐIỂM</a></li>
-                  <li><a href="#!">CỌ VÀ PHỤ KIỆN</a></li>
-                  <li><a href="#!">CHĂM SÓC DA</a></li>
-                  <li><a href="#!">CƠ THỂ</a></li>
-                  <li><a href="#!">HÀNG BÁN CHẠY</a></li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li><a class="waves-effect side-header" href="/blog">blog</a></li>
-        <li><a class="waves-effect side-header" href="#!">LIÊN HỆ</a></li>
-        @if(model.user) {
-          <li><a class="waves-effect side-header" href="/logout">@model.__('logout')</a></li>
-        }
+        <div class="top-menu">
+          <li class="hide-on-small-only"><a href="/" class="logo"><img class="svg svg-logo" src="/images/logo.svg"/></a></li>
+          <li><a class="waves-effect side-header" href="#!">TRANG CHỦ</a></li>        
+          <li class="no-padding">
+            <ul class="collapsible collapsible-accordion">
+              <li>
+                <a class="collapsible-header side-header">SẢN PHẨM BÁN LẺ</a>
+                <div class="collapsible-body">
+                  <ul>
+                    <li><a href="#!">TRANG ĐIỂM</a></li>
+                    <li><a href="#!">CỌ VÀ PHỤ KIỆN</a></li>
+                    <li><a href="#!">CHĂM SÓC DA</a></li>
+                    <li><a href="#!">CƠ THỂ</a></li>
+                    <li><a href="#!">HÀNG BÁN CHẠY</a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <li><a class="waves-effect side-header" href="/blog">blog</a></li>
+          <li><a class="waves-effect side-header" href="#!">LIÊN HỆ</a></li>
+          @if(model.user) {
+            <li><a class="waves-effect side-header" href="/logout">@model.__('logout')</a></li>
+          }
+        </div>
         <div class="bottom-menu">
           <div class="search hide-on-small-only"><a href="#"><img class="svg svg-search" src="/images/icon_search.svg" /></a></div>
           <div class="sns">
@@ -237,7 +244,7 @@
         <a href="/" class="logo blue-text"><img src="/images/logo.svg" class="svg svg-logo"/></a>
         <div class="top-menu">
           <a href="#" data-activates="slide-out" class="button-collapse"><img class="svg svg-menu" src="/images/menu.svg" /></a>
-          <a href="/checkout"><img class="svg svg-cart" src="/images/icon-cart.svg" /></a>
+          <a href="#" data-activates="slide-cart" class="button-collapse"><img class="svg svg-cart" src="/images/icon-cart.svg" /></a>
           <a href="@(model.user ? '/mypage' : '#login_modal')" class="modal-trigger account"><img class="svg svg-account" src="/images/icon-account.svg" /></a>
         </div>
         <div class="bottom-menu">
@@ -352,6 +359,10 @@
               customClass: "col s3"
           });
           $('select').material_select();
+          $('select').on('contentChanged', function() {
+            // re-initialize (update)
+            $(this).material_select();
+          });
           $('.modal-trigger').leanModal();
           //$('#side-menu').pushpin({ bottom: $('#south').offset().top });
         });

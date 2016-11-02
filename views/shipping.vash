@@ -4,13 +4,13 @@
             <div class="checkout-progress">
                 <div class="row">
                     <div class="col s4">
-                        <h3><span class="show-on-small-only">1. </span>ĐĂNG NHẬP</h3>
+                        <h3><span class="hide-on-med-and-up">1. </span>ĐĂNG NHẬP</h3>
                     </div>
                     <div class="col s4 active">
-                        <h3><span class="show-on-small-only">2</span>ĐỊA CHỈ</h3>
+                        <h3><span class="hide-on-med-and-up">2</span>ĐỊA CHỈ</h3>
                     </div>
                     <div class="col s4">
-                        <h3><span class="show-on-small-only">3. </span>THANH TOÁN</h3>
+                        <h3><span class="hide-on-med-and-up">3. </span>THANH TOÁN</h3>
                     </div>
                 </div>
             </div>
@@ -29,18 +29,18 @@
 						<div class="form-row">
 							<label class="col s12 l4" for="city">Tỉnh/Thành phố</label>
 							<select class="col s12 l8" id="city" name="city">
-								<option value="Hồ Chí Minh">Hồ Chí Minh</option>
+								<option value="">Lựa chọn</option>
 							</select>
 						</div>
 						<div class="form-row">
 							<label class="col s12 l4" for="district">Quận/Huyện</label>
-							<select class="col s12 l8" id="district" name="district">
+							<select disabled class="col s12 l8" id="district" name="district">
 								<option value="">Lựa chọn</option>
 							</select>
 						</div>
 						<div class="form-row">
 							<label class="col s12 l4" for="ward">Phường/Xã</label>
-							<select class="col s12 l8" id="ward" name="ward">
+							<select disabled class="col s12 l8" id="ward" name="ward">
 								<option value="">Lựa chọn</option>
 							</select>
 						</div>
@@ -105,9 +105,10 @@
                 </div>
 			</div>
 		</div>
+        <script src="/javascripts/dependentDrop.js" type="text/javascript"></script>
 		<script>
 		 $(document).ready(function(){
-                $(".price, .total, .total-dc, .total-amount").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+            $(".price, .total, .total-dc, .total-amount").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
 		 })
 		</script>
 	})

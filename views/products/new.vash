@@ -100,7 +100,7 @@
 			<!-- .row -->
 			<div class="row">
 				<div class="input-field col s12">
-					<input id="name" type="text" class="validate" name="name" required="true" maxlength="30">
+					<input id="name" type="text" class="validate" name="name" required="true">
 					<label for="name">@model.__('product.name') *</label>
 				</div>
 			</div>
