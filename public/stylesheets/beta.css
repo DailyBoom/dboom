@@ -1101,6 +1101,10 @@ header, main {
   height: 100px;
 }
 
+#shipping_row .dropdown-content li {
+  text-transform: capitalize;
+}
+
 .combodate .select-wrapper {
   padding: 0;
 }
