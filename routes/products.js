@@ -155,6 +155,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
       var product = new Product({
         name: req.body.name,
         description: req.body.description,
+        how_to: req.body.how_to,
         price: req.body.price,
         old_price: req.body.oldPrice,
         quantity: quantity,
@@ -219,6 +220,7 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
       product.merchant_id = req.body.merchant_id;
     product.name = req.body.name;
     product.description = req.body.description;
+    product.how_to = req.body.how_to;
     product.price = req.body.price;
     product.old_price = req.body.oldPrice,
     product.scheduled_at = req.body.selldate;
