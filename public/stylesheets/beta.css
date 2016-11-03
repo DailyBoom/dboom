@@ -1359,6 +1359,7 @@ header, main {
   font-stretch: normal;
   line-height: 0.84;
   color: #f19996;
+  word-break: break-all;
 }
 
 #detailed_box .box-header {
@@ -1448,7 +1449,6 @@ header, main {
   display: table-cell;
   width: 94px;
   height: 94px;
-  background-color: #f3fbff;
   border: dashed 1px #aee8f2;
   border-radius: 100px;
   text-align: center;
@@ -1470,6 +1470,7 @@ header, main {
   border-radius: 100px;
   vertical-align: middle;
   text-align: center;
+  overflow: hidden;
 }
 
 #detailed_product .side-img img {

@@ -81,6 +81,7 @@
 		<link rel="stylesheet" href="/stylesheets/bxslider.css" />
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="/stylesheets/beta.css">
+		<link rel="stylesheet" href="/stylesheets/animate.css">
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
     <link rel='stylesheet' href='/stylesheets/spectrum.css' />
 		<!-- jQuery -->
@@ -108,6 +109,7 @@
     <script src="/javascripts/popOut.js"></script>
     <script src="/javascripts/imgToSvg.js"></script>
     <script src="/javascripts/combodate.js"></script>
+    <script src="/javascripts/jquery.animatecss.min.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <!-- Modernizr -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
@@ -213,11 +215,31 @@
                 <a class="collapsible-header side-header">SẢN PHẨM BÁN LẺ</a>
                 <div class="collapsible-body">
                   <ul>
-                    <li><a href="#!">TRANG ĐIỂM</a></li>
-                    <li><a href="#!">CỌ VÀ PHỤ KIỆN</a></li>
-                    <li><a href="#!">CHĂM SÓC DA</a></li>
-                    <li><a href="#!">CƠ THỂ</a></li>
-                    <li><a href="#!">HÀNG BÁN CHẠY</a></li>
+                    <li>
+                      <ul class="collapsible collapsible-accordion">
+                        <li>
+                          <a class="collapsible-header side-header">Chăm sóc da</a>
+                          <div class="collapsible-body">
+                            <ul>
+                              <li>
+                                <ul class="collapsible collapsible-accordion">
+                                  <li>
+                                    <a class="collapsible-header side-header">Sản phẩm rửa mặt</a>
+                                    <div class="collapsible-body">
+                                      <ul>
+                                        <li>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><a class="collapsible-header side-header">Dưỡng ẩm cho da mặtg</a></li>
                   </ul>
                 </div>
               </li>

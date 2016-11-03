@@ -6,7 +6,7 @@
 				<div class="col offset-l1">
 				@model.products.forEach(function(product) {
 					<div class="col s6 l3">
-						<a href="/detailed/@product.id"><img src="@product.mobile_images[0]" /></a>
+						<a href="/detailed/@product.id"><img src="@product.images[0]" /></a>
 						<div class="prod_brand">@product.brand</div>
 						<div class="prod_name"><a href="/detailed/@product.id">@product.name</a></div>
 						<div class="prod_price">@product.price<span class="currency">đ</span></div>
@@ -37,7 +37,7 @@
 					<div class="row">
 						@model.boxes.forEach(function(product) {
 							<div class="box">
-								<a href="/box/@product.id"><img src="@product.mobile_images[0]" /></a>
+								<a href="/box/@product.id"><img src="@product.images[0]" /></a>
 								<div class="prod_brand">@product.brand</div>
 								<div class="prod_name"><a href="/box/@product.id">@product.name</a></div>
 								<div class="prod_price">@product.price<span class="currency">đ</span></div>

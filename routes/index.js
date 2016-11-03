@@ -431,4 +431,8 @@ router.get('/blog/:url', function(req, res, next) {
   });
 });
 
+router.get('/intro', function(req, res, next) {
+  res.render('intro');
+});
+
 module.exports = router;
