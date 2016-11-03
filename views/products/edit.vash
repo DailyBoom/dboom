@@ -130,7 +130,7 @@
 			<div class="file-field input-field">
 				<br>
 				<span class="hide-on-small-only"><br></span>
-				<span for="photosmain" class="input-file-mod grey-text">@model.__('product.photosMain') (Max: 4) * (1 image: 1900x800px, 2~4 images: 750x460px)</span>
+				<span for="photosmain" class="input-file-mod grey-text">@model.__('product.photosMain') (Max: 4) * (~400x400px)</span>
 				<div class="btn blue-grey darken-2">
 					<span><i class="fa fa-image left"></i>선택</span>
 					<input id="photosmain" type="file" class="validate" name="photosmain" multiple>
@@ -139,19 +139,7 @@
 					<input class="file-path validate" type="text">
 				</div>
 			</div>
-			@if (model.product.mobile_images) {
-				<br>
-				<h5>@model.__('product.photosMobile')</h5>
-				<div class="row">
-				@model.product.mobile_images.forEach(function(img, index) {
-					<div class="col s6 m3 l3">
-						<a href="@img" target="_blank"><img class="responsive-img" src="@img" alt="" /></a>
-						<a href="/products/@model.product.id/delete_mobile_img/@index">Delete</a>
-					</div>
-				})
-				</div>
-				<br>
-			}
+			
 			<div class="file-field input-field hide">
 				<br>
 				<span class="hide-on-small-only"><br></span>
@@ -167,7 +155,7 @@
 			@if (model.product.description_image) {
 				<a href="/products/@model.product.id/delete_desc_img">Delete</a>				
 			}			
-			<div class="file-field input-field">
+			<div class="file-field input-field hide">
 				<br>
 				<span class="hide-on-small-only"><br></span>
 				<span for="description_image" class="input-file-mod grey-text">@model.__('product.descriptionPhoto')</span>
@@ -179,7 +167,7 @@
 					<input class="file-path validate" type="text">
 				</div>
 			</div>
-			<div class="file-field input-field">
+			<div class="file-field input-field hide">
 				<br>
 				<span class="hide-on-small-only"><br></span>
 				<span for="homepage_image" class="input-file-mod grey-text">Homepage image</span>

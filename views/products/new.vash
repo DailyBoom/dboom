@@ -141,7 +141,7 @@
 					<input class="file-path validate" type="text">
 				</div>
 			</div>
-			<div class="file-field input-field">
+			<div class="file-field input-field hide">
 				<br>
 				<span class="hide-on-small-only"><br></span>
 				<span for="description_image" class="input-file-mod grey-text">@model.__('product.descriptionPhoto')</span>
@@ -153,7 +153,7 @@
 					<input class="file-path validate" type="text">
 				</div>
 			</div>
-			<div class="file-field input-field">
+			<div class="file-field input-field hide">
 				<br>
 				<span class="hide-on-small-only"><br></span>
 				<span for="homepage_image" class="input-file-mod grey-text">Homepage image</span>
