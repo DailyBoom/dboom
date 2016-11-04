@@ -206,29 +206,98 @@
       </ul>
       }
       <ul id="slide-out" class="side-nav">
-        <div class="top-menu">
+        <div class="slide-menu-wrapper">
           <li class="hide-on-small-only"><a href="/" class="logo"><img class="svg svg-logo" src="/images/logo.svg"/></a></li>
           <li><a class="waves-effect side-header" href="#!">TRANG CHỦ</a></li>        
           <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
               <li>
                 <a class="collapsible-header side-header">SẢN PHẨM BÁN LẺ</a>
-                <div class="collapsible-body">
-                  <ul>
+                <div class="collapsible-body collapsible-wrapper">
+                  <ul class="main-collapsible">
                     <li>
-                      <ul class="collapsible collapsible-accordion">
+                      <ul class="collapsible collapsible-accordion ">
                         <li>
-                          <a class="collapsible-header side-header">Chăm sóc da</a>
+                          <a class="collapsible-header">Chăm sóc da</a>
                           <div class="collapsible-body">
                             <ul>
                               <li>
                                 <ul class="collapsible collapsible-accordion">
                                   <li>
-                                    <a class="collapsible-header side-header">Sản phẩm rửa mặt</a>
+                                    <a class="collapsible-header sub-header">Sản phẩm rửa mặt</a>
                                     <div class="collapsible-body">
                                       <ul>
-                                        <li>
-                                        </li>
+                                        <li class="title">Rửa mặt</li>
+                                        <li><a class="category" href="/mall?category=1">Nước rửa mặt</a></li>
+                                        <li><a class="category" href="/mall?category=2">Rửa mặt dạng bọt</a></li>
+                                        <li><a class="category" href="/mall?category=3">Sữa rửa mặt</a></li>
+                                        <li><a class="category" href="/mall?category=4">Rửa Mặt Dạng Dầu</a></li>
+                                        <li><a class="category" href="/mall?category=5">Xà phòng rửa mặt</a></li>
+                                        <li class="title">Tẩy trang</li>
+                                        <li><a class="category" href="/mall?category=6">Tẩy trang dành cho mặt</a></li>
+                                        <li><a class="category" href="/mall?category=7">Tẩy trang cho mắt và môi</a></li>
+                                        <li><a class="category" href="/mall?category=8">Tẩy da chết</a></li>
+                                        <li><a class="category" href="/mall?category=9">Nước hoa hồng</a></li>
+                                        <li><a class="category" href="/mall?category=10">Dầu tẩy trang</a></li>
+                                        <li><a class="category" href="/mall?category=11">Dụng cụ rửa mặt</a></li>
+                                      </ul>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <ul class="collapsible collapsible-accordion">
+                                  <li>
+                                    <a class="collapsible-header sub-header">Dưỡng ẩm cho da mặt</a>
+                                    <div class="collapsible-body">
+                                      <ul>
+                                        <li><a class="category" href="/mall?category=12">Kem dưỡng ẩm</a></li>
+                                        <li><a class="category" href="/mall?category=13">Sữa dưỡng cho da</a></li>
+                                        <li><a class="category" href="/mall?category=14">Gel dưỡng cho da</a></li>
+                                        <li><a class="category" href="/mall?category=15">Dầu dưỡng cho da</a></li>
+                                        <li><a class="category" href="/mall?category=16">Kem dưỡng cho vùng mắt</a></li>
+                                        <li><a class="category" href="/mall?category=17">Xịt khoáng</a></li>
+                                        <li><a class="category" href="/mall?category=18">BB/CC</a></li>
+                                      </ul>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <ul class="collapsible collapsible-accordion">
+                                  <li>
+                                    <a class="collapsible-header sub-header">Kem chống nắng</a>
+                                    <div class="collapsible-body">
+                                      <ul>
+                                        <li><a class="category" href="/mall?category=19">Kem chống nắng cho da mặt</a></li>
+                                        </ul>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <ul class="collapsible collapsible-accordion">
+                                  <li>
+                                    <a class="collapsible-header sub-header">Sản phẩm trị liệu</a>
+                                    <div class="collapsible-body">
+                                      <ul>
+                                        <li><a class="category" href="/mall?category=20">Sản phẩm trị mụn</a></li>
+                                        <li><a class="category" href="/mall?category=21">Sản phẩm trị nám</a></li>
+                                        <li><a class="category" href="/mall?category=22">Tinh chất</a></li>
+                                        <li><a class="category" href="/mall?category=23">Dưỡng mắt</a></li>
+                                      </ul>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <ul class="collapsible collapsible-accordion">
+                                  <li>
+                                    <a class="collapsible-header sub-header">Mặt nạ</a>
+                                    <div class="collapsible-body">
+                                      <ul>
+                                        <li><a class="category" href="/mall?category=24">Mặt nạ giấy</a></li>
+                                        <li><a class="category" href="/mall?category=25">Mặt nạ khác</a></li>
                                       </ul>
                                     </div>
                                   </li>
@@ -239,7 +308,95 @@
                         </li>
                       </ul>
                     </li>
-                    <li><a class="collapsible-header side-header">Dưỡng ẩm cho da mặtg</a></li>
+                    <li>
+                      <ul class="collapsible collapsible-accordion ">
+                        <li>
+                          <a class="collapsible-header">Trang điểm</a>
+                          <div class="collapsible-body">
+                            <ul>
+                              <li>
+                                <ul class="collapsible collapsible-accordion">
+                                  <li>
+                                    <a class="collapsible-header sub-header">Trang điểm cho mắt</a>
+                                    <div class="collapsible-body">
+                                      <ul>
+                                        <li><a class="category" href="/mall?category=26">Lót mắt</a></li>                                    
+                                        <li><a class="category" href="/mall?category=27">Phấn mắt</a></li>                                    
+                                        <li><a class="category" href="/mall?category=28">Mascara</a></li>                                    
+                                        <li><a class="category" href="/mall?category=29">Kẻ mắt</a></li>                                    
+                                        <li><a class="category" href="/mall?category=30">Kẻ chân mày</a></li>                                    
+                                        <li><a class="category" href="/mall?category=31">Tẩy trang mắt</a></li>                                    
+                                      </ul>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <ul class="collapsible collapsible-accordion">
+                                  <li>
+                                    <a class="collapsible-header sub-header">Trang điểm cho mặt</a>
+                                    <div class="collapsible-body">
+                                      <ul>
+                                        <li><a class="category" href="/mall?category=32">Kem lót</a></li>                                    
+                                        <li><a class="category" href="/mall?category=33">Kem/Phấn nền</a></li>                                    
+                                        <li><a class="category" href="/mall?category=34">BB/CC (kem đa năng)</a></li>                                    
+                                        <li><a class="category" href="/mall?category=35">Kem che khuyết điểm</a></li>                                    
+                                        <li><a class="category" href="/mall?category=36">Phấn phủ</a></li>                                    
+                                        <li><a class="category" href="/mall?category=37">Má hồng</a></li>                                    
+                                      </ul>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <ul class="collapsible collapsible-accordion">
+                                  <li>
+                                    <a class="collapsible-header sub-header">Sản phẩm dành cho môi</a>
+                                    <div class="collapsible-body">
+                                      <ul>
+                                        <li><a class="category" href="/mall?category=38">Son môi</a></li>                                    
+                                        <li><a class="category" href="/mall?category=39">Son bóng</a></li>                                    
+                                        <li><a class="category" href="/mall?category=40">Son lì</a></li>                                    
+                                        <li><a class="category" href="/mall?category=41">Son dưỡng</a></li>                                    
+                                        <li><a class="category" href="/mall?category=42">Son lỏng</a></li>                                    
+                                        <li><a class="category" href="/mall?category=43">Son kẻ viền môi</a></li>                                    
+                                      </ul>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <ul class="collapsible collapsible-accordion">
+                                  <li>
+                                    <a class="collapsible-header sub-header">Phụ Kiện</a>
+                                    <div class="collapsible-body">
+                                      <ul>
+                                        <li><a class="category" href="/mall?category=44">Mút Rửa Mặt</a></li>                                    
+                                        <li><a class="category" href="/mall?category=45">Máy Rửa Mặt</a></li>                                    
+                                        <li><a class="category" href="/mall?category=46">Giấy Thấm Dầu</a></li>                                    
+                                        <li><a class="category" href="/mall?category=47">Bông Rửa Mặt</a></li>                                    
+                                      </ul>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <ul class="collapsible collapsible-accordion">
+                                  <li>
+                                    <a class="collapsible-header sub-header">Sản Phẩm Cho Nam</a>
+                                    <div class="collapsible-body">
+                                      <ul>
+                                        <li><a class="category" href="/mall?category=48">Sản Phẩm Đa Công Dụng</a></li>                                    
+                                      </ul>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
                   </ul>
                 </div>
               </li>
@@ -250,15 +407,15 @@
           @if(model.user) {
             <li><a class="waves-effect side-header" href="/logout">@model.__('logout')</a></li>
           }
-        </div>
-        <div class="bottom-menu">
-          <div class="search hide-on-small-only"><a href="#"><img class="svg svg-search" src="/images/icon_search.svg" /></a></div>
-          <div class="sns">
-            <a href="https://www.facebook.com/yppuna"><img class="svg svg-fb" src="/images/icon_fb.svg" /></a>
-            <a href="http://instagram.com/yppuna"><img class="svg svg-insta" src="/images/icon_insta.svg" /></a>
-            <a href="https://www.youtube.com/channel/UCqFV0hp7cnYA0tZMAGq9paA"><img class="svg svg-yt" src="/images/icon_youtube.svg" /></a>
+          <div class="slide-bottom">
+            <div class="search hide-on-small-only"><a href="#"><img class="svg svg-search" src="/images/icon_search.svg" /></a></div>
+            <div class="sns">
+              <a target="_blank" href="https://www.facebook.com/yppuna"><img class="svg svg-fb" src="/images/icon_fb.svg" /></a>
+              <a target="_blank" href="http://instagram.com/yppuna"><img class="svg svg-insta" src="/images/icon_insta.svg" /></a>
+              <a target="_blank" href="https://www.youtube.com/channel/UCqFV0hp7cnYA0tZMAGq9paA"><img class="svg svg-yt" src="/images/icon_youtube.svg" /></a>
+            </div>
+            <div class="fb-like" data-width="270" data-href="https://www.facebook.com/yppuna" data-layout="standard" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
           </div>
-          <div class="fb-like" data-width="270" data-href="https://www.facebook.com/yppuna" data-layout="standard" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
         </div>
       </ul>
       
@@ -271,9 +428,9 @@
         </div>
         <div class="bottom-menu">
           <a href="#"><img class="svg svg-search" src="/images/icon_search.svg" /></a>
-          <a href="https://www.facebook.com/yppuna"><img class="svg svg-fb" src="/images/icon_fb.svg" /></a>
-          <a href="http://instagram.com/yppuna"><img class="svg svg-insta" src="/images/icon_insta.svg" /></a>
-          <a href="https://www.youtube.com/channel/UCqFV0hp7cnYA0tZMAGq9paA"><img class="svg svg-yt" src="/images/icon_youtube.svg" /></a>
+          <a target="_blank" href="https://www.facebook.com/yppuna"><img class="svg svg-fb" src="/images/icon_fb.svg" /></a>
+          <a target="_blank" href="http://instagram.com/yppuna"><img class="svg svg-insta" src="/images/icon_insta.svg" /></a>
+          <a target="_blank" href="https://www.youtube.com/channel/UCqFV0hp7cnYA0tZMAGq9paA"><img class="svg svg-yt" src="/images/icon_youtube.svg" /></a>
         </div>
       </ul>
   		@html.include("error", model)
