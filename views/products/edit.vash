@@ -116,13 +116,13 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
-					<textarea id="why_love" type="text" class="validate materialize-textarea" name="why_love" required></textarea>
+					<textarea id="why_love" type="text" class="validate materialize-textarea" name="why_love" required>@model.product.why_love</textarea>
 					<label for="why_love">Lý Do Để Yêu Sản Phẩm Này *</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
-					<textarea id="ingredients" type="text" class="validate materialize-textarea" name="ingredients" required></textarea>
+					<textarea id="ingredients" type="text" class="validate materialize-textarea" name="ingredients" required>@model.product.ingredients</textarea>
 					<label for="ingredients">Thành Phần *</label>
 				</div>
 			</div>
@@ -324,15 +324,15 @@
 			<div class="row @(model.product.extend == 3 ? 'hide' : '')" id="productRegion">
 				<label style="display:block;">VÙNG MIỀN</label>
 				<div class="input-field col s4">
-					<input type="checkbox" id="north" name="product_region[0]">
+					<input type="checkbox" id="north" name="product_region[0]" @(product_region && product_region[0] == true ? 'selected' : '')>
 					<label for="north">Miền bắc</label>
 				</div>
 				<div class="input-field col s4">
-					<input type="checkbox" id="central" name="product_region[1]">
+					<input type="checkbox" id="central" name="product_region[1]" @(product_region && product_region[1] == true ? 'selected' : '')>
 					<label for="central">Miền trung</label>
 				</div>
 				<div class="input-field col s4">
-					<input type="checkbox" id="south" name="product_region[2]">
+					<input type="checkbox" id="south" name="product_region[2]" @(product_region && product_region[2] == true ? 'selected' : '')>
 					<label for="south">Miền nam</label>
 				</div>
 			</div>
