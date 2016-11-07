@@ -1,7 +1,7 @@
 @html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
 		<div class="container" id="individual">
-			<h2>SẢN PHẨM BÁN LẺ</h2>
+			<h2>Sản Phẩm Bán Chạy Nhất</h2>
 			<div class="row">
 				<div class="col offset-l1">
 				@model.products.forEach(function(product) {

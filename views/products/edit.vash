@@ -116,6 +116,18 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
+					<textarea id="why_love" type="text" class="validate materialize-textarea" name="why_love" required></textarea>
+					<label for="why_love">Lý Do Để Yêu Sản Phẩm Này *</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<textarea id="ingredients" type="text" class="validate materialize-textarea" name="ingredients" required></textarea>
+					<label for="ingredients">Thành Phần *</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
 					<select id="category" class="validate" name="category">
 						<optgroup label="Chăm sóc da"></optgroup>
 						<optgroup label="Sản phẩm rửa mặt - Rửa mặt">
@@ -286,6 +298,44 @@
 				}
 			</div>
 			<!-- #options_wrapper -->
+			<div id="options_skin_wrapper">
+				<br>
+				<div class="row">
+					<!-- options button -->
+					<div class="col s12 m12 l12">
+						<a id="add_option_skin" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>옵션 추가</a>
+						<a id="remove_option_skin" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>옵션 삭제</a>
+					</div>
+				</div>
+				@if(model.product.options_skin) {
+					@{ var i = 0; }
+					@model.product.options_skin.forEach(function(option) {
+						<div class="row options_row">
+							<div class="input-field col s12 m6 l6">
+								<input id="option_skin_name_@i" type="text" class="validate" name="options_skin[@i]" >
+								<label for="option_skin_name_@i">@model.__('product.optionName')</label>
+							</div>
+						</div>
+						@{ i++; }
+					})
+				}
+			</div>
+			<br>
+			<div class="row @(model.product.extend == 3 ? 'hide' : '')" id="productRegion">
+				<label style="display:block;">VÙNG MIỀN</label>
+				<div class="input-field col s4">
+					<input type="checkbox" id="north" name="product_region[0]">
+					<label for="north">Miền bắc</label>
+				</div>
+				<div class="input-field col s4">
+					<input type="checkbox" id="central" name="product_region[1]">
+					<label for="central">Miền trung</label>
+				</div>
+				<div class="input-field col s4">
+					<input type="checkbox" id="south" name="product_region[2]">
+					<label for="south">Miền nam</label>
+				</div>
+			</div>
 			<br>
 			<!-- .row -->
 			<div class="row">
@@ -400,13 +450,14 @@
 				$('.color-select').spectrum({
 					preferredFormat: "hex",
 					showInput: true,
+					allowEmpty:true
 				});
 			}
 		});
 		$(add_button_skin).click(function(e){ //on add input button click
 			e.preventDefault();
 			if(x_s++ < max_fields) { //max input box allowed
-				$(wrapper_skin).append('<div class="row options_row"><div class="input-field col s12 m6 l6"><input id="option_name'+x_s+'" type="text" class="validate" name="options['+x_s+'][name]"><label for="option_name'+x_s+'">@model.__("product.optionName")</label></div></div>'); //add input box
+				$(wrapper_skin).append('<div class="row options_row"><div class="input-field col s12 m6 l6"><input id="option_skin_name'+x_s+'" type="text" class="validate" name="options_skin['+x_s+']"><label for="option_name'+x_s+'">@model.__("product.optionName")</label></div></div>'); //add input box
 			}
 		});
 		$(wrapper).on("click","#remove_option", function(e){ //user click on remove text
@@ -429,6 +480,7 @@
 				$('#main_sale').removeClass('hide');
 				$('#j_pickdate').removeClass('hide');
 				$('#boxProducts').removeClass('hide');
+				$('#productRegion').addClass('hide');
 				$('#boxHeader').removeClass('hide');
 				$('#brand').addClass('hide');
 				addReq.attr('required', true);
@@ -437,6 +489,7 @@
 				$('#main_sale').addClass('hide');
 				$('#j_pickdate').addClass('hide');
 				$('#boxProducts').addClass('hide');
+				$('#productRegion').removeClass('hide');
 				$('#boxHeader').addClass('hide');
 				$('#brand').removeClass('hide');
 				addReq.attr('required', false);

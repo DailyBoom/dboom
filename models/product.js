@@ -7,6 +7,8 @@ var productSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
   how_to: { type: String },
+  why_love: String,
+  ingredients: String,
   category: Number,
   description_image: String,
   homepage_image: String,
@@ -39,7 +41,8 @@ var productSchema = new Schema({
   updated_at: Date,
   box_header: String,
   boxProducts: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
-  boxZone: Number
+  boxZone: Number,
+  product_region: [Boolean]
 });
 
 var Product = mongoose.model("Product", productSchema);

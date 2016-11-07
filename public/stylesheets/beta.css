@@ -254,7 +254,7 @@ button {
   height: 100%;
 }*/
 
-#slide-out a.side-header, #slide-out.north a.side-header {
+#slide-out a.side-header, #slide-out.central a.side-header {
   font-family: Estilo;
   font-size: 35px;
   font-weight: normal;
@@ -323,7 +323,7 @@ button {
   color: #4a8dcc; 
 }
 
-#slide-out.central a.side-header {
+#slide-out.north a.side-header {
   color: #7cd8ca;
 }
 
@@ -525,12 +525,12 @@ header, main {
   font-size: 18px;
 }
 
-#north, .north {
+#central, .central {
   font-family: SVN-Karla;
   color: #3ebbed;
 }
 
-#central, .central {
+#north, .north {
   font-family: SVN-Karla;
   color: #56c9b1;
 }
@@ -639,6 +639,10 @@ header, main {
   width: 100%;
 }
 
+#individual .l3 {
+  min-height: 300px;
+}
+
 #individual .boxes {
   margin-top: 150px;
   margin-right: auto;
@@ -708,19 +712,19 @@ header, main {
   vertical-align: top;
 }
 
-.north svg.svg-logo path, .north svg.svg-fb path, .north svg.svg-insta path, .north svg.svg-yt path {
+.central svg.svg-logo path, .central svg.svg-fb path, .central svg.svg-insta path, .central svg.svg-yt path {
   fill: #3ebbed;
 }
 
-.north svg.svg-logo polyline, .north svg.svg-logo polygon, .north svg.svg-menu path, .north svg.svg-cart path, .north svg.svg-cart ellipse, .north svg.svg-account path, .north svg.svg-account circle, .north svg.svg-search path {
+.central svg.svg-logo polyline, .central svg.svg-logo polygon, .central svg.svg-menu path, .central svg.svg-cart path, .central svg.svg-cart ellipse, .central svg.svg-account path, .central svg.svg-account circle, .central svg.svg-search path {
   stroke: #3ebbed;
 }
 
-.central svg.svg-logo path, .central svg.svg-fb path, .central svg.svg-insta path, .central svg.svg-yt path {
+.north svg.svg-logo path, .north svg.svg-fb path, .north svg.svg-insta path, .north svg.svg-yt path {
   fill: #56c9b1;
 }
 
-.central svg.svg-logo polyline, .central svg.svg-logo polygon, .central svg.svg-menu path, .central svg.svg-cart path, .central svg.svg-cart ellipse, .central svg.svg-account path, .central svg.svg-account circle, .central svg.svg-search path {
+.north svg.svg-logo polyline, .north svg.svg-logo polygon, .north svg.svg-menu path, .north svg.svg-cart path, .north svg.svg-cart ellipse, .north svg.svg-account path, .north svg.svg-account circle, .north svg.svg-search path {
   stroke: #56c9b1;
 }
 
@@ -1253,19 +1257,20 @@ header, main {
   color: #2074bd;
 }
 
-.combodate .select-wrapper .dropdown-content {
+.select-wrapper .dropdown-content {
   left: 0 !important;
   border-radius: 4px;
   background-color: #ffffff;
   border: solid 1px #b3c2cf;
   width: 100% !important;
 }
-.combodate .select-wrapper .dropdown-content li {
+
+.select-wrapper .dropdown-content li {
   padding: 5px 0 7px 20px;  
   height: 30px;
 }
 
-.combodate .select-wrapper .dropdown-content li span {
+.select-wrapper .dropdown-content li span {
   font-family: SVN-Karla;
   font-size: 14px;
   font-weight: normal;
@@ -1426,7 +1431,7 @@ header, main {
   font-stretch: normal;
   line-height: 0.84;
   color: #f19996;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 #detailed_box .box-header {
@@ -1440,6 +1445,7 @@ header, main {
   font-style: normal;
   font-stretch: normal;
   color: #1b5eaf;
+  text-transform: uppercase;
 }
 
 #detailed_product .body, #detailed_box .body {
@@ -1521,6 +1527,7 @@ header, main {
   text-align: center;
   vertical-align: middle;
   overflow: hidden;
+  cursor: pointer;
 }
 
 #detailed_product .current-img img {
@@ -1538,6 +1545,7 @@ header, main {
   vertical-align: middle;
   text-align: center;
   overflow: hidden;
+  cursor: pointer;
 }
 
 #detailed_product .side-img img {
@@ -1576,8 +1584,64 @@ header, main {
   border: 2px black solid;
 }
 
-#detailed_product .options *, #detailed_product .quantity * {
+#detailed_product .options *, #detailed_product .quantity *, #detailed_product .regions *, #detailed_product .skin-types h4, #detailed_product .skin-types .select-wrapper {
   display: inline-block;
+}
+
+#detailed_product .regions h4 {
+  margin: 0;
+  float: left;
+  margin-top: 25px;
+  margin-right: 39px;
+}
+
+#detailed_product .regions .col {
+  padding: 0;
+  text-align: center;
+}
+
+#detailed_product .regions span {
+  font-family: SVN-Karla;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+#detailed_product .regions img {
+  height: 60px;
+}
+
+#detailed_product .skin-types h4 {
+  margin-right: 48px;
+}
+
+#detailed_product .regions .col {
+  padding: 0;
+}
+
+#detailed_product .skin-types .select-wrapper {
+  float: none;
+}
+
+#detailed_product .skin-types input.select-dropdown {
+  border-radius: 40px;
+  border: solid 1px #b3c2cf;
+  line-height: 1;
+  font-family: SVN-Karla;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+  height: auto;
+  padding: 10px 0 9px 20px;
+}
+
+#detailed_product .select-wrapper .caret {
+  top: 11px;
+  right: 0px;
+  color: #2074bd;
 }
 
 #detailed_product #options li {
@@ -2315,8 +2379,8 @@ input[type=number]::-webkit-outer-spin-button {
     width: 100%;
   }
 
-  #north .item_img {
-    background: url('/images/north_bg_m.png') no-repeat;
+  #central .item_img {
+    background: url('/images/central_bg_m.png') no-repeat;
     background-position: center;
     background-size: 95%;
     padding-bottom: 41px;
@@ -2325,8 +2389,8 @@ input[type=number]::-webkit-outer-spin-button {
     padding-top: 45px;
   }
 
-  #central .item_img {
-    background: url('/images/central_bg_m.png') no-repeat;
+  #north .item_img {
+    background: url('/images/north_bg_m.png') no-repeat;
     background-size: 311px; 
     background-position: center;
   }
@@ -2898,7 +2962,7 @@ input[type=number]::-webkit-outer-spin-button {
     margin-right: 12px;
   }
 
-  #central .area-row .item_cover {
+  #north .area-row .item_cover {
     margin-top: 130px
   }
 
@@ -2932,8 +2996,8 @@ input[type=number]::-webkit-outer-spin-button {
     width: auto;
   }
 
-  #north .item_img {
-    background-image: url('/images/north_bg.png');
+  #central .item_img {
+    background-image: url('/images/central_bg.png');
     background-size: cover;
     padding-left: 100px;
     padding-top: 122px;
@@ -2941,17 +3005,17 @@ input[type=number]::-webkit-outer-spin-button {
     padding-bottom: 35px;
   }
 
-  #north .item_img img {
+  #central .item_img img {
     max-height: 455px;
   }
 
-  #central .item_img {
-    background-image: url('/images/central_bg.png');    
+  #north .item_img {
+    background-image: url('/images/north_bg.png');    
     background-size: cover;
     padding-right: 52px;
   }
 
-  #central .item_img img {
+  #north .item_img img {
     max-height: 540px;
   }
 
