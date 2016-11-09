@@ -434,6 +434,10 @@ router.get('/blog/:url', function(req, res, next) {
   });
 });
 
+router.get('/cart', function(req, res, next) {
+  res.render('cart');
+});
+
 router.get('/intro', function(req, res, next) {
   res.render('intro');
 });

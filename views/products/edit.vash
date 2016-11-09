@@ -272,6 +272,7 @@
 			</div>
 			<!-- .file -->
 			<div id="options_wrapper">
+				<label>MÀU SẮC</label>				
 				<br>
 				<div class="row">
 					<!-- options button -->
@@ -299,6 +300,7 @@
 			</div>
 			<!-- #options_wrapper -->
 			<div id="options_skin_wrapper">
+				<label>LOẠI DA</label>
 				<br>
 				<div class="row">
 					<!-- options button -->
@@ -312,7 +314,7 @@
 					@model.product.options_skin.forEach(function(option) {
 						<div class="row options_row">
 							<div class="input-field col s12 m6 l6">
-								<input id="option_skin_name_@i" type="text" class="validate" name="options_skin[@i]" >
+								<input id="option_skin_name_@i" type="text" class="validate" name="options_skin[@i]" value="@model.product.options_skin[i]">
 								<label for="option_skin_name_@i">@model.__('product.optionName')</label>
 							</div>
 						</div>
@@ -324,15 +326,15 @@
 			<div class="row @(model.product.extend == 3 ? 'hide' : '')" id="productRegion">
 				<label style="display:block;">VÙNG MIỀN</label>
 				<div class="input-field col s4">
-					<input type="checkbox" id="north" name="product_region[0]" @(product_region && product_region[0] == true ? 'selected' : '')>
+					<input type="checkbox" id="north" name="product_region[0]" @(model.product.product_region && model.product.product_region[0] == true ? 'checked' : '')>
 					<label for="north">Miền bắc</label>
 				</div>
 				<div class="input-field col s4">
-					<input type="checkbox" id="central" name="product_region[1]" @(product_region && product_region[1] == true ? 'selected' : '')>
+					<input type="checkbox" id="central" name="product_region[1]" @(model.product.product_region && model.product.product_region[1] == true ? 'checked' : '')>
 					<label for="central">Miền trung</label>
 				</div>
 				<div class="input-field col s4">
-					<input type="checkbox" id="south" name="product_region[2]" @(product_region && product_region[2] == true ? 'selected' : '')>
+					<input type="checkbox" id="south" name="product_region[2]" @(model.product.product_region && model.product.product_region[2] == true ? 'checked' : '')>
 					<label for="south">Miền nam</label>
 				</div>
 			</div>

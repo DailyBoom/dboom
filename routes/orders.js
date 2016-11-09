@@ -322,18 +322,25 @@ router.get('/checkout', function(req, res) {
 
 router.post('/mall/update_cart', function(req, res) {
   if (typeof req.session.cart_order === 'undefined' || !req.session.cart_order) {
-    return res.status(500).json({});
+    return res.redirect('/cart');
   }
   else {
     Order.findOne({ _id: req.session.cart_order }).populate('cart.product').exec(function(err, order) {
       if (err)
         console.log(err);
-      order.cart[req.body.index].quantity = req.body.quantity;
+      if (!Array.isArray(req.body.quantity)) {
+        req.body.quantity = [req.body.quantity];
+      }
+      console.log(req.body);
+      req.body.quantity.forEach(function(item, index) {
+        console.log(item);
+        order.cart[index].quantity = item;
+      });
       order.markModified('cart');
       order.save(function(err) {
         if (err)
           console.log(err);
-        return res.status(200).json({});
+        return res.redirect('/cart');
       });
     });
   }

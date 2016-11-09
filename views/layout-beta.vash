@@ -203,6 +203,26 @@
       @if(model.cart) {
       <ul id="slide-cart" class="side-nav">
         <h3>GIO HANG CUA BAN</h3>
+        <div class="row">
+        @model.cart.forEach(function(item, index) {
+          <div class="cart-product">
+            <div class="col s3">
+              <img src="@item.product.images[0]" />
+            </div>
+            <div class="col s8">
+              <div class="truncate product-name"><a href="/detailed/@item.product.id" class="truncate">@item.product.name</a></div>
+              <div class="product-brand">@item.product.brand</div>
+              <div class="product-price">@(item.product.price * item.quantity)</div>
+            </div>
+            <div class="col s1">
+              <i class="fa fa-times fa-fw cart-remove" data-index="@index"></i>
+            </div>
+          </div>
+        })
+        </div>
+        <div class="row">
+          <a class="cart-btn" href="/cart">THANH TOÁN</a>
+        </div>
       </ul>
       }
       <ul id="slide-out" class="side-nav">
@@ -233,9 +253,11 @@
                                         <li><a class="category" href="/mall?category=3">Sữa rửa mặt</a></li>
                                         <li><a class="category" href="/mall?category=4">Rửa Mặt Dạng Dầu</a></li>
                                         <li><a class="category" href="/mall?category=5">Xà phòng rửa mặt</a></li>
+                                        <li class="divider"></li>
                                         <li class="title">Tẩy trang</li>
                                         <li><a class="category" href="/mall?category=6">Tẩy trang dành cho mặt</a></li>
                                         <li><a class="category" href="/mall?category=7">Tẩy trang cho mắt và môi</a></li>
+                                        <li class="divider"></li>
                                         <li><a class="category" href="/mall?category=8">Tẩy da chết</a></li>
                                         <li><a class="category" href="/mall?category=9">Nước hoa hồng</a></li>
                                         <li><a class="category" href="/mall?category=10">Dầu tẩy trang</a></li>
@@ -408,7 +430,12 @@
             <li><a class="waves-effect side-header" href="/logout">@model.__('logout')</a></li>
           }
           <div class="slide-bottom">
-            <div class="search hide-on-small-only"><a href="#"><img class="svg svg-search" src="/images/icon_search.svg" /></a></div>
+            <div class="search hide-on-small-only">
+              <form action="/mall" method="GET">
+                <img class="svg svg-search" src="/images/icon_search.svg" />
+                <input type="text" name="s" id="search" placeholder="Tìm kiếm sản phẩm" />
+              </form>
+            </div>
             <div class="sns">
               <a target="_blank" href="https://www.facebook.com/yppuna"><img class="svg svg-fb" src="/images/icon_fb.svg" /></a>
               <a target="_blank" href="http://instagram.com/yppuna"><img class="svg svg-insta" src="/images/icon_insta.svg" /></a>
@@ -423,11 +450,10 @@
         <a href="/" class="logo blue-text"><img src="/images/logo.svg" class="svg svg-logo"/></a>
         <div class="top-menu">
           <a href="#" data-activates="slide-out" class="button-collapse"><img class="svg svg-menu" src="/images/menu.svg" /></a>
-          <a href="#" data-activates="slide-cart" class="button-collapse"><img class="svg svg-cart" src="/images/icon-cart.svg" /></a>
+          <a href="#" data-activates="slide-cart" class="button-collapse cart-collapse"><img class="svg svg-cart" src="/images/icon-cart.svg" /></a>
           <a href="@(model.user ? '/mypage' : '#login_modal')" class="modal-trigger account"><img class="svg svg-account" src="/images/icon-account.svg" /></a>
         </div>
         <div class="bottom-menu">
-          <a href="#"><img class="svg svg-search" src="/images/icon_search.svg" /></a>
           <a target="_blank" href="https://www.facebook.com/yppuna"><img class="svg svg-fb" src="/images/icon_fb.svg" /></a>
           <a target="_blank" href="http://instagram.com/yppuna"><img class="svg svg-insta" src="/images/icon_insta.svg" /></a>
           <a target="_blank" href="https://www.youtube.com/channel/UCqFV0hp7cnYA0tZMAGq9paA"><img class="svg svg-yt" src="/images/icon_youtube.svg" /></a>
@@ -528,7 +554,12 @@
           edge: is_mobile ? 'right' : 'left',
           menuWidth: 295
         });
+        $('.cart-collapse').sideNav({
+          edge: is_mobile ? 'right' : 'left',
+          menuWidth: 391
+        });
         $(document).ready(function(){
+          $(".product-price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
           moment().locale('vi');
           $("#birthday, .birthday").combodate({
               firtItem: 'name',
@@ -544,6 +575,25 @@
           });
           $('.modal-trigger').leanModal();
           //$('#side-menu').pushpin({ bottom: $('#south').offset().top });
+          $('.cart-remove').on("click", function() {
+            if (confirm('Bạn có chắc muốn huỷ mua sản phẩm này ?')) {
+              var index = $(this).data("index");
+              $.ajax({
+                type: "POST",
+                url: "/mall/remove_from_cart",
+                dataType: "json",
+                data: {
+                  index: index
+                },
+                success: function (res) {
+                  location.reload();
+                },
+                error: function (res) {
+                  Materialize.toast(res.responseJSON.message, 4000);
+                }
+              });
+            }
+          });
         });
 	    </script>
     </body>
