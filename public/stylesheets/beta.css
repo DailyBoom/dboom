@@ -105,11 +105,24 @@ body, nav {
   position: relative;
 }
 
+.intro-title {
+  font-family: Estilo;
+  font-size: 30px;
+  color: #3ebbed;
+}
+
 .intro-logo {
   margin-top: 200px;
   width: 250px;
   transition: margin-top;
   transition-duration: 1s;
+}
+
+.intro-text-top {
+  font-family: Estilo;
+  font-size: 20px;
+  color: #bbb;
+  margin-top: 200px;  
 }
 
 .intro-text {

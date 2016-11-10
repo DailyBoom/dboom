@@ -37,8 +37,17 @@
   <body>
       <div class="container" id="intro">
           <div class="row center">
-            <img class="intro-logo" src="/images/logo.svg">
+            <div class="intro-text-top">
+                <span>what is</span>
+            </div>
+            <div class="intro-title">
+                <span>yppuna</span>
+            </div>
+            <img class="intro-logo"  style="display:none;" src="/images/logo.svg">
             <div class="intro-text">
+                <span>?</span>
+                <span style="display:none;">Yppuna is a brand of beauty boxes </span>
+                <span style="display:none;">We customize the products for you based on the climate of your area</span>
                 <span style="display:none;">so,<br/></span>
                 <span style="display:none;">where do you live?</span>
             </div>
@@ -58,11 +67,21 @@
   </body>
     <script>
         $(window).load(function() {
-            $('.intro-text span').first().fadeIn(function() {
-                $(this).next().fadeIn(function() {                
-                    $('.intro-logo').css('margin-top', '100px');
-                    $('.intro-logo').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
-                        $('.zones').css('bottom', '0');
+            $('.intro-text-top').add($('.intro-text span').first()).add($('.intro-title span')).delay(500).fadeOut().promise().done(function() {
+                $(this).eq(2).next().add($('.intro-logo')).fadeIn().promise().done(function() {
+                    $(this).eq(1).delay(500).fadeOut(function() {
+                        $(this).next().fadeIn(function() {              
+                            $(this).delay(500).fadeOut(function() {
+                                $(this).next().fadeIn(function() {
+                                    $(this).next().fadeIn(function() {                     
+                                        $('.intro-logo').css('margin-top', '100px');
+                                        $('.intro-logo').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
+                                            $('.zones').css('bottom', '0');
+                                        });
+                                    });
+                                });
+                            });
+                        });
                     });
                 });
             });
