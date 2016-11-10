@@ -6,13 +6,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
     @if(!model.title){
-    <title>@model.__('title') - @model.__('about.title')</title>
+      <title>@model.__('title') - @model.__('about.title')</title>
       <meta name="title" content="@model.__('title') - Mỹ Phẩm Hàn Quốc">
   		<meta itemprop="name" content="@model.__('title') - Mỹ Phẩm Hàn Quốc" />
       <meta property="og:title" content="@model.__('title') - Mỹ Phẩm Hàn Quốc" />
     }
     else {
-    <title>@model.__('title') - @model.title</title>
+      <title>@model.__('title') - @model.title</title>
       <meta name="title" content="@model.__('title') - @model.title">
 	   	<meta itemprop="name" content="@model.__('title') - @model.title" />
       <meta property="og:title" content="@model.__('title') - @model.title" />
@@ -195,33 +195,40 @@
           <a href="/" class="logo"><img class="svg svg-logo" src="/images/logo.svg"/></a>
           <ul id="nav-mobile" class="right">
             <li><a href="@(model.user ? '/mypage' : '#login_modal')" class="modal-trigger"><img class="svg svg-account" src="/images/icon-account.svg" /></a></li>
-            <li><a href="/checkout"><img class="svg svg-cart" src="/images/icon-cart.svg" /></a></li>
+            <li><a href="#" data-activates="slide-cart" class="button-collapse cart-collapse">
+              @if(model.cart){
+                <span class="cart-count">@model.cart.length</span>
+              }
+              <img class="svg svg-cart" src="/images/icon-cart.svg" />
+            </a></li>
             <li><a href="#" data-activates="slide-out" class="button-collapse"><img class="svg" src="/images/menu.svg" /></a></li>
           </ul>
         </div>  
       </nav>
       @if(model.cart) {
       <ul id="slide-cart" class="side-nav">
-        <h3>GIO HANG CUA BAN</h3>
-        <div class="row">
-        @model.cart.forEach(function(item, index) {
-          <div class="cart-product">
-            <div class="col s3">
-              <img src="@item.product.images[0]" />
+        <div class="slide-menu-wrapper">        
+          <h3>GIO HANG CUA BAN</h3>
+          <div class="row">
+          @model.cart.forEach(function(item, index) {
+            <div class="cart-product">
+              <div class="col s3">
+                <img src="@item.product.images[0]" />
+              </div>
+              <div class="col s8">
+                <div class="truncate product-name"><a href="/detailed/@item.product.id" class="truncate">@item.product.name</a></div>
+                <div class="product-brand">@item.product.brand</div>
+                <div class="product-price">@(item.product.price * item.quantity)</div>
+              </div>
+              <div class="col s1">
+                <i class="fa fa-times fa-fw cart-remove" data-index="@index"></i>
+              </div>
             </div>
-            <div class="col s8">
-              <div class="truncate product-name"><a href="/detailed/@item.product.id" class="truncate">@item.product.name</a></div>
-              <div class="product-brand">@item.product.brand</div>
-              <div class="product-price">@(item.product.price * item.quantity)</div>
-            </div>
-            <div class="col s1">
-              <i class="fa fa-times fa-fw cart-remove" data-index="@index"></i>
-            </div>
+          })
           </div>
-        })
-        </div>
-        <div class="row">
-          <a class="cart-btn" href="/cart">THANH TOÁN</a>
+          <div class="row">
+            <a class="cart-btn" href="/cart">THANH TOÁN</a>
+          </div>
         </div>
       </ul>
       }
@@ -450,7 +457,12 @@
         <a href="/" class="logo blue-text"><img src="/images/logo.svg" class="svg svg-logo"/></a>
         <div class="top-menu">
           <a href="#" data-activates="slide-out" class="button-collapse"><img class="svg svg-menu" src="/images/menu.svg" /></a>
-          <a href="#" data-activates="slide-cart" class="button-collapse cart-collapse"><img class="svg svg-cart" src="/images/icon-cart.svg" /></a>
+          <a href="#" data-activates="slide-cart" class="button-collapse cart-collapse">
+            @if(model.cart){
+              <span class="cart-count">@model.cart.length</span>
+            }
+            <img class="svg svg-cart" src="/images/icon-cart.svg" />
+          </a>
           <a href="@(model.user ? '/mypage' : '#login_modal')" class="modal-trigger account"><img class="svg svg-account" src="/images/icon-account.svg" /></a>
         </div>
         <div class="bottom-menu">
@@ -506,11 +518,11 @@
                 <div class="col l4">
                   <div><a href="#">LIÊN HỆ</a></div>
                   <div><a href="#">TIN TỨC & SỰ KIỆN</a></div>
-                  <div><a href="#">HỆ THỐNG CỬA HÀNG</a></div>
+                  <div><a href="#"></a></div>
                   <div class="hotline">
                     <img src="/images/hotline_icon.png" />
                     <div class="title">Hotline hỗ trợ</div>
-                    <div class="phone">0871 062 999</div>
+                    <div class="phone">01699 876 023</div>
                   </div>
                 </div>
                 <div class="col l4">
@@ -556,7 +568,7 @@
         });
         $('.cart-collapse').sideNav({
           edge: is_mobile ? 'right' : 'left',
-          menuWidth: 391
+          menuWidth: is_mobile ? 306 : 391
         });
         $(document).ready(function(){
           $(".product-price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });

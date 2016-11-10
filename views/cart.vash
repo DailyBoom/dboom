@@ -5,7 +5,7 @@
                 <div class="col offset-l1">
                     <h2>GIỎ HÀNG CỦA BẠN GỒM</h2>
                     <div class="col s12 l8 cart-products">
-                        <div class="cart-header">
+                        <div class="cart-header hide-on-small-only">
                             <div class="col s5">
                                 @model.cart.length quyển sách 
                             </div>
@@ -19,17 +19,18 @@
                         <form method="POST" action="/mall/update_cart">
                             @model.cart.forEach(function(item, index) {
                             <div class="cart-product">
-                                <div class="col s2">
+                                <div class="col s4 l2">
                                     <img src="@item.product.images[0]" />
                                 </div>
-                                <div class="col s3">
+                                <div class="col s7 l3">
                                     <div class="truncate product-name"><a href="/detailed/@item.product.id" class="truncate">@item.product.name</a></div>
                                     <div class="product-brand">@item.product.brand</div>
+                                    <div class="product-price hide-on-med-and-up">@(item.product.price * item.quantity)</div>
                                 </div>
-                                <div class="col s3">
+                                <div class="col s3 hide-on-small-only">
                                     <div class="product-price">@(item.product.price * item.quantity)</div>
                                 </div>
-                                <div class="col s3 product-quantity">
+                                <div class="col s3 product-quantity hide-on-small-only">
                                     <i class="fa fa-minus col s4"></i>
                                     <input type="text" value="@item.quantity" class="col s4 quantity" name="quantity" id="quantity_@index" >
                                     <i class="fa fa-plus col s4"></i>
@@ -39,7 +40,7 @@
                                 </div>
                             </div>
                             })
-                            <button class="right">Update</button>
+                            <button class="right hide-on-small-only">Update</button>
                         </form>
                     </div>
                     <div class="col s12 l3">

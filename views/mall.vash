@@ -33,7 +33,7 @@
 					}
 				</ul>
 				<div class="boxes col s12">
-					<h3 class="center">XEM BOX CÓ SẢN PHẨM</h3>
+					<h3 class="center">XEM CÁC BOX KHÍ HẬU</h3>
 					<div class="row">
 						@model.boxes.forEach(function(product) {
 							<div class="box">

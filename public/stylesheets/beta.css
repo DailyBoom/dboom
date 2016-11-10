@@ -97,6 +97,39 @@ body, nav {
   margin-left: auto;
   margin-right: auto;
 }
+
+#intro {
+  width: 50%;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.intro-logo {
+  margin-top: 200px;
+  width: 250px;
+  transition: margin-top;
+  transition-duration: 1s;
+}
+
+.intro-text {
+  margin-bottom: 200px;
+  font-family: Estilo;
+  font-size: 20px;
+  color: #bbb;
+}
+
+.zones {
+  position: absolute;
+  bottom: -130px;
+  width: 100%;
+  transition: bottom 0.5s linear;
+}
+
+
+.zones img {
+  height: 125px;
+}
 /* Settings */
 
 input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
@@ -188,7 +221,7 @@ button {
   margin-top: 36px; 
 }
 
-#slide-out .slide-menu-wrapper {
+#slide-out .slide-menu-wrapper, #slide-cart .slide-menu-wrapper {
   position: relative;
   height: calc(100% - 49px);
 }
@@ -833,6 +866,25 @@ header, main {
 
 .south svg.svg-logo polyline, .south svg.svg-logo polygon, .south svg.svg-menu path, .south svg.svg-cart path, .south svg.svg-cart ellipse, .south svg.svg-account path, .south svg.svg-account circle {
   stroke: #fea3a3;
+}
+
+.cart-collapse {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  left: 14px;
+  padding: 8px 5px;
+  background-color: #ff8268;
+  border-radius: 90px;
+  font-family: Gotham;
+  font-size: 10px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  color: #ffffff;
 }
 
 #login_modal {
@@ -2482,7 +2534,15 @@ input[type=number]::-webkit-outer-spin-button {
     padding-left: 0;
   }
 
-  #slide-out {
+  #intro {
+    width: 100%;
+  }
+
+  .zones .col {
+    padding: 0;
+  }
+
+  #slide-out, #slide-cart {
     top: 56px;
   }
 
@@ -2500,6 +2560,14 @@ input[type=number]::-webkit-outer-spin-button {
 
   .logo svg {
     width: 100%;
+  }
+
+  .cart-count {
+    position: absolute;
+    top: 4px;
+    left: 29px;
+    padding: 2px 5px;
+    line-height: 1;
   }
 
   #login_modal {

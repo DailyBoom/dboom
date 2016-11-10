@@ -58,8 +58,7 @@ var isAdmin = function (req, res, next) {
 }
 
 /* GET Home Page */
-router.get('/', function(req, res, next) {
-  return res.redirect('/beta');
+router.get('/beta', function(req, res, next) {
   var date = moment().startOf('isoweek').format("MM/DD/YYYY");
   Product.findOne({scheduled_at: date, is_published: true }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
     Product.find({ is_published: true, extend: 4 }, {}, { sort : { 'created_at' : -1 } }, function(err, mallProducts) {
@@ -183,11 +182,11 @@ router.post('/merchant', function(req, res, next) {
   });
 });
 
-router.get('/beta', function(req, res, next) {
-  Product.find({ $or: [{ boxZone: 0 }, { boxZone: 1 }, { boxZone: 2 }] }, {}, {}, function (err, products) {
+router.get('/home', function(req, res, next) {
+  Product.find({ boxZone: req.query.zone }, {}, {}, function (err, products) {
     console.log(products);
     Product.find({ extend: 4, is_hot: true }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
-      res.render('beta', { progress: 75, products: products, hotProducts: hotProducts });
+      res.render('beta', { progress: 75, products: products, hotProducts: hotProducts, zone: req.query.zone });
     });
   });
 });
@@ -438,7 +437,7 @@ router.get('/cart', function(req, res, next) {
   res.render('cart');
 });
 
-router.get('/intro', function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.render('intro');
 });
 
