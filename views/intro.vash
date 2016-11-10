@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>@model.__('title') - @model.__('about.title')</title>
+    <meta name="title" content="@model.__('title') - Mỹ Phẩm Hàn Quốc">
+    <meta itemprop="name" content="@model.__('title') - Mỹ Phẩm Hàn Quốc" />
+    <meta property="og:title" content="@model.__('title') - Mỹ Phẩm Hàn Quốc" />
+    <meta name="copyright" content="Copyright 2016 Yppuna">
+    <meta name="description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp.">
+    <meta itemprop="description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp." />
+    <meta property="og:description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp." />
+    <meta itemprop="image" content="http://www.yppuna.vn/images/db_ko_05.png" />
+    <meta property="og:image" content="http://www.yppuna.vn/images/db_ko_05.png" />
+    <meta property="og:site_name" content="Yppuna">
+    <meta property="og:url" content="http://www.yppuna.vn@model.url" />
+    <meta property="og:type" content="product">
+    <meta property="fb:app_id" content="1216374348393191">
+
+    <link rel="canonical" href="http://www.yppuna.vn@model.url" />
+    <meta name="google-site-verification" content="yS0UpQrgmF43CA3mnxY8Qke583Hq_yJMSfw2USHiVxI" />
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/favicon/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png" />
+    <link rel="stylesheet" href="/stylesheets/materialize.min.css">
+    <link rel="stylesheet" href="/stylesheets/animate.css">
+    <link rel="stylesheet" href="/stylesheets/beta.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/javascripts/jquery.animatecss.min.js"></script>
+    <script src="/javascripts/imgToSvg.js"></script>
+
+  </head>
+  <body>
+      <div class="container" id="intro">
+          <div class="row center">
+            <img class="intro-logo" src="/images/logo.svg">
+            <div class="intro-text">
+                <span style="display:none;">so,<br/></span>
+                <span style="display:none;">where do you live?</span>
+            </div>
+            <div class="zones">
+                <div class="col s4">
+                    <a href="/home?zone=0"><img src="/images/north-logo.svg" /></a>
+                </div>
+                <div class="col s4">
+                    <a href="/home?zone=1"><img src="/images/central-logo.svg" /></a>
+                </div>
+                <div class="col s4">
+                    <a href="/home?zone=2"><img src="/images/south-logo.svg" /></a>
+                </div>
+            </div>
+          </div>
+      </div>
+  </body>
+    <script>
+        $(window).load(function() {
+            $('.intro-text span').first().fadeIn(function() {
+                $(this).next().fadeIn(function() {                
+                    $('.intro-logo').css('margin-top', '100px');
+                    $('.intro-logo').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
+                        $('.zones').css('bottom', '0');
+                    });
+                });
+            });
+        });
+    </script>
+</html>
