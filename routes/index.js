@@ -185,7 +185,7 @@ router.post('/merchant', function(req, res, next) {
 router.get('/home', function(req, res, next) {
   Product.find({ boxZone: req.query.zone }, {}, {}).populate('boxProducts').exec(function (err, products) {
     console.log(products);
-    Product.find({ extend: 4, is_hot: true }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
+    Product.find({ extend: 4 }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
       res.render('beta', { progress: 75, products: products, hotProducts: hotProducts, zone: req.query.zone });
     });
   });
@@ -193,7 +193,7 @@ router.get('/home', function(req, res, next) {
 
 router.get('/detailed/:id', function(req, res, next) {
   Product.findOne({_id: req.params.id}, function(err, product) {
-    Product.find({ extend: 4, is_hot: true }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
+    Product.find({ extend: 4 }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
       Comment.find( { product: req.params.id }).populate('user').exec(function(err, comments) {
         var current_quantity = 0;
         product.options.forEach(function(option) {
@@ -209,7 +209,7 @@ router.get('/detailed/:id', function(req, res, next) {
 
 router.get('/box/:id', function(req, res, next) {
   Product.findOne({_id: req.params.id}).populate('boxProducts').exec(function(err, product) {
-    Product.find({ extend: 4, is_hot: true }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
+    Product.find({ extend: 4 }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
       Comment.find( { product: req.params.id }).populate('user').exec(function(err, comments) {
         var current_quantity = 0;
         product.options.forEach(function(option) {
