@@ -781,11 +781,13 @@ header, main {
 
 #individual img {
   padding: 0 20px;
-  width: 100%;
+  width: auto;
+  height: 200px;
 }
 
 #individual .l3 {
-  min-height: 300px;
+  height: 300px;
+  text-align: center;
 }
 
 #individual .boxes {
