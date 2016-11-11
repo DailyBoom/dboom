@@ -11,6 +11,7 @@ var moment = require("moment-timezone");
 var crypto = require('crypto');
 var sitemap = require('express-sitemap')({url: 'dailyboom.co'});
 var i18n = require('i18n');
+var querystring = require('querystring');
 i18n.configure({
     defaultLocale: 'vi',
     locales: ['ko', 'en', 'vi'],
@@ -114,6 +115,7 @@ app.use(function(req, res, next) {
   res.locals.user = req.user;
   moment.locale('vi');
   res.locals.moment = moment;
+  res.locals.querystring = querystring;
   res.locals.url = req.url;
   if (req.session.toast) {
     res.locals.toast = req.session.toast;
@@ -124,7 +126,9 @@ app.use(function(req, res, next) {
       res.locals.cart = order.cart;
       res.locals.cart_total = 0;      
       order.cart.forEach(function(item) {
-        res.locals.cart_total += item.product.price * item.quantity;
+        if (item.product != null) {
+          res.locals.cart_total += item.product.price * item.quantity;
+        }
       });
       next();
     });

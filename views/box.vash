@@ -38,7 +38,7 @@
 				<div class="col s12 l4" id="center">
 					<div class="img-wrapper">
 						<div class="main-img">
-							<img src="@(model.is_mobile ? model.product.mobile_images[0] : model.product.images[0])" />
+							<img src="@model.product.images[0]" />
 						</div>
 					</div>
 				</div>
@@ -58,9 +58,7 @@
 						</div>
 					</div>
 					<div class="description hide-on-small-only">
-						<div class="body">
-							@model.product.description
-						</div>
+						<div class="body">@model.product.description</div>
 					</div>
 					<div class="prices">
 						<span class="price">@model.product.price</span>
@@ -90,22 +88,18 @@
                         <div class="col s12 l4" id="center">
                             <div class="img-wrapper">
                                 <div class="main-img">
-                                    <img src="@(model.is_mobile ? product.mobile_images[0] : product.images[0])" />
+                                    <img src="@product.images[0]" />
                                 </div>
                             </div>
                         </div>
                         <div class="col s12 l4" id="right">
                             <div class="description hide-on-small-only">
                                 <h4>MÔ TẢ CHI TIẾT</h4>
-                                <div class="body">
-                                    @product.description
-                                </div>
+                                <div class="body">@product.description</div>
                             </div>
                             <div class="how-to hide-on-small-only">
                                 <h4>HƯỚNG DẪN SỬ DỤNG</h4>
-                                <div class="body">
-                                    @product.how_to
-                                </div>
+                                <div class="body">@product.how_to</div>
                             </div>
                             <div class="prices">
                                 <span class="price">@product.price</span>

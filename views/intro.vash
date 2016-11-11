@@ -37,29 +37,32 @@
   <body>
       <div class="container" id="intro">
           <div class="row center">
-            <div class="intro-text-top">
-                <span>what is</span>
-            </div>
             <div class="intro-title">
                 <span>yppuna</span>
             </div>
-            <img class="intro-logo"  style="display:none;" src="/images/logo.svg">
+            <img class="intro-logo" style="display:none;" src="/images/logo.svg">
+            <video class="intro-video" width="400" muted style="display:none;">
+                <source src="/video/yppuna_logo.mp4" type="video/mp4">
+            </video>
             <div class="intro-text">
-                <span>?</span>
-                <span style="display:none;">Yppuna is a brand of beauty boxes </span>
-                <span style="display:none;">We customize the products for you based on the climate of your area</span>
-                <span style="display:none;">so,<br/></span>
-                <span style="display:none;">where do you live?</span>
+                <span>Là Gì?</span>
+                <span style="display:none;">Yppuna là thương hiệu mang những sản phẩm làm đẹp dựa trên vùng miền bạn đang sinh sống</span>
+                <span style="display:none;">Chúng tôi tự tay lựa chọn từng sản phẩm để phù hợp nhất cho làn da của bạn dựa trên khí hậu bạn đang sinh sống</span>
+                <span style="display:none;">Thế,<br/></span>
+                <span style="display:none;">bạn đang sinh sống ở đâu?</span>
             </div>
             <div class="zones">
                 <div class="col s4">
                     <a href="/home?zone=0"><img src="/images/north-logo.svg" /></a>
+                    <div class="north">Bắc</div>
                 </div>
                 <div class="col s4">
                     <a href="/home?zone=1"><img src="/images/central-logo.svg" /></a>
+                    <div class="central">Trung</div>
                 </div>
                 <div class="col s4">
                     <a href="/home?zone=2"><img src="/images/south-logo.svg" /></a>
+                    <div class="south">Nam</div>
                 </div>
             </div>
           </div>
@@ -67,16 +70,24 @@
   </body>
     <script>
         $(window).load(function() {
-            $('.intro-text-top').add($('.intro-text span').first()).add($('.intro-title span')).delay(500).fadeOut().promise().done(function() {
-                $(this).eq(2).next().add($('.intro-logo')).fadeIn().promise().done(function() {
-                    $(this).eq(1).delay(500).fadeOut(function() {
+            $('.intro-text span').first().add($('.intro-title')).delay(1000).fadeOut().promise().done(function() {
+                $(this).eq(1).next().add($('.intro-logo')).fadeIn().promise().done(function() {
+                    $(this).eq(1).delay(1000).fadeOut(function() {
                         $(this).next().fadeIn(function() {              
-                            $(this).delay(500).fadeOut(function() {
-                                $(this).next().fadeIn(function() {
-                                    $(this).next().fadeIn(function() {                     
-                                        $('.intro-logo').css('margin-top', '100px');
-                                        $('.intro-logo').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
-                                            $('.zones').css('bottom', '0');
+                            $(this).add($('.intro-logo')).delay(1000).fadeOut().promise().done(function() {
+                                var text = $(this).eq(1);
+                                $('.intro-video').fadeIn(function() {
+                                    $(this)[0].play();
+                                    $(this)[0].addEventListener('ended', function() {
+                                        $('.intro-video').fadeOut(function() {
+                                            text.next().add($('.intro-logo')).fadeIn().promise().done(function() {
+                                                $(this).eq(1).next().fadeIn(function() {                     
+                                                    $('.intro-logo').css('margin-top', '100px');
+                                                    $('.intro-logo').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
+                                                        $('.zones').css('bottom', '0');
+                                                    });
+                                                });
+                                            });
                                         });
                                     });
                                 });

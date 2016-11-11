@@ -14,16 +14,16 @@
 					<img class="item_cover" src="@model.products[0].box_header" />
 					<div class="item_names row center">
 						<div class="col s4">
-							<div class="item_name truncate">3 SẢN PHẨM</div>
-							<div class="item_type">DA DẦU</div>
+							<div class="item_name truncate">@model.products[0].boxProducts[0].name</div>
+							<div class="item_type">@model.products[0].boxProducts[0].brand</div>
 						</div>
 						<div class="col s4 ">
-							<div class="item_name truncate">+50PH</div>
-							<div class="item_type">SUNCREAM</div>
+							<div class="item_name truncate">@model.products[0].boxProducts[1].name</div>
+							<div class="item_type">@model.products[0].boxProducts[1].brand</div>
 						</div>
 						<div class="col s4">
-							<div class="item_name truncate">SPRING</div>
-							<div class="item_type">SUNCREAM</div>
+							<div class="item_name truncate">@model.products[0].boxProducts[2].name</div>
+							<div class="item_type">@model.products[0].boxProducts[2].brand</div>
 						</div>
 					</div>
 					<div class="item_desc hide-on-small-only">
@@ -39,7 +39,7 @@
 					</div>
 				</div>
 				<div class="col s12 l8">
-					<div class="item_img"><img  src="@(model.is_mobile ? model.products[0].mobile_images[0] : model.products[0].images[0])"/></div>
+					<div class="item_img"><img  src="@model.products[0].images[0]"/></div>
 					<div class="item_detail hide-on-med-and-up">
 						<a href="/box/@model.products[0].id">
 							XEM CHI TIẾT
@@ -66,16 +66,16 @@
 					<img class="item_cover" src="@model.products[0].box_header" />
 					<div class="item_names row center">
 						<div class="col s4">
-							<div class="item_name truncate">3 SẢN PHẨM</div>
-							<div class="item_type">DA DẦU</div>
+							<div class="item_name truncate">@model.products[0].boxProducts[0].name</div>
+							<div class="item_type">@model.products[0].boxProducts[0].brand</div>
 						</div>
 						<div class="col s4 ">
-							<div class="item_name truncate">+50PH</div>
-							<div class="item_type">SUNCREAM</div>
+							<div class="item_name truncate">@model.products[0].boxProducts[1].name</div>
+							<div class="item_type">@model.products[0].boxProducts[1].brand</div>
 						</div>
 						<div class="col s4">
-							<div class="item_name truncate">SPRING</div>
-							<div class="item_type">SUNCREAM</div>
+							<div class="item_name truncate">@model.products[0].boxProducts[2].name</div>
+							<div class="item_type">@model.products[0].boxProducts[2].brand</div>
 						</div>
 					</div>
 					<div class="item_desc hide-on-small-only">
@@ -115,16 +115,16 @@
 					<img class="item_cover" src="@model.products[0].box_header" />
 					<div class="item_names row center">
 						<div class="col s4">
-							<div class="item_name truncate">3 SẢN PHẨM</div>
-							<div class="item_type">DA DẦU</div>
+							<div class="item_name truncate">@model.products[0].boxProducts[0].name</div>
+							<div class="item_type">@model.products[0].boxProducts[0].brand</div>
 						</div>
 						<div class="col s4 ">
-							<div class="item_name truncate">+50PH</div>
-							<div class="item_type">SUNCREAM</div>
+							<div class="item_name truncate">@model.products[0].boxProducts[1].name</div>
+							<div class="item_type">@model.products[0].boxProducts[1].brand</div>
 						</div>
 						<div class="col s4">
-							<div class="item_name truncate">SPRING</div>
-							<div class="item_type">SUNCREAM</div>
+							<div class="item_name truncate">@model.products[0].boxProducts[2].name</div>
+							<div class="item_type">@model.products[0].boxProducts[2].brand</div>
 						</div>
 					</div>
 					<div class="item_desc hide-on-small-only">
@@ -140,7 +140,7 @@
 					</div>
 				</div>
 				<div class="col s12 l8">
-					<div class="item_img"><img src="@(model.is_mobile ? model.products[0].mobile_images[0] : model.products[0].images[0])"/></div>
+					<div class="item_img"><img src="@model.products[0].images[0]"/></div>
 					<div class="item_detail hide-on-med-and-up">
 						<a href="/box/@model.products[0].id">
 							XEM CHI TIẾT

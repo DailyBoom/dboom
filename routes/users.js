@@ -515,8 +515,9 @@ router.get('/merchant_signup', function(req, res, next) {
   req.Validator.getErrors(function() { res.render('users/new_merchant', { title: "판매자 가입하기" }); });
 });
 
-router.post('/merchant_signup', function(req, res) {
+router.post('/wholesale', function(req, res) {
   // form validation rules
+  console.log(req.body);
   req.Validator.validate('username', i18n.__('user.username'), {
     length: {
       min: 3,
@@ -534,7 +535,7 @@ router.post('/merchant_signup', function(req, res) {
     },
     required: true
   })
-  .validate('confirmpassword', i18n.__('user.confirmPassword'), {
+  .validate('confirm_password', i18n.__('user.confirmPassword'), {
     length: {
       min: 8,
       max: 15
@@ -548,45 +549,24 @@ router.post('/merchant_signup', function(req, res) {
     },
     required: true
   })
-  .validate('agree-terms-1', i18n.__('user.agreeTerms1'), {
-    required: true
-  })
-  .validate('agree-terms-3', i18n.__('user.agreeTerms3'), {
-    required: true
-  })
   .validate('phone_number', i18n.__('user.phoneNumber'), {
     required: true,
     numeric: true
-  })
-  .validate('address1', i18n.__('user.address1'), {
-    required: true
-  })
-  .validate('person_in_charge', i18n.__('merchant.person_in_charge'), {
-    required: true
-  })
-  .validate('company_name', i18n.__('merchant.company_name'), {
-    required: true
-  })
-  .validate('business_reg', i18n.__('merchant.business_reg'), {
-    required: true
   });
 
   // form validation
   req.Validator.getErrors(function(errors){
     if (errors.length > 0) {
-      res.render('users/new_merchant', { errors: errors, title: "판매자 가입하기" });
+      console.log(errors);
+      return res.status(500).json({ message: errors });
     }
     else {
       var user = new User({
         username: req.body.username,
         password: req.body.password,
         email: req.body.email,
-        person_in_charge: req.body.person_in_charge,
-        company_name: req.body.company_name,
-        business_reg: req.business_reg,
-        role: 'merchant',
+        role: 'agent',
         shipping: {
-          address: req.body.address,
           phone_number: req.body.phone_number
         }
       });
@@ -597,7 +577,7 @@ router.post('/merchant_signup', function(req, res) {
           for (var path in err.errors) {
             errors.push(i18n.__("unique", i18n.__("user."+path)));
           }
-          res.render('users/new_merchant', { errors: errors, title: "판매자 가입하기" });
+          return res.status(500).json({ message: 'Sorry but there was an error.'});
         }
         else {
           fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
@@ -610,17 +590,12 @@ router.post('/merchant_signup', function(req, res) {
             transporter.sendMail({
               from: 'Yppuna <hello@yppuna.vn>',
               to: user.email,
-              subject: user.username+'님 회원가입을 축하드립니다.',
+              subject: user.username+' registered for Yppuna Agents.',
               html: html({ user : user })
             }, function (err, info) {
                 if (err) { console.log(err); res.redirect('/'); }
                 //console.log('Message sent: ' + info.response);
-                req.login(user, function(err) {
-                  if (err) {
-                    console.log(err);
-                  }
-                  return res.redirect('/');
-                });
+                return res.status(200).json({ message: 'Cảm Ơn Các Bạn Đã Đăng Ký Là Thành Viên Của Yppuna'});
             });
           });
         }

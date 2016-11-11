@@ -10,6 +10,7 @@ var mime = require('mime-types');
 var crypto = require("crypto");
 var config = require('config-heroku');
 var paginate = require('express-paginate');
+var querystring = require('querystring');
 var app = express();
 
 var storage = s3({
