@@ -102,6 +102,7 @@
 		<script src="/javascripts/moment-vi.js"></script>
 		<script src="/javascripts/moment-timezone-with-data.js"></script>
     <!-- Custom JS -->
+    <script src='/javascripts/masonry.pkgd.min.js'></script>
     <script src='/javascripts/spectrum.js'></script>
 		<script src="/javascripts/formatCurrency/jquery.formatCurrency-1.4.0.min.js"></script>
 		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.ko-KR.js"></script>

@@ -1,21 +1,55 @@
-@html.extend("layout", function(model) { @html.block("body", function(model) {
+@html.extend("layout-beta", function(model) { @html.block("body", function(model) {
     <div class="container@(model.is_mobile ? '-fluid' : '')" id="blog">
-        <h1 class="center">Phòng Làm Đẹp Yppuna</h1>
-        @model.articles.forEach(function(article) {
-            <article>
-                <h2 class="center"><a href="/blog/@article.url" >@article.title</a></h2>
-                <div class="content">
-                    @html.raw(model.smart_substr(article.content, 400))...
-                </div>
-                @if(article.tags.length > 0) {
-                    <div class="tags">
-                        tags: @article.tags.forEach(function(tag) {
-                            <a href="/blog?tag=@tag" class="core-color white-text">@tag</a>
-                        })
-                    </div>
+        <div class="row">
+            <h1 class="center">Phòng Làm Đẹp Yppuna</h1>
+            <div class="grid">
+                @model.articles.forEach(function(article) {
+                    <article class="grid-item">
+                        @if(article.tags.length > 0) {
+                            <div class="tags">
+                                @article.tags.forEach(function(tag) {
+                                    <a href="/blog?tag=@tag">@tag</a>
+                                })
+                            </div>
+                        }
+                        <div class="title"><a href="/blog/@article.url" >@article.title</a></div>
+                        <div class="date"><i class="fa fa-calendar"></i> @model.moment(article.created_at).format("DD.MM.YYYY")</div>
+                        <div class="content">
+                            @html.raw(model.smart_substr(article.content, 400))...
+                        </div>
+                        <div class="more"><a href="/blog/@article.url">Xem thêm <i class="fa fa-caret-right"></i></a></div>
+                    </article>
+                })
+            </div>
+            <ul class="pagination right">
+                @if(model.paginate.hasPreviousPages) {
+                    <li class="previous"><i class="fa fa-caret-left"></i></li>
                 }
-            </article>
-        })
+                <!-- -->
+                @model.pages.forEach(function(page) {
+                    @if(model.currentPage == page.number) {
+                        <li class="active">@page.number</li>
+                    }
+                    else {
+                        <li class="waves-effect"><a href="@page.url">@page.number</a></li>
+                    }
+                })
+                <!-- -->
+                @if(model.paginate.hasNextPages(model.lastPage)) {
+                    <li class="next"><i class="fa fa-caret-right"></i></li>
+                }
+            </ul>
+        </div>
     </div>
+    <script>
+        $(window).load(function() {
+            $('.grid').masonry({
+                // options
+                itemSelector: '.grid-item',
+                gutter: 15,
+                percentPosition: true
+            });
+        });
+    </script>
     })
 })

@@ -5,11 +5,11 @@
                 <div class="area-header hide-on-small-only">
                     <div class="right">
                         @if (model.product.boxZone == 0) {
-                            <span>Miền Trung</span>
+                            <span>Miền Bắc</span>
                             <img src="/images/north-logo.svg" />
                         }
                         else if (model.product.boxZone == 1) {
-                            <span>Miền Bắc</span>
+                            <span>Miền Trung</span>
 					        <img src="/images/central-logo.svg" />
                         }
                         else if (model.product.boxZone == 2) {

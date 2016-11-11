@@ -2583,6 +2583,149 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 6px 21px 5px !important;
 }
 
+/* Blog */
+
+#blog {
+  padding: 0 90px;
+}
+
+#blog h1 {
+  font-family: SVN-Karla;
+  font-size: 35px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #fea3a3;
+}
+
+#blog article {
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px 0 rgba(206, 206, 206, 0.5);
+  padding: 0 30px 18px;
+  margin-bottom: 14px;
+}
+
+#blog .grid-item {
+  width: calc(33.3333333333% - 15px);  
+}
+
+#blog article:nth-child(3n+1) {
+  margin-right: 0;
+}
+
+#blog .tags a {
+  display: inline-block;
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #b3c2cf;
+}
+
+#blog .tags a:hover {
+  color: #2074bd;
+}
+
+#blog .title {
+  font-family: SVN-Karla;
+  font-size: 22px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #2074bd;
+}
+
+#blog .date {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #b3c2cf;
+}
+
+#blog .content {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+}
+
+#blog .content iframe {
+  width: 100%;
+  height: auto;
+}
+
+#blog .more {
+  font-family: SVN-Karla;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #fea3a3;
+}
+
+#blog_post {
+  padding: 221px 182px 0 33px;
+}
+
+#blog_post h2 {
+  font-family: Estilo;
+  font-size: 80px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.81;
+  text-align: center;
+  color: #fea3a3;
+  text-transform: lowercase;
+}
+
+#blog_post .date, #blog_post .total-comments {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #b3c2cf;
+}
+
+#blog_post article, #blog_post .fb-share-button, #blog_post #comments {
+  padding: 0 213px;
+}
+
+#blog_post .fb-share-button {
+  padding-right: 50px;
+}
+
+#blog_post article p, #blog_post #comments {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #4a8dcc;
+}
+
+#blog_post article a, #blog_post #comments a {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #b3c2cf;
+}
+
+#blog_post #comments {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: dashed 1px #b3c2cf;
+}
+
 @media only screen and (max-width : 992px) {
 
   header, main, footer {

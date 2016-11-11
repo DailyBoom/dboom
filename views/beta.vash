@@ -5,7 +5,7 @@
 		<section id="north">
 			<div class="area-header hide-on-small-only">
 				<div class="right">
-					<span>Miền Trung</span>
+					<span>Miền Bắc</span>
 					<img src="/images/north-logo.svg" />
 				</div>
 			</div>
@@ -54,7 +54,7 @@
 		<section id="central">
 			<div class="area-header hide-on-small-only">
 				<div class="right">
-					<span>Miền Bắc</span>
+					<span>Miền Trung</span>
 					<img src="/images/central-logo.svg" />
 				</div>
 			</div>

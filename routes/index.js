@@ -294,11 +294,13 @@ router.get('/blog', function(req, res, next) {
   if (req.query.tag) {
     query.where('tags', req.query.tag);
   }
-  query.exec(function(err, articles) {
+  var page = req.query.page ? req.query.page : 1;
+  var per_page = 9;
+  query.paginate(page, per_page, function(err, articles, total) {
     if (err) {
       console.log(err);
     }
-    res.render('articles/index', { articles: articles, smart_substr: smart_substr });
+    res.render('articles/index', { articles: articles, smart_substr: smart_substr, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });
   });
 });
 
