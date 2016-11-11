@@ -97,7 +97,7 @@
 			<!-- .row -->
 			<div class="row">
 				<div class="input-field col s12">
-					<input id="name" type="text" class="validate" name="name" required="true" value="@model.product.name">
+					<input id="name" type="text" class="validate" name="name" value="@model.product.name">
 					<label for="name">@model.__('product.name') *</label>
 				</div>
 			</div>
@@ -110,19 +110,19 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
-					<textarea id="how_to" type="text" class="validate materialize-textarea" name="how_to" required>@model.product.how_to</textarea>
+					<textarea id="how_to" type="text" class="validate materialize-textarea" name="how_to" >@model.product.how_to</textarea>
 					<label for="how_to">How to *</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
-					<textarea id="why_love" type="text" class="validate materialize-textarea" name="why_love" required>@model.product.why_love</textarea>
+					<textarea id="why_love" type="text" class="validate materialize-textarea" name="why_love" >@model.product.why_love</textarea>
 					<label for="why_love">Lý Do Để Yêu Sản Phẩm Này *</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
-					<textarea id="ingredients" type="text" class="validate materialize-textarea" name="ingredients" required>@model.product.ingredients</textarea>
+					<textarea id="ingredients" type="text" class="validate materialize-textarea" name="ingredients" >@model.product.ingredients</textarea>
 					<label for="ingredients">Thành Phần *</label>
 				</div>
 			</div>
@@ -485,7 +485,7 @@
 				$('#productRegion').addClass('hide');
 				$('#boxHeader').removeClass('hide');
 				$('#brand').addClass('hide');
-				addReq.attr('required', true);
+				addReq.attr('', true);
 			}
 			else if (this.value == '4') {
 				$('#main_sale').addClass('hide');
@@ -494,7 +494,7 @@
 				$('#productRegion').removeClass('hide');
 				$('#boxHeader').addClass('hide');
 				$('#brand').removeClass('hide');
-				addReq.attr('required', false);
+				addReq.attr('', false);
 			}
 		});
 	});

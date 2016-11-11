@@ -100,32 +100,32 @@
 			<!-- .row -->
 			<div class="row">
 				<div class="input-field col s12">
-					<input id="name" type="text" class="validate" name="name" required="true">
+					<input id="name" type="text" class="validate" name="name" >
 					<label for="name">@model.__('product.name') *</label>
 				</div>
 			</div>
 			<!-- .row -->
 			<div class="row">
 				<div class="input-field col s12">
-					<textarea id="description" type="text" class="validate materialize-textarea" name="description" required></textarea>
+					<textarea id="description" type="text" class="validate materialize-textarea" name="description" ></textarea>
 					<label for="description">@model.__('product.description') *</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
-					<textarea id="how_to" type="text" class="validate materialize-textarea" name="how_to" required></textarea>
+					<textarea id="how_to" type="text" class="validate materialize-textarea" name="how_to" ></textarea>
 					<label for="how_to">HƯỚNG DẪN SỬ DỤNG *</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
-					<textarea id="why_love" type="text" class="validate materialize-textarea" name="why_love" required></textarea>
+					<textarea id="why_love" type="text" class="validate materialize-textarea" name="why_love" ></textarea>
 					<label for="why_love">Lý Do Để Yêu Sản Phẩm Này *</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
-					<textarea id="ingredients" type="text" class="validate materialize-textarea" name="ingredients" required></textarea>
+					<textarea id="ingredients" type="text" class="validate materialize-textarea" name="ingredients" ></textarea>
 					<label for="ingredients">Thành Phần *</label>
 				</div>
 			</div>
@@ -214,7 +214,7 @@
 				<span for="photosmain" class="input-file-mod grey-text">@model.__('product.photosMain') (Max: 4) * (1 image: 1900x800px, 2~4 images: 750x460px)</span>
 				<div class="btn blue-grey darken-2">
 					<span><i class="fa fa-image left"></i>선택</span>
-					<input id="photosmain" type="file" class="validate" name="photosmain" multiple required>
+					<input id="photosmain" type="file" class="validate" name="photosmain" multiple >
 				</div>
 				<div class="file-path-wrapper">
 					<input class="file-path validate" type="text">
@@ -272,7 +272,7 @@
 						<label for="option_name_0">@model.__('product.optionName')</label>
 					</div>
 					<div class="input-field col s12 m6 l6">
-						<input id="o_quantity_0" type="number" class="validate" name="options[0][quantity]" required>
+						<input id="o_quantity_0" type="number" class="validate" name="options[0][quantity]" >
 						<label for="o_quantity_0">@model.__('product.optionQuantity') *</label>
 					</div>
 				</div>
@@ -319,7 +319,7 @@
 				</div>
 				<div class="input-field col s12 m6 l6">
 					<i class="fa fa-krw prefix"></i>
-					<input id="price" type="number" class="validate" name="price" required>
+					<input id="price" type="number" class="validate" name="price" >
 					<label for="price">@model.__('product.price') *</label>
 				</div>
 			</div>
@@ -450,7 +450,7 @@
 				$('#boxHeader').removeClass('hide');
 				$('#productRegion').addClass('hide');
 				$('#brand').addClass('hide');
-				addReq.attr('required', true);
+				//addReq.attr('', true);
 			}
 			else if (this.value == '4') {
 				$('#main_sale').addClass('hide');
@@ -459,7 +459,7 @@
 				$('#boxHeader').addClass('hide');
 				$('#productRegion').removeClass('hide');
 				$('#brand').removeClass('hide');
-				addReq.attr('required', false);
+				//addReq.attr('', false);
 			}
 		});
 	});

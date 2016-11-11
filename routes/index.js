@@ -150,8 +150,8 @@ router.get('/terms', function(req, res, next) {
   res.render('terms', { title: req.__('terms') });
 });
 
-router.get('/merchant', function(req, res, next) {
-  res.render('merchant', { title: "판매자 문의", description: "데일리 붐은 하루 24시간 오직 한개의 상품만을 판매함으로써 매출을 획기적으로 증가시켜 드립니다." });
+router.get('/wholesale', function(req, res, next) {
+  res.render('wholesale', { title: "ĐĂNG KÝ LÀM ĐẠI LÝ CỦA YPPUNA" });
 });
 
 router.post('/advertise', function(req, res, next) {
