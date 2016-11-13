@@ -31,7 +31,7 @@
 						<span class="title col s4">Địa chỉ:</span><span class="content col s6">@model.user.shipping.address</span>
 						<span class="title col s4">Ngày sinh:</span><span class="content col s6">@model.user.shipping.phone_number</span>
 					</div>
-					<div class="col l5 s12 edit show-on-small-only">
+					<div class="col l5 s12 edit hide-on-med-and-up">
 						<a href="/users/edit">THAY ĐỔI THÔNG TIN</a>
 					</div>
 				</div>

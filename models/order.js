@@ -39,6 +39,7 @@ var orderSchema = new Schema({
 		cancelPaymentDetails: Object
 	},
 	deposit_name: String,
+	deliv_method: Number,
 	merchant_id: { type: Schema.Types.ObjectId, ref: 'User' },
 	coupon: { type: Schema.Types.ObjectId, ref: 'Coupon' },
 	totalOrderAmt: Number,

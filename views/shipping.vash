@@ -56,7 +56,7 @@
 				</div>
 				<div id="cart" class="col s12 l5">
                     <div class="cart-header">
-                        <a href="/mall" class="right">SỬA</a>
+                        <a href="/cart" class="right">SỬA</a>
                         <h4>THÔNG TIN ĐƠN HÀNG</h4>
                         <span class="sub">(@model.cart.length quyển sách trong túi hàng của bạn)</span>
                     </div>

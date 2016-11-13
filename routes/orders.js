@@ -63,7 +63,7 @@ var isMerchant = function (req, res, next) {
 var hasShipping = function(obj) {
   if (!obj.shipping)
     return false;
-  if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.address && obj.shipping.city)
+  if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.address && obj.shipping.city && obj.shipping.district && obj.shipping.ward)
     return true;
   return false;
 }
@@ -347,11 +347,11 @@ router.get('/checkout', function(req, res) {
       if (err)
         console.log(err);
       if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
-        getOrderCartTotal(order);
         if (!order.user) {
           order.user = req.user;
           order.shipping = req.user.shipping;
         }
+        getOrderCartTotal(order);
         order.save(function(err) {
           if (req.user) {
             Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
@@ -471,6 +471,7 @@ router.post('/deposit_checkout', function(req, res) {
         if (err)
           console.log(err);
         order.status = "Waiting";
+        console.log(req.body.deliv_method);
         order.deliv_method = req.body.deliv_method;
         order.created_at = Date.now();
         //getOrderCartTotal(order);
@@ -504,7 +505,7 @@ router.post('/deposit_checkout', function(req, res) {
                 if (err) { console.log(err); }
                 console.log('Message sent: ' + info.response);
                 transporter.close();
-                delete req.session.cart_order;                
+                delete req.session.cart_order;              
                 res.status(200).json({ success: true });
             });
           });

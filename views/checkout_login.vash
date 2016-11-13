@@ -62,7 +62,7 @@
                 </div>
                 <div id="cart" class="col s12 l4 offset-l2">
                     <div class="cart-header">
-                        <span class="right">SỬA</span>
+                        <a href="/cart" class="right">SỬA</a>
                         <h4>THÔNG TIN ĐƠN HÀNG</h4>
                         <span class="sub">(@model.cart.length quyển sách trong túi hàng của bạn)</span>
                     </div>

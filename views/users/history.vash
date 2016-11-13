@@ -16,77 +16,79 @@
                 <div id="pending" class="col s12 l7 offset-l1">
                     <ul class="collapsible" data-collapsible="accordion">
                     @model.pendingOrders.forEach(function(order){
-                            <li>
-                                <div class="collapsible-header">
-                                    <div class="order-info">
-                                        <span class="order-id-title">Số hoá đơn: </span><span class="order-id">#@order.id</span><span class="right order-date">@model.moment(order.created_at).format("H:mmA dddd, DD/MM/YYYY")</span>
-                                    </div>
-                                    <div class="order">
-                                        <div class="content-header">
-                                            <div class="col s5">
-                                                <div class="title">Tổng tiền</div>
-                                                <div class="sub">Tiết kiệm được</div>
-                                            </div>
-                                            <div class="col s3">
-                                                <div class="title">@order.cart.length sản phẩm</div>
-                                                <div class="sub">Xem chi tiết</div>
-                                            </div>
-                                            <div class="col s4 price">
-                                                <span class="">@order.totalOrderAmt</span>
-                                            </div>
+                        <li>
+                            <div class="collapsible-header">
+                                <div class="order-info">
+                                    <span class="order-id-title">Số hoá đơn: </span><span class="order-id">#@order.id</span><span class="right order-date">@model.moment(order.created_at).format("H:mmA dddd, DD/MM/YYYY")</span>
+                                </div>
+                                <div class="order">
+                                    <div class="content-header">
+                                        <div class="col s5">
+                                            <div class="title">Tổng tiền</div>
+                                            <div class="sub">Tiết kiệm được</div>
+                                        </div>
+                                        <div class="col s3">
+                                            <div class="title">@order.cart.length sản phẩm</div>
+                                            <div class="sub">Xem chi tiết</div>
+                                        </div>
+                                        <div class="col s4 price">
+                                            <span class="">@order.totalOrderAmt</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="collapsible-body" id="cart">
-                                    <div class="cart-content">
-                                        <div class="content-header">
-                                            <div class="col s5">
-                                                TÊN SẢN PHẨM
-                                            </div>
-                                            <div class="col s3">
-                                                SỐ LƯỢNG
-                                            </div>
-                                            <div class="col s4">
-                                                GIÁ
-                                            </div>
+                            </div>
+                            <div class="collapsible-body" id="cart">
+                                <div class="cart-content">
+                                    <div class="content-header">
+                                        <div class="col s5">
+                                            TÊN SẢN PHẨM
                                         </div>
-                                    </div>
-                                    @order.cart.forEach(function(item) {
-                                        <div class="cart-products">
-                                            <div class="col s5">
-                                                <div class="name">@item.product.name</div>
-                                                <div class="brand">@item.product.brand</div>
-                                            </div>
-                                            <div class="col s3">
-                                                <div class="quantity">@item.quantity</div>
-                                            </div>
-                                            <div class="col s4">
-                                                <div class="price">@item.product.price</div>
-                                            </div>
-                                        </div>
-                                    })
-                                    <div class="cart-total">
-                                        <div class="col s8">
-                                            <div>Tổng tiền:</div>
-                                            <div>Khuyến mãi:</div>
-                                            <div class="amount">Thành tiền:</div>
-                                            <span>(Đã bao gồm VAT)</span>
+                                        <div class="col s3">
+                                            SỐ LƯỢNG
                                         </div>
                                         <div class="col s4">
-                                            <div class="total">@order.totalOrderAmt</div>
-                                            <div class="total-dc">@order.totalOrderAmt</div>
-                                            <div class="total-amount">@order.totalOrderAmt</div>                                
+                                            GIÁ
                                         </div>
                                     </div>
-                                    <div class="delivery-info">
-                                        <div><span class="label">Thời gian giao hàng:</span><span class="content">@model.moment(order.created_at).add(2, 'days').format("H:mmA dddd, DD/MM/YYYY")</span></div>
-                                        @if (order.shipping) {
-                                            <div><span class="label">Địa điểm:</span><span class="content">@(order.shipping.address), @order.shipping.district, @order.shipping.ward, @order.shipping.city</span></div>
-                                        }
-                                        <a href="/orders/cancel/@order.id" class="order-cancel right">HUỶ ĐƠN HÀNG</a>
+                                </div>
+                                @order.cart.forEach(function(item) {
+                                    @if (item.product != null) {
+                                    <div class="cart-products">
+                                        <div class="col s5">
+                                            <div class="name">@item.product.name</div>
+                                            <div class="brand">@item.product.brand</div>
+                                        </div>
+                                        <div class="col s3">
+                                            <div class="quantity">@item.quantity</div>
+                                        </div>
+                                        <div class="col s4">
+                                            <div class="price">@item.product.price</div>
+                                        </div>
+                                    </div>
+                                    }
+                                })
+                                <div class="cart-total">
+                                    <div class="col s8">
+                                        <div>Tổng tiền:</div>
+                                        <div>Khuyến mãi:</div>
+                                        <div class="amount">Thành tiền:</div>
+                                        <span>(Đã bao gồm VAT)</span>
+                                    </div>
+                                    <div class="col s4">
+                                        <div class="total">@order.totalOrderAmt</div>
+                                        <div class="total-dc">@order.totalOrderAmt</div>
+                                        <div class="total-amount">@order.totalOrderAmt</div>                                
                                     </div>
                                 </div>
-                            </li>
+                                <div class="delivery-info">
+                                    <div><span class="label">Thời gian giao hàng:</span><span class="content">@model.moment(order.created_at).add(2, 'days').format("H:mmA dddd, DD/MM/YYYY")</span></div>
+                                    @if (order.shipping) {
+                                        <div><span class="label">Địa điểm:</span><span class="content">@order.shipping.address, @order.shipping.district, @order.shipping.ward, @order.shipping.city</span></div>
+                                    }
+                                    <a href="/orders/cancel/@order.id" class="order-cancel right">HUỶ ĐƠN HÀNG</a>
+                                </div>
+                            </div>
+                        </li>
                     })
                     </ul>
                 </div>
@@ -129,6 +131,7 @@
                                     </div>
                                 </div>
                                 @order.cart.forEach(function(item) {
+                                    @if (item.product != null) {                                    
                                     <div class="cart-products">
                                         <div class="col s5">
                                             <div class="name">@item.product.name</div>
@@ -141,13 +144,15 @@
                                             <div class="price">@item.product.price</div>
                                         </div>
                                     </div>
+                                    }
                                 })
                                 <div class="delivery-price"><span class="title">Phí giao hàng bao gồm</span><span class="price">@order.shipping_cost</span>
-                                <div class="delivery-info">
-                                    <div><span class="title">Người nhận:</span><span class="contetn">@order.shipping.full_name</span></div>
-                                    <div><span class="title">Địa điểm:</span><span class="contetn">@(order.shipping.address), @order.shipping.district, @order.shipping.ward, @order.shipping.city</span></div>
-                                    <div><span class="title">Phương thức thanh toán:</span><span class="contetn"></span></div>
-                                    <div><span class="title">Hình thức vận chuyển:</span><span class="contetn"></span></div>
+                                    <div class="delivery-info">
+                                        <div><span class="title">Người nhận:</span><span class="contetn">@order.shipping.full_name</span></div>
+                                        <div><span class="title">Địa điểm:</span><span class="contetn">@order.shipping.address, @order.shipping.district, @order.shipping.ward, @order.shipping.city</span></div>
+                                        <div><span class="title">Phương thức thanh toán:</span><span class="contetn"></span></div>
+                                        <div><span class="title">Hình thức vận chuyển:</span><span class="contetn"></span></div>
+                                    </div>
                                 </div>
                             </div>
                         </li>

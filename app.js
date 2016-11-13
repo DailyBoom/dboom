@@ -117,6 +117,12 @@ app.use(function(req, res, next) {
   res.locals.moment = moment;
   res.locals.querystring = querystring;
   res.locals.url = req.url;
+  if (req.query.zone) {
+    req.session.zone = req.query.zone;
+  }
+  if (req.session.zone) {
+    res.locals.zone = req.session.zone;
+  }
   if (req.session.toast) {
     res.locals.toast = req.session.toast;
     delete req.session.toast;

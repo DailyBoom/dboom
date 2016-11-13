@@ -10,6 +10,8 @@
                         <div class="col s8 offset-s1">
                             <span>Chúc mừng bạn đã đặt hàng thành công!</span>
                         </div>
+                        <br>
+                        <a href="/myhistory">Đơn hàng của bạn</a>
                     </div>
                 </div>
             </div>
@@ -33,6 +35,8 @@
                             <p>Bước 6: Quý Khách nhận hàng.</p>
                             <span>Chúc mừng bạn đã đặt hàng thành công!</span>
                         </div>
+                        <br>
+                        <a href="/myhistory">Đơn hàng của bạn</a>                        
                     </div>
                 </div>
             </div>
@@ -80,7 +84,7 @@
 						<div class="phone">@model.order.phone_number</div>
 					</div>
                     <div class="cart-header">
-                        <span class="right">SỬA</span>
+                        <a href="/cart" class="right">SỬA</a>
                         <h4>THÔNG TIN ĐƠN HÀNG</h4>
                         <span class="sub">(Có @model.cart.length Sản Phẩm Trong Giỏ Hàng Của Bạn)</span>
                     </div>
@@ -139,13 +143,12 @@
 				$(".price, .total, .total-dc, .total-amount").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
                 //$('.modal').modal();
                 $("#checkout_btn").on("click", function() {
-                    
                     $.ajax({
                         type: "POST",
                         url: "/deposit_checkout",
                         dataType: "json",
                         data: {
-                            shipping: $("input[name=deliv_method]:checked")
+                            deliv_method: $("input[name='deliv_method']:checked").val()
                         },
                         success: function (res) {
                             if ($('#delivery').is(':checked')) {
