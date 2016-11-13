@@ -19,6 +19,7 @@ var crypto = require('crypto');
 var mime = require('mime-types');
 var getSlug = require('speakingurl');
 var striptags = require('striptags');
+var paginate = require('express-paginate');
   
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -57,7 +58,7 @@ var isAdmin = function (req, res, next) {
 }
 
 /* GET Home Page */
-router.get('/', function(req, res, next) {
+router.get('/beta', function(req, res, next) {
   var date = moment().startOf('isoweek').format("MM/DD/YYYY");
   Product.findOne({scheduled_at: date, is_published: true }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
     Product.find({ is_published: true, extend: 4 }, {}, { sort : { 'created_at' : -1 } }, function(err, mallProducts) {
@@ -90,9 +91,17 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/mall', function(req, res, next) {
-  Product.find({ extend: 4, is_published: true, is_hot: null }, {}, { sort: { 'created_at' : -1 }}, function(err, products) {
-    Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
-      res.render('mall', { title: "Yppuna Mall", description: "", products: products, hotProducts: hotProducts });
+  var query = Product.find({ extend: 4, is_published: true, is_hot: null }, {}, { sort: { 'created_at' : -1 }});
+  var page = req.query.page ? req.query.page : 1;
+  var per_page = req.is_mobile ? 8 : 16;
+  if (req.query.category) {
+    query.where('category', req.query.category);
+  }
+  query.paginate(page, per_page, function(err, products, total) {
+    Product.find({ $or: [{ boxZone: 0 }, { boxZone: 1 }, { boxZone: 2 }] }, {}, {}, function(err, boxes) {
+      Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
+        res.render('mall', { title: "Yppuna Mall", description: "", products: products, hotProducts: hotProducts, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });
+      });
     });
   });
 });
@@ -141,8 +150,8 @@ router.get('/terms', function(req, res, next) {
   res.render('terms', { title: req.__('terms') });
 });
 
-router.get('/merchant', function(req, res, next) {
-  res.render('merchant', { title: "판매자 문의", description: "데일리 붐은 하루 24시간 오직 한개의 상품만을 판매함으로써 매출을 획기적으로 증가시켜 드립니다." });
+router.get('/wholesale', function(req, res, next) {
+  res.render('wholesale', { title: "ĐĂNG KÝ LÀM ĐẠI LÝ CỦA YPPUNA" });
 });
 
 router.post('/advertise', function(req, res, next) {
@@ -173,10 +182,10 @@ router.post('/merchant', function(req, res, next) {
   });
 });
 
-router.get('/beta', function(req, res, next) {
-  Product.find({ $or: [{ boxZone: 0 }, { boxZone: 1 }, { boxZone: 2 }] }, {}, {}, function (err, products) {
+router.get('/home', function(req, res, next) {
+  Product.find({ boxZone: req.session.zone }, {}, {}).populate('boxProducts').exec(function (err, products) {
     console.log(products);
-    Product.find({ extend: 4, is_hot: true }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
+    Product.find({ extend: 4 }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
       res.render('beta', { progress: 75, products: products, hotProducts: hotProducts });
     });
   });
@@ -184,7 +193,7 @@ router.get('/beta', function(req, res, next) {
 
 router.get('/detailed/:id', function(req, res, next) {
   Product.findOne({_id: req.params.id}, function(err, product) {
-    Product.find({ extend: 4, is_hot: true }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
+    Product.find({ extend: 4 }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
       Comment.find( { product: req.params.id }).populate('user').exec(function(err, comments) {
         var current_quantity = 0;
         product.options.forEach(function(option) {
@@ -193,6 +202,22 @@ router.get('/detailed/:id', function(req, res, next) {
         var progress = (product.quantity - current_quantity) / product.quantity * 100;
         var sale = (product.old_price - product.price) / product.old_price * 100;
         res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2, cover: product.images[0], comments: comments, hotProducts: hotProducts });
+      });
+    });
+  });
+});
+
+router.get('/box/:id', function(req, res, next) {
+  Product.findOne({_id: req.params.id}).populate('boxProducts').exec(function(err, product) {
+    Product.find({ extend: 4 }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
+      Comment.find( { product: req.params.id }).populate('user').exec(function(err, comments) {
+        var current_quantity = 0;
+        product.options.forEach(function(option) {
+          current_quantity += parseInt(option.quantity);
+        });
+        var progress = (product.quantity - current_quantity) / product.quantity * 100;
+        var sale = (product.old_price - product.price) / product.old_price * 100;
+        res.render('box', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2, cover: product.images[0], comments: comments, hotProducts: hotProducts });
       });
     });
   });
@@ -269,11 +294,13 @@ router.get('/blog', function(req, res, next) {
   if (req.query.tag) {
     query.where('tags', req.query.tag);
   }
-  query.exec(function(err, articles) {
+  var page = req.query.page ? req.query.page : 1;
+  var per_page = 9;
+  query.paginate(page, per_page, function(err, articles, total) {
     if (err) {
       console.log(err);
     }
-    res.render('articles/index', { articles: articles, smart_substr: smart_substr });
+    res.render('articles/index', { articles: articles, smart_substr: smart_substr, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });
   });
 });
 
@@ -406,6 +433,14 @@ router.get('/blog/:url', function(req, res, next) {
       res.render('articles/view', { article: article, title: article.title, description: description, cover: cover, comments: comments });
     });
   });
+});
+
+router.get('/cart', function(req, res, next) {
+  res.render('cart');
+});
+
+router.get('/', function(req, res, next) {
+  res.render('intro');
 });
 
 module.exports = router;

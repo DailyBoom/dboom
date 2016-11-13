@@ -1,0 +1,139 @@
+@html.extend("layout-beta", function(model) {
+	@html.block("body", function(model) {
+        <div id="checkout_login" class="container">
+            <div class="checkout-progress">
+                <div class="row">
+                    <div class="col s4 active">
+                        <h3><span class="hide-on-med-and-up">1</span>ĐĂNG NHẬP</h3>
+                    </div>
+                    <div class="col s4">
+                        <h3><span class="hide-on-med-and-up">2. </span>ĐỊA CHỈ</h3>
+                    </div>
+                    <div class="col s4">
+                        <h3><span class="hide-on-med-and-up">3. </span>THANH TOÁN</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="login_row" class="col s12 l3 offset-l1">
+                    @if (model.errors) {
+						<ul class="red-text center">
+							@model.errors.forEach(function(error) {
+								<li>@error</li>
+							})
+						</ul>
+					}
+                    <div class="radios">
+                        <div class="radio"><input type="radio" id="login_btn" name="login" checked/><label for="login_btn">Tôi là thành viên Yppuna.vn</label></div>
+                        <div class="radio"><input type="radio" id="signup_btn" name="login" /><label for="signup_btn">Tôi là khách hàng mới</label></div>
+                    </div>
+                    <div id="c_login">
+                        <form method="post" action="/checkout/login">
+                            <label for="email">Đăng nhập nhanh gọn</label>
+                            <input id="email" name="email" type="email" placeholder="Vui lòng nhâp email" />
+                            <input id="password" name="password" type="password" placeholder="Vui lòng nhập mật khẩu" />
+                            <div class="right"><a class="forgot" href="/forgot" >Quên mật khẩu?</a></div>
+                            <button>TIẾP TỤC</button>
+                        </form>
+                        <div id="c_facebook" data-mall="true">Đăng nhập bằng Facebook</div>
+                    </div>
+                    <div id="c_signup" class="hide">
+                        <form method="post" action="/checkout/signup">
+                            <label for="username">Họ và tên</label>
+                            <input id="username" name="username" type="text" placeholder="Họ và tên" />
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" placeholder="Nhập email" />
+                            <label for="password">Mật khẩu</label>
+                            <input id="password" name="password" type="password" placeholder="Mật khẩu trên 6 ký tự" />
+                            <label for="confirm_password">Nhập lại mật khẩu</label>
+                            <input id="confirm_password" name="confirmpassword" type="password" placeholder="Nhập lại mật khẩu" />
+                            <label for="birthday" class="bday">Ngày sinh</label>
+                            <input id="birthday" class="birthday" name="birthday" type="text" />
+                            <div class="gender">
+                            <label>Giới tính</label><input name="gender" type="radio" value="0" id="c_male" /><label for="c_male" class="sub">Nam</label><input name="gender" type="radio" value="0" id="c_female" /><label for="c_female" class="sub">Nữ</label>
+                            </div>
+                            <div class="terms">
+                                Khi nhấn đăng ký, bạn đã đồng ý thực hiện mọi giao dịch mua bán theo <a href="/terms">điều kiện sử dụng và chính sách</a> và chính sách
+                            </div>
+                            <button>ĐĂNG KÝ</button>
+                            <div id="facebook">Đăng nhập bằng Facebook</div>
+                        </form>
+                    </div>
+                </div>
+                <div id="cart" class="col s12 l4 offset-l2">
+                    <div class="cart-header">
+                        <a href="/cart" class="right">SỬA</a>
+                        <h4>THÔNG TIN ĐƠN HÀNG</h4>
+                        <span class="sub">(@model.cart.length quyển sách trong túi hàng của bạn)</span>
+                    </div>
+                    <div class="cart-content">
+                        <div class="content-header hide-on-small-only">
+                            <div class="col s5">
+                                TÊN SẢN PHẨM
+                            </div>
+                            <div class="col s3">
+                                SỐ LƯỢNG
+                            </div>
+                            <div class="col s4">
+                                GIÁ
+                            </div>
+                        </div>
+                        <div class="cart-products">
+                            @model.cart.forEach(function(item) {
+                                <div class="col s12">
+                                    <div class="col s5">
+                                        <div class="name">@item.product.name</div>
+                                        <div class="brand">@item.product.brand</div>
+                                    </div>
+                                    <div class="col s3">
+                                        <div class="quantity">@item.quantity</div>
+                                    </div>
+                                    <div class="col s4">
+                                        <div class="price">@(item.product.price * item.quantity)</div>
+                                    </div>
+                                </div>
+                            })
+                        </div>
+                        <div class="cart-total">
+                            <div class="col s8">
+                                <div>Tổng tiền:</div>
+                                <div>Khuyến mãi:</div>
+                                <div class="amount">Thành tiền:</div>
+                                <span>(Đã bao gồm VAT)</span>
+                            </div>
+                            <div class="col s4">
+                                <div class="total">@model.cart_total</div>
+                                <div class="total-dc">@model.cart_total</div>
+                                <div class="total-amount">@model.cart_total</div>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $(".price, .total, .total-dc, .total-amount").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+                if ($('#login_btn').is(':checked')) {
+                    $('#c_login').removeClass('hide');
+                    $('#c_signup').addClass('hide');
+                }
+                else if ($('#signup_btn').is(':checked')) {
+                    $('#c_login').addClass('hide');
+                    $('#c_signup').removeClass('hide');
+                }
+                $("input[type='radio']").on('change', function() {
+                    console.log('test');
+                    if ($('#login_btn').is(':checked')) {
+                        $('#c_login').removeClass('hide');
+                        $('#c_signup').addClass('hide');
+                    }
+                    else if ($('#signup_btn').is(':checked')) {
+                        $('#c_login').addClass('hide');
+                        $('#c_signup').removeClass('hide');
+                    }
+                })
+            })
+        </script>
+    })
+})

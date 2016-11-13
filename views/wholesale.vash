@@ -1,0 +1,49 @@
+@html.extend("layout-beta", function(model) {
+	@html.block("body", function(model) {
+        <div id="wholesale" class="container">
+            <div class="row">
+                <h2 class="col offset-l2">ĐĂNG KÝ LÀM ĐẠI LÝ CỦA YPPUNA</h2>
+                <form method="POST" class="col s12">
+                    <div class="col s12 l5 offset-l2">
+                        <label class="col s12 l4" for="w_username">Tên</label>
+                        <input class="col s12 l8" type="text" placeholder="Họ và tên chủ shop" id="w_username" name="username" />
+                        <label class="col s12 l4" for="w_email">Email</label>
+                        <input class="col s12 l8" type="email" placeholder="Email trao đổi" id="w_email" name="email" />
+                        <label class="col s12 l4" for="w_password">Mật khẩu</label>
+                        <input class="col s12 l8" type="password" placeholder="Mặt khẩu" id="w_password" name="password" />
+                        <label class="col s12 l4" for="w_confirm_password">Nhập lại mật khẩu</label>
+                        <input class="col s12 l8" type="password" placeholder="Nhập lại mật khẩu" id="w_confirm_password" name="confirm_password" />
+                        <label class="col s12 l4" for="w_phone_number">Số điện thoại</label>
+                        <input class="col s12 l8" type="text" placeholder="Số điện thoại" id="w_phone_number" name="phone_number" />
+                        <div class="col s12 l8 offset-l4 info">Yppuna sẽ liên lạc với đại lý số máy này để xác nhận thông tin đăng ký</div>
+                        <button class="col s12 l8 offset-l4">ĐĂNG KÝ ĐẠI LÝ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script>
+            $('form').on("submit", function(event) {
+                event.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "/wholesale",
+                    dataType: "json",
+                    data: {
+                        username: $("#w_username").val(),
+                        password: $("#w_password").val(),
+                        confirm_password: $("#w_confirm_password").val(),
+                        phone_number: $("#w_phone_number").val(),
+                        email: $("#w_email").val(),
+                    },
+                    success: function (res) {
+                        Materialize.toast(res.message, 4000);
+                        $('form input').val("");
+                    },
+                    error: function (res) {
+                        Materialize.toast(res.responseJSON.message, 4000);
+                    }
+                });
+            });
+        </script>
+    })
+})

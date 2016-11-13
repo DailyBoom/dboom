@@ -57,15 +57,15 @@
 			</div>
 			<div id="boxProducts" class="row">
 				<div class="input-field col s12 m12 l12">
-					<input id="boxProduct1" type="text" class="validate" name="boxProducts[0]" required>
+					<input id="boxProduct1" type="text" class="validate" name="boxProducts[0]" >
 					<label for="boxProduct1">Box Product 1 ID</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
-					<input id="boxProduct2" type="text" class="validate" name="boxProducts[1]" required>
+					<input id="boxProduct2" type="text" class="validate" name="boxProducts[1]" >
 					<label for="boxProduct2">Box Product 2 ID</label>
 				</div>
 				<div class="input-field col s12 m12 l12">
-					<input id="boxProduct3" type="text" class="validate" name="boxProducts[2]" required>
+					<input id="boxProduct3" type="text" class="validate" name="boxProducts[2]" >
 					<label for="boxProduct3">Box Product 3 ID</label>
 				</div>
 			</div>
@@ -100,15 +100,112 @@
 			<!-- .row -->
 			<div class="row">
 				<div class="input-field col s12">
-					<input id="name" type="text" class="validate" name="name" required="true" maxlength="30">
+					<input id="name" type="text" class="validate" name="name" >
 					<label for="name">@model.__('product.name') *</label>
 				</div>
 			</div>
 			<!-- .row -->
 			<div class="row">
 				<div class="input-field col s12">
-					<textarea id="description" type="text" class="validate materialize-textarea" name="description" required></textarea>
+					<textarea id="description" type="text" class="validate materialize-textarea" name="description" ></textarea>
 					<label for="description">@model.__('product.description') *</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<textarea id="how_to" type="text" class="validate materialize-textarea" name="how_to" ></textarea>
+					<label for="how_to">HƯỚNG DẪN SỬ DỤNG *</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<textarea id="why_love" type="text" class="validate materialize-textarea" name="why_love" ></textarea>
+					<label for="why_love">Lý Do Để Yêu Sản Phẩm Này *</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<textarea id="ingredients" type="text" class="validate materialize-textarea" name="ingredients" ></textarea>
+					<label for="ingredients">Thành Phần *</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<select id="category" class="validate" name="category">
+						<optgroup label="Chăm sóc da"></optgroup>
+						<optgroup label="Sản phẩm rửa mặt - Rửa mặt">
+							<option value="1">Nước rửa mặt</option>
+							<option value="2">Rửa mặt dạng bọt</option>
+							<option value="3">Sữa rửa mặt</option>
+							<option value="4">Rửa Mặt Dạng Dầu</option>
+							<option value="5">Xà phòng rửa mặt</option>
+						</optgroup>
+						<optgroup label="Sản phẩm rửa mặt - Tẩy trang">
+							<option value="6">Tẩy trang dành cho mặt</option>							
+							<option value="7">Tẩy trang cho mắt và môi</option>							
+							<option value="8">Tẩy da chết</option>							
+							<option value="9">Nước hoa hồng</option>							
+							<option value="10">Dầu tẩy trang</option>							
+							<option value="11">Dụng cụ rửa mặt</option>							
+						</optgroup>
+						<optgroup label="Dưỡng ẩm cho da mặt">
+							<option value="12">Kem dưỡng ẩm</option>							
+							<option value="13">Sữa dưỡng cho da</option>							
+							<option value="14">Gel dưỡng cho da</option>							
+							<option value="15">Dầu dưỡng cho da</option>							
+							<option value="16">Kem dưỡng cho vùng mắt</option>							
+							<option value="17">Xịt khoáng</option>							
+							<option value="18">BB/CC</option>							
+						</optgroup>
+						<optgroup label="Kem chống nắng">
+							<option value="19">Kem chống nắng cho da mặt</option>
+						</optgroup>
+						<optgroup label="Sản phẩm trị liệu">
+							<option value="20">Sản phẩm trị mụn</option>							
+							<option value="21">Sản phẩm trị nám</option>							
+							<option value="22">Tinh chất</option>							
+							<option value="23">Dưỡng mắt</option>							
+						</optgroup>
+						<optgroup label="Mặt nạ">
+							<option value="24">Mặt nạ giấy</option>
+							<option value="25">Mặt nạ khác</option>
+						</optgroup>
+						<optgroup label="Trang điểm"></optgroup>
+						<optgroup label="Trang điểm cho mắt">
+							<option value="26">Lót mắt</option>
+							<option value="27">Phấn mắt</option>
+							<option value="28">Mascara</option>
+							<option value="29">Kẻ mắt</option>
+							<option value="30">Kẻ chân mày</option>
+							<option value="31">Tẩy trang mắt</option>
+						</optgroup>
+						<optgroup label="Trang điểm cho mặt">
+							<option value="32">Kem lót</option>
+							<option value="33">Kem/Phấn nền</option>
+							<option value="34">BB/CC (kem đa năng)</option>
+							<option value="35">Kem che khuyết điểm</option>
+							<option value="36">Phấn phủ</option>
+							<option value="37">Má hồng</option>
+						</optgroup>
+						<optgroup label="Sản phẩm dành cho môi">
+							<option value="38">Son môi</option>
+							<option value="39">Son bóng</option>
+							<option value="40">Son lì</option>
+							<option value="41">Son dưỡng</option>
+							<option value="42">Son lỏng</option>
+							<option value="43">Son kẻ viền môi</option>
+						</optgroup>
+						<optgroup label="Phụ Kiện">
+							<option value="44">Mút Rửa Mặt</option>
+							<option value="45">Máy Rửa Mặt</option>
+							<option value="46">Giấy Thấm Dầu</option>
+							<option value="47">Bông Rửa Mặt</option>
+						</optgroup>
+						<optgroup label="Sản Phẩm Cho Nam">
+							<option value="48">Sản Phẩm Đa Công Dụng</option>
+						</optgroup>
+					</select>
+					<label for="category">Category</label>
 				</div>
 			</div>
 			<div class="file-field input-field">
@@ -117,13 +214,13 @@
 				<span for="photosmain" class="input-file-mod grey-text">@model.__('product.photosMain') (Max: 4) * (1 image: 1900x800px, 2~4 images: 750x460px)</span>
 				<div class="btn blue-grey darken-2">
 					<span><i class="fa fa-image left"></i>선택</span>
-					<input id="photosmain" type="file" class="validate" name="photosmain" multiple required>
+					<input id="photosmain" type="file" class="validate" name="photosmain" multiple >
 				</div>
 				<div class="file-path-wrapper">
 					<input class="file-path validate" type="text">
 				</div>
 			</div>
-			<div class="file-field input-field">
+			<div class="file-field input-field hide">
 				<br>
 				<span class="hide-on-small-only"><br></span>
 				<span for="photosmobile" class="input-file-mod grey-text">@model.__('product.photosMobile') (Max: 4) * (~400x400px)</span>
@@ -135,7 +232,7 @@
 					<input class="file-path validate" type="text">
 				</div>
 			</div>
-			<div class="file-field input-field">
+			<div class="file-field input-field hide">
 				<br>
 				<span class="hide-on-small-only"><br></span>
 				<span for="description_image" class="input-file-mod grey-text">@model.__('product.descriptionPhoto')</span>
@@ -147,7 +244,7 @@
 					<input class="file-path validate" type="text">
 				</div>
 			</div>
-			<div class="file-field input-field">
+			<div class="file-field input-field hide">
 				<br>
 				<span class="hide-on-small-only"><br></span>
 				<span for="homepage_image" class="input-file-mod grey-text">Homepage image</span>
@@ -171,17 +268,48 @@
 				</div>
 				<div class="row options_row">
 					<div class="input-field col s12 m6 l6">
-						<input id="option_name" type="text" class="validate" name="options[0][name]" required>
-						<label for="option_name">@model.__('product.optionName')</label>
+						<input id="option_name_0" type="text" class="validate color-select" name="options[0][name]">
+						<label for="option_name_0">@model.__('product.optionName')</label>
 					</div>
 					<div class="input-field col s12 m6 l6">
-						<input id="o_quantity" type="number" class="validate" name="options[0][quantity]" required>
-						<label for="o_quantity">@model.__('product.optionQuantity') *</label>
+						<input id="o_quantity_0" type="number" class="validate" name="options[0][quantity]" >
+						<label for="o_quantity_0">@model.__('product.optionQuantity') *</label>
 					</div>
 				</div>
 			</div>
 			<!-- #options_wrapper -->
+			<div id="options_skin_wrapper">
+				<br>
+				<div class="row">
+					<!-- options button -->
+					<div class="col s12 m12 l12">
+						<a id="add_option_skin" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>옵션 추가</a>
+						<a id="remove_option_skin" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>옵션 삭제</a>
+					</div>
+				</div>
+				<div class="row options_row">
+					<div class="input-field col s12 m6 l6">
+						<input id="option_skin_name_0" type="text" class="validate" name="options_skin[0]" >
+						<label for="option_skin_name_0">@model.__('product.optionName')</label>
+					</div>
+				</div>
+			</div>
 			<br>
+			<div class="row hide" id="productRegion">
+				<label style="display:block;">VÙNG MIỀN</label>
+				<div class="input-field col s4">
+					<input type="checkbox" id="north" name="product_region[0]">
+					<label for="north">Miền bắc</label>
+				</div>
+				<div class="input-field col s4">
+					<input type="checkbox" id="central" name="product_region[1]">
+					<label for="central">Miền trung</label>
+				</div>
+				<div class="input-field col s4">
+					<input type="checkbox" id="south" name="product_region[2]">
+					<label for="south">Miền nam</label>
+				</div>
+			</div>
 			<!-- .row -->
 			<div class="row">
 				<div class="input-field col s12 m6 l6">
@@ -191,7 +319,7 @@
 				</div>
 				<div class="input-field col s12 m6 l6">
 					<i class="fa fa-krw prefix"></i>
-					<input id="price" type="number" class="validate" name="price" required>
+					<input id="price" type="number" class="validate" name="price" >
 					<label for="price">@model.__('product.price') *</label>
 				</div>
 			</div>
@@ -264,6 +392,11 @@
 <script>
 	$(document).ready(function() {
 		$('select').material_select();
+		$('.color-select').spectrum({
+    		preferredFormat: "hex",
+    		showInput: true,
+			allowEmpty:true
+		});
 		$('.datepicker').pickadate({
 			format: 'mm/dd/yyyy',
 			min: true,
@@ -273,15 +406,34 @@
 		});
 		var max_fields      = 10; //maximum input boxes allowed
 		var wrapper         = $("#options_wrapper"); //Fields wrapper
+		var wrapper_skin    = $("#options_skin_wrapper"); //Fields wrapper
 		var add_button      = $("#add_option"); //Add button ID
+		var add_button_skin = $("#add_option_skin"); //Add button ID
 		var x = 0; //initlal text box count
+		var x_s = 0; //initlal text box count
 		$(add_button).click(function(e){ //on add input button click
 			e.preventDefault();
 			if(x++ < max_fields) { //max input box allowed
-				$(wrapper).append('<div class="row options_row"><div class="input-field col s12 m6 l6"><input id="option_name'+x+'" type="text" class="validate" name="options['+x+'][name]"><label for="option_name'+x+'">@model.__("product.optionName")</label></div><div class="input-field col s12 m6 l6"><input id="o_quatity'+x+'" type="number" class="validate" name="options['+x+'][quantity]"><label for="o_quantity'+x+'">@model.__("product.optionQuantity") *</label></div></div>'); //add input box
+				$(wrapper).append('<div class="row options_row"><div class="input-field col s12 m6 l6"><input id="option_name_'+x+'" type="text" class="validate color-select" name="options['+x+'][name]"><label for="option_name_'+x+'">@model.__("product.optionName")</label></div><div class="input-field col s12 m6 l6"><input id="o_quatity_'+x+'" type="number" class="validate" name="options['+x+'][quantity]"><label for="o_quantity_'+x+'">@model.__("product.optionQuantity") *</label></div></div>'); //add input box
+				$('.color-select').spectrum({
+					preferredFormat: "hex",
+					showInput: true,
+				});
+			}
+		});
+		$(add_button_skin).click(function(e){ //on add input button click
+			e.preventDefault();
+			if(x_s++ < max_fields) { //max input box allowed
+				$(wrapper_skin).append('<div class="row options_row"><div class="input-field col s12 m6 l6"><input id="option_name'+x_s+'" type="text" class="validate" name="options['+x_s+']"><label for="option_name'+x_s+'">@model.__("product.optionName")</label></div></div>'); //add input box
 			}
 		});
 		$(wrapper).on("click","#remove_option", function(e){ //user click on remove text
+			e.preventDefault();
+			if (x >= 1) {
+				$('.options_row').last().remove(); x--;
+			}
+		});
+		$(wrapper_skin).on("click","#remove_option_skin", function(e){ //user click on remove text
 			e.preventDefault();
 			if (x >= 1) {
 				$('.options_row').last().remove(); x--;
@@ -296,16 +448,18 @@
 				$('#j_pickdate').removeClass('hide');
 				$('#boxProducts').removeClass('hide');
 				$('#boxHeader').removeClass('hide');
+				$('#productRegion').addClass('hide');
 				$('#brand').addClass('hide');
-				addReq.attr('required', true);
+				//addReq.attr('', true);
 			}
 			else if (this.value == '4') {
 				$('#main_sale').addClass('hide');
 				$('#j_pickdate').addClass('hide');
 				$('#boxProducts').addClass('hide');
 				$('#boxHeader').addClass('hide');
+				$('#productRegion').removeClass('hide');
 				$('#brand').removeClass('hide');
-				addReq.attr('required', false);
+				//addReq.attr('', false);
 			}
 		});
 	});

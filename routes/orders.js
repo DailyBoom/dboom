@@ -63,7 +63,7 @@ var isMerchant = function (req, res, next) {
 var hasShipping = function(obj) {
   if (!obj.shipping)
     return false;
-  if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.address && obj.email && obj.shipping.city)
+  if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.address && obj.shipping.city && obj.shipping.district && obj.shipping.ward)
     return true;
   return false;
 }
@@ -86,13 +86,62 @@ var getOrderTotal = function(order) {
   }
 }
 
+var deliveryPrices = {
+    "HỒ CHÍ MINH": {
+        "QUẬN 1": 18000,
+        "QUẬN 2": 18000,
+        "QUẬN 3": 18000,
+        "QUẬN 4": 18000,
+        "QUẬN 5": 18000,
+        "QUẬN 6": 18000,
+        "QUẬN 7": 18000,
+        "QUẬN 8": 18000,
+        "QUẬN 9": 25000,
+        "QUẬN 10": 18000,
+        "QUẬN 11": 18000,
+        "QUẬN 12": 25000,
+        "QUẬN TÂN BÌNH": 18000,
+        "QUẬN THỦ ĐỨC": 25000,
+        "QUẬN BÌNH TÂN": 25000,
+        "QUẬN BÌNH THẠNH": 18000,
+        "QUẬN GÒ VẤP": 18000,
+        "QUẬN PHÚ NHUẬN": 18000,
+        "QUẬN TÂN PHÚ": 18000,
+        "HUYỆN CỦ CHI": 28000,
+        "HUYỆN NHÀ BÈ": 28000,
+        "HUYỆN HÓC MÔN": 28000,
+        "HUYỆN BÌNH CHÁNH": 28000,
+        "HUYỆN CẦN GIỜ": 28000
+    },
+    "HÀ NỘI": {
+        "BA ĐÌNH": 30000,
+        "HÀ ĐÔNG": 35000,
+        "QUẬN THANH XUÂN": 30000,
+        "HOÀNG MAI": 30000,
+        "HAI BÀ TRƯNG": 30000,
+        "ĐỐNG ĐA": 30000,
+        "CẦU GIẤY": 30000,
+        "LONG BIÊN": 35000,
+        "TÂY HỒ": 30000,
+        "QUẬN HOÀN KIẾM": 30000,
+        "TỪ LIÊM": 35000,
+        "CHƯƠNG MỸ": 40000,
+        "ĐAN PHƯỢNG": 40000,
+        "ĐÔNG ANH": 40000,
+        "GIA LÂM": 40000,
+        "HOÀI ĐỨC": 40000,
+        "MÊ LINH": 40000,
+        "THANH OAI": 40000,
+        "THANH TRÌ": 40000
+    }
+};
+
 var getOrderCartTotal = function(order) {
   order.totalOrderAmt = 0;
   order.cart.forEach(function(item) {
     order.totalOrderAmt += item.product.price * item.quantity;
   });
-  if (order.totalOrderAmt < 50000)
-     order.totalOrderAmt += 2500;
+  order.totalOrderAmt += deliveryPrices[order.shipping.city.toUpperCase()][order.shipping.district.toUpperCase()];
 };
 
 var reservePayco = function(order) {
@@ -242,7 +291,7 @@ router.get('/orders/delete/:id', isAdmin, function(req, res) {
 });
 
 router.post('/add_to_cart', function(req, res) {
-  Product.findOne({_id: req.body.product_id, is_published: true, extend: 4}, function(err, product) {
+  Product.findOne({_id: req.body.product_id, is_published: true}, function(err, product) {
     console.log(req.body);
     if (err)
       console.log(err);
@@ -282,31 +331,35 @@ router.post('/add_to_cart', function(req, res) {
   });
 });
 
-router.get('/mall/checkout', function(req, res) {
-  if (typeof req.session.cart_order === 'undefined' || !req.session.cart_order) {
+router.get('/checkout', function(req, res) {
+  if (!req.session.cart_order) {
     return res.redirect('/mall');
   }
   else {
-    if (req.query.no_login && req.query.no_login == 1) {
-        console.log(req.query.no_login);
-        req.session.no_login = true;
-    }
-    if (!req.user && !req.session.no_login) {
-        return res.redirect('/mall/login');
-    }
+    // if (req.query.no_login && req.query.no_login == 1) {
+    //     console.log(req.query.no_login);
+    //     req.session.no_login = true;
+    // }
+    // if (!req.user && !req.session.no_login) {
+    //     return res.redirect('/mall/login');
+    // }
     Order.findOne({ _id: req.session.cart_order }).populate('cart.product').exec(function(err, order) {
       if (err)
         console.log(err);
       if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
+        if (!order.user) {
+          order.user = req.user;
+          order.shipping = req.user.shipping;
+        }
         getOrderCartTotal(order);
         order.save(function(err) {
           if (req.user) {
             Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
-              res.render('mall/checkout', { order: order, title: req.__('payment'), coupons: coupons });
+              res.render('checkout', { order: order, title: req.__('payment'), coupons: coupons });
             });
           }
           else
-            res.render('mall/checkout', { order: order, title: req.__('payment') });
+            res.render('checkout', { order: order, title: req.__('payment') });
         });
       }
       else {
@@ -318,18 +371,25 @@ router.get('/mall/checkout', function(req, res) {
 
 router.post('/mall/update_cart', function(req, res) {
   if (typeof req.session.cart_order === 'undefined' || !req.session.cart_order) {
-    return res.status(500).json({});
+    return res.redirect('/cart');
   }
   else {
     Order.findOne({ _id: req.session.cart_order }).populate('cart.product').exec(function(err, order) {
       if (err)
         console.log(err);
-      order.cart[req.body.index].quantity = req.body.quantity;
+      if (!Array.isArray(req.body.quantity)) {
+        req.body.quantity = [req.body.quantity];
+      }
+      console.log(req.body);
+      req.body.quantity.forEach(function(item, index) {
+        console.log(item);
+        order.cart[index].quantity = item;
+      });
       order.markModified('cart');
       order.save(function(err) {
         if (err)
           console.log(err);
-        return res.status(200).json({});
+        return res.redirect('/cart');
       });
     });
   }
@@ -355,102 +415,14 @@ router.post('/mall/remove_from_cart', function(req, res) {
 });
 
 
-router.get('/checkout', function(req, res) {
-  if (!req.query.product_id && !req.session.product && !req.session.order)
-    return res.redirect('/');
-  if (req.session.product && req.query.product_id && (req.session.product != req.query.product_id)) {
-    delete req.session.order;
-    delete req.session.product;
+router.get('/checkout/login', function(req, res) {
+  if (req.user) {
+    return res.redirect('/checkout');
   }
-  
-  var date = moment().startOf('isoweek').format("MM/DD/YYYY");
-  Product.findOne({_id: req.query.product_id ? req.query.product_id : req.session.product, is_published: true}, function(err, product) {
-    if (err)
-      console.log(err);
-    if (!product)
-      return res.redirect('/');
-    if (typeof req.session.order === 'undefined' || !req.session.order) {
-      var order = new Order({
-        product: product.id,
-        status: "Submitted",
-      });
-  
-      if (req.user) {
-        order.user = req.user.id;
-        if (req.user.shipping)
-          order.shipping = req.user.shipping;
-      }
-  
-      order.save(function(err) {
-        if (err)
-          return res.redirect("/");
-        req.session.order = order.id;
-        if (!req.session.product)
-          req.session.product = req.query.product_id;
-          order.populate('product coupon', function(err, orderPop) {
-            if (parseInt(orderPop.product.options[0].quantity) > 0) {
-              orderPop.option = orderPop.product.options[0].name;
-            }
-            else {
-              orderPop.product.options.some(function(option){
-                if (parseInt(option.quantity) > 0) {
-                    orderPop.option = option.name;
-                    return true;
-                }
-              });
-            }
-            orderPop.quantity = 1;
-            getOrderTotal(order);
-            orderPop.save(function(err) {
-              if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
-                var leftQuantity;
-                orderPop.product.options.forEach(function(option){
-                  if (option.name === orderPop.option) {
-                    leftQuantity = parseInt(option.quantity);
-                  }
-                });
-                if (req.user) {
-                  Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
-                    res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: req.__('payment'), coupons: coupons });
-                  });
-                }
-                else
-                  res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: req.__('payment') });
-              }
-              else
-                res.redirect('/shipping');
-          });
-        });
-      });
-    }
-    else {
-      Order.findOne({ '_id': req.session.order }, function(err, order) {
-        if (err)
-          console.log(err);
-        if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
-          order.populate('product coupon', function(err, orderPop) {
-            if (!req.session.product)
-              req.session.product = orderPop.product.id;
-            getOrderTotal(order);
-            var leftQuantity;
-            orderPop.product.options.forEach(function(option){
-              if (option.name === orderPop.option)
-                leftQuantity = parseInt(option.quantity);
-            });
-            if (req.user) {
-              Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
-                res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: req.__('payment'), coupons: coupons });
-              });
-            }
-            else
-              res.render('checkout', { order: orderPop, leftQuantity: leftQuantity, title: req.__('payment') });
-          });
-        }
-        else
-          res.redirect('/shipping');
-      });
-    }
-  });
+  if (!res.locals.cart) {
+    return res.redirect('/');
+  }
+  res.render('checkout_login');
 });
 
 router.post('/checkout', function(req, res) {
@@ -492,18 +464,17 @@ router.post('/checkout', function(req, res) {
 });
 
 router.post('/deposit_checkout', function(req, res) {
-  if (req.session.order) {
-    Order.findOne({ '_id': req.session.order || req.session.cart_order }).populate('product coupon user').exec(function(err, order) {
+  if (req.session.cart_order) {
+    Order.findOne({ '_id': req.session.cart_order }).populate('product coupon user').exec(function(err, order) {
         if (order.status == "Waiting")
-          return res.redirect('/success');
+          return res.status(500).json({ });
         if (err)
           console.log(err);
         order.status = "Waiting";
-        order.deposit_name = req.body.deposit_name;
+        console.log(req.body.deliv_method);
+        order.deliv_method = req.body.deliv_method;
         order.created_at = Date.now();
-        if (req.user)
-          order.shipping = req.user.shipping;
-        getOrderTotal(order);
+        //getOrderCartTotal(order);
         if (order.coupon) {
           order.coupon.used = true;
           order.coupon.save();
@@ -534,14 +505,15 @@ router.post('/deposit_checkout', function(req, res) {
                 if (err) { console.log(err); }
                 console.log('Message sent: ' + info.response);
                 transporter.close();
-                res.redirect('/success');
+                delete req.session.cart_order;              
+                res.status(200).json({ success: true });
             });
           });
         })
     });
   }
   else {
-    res.redirect('/');
+    return res.status(500).json({ });
   }
 });
 
@@ -746,7 +718,7 @@ router.get('/success', function(req, res) {
           if (err) { console.log(err); }
           //console.log('Message sent: ' + info.response);
           transporter.close();
-          res.render('success', { code: req.query.code, order: order, title: req.__('confirm'), description: "Cảm ơn quý vị đã đặt hàng tại Yppuna." });
+          res.status(200).json({ success: true });
       });
     });
   });
@@ -975,7 +947,10 @@ router.get('/orders/cancel_deposit/:id', function(req, res) {
 });
 
 router.get('/shipping', function(req, res) {
-  if (!req.session.order && !req.session.cart_order)
+  if (!req.user) {
+    return res.redirect('/checkout/login');
+  }
+  else if (!req.session.order && !req.session.cart_order)
     res.redirect('/');
   else
     Order.findOne({ '_id': req.session.order || req.session.cart_order }, function(err, order) {
@@ -998,121 +973,121 @@ router.post('/shipping', function(req, res) {
         required: true,
         numeric: true
       })
-      .validate('address1', i18n.__('user.address1'), {
+      .validate('address', i18n.__('user.address1'), {
         required: true
       })
-      .validate('zipcode', i18n.__('user.zipcode'), {
-        numeric: true
-      })
+      // .validate('zipcode', i18n.__('user.zipcode'), {
+      //   numeric: true
+      // })
       .validate('city', i18n.__('user.city'), {
         required: true
       });
 
-      if (req.body.add_id && !req.user) {
-          req.Validator.validate('username', i18n.__('user.username'), {
-            length: {
-              min: 3,
-              max: 20
-            },
-            required: true
-          })
-          .validate('email', i18n.__('user.email'), {
-            required: true
-          })
-          .validate('password', i18n.__('user.password'), {
-            length: {
-              min: 8,
-              max: 15
-            },
-            required: true
-          })
-          .validate('confirmpassword', i18n.__('user.confirmPassword'), {
-            length: {
-              min: 8,
-              max: 15
-            },
-            isConfirm: function(field, fieldName, value, fn) {
-              var errors;
-              if (value !== req.body.password) {
-                errors = i18n.__('passNotConfirmed', fieldName, i18n.__('user.password'));
-              }
-              fn(errors);
-            },
-            required: true
-          })
-          .validate('agree-terms-1', i18n.__('user.agreeTerms1'), {
-            required: true
-          })
-          .validate('agree-terms-3', i18n.__('user.agreeTerms3'), {
-            required: true
-          });
+      // if (req.body.add_id && !req.user) {
+      //     req.Validator.validate('username', i18n.__('user.username'), {
+      //       length: {
+      //         min: 3,
+      //         max: 20
+      //       },
+      //       required: true
+      //     })
+      //     .validate('email', i18n.__('user.email'), {
+      //       required: true
+      //     })
+      //     .validate('password', i18n.__('user.password'), {
+      //       length: {
+      //         min: 8,
+      //         max: 15
+      //       },
+      //       required: true
+      //     })
+      //     .validate('confirmpassword', i18n.__('user.confirmPassword'), {
+      //       length: {
+      //         min: 8,
+      //         max: 15
+      //       },
+      //       isConfirm: function(field, fieldName, value, fn) {
+      //         var errors;
+      //         if (value !== req.body.password) {
+      //           errors = i18n.__('passNotConfirmed', fieldName, i18n.__('user.password'));
+      //         }
+      //         fn(errors);
+      //       },
+      //       required: true
+      //     })
+      //     .validate('agree-terms-1', i18n.__('user.agreeTerms1'), {
+      //       required: true
+      //     })
+      //     .validate('agree-terms-3', i18n.__('user.agreeTerms3'), {
+      //       required: true
+      //     });
 
-          req.Validator.getErrors(function(errors){
-            if (errors.length > 0) {
-              res.render('shipping', { errors: errors, order: order });
-            }
-            else {
-              var user = new User({
-                username: req.body.username,
-                password: req.body.password,
-                email: req.body.email,
-                role: 'user',
-                shipping: {
-                  full_name: req.body.full_name,
-                  address: req.body.address1,
-                  country: req.body.country,
-                  city: req.body.city,
-                  zipcode: req.body.zipcode,
-                  phone_number: req.body.phone_number
-                },
-                wallet: 100
-              });
-              user.save(function(err) {
-                if (err) {
-                  console.log(err);
-                  var errors = [];
-                  for (var path in err.errors) {
-                    errors.push(i18n.__("unique", i18n.__("user."+path)));
-                  }
-                  res.render('shipping', { errors: errors, title: req.__('shipping'), order: order });
-                }
-                else {
-                  order.user = user.id;
-                  order.shipping = JSON.parse(JSON.stringify(user.shipping));
-                  order.save(function(err) {
-                    fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
-                      if(err){
-                        //handle errors
-                        console.log('ERROR!');
-                        return res.send('ERROR!');
-                      }
-                      var html = vash.compile(file);
-                      transporter.sendMail({
-                        from: 'Yppuna <hello@yppuna.vn>',
-                        to: user.email,
-                        subject: user.username+'님 회원가입을 축하드립니다.',
-                        html: html({ user : user, i18n: i18n })
-                      }, function (err, info) {
-                          if (err) { console.log(err); }
-                          //console.log('Message sent: ' + info.response);
-                          req.login(user, function(err) {
-                            if (err) {
-                              console.log(err);
-                            }
-                            if (req.session.cart_order)
-                              return res.redirect('/mall/checkout')
-                            else
-                              return res.redirect('/checkout');
-                          });
-                      });
-                    });
-                  });
-                }
-              });
-            }
-          });
-      }
-      else if (req.user) {
+      //     req.Validator.getErrors(function(errors){
+      //       if (errors.length > 0) {
+      //         res.render('shipping', { errors: errors, order: order });
+      //       }
+      //       else {
+      //         var user = new User({
+      //           username: req.body.username,
+      //           password: req.body.password,
+      //           email: req.body.email,
+      //           role: 'user',
+      //           shipping: {
+      //             full_name: req.body.full_name,
+      //             address: req.body.address1,
+      //             country: req.body.country,
+      //             city: req.body.city,
+      //             zipcode: req.body.zipcode,
+      //             phone_number: req.body.phone_number
+      //           },
+      //           wallet: 100
+      //         });
+      //         user.save(function(err) {
+      //           if (err) {
+      //             console.log(err);
+      //             var errors = [];
+      //             for (var path in err.errors) {
+      //               errors.push(i18n.__("unique", i18n.__("user."+path)));
+      //             }
+      //             res.render('shipping', { errors: errors, title: req.__('shipping'), order: order });
+      //           }
+      //           else {
+      //             order.user = user.id;
+      //             order.shipping = JSON.parse(JSON.stringify(user.shipping));
+      //             order.save(function(err) {
+      //               fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
+      //                 if(err){
+      //                   //handle errors
+      //                   console.log('ERROR!');
+      //                   return res.send('ERROR!');
+      //                 }
+      //                 var html = vash.compile(file);
+      //                 transporter.sendMail({
+      //                   from: 'Yppuna <hello@yppuna.vn>',
+      //                   to: user.email,
+      //                   subject: user.username+'님 회원가입을 축하드립니다.',
+      //                   html: html({ user : user, i18n: i18n })
+      //                 }, function (err, info) {
+      //                     if (err) { console.log(err); }
+      //                     //console.log('Message sent: ' + info.response);
+      //                     req.login(user, function(err) {
+      //                       if (err) {
+      //                         console.log(err);
+      //                       }
+      //                       if (req.session.cart_order)
+      //                         return res.redirect('/mall/checkout')
+      //                       else
+      //                         return res.redirect('/checkout');
+      //                     });
+      //                 });
+      //               });
+      //             });
+      //           }
+      //         });
+      //       }
+      //     });
+      // }
+      if (req.user) {
         if (!req.user.email) {
           req.Validator.validate('email', i18n.__('user.email'), {
             required: true
@@ -1130,11 +1105,12 @@ router.post('/shipping', function(req, res) {
               }
               user.shipping = {
                 full_name: req.body.full_name,
-                address: req.body.address1,
-                country: req.body.country,
+                address: req.body.address,
                 city: req.body.city,
                 zipcode: req.body.zipcode,
-                phone_number: req.body.phone_number
+                phone_number: req.body.phone_number,
+                district: req.body.district,
+                ward: req.body.ward
               };
               user.save(function(err) {
                 if (err) {
@@ -1153,10 +1129,7 @@ router.post('/shipping', function(req, res) {
                       res.render('shipping', { errors: err, title: req.__('shipping'), order: order });
                     }
                     else {
-                      if (req.session.cart_order)
-                        return res.redirect('/mall/checkout')
-                      else
-                        return res.redirect('/checkout');
+                      return res.redirect('/checkout');
                     }
                   });
                 }
@@ -1167,7 +1140,7 @@ router.post('/shipping', function(req, res) {
       }
       else {
         req.Validator.validate('email', i18n.__('user.email'), {
-            required: true
+            required: false
         });
 
         req.Validator.getErrors(function(errors){
@@ -1177,21 +1150,19 @@ router.post('/shipping', function(req, res) {
           else {
             order.shipping = {
                 full_name: req.body.full_name,
-                address: req.body.address1,
+                address: req.body.address,
                 country: req.body.country,
                 city: req.body.city,
                 zipcode: req.body.zipcode,
                 phone_number: req.body.phone_number
             }
-            order.email = req.body.email;
+            //order.email = req.body.email;
             order.save(function(err) {
               if (err) {
                 res.render('shipping', { errors: err, title: req.__('shipping'), order: order });
               }
               else {
-                if (req.session.cart_order)
-                  return res.redirect('/mall/checkout')
-                else
+                console.log(order);
                   return res.redirect('/checkout');
               }
             });

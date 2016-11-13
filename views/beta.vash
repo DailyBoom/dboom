@@ -1,10 +1,11 @@
 @html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
 	<div class="container">
+		@if(model.zone == 0) {
 		<section id="north">
 			<div class="area-header hide-on-small-only">
 				<div class="right">
-					<span>Miền Trung</span>
+					<span>Miền Bắc</span>
 					<img src="/images/north-logo.svg" />
 				</div>
 			</div>
@@ -13,16 +14,16 @@
 					<img class="item_cover" src="@model.products[0].box_header" />
 					<div class="item_names row center">
 						<div class="col s4">
-							<div class="item_name truncate">3 SẢN PHẨM</div>
-							<div class="item_type">DA DẦU</div>
+							<div class="item_name truncate">@model.products[0].boxProducts[0].name</div>
+							<div class="item_type">@model.products[0].boxProducts[0].brand</div>
 						</div>
 						<div class="col s4 ">
-							<div class="item_name truncate">+50PH</div>
-							<div class="item_type">SUNCREAM</div>
+							<div class="item_name truncate">@model.products[0].boxProducts[1].name</div>
+							<div class="item_type">@model.products[0].boxProducts[1].brand</div>
 						</div>
 						<div class="col s4">
-							<div class="item_name truncate">SPRING</div>
-							<div class="item_type">SUNCREAM</div>
+							<div class="item_name truncate">@model.products[0].boxProducts[2].name</div>
+							<div class="item_type">@model.products[0].boxProducts[2].brand</div>
 						</div>
 					</div>
 					<div class="item_desc hide-on-small-only">
@@ -32,122 +33,129 @@
 						<div class="item_price">@model.products[0].price<span class="currency">đ</span></div>
 					</div>
 					<div class="item_detail hide-on-small-only">
-						<a href="#">
+						<a href="/box/@model.products[0].id">
 							XEM CHI TIẾT
 						</a>
 					</div>
 				</div>
 				<div class="col s12 l8">
-					<div class="item_img"><img  src="@(model.is_mobile ? model.products[0].mobile_images[0] : model.products[0].images[0])"/></div>
+					<div class="item_img"><img  src="@model.products[0].images[0]"/></div>
 					<div class="item_detail hide-on-med-and-up">
-						<a href="#">
+						<a href="/box/@model.products[0].id">
 							XEM CHI TIẾT
 						</a>
 					</div>
 				</div>
 			</div>
 		</section>
+		}
+		<!-- -->
+		@if(model.zone == 1) {
 		<section id="central">
 			<div class="area-header hide-on-small-only">
 				<div class="right">
-					<span>Miền Bắc</span>
+					<span>Miền Trung</span>
 					<img src="/images/central-logo.svg" />
 				</div>
 			</div>
 			<div class="row area-row">
 				<div class="col s12 l8 hide-on-small-only">
-					<div class="item_img"><img src="@model.products[1].images[0]"/></div>
+					<div class="item_img"><img src="@model.products[0].images[0]"/></div>
 				</div>
 				<div class="col s12 l4">
-					<img class="item_cover" src="@model.products[1].box_header" />
+					<img class="item_cover" src="@model.products[0].box_header" />
 					<div class="item_names row center">
 						<div class="col s4">
-							<div class="item_name truncate">3 SẢN PHẨM</div>
-							<div class="item_type">DA DẦU</div>
+							<div class="item_name truncate">@model.products[0].boxProducts[0].name</div>
+							<div class="item_type">@model.products[0].boxProducts[0].brand</div>
 						</div>
 						<div class="col s4 ">
-							<div class="item_name truncate">+50PH</div>
-							<div class="item_type">SUNCREAM</div>
+							<div class="item_name truncate">@model.products[0].boxProducts[1].name</div>
+							<div class="item_type">@model.products[0].boxProducts[1].brand</div>
 						</div>
 						<div class="col s4">
-							<div class="item_name truncate">SPRING</div>
-							<div class="item_type">SUNCREAM</div>
+							<div class="item_name truncate">@model.products[0].boxProducts[2].name</div>
+							<div class="item_type">@model.products[0].boxProducts[2].brand</div>
 						</div>
 					</div>
 					<div class="item_desc hide-on-small-only">
-						@model.products[1].description
+						@model.products[0].description
 					</div>
 					<div class="item_prices hide-on-small-only">
-						<div class="item_price">@model.products[1].price<span class="currency">đ</span></div>
+						<div class="item_price">@model.products[0].price<span class="currency">đ</span></div>
 					</div>
 					<div class="item_detail hide-on-small-only">
-						<a href="#">
+						<a href="/box/@model.products[0].id">
 							XEM CHI TIẾT
 						</a>
 					</div>
 				</div>
 				<div class="col s12 l8 hide-on-med-and-up">
-					<div class="item_img"><img src="@model.products[1].mobile_images[0]"/></div>
+					<div class="item_img"><img src="@model.products[0].images[0]"/></div>
 					<div class="item_detail hide-on-med-and-up">
-						<a href="#">
+						<a href="/box/@model.products[0].id">
 							XEM CHI TIẾT
 						</a>
 					</div>
 				</div>
 			</div>
 		</section>
+		}
+		<!-- -->
+		@if(model.zone == 2) {		
 		<section id="south">
 			<div class="area-header hide-on-small-only">
 				<div class="right">
-					<span>Miền Bắc</span>
+					<span>Miền Nam</span>
 					<img src="/images/south-logo.svg"/>
 				</div>
 			</div>
 			<div class="row area-row">
 				<div class="col s12 l4">
-					<img class="item_cover" src="@model.products[2].box_header" />
+					<img class="item_cover" src="@model.products[0].box_header" />
 					<div class="item_names row center">
 						<div class="col s4">
-							<div class="item_name truncate">3 SẢN PHẨM</div>
-							<div class="item_type">DA DẦU</div>
+							<div class="item_name truncate">@model.products[0].boxProducts[0].name</div>
+							<div class="item_type">@model.products[0].boxProducts[0].brand</div>
 						</div>
 						<div class="col s4 ">
-							<div class="item_name truncate">+50PH</div>
-							<div class="item_type">SUNCREAM</div>
+							<div class="item_name truncate">@model.products[0].boxProducts[1].name</div>
+							<div class="item_type">@model.products[0].boxProducts[1].brand</div>
 						</div>
 						<div class="col s4">
-							<div class="item_name truncate">SPRING</div>
-							<div class="item_type">SUNCREAM</div>
+							<div class="item_name truncate">@model.products[0].boxProducts[2].name</div>
+							<div class="item_type">@model.products[0].boxProducts[2].brand</div>
 						</div>
 					</div>
 					<div class="item_desc hide-on-small-only">
-						@model.products[2].description
+						@model.products[0].description
 					</div>
 					<div class="item_prices hide-on-small-only">
-						<div class="item_price">@model.products[2].price<span class="currency">đ</span></div>
+						<div class="item_price">@model.products[0].price<span class="currency">đ</span></div>
 					</div>
 					<div class="item_detail hide-on-small-only">
-						<a href="#">
+						<a href="/box/@model.products[0].id">
 							XEM CHI TIẾT
 						</a>
 					</div>
 				</div>
 				<div class="col s12 l8">
-					<div class="item_img"><img src="@(model.is_mobile ? model.products[2].mobile_images[0] : model.products[2].images[0])"/></div>
+					<div class="item_img"><img src="@model.products[0].images[0]"/></div>
 					<div class="item_detail hide-on-med-and-up">
-						<a href="#">
+						<a href="/box/@model.products[0].id">
 							XEM CHI TIẾT
 						</a>
 					</div>
 				</div>
 			</div>
 		</section>
+		}
 		<section id="individual">
 			<h2>SẢN PHẨM BÁN LẺ</h2>
 			<div class="row">
 			@model.hotProducts.forEach(function(product) {
-				<div class="">
-					<img src="@product.mobile_images[0]" />
+				<div class="center">
+					<img src="@product.images[0]" />
 					<div class="prod_brand">@product.brand</div>
 					<div class="prod_name"><a href="/detailed/@product.id">@product.name</a></div>
 					<div class="prod_price">@product.price<span class="currency">đ</span></div>
@@ -157,12 +165,12 @@
 		</section>
     </div><!-- .container-fluid -->
 	<script type="text/javascript">
-		var options = [
-			{selector: '#north', offset: 0, callback: "$('#side-menu, #slide-out').removeClass('central south').addClass('north');", repeat: true },
-			{selector: '#central', offset: 500, callback: "$('#side-menu, #slide-out').removeClass('north south').addClass('central');", repeat: true},
-			{selector: '#south', offset: 500, callback: "$('#side-menu, #slide-out').removeClass('north central').addClass('south');", repeat: true}
-		];
-		Materialize.scrollFire(options);
+		//var options = [
+		//	{selector: '#north', offset: 0, callback: "$('#side-menu, #slide-out').removeClass('central south').addClass('north');", repeat: true },
+		//	{selector: '#central', offset: 500, callback: "$('#side-menu, #slide-out').removeClass('north south').addClass('central');", repeat: true},
+		//	{selector: '#south', offset: 500, callback: "$('#side-menu, #slide-out').removeClass('north central').addClass('south');", repeat: true}
+		//];
+		//Materialize.scrollFire(options);
 		$(".item_price, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
 		var owl = $("#individual .row");
 		owl.owlCarousel({
@@ -178,6 +186,7 @@
 			rewindNav: true,
 			autoPlay: true
 		});
+		
 	</script>
   })
 })

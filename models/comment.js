@@ -9,6 +9,8 @@ var commentSchema = new Schema({
 	type: Number,
 	name: String,
 	body: String,
+	name: String,
+	email: String,
 	created_at: { type: Date, default: Date.now }
 });
 

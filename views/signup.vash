@@ -1,119 +1,33 @@
-@html.extend("layout", function(model) {
+@html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
 		<div class="container">
-			<div class="row">
-				<form class="col s12" method="post" action="/signup">
-					<a href="/merchant_signup" class="hide right merchant_signup">@model.__('merchant.signup')</a>
-					@if (!model.is_mobile) {
-						<a href="#" id="facebook" class="btn blue right merchant_signup">Đăng Ký Bằng Tài Khoản Facebook</a>
-						<a href="#" id="google" class="btn deep-orange darken-4 right merchant_signup">Đăng Ký Bằng Tài Khoản Google</a>
-					}
-					<h3>@model.__('signup')</h3>
-					@if (model.is_mobile) {
-						<div class="row center">
-							<a href="#" id="facebook" class="btn blue">Đăng Ký Bằng Tài Khoản Facebook</a>
-							<a href="#" id="google" class="btn deep-orange darken-4">Đăng Ký Bằng Tài Khoản Google</a>
-						</div>
-					}
-					@if (model.errors) {
-						<ul class="red-text">
-							@model.errors.forEach(function(error) {
-								<li>@error</li>
-							})
-						</ul>
-					}
-					@if (model.error) {
-						<div class="red-text">
-							@model.error
-						</div>
-					}
-					<div class="row">
-						<div class="input-field col s12 m6 l6">
-							<input id="username" type="text" class="validate" name="username" value="@model.Validator.getValue('username')" required>
-							<label for="username">@model.__('user.username')</label>
-						</div>
-						<div class="input-field col s12 m6 l6">
-							<input id="email" type="email" class="validate" name="email" value="@model.Validator.getValue('email')" required>
-							<label for="email">@model.__('user.email')</label>
-						</div>
+			<div id="login_row" class="row">
+				<div class="col l6 offset-l3">
+					<div class="modal-header center">
+						<div class="col s6"><h3><a href="/login">@model.__('login')</a></h3></div>
+						<div class="col s6 active"><h3>@model.__('signup')</h3></div>
 					</div>
-					<div class="row">
-						<div class="input-field col s12 m6 l6">
-							<input id="password" type="password" class="validate" name="password" required>
-							<label for="password">@model.__('user.password')</label>
+					<form method="post" action="/signup">
+						<label for="username">Họ và tên</label>
+						<input id="username" name="username" type="text" placeholder="Họ và tên" />
+						<label for="email">Email</label>
+						<input id="email" name="email" type="email" placeholder="Nhập email" />
+						<label for="password">Mật khẩu</label>
+						<input id="password" name="password" type="password" placeholder="Mật khẩu trên 6 ký tự" />
+						<label for="confirm_password">Nhập lại mật khẩu</label>
+						<input id="confirm_password" name="confirm_password" type="password" placeholder="Nhập lại mật khẩu" />
+						<label for="birthday" class="bday">Ngày sinh</label>
+						<input id="birthday" name="birthday" type="text" />
+						<div class="gender">
+							<label>Giới tính</label><input name="gender" type="radio" value="0" id="c_male" /><label for="c_male" class="sub">Nam</label><input name="gender" type="radio" value="0" id="c_female" /><label for="c_female" class="sub">Nữ</label>
 						</div>
-						<div class="input-field col s12 m6 l6">
-							<input id="confirmpassword" type="password" class="validate" name="confirmpassword" required>
-							<label for="confirmpassword">@model.__('user.confirmPassword')</label>
+						<div class="terms">
+							Khi nhấn đăng ký, bạn đã đồng ý thực hiện mọi giao dịch mua bán theo <a href="/terms">điều kiện sử dụng và chính sách</a> và chính sách
 						</div>
-					</div>
-					<div class="row">
-						<div class="col s12">
-							<p>
-								<input type="checkbox" id="agree-add-address" name="add_address"/>
-								<label for="agree-add-address">@model.__('user.add_address')</label>
-							</p>
-							<div id="add-address" class="hide">
-								<br>
-								<div class="row">
-									<div class="input-field col s12 m6 l6">
-										<input id="full_name" type="text" class="validate" name="full_name" value="@model.Validator.getValue('full_name')">
-										<label for="full_name">@model.__('user.fullName')</label>
-									</div>
-									<div class="input-field col s12 m6 l6">
-										<input id="phone_number" type="text" class="validate" name="phone_number" value="@model.Validator.getValue('phone_number')" maxlength="11">
-										<label for="phone_number">@model.__('user.phoneNumber') @html.raw(@model.__('user.phone_warning'))</label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="input-field col s12 m9 l9">
-										<input id="address1" type="text" class="validate" placeholder="시 . 구 . 동 . " name="address1" value="@model.Validator.getValue('address1')">
-										<label for="address1">@model.__('user.address1')</label>
-									</div>
-									<div class="input-field col s12 m3 l3">
-										<input id="zipcode" type="text" class="validate" placeholder="100123" name="zipcode" value="@model.Validator.getValue('zipcode')" maxlength="6">
-										<label for="zipcode">@model.__('user.zipcode')</label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="input-field col s12">
-										<select id="city" name="city" class="area1">
-											<option value="Hồ Chí Minh" >Hồ Chí Minh</option>
-											<option value="Hà Nội" >Hà Nội</option>
-										</select>
-										<label for="city" class="country-label">@model.__('user.city') </label>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col s12">
-							<span class="red-text">@model.__('required')</span>
-							<p class="grey-text">
-								<input type="checkbox" id="agree-all" checked/>
-								<label for="agree-all">@model.__('agree_all')</label>
-							</p>
-							<p class="grey-text">
-								<input class="agree-check" type="checkbox" id="agree-terms-1" name="agree-terms-1" required checked/>
-								<label for="agree-terms-1">@model.__('user.agreeTerms1')</label><a class="right" href="/terms" target="_blank">@model.__('view')</a>
-							</p>
-							<!-- <p class="grey-text">
-								<input class="agree-check" type="checkbox" id="agree-terms-2" name="agree-terms-2" required/>
-								<label for="agree-terms-2">전자금웅서비스 이용약관.</label><a class="right" href="#!terms2">보기</a>
-							</p> -->
-							<p class="grey-text">
-								<input class="agree-check" type="checkbox" id="agree-terms-3" name="agree-terms-3" required checked/>
-								<label for="agree-terms-3">@model.__('user.agreeTerms3')</label><a class="right" href="/privacy" target="_blank">@model.__('view')</a>
-							</p>
-							<br>
-							<button class="btn btn-large waves-effect waves-light btn-order blue-grey darken-3 right" type="submit" name="action">
-								@model.__('user.create') <i class="fa fa-pencil-square-o right"></i>
-							</button>
-						</div>
-					</div>
-				</form>
+						<button>ĐĂNG KÝ</button>
+						<div id="facebook">Đăng nhập bằng Facebook</div>
+					</form>
+				</div>
 			</div><!-- .row -->
 		</div>
 		<script>

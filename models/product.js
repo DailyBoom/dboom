@@ -6,7 +6,10 @@ var productSchema = new Schema({
   merchant_id: { type: Schema.Types.ObjectId, ref: 'User' },
   name: { type: String, required: true },
   description: { type: String, required: true },
-  how_to: { type: String, required: true },
+  how_to: { type: String },
+  why_love: String,
+  ingredients: String,
+  category: Number,
   description_image: String,
   homepage_image: String,
   brand: { type: String, required: false },
@@ -25,6 +28,8 @@ var productSchema = new Schema({
   mobile_images: { type: Array },
   scheduled_at: Date,
   options: Object,
+  options_skin: [String],
+  option_zone: Number,
   video: String,
   delivery_info: String,
   is_published: Boolean,
@@ -36,7 +41,8 @@ var productSchema = new Schema({
   updated_at: Date,
   box_header: String,
   boxProducts: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
-  boxZone: Number
+  boxZone: Number,
+  product_region: [Boolean]
 });
 
 var Product = mongoose.model("Product", productSchema);

@@ -1,23 +1,9 @@
-@html.extend("layout", function(model) {
+@html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
-		@if(!model.is_phone) {
-			<div class="parallax-container">
-	      <div class="parallax">
-					<img class="ie-fix" src="/images/cover_logo_desktop.png">
-				</div>
-	    </div>
-		}
-		else {
-			<div class="parallax-container">
-	      <div class="parallax">
-					<img class="ie-fix" src="/images/cover_photo_mobile.png">
-				</div>
-	    </div>
-		}
-		<div class="container">
-			<div>
-				<p class="info-title text-darken-3">@model.__('about.title')</p>
-				<ul class="info-details text-justify black-text text-darken-2">
+		<div class="container" id="terms">
+			<div class="row">
+				<h2>@model.__('about.title')</h2>
+				<ul class="col s12 offset-l1 l10 info-details">
 					<li>@model.__('about.text_1')</li>
 					<li>@model.__('about.text_2')</li>
 					<li>@model.__('about.text_3')</li>

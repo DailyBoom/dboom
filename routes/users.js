@@ -48,9 +48,9 @@ router.get('/mall/login', function(req, res, next) {
   res.render('mall/login', { title: req.__('login'), errors: message });
 });
 
-router.post('/mall/login', passport.authenticate('local', {
-    failureRedirect: '/login',
-    failureMessage: 'ID hoặc mật khẩu không hợp lệ.'
+router.post('/checkout/login', passport.authenticate('local', {
+      failureRedirect: '/checkout/login',
+      failureMessage: 'ID hoặc mật khẩu không hợp lệ.'
     }), function(req, res, next) {
     // issue a remember me cookie if the option was checked
     console.log(next);
@@ -66,7 +66,7 @@ router.post('/mall/login', passport.authenticate('local', {
       return next();
     });
   }, function(req, res) {
-    res.redirect('/mall/checkout');
+    res.redirect('/checkout');
 });
 
 router.get('/login', function(req, res, next) {
@@ -98,7 +98,7 @@ router.post('/login', passport.authenticate('local', {
   if (req.query.product_id)
     res.redirect('/checkout?product_id=' + req.query.product_id);
   else {
-    var redirect_to = req.session.redirect_to ? req.session.redirect_to : '/';
+    var redirect_to = req.session.redirect_to ? req.session.redirect_to : 'back';
     delete req.session.redirect_to;
     res.redirect(redirect_to);
   }
@@ -114,18 +114,15 @@ router.get('/logout', function(req, res){
 });
 
 router.get('/mypage', isAuthenticated, function(req, res) {
-  Order.find({ 'user': req.user._id }, {}, {sort: { created_at: -1 }}).where('status').ne('Submitted').populate('product').exec(function(err, orders) {
-      if (typeof req.session.errors !== 'undefined') {
-        var errors = req.session.errors;
-        delete req.session.errors;
-        Coupon.find({ user: req.user.id }, {}, { sort: { created_at: -1 } }, function(err, coupons) {
-          res.render('users/show', { orders: orders, errors: errors, title: "마이 페이지", coupons: coupons });
-        });
-      }
-      Coupon.find({ user: req.user.id }, {}, { sort: { created_at: -1 } }, function(err, coupons) {
-        res.render('users/show', { orders: orders, title: "마이 페이지", coupons: coupons });
-      });
+  res.render('users/show', { title: "Thông tin tài khoản" });
+});
+
+router.get('/myhistory', isAuthenticated, function(req, res) {
+  Order.find({ 'user': req.user._id,  $or: [ { status: "Waiting" }, { status: "Paid" } ] }, {}, {sort: { created_at: -1 }}).populate('cart.product').exec(function(err, pendingOrders) {
+    Order.find({ 'user': req.user._id, 'status': "Sent" }, {}, {sort: { created_at: -1 }}).populate('cart.product').exec(function(err, sentOrders) {
+      res.render('users/history', { pendingOrders: pendingOrders, sentOrders: sentOrders, title: "Đơn hàng của bạn" });
     });
+  });
 });
 
 router.get('/signup/success', function(req, res){
@@ -218,27 +215,37 @@ router.post('/users/edit', isAuthenticated, function(req, res) {
   .validate('address', i18n.__('user.address1'), {
     required: true
   })
-  .validate('zipcode', i18n.__('user.zipcode'), {
-    numeric: true
+  .validate('gender', 'Giới tính', {
+    required: true
   })
-  .validate('country', i18n.__('user.country'), {
+  .validate('birthday', 'Ngày sinh', {
+    required: true
+  })
+  .validate('district', i18n.__('user.zipcode'), {
+    required: true
+  })
+  .validate('ward', i18n.__('user.country'), {
     required: true
   });
 
   req.Validator.getErrors(function(errors){
+    console.log(req.body);
     if (errors.length > 0) {
-      res.render('users/edit', { errors: errors });
+      console.log(errors);
+      return res.render('users/edit', { errors: errors });
     }
     else {
       User.findOne({ _id: req.user._id }, {}, function(err, user) {
         user.username = req.body.username; 
         user.email = req.body.email;
+        user.gender = req.body.gender;
+        user.birthday = req.body.birthday;
         user.shipping = {
           full_name: req.body.full_name,
-          address: req.body.address1,
-          country: req.body.country,
-          zipcode: req.body.zipcode,
-          phone_number: req.body.phone_number
+          address: req.body.address,
+          phone_number: req.body.phone_number,
+          district: req.body.district,
+          ward: req.body.ward
         };
         user.save(function(err) {
           if (err)
@@ -308,7 +315,6 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/signup', function(req, res) {
-  // form validation rules
   req.Validator.validate('username', i18n.__('user.username'), {
     length: {
       min: 3,
@@ -326,7 +332,7 @@ router.post('/signup', function(req, res) {
     },
     required: true
   })
-  .validate('confirmpassword', i18n.__('user.confirmPassword'), {
+  .validate('confirm_password', i18n.__('user.confirmPassword'), {
     length: {
       min: 8,
       max: 15
@@ -340,55 +346,32 @@ router.post('/signup', function(req, res) {
     },
     required: true
   })
-  .validate('agree-terms-1', i18n.__('user.agreeTerms1'), {
+  .validate('gender', 'Giới tín', {
     required: true
   })
-  .validate('agree-terms-3', i18n.__('user.agreeTerms3'), {
+  .validate('birthday', 'Ngày sinh', {
     required: true
   });
 
-  if (req.body.add_address) {
-    req.Validator.validate('full_name', i18n.__('user.fullName'), {
-      required: true
-    })
-    .validate('phone_number', i18n.__('user.phoneNumber'), {
-      required: true,
-      numeric: true
-    })
-    .validate('address1', i18n.__('user.address1'), {
-      required: true
-    })
-    .validate('zipcode', i18n.__('user.zipcode'), {
-      numeric: true
-    })
-    .validate('city', i18n.__('user.city'), {
-      required: true
-    });
-  }
 
   // form validation
   req.Validator.getErrors(function(errors){
     if (errors.length > 0) {
-      res.render('signup', { errors: errors, title: "회원가입" });
+      console.log(errors);
+      res.render('signup', { errors: errors, title: "Đăng ký" });
     }
     else {
+      console.log(req.body.birthday);
+      console.log(req.body.gender);
       var user = new User({
         username: req.body.username,
         password: req.body.password,
         email: req.body.email,
+        birthday: req.body.birthday,
+        gender: req.body.gender,
         role: 'user'
       });
 
-      if (req.body.add_address) {
-        user.shipping = {
-          full_name: req.body.full_name,
-          address: req.body.address1,
-          city: req.body.city,
-          zipcode: req.body.zipcode,
-          phone_number: req.body.phone_number
-        }
-      }
-      user.wallet = 100;
       user.save(function(err) {
         if (err) {
           console.log(err);
@@ -396,7 +379,7 @@ router.post('/signup', function(req, res) {
           for (var path in err.errors) {
             errors.push(i18n.__("unique", i18n.__("user."+path)));
           }
-          res.render('signup', { errors: errors, title: "회원가입" });
+          res.render('signup', { errors: errors, title: "Đăng ký" });
         }
         else {
           fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
@@ -428,13 +411,7 @@ router.post('/signup', function(req, res) {
   });
 });
 
-router.get('/merchant_signup', function(req, res, next) {
-  if (req.user)
-    res.redirect('/');
-  req.Validator.getErrors(function() { res.render('users/new_merchant', { title: "판매자 가입하기" }); });
-});
-
-router.post('/merchant_signup', function(req, res) {
+router.post('/checkout/signup', function(req, res) {
   // form validation rules
   req.Validator.validate('username', i18n.__('user.username'), {
     length: {
@@ -467,48 +444,31 @@ router.post('/merchant_signup', function(req, res) {
     },
     required: true
   })
-  .validate('agree-terms-1', i18n.__('user.agreeTerms1'), {
+  .validate('gender', 'Giới tín', {
     required: true
   })
-  .validate('agree-terms-3', i18n.__('user.agreeTerms3'), {
-    required: true
-  })
-  .validate('phone_number', i18n.__('user.phoneNumber'), {
-    required: true,
-    numeric: true
-  })
-  .validate('address1', i18n.__('user.address1'), {
-    required: true
-  })
-  .validate('person_in_charge', i18n.__('merchant.person_in_charge'), {
-    required: true
-  })
-  .validate('company_name', i18n.__('merchant.company_name'), {
-    required: true
-  })
-  .validate('business_reg', i18n.__('merchant.business_reg'), {
+  .validate('birthday', 'Ngày sinh', {
     required: true
   });
+
 
   // form validation
   req.Validator.getErrors(function(errors){
     if (errors.length > 0) {
-      res.render('users/new_merchant', { errors: errors, title: "판매자 가입하기" });
+      res.render('signup', { errors: errors, title: "회원가입" });
     }
     else {
+      console.log(req.body.birthday);
+      console.log(req.body.gender);
       var user = new User({
         username: req.body.username,
         password: req.body.password,
         email: req.body.email,
-        person_in_charge: req.body.person_in_charge,
-        company_name: req.body.company_name,
-        business_reg: req.business_reg,
-        role: 'merchant',
-        shipping: {
-          address: req.body.address1,
-          phone_number: req.body.phone_number
-        }
+        birthday: req.body.birthday,
+        gender: req.body.gender,
+        role: 'user'
       });
+
       user.save(function(err) {
         if (err) {
           console.log(err);
@@ -516,7 +476,7 @@ router.post('/merchant_signup', function(req, res) {
           for (var path in err.errors) {
             errors.push(i18n.__("unique", i18n.__("user."+path)));
           }
-          res.render('users/new_merchant', { errors: errors, title: "판매자 가입하기" });
+          res.render('signup', { errors: errors, title: "회원가입" });
         }
         else {
           fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
@@ -529,17 +489,113 @@ router.post('/merchant_signup', function(req, res) {
             transporter.sendMail({
               from: 'Yppuna <hello@yppuna.vn>',
               to: user.email,
-              subject: user.username+'님 회원가입을 축하드립니다.',
-              html: html({ user : user })
+              subject: 'Chào '+user.username+'. Chúc mừng bạn đã thành công lập tài khoản với Yppuna.',
+              html: html({ user : user, i18n: i18n })
             }, function (err, info) {
-                if (err) { console.log(err); res.redirect('/'); }
+                if (err) { console.log(err); }
                 //console.log('Message sent: ' + info.response);
                 req.login(user, function(err) {
                   if (err) {
                     console.log(err);
                   }
-                  return res.redirect('/');
+                  return res.redirect('/shipping');
                 });
+            });
+          });
+        }
+      });
+    }
+  });
+});
+
+
+router.get('/merchant_signup', function(req, res, next) {
+  if (req.user)
+    res.redirect('/');
+  req.Validator.getErrors(function() { res.render('users/new_merchant', { title: "판매자 가입하기" }); });
+});
+
+router.post('/wholesale', function(req, res) {
+  // form validation rules
+  console.log(req.body);
+  req.Validator.validate('username', i18n.__('user.username'), {
+    length: {
+      min: 3,
+      max: 20
+    },
+    required: true
+  })
+  .validate('email', i18n.__('user.email'), {
+    required: true
+  })
+  .validate('password', i18n.__('user.password'), {
+    length: {
+      min: 8,
+      max: 15
+    },
+    required: true
+  })
+  .validate('confirm_password', i18n.__('user.confirmPassword'), {
+    length: {
+      min: 8,
+      max: 15
+    },
+    isConfirm: function(field, fieldName, value, fn) {
+      var errors;
+      if (value !== req.body.password) {
+        errors = i18n.__('passNotConfirmed', fieldName, i18n.__('user.password'));
+      }
+      fn(errors);
+    },
+    required: true
+  })
+  .validate('phone_number', i18n.__('user.phoneNumber'), {
+    required: true,
+    numeric: true
+  });
+
+  // form validation
+  req.Validator.getErrors(function(errors){
+    if (errors.length > 0) {
+      console.log(errors);
+      return res.status(500).json({ message: errors });
+    }
+    else {
+      var user = new User({
+        username: req.body.username,
+        password: req.body.password,
+        email: req.body.email,
+        role: 'agent',
+        shipping: {
+          phone_number: req.body.phone_number
+        }
+      });
+      user.save(function(err) {
+        if (err) {
+          console.log(err);
+          var errors = [];
+          for (var path in err.errors) {
+            errors.push(i18n.__("unique", i18n.__("user."+path)));
+          }
+          return res.status(500).json({ message: 'Sorry but there was an error.'});
+        }
+        else {
+          fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
+            if(err){
+              //handle errors
+              console.log('ERROR!');
+              return res.send('ERROR!');
+            }
+            var html = vash.compile(file);
+            transporter.sendMail({
+              from: 'Yppuna <hello@yppuna.vn>',
+              to: user.email,
+              subject: user.username+' registered for Yppuna Agents.',
+              html: html({ user : user })
+            }, function (err, info) {
+                if (err) { console.log(err); res.redirect('/'); }
+                //console.log('Message sent: ' + info.response);
+                return res.status(200).json({ message: 'Cảm Ơn Các Bạn Đã Đăng Ký Là Thành Viên Của Yppuna'});
             });
           });
         }
@@ -663,18 +719,20 @@ router.post('/comments/new', function(req, res) {
   console.log(req.body);
   var comment = new Comment({
     user: req.user ? req.user.id : null,
-    type: req.body.type,
-    order: req.body.order,
+    order: req.body.order ? req.body.order : null,
+    product: req.body.product ? req.body.product : null,
+    name: req.body.name ? req.body.name : null,
+    email: req.body.email ? req.body.email : null,
     body: req.body.body
   });
   
   comment.save(function(err) {
     if (err) {
       console.log(err);
-      res.status(500).json({ message: '죄송합니다. 오류가있었습다. 확인후 다시 시도해주세요.' });
+      res.redirect('back');
     }
     console.log(comment);
-    res.status(200).json({ message: '감사합니다. 성공적으로 전송이 되었습니다.' });
+    res.redirect('back');
   });
 });
 

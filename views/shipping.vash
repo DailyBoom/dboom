@@ -1,217 +1,115 @@
-@html.extend("layout", function(model) {
+@html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
-		<div class="container">
-			<div class="row blue-grey-text text-lighten-2 center">
-				<br>
-				<div class="col s4 blink">
-					<h5 class="green-text text-darken-3 sm">
-						<i class="fa fa-truck fa-2x fa-fw green-text text-darken-3"></i>
-						<br class="hide-on-med-and-up">1. @model.__('shipping')
-					</h5>
-				</div>
-				<div class="col s4">
-					<h5 class="sm">
-						<i class="fa fa-credit-card fa-2x fa-fw"></i>
-						<br class="hide-on-med-and-up">2. @model.__('payment')
-					</h5>
-				</div>
-				<div class="col s4">
-					<h5 class="sm">
-						<i class="fa fa-thumbs-o-up fa-2x fa-fw"></i>
-						<br class="hide-on-med-and-up">3. @model.__('confirm')
-					</h5>
-				</div>
-			</div><!-- .row -->
+		<div id="shipping" class="container">
+            <div class="checkout-progress">
+                <div class="row">
+                    <div class="col s4">
+                        <h3><span class="hide-on-med-and-up">1. </span>ĐĂNG NHẬP</h3>
+                    </div>
+                    <div class="col s4 active">
+                        <h3><span class="hide-on-med-and-up">2</span>ĐỊA CHỈ</h3>
+                    </div>
+                    <div class="col s4">
+                        <h3><span class="hide-on-med-and-up">3. </span>THANH TOÁN</h3>
+                    </div>
+                </div>
+            </div>
 			<div class="row">
-				<form class="col s12" method="post" action="/shipping">
-					<!-- <h3>배송지 정보</h3> -->
-					<br>
-					@if (model.errors) {
-						<ul class="red-text">
-						@if (model.errors.lenght > 0)
-							@model.errors.forEach(function(error) {
-								<li>@error</li>
-							})
-						}
-						</ul>
-					}
-					<span class='signup-info red-text'><i class='fa fa-exclamation-circle'></i> Xin lỗi, hiện tại chúng tôi chỉ giao hàng tại Hồ Chí Minh và Hà Nội. Chúng tôi sẽ sớm giao hàng trên toàn quốc.</span>
-					<div class="row">
-						<div class="input-field col s12 m6 l6">
-							<input id="full_name" name="full_name" type="text" class="validate" placeholder="Phạm Thu Hương" value="@(model.order.shipping.full_name ? model.order.shipping.full_name : model.Validator.getValue('full_name'))">
-							<label for="full_name">@model.__('user.fullName')</label>
+				<div id="shipping_row" class="col s12 l5 offset-l1">
+					<span class="title">Địa chỉ giao hàng của quý khách</span>
+					<form action="/shipping" method="POST">
+						<div class="form-row">
+							<label class="col s12 l4" for="full_name">Tên</label>
+							<input class="col s12 l8" value="@(model.order.shipping ? model.order.shipping.full_name : '')" placeholder="Họ và tên" id="full_name" name="full_name" />
 						</div>
-						<div class="input-field col s12 m6 l6">
-							<input id="phone_number" name="phone_number" type="text" class="validate" placeholder="01021345678" value="@(model.order.shipping.phone_number ? model.order.shipping.phone_number : model.Validator.getValue('phone_number'))">
-							<label for="phone_number">@model.__('user.phoneNumber') @html.raw(model.__('user.phone_warning'))</label>
+						<div class="form-row">
+							<label class="col s12 l4" for="address">Địa chỉ</label>
+							<textarea class="col s12 l8" value="@(model.order.shipping ? model.order.shipping.address : '')" placeholder="Địa chỉ giao hàng" id="address" name="address"></textarea>
 						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12 m6 l6">
-							<select id="city" name="city" class="area1">
-								<option value="Hồ Chí Minh" @(model.order.shipping.city && model.order.shipping.city == 'Hồ Chí Minh' ? 'selected' : '')>Hồ Chí Minh</option>
-								<option value="Hà Nội" @(model.order.shipping.city && model.order.shipping.city == 'Hà Nội' ? 'selected' : '')>Hà Nội</option>
+						<div class="form-row">
+							<label class="col s12 l4" for="city">Tỉnh/Thành phố</label>
+							<select class="col s12 l8" id="city" name="city">
+								<option value="">Lựa chọn</option>
 							</select>
-							<label for="city" class="country-label">@model.__('user.city') </label>
 						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12 m9 l9">
-							<input id="address1" name="address1" type="text" class="validate" placeholder="645/1 Điện Biên Phủ , Phường 1 , quận 3" value="@(model.order.shipping.address ? model.order.shipping.address : model.Validator.getValue('address1'))">
-							<label for="address1">@model.__('user.address1')</label>
+						<div class="form-row">
+							<label class="col s12 l4" for="district">Quận/Huyện</label>
+							<select class="col s12 l8" id="district" name="district">
+								<option value="">Lựa chọn</option>
+							</select>
 						</div>
-						<div class="input-field col s12 m3 l3">
-							<input id="zipcode" name="zipcode" type="text" class="validate" placeholder="100123" value="@(model.order.shipping.zipcode ? model.order.shipping.zipcode : model.Validator.getValue('zipcode'))" maxlength="6">
-							<label for="zipcode">@model.__('user.zipcode')</label>
+						<div class="form-row">
+							<label class="col s12 l4" for="ward">Phường/Xã</label>
+							<select class="col s12 l8" id="ward" name="ward">
+								<option value="">Lựa chọn</option>
+							</select>
 						</div>
-					</div>
-					@if (!model.user || !model.user.email) {
-						<div class="row">
-							<div class="input-field col s12">
-								<input id="email" name="email" type="email" class="validate" placeholder="someone@dailyboom.co" value="@(model.order.email ? model.order.email : model.Validator.getValue('email'))">
-								<label for="email">@model.__('user.email')</label>
-							</div>
+						<div class="form-row">
+							<label class="col s12 l4" for="phone_number">Điện thoại di động</label>
+							<input placeholder="Số điện thoại" class="col s12 l8" id="phone_number" name="phone_number" />
 						</div>
-					}
-					<div class="row">
-						<div class="col s12">
-							@if (!model.user) {
-								<p>
-									<input type="checkbox" id="agree-add-id" name="add_id" />
-									<label for="agree-add-id">Mua Hàng Bằng Tài Khoản</label>
-								</p>
-								<div id="add-id" class="hide">
-									<div class="row">
-										<div class="input-field col s12 m4 l4">
-											<input id="username" name="username" type="text" class="validate" value="@model.Validator.getValue('username')">
-											<label for="username">@model.__('user.username')</label>
-										</div>
-										<div class="input-field col s12 m4 l4">
-											<input id="password" name="password" type="password" class="validate">
-											<label for="password">@model.__('user.password')</label>
-										</div>
-										<div class="input-field col s12 m4 l4">
-											<input name="confirmpassword" id="confirmpassword" type="password" class="validate">
-											<label for="confirmpassword">@model.__('user.confirmPassword')</label>
-										</div>
-									</div>
-								</div>
-								<script>
-
-								</script>
-								<p class="hide grey-text">
-									* 정보 저장시 이메일로 회원가입이 쉽게 가능합니다.
-								</p>
-							}
-							<br>
-							<br>
-							<div class="row">
-								<div class="col s12">
-									<span class="red-text">@model.__('required')</span>
-									<p class="grey-text">
-										<input type="checkbox" id="agree-all" checked/>
-										<label for="agree-all">@model.__('agree_all')</label>
-									</p>
-									<p class="grey-text">
-										<input class="agree-check" type="checkbox" id="agree-terms-1" name="agree-terms-1" checked/>
-										<label for="agree-terms-1">@model.__('user.agreeTerms1')</label><a class="right" href="/terms" target="_blank">@model.__('view')</a>
-									</p>
-									<!-- <p class="grey-text">
-										<input class="agree-check" type="checkbox" id="agree-terms-2" name="agree-terms-2" />
-										<label for="agree-terms-2">전자금웅서비스 이용약관.</label><a class="right" href="#!terms2">보기</a>
-									</p> -->
-									<p class="grey-text">
-										<input class="agree-check" type="checkbox" id="agree-terms-3" name="agree-terms-3" checked/>
-										<label for="agree-terms-3">@model.__('user.agreeTerms3')</label><a class="right" href="/privacy" target="_blank">@model.__('view')</a>
-									</p>
-								</div>
-							</div><!-- .row -->
-							<br>
-							<button class="waves-effect waves-light btn btn-large blue-grey darken-3 right" type="submit" name="action">
-								Tiếp Theo <i class="fa fa-chevron-right right"></i>
-							</button>
+						<div class="col s12 l8 info offset-l4">
+							Kim Đồng sẽ liên lạc với quý khách số máy này để xác nhận thông tin giao hàng.
 						</div>
-					</div>
-				</form>
-			</div><!-- .row -->
+						<button class="col s12 l8 offset-l4">TIẾP TỤC</button>
+					</form>
+				</div>
+				<div id="cart" class="col s12 l5">
+                    <div class="cart-header">
+                        <a href="/cart" class="right">SỬA</a>
+                        <h4>THÔNG TIN ĐƠN HÀNG</h4>
+                        <span class="sub">(@model.cart.length quyển sách trong túi hàng của bạn)</span>
+                    </div>
+                    <div class="cart-content">
+                        <div class="content-header hide-on-small-only">
+                            <div class="col s5">
+                                TÊN SẢN PHẨM
+                            </div>
+                            <div class="col s3">
+                                SỐ LƯỢNG
+                            </div>
+                            <div class="col s4">
+                                GIÁ
+                            </div>
+                        </div>
+                        <div class="cart-products">
+                            @model.cart.forEach(function(item) {
+                                <div class="col s12">
+                                    <div class="col s5">
+                                        <div class="name">@item.product.name</div>
+                                        <div class="brand">@item.product.brand</div>
+                                    </div>
+                                    <div class="col s3">
+                                        <div class="quantity">@item.quantity</div>
+                                    </div>
+                                    <div class="col s4">
+                                        <div class="price">@(item.product.price * item.quantity)</div>
+                                    </div>
+                                </div>
+                            })
+                        </div>
+                        <div class="cart-total">
+                            <div class="col s8">
+                                <div>Tổng tiền:</div>
+                                <div>Khuyến mãi:</div>
+                                <div class="amount">Thành tiền:</div>
+                                <span>(Đã bao gồm VAT)</span>
+                            </div>
+                            <div class="col s4">
+                                <div class="total">@model.cart_total</div>
+                                <div class="total-dc">@model.cart_total</div>
+                                <div class="total-amount">@model.cart_total</div>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
 		</div>
+        <script src="/javascripts/dependentDrop.js" type="text/javascript"></script>
 		<script>
-			$(document).ready(function() {
-				$('select').material_select();
-				$('#pickup_date').pickadate({
-					min: true,
-					max: +7,
-					format: 'mm/dd/yyyy',
-					selectMonths: true, // Creates a dropdown to control month
-					selectYears: 15, // Creates a dropdown of 15 years to control year
-				});
-				if ($('#area option:selected').val() != '') {
-					if ($('#area option:selected').val() == 'pickup') {
-						$("#address1").val("Address Vietnam Office");
-						$('.select-wrapper').not('.area').addClass('hide');
-						$('.country-label').addClass('hide');
-						$('.pickup-date-label').removeClass('hide');
-						$('#pickup_date').removeClass('hide');
-					}
-					else if ($('#area option:selected').val() != '') {
-						var area = $("."+$('#area option:selected').val());
-						area.parent().find(".select-wrapper").addClass('hide');
-						area.parent().find("select").attr('name', '');
-						area.removeClass('hide');
-						$('.country-label').removeClass('hide');
-						$('.pickup-date-label').addClass('hide');
-						$("#"+$('#area option:selected').val()).attr('name', 'country');
-						$('#pickup_date').addClass('hide');
-					}
-				}
-				$('#area').on('change', function() {
-					if ($('#area option:selected').val() == 'pickup') {
-						$("#address1").val("Address Vietnam Office");
-						$('.select-wrapper').not('.area').addClass('hide');
-						$('#pickup_date').removeClass('hide');
-						$('.country-label').addClass('hide');
-						$('.pickup-date-label').removeClass('hide');
-					}
-					else if ($('#area option:selected').val() != '') {
-						var area = $("."+$('#area option:selected').val());
-						area.parent().find(".select-wrapper").addClass('hide');
-						area.parent().find("select").attr('name', '');
-						area.removeClass('hide');
-						$('.country-label').removeClass('hide');
-						$('.pickup-date-label').addClass('hide');
-						$("#"+$('#area option:selected').val()).attr('name', 'country');
-						$('#pickup_date').addClass('hide');
-					}
-				});
-				$("#agree-add-id").on("change", function() {
-					$('#add-id').toggleClass('hide');
-					$('#add-id input').prop('required', this.checked);
-				});
-				$("#agree-all").change(function(){
-			    if(this.checked){
-			      $(".agree-check").each(function(){
-			        this.checked=true;
-			      })
-			    }else{
-			      $(".agree-check").each(function(){
-			        this.checked=false;
-			      })
-			    }
-			  });
-			  $(".agree-check").click(function () {
-			    if ($(this).is(":checked")){
-			      var isAllChecked = 0;
-			      $(".agree-check").each(function(){
-			        if(!this.checked)
-			           isAllChecked = 1;
-			      })
-			      if(isAllChecked == 0){ $("#select_all").prop("checked", true); }
-			    }
-			    else {
-			      $("#agree-all").prop("checked", false);
-			    }
-			  });
-			});
+		 $(document).ready(function(){
+            $(".price, .total, .total-dc, .total-amount").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+		 })
 		</script>
 	})
 })

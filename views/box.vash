@@ -1,0 +1,167 @@
+@html.extend("layout-beta", function(model) {
+	@html.block("body", function(model) {
+		<div id="detailed_box" class="container @(model.product.boxZone == 0 ? 'north' : '') @(model.product.boxZone == 1 ? 'central' : '') @(model.product.boxZone == 2 ? 'south' : '')">
+			<div class="row">
+                <div class="area-header hide-on-small-only">
+                    <div class="right">
+                        @if (model.product.boxZone == 0) {
+                            <span>Miền Bắc</span>
+                            <img src="/images/north-logo.svg" />
+                        }
+                        else if (model.product.boxZone == 1) {
+                            <span>Miền Trung</span>
+					        <img src="/images/central-logo.svg" />
+                        }
+                        else if (model.product.boxZone == 2) {
+                            <span>Miền Nam</span>
+					        <img src="/images/south-logo.svg"/>
+                        }
+                    </div>
+			    </div>
+				<div class="col s12 l4 area-row" id="left">
+                    <img class="box-header" src="@model.product.box_header" />
+					<div class="item_names row center show-on-small-only">
+						<div class="col s4">
+							<div class="item_name truncate"><a href="#box_product_0">@model.product.boxProducts[0].name</a></div>
+							<div class="item_type">@model.product.boxProducts[0].brand</div>
+						</div>
+						<div class="col s4 ">
+							<div class="item_name truncate"><a href="#box_product_1">@model.product.boxProducts[1].name</a></div>
+							<div class="item_type">@model.product.boxProducts[1].brand</div>
+						</div>
+						<div class="col s4">
+							<div class="item_name truncate"><a href="#box_product_2">@model.product.boxProducts[2].name</a></div>
+							<div class="item_type">@model.product.boxProducts[2].brand</div>
+						</div>
+					</div>
+				</div>
+				<div class="col s12 l4" id="center">
+					<div class="img-wrapper">
+						<div class="main-img">
+							<img src="@model.product.images[0]" />
+						</div>
+					</div>
+				</div>
+				<div class="col s12 l4 area-row" id="right">
+                    <div class="item_names row center hide-on-small-only">
+						<div class="col s4">
+							<div class="item_name truncate"><a href="#box_product_0">@model.product.boxProducts[0].name</a></div>
+							<div class="item_type">@model.product.boxProducts[0].brand</div>
+						</div>
+						<div class="col s4 ">
+							<div class="item_name truncate"><a href="#box_product_1">@model.product.boxProducts[1].name</a></div>
+							<div class="item_type">@model.product.boxProducts[1].brand</div>
+						</div>
+						<div class="col s4">
+							<div class="item_name truncate"><a href="#box_product_2">@model.product.boxProducts[2].name</a></div>
+							<div class="item_type">@model.product.boxProducts[2].brand</div>
+						</div>
+					</div>
+					<div class="description">
+						<div class="body">@model.product.description</div>
+					</div>
+					<div class="prices">
+						<span class="price">@model.product.price</span>
+						<button  id="checkout" class="add_cart" data-id="@model.product.id" type="button">THÊM BOX VÀO GIỎ HÀNG</button>
+					</div>
+					<div class="options hide">
+						<h4>MÀU SẮC</h4>
+						<ul id="options">
+							@model.product.options.forEach(function(option, index){
+								<li data-option="@index" style="background-color:@option.name;"></li>
+							})
+						</ul>
+					</div>
+				</div>
+			</div>
+            <div class="box-products">
+                @model.product.boxProducts.forEach(function(product, index) {
+                    <div id="box_product_@index" class="area-header hide-on-small-only">
+                        <div class="right">
+                            <img src="@model.product.box_header" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 l4" id="left">
+                            <h2>@product.name</h2>
+                        </div>
+                        <div class="col s12 l4" id="center">
+                            <div class="img-wrapper">
+                                <div class="main-img">
+                                    <img src="@product.images[0]" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 l4" id="right">
+                            <div class="description">
+                                <h4>MÔ TẢ CHI TIẾT</h4>
+                                <div class="body">@product.description</div>
+                            </div>
+                            <div class="how-to">
+                                <h4>HƯỚNG DẪN SỬ DỤNG</h4>
+                                <div class="body">@product.how_to</div>
+                            </div>
+                            <div class="prices">
+                                <span class="price">@product.price</span>
+                                <button id="checkout" class="add_cart" data-id="@model.product.id" type="button">THÊM BOX VÀO GIỎ HÀNG</button>                        
+                            </div>
+                        </div>
+				    </div>
+                })
+            </div>
+			<section id="individual" class="hide-on-small-only">
+				<h2>SẢN PHẨM BÁN LẺ</h2>
+				<div class="row">
+					@model.hotProducts.forEach(function(product, index) {
+						<div class="">
+							<img src="@product.images[0]" />
+							<div class="prod_brand">@product.brand</div>
+							<div class="prod_name"><a href="/detailed/@product.id">@product.name</a></div>
+							<div class="prod_price">@product.price<span class="currency">đ</span></div>
+						</div>
+					})
+				</div>
+			</section>
+		</div>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var cw = $('.main-img').width();
+			$('.main-img').css({'height':cw+'px'});
+			$(".price, .old_price, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+			var owl = $("#individual .row");
+			owl.owlCarousel({
+				items : 4,
+				itemsDesktop : [1200,4],
+				itemsDesktopSmall : [992,2],
+				itemsTablet: [600,2],
+				itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
+				navigation: true,
+				navigationText: ["<", ">"],
+				pagination: false,
+				responsive: true,
+				rewindNav: true,
+				autoPlay: true
+			});
+		});
+		$(".add_cart").on("click", function() {
+			var id = $(this).data("id");
+			$.ajax({
+				type: "POST",
+				url: "/add_to_cart",
+				dataType: "json",
+				data: {
+					product_id: id,
+					quantity: 1,
+					option: 0
+				},
+				success: function (res) {
+					window.location = '/checkout';
+				},
+				error: function (res) {
+					Materialize.toast(res.responseJSON.message, 4000);
+				}
+			});
+		});
+	</script>
+	})
+})

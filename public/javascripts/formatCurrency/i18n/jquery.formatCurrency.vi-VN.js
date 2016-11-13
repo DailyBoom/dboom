@@ -17,7 +17,7 @@
 
 	$.formatCurrency.regions['vi-VN'] = {
 		symbol: '₫',
-		positiveFormat: '%n %s',
+		positiveFormat: '%n<span class="currency">%s</span>',
 		negativeFormat: '-%n %s',
 		decimalSymbol: ',',
 		digitGroupSymbol: '.',

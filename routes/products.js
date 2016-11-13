@@ -10,6 +10,7 @@ var mime = require('mime-types');
 var crypto = require("crypto");
 var config = require('config-heroku');
 var paginate = require('express-paginate');
+var querystring = require('querystring');
 var app = express();
 
 var storage = s3({
@@ -155,6 +156,10 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
       var product = new Product({
         name: req.body.name,
         description: req.body.description,
+        how_to: req.body.how_to,
+        why_love: req.body.why_love,
+        ingredients: req.body.ingredients,
+        category: req.body.category,
         price: req.body.price,
         old_price: req.body.oldPrice,
         quantity: quantity,
@@ -166,6 +171,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         homepage_image: req.files['homepage_image'] ? "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['homepage_image'][0].key : '',
         box_header: req.files['box_header'] ? "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['box_header'][0].key : '',
         options: req.body.options,
+        options_skin: req.body.options_skin,
         is_published: false,
         video: req.body.videoUrl,
         company_url: req.body.webUrl,
@@ -177,8 +183,9 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         extend: req.body.extend ? req.body.extend : 0,        
         is_hot: req.body.is_hot,
         color: req.body.color,
-        boxProducts: JSON.parse(JSON.stringify(req.body.boxProducts)),
-        boxZone: req.body.boxZone
+        boxProducts: req.body.extend == 3 ? JSON.parse(JSON.stringify(req.body.boxProducts)) : null,
+        boxZone: req.body.boxZone,
+        product_region: req.body.product_region
       });
     
       if (req.files['photosmobile']) {
@@ -219,11 +226,16 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
       product.merchant_id = req.body.merchant_id;
     product.name = req.body.name;
     product.description = req.body.description;
+    product.how_to = req.body.how_to;
+    product.why_love = req.body.why_love;
+    product.ingredients = req.body.ingredients;
+    product.category = req.body.category;
     product.price = req.body.price;
     product.old_price = req.body.oldPrice,
     product.scheduled_at = req.body.selldate;
     product.brand = req.body.brandname;
     product.options = req.body.options;
+    product.options_skin = req.body.options_skin;
     product.video = req.body.videoUrl;
     product.company_url = req.body.webUrl;
     product.company_facebook = req.body.fbUrl;
@@ -235,7 +247,10 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
     product.is_hot = req.body.is_hot;
     product.color = req.body.color;
     product.boxZone = req.body.boxZone;
-    product.boxProducts = JSON.parse(JSON.stringify(req.body.boxProducts));
+    product.product_region = req.body.product_region;
+    if(req.body.extend == 3) {
+      product.boxProducts = JSON.parse(JSON.stringify(req.body.boxProducts));
+    }
     
     if (product.price >= 50000)
       product.delivery_price = 0;

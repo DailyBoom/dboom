@@ -11,6 +11,7 @@ var moment = require("moment-timezone");
 var crypto = require('crypto');
 var sitemap = require('express-sitemap')({url: 'dailyboom.co'});
 var i18n = require('i18n');
+var querystring = require('querystring');
 i18n.configure({
     defaultLocale: 'vi',
     locales: ['ko', 'en', 'vi'],
@@ -114,7 +115,14 @@ app.use(function(req, res, next) {
   res.locals.user = req.user;
   moment.locale('vi');
   res.locals.moment = moment;
+  res.locals.querystring = querystring;
   res.locals.url = req.url;
+  if (req.query.zone) {
+    req.session.zone = req.query.zone;
+  }
+  if (req.session.zone) {
+    res.locals.zone = req.session.zone;
+  }
   if (req.session.toast) {
     res.locals.toast = req.session.toast;
     delete req.session.toast;
@@ -124,7 +132,9 @@ app.use(function(req, res, next) {
       res.locals.cart = order.cart;
       res.locals.cart_total = 0;      
       order.cart.forEach(function(item) {
-        res.locals.cart_total += item.product.price * item.quantity;
+        if (item.product != null) {
+          res.locals.cart_total += item.product.price * item.quantity;
+        }
       });
       next();
     });
@@ -132,6 +142,7 @@ app.use(function(req, res, next) {
   else
     next();
 });
+
 app.use('/', users);
 app.use('/', orders);
 app.use('/', routes);
@@ -143,13 +154,15 @@ if (app.get('env') === 'production') {
   sitemap.XMLtoFile('./public/sitemap/sitemap.xml');
 }
 
-passport.use(new LocalStrategy(
-  { passReqToCallback: true },
-  function (req, username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
+passport.use(new LocalStrategy({ 
+    usernameField: 'email',
+    passReqToCallback: true 
+  },
+  function (req, email, password, done) {
+    User.findOne({ email: email }, function (err, user) {
+      if (err) { console.log(err); return done(err); }
       if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
+        return done(null, false, { message: 'Incorrect email.' });
       }
       user.comparePassword(password, function(err, isMatch) {
         if (err) { return done(err); }

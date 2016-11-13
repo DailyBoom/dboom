@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>@model.__('title') - @model.__('about.title')</title>
+    <meta name="title" content="@model.__('title') - Mỹ Phẩm Hàn Quốc">
+    <meta itemprop="name" content="@model.__('title') - Mỹ Phẩm Hàn Quốc" />
+    <meta property="og:title" content="@model.__('title') - Mỹ Phẩm Hàn Quốc" />
+    <meta name="copyright" content="Copyright 2016 Yppuna">
+    <meta name="description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp.">
+    <meta itemprop="description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp." />
+    <meta property="og:description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp." />
+    <meta itemprop="image" content="http://www.yppuna.vn/images/db_ko_05.png" />
+    <meta property="og:image" content="http://www.yppuna.vn/images/db_ko_05.png" />
+    <meta property="og:site_name" content="Yppuna">
+    <meta property="og:url" content="http://www.yppuna.vn@model.url" />
+    <meta property="og:type" content="product">
+    <meta property="fb:app_id" content="1216374348393191">
+
+    <link rel="canonical" href="http://www.yppuna.vn@model.url" />
+    <meta name="google-site-verification" content="yS0UpQrgmF43CA3mnxY8Qke583Hq_yJMSfw2USHiVxI" />
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/favicon/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png" />
+    <link rel="stylesheet" href="/stylesheets/materialize.min.css">
+    <link rel="stylesheet" href="/stylesheets/animate.css">
+    <link rel="stylesheet" href="/stylesheets/beta.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/javascripts/jquery.animatecss.min.js"></script>
+    <script src="/javascripts/imgToSvg.js"></script>
+
+  </head>
+  <body>
+      <div class="container" id="intro">
+          <div class="row center">
+            <div class="intro-title">
+                <span>yppuna</span>
+            </div>
+            <img class="intro-logo" style="display:none;" src="/images/logo.svg">
+            <video class="intro-video" width="400" muted style="display:none;">
+                <source src="/video/yppuna_logo.mp4" type="video/mp4">
+            </video>
+            <div class="intro-text">
+                <span>Là Gì?</span>
+                <span style="display:none;">Yppuna là thương hiệu mang những sản phẩm làm đẹp dựa trên vùng miền bạn đang sinh sống</span>
+                <span style="display:none;">Chúng tôi tự tay lựa chọn từng sản phẩm để phù hợp nhất cho làn da của bạn dựa trên khí hậu bạn đang sinh sống</span>
+                <span style="display:none;">Thế,<br/></span>
+                <span style="display:none;">bạn đang sinh sống ở đâu?</span>
+            </div>
+            <div class="zones">
+                <div class="col s4">
+                    <a href="/home?zone=0"><img src="/images/north-logo.svg" /></a>
+                    <div class="north">Bắc</div>
+                </div>
+                <div class="col s4">
+                    <a href="/home?zone=1"><img src="/images/central-logo.svg" /></a>
+                    <div class="central">Trung</div>
+                </div>
+                <div class="col s4">
+                    <a href="/home?zone=2"><img src="/images/south-logo.svg" /></a>
+                    <div class="south">Nam</div>
+                </div>
+            </div>
+          </div>
+      </div>
+  </body>
+    <script>
+        $(window).load(function() {
+            $('.intro-text span').first().add($('.intro-title')).delay(1000).fadeOut().promise().done(function() {
+                $(this).eq(1).next().add($('.intro-logo')).fadeIn().promise().done(function() {
+                    $(this).eq(1).delay(1500).fadeOut(function() {
+                        $(this).next().fadeIn(function() {              
+                            $(this).add($('.intro-logo')).delay(1500).fadeOut().promise().done(function() {
+                                var text = $(this).eq(1);
+                                //$('.intro-video').fadeIn(function() {
+                                    // $(this)[0].defaultPlaybackRate = 1.5;
+                                    // $(this)[0].play();
+                                    // $(this)[0].addEventListener('ended', function() {
+                                    //    $('.intro-video').fadeOut(function() {
+                                            text.next().add($('.intro-logo')).fadeIn().promise().done(function() {
+                                                $(this).eq(1).next().fadeIn(function() {                     
+                                                    $('.intro-logo').css('margin-top', '100px');
+                                                    $('.intro-logo').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
+                                                        $('.zones').css('bottom', '0');
+                                                    });
+                                                });
+                                            });
+                                      //  });
+                                   // });
+                               // });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    </script>
+</html>
