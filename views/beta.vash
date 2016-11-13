@@ -1,115 +1,183 @@
 @html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
-    <div class="container-fluid">
-			<div class="row">
-				<div class="container">
-					<div class="row">
-						<div class="top-nav">
-							<a href="/beta">
-								<img class="db-logo" src="/images/favicon/apple-icon.png" alt="데일리 붐 로고" />
-							</a>
-							<!-- Dropdown Trigger -->
-						  <a class="dropdown-button waves-effect waves-light btn-profile white-text right" href="#" data-activates="mydrop">
-								<div class="profile-box"><i class="fa fa-user fa-3x"></i></div>
-							</a>
-						  <!-- Dropdown Structure -->
-						  <ul id='mydrop' class="dropdown-content blue-grey lighten-3">
-						    <li><a class="blue-grey-text text-darken-2" href="#!">Login</a></li>
-						    <li><a class="blue-grey-text text-darken-2" href="#!">Signup</a></li>
-						  </ul>
-							<div class="clock center">
-								<span>23:59:59</span>
-							</div>
-						</div><!-- .top-nav -->
-					</div><!-- .row -->
-				</div><!-- .container -->
-				<div class="img-item" style="background-image: url('/images/headphones.jpg')">
-				</div><!-- .img-item -->
-
-				<div class="container">
-					<div class="row">
-						<div class="pro-v">
-							<div class="pro-d"></div><!-- .pro-v -->
-							<div class="pro-label">
-								50% 남음
-							</div>
-						</div><!-- .pro-v -->
-						<div class="pagination"></div>
-						<div class="pagination fade"></div>
-						<div class="pagination fade"></div>
-						<a class="waves-effect waves-light center btn-info white-text" href="#info">
-							<i class="fa fa-info fa-2x"></i>
-						</a>
+	<div class="container">
+		<section id="north">
+			<div class="area-header hide-on-small-only">
+				<div class="right">
+					<span>Miền Trung</span>
+					<img src="/images/north-logo.svg" />
+				</div>
+			</div>
+			<div class="row area-row">
+				<div class="col s12 l4">
+					<img class="item_cover" src="@model.products[0].box_header" />
+					<div class="item_names row center">
+						<div class="col s4">
+							<div class="item_name truncate">3 SẢN PHẨM</div>
+							<div class="item_type">DA DẦU</div>
+						</div>
+						<div class="col s4 ">
+							<div class="item_name truncate">+50PH</div>
+							<div class="item_type">SUNCREAM</div>
+						</div>
+						<div class="col s4">
+							<div class="item_name truncate">SPRING</div>
+							<div class="item_type">SUNCREAM</div>
+						</div>
+					</div>
+					<div class="item_desc hide-on-small-only">
+						@model.products[0].description
+					</div>
+					<div class="item_prices hide-on-small-only">
+						<div class="item_price">@model.products[0].price<span class="currency">đ</span></div>
+					</div>
+					<div class="item_detail hide-on-small-only">
 						<a href="#">
-							<div class="buy-now right">
-								Buy Now
-							</div>
+							XEM CHI TIẾT
 						</a>
-					</div><!-- .row -->
-				</div><!-- .container -->
-				<div class="wrapper">
-					<div id="info" class="info-box scrollspy">
-						<div class="container">
-							<div class="row">
-								<div class="center">
-									<img class="brand-logo" src="images/zone01.png" alt="" />
-								</div>
-								<div class="col s8 offset-s2 center">
-									<!-- <div class="item-brand">Zonecode</div> -->
-									<div class="item-name">@model.product.name</div>
-									<div class="item-info">@model.product.description</div>
-								</div>
-							</div><!-- .row -->
-						</div><!-- .container -->
-					</div><!-- .info-box -->
-
-					<div id="about" class="buy-box scrollspy">
-						<div class="container">
-							<div class="row">
-								<div class="center">
-									<img src="/images/dbkorea02.png" alt="" />
-									<h4>오늘 뭐 사지?</h4>
-									<p class="about-info">
-데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로 매일 한개 상품만 24시간이라는 한정된 시간 내에 특가로 진행되는 웹사이트이다.
-<br>상품이 전시 된 후부터 ‘24시간 카운트 다운’으로 진행되기에 고객들은 특가 제품의 남은 할인 시간과 현재 시각까지 구매한 구매도를 확인할 수 있다.
-<br>데일리 붐 웹사이트의 특성은 상품을 360도로 배치된 이미지와 상품을 근접 촬영한 동영상으로 보여주기에 구매자이 정확한 상품 평가를 내릴 수 있도록 도와준다!
-<br>데일리 붐에서 전시 되었던 지난 제품을 인기도에 따라 재 판매할 수 있으며 고객들은 제품에 대한 관심도를 ‘좋아요’와‘공유’ 아이콘으로 표현한다. 당연히 ‘좋아요’가 많을 수 록 제품 구매로 이어지는 액션도 많아진다.
-									</p>
-									<h4>Happy Shopping! <i class="fa fa-smile-o"></i></h4>
-								</div>
-							</div><!-- .row -->
-						</div><!-- .container -->
-					</div><!-- .info-box -->
-
-				</div><!-- .wrapper -->
-
-
-			</div><!-- .row -->
+					</div>
+				</div>
+				<div class="col s12 l8">
+					<div class="item_img"><img  src="@(model.is_mobile ? model.products[0].mobile_images[0] : model.products[0].images[0])"/></div>
+					<div class="item_detail hide-on-med-and-up">
+						<a href="#">
+							XEM CHI TIẾT
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="central">
+			<div class="area-header hide-on-small-only">
+				<div class="right">
+					<span>Miền Bắc</span>
+					<img src="/images/central-logo.svg" />
+				</div>
+			</div>
+			<div class="row area-row">
+				<div class="col s12 l8 hide-on-small-only">
+					<div class="item_img"><img src="@model.products[1].images[0]"/></div>
+				</div>
+				<div class="col s12 l4">
+					<img class="item_cover" src="@model.products[1].box_header" />
+					<div class="item_names row center">
+						<div class="col s4">
+							<div class="item_name truncate">3 SẢN PHẨM</div>
+							<div class="item_type">DA DẦU</div>
+						</div>
+						<div class="col s4 ">
+							<div class="item_name truncate">+50PH</div>
+							<div class="item_type">SUNCREAM</div>
+						</div>
+						<div class="col s4">
+							<div class="item_name truncate">SPRING</div>
+							<div class="item_type">SUNCREAM</div>
+						</div>
+					</div>
+					<div class="item_desc hide-on-small-only">
+						@model.products[1].description
+					</div>
+					<div class="item_prices hide-on-small-only">
+						<div class="item_price">@model.products[1].price<span class="currency">đ</span></div>
+					</div>
+					<div class="item_detail hide-on-small-only">
+						<a href="#">
+							XEM CHI TIẾT
+						</a>
+					</div>
+				</div>
+				<div class="col s12 l8 hide-on-med-and-up">
+					<div class="item_img"><img src="@model.products[1].mobile_images[0]"/></div>
+					<div class="item_detail hide-on-med-and-up">
+						<a href="#">
+							XEM CHI TIẾT
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="south">
+			<div class="area-header hide-on-small-only">
+				<div class="right">
+					<span>Miền Bắc</span>
+					<img src="/images/south-logo.svg"/>
+				</div>
+			</div>
+			<div class="row area-row">
+				<div class="col s12 l4">
+					<img class="item_cover" src="@model.products[2].box_header" />
+					<div class="item_names row center">
+						<div class="col s4">
+							<div class="item_name truncate">3 SẢN PHẨM</div>
+							<div class="item_type">DA DẦU</div>
+						</div>
+						<div class="col s4 ">
+							<div class="item_name truncate">+50PH</div>
+							<div class="item_type">SUNCREAM</div>
+						</div>
+						<div class="col s4">
+							<div class="item_name truncate">SPRING</div>
+							<div class="item_type">SUNCREAM</div>
+						</div>
+					</div>
+					<div class="item_desc hide-on-small-only">
+						@model.products[2].description
+					</div>
+					<div class="item_prices hide-on-small-only">
+						<div class="item_price">@model.products[2].price<span class="currency">đ</span></div>
+					</div>
+					<div class="item_detail hide-on-small-only">
+						<a href="#">
+							XEM CHI TIẾT
+						</a>
+					</div>
+				</div>
+				<div class="col s12 l8">
+					<div class="item_img"><img src="@(model.is_mobile ? model.products[2].mobile_images[0] : model.products[2].images[0])"/></div>
+					<div class="item_detail hide-on-med-and-up">
+						<a href="#">
+							XEM CHI TIẾT
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="individual">
+			<h2>SẢN PHẨM BÁN LẺ</h2>
+			<div class="row">
+			@model.hotProducts.forEach(function(product) {
+				<div class="">
+					<img src="@product.mobile_images[0]" />
+					<div class="prod_brand">@product.brand</div>
+					<div class="prod_name"><a href="/detailed/@product.id">@product.name</a></div>
+					<div class="prod_price">@product.price<span class="currency">đ</span></div>
+				</div>
+			})
+		</div>
+		</section>
     </div><!-- .container-fluid -->
-		<script type="text/javascript">
-			$(document).ready(function() {
-				var h = $(window).height();
-				var i = h - 80;
-				var j = h - 55;
-				console.log(h);
-				console.log(i);
-				$('.wrapper').offset({top:h});
-				$('.pagination').offset({top:j});
-				$('.btn-info').offset({top:i});
-				$('.buy-now').offset({top:i});
-
-		    $('.scrollspy').scrollSpy();
-
-				$('.dropdown-button').dropdown({
-					inDuration: 300,
-					outDuration: 225,
-					constrain_width: false, // Does not change width of dropdown to that of the activator
-					hover: false, // Activate on hover
-					gutter: 0, // Spacing from edge
-					belowOrigin: false, // Displays dropdown below the button
-					alignment: 'right' // Displays dropdown with edge aligned to the left of button
-				});
-			});
-		</script>
+	<script type="text/javascript">
+		var options = [
+			{selector: '#north', offset: 0, callback: "$('#side-menu, #slide-out').removeClass('central south').addClass('north');", repeat: true },
+			{selector: '#central', offset: 500, callback: "$('#side-menu, #slide-out').removeClass('north south').addClass('central');", repeat: true},
+			{selector: '#south', offset: 500, callback: "$('#side-menu, #slide-out').removeClass('north central').addClass('south');", repeat: true}
+		];
+		Materialize.scrollFire(options);
+		$(".item_price, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+		var owl = $("#individual .row");
+		owl.owlCarousel({
+			items : 4,
+			itemsDesktop : [1200,4],
+			itemsDesktopSmall : [992,2],
+			itemsTablet: [600,2],
+			itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
+			navigation: true,
+			navigationText: ["<", ">"],
+			pagination: false,
+			responsive: true,
+			rewindNav: true,
+			autoPlay: true
+		});
+	</script>
   })
 })

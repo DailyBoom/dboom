@@ -7,11 +7,999 @@
   src: url('/fonts/bulkypix.ttf') format('truetype'); /* Safari, Android, iOS */
 }
 
-/* Settings */
-.container {
-  position: relative;
+@font-face {
+  font-family: 'Estilo';
+  src: url('/fonts/Estilo.otf'); /* IE9 Compat Modes */
+  src: url('/fonts/Estilo.otf') format('truetype'); /* IE9 Compat Modes */
 }
 
+@font-face {
+  font-family: 'SVN-Karla';
+  src: url('/fonts/SVN-Karla_Regular.otf'); /* IE9 Compat Modes */
+  src: url('/fonts/SVN-Karla_Regular.otf') format('truetype'); /* IE9 Compat Modes */
+}
+
+[type="radio"]:not(:checked)+label:after, [type="radio"]:not(:checked)+label:before, [type="radio"]:checked+label:before {
+  border: 1px solid #2074bd;
+  transform: scale(0.6);
+  -webkit-transform: scale(0.6);
+}
+
+[type="radio"]:checked+label:after {
+  background-color: #2074bd;
+  border: 2px solid white;
+  transform: scale(0.5);
+  -webkit-transform: scale(0.5);
+}
+
+body, nav {
+  background-color: white;
+  box-shadow: none;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.container .row {
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Settings */
+
+
+#sidenav-overlay {
+  opacity: 0 !important;
+}
+
+#side-menu {
+  visibility: visible;
+  width: 107px;
+  overflow: hidden;
+  left: 0;
+  box-shadow: none;
+  z-index: 1;
+  margin-left: 45px;
+  float: left;
+  padding-bottom: 0;
+  background: transparent;
+}
+
+#side-menu a, #slide-out .bottom-menu a {
+  padding: 0;
+  line-height: 0;
+  height: auto;
+}
+
+#side-menu .top-menu a {
+  margin-top: 36px; 
+}
+
+#side-menu .bottom-menu, #slide-out .bottom-menu {
+  position: absolute;
+  bottom: 0;
+  transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -webkit-transform: translateY(-70px);
+}
+
+#slide-out .bottom-menu {
+  width: 100%;
+}
+
+#slide-out .bottom-menu a {
+  display: inline;
+}
+
+#slide-out .bottom-menu .search {
+  padding-left: 19px;
+  background: white;
+}
+
+#slide-out .bottom-menu .sns {
+  margin-top: 9px;
+  padding-left: 19px;
+}
+
+#slide-out .bottom-menu .fb-like {
+  width: 100%;
+  text-align: center;
+  padding-left: 19px;
+}
+
+#side-menu .bottom-menu a {
+  margin-top: 9px; 
+}
+
+#slide-out, #slide-out .collapsible-body {
+  background-color: #f3faff;
+  box-shadow: none;
+}
+
+#slide-out a.side-header, #slide-out.north a.side-header {
+  font-family: Estilo;
+  font-size: 35px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #3ebbed;
+}
+
+#slide-out .collapsible-body a, #slide-out.north .collapsible-body a {
+  font-family: SVN-Karla;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: left;
+  color: #4a8dcc;
+}
+
+#slide-out.central a.side-header {
+  color: #7cd8ca;
+}
+
+#slide-out.south a.side-header {
+  color: #fea3a3;
+}
+
+header, main {
+  padding-left: 152px;
+}
+
+#login_modal .s12 {
+  padding: 0;
+}
+
+#login_modal .tabs {
+  margin-bottom: 23px;
+}
+
+#login_modal .tabs, #login_modal .tab {
+  height: auto;
+}
+
+#login_modal .tabs a {
+  font-family: SVN-Karla;
+  font-size: 24px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: left;
+  color: #c4daee;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 32px;
+}
+
+#login_modal .tabs a.active {
+  color: #2074bd;
+}
+
+#login_modal .tabs .indicator {
+  visibility: hidden;
+}
+
+#login_modal .modal-close {
+  height: 19px;
+}
+
+#login_modal .svg-close path {
+  stroke: #2074bd;
+}
+
+#login_modal label {
+  padding-left: 20px;
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #2074bd;
+}
+
+#login_modal input, #login_modal select {
+  border-radius: 100px;
+  box-shadow: inset 0 1px 3px 0 rgba(199, 199, 199, 0.5);
+  border: solid 1px #b3c2cf;
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+  padding: 5px 0 7px 20px;
+  height: auto;
+}
+
+#login_modal input {
+  width: calc(100% - 20px);
+}
+
+#login_modal .bday {
+  display: block;
+}
+
+#login_modal .select-wrapper {
+  margin-right: 20px;
+  border-radius: 100px;
+  box-shadow: inset 0 1px 3px 0 rgba(199, 199, 199, 0.5);
+  border: solid 1px #b3c2cf;
+  font-family: SVN-Karla;[type="radio"]:checked+label:after
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+  padding: 5px 0 7px 20px;
+  height: 30px;
+}
+
+#login_modal .select-wrapper.year {
+  margin: 0;
+}
+
+#login_modal .select-wrapper input {
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  line-height: 1;
+}
+
+#login_modal .select-wrapper .caret {
+  top: 6px;
+  right: 10px;
+  color: #2074bd;
+}
+
+#login_modal .select-wrapper .dropdown-content {
+  left: 0 !important;
+  width: inherit !important;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: solid 1px #b3c2cf;
+}
+
+#login_modal .select-wrapper .dropdown-content li {
+  height: 30px;
+}
+
+#login_modal .select-wrapper .dropdown-content li span {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+  padding: 0 16px 14px;
+}
+
+#login_modal .forgot {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #f19996;
+}
+
+#login_modal button {
+  margin-top: 25px;
+  width: 100%;
+  text-align: center;
+  padding: 6px 0 5px;
+  font-family: SVN-Karla;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #ffffff;
+  border: none;
+  border-radius: 23px;
+  background-color: #3ebbed;
+}
+
+#login_modal #facebook {
+  margin-top: 11px;
+  border-radius: 64px;
+  border: solid 1px #3a589d;
+  padding: 9px 0;
+  text-align: center;
+  font-family: SVN-Karla;
+  font-size: 13px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: -0.1px;
+  color: #3a589d;
+}
+
+#login_modal #facebook .s2 {
+  background: #3a589d;
+}
+
+#login_modal .gender {
+  margin-top: 19px;
+}
+
+#login_modal .gender label {
+  margin-right: 21px;
+}
+
+#login_modal .gender label.sub {
+  font-weight: normal;
+  color: #5aa0d6;
+}
+
+#login_modal .gender input {
+  width: 10px;
+  height: 10px;
+  object-fit: contain;
+  border: solid 1px #5aa0d6;
+}
+
+#login_modal .terms {
+  margin-top: 33px;
+  font-family: SVN-Karla;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #b3c2cf;
+}
+
+#login_modal .terms a {
+  color: #fea3a3;
+}
+
+/*detailed_product*/
+
+#detailed_product {
+  margin-top: 72px;
+}
+
+#detailed_product h1 {
+  font-family: Estilo;
+  font-size: 63px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.84;
+  color: #f19996;
+}
+
+#detailed_product h4 {
+  font-family: SVN-Karla;
+  font-size: 15.1px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #1b5eaf;
+}
+
+#detailed_product .body {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #4a8dcc;
+}
+
+#detailed_product #left {
+  text-align: right;
+  margin-top: 80px;
+}
+
+#detailed_product #center {
+  text-align: center;
+}
+
+#detailed_product #right {
+  text-align: left;
+  margin-top: 91px;
+}
+
+#detailed_product .row {
+  margin-bottom: 76px;
+}
+
+#detailed_product .main-img {
+  display: table-cell;
+  border: dashed 1px #aee8f2;
+  border-radius: 200px;
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+  height: auto;
+}
+
+#detailed_product .main-img img {
+  width: 100%;
+  -webkit-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#detailed_product .img-list {
+  margin-top: 27px;
+}
+
+#detailed_product .img-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#detailed_product .current-img {
+  display: table-cell;
+  width: 94px;
+  height: 94px;
+  background-color: #f3fbff;
+  border: dashed 1px #aee8f2;
+  border-radius: 100px;
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+#detailed_product .current-img img {
+  height: 60px;
+  -webkit-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+  width: 100%;
+}
+
+#detailed_product .side-img {
+  display: table-cell;
+  width: 65px;
+  height: 65px;
+  border: dashed 1px #aee8f2;
+  border-radius: 100px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+#detailed_product .side-img img {
+  height: 50px;
+}
+
+#detailed_product .price {
+  font-family: Karla;
+  font-size: 22px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #fea3a3;
+}
+
+#detailed_product .old_price {
+  font-family: Karla;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #9fc7e5;
+}
+
+#detailed_product .options *, #detailed_product .quantity * {
+  display: inline-block;
+}
+
+#detailed_product #options li {
+  width: 38.7px;
+  height: 38.7px;
+}
+
+#detailed_product .quantity input {
+   width: 47px;
+   height: 35px;
+   border: solid 1px #3ebbed;
+   padding-left: 15px;
+   border-radius: 45px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  border-left: solid 1px #3ebbed;
+  border-bottom: solid 1px #3ebbed;
+  background: white;
+}
+
+#detailed_product .quantity button {
+  font-family: SVN-Karla;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #ffffff;
+  border-radius: 100px;
+  background-color: #3ebbed;
+  padding: 6px 21px 5px;
+  border: none;
+}
+
+@media only screen and (max-width : 992px) {
+
+  header, main, footer {
+    padding-left: 0;
+  }
+
+  #slide-out {
+    top: 56px;
+  }
+
+  #slide-out .bottom-menu {
+    -webkit-transform: translateY(-135px);    
+  }
+
+  .logo {
+    width: 75px;
+    margin: 7.5px 15.5px !important;
+    padding: 0;
+    line-height: 0;
+    display: inline-block;
+  }
+
+  .logo svg {
+    width: 100%;
+  }
+
+  #login_modal {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    top: 0 !important;
+  }
+
+  #individual h2 {
+    font-size: 18px !important;
+  }
+
+  #individual .prod_brand, #individual .prod_name a, #individual .prod_price {
+    font-size: 12px !important;
+  }
+
+  footer .footer-content {
+    background-color: #f1f7fc;
+    text-align: center;
+    padding-bottom: 16px;    
+  }
+
+  footer .footer-content .row {
+    margin: 0;
+  }
+
+  footer .footer-content .newsletter {
+    font-family: SVN-Karla;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    color: #1b5eaf;
+    margin: 24px 0;
+    padding-top: 24px;
+    display: block;
+  }
+
+  footer .footer-content input {
+    background-color: #bde1ff;
+    font-family: SVN-Karla;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    color: #ffffff;
+    border: none;
+    padding: 8px 0 16px 21px;
+    width: calc(100% - 21px);
+    height: auto;
+  }
+
+  footer .footer-content input::-webkit-input-placeholder {
+   color: white;
+  }
+
+  footer .footer-content button {
+    background: transparent;
+    border: solid 1px #2074bd;
+    width: 100%;
+    padding: 0 9px;
+    font-family: SVN-Karla;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    color: #1b5eaf;
+  }
+
+  footer .footer-content .sns {
+    margin-top: 69px;
+  }
+
+  footer .footer-content .sns a {
+    width: 43px;
+    height: 43px;
+    display: inline-block;
+  }
+
+  footer .footer-content .sns a svg {
+    width: 100%;
+    height: auto;
+  }
+
+  footer .footer-info {
+    height: 30px;
+    color: white;
+    background-color: #3ebbed;
+    text-align: center;
+  }
+
+  footer .footer-info .copyright {
+    font-family: SVN-Karla;
+    font-size: 11px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+  }
+
+  .area-row .item_cover {
+    padding-right: 74px;
+    padding-left: 16px;
+  }
+
+  .area-row .item_names {
+    padding: 0 30px;
+  }
+
+  .area-row .item_names .item_name {
+    font-family: SVN-Karla;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    color: #5aa0d6;
+  }
+
+  .area-row .item_names .item_type {
+    font-family: SVN-Karla;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    color: #a4b5c4;
+  }
+
+  .area-row .item_detail {
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .item_img img {
+    width: 100%;
+  }
+
+  #north .item_img {
+    background: url('/images/north_bg_m.png') no-repeat;
+    background-position: center;
+    background-size: 95%;
+    padding-bottom: 41px;
+    padding-left: 44px;
+    padding-right: 39px;
+    padding-top: 45px;
+  }
+
+  #central .item_img {
+    background: url('/images/central_bg_m.png') no-repeat;
+    background-size: 311px; 
+    background-position: center;
+  }
+
+  #south .area-row {
+    background: url('/images/south_bg_m.png') no-repeat;
+    background-size: 81%;
+    background-position: 71px 145px;
+  }
+
+  #south .item_img {
+    padding-right: 88px;
+    padding-left: 38px;
+  }
+
+  #south .item_detail {
+    margin-top: 70px;
+  }
+
+  #slide-out .bottom-menu .sns a {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    margin-right: 14px;
+  }
+
+  #slide-out .bottom-menu .sns a svg {
+    width: 100%;
+    height: auto;
+  }
+
+  #slide-out .fb-like {
+    margin-top: 12px;
+  }
+
+  #detailed_product {
+    margin: 0;
+  }
+
+  #detailed_product #left {
+    text-align: center;
+    margin: 0;
+  }
+
+  #detailed_product .main-img {
+    width: 250px;
+    height: 250px;
+  }
+
+  #detailed_product .prices {
+    text-align: center;
+  }
+
+  #detailed_product .options, #detailed_product .quantity {
+    padding: 0 25px;
+  }
+
+  #detailed_product button {
+    font-size: 16px;
+    display: block;
+    width: 100%;
+  }
+
+  #detailed_product .comments {
+    text-align: center;
+    margin-top: 43px;
+  }
+  
+}
+
+@media only screen and (min-width : 992px) {
+  html, body {
+    height: 100%;
+  }
+
+  .logo {
+    width: 107px;
+    padding: 0px !important;
+    margin-top: 49px;
+  }
+  .logo img {
+    width: 100%;
+  }
+
+  #login_modal {
+    max-height: 90%;
+    width: 339px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 3px 4px 1px rgba(199, 199, 199, 0.66);
+  }
+
+  footer .footer-content {
+    background-color: rgba(187, 217, 255, 0.28);
+  }
+
+  footer .footer-bg {
+    margin-top: 48px;
+  }
+
+  footer .footer-info {
+    width: 100%;
+    height: 30.5px;
+    background-color: #3ebbed;
+    text-align: center;    
+  }
+
+  footer .container {
+    width: 70%;
+  }
+
+  footer .copyright {
+    font-family: SVN-Karla;
+    font-size: 11px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    color: #ffffff;
+  }
+
+  footer .copyright .right {
+    margin-left: 36px;
+  }
+
+  footer .row {
+    padding-top: 55px;
+    margin-bottom: 0;
+  }
+
+  footer a {
+    font-family: SVN-Karla;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    color: #1b5eaf;
+    margin-bottom: 13px;
+    display: block;
+  }
+
+  footer .hotline {
+    margin-top: 50px;
+  }
+
+  footer .hotline .title {
+    font-family: SVN-Karla;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    color: #1b5eaf;
+  }
+
+  footer .hotline .phone {
+    font-family: SVN-Karla;
+    font-size: 24px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    color: #35ace8;
+  }
+
+  footer .newsletter {
+    font-family: LucidaGrande;
+    font-size: 17px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    color: #1b5eaf;
+    display: block;
+  }
+
+  footer .newsletter-info {
+    font-family: SVN-Karla;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    color: #1b5eaf;
+  }
+
+  footer .newsletter-email {
+    margin-top: 20px;
+    padding: 0;
+  }
+
+  footer .newsletter-email .l8 {
+    padding-left: 0; 
+  }
+
+  footer .newsletter-email input {
+    background-color: #bde1ff;
+    padding: 8px 0 8px 12px;
+    height: auto;
+    border: none;
+    color: white;
+    margin: 0;
+  }
+
+  footer .footer-content input::-webkit-input-placeholder {
+   color: white;
+  }
+
+  footer .newsletter-email button {
+    font-family: SVN-Karla;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    color: #1b5eaf;
+    background: none;
+    border: none;
+    border-bottom: solid 1.5px #2074bd;
+    padding: 0 0 3.5px;
+    line-height: 1;
+  }
+
+  footer .cards {
+    margin-top: 26px;
+  }
+
+  footer .cards .title {
+    font-family: SVN-Karla;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    color: #1b5eaf;
+  }
+
+  footer .cards img {
+    margin-right: 120px;
+  }
+
+  #central .area-row .item_cover {
+    margin-top: 130px
+  }
+
+  .area-row .item_names .item_name {
+    font-family: SVN-Karla;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    color: #5aa0d6;
+  }
+
+  .area-row .item_names .item_type {
+    font-family: SVN-Karla;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    color: #a4b5c4;
+  }
+
+  .area-row .item_names, .area-row .item_desc, .area-row .item_prices {
+    padding-left: 38px;
+  }
+
+  .area-row .item_detail a {
+    margin-left: 38px;
+  }
+
+  .item_img img {
+    width: auto;
+  }
+
+  #north .item_img {
+    background-image: url('/images/north_bg.png');
+    background-size: cover;
+    padding-left: 100px;
+    padding-top: 122px;
+    padding-right: 145px;
+    padding-bottom: 35px;
+  }
+
+  #north .item_img img {
+    max-height: 455px;
+  }
+
+  #central .item_img {
+    background-image: url('/images/central_bg.png');    
+    background-size: cover;
+    padding-right: 52px;
+  }
+
+  #central .item_img img {
+    max-height: 540px;
+  }
+
+  #south .l8 {
+    padding-right: 0;
+  }
+
+  #south .item_img {
+    background-image: url('/images/south_bg.png');
+    background-size: cover;
+    padding-left: 168px;
+    padding-top: 88px;
+  }
+
+  .item_img img {
+    max-height: 475px;    
+  }
+}
 /* Top Nav */
 .top-nav {
   margin: 10px 0;
@@ -165,14 +1153,7 @@
   text-align: center;
   border: 5px solid #fff;
 }
-.brand-logo {
-  margin: 5em 0 0 0;
-  height: auto;
-  width: 165px;
-  border-radius: 50%;
-  border: 5px solid #fff;
-  padding: 7px;
-}
+
 .item-brand {
   margin: 1em 0;
   font-size: 2em;
@@ -196,4 +1177,179 @@
 }
 .about-info {
   font-size: 18px;
+}
+
+#north {
+  font-family: SVN-Karla;
+  color: #3ebbed;
+}
+
+#central {
+  font-family: SVN-Karla;
+  color: #56c9b1;
+}
+
+#south {
+  font-family: SVN-Karla;
+  color: #fea3a3;
+}
+
+.area-header {
+  width: 100%;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  margin-top: 32px;
+  padding-right: 45.5px !important;
+  margin-left: 0;
+  display: inline-block;
+}
+
+.area-header img {
+  width: 81px;
+  vertical-align: middle;
+}
+
+.area-row {
+  margin-bottom: 100px;
+}
+
+.area-row .item_cover {
+  width: 100%;
+}
+
+.area-row .item_names {
+  margin: 37px 0 31px;
+}
+
+.area-row .item_names .s4:nth-child(2) {
+  border-left: solid 1px #b3c2cf;
+  border-right: solid 1px #b3c2cf;
+}
+
+.area-row .item_desc {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #4a8dcc;
+  margin-bottom: 23px;
+}
+
+.area-row .item_prices .item_price {
+  font-family: Karla;
+  font-size: 22px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #fea3a3;
+  margin-bottom: 17px;
+}
+
+.area-row .item_prices .item_price .currency {
+  font-family: SVN-Karla;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #fea3a3;
+  vertical-align: top;
+}
+
+.area-row .item_detail a {
+    font-family: SVN-Karla;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    color: #ffffff;
+    border-radius: 100px;
+    background-color: #3ebbed;
+    padding: 5px 21px 6px;
+  }
+
+#individual h2 {
+  font-family: SVN-Karla;
+  font-size: 35px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #fea3a3;
+  text-align: center;
+}
+
+#individual img {
+  padding: 0 20px;
+  width: 100%;
+}
+
+#individual .prod_brand {
+  font-family: Karla;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #bfdaee;
+  text-align: center;
+  text-transform: uppercase
+}
+
+#individual .prod_name {
+  text-align: center;
+}
+
+#individual .prod_name a {
+  font-family: Karla;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #1b5eaf;
+  text-transform: uppercase
+}
+
+#individual .prod_price {
+  font-family: Karla;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #1b5eaf;
+  text-align: center;
+}
+
+#individual .prod_price .currency {
+  font-family: SVN-Karla;
+  font-size: 10px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #1b5eaf;
+  vertical-align: top;
+}
+
+.north svg.svg-logo path, .north svg.svg-fb path, .north svg.svg-insta path, .north svg.svg-yt path {
+  fill: #3ebbed;
+}
+
+.north svg.svg-logo polyline, .north svg.svg-logo polygon, .north svg.svg-menu path, .north svg.svg-cart path, .north svg.svg-cart ellipse, .north svg.svg-account path, .north svg.svg-account circle, .north svg.svg-search path {
+  stroke: #3ebbed;
+}
+
+.central svg.svg-logo path, .central svg.svg-fb path, .central svg.svg-insta path, .central svg.svg-yt path {
+  fill: #56c9b1;
+}
+
+.central svg.svg-logo polyline, .central svg.svg-logo polygon, .central svg.svg-menu path, .central svg.svg-cart path, .central svg.svg-cart ellipse, .central svg.svg-account path, .central svg.svg-account circle, .central svg.svg-search path {
+  stroke: #56c9b1;
+}
+
+.south svg.svg-logo path, .south svg.svg-fb path, .south svg.svg-insta path, .south svg.svg-yt path {
+  fill: #fea3a3;
+}
+
+.south svg.svg-logo polyline, .south svg.svg-logo polygon, .south svg.svg-menu path, .south svg.svg-cart path, .south svg.svg-cart ellipse, .south svg.svg-account path, .south svg.svg-account circle, .south svg.svg-search path {
+  stroke: #fea3a3;
 }

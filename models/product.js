@@ -6,6 +6,7 @@ var productSchema = new Schema({
   merchant_id: { type: Schema.Types.ObjectId, ref: 'User' },
   name: { type: String, required: true },
   description: { type: String, required: true },
+  how_to: { type: String, required: true },
   description_image: String,
   homepage_image: String,
   brand: { type: String, required: false },
@@ -32,7 +33,10 @@ var productSchema = new Schema({
   color: String,
   wanna_buy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   created_at: { type : Date, default : Date.now },
-  updated_at: Date
+  updated_at: Date,
+  box_header: String,
+  boxProducts: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
+  boxZone: Number
 });
 
 var Product = mongoose.model("Product", productSchema);

@@ -105,7 +105,7 @@ router.get('/products/preview', isMerchantOrAdmin, function(req, res) {
   res.render("products/preview");
 });
 
-router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: 'photosmobile', maxCount: 4}, {name: "brandlogo", maxCount: 1}, { name: "description_image", maxCount: 1}, { name: "homepage_image", maxCount: 1}]), function(req, res) {
+router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: 'photosmobile', maxCount: 4}, {name: "brandlogo", maxCount: 1}, { name: "description_image", maxCount: 1}, { name: "homepage_image", maxCount: 1}, { name: "box_header", maxCount: 1}]), function(req, res) {
   console.log(req.body);
   // req.Validator.validate('selldate', i18n.__('product.sellDate'), {
   //   required: true
@@ -164,6 +164,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         brand_logo: req.files['brandlogo'] ? "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['brandlogo'][0].key : '',
         description_image: req.files['description_image'] ? "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['description_image'][0].key : '',
         homepage_image: req.files['homepage_image'] ? "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['homepage_image'][0].key : '',
+        box_header: req.files['box_header'] ? "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['box_header'][0].key : '',
         options: req.body.options,
         is_published: false,
         video: req.body.videoUrl,
@@ -175,7 +176,9 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         review_url: req.body.reviewUrl,
         extend: req.body.extend ? req.body.extend : 0,        
         is_hot: req.body.is_hot,
-        color: req.body.color
+        color: req.body.color,
+        boxProducts: JSON.parse(JSON.stringify(req.body.boxProducts)),
+        boxZone: req.body.boxZone
       });
     
       if (req.files['photosmobile']) {
@@ -202,7 +205,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
   });
 });
 
-router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: 'photosmobile', maxCount: 4}, {name: "brandlogo", maxCount: 1}, { name: "description_image", maxCount: 1}, { name: "homepage_image", maxCount: 1}]), function(req, res) {
+router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: 'photosmobile', maxCount: 4}, {name: "brandlogo", maxCount: 1}, { name: "description_image", maxCount: 1}, { name: "homepage_image", maxCount: 1}, { name: "box_header", maxCount: 1}]), function(req, res) {
   Product.findOne({_id: req.params.id}, function (err, product) {
     if (err)
       console.log(err);
@@ -231,6 +234,8 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
     product.extend = req.body.extend ? req.body.extend : 0;
     product.is_hot = req.body.is_hot;
     product.color = req.body.color;
+    product.boxZone = req.body.boxZone;
+    product.boxProducts = JSON.parse(JSON.stringify(req.body.boxProducts));
     
     if (product.price >= 50000)
       product.delivery_price = 0;
@@ -264,6 +269,10 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
 
     if (req.files['homepage_image']) {
       product.homepage_image = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['homepage_image'][0].key;
+    }
+
+    if (req.files['box_header']) {
+      product.box_header = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['box_header'][0].key;
     }
 
     console.log(product);
