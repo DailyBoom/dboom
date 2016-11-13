@@ -16,6 +16,13 @@
             </div>
             <div class="row">
                 <div id="login_row" class="col s12 l3 offset-l1">
+                    @if (model.errors) {
+						<ul class="red-text center">
+							@model.errors.forEach(function(error) {
+								<li>@error</li>
+							})
+						</ul>
+					}
                     <div class="radios">
                         <div class="radio"><input type="radio" id="login_btn" name="login" checked/><label for="login_btn">Tôi là thành viên Yppuna.vn</label></div>
                         <div class="radio"><input type="radio" id="signup_btn" name="login" /><label for="signup_btn">Tôi là khách hàng mới</label></div>
@@ -28,7 +35,7 @@
                             <div class="right"><a class="forgot" href="/forgot" >Quên mật khẩu?</a></div>
                             <button>TIẾP TỤC</button>
                         </form>
-                        <div id="facebook">Đăng nhập bằng Facebook</div>
+                        <div id="c_facebook" data-mall="true">Đăng nhập bằng Facebook</div>
                     </div>
                     <div id="c_signup" class="hide">
                         <form method="post" action="/checkout/signup">

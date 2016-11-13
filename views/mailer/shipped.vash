@@ -46,7 +46,7 @@
 		<table class="db-mail">
 			<thead class="db-nav blue-grey darken-3">
 				<tr>
-					<th><img class="db-logo-img" src="http://www.yppuna.vn/images/email_logo.png" alt="Yppuna logo" /></th>
+					<th><img class="db-logo-img" src="http://www.yppuna.vn/images/logo.svg" alt="Yppuna logo" /></th>
 				</tr>
 			</thead>
 			<tbody class="blue-grey lighten-5 blue-grey-text text-darken-3">

@@ -91,7 +91,7 @@
 					</div>
 				</div>
 				<div class="col s12 l8 hide-on-med-and-up">
-					<div class="item_img"><img src="@model.products[0].mobile_images[0]"/></div>
+					<div class="item_img"><img src="@model.products[0].images[0]"/></div>
 					<div class="item_detail hide-on-med-and-up">
 						<a href="/box/@model.products[0].id">
 							XEM CHI TIẾT
@@ -154,8 +154,8 @@
 			<h2>SẢN PHẨM BÁN LẺ</h2>
 			<div class="row">
 			@model.hotProducts.forEach(function(product) {
-				<div class="">
-					<img src="@product.mobile_images[0]" />
+				<div class="center">
+					<img src="@product.images[0]" />
 					<div class="prod_brand">@product.brand</div>
 					<div class="prod_name"><a href="/detailed/@product.id">@product.name</a></div>
 					<div class="prod_price">@product.price<span class="currency">đ</span></div>

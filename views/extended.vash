@@ -137,7 +137,7 @@
 				<div class="row">
 					@model.hotProducts.forEach(function(product) {
 						<div class="">
-							<img src="@product.mobile_images[0]" />
+							<img src="@product.images[0]" />
 							<div class="prod_brand">@product.brand</div>
 							<div class="prod_name"><a href="/detailed/@product.id">@product.name</a></div>
 							<div class="prod_price">@product.price<span class="currency">đ</span></div>

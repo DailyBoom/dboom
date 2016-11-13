@@ -35,7 +35,7 @@
 		<table class="db-mail">
 			<thead class="db-nav blue-grey darken-3">
 				<tr>
-					<th><img class="db-logo-img" src="http://www.yppuna.vn/images/email_logo.png" alt="Yppuna logo" /></th>
+					<th><img class="db-logo-img" src="http://www.yppuna.vn/images/logo.svg" alt="Yppuna logo" /></th>
 				</tr>
 			</thead>
 			<tbody class="blue-grey lighten-5 blue-grey-text text-darken-3">
@@ -57,7 +57,7 @@
 							<br>@model.order.shipping.city
 							<br>
 							<br>Hàng sẽ được gửi khi tuần khuyến mãi kết thúc. Hàng sẽ về đến tận cửa nhà/văn phòng của quý khách từ 1-3 ngày (tùy thuộc địa chỉ người nhận).
-							<br>Quý khách có thể thay đổi địa chỉ giao hàng trong 24 giờ sau khi mua hàng. Để thay đổi địa chỉ giao hàng làm ơn email : yppun@gmail.com hoặc gọi hotline: 0169 987 6023.
+							<br>Quý khách có thể thay đổi địa chỉ giao hàng trong 24 giờ sau khi mua hàng. Để thay đổi địa chỉ giao hàng làm ơn email : yppuna@gmail.com hoặc gọi hotline: 0169 987 6023.
 							<br>
 							<br>Xin cảm ơn quý khách đã tin tưởng mua hàng tại Yppuna. 
 							<br/>Cùng Yppuna Đẹp Lên Từng Ngày.

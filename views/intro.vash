@@ -72,14 +72,15 @@
         $(window).load(function() {
             $('.intro-text span').first().add($('.intro-title')).delay(1000).fadeOut().promise().done(function() {
                 $(this).eq(1).next().add($('.intro-logo')).fadeIn().promise().done(function() {
-                    $(this).eq(1).delay(1000).fadeOut(function() {
+                    $(this).eq(1).delay(1500).fadeOut(function() {
                         $(this).next().fadeIn(function() {              
-                            $(this).add($('.intro-logo')).delay(1000).fadeOut().promise().done(function() {
+                            $(this).add($('.intro-logo')).delay(1500).fadeOut().promise().done(function() {
                                 var text = $(this).eq(1);
-                                $('.intro-video').fadeIn(function() {
-                                    $(this)[0].play();
-                                    $(this)[0].addEventListener('ended', function() {
-                                        $('.intro-video').fadeOut(function() {
+                                //$('.intro-video').fadeIn(function() {
+                                    // $(this)[0].defaultPlaybackRate = 1.5;
+                                    // $(this)[0].play();
+                                    // $(this)[0].addEventListener('ended', function() {
+                                    //    $('.intro-video').fadeOut(function() {
                                             text.next().add($('.intro-logo')).fadeIn().promise().done(function() {
                                                 $(this).eq(1).next().fadeIn(function() {                     
                                                     $('.intro-logo').css('margin-top', '100px');
@@ -88,9 +89,9 @@
                                                     });
                                                 });
                                             });
-                                        });
-                                    });
-                                });
+                                      //  });
+                                   // });
+                               // });
                             });
                         });
                     });

@@ -86,13 +86,62 @@ var getOrderTotal = function(order) {
   }
 }
 
+var deliveryPrices = {
+    "HỒ CHÍ MINH": {
+        "QUẬN 1": 18000,
+        "QUẬN 2": 18000,
+        "QUẬN 3": 18000,
+        "QUẬN 4": 18000,
+        "QUẬN 5": 18000,
+        "QUẬN 6": 18000,
+        "QUẬN 7": 18000,
+        "QUẬN 8": 18000,
+        "QUẬN 9": 25000,
+        "QUẬN 10": 18000,
+        "QUẬN 11": 18000,
+        "QUẬN 12": 25000,
+        "QUẬN TÂN BÌNH": 18000,
+        "QUẬN THỦ ĐỨC": 25000,
+        "QUẬN BÌNH TÂN": 25000,
+        "QUẬN BÌNH THẠNH": 18000,
+        "QUẬN GÒ VẤP": 18000,
+        "QUẬN PHÚ NHUẬN": 18000,
+        "QUẬN TÂN PHÚ": 18000,
+        "HUYỆN CỦ CHI": 28000,
+        "HUYỆN NHÀ BÈ": 28000,
+        "HUYỆN HÓC MÔN": 28000,
+        "HUYỆN BÌNH CHÁNH": 28000,
+        "HUYỆN CẦN GIỜ": 28000
+    },
+    "HÀ NỘI": {
+        "BA ĐÌNH": 30000,
+        "HÀ ĐÔNG": 35000,
+        "QUẬN THANH XUÂN": 30000,
+        "HOÀNG MAI": 30000,
+        "HAI BÀ TRƯNG": 30000,
+        "ĐỐNG ĐA": 30000,
+        "CẦU GIẤY": 30000,
+        "LONG BIÊN": 35000,
+        "TÂY HỒ": 30000,
+        "QUẬN HOÀN KIẾM": 30000,
+        "TỪ LIÊM": 35000,
+        "CHƯƠNG MỸ": 40000,
+        "ĐAN PHƯỢNG": 40000,
+        "ĐÔNG ANH": 40000,
+        "GIA LÂM": 40000,
+        "HOÀI ĐỨC": 40000,
+        "MÊ LINH": 40000,
+        "THANH OAI": 40000,
+        "THANH TRÌ": 40000
+    }
+};
+
 var getOrderCartTotal = function(order) {
   order.totalOrderAmt = 0;
   order.cart.forEach(function(item) {
     order.totalOrderAmt += item.product.price * item.quantity;
   });
-  if (order.totalOrderAmt < 50000)
-     order.totalOrderAmt += 2500;
+  order.totalOrderAmt += deliveryPrices[order.shipping.city.toUpperCase()][order.shipping.district.toUpperCase()];
 };
 
 var reservePayco = function(order) {
@@ -422,11 +471,9 @@ router.post('/deposit_checkout', function(req, res) {
         if (err)
           console.log(err);
         order.status = "Waiting";
-        order.deposit_name = req.body.deposit_name;
+        order.deliv_method = req.body.deliv_method;
         order.created_at = Date.now();
-        if (req.user)
-          order.shipping = req.user.shipping;
-        getOrderCartTotal(order);
+        //getOrderCartTotal(order);
         if (order.coupon) {
           order.coupon.used = true;
           order.coupon.save();

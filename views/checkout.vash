@@ -75,6 +75,8 @@
 						<div class="full-name">@model.order.shipping.full_name</div>
 						<div class="address">@model.order.shipping.address</div>
 						<div class="city">@model.order.shipping.city</div>
+						<div class="city">@model.order.shipping.district</div>
+						<div class="city">@model.order.shipping.ward</div>
 						<div class="phone">@model.order.phone_number</div>
 					</div>
                     <div class="cart-header">
@@ -120,7 +122,7 @@
                             <div class="col s4">
                                 <div class="total">@model.cart_total</div>
                                 <div class="total-dc">0</div>
-                                <div class="total-amount">@model.cart_total</div>                                
+                                <div class="total-amount">@model.order.totalOrderAmt</div>                                
                             </div>
                         </div>
                     </div>
@@ -135,16 +137,6 @@
                 var shipping = 0;
                 var cart_total = @model.cart_total;
 				$(".price, .total, .total-dc, .total-amount").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
-                $("input[type='radio'][name='deliv_method']").on('change', function() {
-                    if ($('#standard').is(':checked')) {
-                        shipping = 0;
-                    }
-                    else if ($('#fast').is(':checked')) {
-                        shipping = 15000; 
-                    }
-                    $('.total-amount').html(cart_total + shipping);
-                    $('.total-amount').formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
-                });
                 //$('.modal').modal();
                 $("#checkout_btn").on("click", function() {
                     
@@ -153,7 +145,7 @@
                         url: "/deposit_checkout",
                         dataType: "json",
                         data: {
-                            shipping: shipping
+                            shipping: $("input[name=deliv_method]:checked")
                         },
                         success: function (res) {
                             if ($('#delivery').is(':checked')) {

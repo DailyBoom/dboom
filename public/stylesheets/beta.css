@@ -1085,7 +1085,7 @@ header, main {
   background-color: #3ebbed;
 }
 
-#login_modal #facebook, #login_row #facebook {
+#login_modal #facebook, #login_row #c_facebook {
   margin-top: 11px;
   border-radius: 64px;
   border: solid 1px #3a589d;
@@ -1098,9 +1098,10 @@ header, main {
   font-stretch: normal;
   letter-spacing: -0.1px;
   color: #3a589d;
+  cursor: pointer;
 }
 
-#login_modal #facebook .s2, #login_row #facebook .s2 {
+#login_modal #facebook .s2, #login_row #c_facebook .s2 {
   background: #3a589d;
 }
 
@@ -2963,6 +2964,12 @@ input[type=number]::-webkit-outer-spin-button {
     margin-top: 12px;
   }
 
+  #detailed_box .description {
+    padding: 0 20px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
   #detailed_product {
     margin: 0;
   }
@@ -3200,7 +3207,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 50px;
   }
 
-  .description, .how-to, .read-less {
+  #detailed_product .description, .how-to, .read-less {
     display: none;
   }
 
