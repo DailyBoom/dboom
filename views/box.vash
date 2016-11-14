@@ -2,22 +2,6 @@
 	@html.block("body", function(model) {
 		<div id="detailed_box" class="container @(model.product.boxZone == 0 ? 'north' : '') @(model.product.boxZone == 1 ? 'central' : '') @(model.product.boxZone == 2 ? 'south' : '')">
 			<div class="row">
-                <div class="area-header hide-on-small-only">
-                    <div class="right">
-                        @if (model.product.boxZone == 0) {
-                            <span>Miền Bắc</span>
-                            <img src="/images/north-logo.svg" />
-                        }
-                        else if (model.product.boxZone == 1) {
-                            <span>Miền Trung</span>
-					        <img src="/images/central-logo.svg" />
-                        }
-                        else if (model.product.boxZone == 2) {
-                            <span>Miền Nam</span>
-					        <img src="/images/south-logo.svg"/>
-                        }
-                    </div>
-			    </div>
 				<div class="col s12 l4 area-row" id="left">
                     <img class="box-header" src="@model.product.box_header" />
 					<div class="item_names row center show-on-small-only">

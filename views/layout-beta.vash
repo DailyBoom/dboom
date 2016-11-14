@@ -193,7 +193,7 @@
       }
       <nav class="hide-on-med-and-up">
         <div class="nav-wrapper">
-          <a href="/" class="logo"><img class="svg svg-logo" src="/images/logo.svg"/></a>
+          <a href="/home" class="logo"><img class="svg svg-logo" src="/images/logo.svg"/></a>
           <ul id="nav-mobile" class="right">
             <li><a href="@(model.user ? '/mypage' : '#login_modal')" class="modal-trigger"><img class="svg svg-account" src="/images/icon-account.svg" /></a></li>
             <li><a href="#" data-activates="slide-cart" class="button-collapse cart-collapse">
@@ -235,7 +235,7 @@
       }
       <ul id="slide-out" class="side-nav">
         <div class="slide-menu-wrapper">
-          <li class="hide-on-small-only"><a href="/" class="logo"><img class="svg svg-logo" src="/images/logo.svg"/></a></li>
+          <li class="hide-on-small-only"><a href="/home" class="logo"><img class="svg svg-logo" src="/images/logo.svg"/></a></li>
           <li><a class="waves-effect side-header" href="#!">TRANG CHỦ</a></li>        
           <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
@@ -475,6 +475,22 @@
       </ul>
   		@html.include("error", model)
       <main>
+      <div class="area-header hide-on-small-only">
+        <div class="right">
+          <a href="@(model.zone == 0 ? '#' : '/home?zone=0')" class="@(model.zone == 0 ? '' : 'zone-hide')">
+            <span class="north">Miền Bắc</span>
+            <img class="north" src="/images/north-logo.svg" />
+          </a>
+          <a href="@(model.zone == 1 ? '#' : '/home?zone=1')" class="@(model.zone == 1 ? '' : 'zone-hide')">
+            <span class="central">Miền Trung</span>
+            <img class="central" src="/images/central-logo.svg" />
+          </a>
+          <a href="@(model.zone == 2 ? '#' : '/home?zone=2')" class="@(model.zone == 2 ? '' : 'zone-hide')">
+            <span class="south">Miền Nam</span>
+            <img class="south" src="/images/south-logo.svg"/>
+          </a>
+        </div>
+      </div>
       @html.block("body")
       </main>
       <footer>
@@ -573,6 +589,10 @@
           menuWidth: is_mobile ? 306 : 391
         });
         $(document).ready(function(){
+          $(".area-header a[href='#']").on("click", function() {
+            $('.area-header a.zone-hide').first().toggleClass('zone-view-first');
+            $('.area-header a.zone-hide').nextAll('.zone-hide').toggleClass('zone-view-second');
+          });
           $(".product-price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
           moment().locale('vi');
           $("#birthday, .birthday").combodate({

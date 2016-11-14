@@ -699,10 +699,38 @@ header, main {
   padding-right: 45.5px !important;
   margin-left: 0;
   display: inline-block;
+  position: relative;
+  height: 90px;
+}
+
+.area-header a {
+  position: absolute;
+  top: 0;
+  right: 46px;
+  transition: right, opacity;
+  transition-duration: 0.5s;
+}
+
+.area-header a.zone-hide {
+  right: 0;
+  opacity: 0;
+  z-index: -1;
+}
+
+.area-header a.zone-view-first {
+  right: 446px;
+  opacity: 1;
+  z-index: 10;
+}
+
+.area-header a.zone-view-second {
+  right: 246px;
+  opacity: 1;
+  z-index: 10;
 }
 
 .area-header img {
-  width: 81px;
+  height: 90px;
   vertical-align: middle;
 }
 
@@ -2099,10 +2127,6 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* User page */
 
-#mypage {
-  margin-top: 81px; 
-}
-
 #mypage .username {
   font-family: SVN-Karla;
   font-size: 22px;
@@ -2656,6 +2680,10 @@ input[type=number]::-webkit-outer-spin-button {
   color: #5aa0d6;
 }
 
+#blog .content img {
+  max-width: 100%;
+}
+
 #blog .content iframe {
   width: 100%;
   height: auto;
@@ -2719,6 +2747,10 @@ input[type=number]::-webkit-outer-spin-button {
   font-style: normal;
   font-stretch: normal;
   color: #b3c2cf;
+}
+
+#blog_post article img {
+  max-width: 100%;
 }
 
 #blog_post #comments {

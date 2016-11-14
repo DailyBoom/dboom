@@ -72,9 +72,9 @@
         $(window).load(function() {
             $('.intro-text span').first().add($('.intro-title')).delay(1000).fadeOut().promise().done(function() {
                 $(this).eq(1).next().add($('.intro-logo')).fadeIn().promise().done(function() {
-                    $(this).eq(1).delay(1500).fadeOut(function() {
+                    $(this).eq(1).delay(3000).fadeOut(function() {
                         $(this).next().fadeIn(function() {              
-                            $(this).add($('.intro-logo')).delay(1500).fadeOut().promise().done(function() {
+                            $(this).add($('.intro-logo')).delay(3000).fadeOut().promise().done(function() {
                                 var text = $(this).eq(1);
                                 //$('.intro-video').fadeIn(function() {
                                     // $(this)[0].defaultPlaybackRate = 1.5;

@@ -3,12 +3,6 @@
 	<div class="container">
 		@if(model.zone == 0) {
 		<section id="north">
-			<div class="area-header hide-on-small-only">
-				<div class="right">
-					<span>Miền Bắc</span>
-					<img src="/images/north-logo.svg" />
-				</div>
-			</div>
 			<div class="row area-row">
 				<div class="col s12 l4">
 					<img class="item_cover" src="@model.products[0].box_header" />
@@ -52,12 +46,6 @@
 		<!-- -->
 		@if(model.zone == 1) {
 		<section id="central">
-			<div class="area-header hide-on-small-only">
-				<div class="right">
-					<span>Miền Trung</span>
-					<img src="/images/central-logo.svg" />
-				</div>
-			</div>
 			<div class="row area-row">
 				<div class="col s12 l8 hide-on-small-only">
 					<div class="item_img"><img src="@model.products[0].images[0]"/></div>
@@ -104,12 +92,6 @@
 		<!-- -->
 		@if(model.zone == 2) {		
 		<section id="south">
-			<div class="area-header hide-on-small-only">
-				<div class="right">
-					<span>Miền Nam</span>
-					<img src="/images/south-logo.svg"/>
-				</div>
-			</div>
 			<div class="row area-row">
 				<div class="col s12 l4">
 					<img class="item_cover" src="@model.products[0].box_header" />

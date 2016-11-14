@@ -71,16 +71,7 @@ router.get('/products/list', isMerchantOrAdmin, function(req, res) {
 });
 
 router.get('/products/new', isMerchantOrAdmin, function(req, res) {
-  Product.find({scheduled_at: {$exists: true}}, 'scheduled_at', function(err, products) {
-    User.find({ role: 'merchant' }, function(err, merchants) {
-      var scheduled = products.map(function(product) {
-        if (product.scheduled_at) {
-          return [product.scheduled_at.getFullYear(), product.scheduled_at.getMonth(), product.scheduled_at.getDate()];
-        }
-      });
-      res.render("products/new", { scheduled: scheduled, merchants: merchants });
-    });
-  });
+  res.render("products/new");
 });
 
 router.get('/products/delete/:id', isAdmin, function(req, res) {
@@ -91,15 +82,8 @@ router.get('/products/delete/:id', isAdmin, function(req, res) {
 
 router.get('/products/edit/:id', isMerchantOrAdmin, function(req, res) {
   Product.findOne({_id: req.params.id}, function(err, product) {
-    Product.find({scheduled_at: {$exists: true}, _id: {$ne: product.id}}, 'scheduled_at', function(err, products) {
-      var scheduled = products.map(function(product) {
-        if (product.scheduled_at) {
-          return [product.scheduled_at.getFullYear(), product.scheduled_at.getMonth(), product.scheduled_at.getDate()];
-        }
-      });
-      res.render("products/edit", { product: product, scheduled: scheduled });
+      res.render("products/edit", { product: product });
     });
-  });
 });
 
 router.get('/products/preview', isMerchantOrAdmin, function(req, res) {
