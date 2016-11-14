@@ -7,6 +7,13 @@
 						<div class="col s6"><h3><a href="/login">@model.__('login')</a></h3></div>
 						<div class="col s6 active"><h3>@model.__('signup')</h3></div>
 					</div>
+					@if (model.errors) {
+						<ul class="red-text center">
+							@model.errors.forEach(function(error) {
+								<li>@error</li>
+							})
+						</ul>
+					}
 					<form method="post" action="/signup">
 						<label for="username">Họ và tên</label>
 						<input id="username" name="username" type="text" placeholder="Họ và tên" />
@@ -25,7 +32,7 @@
 							Khi nhấn đăng ký, bạn đã đồng ý thực hiện mọi giao dịch mua bán theo <a href="/terms">điều kiện sử dụng và chính sách</a> và chính sách
 						</div>
 						<button>ĐĂNG KÝ</button>
-						<div id="facebook">Đăng nhập bằng Facebook</div>
+						<div id="c_facebook">Đăng nhập bằng Facebook</div>
 					</form>
 				</div>
 			</div><!-- .row -->

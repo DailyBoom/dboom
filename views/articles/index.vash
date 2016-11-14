@@ -43,12 +43,15 @@
     </div>
     <script>
         $(window).load(function() {
-            $('.grid').masonry({
-                // options
-                itemSelector: '.grid-item',
-                gutter: 15,
-                percentPosition: true
-            });
+            var is_mobile = @model.is_mobile;
+            if (!is_mobile) {
+                $('.grid').masonry({
+                    // options
+                    itemSelector: '.grid-item',
+                    gutter: 15,
+                    percentPosition: true
+                });
+            }
         });
     </script>
     })

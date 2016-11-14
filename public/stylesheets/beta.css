@@ -2753,6 +2753,11 @@ input[type=number]::-webkit-outer-spin-button {
   max-width: 100%;
 }
 
+#blog_post article iframe {
+  width: 100%;
+  height: auto;
+}
+
 #blog_post #comments {
   margin-top: 30px;
   padding-top: 30px;
@@ -2896,6 +2901,10 @@ input[type=number]::-webkit-outer-spin-button {
   footer .footer-content .sns a svg {
     width: 100%;
     height: auto;
+  }
+
+  footer .verif img {
+    width: 60%;
   }
 
   footer .footer-info {
@@ -3356,6 +3365,26 @@ input[type=number]::-webkit-outer-spin-button {
   #terms #transport_fee .l5 .l4:nth-child(4) .sub {
     padding: 0;
   }
+
+  #blog {
+    padding: 0 25px;
+  }
+
+  #blog .grid-item {
+    width: 100%;
+  }
+
+  #blog_post {
+    padding: 120px 35px 0;
+  }
+
+  #blog_post article, #blog_post .fb-share-button, #blog_post #comments {
+    padding: 0;
+  }
+
+  .pagination {
+    width: auto;
+  }
 }
 
 @media only screen and (min-width : 992px) {
@@ -3463,6 +3492,10 @@ input[type=number]::-webkit-outer-spin-button {
     font-style: normal;
     font-stretch: normal;
     color: #35ace8;
+  }
+
+  footer .verif img {
+    width: 60%;
   }
 
   footer .newsletter {

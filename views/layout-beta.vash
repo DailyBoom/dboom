@@ -176,7 +176,7 @@
                 <label for="confirm_password">Nhập lại mật khẩu</label>
                 <input id="confirm_password" name="confirm_password" type="password" placeholder="Nhập lại mật khẩu" />
                 <label for="birthday" class="bday">Ngày sinh</label>
-                <input id="birthday" type="text" />
+                <input id="birthday" name="birthday" type="text" />
                 <div class="gender">
                   <label>Giới tính</label><input name="gender" type="radio" value="0" id="male" /><label for="male" class="sub">Nam</label><input name="gender" type="radio" value="0" id="female" /><label for="female" class="sub">Nữ</label>
                 </div>
@@ -513,6 +513,9 @@
                 <a href="http://instagram.com/yppuna"><img class="svg svg-insta" src="/images/icon_insta.svg" /></a>
                 <a href="https://www.youtube.com/channel/UCqFV0hp7cnYA0tZMAGq9paA"><img class="svg svg-yt" src="/images/icon_youtube.svg" /></a>
               </div>
+              <div class="verif center">
+                <img src="/images/dathongbao.png" />
+              </div>
             </div>
           </div>
           <div class="footer-info">
@@ -541,6 +544,9 @@
                     <img src="/images/hotline_icon.png" />
                     <div class="title">Hotline hỗ trợ</div>
                     <div class="phone">01699 876 023</div>
+                  </div>
+                  <div class="verif">
+                    <img src="/images/dathongbao.png" />
                   </div>
                 </div>
                 <div class="col l4">

@@ -97,6 +97,9 @@ router.get('/mall', function(req, res, next) {
   if (req.query.category) {
     query.where('category', req.query.category);
   }
+  if (req.query.s) {
+    query.or([{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }])
+  }  
   query.paginate(page, per_page, function(err, products, total) {
     Product.find({ $or: [{ boxZone: 0 }, { boxZone: 1 }, { boxZone: 2 }] }, {}, {}, function(err, boxes) {
       Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
