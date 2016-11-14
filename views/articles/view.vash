@@ -20,11 +20,9 @@
         <div id="comments" class="row">
             @if(model.user) {
                 <form id="new_comment">
-                    <div class="input-field col s12">
-                        <input id="comment" name="comment" type="text"/>
-                        <label for="comment">@model.__('blog.new_comment')</label>
-                    </div>
-                    <button class="btn core-color right">@model.__('blog.submit')</button>
+                    <input id="comment" name="comment" type="text"/>
+                    <label for="comment">@model.__('blog.new_comment')</label>
+                    <button class="right">@model.__('blog.submit')</button>
                 </form>
             }
             else {
