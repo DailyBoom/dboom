@@ -19,12 +19,13 @@ var fs = require('fs');
 var paginate = require('express-paginate');
 require('mongoose-pagination');
 var transporter = nodemailer.createTransport(smtpTransport({
-    host: config.Nodemailer.host,
+    service: 'gmail',
     auth: {
         user: config.Nodemailer.auth.user,
         pass: config.Nodemailer.auth.pass
     }
 }));
+
 
 var isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
@@ -311,7 +312,7 @@ router.post('/users/delete', isAuthenticated, function(req, res) {
 router.get('/signup', function(req, res, next) {
   if (req.user)
     res.redirect('/');
-  req.Validator.getErrors(function() { res.render('signup', { title: "회원가입" }); });
+  req.Validator.getErrors(function() { res.render('signup', { title: "Đăng ký" }); });
 });
 
 router.post('/signup', function(req, res) {
@@ -401,7 +402,7 @@ router.post('/signup', function(req, res) {
                   if (err) {
                     console.log(err);
                   }
-                  return res.redirect('/');
+                  return res.redirect('/home');
                 });
             });
           });
@@ -606,7 +607,7 @@ router.post('/wholesale', function(req, res) {
 
 router.get('/auth/facebook',
   passport.authenticate('facebook',
-    { display: 'popup'}
+    { display: 'popup', scope: ['email'] }
 ));
 
 router.get('/auth/facebook/callback',

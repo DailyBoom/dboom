@@ -38,8 +38,8 @@
       <meta property="og:image" content="@model.ext_cover" />
     }
     else {
-  		<meta itemprop="image" content="http://www.yppuna.vn/images/db_ko_05.png" />
-      <meta property="og:image" content="http://www.yppuna.vn/images/db_ko_05.png" />
+  		<meta itemprop="image" content="http://www.yppuna.vn/images/logo.svg" />
+      <meta property="og:image" content="http://www.yppuna.vn/images/logo.svg" />
     }
     <meta property="og:site_name" content="Yppuna">
     <meta property="og:url" content="http://www.yppuna.vn@model.url" />

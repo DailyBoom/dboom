@@ -15,21 +15,21 @@
 						<a href="/users/edit">THAY ĐỔI THÔNG TIN</a>
 					</div>
 					<div class="user-info col s12">
-						<span class="col s4 title">Họ và tên:</span><span class="content col s6">@model.user.username</span>
-						<span class="col s4 title">Email:</span><span class="content col s6 ">@model.user.email</span>
-						<span class="title col s4">Giới tính:</span><span class="content col s6 ">@(model.user.gender == 0 ? 'Nam' : 'Nữ')</span>
-						<span class="title col s4">Ngày sinh:</span><span class="content col s6 ">@model.moment(model.user.birthday).format('DD - MM - YYYY')</span>
+						<div><span class="col s4 title">Họ và tên:</span><span class="content col s6">@model.user.username</span></div>
+						<div><span class="col s4 title">Email:</span><span class="content col s6 ">@model.user.email</span></div>
+						<div><span class="title col s4">Giới tính:</span><span class="content col s6 ">@(model.user.gender == 0 ? 'Nam' : 'Nữ')</span></div>
+						<div><span class="title col s4">Ngày sinh:</span><span class="content col s6 ">@model.moment(model.user.birthday).format('DD - MM - YYYY')</span></div>
 					</div>
 					<div class="col s12">
 						<h2>Địa chỉ giao hàng</h2>
 					</div>
 					<div class="user-shipping col s12">
-						<span class="col s4 title">Tên:</span><span class="content col s6">@model.user.shipping.full_name</span>
-						<span class="col s4 title">Tỉnh/ Thành phố:</span><span class="content col s6">@model.user.shipping.city</span>
-						<span class="col s4 title">Quận/Huyện:</span><span class="content col s6">@model.user.shipping.district</span>
-						<span class="title col s4">Phường/Xã:</span><span class="content col s6">@model.user.shipping.ward</span>
-						<span class="title col s4">Địa chỉ:</span><span class="content col s6">@model.user.shipping.address</span>
-						<span class="title col s4">Ngày sinh:</span><span class="content col s6">@model.user.shipping.phone_number</span>
+						<div><span class="col s4 title">Tên:</span><span class="content col s6">@model.user.shipping.full_name</span></div>
+						<div><span class="col s4 title">Tỉnh/ Thành phố:</span><span class="content col s6">@model.user.shipping.city</span></div>
+						<div><span class="col s4 title">Quận/Huyện:</span><span class="content col s6">@model.user.shipping.district</span></div>
+						<div><span class="title col s4">Phường/Xã:</span><span class="content col s6">@model.user.shipping.ward</span></div>
+						<div><span class="title col s4">Địa chỉ:</span><span class="content col s6">@model.user.shipping.address</span></div>
+						<div><span class="title col s4">Ngày sinh:</span><span class="content col s6">@model.user.shipping.phone_number</span></div>
 					</div>
 					<div class="col l5 s12 edit hide-on-med-and-up">
 						<a href="/users/edit">THAY ĐỔI THÔNG TIN</a>

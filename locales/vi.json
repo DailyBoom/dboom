@@ -187,5 +187,7 @@
 	"blog.submit": "Gửi",
 	"blog.delete": "Xóa bỏ",
 	"blog.login": "Bạn phải <a href='/login'>đăng nhập</a> để bình luận",
-	"passNotConfirmed": "Xác Nhận Lại Mật Khẩu"
+	"passNotConfirmed": "Xác Nhận Lại Mật Khẩu",
+	"unique": "%s has to be unique",
+	"user.birthday": "Ngày sinh"
 }

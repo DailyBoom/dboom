@@ -195,7 +195,8 @@ passport.use(new FacebookStrategy({
     clientID: config.Facebook.clientID,
     clientSecret: config.Facebook.clientSecret,
     callbackURL: config.Facebook.callbackURL,
-    profileFields: ['id', 'displayName'],
+    profileFields: ['id', 'displayName', 'emails'],
+    enableProof: true,
     passReqToCallback: true
   },
   function(req, accessToken, refreshToken, profile, done) {
@@ -211,7 +212,7 @@ passport.use(new FacebookStrategy({
               console.log(profile);
               user = new User({
                   name: profile.displayName,
-                  email: profile.email,
+                  //email: profile.emails[0].value,
                   username: 'DBU'+profile.id,
                   role: 'user',
                   //now in the future searching on User.findOne({'facebook.id': profile.id } will match because of this next line
@@ -219,7 +220,7 @@ passport.use(new FacebookStrategy({
               });
               user.save(function(err) {
                 if (err) console.log(err);
-                return done(err, user);
+                  return done(err, user);
               });
           } else {
               //found user. Return

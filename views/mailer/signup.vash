@@ -1,23 +1,31 @@
 <html>
 	<head>
-		<title>가입해 주셔서 감사합니다 - 데일리 붐</title>
+		<title>Yppuna</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Hanna:400,300,200,100' rel='stylesheet' type='text/css'>
 		<style>
+			@@font-face {
+				font-family: 'SVN-Karla';
+				src: url('http://yppuna.vn/fonts/SVN-Karla_Regular.otf'); /* IE9 Compat Modes */
+				src: url('http://yppuna.vn/fonts/SVN-Karla_Regular.otf') format('truetype'); /* IE9 Compat Modes */
+			}
+
 			h1,h2,h3,h4,h5,h6 {
-				font-family: 'Hanna', sans-serif;
+				font-family: 'SVN-Karla';
 				margin: 10px;
 			}
-			.white { background-color: #ffffff !important; }
-			.white-text { color: #ffffff !important; }
-			.amber-text { color: #ffc107 !important; }
-			.blue-grey { background-color: #607d8b !important; }
-			.blue-grey.lighten-5 { background-color: #eceff1 !important; }
-			.blue-grey.darken-1 { background-color: #546e7a !important; }
-			.blue-grey.darken-2 { background-color: #455a64 !important; }
-			.blue-grey.darken-3 { background-color: #37474f !important; }
-			.blue-grey-text.text-darken-3 { color: #37474f !important; }
+			body {
+				font-family: SVN-Karla;
+				font-size: 14px;
+				font-weight: normal;
+				font-style: normal;
+				font-stretch: normal;
+				color: #4a8dcc;
+			}
+			a {
+				color: #fea3a3 !important;
+			}
 			th { padding: 0px 20px; }
 			td { padding: 10px 20px; }
 			td.db-mail-body { padding: 30px 20px; }
@@ -42,12 +50,12 @@
 	</head>
 	<body>
 		<table class="db-mail">
-			<thead class="db-nav blue-grey darken-3">
+			<thead class="">
 				<tr>
-					<th><img class="db-logo-img" src="http://www.yppuna.vn/images/logo.svg" alt="Yppuna logo" /></th>
+					<th><img class="db-logo-img" src="http://www.yppuna.vn/images/logo.png" alt="Yppuna logo" /></th>
 				</tr>
 			</thead>
-			<tbody class="blue-grey lighten-5 blue-grey-text text-darken-3">
+			<tbody class="">
 				<tr>
 					<td class="db-mail-body">
 						<h1>@model.i18n.__('email.signup.1', model.username)</h1>
@@ -59,7 +67,7 @@
 						<h3>@model.i18n.__('email.signup.3')</h3>
 					</td>
 				</tr>
-				<tr class="blue-grey darken-1 white-text">
+				<tr class="">
 					<td>
 						<h4>
 							@html.raw(model.i18n.__('email.contact'))

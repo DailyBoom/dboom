@@ -1608,7 +1608,7 @@ header, main {
   font-style: normal !important;
   font-stretch: normal !important;
   color: #5aa0d6 !important;
-  height: 30px !important;
+  height: auto !important;
 }
 
 /*#shipping_row .select-wrapper input {
@@ -2202,6 +2202,12 @@ input[type=number]::-webkit-outer-spin-button {
   padding-bottom: 43px;
   border-bottom: dashed 1px #b3c2cf;
 }
+
+#mypage .user-info div, #mypage .user-shipping div {
+  display: inline-block;
+  width: 100%;
+}
+
 
 #mypage .user-shipping {
   margin-top: 30px;
@@ -2835,6 +2841,10 @@ input[type=number]::-webkit-outer-spin-button {
     margin-bottom: 16px;
   }
 
+  #individual img {
+    padding: 0;
+  }
+
   footer .footer-content {
     background-color: #f1f7fc;
     text-align: center;
@@ -3165,6 +3175,18 @@ input[type=number]::-webkit-outer-spin-button {
     display: inline-block;
     width: 100%;
     margin-bottom: 23px;
+  }
+
+  #cart_recap h2 {
+    text-align: center;
+  }
+
+  #cart_recap .cart-products {
+    margin-bottom: 20px;
+  }
+
+  #cart_recap .cart-product .product-quantity {
+    padding: 0;
   }
 
   #shipping_row label {

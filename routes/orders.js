@@ -23,7 +23,7 @@ var paginate = require('express-paginate');
 require('mongoose-pagination');
 
 var transporter = nodemailer.createTransport(smtpTransport({
-    host: config.Nodemailer.host,
+    service: 'gmail',
     auth: {
         user: config.Nodemailer.auth.user,
         pass: config.Nodemailer.auth.pass

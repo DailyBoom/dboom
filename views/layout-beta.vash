@@ -191,7 +191,7 @@
         </div>
       </div>
       }
-      <nav class="hide-on-med-and-up">
+      <nav class="@(model.zone == 0 ? 'north' : '') @(model.zone == 1 ? 'central' : '') @(model.zone == 2 ? 'south' : '') hide-on-med-and-up">
         <div class="nav-wrapper">
           <a href="/home" class="logo"><img class="svg svg-logo" src="/images/logo.svg"/></a>
           <ul id="nav-mobile" class="right">
@@ -233,7 +233,7 @@
         </div>
       </ul>
       }
-      <ul id="slide-out" class="side-nav">
+      <ul id="slide-out" class="side-nav @(model.zone == 0 ? 'north' : '') @(model.zone == 1 ? 'central' : '') @(model.zone == 2 ? 'south' : '')">
         <div class="slide-menu-wrapper">
           <li class="hide-on-small-only"><a href="/home" class="logo"><img class="svg svg-logo" src="/images/logo.svg"/></a></li>
           <li><a class="waves-effect side-header" href="#!">TRANG CHỦ</a></li>        
@@ -442,7 +442,7 @@
             <div class="search hide-on-small-only">
               <form action="/mall" method="GET">
                 <img class="svg svg-search" src="/images/icon_search.svg" />
-                <input type="text" name="s" id="search" placeholder="Tìm kiếm sản phẩm" />
+                <input type="search" name="s" id="search" placeholder="Tìm kiếm sản phẩm" />
               </form>
             </div>
             <div class="sns">
@@ -455,7 +455,7 @@
         </div>
       </ul>
       
-      <ul id="side-menu" class="side-nav hide-on-small-only">
+      <ul id="side-menu" class="side-nav hide-on-small-only @(model.zone == 0 ? 'north' : '') @(model.zone == 1 ? 'central' : '') @(model.zone == 2 ? 'south' : '')">
         <a href="/" class="logo blue-text"><img src="/images/logo.svg" class="svg svg-logo"/></a>
         <div class="top-menu">
           <a href="#" data-activates="slide-out" class="button-collapse"><img class="svg svg-menu" src="/images/menu.svg" /></a>
@@ -604,7 +604,7 @@
           $("#birthday, .birthday").combodate({
               firtItem: 'name',
               template: "DD MM YYYY",
-              formate: "DD/MM/YYYY",
+              format: "MM/DD/YYYY",
               smartDays: true,
               customClass: "col s3"
           });

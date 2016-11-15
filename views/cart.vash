@@ -21,6 +21,11 @@
                             <div class="cart-product">
                                 <div class="col s4 l2">
                                     <img src="@item.product.images[0]" />
+                                    <div class="col s12 product-quantity hide-on-med-and-up">
+                                        <i class="fa fa-minus col s4"></i>
+                                        <input type="text" value="@item.quantity" class="col s4 quantity" name="quantity" id="quantity_@index" >
+                                        <i class="fa fa-plus col s4"></i>
+                                    </div>
                                 </div>
                                 <div class="col s7 l3">
                                     <div class="truncate product-name"><a href="/detailed/@item.product.id" class="truncate">@item.product.name</a></div>
@@ -40,7 +45,7 @@
                                 </div>
                             </div>
                             })
-                            <button class="right hide-on-small-only">Update</button>
+                            <button class="right">Update</button>
                         </form>
                     </div>
                     <div class="col s12 l3">

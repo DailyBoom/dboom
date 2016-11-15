@@ -26,7 +26,7 @@
 										<div class="right"><a class="forgot" href="/forgot" >Quên mật khẩu?</a></div>
 										<button>ĐĂNG NHẬP</button>
 									</form>
-									<div id="facebook">Đăng nhập bằng Facebook</div>
+									<div id="c_facebook">Đăng nhập bằng Facebook</div>
 								</div><!-- .row -->
 							</div><!-- .modal-content -->
 							<div class="modal-footer blue-grey darken-1">

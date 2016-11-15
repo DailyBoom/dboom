@@ -36,7 +36,7 @@ var upload = multer({ storage: storage });
 
 
 var transporter = nodemailer.createTransport(smtpTransport({
-    host: config.Nodemailer.host,
+    service: 'gmail',
     auth: {
         user: config.Nodemailer.auth.user,
         pass: config.Nodemailer.auth.pass
@@ -222,7 +222,7 @@ router.get('/box/:id', function(req, res, next) {
         });
         var progress = (product.quantity - current_quantity) / product.quantity * 100;
         var sale = (product.old_price - product.price) / product.old_price * 100;
-        res.render('box', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2, cover: product.images[0], comments: comments, hotProducts: hotProducts });
+        res.render('box', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2, cover: product.images[0], comments: comments, hotProducts: hotProducts, zone: product.boxZone });
       });
     });
   });
