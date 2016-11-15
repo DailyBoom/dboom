@@ -87,7 +87,7 @@
                             </div>
                             <div class="prices">
                                 <span class="price">@product.price</span>
-                                <button id="checkout" class="add_cart" data-id="@model.product.id" type="button">THÊM BOX VÀO GIỎ HÀNG</button>                        
+								<button id="checkout" class="add_cart" data-id="@model.product.id" type="button">THÊM BOX VÀO GIỎ HÀNG</button>
                             </div>
                         </div>
 				    </div>

@@ -195,7 +195,7 @@ passport.use(new FacebookStrategy({
     clientID: config.Facebook.clientID,
     clientSecret: config.Facebook.clientSecret,
     callbackURL: config.Facebook.callbackURL,
-    profileFields: ['id', 'displayName', 'emails'],
+    profileFields: ['id', 'displayName'],
     enableProof: true,
     passReqToCallback: true
   },
