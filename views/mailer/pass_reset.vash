@@ -14,6 +14,7 @@
 			h1,h2,h3,h4,h5,h6 {
 				font-family: 'SVN-Karla';
 				margin: 10px;
+				color: #4a8dcc;
 			}
 			body {
 				font-family: SVN-Karla;
@@ -30,13 +31,11 @@
 			td { padding: 10px 20px; }
 			td.db-mail-body { padding: 30px 20px; }
 			.db-mail {
-				border: 1px solid #546e7a;
-				border-collapse: collapse;
+				background-color: #f4faff;
 				width: 100%;
 			}
-		  .db-logo-img {
+			.db-logo-img {
 				height: 100px;
-				float: left;
 			}
 		</style>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

@@ -55,7 +55,7 @@
                             <div>Thành tiền: <span class="right total-amount">@model.cart_total</span></div>
                             <span class="vat">(Đã bao gồm VAT)</span>
                         </div>
-                        <a class="ybtn" href="/checkout">THANH TOÁN</a>
+                        <a class="ybtn" href="/checkout/login">THANH TOÁN</a>
                     </div>
                 </div>
             </div>

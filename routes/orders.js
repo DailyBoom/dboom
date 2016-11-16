@@ -347,7 +347,7 @@ router.get('/checkout', function(req, res) {
       if (err)
         console.log(err);
       if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
-        if (!order.user) {
+        if (req.user && !order.user) {
           order.user = req.user;
           order.shipping = req.user.shipping;
         }
@@ -471,7 +471,8 @@ router.post('/deposit_checkout', function(req, res) {
         if (err)
           console.log(err);
         order.status = "Waiting";
-        console.log(req.body.deliv_method);
+        console.log(req.body.pay_method);
+        order.pay_method = req.body.pay_method;
         order.deliv_method = req.body.deliv_method;
         order.created_at = Date.now();
         //getOrderCartTotal(order);
@@ -505,7 +506,16 @@ router.post('/deposit_checkout', function(req, res) {
                 if (err) { console.log(err); }
                 console.log('Message sent: ' + info.response);
                 transporter.close();
-                delete req.session.cart_order;              
+                delete req.session.cart_order;
+                if (app.get("env") === "production") {
+                  slack.send({
+                    channel: '#new-order',
+                    icon_url: 'http://yppuna.vn/images/favicon/favicon-96x96.png',
+                    text: 'New order <http://yppuna.vn/orders/view/' + order._id + '>',
+                    unfurl_links: 1,
+                    username: 'Yppuna-bot'
+                  });
+                }             
                 res.status(200).json({ success: true });
             });
           });
@@ -947,10 +957,7 @@ router.get('/orders/cancel_deposit/:id', function(req, res) {
 });
 
 router.get('/shipping', function(req, res) {
-  if (!req.user) {
-    return res.redirect('/checkout/login');
-  }
-  else if (!req.session.order && !req.session.cart_order)
+  if (!req.session.order && !req.session.cart_order)
     res.redirect('/');
   else
     Order.findOne({ '_id': req.session.order || req.session.cart_order }, function(err, order) {
@@ -1151,12 +1158,12 @@ router.post('/shipping', function(req, res) {
             order.shipping = {
                 full_name: req.body.full_name,
                 address: req.body.address,
-                country: req.body.country,
                 city: req.body.city,
-                zipcode: req.body.zipcode,
+                district: req.body.district,
+                ward: req.body.ward,
                 phone_number: req.body.phone_number
             }
-            //order.email = req.body.email;
+            order.email = req.body.email;
             order.save(function(err) {
               if (err) {
                 res.render('shipping', { errors: err, title: req.__('shipping'), order: order });

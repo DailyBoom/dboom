@@ -26,6 +26,7 @@
                     <div class="radios">
                         <div class="radio"><input type="radio" id="login_btn" name="login" checked/><label for="login_btn">Tôi là thành viên Yppuna.vn</label></div>
                         <div class="radio"><input type="radio" id="signup_btn" name="login" /><label for="signup_btn">Tôi là khách hàng mới</label></div>
+                        <div class="radio"><input type="radio" id="no_login_btn" name="login" /><label for="no_login_btn">Mua Hàng Không Cần Đăng Nhập</label></div>
                     </div>
                     <div id="c_login">
                         <form method="post" action="/checkout/login">
@@ -58,6 +59,9 @@
                             <button>ĐĂNG KÝ</button>
                             <div id="c_facebook">Đăng nhập bằng Facebook</div>
                         </form>
+                    </div>
+                    <div id="c_no_login">
+                        <a href="/shipping" class="ybtn">TIẾP TỤC</a>                        
                     </div>
                 </div>
                 <div id="cart" class="col s12 l4 offset-l2">
@@ -117,10 +121,17 @@
                 if ($('#login_btn').is(':checked')) {
                     $('#c_login').removeClass('hide');
                     $('#c_signup').addClass('hide');
+                    $('#c_no_login').addClass('hide');
                 }
                 else if ($('#signup_btn').is(':checked')) {
                     $('#c_login').addClass('hide');
                     $('#c_signup').removeClass('hide');
+                    $('#c_no_login').addClass('hide');                    
+                }
+                else if ($('#no_login_btn').is(':checked')) {
+                    $('#c_login').addClass('hide');
+                    $('#c_signup').addClass('hide');
+                    $('#c_no_login').removeClass('hide');
                 }
                 $("input[type='radio']").on('change', function() {
                     console.log('test');
@@ -131,6 +142,11 @@
                     else if ($('#signup_btn').is(':checked')) {
                         $('#c_login').addClass('hide');
                         $('#c_signup').removeClass('hide');
+                    }
+                    else if ($('#no_login_btn').is(':checked')) {
+                        $('#c_login').addClass('hide');
+                        $('#c_signup').addClass('hide');
+                        $('#c_no_login').removeClass('hide');
                     }
                 })
             })

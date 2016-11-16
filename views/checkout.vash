@@ -11,7 +11,9 @@
                             <span>Chúc mừng bạn đã đặt hàng thành công!</span>
                         </div>
                         <br>
-                        <a href="/myhistory">Đơn hàng của bạn</a>
+                        @if (model.user) {
+                            <a href="/myhistory">Đơn hàng của bạn</a>
+                        }
                     </div>
                 </div>
             </div>
@@ -36,7 +38,9 @@
                             <span>Chúc mừng bạn đã đặt hàng thành công!</span>
                         </div>
                         <br>
-                        <a href="/myhistory">Đơn hàng của bạn</a>                        
+                        @if (model.user) {
+                            <a href="/myhistory">Đơn hàng của bạn</a>
+                        }
                     </div>
                 </div>
             </div>
@@ -57,8 +61,8 @@
 				<div id="checkout_row" class="col s12 l3 offset-l1">
                     <div class="payment">
                         <span class="title">Chọn phương thức thanh toán:</span>
-                        <input type="radio" name="pay_method" id="delivery" checked /><label for="delivery">Thanh toán khi nhận hàng</label>
-                        <input type="radio" name="pay_method" id="transfer" /><label for="transfer">Thanh toán thông qua chuyển khoản</label>
+                        <input type="radio" name="pay_method" id="delivery" value="0" checked /><label for="delivery">Thanh toán khi nhận hàng</label>
+                        <input type="radio" name="pay_method" id="transfer" value="1" /><label for="transfer">Thanh toán thông qua chuyển khoản</label>
                         <!--<input type="radio" name="pay_method" id="atm" /><label for="atm">Thanh toán bằng thẻ ATM</label>
                         <input type="radio" name="pay_method" id="card" /><label for="card">Thanh toán bằng thẻ tín dụng</label>-->
                     </div>
@@ -141,21 +145,25 @@
                 var shipping = 0;
                 var cart_total = @model.cart_total;
 				$(".price, .total, .total-dc, .total-amount").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
-                //$('.modal').modal();
                 $("#checkout_btn").on("click", function() {
                     $.ajax({
                         type: "POST",
                         url: "/deposit_checkout",
                         dataType: "json",
                         data: {
+                            pay_method: $("input[name='pay_method']:checked").val(),
                             deliv_method: $("input[name='deliv_method']:checked").val()
                         },
                         success: function (res) {
                             if ($('#delivery').is(':checked')) {
-                                $('#confirm_modal').openModal();
+                                $('#confirm_modal').openModal({
+                                    complete: function() { window.location = '/home'; } // Callback for Modal close
+                                });
                             }
                             else if ($('#transfer').is(':checked')) {
-                                $('#confirm_transfer_modal').openModal();
+                                $('#confirm_transfer_modal').openModal({
+                                    complete: function() { window.location = '/home'; } // Callback for Modal close
+                                });
                             }
                         },
                         error: function (res) {

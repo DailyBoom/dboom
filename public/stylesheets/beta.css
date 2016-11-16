@@ -1319,7 +1319,7 @@ header, main {
   color: #b3c2cf;
 }
 
-#cart_recap .ybtn {
+.ybtn {
   font-family: SVN-Karla;
   font-size: 16px;
   font-weight: bold;
@@ -1578,6 +1578,7 @@ header, main {
   color: #5aa0d6;
   padding: 5px 0 7px 20px !important;
   height: auto;
+  margin-top: 0;
 }
 
 #shipping_row textarea {

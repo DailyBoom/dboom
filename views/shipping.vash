@@ -17,6 +17,13 @@
 			<div class="row">
 				<div id="shipping_row" class="col s12 l5 offset-l1">
 					<span class="title">Địa chỉ giao hàng của quý khách</span>
+                    @if (model.errors) {
+						<ul class="red-text center">
+							@model.errors.forEach(function(error) {
+								<li>@error</li>
+							})
+						</ul>
+					}
 					<form action="/shipping" method="POST">
 						<div class="form-row">
 							<label class="col s12 l4" for="full_name">Tên</label>
@@ -48,6 +55,12 @@
 							<label class="col s12 l4" for="phone_number">Điện thoại di động</label>
 							<input placeholder="Số điện thoại" class="col s12 l8" id="phone_number" name="phone_number" />
 						</div>
+                        @if (!model.user || model.user && !model.user.email) {
+                            <div class="form-row">
+                                <label class="col s12 l4" for="s_email">Email</label>
+                                <input type="email" placeholder="email" class="col s12 l8" id="s_email" name="email" />
+                            </div>
+                        }
 						<div class="col s12 l8 info offset-l4">
 							Kim Đồng sẽ liên lạc với quý khách số máy này để xác nhận thông tin giao hàng.
 						</div>
