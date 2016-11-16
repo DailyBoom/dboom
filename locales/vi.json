@@ -122,7 +122,7 @@
 	"between.tooBig": "Dòng %s chỉ có thể chứa các số dưới đây %d.",
 	"email.invalid": "Cần %s có một email hợp lệ",
 	"remember_me": "Ghi nhớ ID",
-	"forgot_pass": "Quên ID/Mật khẩu",
+	"forgot_pass": "Quên mật khẩu?",
 	"user.add_address": "Thêm thông tin vận chuyển",
 	"shipping": "thông tin giao hàng",
 	"payment": "thanh toán",

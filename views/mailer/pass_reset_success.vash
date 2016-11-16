@@ -50,13 +50,13 @@
 			<tbody class="blue-grey lighten-5 blue-grey-text text-darken-3">
 				<tr>
 					<td class="db-mail-body">
-						<h1>Đặt Lại Mật Khẩu</h1>
+						<h1>Mật Khẩu Của Bạn Đã Được Khởi Động Lại</h1>
 						<h3>@(model.user.username),</h3>
-						<h3>Mở Hộp Thư Để Lấy Lại Mật Khẩu.<br>Nhấn Vào Đường Link Dưới Đây, Để Thay Đổi Mật Khẩu:</h3>
+						<h3>Nhấn Vào Link Bên Dưới Để Đăng Nhập:</h3>
 					</td>
 				</tr>
 				<tr>
-					<td><a href="http://@(model.host)/reset/@model.token">http://@(model.host)/reset/@model.token</a></td>
+					<td><a href="http://@(model.host)/login">http://@(model.host)/login</a></td>
 				</tr>
 				<tr class="blue-grey darken-1 white-text">
 					<td>

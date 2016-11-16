@@ -349,7 +349,8 @@ router.get('/checkout', function(req, res) {
       if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
         if (req.user && !order.user) {
           order.user = req.user;
-          order.shipping = req.user.shipping;
+          if (!order.shipping)
+            order.shipping = req.user.shipping;
         }
         getOrderCartTotal(order);
         order.save(function(err) {

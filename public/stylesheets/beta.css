@@ -1167,6 +1167,15 @@ header, main {
   color: #fea3a3;
 }
 
+/* Forgot */
+
+#forgot h4 {
+  font-family: SVN-Karla;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #2074bd;
+}
 
 /* Cart */
 

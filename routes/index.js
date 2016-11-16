@@ -445,7 +445,7 @@ router.get('/cart', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-  res.render('intro');
+  res.render('intro', { has_zone : typeof req.session.zone !== 'undefined' });
 });
 
 module.exports = router;

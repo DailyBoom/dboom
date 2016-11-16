@@ -1,7 +1,7 @@
-@html.extend("layout", function(model) {
+@html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
-		<div class="row">
-			<div class="container min-h-lg">
+		<div class="container min-h-lg" id="forgot">
+			<div class="row">
 				<form class="col s12 m6 offset-m3 l6 offset-l3" method="post" action="/forgot">
 					@if (model.message) {
 						<div class="card">
@@ -12,17 +12,15 @@
 					}
 					<div class="row">
 						<br>
-						<h4>아이디/비밀번호를 잊으셨나요?</h4>
+						<h4>@model.__('forgot_pass')</h4>
 						<br />
 						<br />
 						<br />
-						<div class="input-field">
-							<input id="email" type="email" class="validate" name="email">
-							<label for="email">Email</label>
-						</div>
+						<label for="email">Email</label>
+						<input id="email" type="email" class="validate" name="email">
 						<br>
 						<button class="waves-effect waves-light btn btn-large blue-grey darken-2 right" type="submit" name="action">
-							Reset <i class="fa fa-refresh right"></i>
+							Đặt Lại <i class="fa fa-refresh right"></i>
 						</button>
 					</div>
 				</form>

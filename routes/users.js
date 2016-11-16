@@ -629,7 +629,7 @@ router.get('/auth/google/callback',
 });
 
 router.get('/forgot', function(req, res, next) {
-  res.render('users/forgot', { title: "비밀번호를 잊으셨나요?" });
+  res.render('users/forgot', { title: "Quên mật khẩu?" });
 })
 
 router.post('/forgot', function(req, res, next) {
@@ -637,7 +637,7 @@ router.post('/forgot', function(req, res, next) {
 
   User.findOne({ email: req.body.email }, function(err, user) {
     if (!user) {
-      res.render('users/forgot', { message: "존재하지 않는 계정입니다. 다시 한번 확인해 주십시오." });
+      res.render('users/forgot', { message: "Không Có Tài Khoản Nào Được Đăng Ký Bằng Email Này." });
       return res.end();
     }
 
@@ -655,11 +655,11 @@ router.post('/forgot', function(req, res, next) {
         transporter.sendMail({
           from: 'Yppuna <hello@yppuna.vn>',
           to: user.email,
-          subject: '데일리 붐 비밀번호 재신청',
+          subject: 'Đặt Lại Mật Khẩu',
           html: html({ host : req.headers.host, token: token, user: user })
         }, function (err, info) {
             if (err) return next(err);
-            return res.render('users/forgot', { message: "메일이 발송되었습니다. 확인해 주시기 바랍니다." });
+            return res.render('users/forgot', { message: "Mở Hộp Thư Để Lấy Lại Mật Khẩu." });
         });
       });
     });
@@ -683,7 +683,7 @@ router.get('/reset/:token', function(req, res) {
 router.post('/reset/:token', function(req, res) {
   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
     if (!user) {
-      req.flash('error', 'Password reset token is invalid or has expired.');
+      req.flash('error', 'Điểu Lệnh Đổi Mật Khẩu Của Bạn Không Hợp Lệ Hoặc Đã Hết Thời Gian.');
       return res.redirect('back');
     }
 
@@ -693,15 +693,22 @@ router.post('/reset/:token', function(req, res) {
 
     user.save(function(err) {
       req.login(user, function(err) {
-        var mailOptions = {
-        to: user.email,
-        from: 'Yppuna <hello@yppuna.vn>',
-        subject: '비밀번호 변경 되었습니다',
-        text: user.username + '님,\n\n' +
-          '데일리 붐 회원님의 비밀번호 변경 확인 메일입니다.\n\n'
-        };
-        transporter.sendMail(mailOptions, function(err) {
-          res.redirect('/login');
+        fs.readFile('./views/mailer/pass_reset_success.vash', "utf8", function(err, file) {
+          if(err){
+            //handle errors
+            console.log('ERROR!');
+            return res.send('ERROR!');
+          }
+          var html = vash.compile(file);
+          transporter.sendMail({
+            from: 'Yppuna <hello@yppuna.vn>',
+            to: user.email,
+            subject: 'Mật Khẩu Của Bạn Đã Được Khởi Động Lại',
+            html: html({ host : req.headers.host, token: token, user: user })
+          }, function (err, info) {
+              if (err) return next(err);
+              return res.render('/login', { message: "Mở Hộp Thư Để Lấy Lại Mật Khẩu." });
+          });
         });
       });
     });
