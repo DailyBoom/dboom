@@ -3,6 +3,5 @@
 # January 01, 2015
 
 User-agent: *
-Disallow: /mypage
 
-Sitemap: http://dailyboom.co/sitemap/sitemap.xml
+Sitemap: http://yppuna.vn/sitemap/sitemap.xml

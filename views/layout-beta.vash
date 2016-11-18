@@ -435,11 +435,12 @@
           </li>
           <li><a class="waves-effect side-header" href="/blog">blog</a></li>
           <li><a class="waves-effect side-header" href="#!">LIÊN HỆ</a></li>
+          <li><a class="waves-effect side-header" href="/wholesale">ĐĂNG KÝ LÀM ĐẠI LÝ CỦA YPPUNA</a></li>
           @if(model.user) {
             <li><a class="waves-effect side-header" href="/logout">@model.__('logout')</a></li>
           }
           <div class="slide-bottom">
-            <div class="search hide-on-small-only">
+            <div class="search">
               <form action="/mall" method="GET">
                 <img class="svg svg-search" src="/images/icon_search.svg" />
                 <input type="search" name="s" id="search" placeholder="Tìm kiếm sản phẩm" />
