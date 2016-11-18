@@ -24,7 +24,13 @@
 						@model.products[0].description
 					</div>
 					<div class="item_prices hide-on-small-only">
-						<div class="item_price">@model.products[0].price<span class="currency">đ</span></div>
+						@if (model.moment().isAfter(model.moment(model.products[0].scheduled_at), 'week')) {
+							<div class="item_price">@model.products[0].old_price</div>
+						}
+						else {
+							<span class="item_price">@model.products[0].price</span>
+							<span class="item_old_price">@model.products[0].old_price</span>
+						}
 					</div>
 					<div class="item_detail hide-on-small-only">
 						<a href="/box/@model.products[0].id">
@@ -44,44 +50,46 @@
 		</section>
 		}
 		<!-- -->
-		@if(model.zone == 1) {
+		@if(model.products[1]) {
 		<section id="central">
 			<div class="row area-row">
 				<div class="col s12 l8 hide-on-small-only">
-					<div class="item_img"><img src="@model.products[0].images[0]"/></div>
+					<div class="item_img"><img src="@model.products[1].images[0]"/></div>
 				</div>
 				<div class="col s12 l4">
-					<img class="item_cover" src="@model.products[0].box_header" />
+					<img class="item_cover" src="@model.products[1].box_header" />
 					<div class="item_names row center">
 						<div class="col s4">
-							<div class="item_name truncate">@model.products[0].boxProducts[0].name</div>
-							<div class="item_type">@model.products[0].boxProducts[0].brand</div>
+							<div class="item_name truncate">@model.products[1].boxProducts[0].name</div>
+							<div class="item_type">@model.products[1].boxProducts[0].brand</div>
 						</div>
 						<div class="col s4 ">
-							<div class="item_name truncate">@model.products[0].boxProducts[1].name</div>
-							<div class="item_type">@model.products[0].boxProducts[1].brand</div>
+							<div class="item_name truncate">@model.products[1].boxProducts[1].name</div>
+							<div class="item_type">@model.products[1].boxProducts[1].brand</div>
 						</div>
 						<div class="col s4">
-							<div class="item_name truncate">@model.products[0].boxProducts[2].name</div>
-							<div class="item_type">@model.products[0].boxProducts[2].brand</div>
+							<div class="item_name truncate">@model.products[1].boxProducts[2].name</div>
+							<div class="item_type">@model.products[1].boxProducts[2].brand</div>
 						</div>
 					</div>
 					<div class="item_desc hide-on-small-only">
-						@model.products[0].description
+						@model.products[1].description
 					</div>
 					<div class="item_prices hide-on-small-only">
-						<div class="item_price">@model.products[0].price<span class="currency">đ</span></div>
+						<span class="item_price">@model.products[1].price</span>
+						<span class="item_old_price">@model.products[1].old_price</span>
+						<span class="item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.products[1].scheduled_at).format("DD/MM/YYYY")</span></span>
 					</div>
 					<div class="item_detail hide-on-small-only">
-						<a href="/box/@model.products[0].id">
+						<a href="/box/@model.products[1].id">
 							XEM CHI TIẾT
 						</a>
 					</div>
 				</div>
 				<div class="col s12 l8 hide-on-med-and-up">
-					<div class="item_img"><img src="@model.products[0].images[0]"/></div>
+					<div class="item_img"><img src="@model.products[1].images[0]"/></div>
 					<div class="item_detail hide-on-med-and-up">
-						<a href="/box/@model.products[0].id">
+						<a href="/box/@model.products[1].id">
 							XEM CHI TIẾT
 						</a>
 					</div>
@@ -90,41 +98,90 @@
 		</section>
 		}
 		<!-- -->
-		@if(model.zone == 2) {		
+		@if(model.products[2]) {		
 		<section id="south">
 			<div class="row area-row">
 				<div class="col s12 l4">
-					<img class="item_cover" src="@model.products[0].box_header" />
+					<img class="item_cover" src="@model.products[2].box_header" />
 					<div class="item_names row center">
 						<div class="col s4">
-							<div class="item_name truncate">@model.products[0].boxProducts[0].name</div>
-							<div class="item_type">@model.products[0].boxProducts[0].brand</div>
+							<div class="item_name truncate">@model.products[2].boxProducts[0].name</div>
+							<div class="item_type">@model.products[2].boxProducts[0].brand</div>
 						</div>
 						<div class="col s4 ">
-							<div class="item_name truncate">@model.products[0].boxProducts[1].name</div>
-							<div class="item_type">@model.products[0].boxProducts[1].brand</div>
+							<div class="item_name truncate">@model.products[2].boxProducts[1].name</div>
+							<div class="item_type">@model.products[2].boxProducts[1].brand</div>
 						</div>
 						<div class="col s4">
-							<div class="item_name truncate">@model.products[0].boxProducts[2].name</div>
-							<div class="item_type">@model.products[0].boxProducts[2].brand</div>
+							<div class="item_name truncate">@model.products[2].boxProducts[2].name</div>
+							<div class="item_type">@model.products[2].boxProducts[2].brand</div>
 						</div>
 					</div>
 					<div class="item_desc hide-on-small-only">
-						@model.products[0].description
+						@model.products[2].description
 					</div>
 					<div class="item_prices hide-on-small-only">
-						<div class="item_price">@model.products[0].price<span class="currency">đ</span></div>
+						<span class="item_price">@model.products[2].price</span>
+						<span class="item_old_price">@model.products[2].old_price</span>
+						<span class="item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.products[2].scheduled_at).format("DD/MM/YYYY")</span></span>
 					</div>
 					<div class="item_detail hide-on-small-only">
-						<a href="/box/@model.products[0].id">
+						<a href="/box/@model.products[2].id">
 							XEM CHI TIẾT
 						</a>
 					</div>
 				</div>
 				<div class="col s12 l8">
-					<div class="item_img"><img src="@model.products[0].images[0]"/></div>
+					<div class="item_img"><img src="@model.products[2].images[0]"/></div>
 					<div class="item_detail hide-on-med-and-up">
-						<a href="/box/@model.products[0].id">
+						<a href="/box/@model.products[2].id">
+							XEM CHI TIẾT
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		}
+		@if(model.products[3]) {
+		<section id="central">
+			<div class="row area-row">
+				<div class="col s12 l8 hide-on-small-only">
+					<div class="item_img"><img src="@model.products[3].images[0]"/></div>
+				</div>
+				<div class="col s12 l4">
+					<img class="item_cover" src="@model.products[3].box_header" />
+					<div class="item_names row center">
+						<div class="col s4">
+							<div class="item_name truncate">@model.products[3].boxProducts[0].name</div>
+							<div class="item_type">@model.products[3].boxProducts[0].brand</div>
+						</div>
+						<div class="col s4 ">
+							<div class="item_name truncate">@model.products[3].boxProducts[1].name</div>
+							<div class="item_type">@model.products[3].boxProducts[1].brand</div>
+						</div>
+						<div class="col s4">
+							<div class="item_name truncate">@model.products[3].boxProducts[2].name</div>
+							<div class="item_type">@model.products[3].boxProducts[2].brand</div>
+						</div>
+					</div>
+					<div class="item_desc hide-on-small-only">
+						@model.products[3].description
+					</div>
+					<div class="item_prices hide-on-small-only">
+						<span class="item_price">@model.products[3].price</span>
+						<span class="item_old_price">@model.products[3].old_price</span>
+						<span class="item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.products[3].scheduled_at).format("DD/MM/YYYY")</span></span>
+					</div>
+					<div class="item_detail hide-on-small-only">
+						<a href="/box/@model.products[3].id">
+							XEM CHI TIẾT
+						</a>
+					</div>
+				</div>
+				<div class="col s12 l8 hide-on-med-and-up">
+					<div class="item_img"><img src="@model.products[3].images[0]"/></div>
+					<div class="item_detail hide-on-med-and-up">
+						<a href="/box/@model.products[3].id">
 							XEM CHI TIẾT
 						</a>
 					</div>
@@ -153,7 +210,7 @@
 		//	{selector: '#south', offset: 500, callback: "$('#side-menu, #slide-out').removeClass('north central').addClass('south');", repeat: true}
 		//];
 		//Materialize.scrollFire(options);
-		$(".item_price, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+		$(".item_price, .item_old_price, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
 		var owl = $("#individual .row");
 		owl.owlCarousel({
 			items : 4,

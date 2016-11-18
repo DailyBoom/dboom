@@ -52,19 +52,10 @@
                         }
 					</span>
 					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
-						@model.__('user.zipcode') :
-					</span>
-					<span class="col s8 order-label">
-                        &nbsp;
-                        @if(model.order.shipping.zipcode || (model.order.user && model.order.user.shipping)) {
-						    @(model.order.shipping.zipcode ? model.order.shipping.zipcode : model.order.user.shipping.zipcode)
-                        }
-					</span>
-					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
 						@model.__('user.city') :
 					</span>
 					<span class="col s8 order-label">
-						&nbsp;@model.order.city
+						&nbsp;@model.order.shipping.district, @model.order.shipping.ward, @model.order.shipping.city
 					</span>
 					@if(model.order.status == "Waiting") {
 						<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
