@@ -434,7 +434,7 @@
             </ul>
           </li>
           <li><a class="waves-effect side-header" href="/blog">blog</a></li>
-          <li><a class="waves-effect side-header" href="#!">LIÊN HỆ</a></li>
+          <li><a class="waves-effect side-header" href="/contact">LIÊN HỆ</a></li>
           <li><a class="waves-effect side-header" href="/wholesale">ĐĂNG KÝ LÀM ĐẠI LÝ CỦA YPPUNA</a></li>
           @if(model.user) {
             <li><a class="waves-effect side-header" href="/logout">@model.__('logout')</a></li>
@@ -538,7 +538,7 @@
                   </div>
                 </div>
                 <div class="col l4">
-                  <div><a href="#">LIÊN HỆ</a></div>
+                  <div><a href="/contact">LIÊN HỆ</a></div>
                   <div><a href="#">TIN TỨC & SỰ KIỆN</a></div>
                   <div><a href="#"></a></div>
                   <div class="hotline">

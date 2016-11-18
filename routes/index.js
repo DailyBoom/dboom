@@ -141,8 +141,8 @@ router.get('/about', function(req, res, next) {
   res.render('about', { title: req.__('about'), description: req.__('about.text_1') });
 });
 
-router.get('/advertise', function(req, res, next) {
-  res.render('advertise', { title: req.__('advertise'), description: req.__('advertise') });
+router.get('/contact', function(req, res, next) {
+  res.render('contact', { title: 'LIÊN HỆ' });
 });
 
 router.get('/privacy', function(req, res, next) {
@@ -171,17 +171,17 @@ router.post('/advertise', function(req, res, next) {
   });
 });
 
-router.post('/merchant', function(req, res, next) {
+router.post('/contact', function(req, res, next) {
   transporter.sendMail({
     from: req.body.email,
-    to: 'lairwin@novazest.com',
-    subject: 'Merchant contact.',
-    html: '<p>회사 명: '+req.body.company+'</p><p>이름: '+req.body.fullname+'</p><p>이메일: '+req.body.email+'</p><p>내용: '+req.body.details+'</p>'
+    to: 'hello@yppuna.vn',
+    subject: 'Contact',
+    html: '<p>Tên: '+req.body.username+'</p><p>Email: '+req.body.email+'</p><p>Số điện thoại: '+req.body.phone_number+'</p><p>message: '+req.body.message+'</p>'
   }, function (err, info) {
-      if (err) { console.log(err); res.status(500).json({ message: '죄송합니다. 오류가있었습다. 확인후 다시 시도해주세요.'}); }
+      if (err) { console.log(err); res.status(500).json({ message: ''}); }
       //console.log('Message sent: ' + info.response);
       transporter.close();
-      res.status(200).json({ message: '감사합니다. 성공적으로 전송이 되었습니다.'});
+      res.status(200).json({ message: 'Xin cảm ơn quý khách. Chúng tôi sẽ trả lời sớm nhất có thể'});
   });
 });
 
