@@ -1,6 +1,6 @@
-# Copyright 2015 DailyBoom. All rights reserved.
-# http://dailyboom.co/robots.txt
-# January 01, 2015
+# Copyright 2016 Yppuna. All rights reserved.
+# http://yppuna.vn/robots.txt
+# January 01, 2016
 
 User-agent: *
 
