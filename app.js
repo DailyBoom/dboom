@@ -9,7 +9,7 @@ var validate = require('form-validate');
 var config = require("config-heroku");
 var moment = require("moment-timezone");
 var crypto = require('crypto');
-var sitemap = require('express-sitemap')({url: 'dailyboom.co'});
+var sitemap = require('express-sitemap')({url: 'yppuna.vn'});
 var i18n = require('i18n');
 var querystring = require('querystring');
 i18n.configure({
