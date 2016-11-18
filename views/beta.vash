@@ -1,7 +1,7 @@
 @html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
 	<div class="container">
-		@if(model.zone == 0) {
+		@if(model.products[0]) {
 		<section id="north">
 			<div class="row area-row">
 				<div class="col s12 l4">

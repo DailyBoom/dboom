@@ -188,7 +188,7 @@ router.post('/merchant', function(req, res, next) {
 router.get('/home', function(req, res, next) {
   if (typeof req.session.zone === 'undefined')
     return res.redirect('/');
-  Product.find({ boxZone: req.session.zone }, {}, {}).populate('boxProducts').exec(function (err, products) {
+  Product.find({ boxZone: req.session.zone, scheduled_at: { "$gte": moment().subtract(13, 'days') } }, {}, {}).populate('boxProducts').exec(function (err, products) {
     console.log(products);
     Product.find({ extend: 4 }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
       res.render('beta', { progress: 75, products: products, hotProducts: hotProducts });
