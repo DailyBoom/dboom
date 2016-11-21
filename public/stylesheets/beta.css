@@ -1952,7 +1952,7 @@ header, main {
   color: #fea3a3;
 }
 
-#detailed_product .old_price, .item_old_price {
+.old_price, .item_old_price {
   font-family: SVN-Karla;
   font-size: 14px;
   font-weight: bold;
@@ -2101,6 +2101,10 @@ input[type=number]::-webkit-outer-spin-button {
 
 #detailed_box #center {
   margin-top: 67px;
+}
+
+#detailed_box .area-row .item_names {
+  padding: 0;
 }
 
 #detailed_box .description {
