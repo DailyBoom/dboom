@@ -307,7 +307,8 @@ router.post('/add_to_cart', function(req, res) {
       var order = new Order({
         cart_merchants: [product.merchant_id],
         cart: [{ product: product._id, quantity: req.body.quantity, option: req.body.option }],
-        status: "Submitted"
+        status: "Submitted",
+        is_preorder: !(product.extend == 3 && moment().isAfter(moment(product.scheduled_at, 'week')))
       });
       if (req.user) {
         order.user = req.user.id;
@@ -326,7 +327,7 @@ router.post('/add_to_cart', function(req, res) {
           return res.status(500).json({ error: "Error with order" });          
         }
         order.cart_merchants.push(product.merchant_id);
-        order.cart.push({ product: product._id, quantity: req.body.quantity, option: req.body.option });
+        order.cart.push({ product: product._id, quantity: req.body.quantity, option: req.body.option, is_preorder: !(product.extend == 3 && moment().isAfter(moment(product.scheduled_at, 'week'))) });
         order.save(function(err) {
           return res.status(200).json({ success: true, message: "Product added" });
         });
@@ -387,7 +388,7 @@ router.post('/mall/update_cart', function(req, res) {
       }
       console.log(req.body);
       req.body.quantity.forEach(function(item, index) {
-        console.log(item);
+        console.log(order.cart.length);
         order.cart[index].quantity = item;
       });
       order.markModified('cart');

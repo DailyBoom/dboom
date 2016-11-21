@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col s12 l4 area-row" id="left">
                     <img class="box-header" src="@model.product.box_header" />
-					<div class="item_names row center show-on-small-only">
+					<div class="item_names row center hide-on-med-and-up">
 						<div class="col s4">
 							<div class="item_name truncate"><a href="#box_product_0">@model.product.boxProducts[0].name</a></div>
 							<div class="item_type">@model.product.boxProducts[0].brand</div>
@@ -50,6 +50,7 @@
 							<span class="price">@model.product.price</span>
 							<span class="old_price">@model.product.old_price</span>
 						}
+						<!-- -->
 						@if (model.moment().isBetween(model.product.scheduled_at, model.moment(model.product.scheduled_at).add(13, 'days'))) {
 							<button id="checkout" class="add_cart" data-id="@model.product.id" type="button">THÊM BOX VÀO GIỎ HÀNG</button>
 						}

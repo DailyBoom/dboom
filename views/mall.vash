@@ -48,7 +48,13 @@
 									<div class="center south">Miền Nam</div>
 								}
 								<div class="prod_name"><a href="/box/@product.id">@product.name</a></div>
-								<div class="prod_price">@product.price</div>
+								@if (model.moment().isAfter(model.moment(product.scheduled_at), 'week')) {
+									<span class="prod_price">@product.old_price</span>
+								}
+								else {
+									<span class="prod_price">@product.price</span>
+									<span class="old_price">@product.old_price</span>
+								}
 							</div>
 						})
 					</div>
@@ -58,7 +64,7 @@
 	})
 })
 <script>
-	$(".mall-price-o, .mall-price-n, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+	$(".mall-price-o, .mall-price-n, .prod_price, .old_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
 	$(".add_cart").on("click", function() {
 		var id = $(this).data("id");
 		$.ajax({

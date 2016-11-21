@@ -453,6 +453,20 @@ button {
   color: #fea3a3;
 }
 
+.pre-order {
+  font-family: SVN-Karla;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: left;
+  color: #fea3a3;
+}
+
+#slide-cart .pre-order {
+  font-size: 14px;
+}
+
 .cart-product .cart-remove {
   color: #5aa0d6;
   cursor: pointer;  
@@ -794,6 +808,10 @@ header, main {
   vertical-align: top;
 }
 
+.area-row .item_detail {
+  margin-top: 38px;
+}
+
 .area-row .item_detail a {
     font-family: SVN-Karla;
     font-size: 18px;
@@ -817,13 +835,17 @@ header, main {
 }
 
 #individual h3 {
-    font-family: SVN-Karla;
-    font-size: 25px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    color: #fea3a3;
-  }
+  font-family: SVN-Karla;
+  font-size: 25px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #fea3a3;
+}
+
+#individual .owl-item {
+  text-align: center;
+}
 
 #individual img {
   padding: 0 20px;
@@ -1959,7 +1981,7 @@ header, main {
   color: #fea3a3;
 }
 
-.old_price, .item_old_price {
+.old_price {
   font-family: SVN-Karla;
   font-size: 14px;
   font-weight: bold;
@@ -1967,6 +1989,34 @@ header, main {
   font-stretch: normal;
   text-decoration: line-through;
   color: #9fc7e5;
+}
+
+.item_prices .title {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+}
+
+.item_prices .title-old {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #b3c2cf;
+}
+
+.item_old_price {
+  font-family: SVN-Karla;
+  font-size: 22px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: left;
+  color: #b3c2cf;
 }
 
 #detailed_product .options * {

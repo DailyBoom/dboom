@@ -207,5 +207,21 @@
 			});
 		});
 	</script>
+	
+	<script type="application/ld+json">
+		{
+			"@@context": "http://schema.org",
+			"@@type": "Product",
+			"description": `@model.product.description`,
+			"name": "@model.product.name",
+			"image": "@model.product.images[0]",
+			"offers": {
+				"@@type": "Offer",
+				"availability": "http://schema.org/InStock",
+				"price": "@model.product.price",
+				"priceCurrency": "VND"
+			},
+		}
+    </script>
 	})
 })

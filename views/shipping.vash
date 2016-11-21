@@ -62,7 +62,7 @@
                             </div>
                         }
 						<div class="col s12 l8 info offset-l4">
-							Kim Đồng sẽ liên lạc với quý khách số máy này để xác nhận thông tin giao hàng.
+							Nhân viên của Yppuna sẽ liên lạc với quý khách theo số máy trên, để xác nhận thông tin giao hàng.
 						</div>
 						<button class="col s12 l8 offset-l4">TIẾP TỤC</button>
 					</form>
@@ -71,7 +71,7 @@
                     <div class="cart-header">
                         <a href="/cart" class="right">SỬA</a>
                         <h4>THÔNG TIN ĐƠN HÀNG</h4>
-                        <span class="sub">(@model.cart.length quyển sách trong túi hàng của bạn)</span>
+                        <span class="sub">(@model.cart.length sản phẩm trong túi hàng của bạn)</span>
                     </div>
                     <div class="cart-content">
                         <div class="content-header hide-on-small-only">
@@ -91,12 +91,20 @@
                                     <div class="col s5">
                                         <div class="name">@item.product.name</div>
                                         <div class="brand">@item.product.brand</div>
+                                        @if(item.is_preorder) {
+                                            <div class="pre-order">Giao hàng @model.moment(item.product.scheduled_at).add(1, 'week').format('DD/MM/YYYY')</div>
+                                        }
                                     </div>
                                     <div class="col s3">
                                         <div class="quantity">@item.quantity</div>
                                     </div>
                                     <div class="col s4">
-                                        <div class="price">@(item.product.price * item.quantity)</div>
+                                        @if (item.product.extend == 3 && model.moment().isAfter(model.moment(item.product.scheduled_at, 'week'))) {
+                                            <div class="price">@(item.product.old_price * item.quantity)</div>
+                                         }
+                                         else {
+                                            <div class="price">@(item.product.price * item.quantity)</div>                                             
+                                         }
                                     </div>
                                 </div>
                             })

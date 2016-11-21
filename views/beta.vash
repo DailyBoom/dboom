@@ -28,8 +28,14 @@
 							<div class="item_price">@model.products[0].old_price</div>
 						}
 						else {
-							<span class="item_price">@model.products[0].price</span>
-							<span class="item_old_price">@model.products[0].old_price</span>
+							<div class="col s6">
+								<div class="title">GIÁ ĐẶT HÀNG</div>
+								<span class="item_price">@model.products[0].price</span>
+							</div>
+							<div class="col s6">
+								<div class="title-old">GIÁ GỐC</div>
+								<span class="item_old_price">@model.products[0].old_price</span>
+							</div>
 						}
 					</div>
 					<div class="item_detail hide-on-small-only">
@@ -76,11 +82,17 @@
 						@model.products[1].description
 					</div>
 					<div class="item_prices hide-on-small-only">
-						<span class="item_price">@model.products[1].price</span>
-						<span class="item_old_price">@model.products[1].old_price</span>
-						<span class="item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.products[1].scheduled_at).format("DD/MM/YYYY")</span></span>
+						<div class="col s6">
+							<div class="title">GIÁ ĐẶT HÀNG</div>
+							<span class="item_price">@model.products[1].price</span>
+						</div>
+						<div class="col s6">
+							<div class="title-old">GIÁ GỐC</div>
+							<span class="item_old_price">@model.products[1].old_price</span>
+						</div>
+						<div class="col s12 item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.products[1].scheduled_at).format("DD/MM/YYYY")</span></div>
 					</div>
-					<div class="item_detail hide-on-small-only">
+					<div class="col s12 item_detail hide-on-small-only">
 						<a href="/box/@model.products[1].id">
 							XEM CHI TIẾT
 						</a>
@@ -121,11 +133,17 @@
 						@model.products[2].description
 					</div>
 					<div class="item_prices hide-on-small-only">
-						<span class="item_price">@model.products[2].price</span>
-						<span class="item_old_price">@model.products[2].old_price</span>
-						<span class="item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.products[2].scheduled_at).format("DD/MM/YYYY")</span></span>
+						<div class="col s6">
+							<div class="title">GIÁ ĐẶT HÀNG</div>
+							<span class="item_price">@model.products[2].price</span>
+						</div>
+						<div class="col s6">
+							<div class="title-old">GIÁ GỐC</div>
+							<span class="item_old_price">@model.products[2].old_price</span>
+						</div>
+						<span class="col s12 item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.products[2].scheduled_at).format("DD/MM/YYYY")</span></span>
 					</div>
-					<div class="item_detail hide-on-small-only">
+					<div class="col s12 item_detail hide-on-small-only">
 						<a href="/box/@model.products[2].id">
 							XEM CHI TIẾT
 						</a>
@@ -168,11 +186,17 @@
 						@model.products[3].description
 					</div>
 					<div class="item_prices hide-on-small-only">
-						<span class="item_price">@model.products[3].price</span>
-						<span class="item_old_price">@model.products[3].old_price</span>
-						<span class="item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.products[3].scheduled_at).format("DD/MM/YYYY")</span></span>
+						<div class="col s6">
+							<div class="title">GIÁ ĐẶT HÀNG</div>
+							<span class="item_price">@model.products[3].price</span>
+						</div>
+						<div class="col s6">
+							<div class="title-old">GIÁ GỐC</div>
+							<span class="item_old_price">@model.products[3].old_price</span>
+						</div>
+						<span class="col s12 item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.products[3].scheduled_at).format("DD/MM/YYYY")</span></span>
 					</div>
-					<div class="item_detail hide-on-small-only">
+					<div class="col s12 item_detail hide-on-small-only">
 						<a href="/box/@model.products[3].id">
 							XEM CHI TIẾT
 						</a>

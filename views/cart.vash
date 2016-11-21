@@ -21,11 +21,13 @@
                             <div class="cart-product">
                                 <div class="col s4 l2">
                                     <img src="@item.product.images[0]" />
-                                    <div class="col s12 product-quantity hide-on-med-and-up">
-                                        <i class="fa fa-minus col s4"></i>
-                                        <input type="text" value="@item.quantity" class="col s4 quantity" name="quantity" id="quantity_@index" >
-                                        <i class="fa fa-plus col s4"></i>
-                                    </div>
+                                    @if (model.is_mobile) {
+                                        <div class="col s12 product-quantity hide-on-med-and-up">
+                                            <i class="fa fa-minus col s4"></i>
+                                            <input type="text" value="@item.quantity" class="col s4 quantity" name="quantity" id="quantity_@index" >
+                                            <i class="fa fa-plus col s4"></i>
+                                        </div>
+                                    }
                                 </div>
                                 <div class="col s7 l3">
                                     <div class="truncate product-name"><a href="/detailed/@item.product.id" class="truncate">@item.product.name</a></div>
@@ -33,16 +35,27 @@
                                     @if (item.product.options[item.option].name !== '') {
                                         <div class="product-color" style="background-color: @item.product.options[item.option].name"></div>
                                     }
+                                    <!-- -->
+                                    @if(item.is_preorder) {
+                                        <div class="pre-order">Giao hàng @model.moment(item.product.scheduled_at).add(1, 'week').format('DD/MM/YYYY')</div>
+                                    }
                                     <div class="product-price hide-on-med-and-up">@(item.product.price * item.quantity)</div>
                                 </div>
                                 <div class="col s3 hide-on-small-only">
-                                    <div class="product-price">@(item.product.price * item.quantity)</div>
+                                    @if (item.product.extend == 3 && model.moment().isAfter(model.moment(item.product.scheduled_at, 'week'))) {
+                                            <div class="product-price">@(item.product.old_price * item.quantity)</div>
+                                         }
+                                         else {
+                                            <div class="product-price">@(item.product.price * item.quantity)</div>                                             
+                                         }
                                 </div>
-                                <div class="col s3 product-quantity hide-on-small-only">
-                                    <i class="fa fa-minus col s4"></i>
-                                    <input type="text" value="@item.quantity" class="col s4 quantity" name="quantity" id="quantity_@index" >
-                                    <i class="fa fa-plus col s4"></i>
-                                </div>
+                                @if (!model.is_mobile) {                                
+                                    <div class="col s3 product-quantity hide-on-small-only">
+                                        <i class="fa fa-minus col s4"></i>
+                                        <input type="text" value="@item.quantity" class="col s4 quantity" name="quantity" id="quantity_@index" >
+                                        <i class="fa fa-plus col s4"></i>
+                                    </div>
+                                }
                                 <div class="col s1">
                                     <i class="fa fa-times fa-fw cart-remove" data-index="@index"></i>
                                 </div>
