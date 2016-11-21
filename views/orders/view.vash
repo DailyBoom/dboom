@@ -100,7 +100,10 @@
 								<div class="col s12 cart-item">
 									<a href="/mall/product/@item.product.id"><img class="col s3" src="@item.product.images[0]" /></a>
 									<div class="col s6">
-										<a href="/mall/product/@item.product.id" class="product-name blue-grey-text col s12">@item.product.name <span class="color-option" style="background-color: @item.product.options[item.option].name;"></span></a>
+										<a href="/mall/product/@item.product.id" class="product-name blue-grey-text col s12">@item.product.name</a>
+										@if (item.product.options[item.option].name !== '') {
+											<div class="col s12"><div class="product-color" style="background-color: @item.product.options[item.option].name;"></div></div>
+										}
 										<div class="col s12">SỐ LƯỢNG: @item.quantity</div>
 									</div>
 									<div class="col s3 center"><p class="product-price">@(item.product.price * item.quantity)</p></div>

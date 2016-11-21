@@ -2322,6 +2322,12 @@ input[type=number]::-webkit-outer-spin-button {
     font-weight: bold;
     font-size: 20px;
   }
+  .product-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 90px;
+    border: solid 1px black;
+  }
   .cart-item select {
     display: inline;
     color: inherit;

@@ -144,7 +144,8 @@ var getOrderCartTotal = function(order) {
     else
       order.totalOrderAmt += item.product.price * item.quantity;
   });
-  order.totalOrderAmt += deliveryPrices[order.shipping.city.toUpperCase()][order.shipping.district.toUpperCase()];
+  order.shipping_cost = deliveryPrices[order.shipping.city.toUpperCase()][order.shipping.district.toUpperCase()];
+  order.totalOrderAmt += order.shipping_cost;
 };
 
 var reservePayco = function(order) {

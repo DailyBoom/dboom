@@ -1250,6 +1250,13 @@ header, main {
   color: #b3c2cf;
 }
 
+#cart_recap .cart-product .product-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 90px;
+  border: solid 1px black;
+}
+
 #cart_recap .cart-product .product-price {
   font-family: SVN-Karla;
   font-size: 22px;
