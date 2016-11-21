@@ -1536,7 +1536,7 @@ header, main {
   color: #5aa0d6;
 }
 
-#cart .cart-total .total {
+#cart .cart-total .total, #cart .cart-total .total-delivery {
   font-family: SVN-Karla;
   font-size: 22px;
   font-weight: normal;
@@ -1567,6 +1567,15 @@ header, main {
   font-stretch: normal;
   color: #fea3a3;
   text-align: right;
+}
+
+#cart .cart-total .delivery-info {
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
 }
 
 #shipping_row {

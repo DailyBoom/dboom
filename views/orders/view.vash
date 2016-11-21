@@ -57,14 +57,32 @@
 					<span class="col s8 order-label">
 						&nbsp;@model.order.shipping.district, @model.order.shipping.ward, @model.order.shipping.city
 					</span>
-					@if(model.order.status == "Waiting") {
-						<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
-							입금자 이름:
-						</span>
+					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+						Thức thanh toán:
+					</span>
+					@if (model.order.pay_method == 0) { 
 						<span class="col s8 order-label">
-							&nbsp;@model.order.deposit_name
+							&nbsp;Thanh toán khi nhận hàng
 						</span>
 					}
+					else if (model.order.pay_method == 1) { 
+						<span class="col s8 order-label">
+							&nbsp;Thanh toán thông qua chuyển khoản
+						</span>
+					}
+					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+						Thức giao sách:
+					</span>					
+					@if (model.order.deliv_method == 0) { 
+						<span class="col s8 order-label">&nbsp;Nhận Hàng trước 12h trưa.</span>
+					}
+					else if (model.order.deliv_method == 1) { 
+						<span class="col s8 order-label">&nbsp;Nhận hàng trước 6h chiều</span>
+					}
+					else if (model.order.deliv_method == 2) {
+						<span class="col s8 order-label">&nbsp;Nhận hàng vào buổi tối</span>
+					}
+					<!-- -->
 					@if (model.order.pickup_date) {
 						<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
 							Pickup date:

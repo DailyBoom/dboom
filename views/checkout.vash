@@ -131,14 +131,27 @@
                         <div class="cart-total">
                             <div class="col s8">
                                 <div>Tổng tiền:</div>
+                                <div>Phí vận chuyển:</div>
                                 <div>Khuyến mãi:</div>
                                 <div class="amount">Thành tiền:</div>
                                 <span>(Đã bao gồm VAT)</span>
                             </div>
                             <div class="col s4">
                                 <div class="total">@model.cart_total</div>
+                                <div class="total-delivery">@model.order.shipping_cost</div>
                                 <div class="total-dc">0</div>
                                 <div class="total-amount">@model.order.totalOrderAmt</div>                                
+                            </div>
+                            <div class="col s12 delivery-info">
+                            @if (model.order.shipping.city == "HỒ CHÍ MINH") {
+                                <div>* Giá Ship Được Tính Khi Đơn Hàng Có Trọng Lượng Từ 3kg trở xuống.</div>
+                                <div>* Nếu Trên 3kg, Thì Cứ 0,5kg Tiếp Theo Sẽ Cộng Thêm 10.000đ Trên Mỗi Đơn Hàng.</div>
+                                <div>* Nhân Viên Của Yppuna Sẽ Gọi Điện Xác Nhận Chính Xác Giá Ship Cho Quý Khách Hàng. Ngay Sau Khi Nhận Được Đơn Hàng.</div>
+                            }
+                            else if(model.order.shipping.city == "HÀ NỘI") {
+                                <div>* Từ 0,5 kg Tiếp Theo Là Cộng 10.000đ Trên Mỗi Đơn Hàng.</div>
+                                <div>* Nhân Viên Của Yppuna Sẽ Gọi Để Xác Nhận Chính Xác Giá Ship Cho Quý Khách Hàng. Ngay Sau Khi Yppuna Nhận Được Đơn Hàng.</div>
+                            }
                             </div>
                         </div>
                     </div>
@@ -152,7 +165,7 @@
 			$(document).ready(function(){
                 var shipping = 0;
                 var cart_total = @model.cart_total;
-				$(".price, .total, .total-dc, .total-amount").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+				$(".price, .total, .total-dc, .total-amount, .total-delivery").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
                 $("#checkout_btn").on("click", function() {
                     $.ajax({
                         type: "POST",

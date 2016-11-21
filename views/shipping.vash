@@ -31,7 +31,7 @@
 						</div>
 						<div class="form-row">
 							<label class="col s12 l4" for="address">Địa chỉ</label>
-							<textarea class="col s12 l8" value="@(model.order.shipping ? model.order.shipping.address : '')" placeholder="Địa chỉ giao hàng" id="address" name="address"></textarea>
+							<textarea class="col s12 l8" placeholder="Địa chỉ giao hàng" id="address" name="address">@(model.order.shipping ? model.order.shipping.address : '')</textarea>
 						</div>
 						<div class="form-row">
 							<label class="col s12 l4" for="city">Tỉnh/Thành phố</label>
@@ -53,12 +53,12 @@
 						</div>
 						<div class="form-row">
 							<label class="col s12 l4" for="phone_number">Điện thoại di động</label>
-							<input placeholder="Số điện thoại" class="col s12 l8" id="phone_number" name="phone_number" />
+							<input placeholder="Số điện thoại" class="col s12 l8" id="phone_number" name="phone_number" value="@(model.order.shipping ? model.order.shipping.phone_number : '')" />
 						</div>
                         @if (!model.user || model.user && !model.user.email) {
                             <div class="form-row">
                                 <label class="col s12 l4" for="s_email">Email</label>
-                                <input type="email" placeholder="email" class="col s12 l8" id="s_email" name="email" />
+                                <input type="email" placeholder="email" class="col s12 l8" id="s_email" name="email" value="@(model.order.email ? model.order.email : '')" />
                             </div>
                         }
 						<div class="col s12 l8 info offset-l4">
@@ -131,6 +131,30 @@
 		 $(document).ready(function(){
             $(".price, .total, .total-dc, .total-amount").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
 		 })
+         $(window).load(function() {
+            var ship = @(model.order.shipping ? 'true' : 'false');
+            if (ship) {
+                $('#city option').each(function () {
+                    if ($(this).val() == '@model.order.shipping.city') {
+                        $(this).attr('selected', 'selected');
+                        $('select').material_select();
+                        $('#district option').each(function () {
+                            if ($(this).val() == '@model.order.shipping.district') {
+                                $(this).attr('selected', 'selected');
+                                $('select').material_select();
+                                $('#ward option').each(function () {
+                                    if ($(this).val() == '@model.order.shipping.ward') {
+                                        $(this).attr('selected', 'selected');
+                                    }
+                                })
+                                $('select').material_select(); 
+                                return true;                               
+                            }
+                        })
+                    }
+                })
+            }
+         })
 		</script>
 	})
 })
