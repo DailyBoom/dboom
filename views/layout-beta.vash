@@ -209,7 +209,7 @@
       @if(model.cart) {
       <ul id="slide-cart" class="side-nav">
         <div class="slide-menu-wrapper">        
-          <h3>GIO HANG CUA BAN</h3>
+          <h3>GIỎ HÀNG CỦA BẠN</h3>
           <div class="row">
           @model.cart.forEach(function(item, index) {
             <div class="cart-product">
@@ -411,10 +411,11 @@
                                     <a class="collapsible-header sub-header">Phụ Kiện</a>
                                     <div class="collapsible-body">
                                       <ul>
-                                        <li><a class="category" href="/mall?category=44">Mút Rửa Mặt</a></li>                                    
-                                        <li><a class="category" href="/mall?category=45">Máy Rửa Mặt</a></li>                                    
-                                        <li><a class="category" href="/mall?category=46">Giấy Thấm Dầu</a></li>                                    
-                                        <li><a class="category" href="/mall?category=47">Bông Rửa Mặt</a></li>                                    
+                                        <li><a class="category" href="/mall?category=44">Mút Rửa Mặt</a></li>
+                                        <li><a class="category" href="/mall?category=45">Máy Rửa Mặt</a></li>
+                                        <li><a class="category" href="/mall?category=46">Giấy Thấm Dầu</a></li>
+                                        <li><a class="category" href="/mall?category=47">Bông Rửa Mặt</a></li>
+                                        <li><a class="category" href="/mall?category=50">Bông Trang Điểm</a></li>
                                       </ul>
                                     </div>
                                   </li>
@@ -427,6 +428,37 @@
                                     <div class="collapsible-body">
                                       <ul>
                                         <li><a class="category" href="/mall?category=48">Sản Phẩm Đa Công Dụng</a></li>                                    
+                                      </ul>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <ul class="collapsible collapsible-accordion ">
+                        <li>
+                          <a class="collapsible-header">Sản Phẩm Dưỡng Thể</a>
+                          <div class="collapsible-body">
+                            <ul>
+                              <li>
+                                <ul class="collapsible collapsible-accordion">
+                                  <li>
+                                    <a class="collapsible-header sub-header">Sữa tắm</a>
+                                    <div class="collapsible-body">
+                                      <ul>
+                                        <li><a class="category" href="/mall?category=51">Sữa tắm</a></li>                                                                            
+                                      </ul>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <a class="collapsible-header sub-header">Sản phẩm cho tóc</a>
+                                    <div class="collapsible-body">
+                                      <ul>
+                                        <li><a class="category" href="/mall?category=52">Dầu gội</a></li>                                                                            
                                       </ul>
                                     </div>
                                   </li>

@@ -2,109 +2,113 @@
 	@html.block("body", function(model) {
 		<div id="detailed_box" class="container @(model.product.boxZone == 0 ? 'north' : '') @(model.product.boxZone == 1 ? 'central' : '') @(model.product.boxZone == 2 ? 'south' : '')">
 			<div class="row">
-				<div class="col s12 l4 area-row" id="left">
-                    <img class="box-header" src="@model.product.box_header" />
-					<div class="item_names row center hide-on-med-and-up">
-						<div class="col s4">
-							<div class="item_name truncate"><a href="#box_product_0">@model.product.boxProducts[0].name</a></div>
-							<div class="item_type">@model.product.boxProducts[0].brand</div>
+				<section>
+					<div class="col s12 l4 area-row" id="left">
+						<img class="box-header" src="@model.product.box_header" />
+						<div class="item_names row center hide-on-med-and-up">
+							<div class="col s4">
+								<div class="item_name truncate"><a href="#box_product_0">@model.product.boxProducts[0].name</a></div>
+								<div class="item_type">@model.product.boxProducts[0].brand</div>
+							</div>
+							<div class="col s4 ">
+								<div class="item_name truncate"><a href="#box_product_1">@model.product.boxProducts[1].name</a></div>
+								<div class="item_type">@model.product.boxProducts[1].brand</div>
+							</div>
+							<div class="col s4">
+								<div class="item_name truncate"><a href="#box_product_2">@model.product.boxProducts[2].name</a></div>
+								<div class="item_type">@model.product.boxProducts[2].brand</div>
+							</div>
 						</div>
-						<div class="col s4 ">
-							<div class="item_name truncate"><a href="#box_product_1">@model.product.boxProducts[1].name</a></div>
-							<div class="item_type">@model.product.boxProducts[1].brand</div>
+					</div>
+					<div class="col s12 l4" id="center">
+						<div class="img-wrapper">
+							<div class="main-img">
+								<img src="@model.product.images[0]" />
+							</div>
 						</div>
-						<div class="col s4">
-							<div class="item_name truncate"><a href="#box_product_2">@model.product.boxProducts[2].name</a></div>
-							<div class="item_type">@model.product.boxProducts[2].brand</div>
+					</div>
+					<div class="col s12 l4 area-row" id="right">
+						<div class="item_names row center hide-on-small-only">
+							<div class="col s4">
+								<div class="item_name truncate"><a href="#box_product_0">@model.product.boxProducts[0].name</a></div>
+								<div class="item_type">@model.product.boxProducts[0].brand</div>
+							</div>
+							<div class="col s4 ">
+								<div class="item_name truncate"><a href="#box_product_1">@model.product.boxProducts[1].name</a></div>
+								<div class="item_type">@model.product.boxProducts[1].brand</div>
+							</div>
+							<div class="col s4">
+								<div class="item_name truncate"><a href="#box_product_2">@model.product.boxProducts[2].name</a></div>
+								<div class="item_type">@model.product.boxProducts[2].brand</div>
+							</div>
+						</div>
+						<div class="description"><div class="body">@model.product.description</div></div>
+						<div class="prices">
+							@if (model.moment().isAfter(model.moment(model.product.scheduled_at), 'week')) {
+								<span class="price">@model.product.old_price</span>
+							}
+							else {
+								<span class="price">@model.product.price</span>
+								<span class="old_price">@model.product.old_price</span>
+							}
+							<!-- -->
+							@if (model.moment().isBetween(model.product.scheduled_at, model.moment(model.product.scheduled_at).add(13, 'days'))) {
+								<button id="checkout" class="add_cart" data-id="@model.product.id" type="button">THÊM BOX VÀO GIỎ HÀNG</button>
+							}
+							else {
+								<span class="item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.product.scheduled_at).format("DD/MM/YYYY")</span></span>
+							}
+						</div>
+						<div class="options hide">
+							<h4>MÀU SẮC</h4>
+							<ul id="options">
+								@model.product.options.forEach(function(option, index){
+									<li data-option="@index" style="background-color:@option.name;"></li>
+								})
+							</ul>
 						</div>
 					</div>
 				</div>
-				<div class="col s12 l4" id="center">
-					<div class="img-wrapper">
-						<div class="main-img">
-							<img src="@model.product.images[0]" />
-						</div>
-					</div>
-				</div>
-				<div class="col s12 l4 area-row" id="right">
-                    <div class="item_names row center hide-on-small-only">
-						<div class="col s4">
-							<div class="item_name truncate"><a href="#box_product_0">@model.product.boxProducts[0].name</a></div>
-							<div class="item_type">@model.product.boxProducts[0].brand</div>
-						</div>
-						<div class="col s4 ">
-							<div class="item_name truncate"><a href="#box_product_1">@model.product.boxProducts[1].name</a></div>
-							<div class="item_type">@model.product.boxProducts[1].brand</div>
-						</div>
-						<div class="col s4">
-							<div class="item_name truncate"><a href="#box_product_2">@model.product.boxProducts[2].name</a></div>
-							<div class="item_type">@model.product.boxProducts[2].brand</div>
-						</div>
-					</div>
-					<div class="description"><div class="body">@model.product.description</div></div>
-					<div class="prices">
-						@if (model.moment().isAfter(model.moment(model.product.scheduled_at), 'week')) {
-							<span class="price">@model.product.old_price</span>
-						}
-						else {
-							<span class="price">@model.product.price</span>
-							<span class="old_price">@model.product.old_price</span>
-						}
-						<!-- -->
-						@if (model.moment().isBetween(model.product.scheduled_at, model.moment(model.product.scheduled_at).add(13, 'days'))) {
-							<button id="checkout" class="add_cart" data-id="@model.product.id" type="button">THÊM BOX VÀO GIỎ HÀNG</button>
-						}
-						else {
-							<span class="item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.product.scheduled_at).format("DD/MM/YYYY")</span></span>
-						}
-					</div>
-					<div class="options hide">
-						<h4>MÀU SẮC</h4>
-						<ul id="options">
-							@model.product.options.forEach(function(option, index){
-								<li data-option="@index" style="background-color:@option.name;"></li>
-							})
-						</ul>
-					</div>
-				</div>
-			</div>
+			</section>
             <div class="box-products">
                 @model.product.boxProducts.forEach(function(product, index) {
-                    <div id="box_product_@index" class="area-header hide-on-small-only">
-                        <div class="right">
-                            <img src="@model.product.box_header" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 l4" id="left">
-                            <h2>@product.name</h2>
-                        </div>
-                        <div class="col s12 l4" id="center">
-                            <div class="img-wrapper">
-                                <div class="main-img">
-                                    <img src="@product.images[0]" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s12 l4" id="right">
-                            <div class="description">
-                                <h4>MÔ TẢ CHI TIẾT</h4>
-                                <div class="body">@product.description</div>
-                            </div>
-                            <div class="how-to">
-                                <h4>HƯỚNG DẪN SỬ DỤNG</h4>
-                                <div class="body">@product.how_to</div>
-                            </div>
-                            <div class="prices">
-								@if (model.moment().isBetween(model.product.scheduled_at, model.moment(model.product.scheduled_at).add(13, 'days'))) {
-									<button id="checkout" class="add_cart" data-id="@model.product.id" type="button">THÊM BOX VÀO GIỎ HÀNG</button>
-								}
-								else {
-									<span class="item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.product.scheduled_at).format("DD/MM/YYYY")</span></span>
-								}
-                            </div>
-                        </div>
-				    </div>
+					<section>
+						<div id="box_product_@index" class="area-header hide-on-small-only">
+							<div class="right">
+								<img src="@model.product.box_header" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col s12 l4" id="left">
+								<h2>@product.name</h2>
+							</div>
+							<div class="col s12 l4" id="center">
+								<div class="img-wrapper">
+									<div class="main-img">
+										<img src="@product.images[0]" />
+									</div>
+								</div>
+							</div>
+							<div class="col s12 l4" id="right">
+								<div class="description">
+									<h4>MÔ TẢ CHI TIẾT</h4>
+									<div class="body">@product.description</div>
+								</div>
+								<div class="how-to">
+									<h4>HƯỚNG DẪN SỬ DỤNG</h4>
+									<div class="body">@product.how_to</div>
+								</div>
+								<div class="prices">
+									@if (model.moment().isBetween(model.product.scheduled_at, model.moment(model.product.scheduled_at).add(13, 'days'))) {
+										<button id="checkout" class="add_cart" data-id="@model.product.id" type="button">THÊM BOX VÀO GIỎ HÀNG</button>
+									}
+									else {
+										<span class="item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.product.scheduled_at).format("DD/MM/YYYY")</span></span>
+									}
+								</div>
+							</div>
+						</div>
+					</section>
                 })
             </div>
 			<section id="individual" class="hide-on-small-only">
