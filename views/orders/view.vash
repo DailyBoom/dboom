@@ -108,7 +108,7 @@
 				</div><!-- .col -->
 			 }
 			 else if (model.order.cart) {
-				<div class="row checkout-mall">
+				<div class="checkout-mall">
 					<div class="col s12 m6 l8 blue-grey-text text-darken-3">
 						<h5>THÔNG TIN ĐƠN HÀNG</h5>
 						<div class="col s12 white z-depth-1 cart">
@@ -124,7 +124,14 @@
 										}
 										<div class="col s12">SỐ LƯỢNG: @item.quantity</div>
 									</div>
-									<div class="col s3 center"><p class="product-price">@(item.product.price * item.quantity)</p></div>
+									<div class="col s3 center">
+										@if (item.product.extend == 3 && model.moment(model.order.created_at).isAfter(model.moment(item.product.scheduled_at, 'week'))) {
+                                        	<p class="product-price">@(item.product.old_price * item.quantity)</p>
+										}
+										else {
+											<p class="product-price">@(item.product.price * item.quantity)</p>                                             
+										}
+									</div>
 								</div>
 							})
 						</div>
