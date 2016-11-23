@@ -48,8 +48,7 @@
                 <span style="@(model.has_zone ? 'display:none;' : '')">Là Gì?</span>
                 <span style="display:none;">Yppuna là thương hiệu mang những sản phẩm làm đẹp dựa trên vùng miền bạn đang sinh sống</span>
                 <span style="display:none;">Chúng tôi tự tay lựa chọn từng sản phẩm để phù hợp nhất cho làn da của bạn dựa trên khí hậu bạn đang sinh sống</span>
-                <span style="@(!model.has_zone ? 'display:none;' : '')">Thế,<br/></span>
-                <span style="@(!model.has_zone ? 'display:none;' : '')">bạn đang sinh sống ở đâu?</span>
+                <span style="@(!model.has_zone ? 'display:none;' : '')">Bạn đang sinh sống ở đâu?</span>
             </div>
             <div class="zones">
                 <div class="col s4">
@@ -84,11 +83,9 @@
                                         // $(this)[0].addEventListener('ended', function() {
                                         //    $('.intro-video').fadeOut(function() {
                                                 text.next().add($('.intro-logo')).fadeIn().promise().done(function() {
-                                                    $(this).eq(1).next().fadeIn(function() {                     
-                                                        $('.intro-logo').css('margin-top', '100px');
-                                                        $('.intro-logo').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
-                                                            $('.zones').css('bottom', '0');
-                                                        });
+                                                    $('.intro-logo').css('margin-top', '100px');
+                                                    $('.intro-logo').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
+                                                        $('.zones').css('bottom', '0');
                                                     });
                                                 });
                                         //  });

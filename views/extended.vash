@@ -24,20 +24,22 @@
 					<a href="#" class="read-more hide-on-med-and-up">Xem chi tiết <i class="fa fa-caret-right"></i></a>
 				</div>
 				<div class="col s12 l4" id="center">
-					<div class="img-wrapper">
-						<div class="main-img">
-							<img src="@model.product.images[0]" />
-						</div>
-					</div>
-					<div class="img-list">
+					<div class="wrapper">
 						<div class="img-wrapper">
-							<div class="side-img left-img"><img src="@model.product.images[2]" /></div>
+							<div class="main-img">
+								<img src="@model.product.images[0]" />
+							</div>
 						</div>
-						<div class="img-wrapper">
-							<div class="current-img"><img src="@model.product.images[0]" /></div>
-						</div>
-						<div class="img-wrapper">
-							<div class="side-img"><img src="@model.product.images[1]" /></div>
+						<div class="img-list">
+							<div class="img-wrapper">
+								<div class="side-img left-img"><img src="@model.product.images[2]" /></div>
+							</div>
+							<div class="img-wrapper">
+								<div class="current-img"><img src="@model.product.images[0]" /></div>
+							</div>
+							<div class="img-wrapper">
+								<div class="side-img"><img src="@model.product.images[1]" /></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -205,6 +207,14 @@
 					}
 				});
 			});
+			var is_mobile = @model.is_mobile;
+			if (!is_mobile) {
+				$('#center .wrapper').pushpin({
+					top: $('#center').offset().top,
+					bottom: $('#individual').offset().top - $('#center .wrapper').height(),
+					offset: 20
+				});
+			}
 		});
 	</script>
 	

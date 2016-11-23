@@ -1395,6 +1395,21 @@ header, main {
   display: block;
 }
 
+.ybtn-o {
+  font-family: SVN-Karla;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  background-color: #ffffff;
+  text-align: center;
+  border-radius: 73px;
+  border: solid 1px #3ebbed;
+  color: #3ebbed;
+  padding: 5px 0 4px;
+  width: 100%;
+  display: block;
+}
 
 /* Checkout */
 
@@ -1903,7 +1918,16 @@ header, main {
 }
 
 #detailed_product #center {
-  text-align: center;
+  position: relative;
+  min-height: 1px;
+}
+
+#detailed_product #center .pinned {
+  width: calc((100% - 152px) * 0.3333333333 - 1.5rem);
+}
+
+#detailed_product #center .img-list {
+  text-align: center;  
 }
 
 #detailed_product #right {

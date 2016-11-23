@@ -105,6 +105,7 @@
 									else {
 										<span class="item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.product.scheduled_at).format("DD/MM/YYYY")</span></span>
 									}
+									<a class="ybtn-o" href="/detailed/@product.id">MUA SẢN PHẨM LẺ</a>
 								</div>
 							</div>
 						</div>
