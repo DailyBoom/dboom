@@ -741,51 +741,24 @@ router.get('/success', function(req, res) {
 });
 
 router.get('/orders/paid/:id', isAdmin, function(req, res) {
-  Order.findOne({ '_id': req.params.id }).populate('product user coupon').exec(function(err, order) {
+  Order.findOne({ '_id': req.params.id }).populate('product user cart.product').exec(function(err, order) {
+    if (err)
+      console.log(err);
+    if (!order)
+      return res.redirect('/orders/list');
+    if (order.status == "Paid") {
+      return res.redirect('/orders/list');
+    }
+    order.status = "Paid";
+    order.save(function(err) {
       if (err)
         console.log(err);
-      if (!order)
-        return res.redirect('/orders/list');
-      if (order.status == "Paid") {
-        return res.redirect('/orders/list');
-      }
-      order.merchant_id = order.product.merchant_id;
-      order.status = "Paid";
-      order.save(function(err) {
-        if (err)
-          console.log(err);
-        Product.findOne({ _id: order.product }, function(err, product) {
-          product.options.forEach(function(option){
-            if (option.name === order.option) {
-              option.quantity -= order.quantity;
-              product.markModified('options');
-              product.save(function(err) {
-                if (err)
-                  console.log(err);
-                fs.readFile('./views/mailer/buy_success.vash', "utf8", function(err, file) {
-                  if(err){
-                    //handle errors
-                    console.log('ERROR!');
-                    return res.send('ERROR!');
-                  }
-                  var html = vash.compile(file);
-                  moment.locale('vi');
-                  transporter.sendMail({
-                    from: 'Yppuna <hello@yppuna.vn>',
-                    to: order.user ? order.user.email : order.email,
-                    subject: '데일리 붐 구매 안내.',
-                    html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment, i18n: i18n })
-                  }, function (err, info) {
-                      if (err) { console.log(err); }
-                      //console.log('Message sent: ' + info.response);
-                      transporter.close();
-                      res.redirect('/orders/list');
-                  });
-                });
-              });
-          }
-        });
+      order.cart.forEach(function(item) {
+        item.product.options[item.option].quantity -= item.quantity;
+        item.product.markModified('options');
+        item.product.save();
       });
+      return res.redirect('/orders/list');
     });
   });
 });
@@ -804,7 +777,6 @@ router.get('/orders/cart_paid/:id', isAdmin, function(req, res) {
           console.log(err);
         order.cart.forEach(function(item){
           item.product.options[item.option].quantity -= item.quantity;          
-          item.product.markModified('options');
           item.product.save();
         });
         fs.readFile('./views/mailer/buy_success.vash', "utf8", function(err, file) {

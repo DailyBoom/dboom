@@ -112,12 +112,10 @@
 					<td class="amber-text text-darken-3"><b>&nbsp;@order.status</b></td>
 				}
 					<td class="right">
-					@if(order.status == "Paid"){
-						<a href="/orders/send/@order.id" class="users-link green-text text-darken-3 blink" onclick="return confirm('배송 하셨나요?');"><i class="fa fa-paper-plane fa-fw fa-1-5x"></i></a>
-					}
+
 					@if(model.user.admin == 1){
 						@if(order.status=='Waiting'){
-							<a class="users-link amber-text text-darken-3 blink" href="/orders/paid/@order.id" onclick="return confirm('입금확인 되셨나요?')">
+							<a class="users-link amber-text text-darken-3 blink" href="/orders/paid/@order.id" onclick="return confirm('Order has been paid?')">
 								<i class="fa fa-money fa-fw fa-1-5x"></i>
 							</a>
 						}
