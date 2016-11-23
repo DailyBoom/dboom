@@ -4,9 +4,9 @@
 		@if(model.products[0]) {
 		<section id="north">
 			<div class="row area-row">
-				<div class="col s12 l4">
+				<div class="col s12 l4" data-stellar-ratio="2">
 					<img class="item_cover" src="@model.products[0].box_header" />
-					<div class="item_names row center">
+					<div class="item_names row center" >
 						<div class="col s4">
 							<div class="item_name truncate">@model.products[0].boxProducts[0].name</div>
 							<div class="item_type">@model.products[0].boxProducts[0].brand</div>
@@ -44,7 +44,7 @@
 						</a>
 					</div>
 				</div>
-				<div class="col s12 l8">
+				<div class="col s12 l8" >
 					<div class="item_img"><img  src="@model.products[0].images[0]"/></div>
 					<div class="item_detail hide-on-med-and-up">
 						<a href="/box/@model.products[0].id">
@@ -60,10 +60,10 @@
 		<section id="central">
 			<div class="row area-row">
 				<div class="col s12 l8 hide-on-small-only">
-					<div class="item_img"><img src="@model.products[1].images[0]"/></div>
+					<div class="item_img" data-stellar-ratio="0.9"><img src="@model.products[1].images[0]"/></div>
 				</div>
-				<div class="col s12 l4">
-					<img class="item_cover" src="@model.products[1].box_header" />
+				<div class="col s12 l4" data-stellar-ratio="2">
+					<img class="item_cover"  src="@model.products[1].box_header" />
 					<div class="item_names row center">
 						<div class="col s4">
 							<div class="item_name truncate">@model.products[1].boxProducts[0].name</div>
@@ -234,6 +234,7 @@
 		//	{selector: '#south', offset: 500, callback: "$('#side-menu, #slide-out').removeClass('north central').addClass('south');", repeat: true}
 		//];
 		//Materialize.scrollFire(options);
+		var is_mobile = @model.is_mobile;
 		$(".item_price, .item_old_price, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
 		var owl = $("#individual .row");
 		owl.owlCarousel({
@@ -249,7 +250,23 @@
 			rewindNav: true,
 			autoPlay: true
 		});
-		//$('#homepage').stellar();
+		if (!is_mobile) {
+			$.stellar({
+				verticalScrolling: true,
+				horizontalScrolling: false,
+				verticalOffset: 122,
+				horizontalOffset: 152,
+				parallaxElements: true,
+				scrollProperty: 'scroll',
+				positionProperty: 'transform',
+				// Hide parallax elements that move outside the viewport
+				hideDistantElements: true,
+
+				// Customise how elements are shown and hidden
+				hideElement: function($elem) { $elem.fadeOut("slow"); },
+				showElement: function($elem) { $elem.fadeIn("slow"); }
+			});
+		}
 	</script>
   })
 })
