@@ -4,6 +4,7 @@
 		 <div class="row">
 			@if(model.user.admin){
 			 <a href="/orders/edit/@model.order.id" class="btn right">EDIT</a>
+			 <a href="/orders/paid/@model.order.id" class="orange btn right" onclick="return confirm('Order has been paid?')">PAID</a>
 			}
 			 <h3 class="blue-grey-text text-darken-4">Order View</h3>
 			 <br>
