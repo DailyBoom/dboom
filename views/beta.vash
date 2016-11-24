@@ -277,7 +277,11 @@
 					});
 				}
 			},
-			offset: '80%'
+			offset: '80%',
+			enabled: false
+		});
+		$(window).one("scroll", function() {
+			Waypoint.enableAll();
 		});
 	</script>
   })
