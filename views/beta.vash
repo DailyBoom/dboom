@@ -277,7 +277,7 @@
 					});
 				}
 			},
-			offset: 'bottom-in-view'
+			offset: '80%'
 		});
 	</script>
   })
