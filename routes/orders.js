@@ -30,6 +30,10 @@ var transporter = nodemailer.createTransport(smtpTransport({
     }
 }));
 
+function isEmptyObject(obj) {
+  return !Object.keys(obj).length;
+}
+
 // As with any middleware it is quintessential to call next()
 // if the user is authenticated
 var isAuthenticated = function (req, res, next) {
@@ -146,78 +150,6 @@ var getOrderCartTotal = function(order) {
   });
   order.shipping_cost = deliveryPrices[order.shipping.city.toUpperCase()][order.shipping.district.toUpperCase()];
   order.totalOrderAmt += order.shipping_cost;
-};
-
-var reservePayco = function(order) {
-  var payco = {
-    "sellerKey": config.Payco.sellerKey,
-    "sellerOrderReferenceKey": order._id,
-    "totalDeliveryFeeAmt": 0,
-    "totalPaymentAmt": order.totalOrderAmt,
-    "returnUrl": config.Payco.returnUrl,
-    "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
-    "orderMethod": "EASYPAY",
-    "payMode": "PAY2",
-    "orderProducts": [
-        {
-          "cpId": config.Payco.cpId,
-          "productId": config.Payco.productId,
-          "productAmt": order.totalOrderAmt,
-          "productPaymentAmt": order.totalOrderAmt,
-          "sortOrdering": 1,
-          "productName": order.product.name+"("+order.option+")",
-          "orderQuantity": order.quantity,
-          "sellerOrderProductReferenceKey": order._id,
-          "productImageUrl": "http://dailyboom.co/"+order.product.images[0]
-        }
-    ]
-  };
-
-  console.log(payco);
-  return payco;
-}
-
-var reserveCartPayco = function(order) {
-  var payco = {
-    "sellerKey": config.Payco.sellerKey,
-    "sellerOrderReferenceKey": order._id,
-    "totalDeliveryFeeAmt": order.totalOrderAmt < 50000 ? 2500 : 0,
-    "totalPaymentAmt": order.totalOrderAmt,
-    "returnUrl": config.Payco.returnMallUrl,
-    "returnUrlParam" : "{\"order_id\":\""+order._id+"\"}",
-    "orderMethod": "EASYPAY",
-    "payMode": "PAY2",
-    "orderProducts": []
-  };
-
-  order.cart.forEach(function(item) {
-    payco.orderProducts.push({
-      "cpId": config.Payco.cpId,
-      "productId": config.Payco.productId,
-      "productAmt": item.product.price * item.quantity,
-      "productPaymentAmt": item.product.price *item.quantity,
-      "sortOrdering": 1,
-      "productName": item.product.name+"("+item.product.options[item.option].name+")",
-      "orderQuantity": item.quantity,
-      "sellerOrderProductReferenceKey": order._id,
-      "productImageUrl": "http://dailyboom.co/"+item.product.images[0]
-    });
-  });
-  
-  if (order.totalOrderAmt < 50000) {
-    payco.orderProducts.push({
-      "cpId": config.Payco.cpId,
-      "productId": config.Payco.productId,
-      "productAmt": 2500,
-      "productPaymentAmt": 2500,
-      "sortOrdering": 1,
-      "productName": "delivery fee",
-      "orderQuantity": 1,
-      "sellerOrderProductReferenceKey": order._id
-    });
-  }
-  console.log(payco);
-  return payco;
 };
 
 router.get('/orders/success', isAdmin, function(req, res) {
@@ -351,11 +283,11 @@ router.get('/checkout', function(req, res) {
     Order.findOne({ _id: req.session.cart_order }).populate('cart.product').exec(function(err, order) {
       if (err)
         console.log(err);
-      if ((req.user && hasShipping(req.user)) || (hasShipping(order))) {
+      if (hasShipping(order)) {
         if (req.user && !order.user) {
           order.user = req.user;
           if (!order.shipping)
-            order.shipping = req.user.shipping;
+            order.shipping = JSON.parse(JSON.stringify(user.shipping));
         }
         getOrderCartTotal(order);
         order.save(function(err) {
@@ -939,6 +871,9 @@ router.get('/shipping', function(req, res) {
     res.redirect('/');
   else
     Order.findOne({ '_id': req.session.order || req.session.cart_order }, function(err, order) {
+      if (req.user && hasShipping(req.user) && !hasShipping(order)) {
+        order.shipping = JSON.parse(JSON.stringify(req.user.shipping));
+      }
       res.render('shipping', { title: req.__('shipping'), order: order });
     });
 });

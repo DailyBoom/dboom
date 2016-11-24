@@ -230,11 +230,12 @@
 	<script type="text/javascript">
 		//var options = [
 		//	{selector: '#north', offset: 0, callback: "$('#side-menu, #slide-out').removeClass('central south').addClass('north');", repeat: true },
-		//	{selector: '#central', offset: 500, callback: "$('#side-menu, #slide-out').removeClass('north south').addClass('central');", repeat: true},
+		//	{selector: '#central', offset: 0, callback: "$('#north .area-row').css('margin-bottom', '0');$('#central').animateCSS('slideInUp');", repeat: true},
 		//	{selector: '#south', offset: 500, callback: "$('#side-menu, #slide-out').removeClass('north central').addClass('south');", repeat: true}
 		//];
 		//Materialize.scrollFire(options);
 		var is_mobile = @model.is_mobile;
+
 		$(".item_price, .item_old_price, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
 		var owl = $("#individual .row");
 		owl.owlCarousel({
@@ -250,23 +251,34 @@
 			rewindNav: true,
 			autoPlay: true
 		});
-		if (!is_mobile) {
-			$.stellar({
-				verticalScrolling: true,
-				horizontalScrolling: false,
-				verticalOffset: 122,
-				horizontalOffset: 152,
-				parallaxElements: true,
-				scrollProperty: 'scroll',
-				positionProperty: 'transform',
-				// Hide parallax elements that move outside the viewport
-				hideDistantElements: false,
-
-				// Customise how elements are shown and hidden
-				hideElement: function($elem) { $elem.fadeOut("slow"); },
-				showElement: function($elem) { $elem.fadeIn("slow"); }
-			});
-		}
+		
+		$('section .item_detail.hide-on-small-only').waypoint({
+			handler: function(direction) {
+				var waypoint = this;
+				console.log(waypoint);
+				var section = $(this.element).closest('section');
+				if (direction == 'down') {
+					section.find(".l8").add($(section).find(".l4")).css('transform', 'translate3d(0, -'+section.height()+'px, 0)');
+					section.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
+						var nextSection = $(section).next('section');
+						nextSection.find(".l8").add(nextSection.find(".l4")).css('transform', 'translate3d(0, -'+nextSection.height()+'px, 0)');
+						nextSection.find(".l4").one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
+							console.log('enabled');
+						});
+					});
+				}
+				else if (direction == 'up') {
+					var nextSection = $(section).next('section');
+					nextSection.find(".l8").add(nextSection.find(".l4")).css('transform', 'translate3d(0, 0, 0)');
+					nextSection.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
+						section.find(".l8").add($(section).find(".l4")).css('transform', 'translate3d(0, 0, 0)');
+						section.find(".l4").one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
+						});
+					});
+				}
+			},
+			offset: 'bottom-in-view'
+		});
 	</script>
   })
 })

@@ -111,6 +111,7 @@
     <script src="/javascripts/imgToSvg.js"></script>
     <script src="/javascripts/combodate.js"></script>
     <script src="/javascripts/jquery.animatecss.min.js"></script>
+    <script src="/javascripts/jquery.waypoints.min.js"></script>
     <script src="/javascripts/jquery.stellar.min.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <!-- Modernizr -->

@@ -703,6 +703,19 @@ header, main {
   color: #fea3a3;
 }
 
+#homepage section .l8 {
+  transition: transform;
+  transition-duration: 0.8s;
+  transition-timing-function: ease-in-out;
+}
+
+#homepage section .l4 {
+  transition: transform;
+  transition-delay: 0.2s;
+  transition-duration: 0.8s;
+  transition-timing-function: ease-in-out;
+}
+
 .area-header {
   width: 100%;
   font-size: 15px;
