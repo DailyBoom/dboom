@@ -293,6 +293,9 @@
 				},
 				offset: '5%'
 			});
+			$(window).load(function() {
+				$('#boxes').css('height', $('#north').height()+50+'px');				
+			})
 			$(window).one("scroll", function() {
 				console.log('test');
 				Waypoint.enableAll();
