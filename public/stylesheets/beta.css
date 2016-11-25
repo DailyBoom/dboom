@@ -9,14 +9,16 @@
 
 @font-face {
   font-family: 'Estilo';
-  src: url('/fonts/Estilo.otf'); /* IE9 Compat Modes */
-  src: url('/fonts/Estilo.otf') format('truetype'); /* IE9 Compat Modes */
+  src: url('/fonts/Estilo.eot'), 
+  url('/fonts/Estilo.eot?#iefix') format("embedded-opentype"),
+  url('/fonts/Estilo.otf') format('opentype'); /* IE9 Compat Modes */
 }
 
 @font-face {
   font-family: 'SVN-Karla';
-  src: url('/fonts/SVN-Karla_Regular.otf'); /* IE9 Compat Modes */
-  src: url('/fonts/SVN-Karla_Regular.otf') format('truetype'); /* IE9 Compat Modes */
+  src: url('/fonts/SVN-Karla_Regular.eot'),
+  url('/fonts/SVN-Karla_Regular.eot?#iefix'),
+  url('/fonts/SVN-Karla_Regular.otf') format('opentype'); /* IE9 Compat Modes */
 }
 
 /* Preview Navbar */
@@ -701,6 +703,14 @@ header, main {
 #south, .south {
   font-family: SVN-Karla;
   color: #fea3a3;
+}
+
+#homepage #boxes {
+  overflow: hidden;
+}
+
+#homepage #central, #homepage #south {
+  float: left;
 }
 
 #homepage section .l8 {

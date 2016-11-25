@@ -1,6 +1,7 @@
 @html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
 	<div class="container" id="homepage">
+		<div id="boxes">
 		@if(model.products[0]) {
 		<section id="north">
 			<div class="row area-row">
@@ -213,6 +214,7 @@
 			</div>
 		</section>
 		}
+		</div>
 		<section id="individual">
 			<h2>SẢN PHẨM BÁN LẺ</h2>
 			<div class="row">
@@ -251,38 +253,48 @@
 			rewindNav: true,
 			autoPlay: true
 		});
-		
-		$('section .item_detail.hide-on-small-only').waypoint({
-			handler: function(direction) {
-				var waypoint = this;
-				console.log(waypoint);
-				var section = $(this.element).closest('section');
-				if (direction == 'down') {
-					section.find(".l8").add($(section).find(".l4")).css('transform', 'translate3d(0, -'+section.height()+'px, 0)');
-					section.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
+		if (!is_mobile) {
+			$('#boxes').css('height', $('#north').height()+50+'px');
+			$('section .item_detail.hide-on-small-only').waypoint({
+				handler: function(direction) {
+					var waypoint = this;
+					console.log(direction);
+					var section = $(this.element).closest('section');
+					if (direction == 'down' && section.next().not('#individual').length) {
+						section.find(".l8").add($(section).find(".l4")).css('transform', 'translate3d(0, -'+section.height()+'px, 0)');
+						section.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
+							var nextSection = $(section).next('section');
+							nextSection.find(".l8").add(nextSection.find(".l4")).css('transform', 'translate3d(0, -'+nextSection.height()+'px, 0)');
+							nextSection.find(".l4").one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
+								Waypoint.refreshAll()
+							});
+						});
+					}
+				},
+				offset: '70%',
+				enabled: true
+			});
+			$('section .item_detail.hide-on-small-only').waypoint({
+				handler: function(direction) {
+					if (direction == 'up') {
+						var section = $(this.element).closest('section');					
+						console.log(section);					
 						var nextSection = $(section).next('section');
-						nextSection.find(".l8").add(nextSection.find(".l4")).css('transform', 'translate3d(0, -'+nextSection.height()+'px, 0)');
-						nextSection.find(".l4").one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
-							console.log('enabled');
+						nextSection.find(".l8").add(nextSection.find(".l4")).css('transform', 'translate3d(0, 0, 0)');
+						nextSection.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
+							section.find(".l8").add($(section).find(".l4")).css('transform', 'translate3d(0, 0, 0)');
+							section.find(".l4").one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
+								Waypoint.refreshAll()
+							});
 						});
-					});
-				}
-				else if (direction == 'up') {
-					var nextSection = $(section).next('section');
-					nextSection.find(".l8").add(nextSection.find(".l4")).css('transform', 'translate3d(0, 0, 0)');
-					nextSection.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
-						section.find(".l8").add($(section).find(".l4")).css('transform', 'translate3d(0, 0, 0)');
-						section.find(".l4").one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
-						});
-					});
-				}
-			},
-			offset: '80%',
-			enabled: false
-		});
-		$(window).one("scroll", function() {
-			Waypoint.enableAll();
-		});
+					}
+				},
+				offset: '5%'
+			});
+			$(window).one("scroll", function() {
+				Waypoint.enableAll();
+			});
+		}
 	</script>
   })
 })
