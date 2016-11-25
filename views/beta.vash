@@ -253,28 +253,30 @@
 			rewindNav: true,
 			autoPlay: true
 		});
-		if (!is_mobile) {
 			$('#boxes').css('height', $('#north').height()+50+'px');
-			$('section .item_detail.hide-on-small-only').waypoint({
+			var item_down = is_mobile ? $('section .item_cover') : $('section .item_img');
+			var item_up = is_mobile ? $('section .item_detail.hide-on-med-and-up') : $('section .item_detail.hide-on-small-only');
+			var offset = is_mobile ? '56px' : '90px';
+			item_down.waypoint({
 				handler: function(direction) {
 					var waypoint = this;
-					console.log(direction);
 					var section = $(this.element).closest('section');
 					if (direction == 'down' && section.next().not('#individual').length) {
+						console.log(direction);
 						section.find(".l8").add($(section).find(".l4")).css('transform', 'translate3d(0, -'+section.height()+'px, 0)');
 						section.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
 							var nextSection = $(section).next('section');
 							nextSection.find(".l8").add(nextSection.find(".l4")).css('transform', 'translate3d(0, -'+nextSection.height()+'px, 0)');
 							nextSection.find(".l4").one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
-								Waypoint.refreshAll()
+								Waypoint.refreshAll();
 							});
 						});
 					}
 				},
-				offset: '70%',
-				enabled: true
+				//offset: offset,
+				enabled: false
 			});
-			$('section .item_detail.hide-on-small-only').waypoint({
+			item_up.waypoint({
 				handler: function(direction) {
 					if (direction == 'up') {
 						var section = $(this.element).closest('section');					
@@ -292,9 +294,13 @@
 				offset: '5%'
 			});
 			$(window).one("scroll", function() {
+				console.log('test');
 				Waypoint.enableAll();
 			});
-		}
+			$(document).one("scrollstart",function(){
+				console.log('test mobile');
+				Waypoint.enableAll();
+			});
 	</script>
   })
 })

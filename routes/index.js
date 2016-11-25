@@ -190,7 +190,7 @@ router.get('/home', function(req, res, next) {
     return res.redirect('/');
   Product.find({ boxZone: req.session.zone, scheduled_at: { "$gte": moment().subtract(13, 'days') } }, {}, {}).populate('boxProducts').exec(function (err, products) {
     console.log(products);
-    Product.find({ extend: 4 }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
+    Product.find({ extend: 4, is_published: true }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
       res.render('beta', { progress: 75, products: products, hotProducts: hotProducts });
     });
   });
@@ -445,7 +445,14 @@ router.get('/cart', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-  res.render('intro', { has_zone : typeof req.session.zone !== 'undefined' });
+  if (req.cookies.ypp_f_time && !req.cookies.ypp_s_time) {
+    res.cookie('ypp_s_time', 'true', { maxAge: 900000, httpOnly: true });
+  } 
+  if (!req.cookies.ypp_f_time) {
+    res.cookie('ypp_f_time', 'true', { maxAge: 900000, httpOnly: true });
+  }
+  var skip_intro = req.cookies.ypp_s_time ? true : false;
+  res.render('intro', { has_zone : typeof req.session.zone !== 'undefined', skip_intro: skip_intro });
 });
 
 module.exports = router;

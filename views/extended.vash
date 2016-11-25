@@ -94,7 +94,10 @@
 							<h4>MÀU SẮC</h4>
 							<ul id="options">
 								@model.product.options.forEach(function(option, index){
-									<li data-option="@index" style="background-color:@option.name;" class="@(index == 0 ? 'active' : '')"></li>
+									<li data-option="@index" class="@(index == 0 ? 'active' : '')">
+										<div class="option-color" style="background-color:@option.name;"></div>
+										<div class="option-name">@option.name</div>
+									</li>
 								})
 							</ul>
 						</div>

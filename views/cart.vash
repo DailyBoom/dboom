@@ -34,6 +34,7 @@
                                     <div class="product-brand">@item.product.brand</div>
                                     @if (item.product.options[item.option].name !== '') {
                                         <div class="product-color" style="background-color: @item.product.options[item.option].name"></div>
+										<div class="option-name">@item.product.options[item.option].name</div>
                                     }
                                     <!-- -->
                                     @if(item.is_preorder) {

@@ -68,7 +68,7 @@
                     <div class="cart-header">
                         <a href="/cart" class="right">SỬA</a>
                         <h4>THÔNG TIN ĐƠN HÀNG</h4>
-                        <span class="sub">(@model.cart.length quyển sách trong túi hàng của bạn)</span>
+                        <span class="sub">(@model.cart.length sản phẩm trong túi hàng của bạn)</span>
                     </div>
                     <div class="cart-content">
                         <div class="content-header hide-on-small-only">
@@ -146,10 +146,12 @@
                     if ($('#login_btn').is(':checked')) {
                         $('#c_login').removeClass('hide');
                         $('#c_signup').addClass('hide');
+                        $('#c_no_login').addClass('hide');
                     }
                     else if ($('#signup_btn').is(':checked')) {
                         $('#c_login').addClass('hide');
                         $('#c_signup').removeClass('hide');
+                        $('#c_no_login').addClass('hide');
                     }
                     else if ($('#no_login_btn').is(':checked')) {
                         $('#c_login').addClass('hide');

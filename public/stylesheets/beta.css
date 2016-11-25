@@ -1429,9 +1429,9 @@ header, main {
   border-radius: 73px;
   border: solid 1px #3ebbed;
   color: #3ebbed;
-  padding: 5px 0 4px;
-  width: 100%;
-  display: block;
+  padding: 6px 50px 5px;
+  display: inline-block;
+  margin-top: 12px;
 }
 
 /* Checkout */
@@ -2089,13 +2089,33 @@ header, main {
 }
 
 #detailed_product .options li {
-  border-radius: 90px;
   margin-right: 12px;
   cursor: pointer;
+  font-family: SVN-Karla;
+  font-size: 11px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
 }
 
-#detailed_product .options li.active {
+#detailed_product .options li .option-color {
+  border-radius: 90px;
+  width: inherit;
+  height: inherit;
+}
+
+#detailed_product .options li.active .option-color {
   border: 2px black solid;
+}
+
+.option-name {
+  font-family: SVN-Karla;
+  font-size: 11px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: left;
 }
 
 #detailed_product .options *, #detailed_product .quantity *, #detailed_product .regions *, #detailed_product .skin-types h4, #detailed_product .skin-types .select-wrapper {
