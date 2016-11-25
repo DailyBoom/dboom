@@ -257,7 +257,7 @@
 			var item_down = is_mobile ? $('section .item_cover') : $('section .item_img');
 			var item_up = is_mobile ? $('section .item_detail.hide-on-med-and-up') : $('section .item_detail.hide-on-small-only');
 			var offset = is_mobile ? '56px' : '90px';
-			item_down.waypoint({
+			$('section .item_cover').waypoint({
 				handler: function(direction) {
 					var waypoint = this;
 					var section = $(this.element).closest('section');
