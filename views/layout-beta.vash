@@ -221,7 +221,7 @@
               <div class="col s8">
                 <div class="truncate product-name"><a href="/detailed/@item.product.id" class="truncate">@item.product.name</a></div>
                 <div class="product-brand">@item.product.brand</div>
-                @if (item.product.extend == 3 && model.moment().isAfter(model.moment(item.product.scheduled_at, 'week'))) {
+                @if (item.product.extend == 3 && model.moment().isAfter(model.moment(item.product.scheduled_at), 'week')) {
                   <div class="product-price">@(item.product.old_price * item.quantity)</div>
                 }
                 else {

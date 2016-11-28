@@ -96,7 +96,7 @@
                                         <div class="quantity">@item.quantity</div>
                                     </div>
                                     <div class="col s4">
-                                        @if (item.product.extend == 3 && model.moment().isAfter(model.moment(item.product.scheduled_at, 'week'))) {
+                                        @if (item.product.extend == 3 && model.moment().isAfter(model.moment(item.product.scheduled_at), 'week')) {
                                             <div class="price">@(item.product.old_price * item.quantity)</div>
                                          }
                                          else {

@@ -40,10 +40,15 @@
                                     @if(item.is_preorder) {
                                         <div class="pre-order">Giao hàng @model.moment(item.product.scheduled_at).add(1, 'week').format('DD/MM/YYYY')</div>
                                     }
-                                    <div class="product-price hide-on-med-and-up">@(item.product.price * item.quantity)</div>
+                                    @if (item.product.extend == 3 && model.moment().isAfter(model.moment(item.product.scheduled_at), 'week')) {
+                                        <div class="product-price hide-on-med-and-up">@(item.product.old_price * item.quantity)</div>
+                                    }
+                                    else {
+                                        <div class="product-price hide-on-med-and-up">@(item.product.price * item.quantity)</div>                                             
+                                    }
                                 </div>
                                 <div class="col s3 hide-on-small-only">
-                                    @if (item.product.extend == 3 && model.moment().isAfter(model.moment(item.product.scheduled_at, 'week'))) {
+                                    @if (item.product.extend == 3 && model.moment().isAfter(model.moment(item.product.scheduled_at), 'week')) {
                                         <div class="product-price">@(item.product.old_price * item.quantity)</div>
                                     }
                                     else {

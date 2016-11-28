@@ -240,7 +240,7 @@ router.post('/add_to_cart', function(req, res) {
         cart_merchants: [product.merchant_id],
         cart: [{ product: product._id, quantity: req.body.quantity, option: req.body.option }],
         status: "Submitted",
-        is_preorder: product.extend == 3 && !moment().isAfter(moment(product.scheduled_at, 'week'))
+        is_preorder: product.extend == 3 && !moment().isAfter(moment(product.scheduled_at), 'week')
       });
       if (req.user) {
         order.user = req.user.id;
@@ -259,7 +259,7 @@ router.post('/add_to_cart', function(req, res) {
           return res.status(500).json({ error: "Error with order" });          
         }
         order.cart_merchants.push(product.merchant_id);
-        order.cart.push({ product: product._id, quantity: req.body.quantity, option: req.body.option, is_preorder: product.extend == 3 && !moment().isAfter(moment(product.scheduled_at, 'week')) });
+        order.cart.push({ product: product._id, quantity: req.body.quantity, option: req.body.option, is_preorder: product.extend == 3 && !moment().isAfter(moment(product.scheduled_at), 'week') });
         order.save(function(err) {
           return res.status(200).json({ success: true, message: "Product added" });
         });
