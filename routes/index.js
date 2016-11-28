@@ -446,13 +446,18 @@ router.get('/cart', function(req, res, next) {
 
 router.get('/', function(req, res, next) {
   if (req.cookies.ypp_f_time && !req.cookies.ypp_s_time) {
-    res.cookie('ypp_s_time', 'true', { maxAge: 900000, httpOnly: true });
+    res.cookie('ypp_s_time', 'true', { maxAge: 31536000, httpOnly: true });
   } 
   if (!req.cookies.ypp_f_time) {
-    res.cookie('ypp_f_time', 'true', { maxAge: 900000, httpOnly: true });
+    res.cookie('ypp_f_time', 'true', { maxAge: 31536000, httpOnly: true });
   }
-  var skip_intro = req.cookies.ypp_s_time ? true : false;
-  res.render('intro', { has_zone : typeof req.session.zone !== 'undefined', skip_intro: skip_intro });
+  var has_zone = false
+  if (typeof req.session.zone !== 'undefined' || req.cookies.ypp_s_time)
+  {
+     has_zone = true;
+  }
+  console.log(req.cookies);
+  res.render('intro', { has_zone : has_zone });
 });
 
 module.exports = router;
