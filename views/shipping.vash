@@ -71,7 +71,7 @@
                     <div class="cart-header">
                         <a href="/cart" class="right">SỬA</a>
                         <h4>THÔNG TIN ĐƠN HÀNG</h4>
-                        <span class="sub">(@model.cart.length sản phẩm trong túi hàng của bạn)</span>
+                        <span class="sub">(@model.cart.length sản phẩm trong giỏ hàng của bạn)</span>
                     </div>
                     <div class="cart-content">
                         <div class="content-header hide-on-small-only">
