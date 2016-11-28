@@ -133,7 +133,7 @@ app.use(function(req, res, next) {
       res.locals.cart_total = 0;      
       order.cart.forEach(function(item) {
         if (item.product != null) {
-          if (item.product.extend == 3 && moment().isAfter(moment(item.product.scheduled_at, 'week')))
+          if (item.product.extend == 3 && moment().isAfter(moment(item.product.scheduled_at), 'week'))
             res.locals.cart_total += item.product.old_price * item.quantity;
           else
             res.locals.cart_total += item.product.price * item.quantity;
