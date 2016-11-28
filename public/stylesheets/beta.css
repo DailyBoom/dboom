@@ -2237,6 +2237,10 @@ input[type=number]::-webkit-outer-spin-button {
 
 /*Detailed Box*/
 
+#detailed_box .row section, #detailed_box .box-products section {
+  background: url('/images/box_background.png') no-repeat;
+}
+
 #detailed_box #left, #detailed_box #right {
   margin-top: 203px;
 }

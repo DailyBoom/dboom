@@ -42,6 +42,7 @@ var productSchema = new Schema({
   box_header: String,
   boxProducts: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
   boxZone: Number,
+  box_background: String,
   product_region: [Boolean]
 });
 

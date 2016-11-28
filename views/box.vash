@@ -2,7 +2,7 @@
 	@html.block("body", function(model) {
 		<div id="detailed_box" class="container @(model.product.boxZone == 0 ? 'north' : '') @(model.product.boxZone == 1 ? 'central' : '') @(model.product.boxZone == 2 ? 'south' : '')">
 			<div class="row">
-				<section>
+				<section id="box" class="left">
 					<div class="col s12 l4 area-row" id="left">
 						<img class="box-header" src="@model.product.box_header" />
 						<div class="item_names row center hide-on-med-and-up">

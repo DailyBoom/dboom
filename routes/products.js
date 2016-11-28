@@ -90,7 +90,7 @@ router.get('/products/preview', isMerchantOrAdmin, function(req, res) {
   res.render("products/preview");
 });
 
-router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: 'photosmobile', maxCount: 4}, {name: "brandlogo", maxCount: 1}, { name: "description_image", maxCount: 1}, { name: "homepage_image", maxCount: 1}, { name: "box_header", maxCount: 1}]), function(req, res) {
+router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: 'photosmobile', maxCount: 4}, {name: "brandlogo", maxCount: 1}, { name: "description_image", maxCount: 1}, { name: "homepage_image", maxCount: 1}, { name: "box_header", maxCount: 1}, { name: "box_background", maxCount: 1}]), function(req, res) {
   console.log(req.body);
   // req.Validator.validate('selldate', i18n.__('product.sellDate'), {
   //   required: true
@@ -154,6 +154,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         description_image: req.files['description_image'] ? "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['description_image'][0].key : '',
         homepage_image: req.files['homepage_image'] ? "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['homepage_image'][0].key : '',
         box_header: req.files['box_header'] ? "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['box_header'][0].key : '',
+        box_header: req.files['box_background'] ? "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['box_header'][0].key : '',
         options: req.body.options,
         options_skin: req.body.options_skin,
         is_published: false,
@@ -196,7 +197,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
   });
 });
 
-router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: 'photosmobile', maxCount: 4}, {name: "brandlogo", maxCount: 1}, { name: "description_image", maxCount: 1}, { name: "homepage_image", maxCount: 1}, { name: "box_header", maxCount: 1}]), function(req, res) {
+router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: 'photosmobile', maxCount: 4}, {name: "brandlogo", maxCount: 1}, { name: "description_image", maxCount: 1}, { name: "homepage_image", maxCount: 1}, { name: "box_header", maxCount: 1}, { name: "box_background", maxCount: 1}]), function(req, res) {
   Product.findOne({_id: req.params.id}, function (err, product) {
     if (err)
       console.log(err);
@@ -272,6 +273,10 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
 
     if (req.files['box_header']) {
       product.box_header = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['box_header'][0].key;
+    }
+
+    if (req.files['box_background']) {
+      product.box_header = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['box_background'][0].key;
     }
 
     console.log(product);

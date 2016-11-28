@@ -232,10 +232,10 @@
 			<div class="file-field input-field hide">
 				<br>
 				<span class="hide-on-small-only"><br></span>
-				<span for="photosmobile" class="input-file-mod grey-text">@model.__('product.photosMobile') (Max: 4) * (~400x400px)</span>
+				<span for="box_background" class="input-file-mod grey-text">Box background (box page only)</span>
 				<div class="btn blue-grey darken-2">
 					<span><i class="fa fa-image left"></i>선택</span>
-					<input id="photosmobile" type="file" class="validate" name="photosmobile" multiple>
+					<input id="box_background" type="file" class="validate" name="box_background" multiple>
 				</div>
 				<div class="file-path-wrapper">
 					<input class="file-path validate" type="text">
