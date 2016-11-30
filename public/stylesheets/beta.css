@@ -3148,7 +3148,6 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   #central .item_img {
-    background: url('/images/central_bg_m.png') no-repeat;
     background-position: center;
     background-size: 95%;
     padding-bottom: 41px;
@@ -3811,7 +3810,6 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   #central .item_img {
-    background-image: url('/images/central_bg.png');
     background-size: cover;
     padding-left: 100px;
     padding-top: 122px;

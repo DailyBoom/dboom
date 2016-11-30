@@ -67,13 +67,13 @@
 							@if(model.product.product_region && model.product.product_region[1] == true) {
 								<div class="col s4">
 									<img src="/images/central-logo.svg">
-									<span class="central">Miền bắc</span>
+									<span class="central">Miền Trung</span>
 								</div>
 							}
 							@if(model.product.product_region && model.product.product_region[2] == true) {
 								<div class="col s4">
 									<img src="/images/south-logo.svg">
-									<span class="south">Miền bắc</span>
+									<span class="south">Miền Nam</span>
 								</div>
 							}
 						</div>
