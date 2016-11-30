@@ -261,6 +261,7 @@
 			rewindNav: true,
 			autoPlay: true
 		});
+		if (!is_mobile) {
 			$('#boxes').css('height', $('#north').height()+50+'px');
 			var item_down = is_mobile ? $('section .item_cover') : $('section .item_img');
 			var item_up = is_mobile ? $('section .item_detail.hide-on-med-and-up') : $('section .item_detail.hide-on-small-only');
@@ -270,12 +271,13 @@
 					var waypoint = this;
 					var section = $(this.element).closest('section');
 					if (direction == 'down' && section.next().not('#individual').length) {
-						console.log(direction);
+						$('body').css('overflow', 'hidden');
 						section.find(".l8").add($(section).find(".l4")).css('transform', 'translate3d(0, -'+section.height()+'px, 0)');
 						section.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
 							var nextSection = $(section).next('section');
 							nextSection.find(".l8").add(nextSection.find(".l4")).css('transform', 'translate3d(0, -'+nextSection.height()+'px, 0)');
 							nextSection.find(".l4").one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
+								$('body').css('overflow', 'scroll');
 								Waypoint.refreshAll();
 							});
 						});
@@ -288,12 +290,13 @@
 				handler: function(direction) {
 					if (direction == 'up') {
 						var section = $(this.element).closest('section');					
-						console.log(section);					
+						$('body').css('overflow', 'hidden');
 						var nextSection = $(section).next('section');
 						nextSection.find(".l8").add(nextSection.find(".l4")).css('transform', 'translate3d(0, 0, 0)');
 						nextSection.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
 							section.find(".l8").add($(section).find(".l4")).css('transform', 'translate3d(0, 0, 0)');
 							section.find(".l4").one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
+								$('body').css('overflow', 'scroll');
 								Waypoint.refreshAll()
 							});
 						});
@@ -305,13 +308,12 @@
 				$('#boxes').css('height', $('#north').height()+50+'px');				
 			})
 			$(window).one("scroll", function() {
-				console.log('test');
 				Waypoint.enableAll();
 			});
 			$(document).one("scrollstart",function(){
-				console.log('test mobile');
 				Waypoint.enableAll();
 			});
+		}
 	</script>
   })
 })
