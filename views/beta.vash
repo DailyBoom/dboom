@@ -7,6 +7,7 @@
 			<div class="row area-row">
 				<div class="col s12 l4" data-stellar-ratio="1.7">
 					<img class="item_cover" src="@model.products[0].box_header" />
+					@if (model.products[0].boxProducts !== null) {
 					<div class="item_names row center" >
 						<div class="col s4">
 							<div class="item_name truncate">@model.products[0].boxProducts[0].name</div>
@@ -21,6 +22,7 @@
 							<div class="item_type">@model.products[0].boxProducts[2].brand</div>
 						</div>
 					</div>
+					}
 					<div class="item_desc hide-on-small-only">
 						@model.products[0].description
 					</div>
@@ -65,6 +67,7 @@
 				</div>
 				<div class="col s12 l4" data-stellar-ratio="1.7">
 					<img class="item_cover"  src="@model.products[1].box_header" />
+					@if (model.products[1].boxProducts !== null) {
 					<div class="item_names row center">
 						<div class="col s4">
 							<div class="item_name truncate">@model.products[1].boxProducts[0].name</div>
@@ -79,6 +82,7 @@
 							<div class="item_type">@model.products[1].boxProducts[2].brand</div>
 						</div>
 					</div>
+					}
 					<div class="item_desc hide-on-small-only">
 						@model.products[1].description
 					</div>
@@ -116,6 +120,7 @@
 			<div class="row area-row">
 				<div class="col s12 l4">
 					<img class="item_cover" src="@model.products[2].box_header" />
+					@if (model.products[2].boxProducts !== null) {
 					<div class="item_names row center">
 						<div class="col s4">
 							<div class="item_name truncate">@model.products[2].boxProducts[0].name</div>
@@ -130,6 +135,7 @@
 							<div class="item_type">@model.products[2].boxProducts[2].brand</div>
 						</div>
 					</div>
+					}
 					<div class="item_desc hide-on-small-only">
 						@model.products[2].description
 					</div>
@@ -169,6 +175,7 @@
 				</div>
 				<div class="col s12 l4">
 					<img class="item_cover" src="@model.products[3].box_header" />
+					@if (model.products[3].boxProducts !== null) {
 					<div class="item_names row center">
 						<div class="col s4">
 							<div class="item_name truncate">@model.products[3].boxProducts[0].name</div>
@@ -183,6 +190,7 @@
 							<div class="item_type">@model.products[3].boxProducts[2].brand</div>
 						</div>
 					</div>
+					}
 					<div class="item_desc hide-on-small-only">
 						@model.products[3].description
 					</div>

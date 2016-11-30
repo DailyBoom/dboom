@@ -189,5 +189,6 @@
 	"blog.login": "Bạn phải <a href='/login'>đăng nhập</a> để bình luận",
 	"passNotConfirmed": "Xác Nhận Lại Mật Khẩu",
 	"unique": "%s has to be unique",
-	"user.birthday": "Ngày sinh"
+	"user.birthday": "Ngày sinh",
+	"product.box_background": "product.box_background"
 }

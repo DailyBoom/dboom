@@ -5,6 +5,7 @@
 				<section id="box" class="left">
 					<div class="col s12 l4 area-row" id="left">
 						<img class="box-header" src="@model.product.box_header" />
+						@if (model.product.boxProducts !== null) {						
 						<div class="item_names row center hide-on-med-and-up">
 							<div class="col s4">
 								<div class="item_name truncate"><a href="#box_product_0">@model.product.boxProducts[0].name</a></div>
@@ -19,6 +20,7 @@
 								<div class="item_type">@model.product.boxProducts[2].brand</div>
 							</div>
 						</div>
+						}
 					</div>
 					<div class="col s12 l4" id="center">
 						<div class="img-wrapper">
@@ -28,6 +30,7 @@
 						</div>
 					</div>
 					<div class="col s12 l4 area-row" id="right">
+						@if (model.product.boxProducts !== null) {						
 						<div class="item_names row center hide-on-small-only">
 							<div class="col s4">
 								<div class="item_name truncate"><a href="#box_product_0">@model.product.boxProducts[0].name</a></div>
@@ -42,6 +45,7 @@
 								<div class="item_type">@model.product.boxProducts[2].brand</div>
 							</div>
 						</div>
+						}
 						<div class="description"><div class="body">@model.product.description</div></div>
 						<div class="prices">
 							@if (model.moment().isAfter(model.moment(model.product.scheduled_at), 'week')) {
@@ -70,6 +74,7 @@
 					</div>
 				</div>
 			</section>
+			@if (model.product.boxProducts !== null) {						
             <div class="box-products">
                 @model.product.boxProducts.forEach(function(product, index) {
 					<section>
@@ -112,6 +117,7 @@
 					</section>
                 })
             </div>
+			}
 			<section id="individual" class="hide-on-small-only">
 				<h2>SẢN PHẨM BÁN LẺ</h2>
 				<div class="row">
