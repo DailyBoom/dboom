@@ -4,6 +4,7 @@
 			<div class="row">
 				<section id="box" class="left">
 					<div class="col s12 l4 area-row" id="left">
+						<h2 style="display:none"></h2>
 						<img class="box-header" src="@model.product.box_header" />
 						@if (model.product.boxProducts !== null) {						
 						<div class="item_names row center hide-on-med-and-up">
@@ -47,6 +48,7 @@
 						</div>
 						}
 						<div class="description"><div class="body">@model.product.description</div></div>
+						<div class="how-to"></div>
 						<div class="prices">
 							@if (model.moment().isAfter(model.moment(model.product.scheduled_at), 'week')) {
 								<span class="price">@model.product.old_price</span>
@@ -63,22 +65,14 @@
 								<span class="item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.product.scheduled_at).format("DD/MM/YYYY")</span></span>
 							}
 						</div>
-						<div class="options hide">
-							<h4>MÀU SẮC</h4>
-							<ul id="options">
-								@model.product.options.forEach(function(option, index){
-									<li data-option="@index" style="background-color:@option.name;"></li>
-								})
-							</ul>
-						</div>
 					</div>
 				</div>
 			</section>
-			@if (model.product.boxProducts !== null) {						
-            <div class="box-products">
+			@if (model.product.boxProducts !== null) {
+            <div class="box-products hide-on-med-and-up">
                 @model.product.boxProducts.forEach(function(product, index) {
-					<section>
-						<div id="box_product_@index" class="area-header hide-on-small-only">
+					<section id="box_product_@index">
+						<div class="area-header hide-on-small-only">
 							<div class="right">
 								<img src="@model.product.box_header" />
 							</div>
@@ -171,6 +165,89 @@
 				}
 			});
 		});
+		var is_mobile = @model.is_mobile;
+		var isAnimated = false;
+		var isAnimating = false;
+		var section = $('section#box');
+		var nextSection = $('.box-products section').eq(0);
+		var i = 0;
+		if (!is_mobile) {
+			$('section#box #checkout').waypoint({
+				handler: function(direction) {
+					if (direction == 'down' && nextSection.length) {
+						isAnimated = true;
+						$('body').css('overflow', 'hidden');
+					}
+				},
+				offset: 'bottom-in-view'
+			});
+			var finalCallback = function(obj) {
+				i++;
+				nextSection = nextSection.next();
+				isAnimating = false;
+//				isAnimated = false;
+//				$('body').css('overflow-y', 'scroll');
+				console.log('final');
+			}
+			var animCallback = function(obj) {
+				console.log('anim');
+				if (i == 0) {
+					section.find(".main-img img").hide().attr('src',nextSection.find(".main-img img").attr('src')).animateCSS("zoomIn", finalCallback);
+				}
+				else {
+					section.find(".main-img img").hide().attr('src',nextSection.find(".main-img img").attr('src')).animateCSS("rotateIn").animateCSS("zoomIn", finalCallback);					
+				}
+			}
+			$(document).on('scroll touchmove mousewheel DOMMouseScroll', function(e){
+				console.log(isAnimating);
+				if (isAnimating) {
+					return false;
+				}
+				else if (isAnimated) {
+					if (e.originalEvent.wheelDelta >= 0) {
+						isAnimated = false;					
+						$('body').css('overflow-y', 'scroll');
+					}
+					else {
+						if (nextSection.length) {
+							isAnimating = true;
+							if (i == 0) {
+								section.find(".box-header").fadeOut(function() {
+									section.find("h2").text(nextSection.find("h2").text()).animateCSS("slideInLeft");
+								});
+								section.find(".item_names").fadeOut();
+								section.find(".description").fadeOut(function() {
+									section.find(".description").html(nextSection.find(".description").html()).animateCSS("slideInDown").css("margin-bottom", "0");
+									section.find(".how-to").html(nextSection.find(".how-to").html()).animateCSS("slideInDown");
+								})
+								section.find("#right").append(nextSection.find(".ybtn-o"));
+								section.find(".main-img img").animateCSS("zoomOut", animCallback);
+							}
+							else {
+								section.find("h2").animateCSS("slideOutLeft", function() {
+									section.find("h2").hide().text(nextSection.find("h2").text()).animateCSS("slideInLeft");
+								});
+								section.find(".description .body").animateCSS("slideOutDown", function() {
+									section.find(".description .body").hide().html(nextSection.find(".description .body").html()).animateCSS("slideInDown");
+								});
+								section.find(".how-to .body").animateCSS("slideOutDown", function() {
+									section.find(".how-to .body").hide().html(nextSection.find(".how-to .body").html()).animateCSS("slideInDown");
+								});
+								section.find(".ybtn-o").attr("href", nextSection.find(".ybtn-o").attr("href"));				
+								section.find(".main-img img").animateCSS("rotateOut", { duration: 2000 }).animateCSS("zoomOut", { duration: 2000, callback: animCallback });								
+							}
+						}
+						else {
+							isAnimated = false;					
+							$('body').css('overflow-y', 'scroll');
+						}
+					}
+					e.preventDefault();
+					e.stopPropagation();
+					return false;
+				}
+			})
+		}
 	</script>
 	})
 })

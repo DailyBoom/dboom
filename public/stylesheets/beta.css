@@ -2242,7 +2242,11 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #detailed_box #left, #detailed_box #right {
-  margin-top: 203px;
+  margin-top: 150px;
+  overflow: hidden;
+  padding: 0;
+  margin-bottom: 0;
+  height: auto;
 }
 
 #detailed_box #center {
@@ -2256,15 +2260,18 @@ input[type=number]::-webkit-outer-spin-button {
 #detailed_box .description {
   padding-right: 65px;
   margin-bottom: 92px;
-  white-space: pre-wrap;
   word-break: keep-all;
+}
+
+#detailed_box .description, #detailed_box .how-to, #detailed_box h4, #detailed_box .body {
+  overflow: hidden;
 }
 
 #detailed_box .price {
   margin-right: 23px;
 }
 
-#detailed_box .box-products h2 {
+#detailed_box #box h2, #detailed_box .box-products h2 {
   font-family: Estilo;
   font-size: 82px;
   font-weight: normal;
@@ -2273,6 +2280,7 @@ input[type=number]::-webkit-outer-spin-button {
   line-height: 0.65;
   text-align: right;
   margin: 0;
+  padding: 10px 0;
 }
 
 #detailed_box .box-products #left, #detailed_box .box-products #right {
@@ -3446,7 +3454,7 @@ input[type=number]::-webkit-outer-spin-button {
     padding-top: 56px;
   }
 
-  #detailed_box .box-products h2 {
+  #detailed_box h2 {
     text-align: center;
     padding: 0 62px;
     font-size: 50px;
