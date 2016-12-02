@@ -179,7 +179,7 @@
 						$('body').css('overflow', 'hidden');
 					}
 				},
-				offset: 'bottom-in-view'
+				offset: '90%'
 			});
 			var finalCallback = function(obj) {
 				i++;
@@ -187,6 +187,7 @@
 				isAnimating = false;
 //				isAnimated = false;
 //				$('body').css('overflow-y', 'scroll');
+				Waypoint.refreshAll();
 				console.log('final');
 			}
 			var animCallback = function(obj) {
@@ -215,6 +216,7 @@
 								section.find(".box-header").fadeOut(function() {
 									section.find("h2").text(nextSection.find("h2").text()).animateCSS("slideInLeft");
 								});
+								section.find(".price").add(section.find(".old_price")).fadeOut();								
 								section.find(".item_names").fadeOut();
 								section.find(".description").fadeOut(function() {
 									section.find(".description").html(nextSection.find(".description").html()).animateCSS("slideInDown").css("margin-bottom", "0");

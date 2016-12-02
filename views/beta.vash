@@ -297,7 +297,7 @@
 							section.find(".l8").add($(section).find(".l4")).css('transform', 'translate3d(0, 0, 0)');
 							section.find(".l4").one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
 								$('body').css('overflow', 'scroll');
-								Waypoint.refreshAll()
+								Waypoint.refreshAll();
 							});
 						});
 					}

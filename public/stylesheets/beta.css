@@ -2249,6 +2249,10 @@ input[type=number]::-webkit-outer-spin-button {
   height: auto;
 }
 
+#detailed_box .main-img {
+  overflow: hidden;
+}
+
 #detailed_box #center {
   margin-top: 67px;
 }
