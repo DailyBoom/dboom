@@ -470,6 +470,27 @@
 				//addReq.attr('', false);
 			}
 		});
+		$("#boxProducts input").autocomplete({
+			source: function(request, response) {
+				$.ajax({
+					type: "POST",
+					url: "/products/search",
+					dataType: "json",
+					data: {
+						term: request.term
+					},
+					success: function(data) {
+            			response($.map(data.products, function (item) {
+							return {
+								label: item.name + ' - ' + item.brand,
+								value: item._id
+							};
+						}));
+          			}
+				});
+			},
+			minLength: 4
+		});
 	});
 </script>
 }) })
