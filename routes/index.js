@@ -448,10 +448,10 @@ router.get('/cart', function(req, res, next) {
 
 router.get('/', function(req, res, next) {
   if (req.cookies.ypp_f_time && !req.cookies.ypp_s_time) {
-    res.cookie('ypp_s_time', 'true', { maxAge: 31536000, httpOnly: true, path: '/' });
+    res.cookie('ypp_s_time', 'true', { maxAge: 31536000000, httpOnly: true, path: '/' });
   } 
   if (!req.cookies.ypp_f_time) {
-    res.cookie('ypp_f_time', 'true', { maxAge: 31536000, httpOnly: true, path: '/' });
+    res.cookie('ypp_f_time', 'true', { maxAge: 31536000000, httpOnly: true, path: '/' });
   }
   var has_zone = false
   if (typeof req.session.zone !== 'undefined' || req.cookies.ypp_s_time)
