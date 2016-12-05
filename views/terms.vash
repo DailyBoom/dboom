@@ -2,7 +2,7 @@
 	@html.block("body", function(model) {
 		<div class="container" id="terms">
 			<div class="row">
-				<div class="col l3 hide-on-small-only tab-wrapper">
+				<div class="col l3 hide-on-med-and-down tab-wrapper">
 					<ul class="section table-of-contents">
 						<li><a href="#general">ĐIỀU KHOẢN & QUY ĐINH CHUNG</a></li>
 						<li><a href="#account">TÀI KHOẢN/ THÔNG TIN BẢO MẬT</a></li>
@@ -107,7 +107,7 @@
 						</div>
 						<div class="col s12 l5">
 							<div class="col s12 title province">
-								KV LIÊN TỈNH TP.HCM ĐI HÀ NỘI <br class="hide-on-small-only" />(VÀ NGƯỢC LẠI)
+								KV LIÊN TỈNH TP.HCM ĐI HÀ NỘI <br class="hide-on-med-and-down" />(VÀ NGƯỢC LẠI)
 							</div>
 							<div class="col s12 l4">
 								<div class="col s6 l12 sub title">

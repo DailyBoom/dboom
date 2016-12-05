@@ -34,10 +34,10 @@
 					<div class="social-login-wrapper">
 						<a class="btn-social-login tooltipped" data-position="top" data-delay="0" data-tooltip="Login with Facebook" href="#!"><img class="circle z-depth-1" src="/images/icon_fb_social.png" id="facebook" data-product="@model.product.id" /></a>
 						<a class="btn-social-login tooltipped" data-position="top" data-delay="0" data-tooltip="Sign in with Google" href="#!"><img class="circle z-depth-1" src="/images/g-logo.png" id="google" data-product="@model.product.id" /></a>
-						<a class="btn core-color mod hide-on-small-only" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;">
+						<a class="btn core-color mod hide-on-med-and-down" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;">
 							Mua Ngay Không Cần Đăng Ký
 						</a>
-						<a class="btn core-color hide-on-med-and-up" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;">
+						<a class="btn core-color hide-on-large-only" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;">
 							Mua Ngay Không Cần Đăng Ký
 						</a>
 					</div>
@@ -69,7 +69,7 @@
 	</div><!-- .modal-content -->
 </div><!-- #modal-check -->
 <!-- Buy Wrapper -->
-<div id="buy-sticky" class="hide-on-small-only buy-sticky-wrapper center @(model.product.color ? model.product.color : 'white')">
+<div id="buy-sticky" class="hide-on-med-and-down buy-sticky-wrapper center @(model.product.color ? model.product.color : 'white')">
 	<a href="/wholesale" class="hide buy-help-d modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
 	@if (model.user) {
 		@if (model.progress < 100) {
@@ -136,7 +136,7 @@
 							<img class="sold-out" src="/images/sold-out.png" />
 						}
 						else {
-							<div class="sale-item hide-on-med-and-up">
+							<div class="sale-item hide-on-large-only">
 								<div class="mod">Sale</div>
 								<div class="item-price">@model.sale%</div>
 							</div>
@@ -161,7 +161,7 @@
 							<img class="sold-out" src="/images/sold-out.png" />
 						}
 						else {
-							<div class="sale-item hide-on-med-and-up">
+							<div class="sale-item hide-on-large-only">
 								<div class="mod">Sale</div>
 								<div class="item-price">@model.sale%</div>
 							</div>
@@ -212,12 +212,12 @@
 					else {
 						<div class="item-name name-lg">@model.product.name</div>
 					}
-						<div class="hide-on-small-only m-item right">
+						<div class="hide-on-med-and-down m-item right">
 							<div class="item-price-o mod red-text text-lighten-2">SALE</div>
 							<div class="item-price">@model.sale%</div>
 						</div>
-					<span class="hide-on-small-only">&nbsp;</span>
-					<div class="hide-on-small-only m-item right">
+					<span class="hide-on-med-and-down">&nbsp;</span>
+					<div class="hide-on-med-and-down m-item right">
 						<div class="item-price-o desk red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
 						<div class="item-price desk" id="product_price_mobile">@model.product.price</div>
 					</div>
@@ -252,16 +252,16 @@
 				<div class="right-align">
 				@if (model.user) {
 					@if (model.progress < 100) {
-						<a class="hide-on-small-only btn btn-large buy-mod core-color darken-1" href="/checkout?product_id=@model.product.id">@model.__('buy_today') <i class="fa fa-chevron-right fa-fw"></i></a>
+						<a class="hide-on-med-and-down btn btn-large buy-mod core-color darken-1" href="/checkout?product_id=@model.product.id">@model.__('buy_today') <i class="fa fa-chevron-right fa-fw"></i></a>
 					}
 				}
 				else {
 					@if (model.progress < 100) {
-						<a class="hide-on-small-only btn btn-large buy-mod core-color darken-1 modal-trigger" href="#modal-check">@model.__('buy_today') <i class="fa fa-chevron-right fa-fw"></i></a>
+						<a class="hide-on-med-and-down btn btn-large buy-mod core-color darken-1 modal-trigger" href="#modal-check">@model.__('buy_today') <i class="fa fa-chevron-right fa-fw"></i></a>
 					}
 				}
 					<br><br>
-					<a href="/wholesale" class="hide hide-on-small-only btn btn-flat buy-help-dd modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
+					<a href="/wholesale" class="hide hide-on-med-and-down btn btn-flat buy-help-dd modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
 				</div>
 			</div>
 			<div class="buy-box-footer @(model.product.color ? model.product.color : 'white') lighten-3">
@@ -318,18 +318,18 @@
 			</div>
 
 			<!-- Mobile -->
-			<div class="hide-on-med-and-up mobile-buy white-text">
+			<div class="hide-on-large-only mobile-buy white-text">
 				<a class="modal-trigger" href="@(model.user ? '/checkout?product_id='+model.product.id : '#modal-check')">
 					<div class="m-item">
 						<div class="item-price-o" id="product_old_price_mobile">@model.product.old_price</div>
 						<div class="item-price" id="product_price_mobile">@model.product.price</div>
 					</div>
-					<div class="hide-on-med-and-up right buy-text">
+					<div class="hide-on-large-only right buy-text">
 						Mua Ngay
 					</div>
 				</a>
 			</div>
-			<a href="/wholesale" class="hide hide-on-med-and-up buy-help modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
+			<a href="/wholesale" class="hide hide-on-large-only buy-help modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
 			<div class="mall-container"><h3 class="center core-text mall-header"><a href="/mall" class="core-text">Bán Chạy Nhất</a></h3></div>
 			<div class="row">
 				<div class="col s12 m12 l12">

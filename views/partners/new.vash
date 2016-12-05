@@ -19,7 +19,7 @@
 					<label for="name">브랜드 명 *</label>
 				</div>
 				<div class="file-field input-field col s12 m4 l4">
-					<span class="hide-on-med-and-up"><br></span>
+					<span class="hide-on-large-only"><br></span>
 					<span for="logo" class="input-file-mod grey-text">브랜드 로고 *</span>
 					<div class="btn blue-grey darken-2">
 						<span>선택 <i class="fa fa-image right"></i></span>

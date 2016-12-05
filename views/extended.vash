@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col s12 l4" id="left">
 					<h1>@model.product.name</h1>
-					<a href="#" class="read-less hide-on-med-and-up">Hình sản phẩm <i class="fa fa-caret-right"></i></a>					
+					<a href="#" class="read-less hide-on-large-only">Hình sản phẩm <i class="fa fa-caret-right"></i></a>					
 					<div class="description">
 						<h4>MÔ TẢ CHI TIẾT</h4>
 						<div class="body">@html.raw(model.product.description)</div>
@@ -17,11 +17,11 @@
 						<h4>Thành Phần</h4>
 						<div class="body">@html.raw(model.product.ingredients)</div>
 					</div>
-					<div class="how-to hide-on-med-and-up">
+					<div class="how-to hide-on-large-only">
 						<h4>HƯỚNG DẪN SỬ DỤNG</h4>
 						<div class="body">@html.raw(model.product.how_to)</div>
 					</div>
-					<a href="#" class="read-more hide-on-med-and-up">Xem chi tiết <i class="fa fa-caret-right"></i></a>
+					<a href="#" class="read-more hide-on-large-only">Xem chi tiết <i class="fa fa-caret-right"></i></a>
 				</div>
 				<div class="col s12 l4" id="center">
 					<div class="wrapper">
@@ -44,7 +44,7 @@
 					</div>
 				</div>
 				<div class="col s12 l4" id="right">
-					<div class="how-to hide-on-small-only">
+					<div class="how-to hide-on-med-and-down">
 						<h4>HƯỚNG DẪN SỬ DỤNG</h4>
 						<div class="body">@html.raw(model.product.how_to)</div>
 					</div>

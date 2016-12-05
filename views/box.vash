@@ -7,7 +7,7 @@
 						<h2 style="display:none"></h2>
 						<img class="box-header" src="@model.product.box_header" />
 						@if (model.product.boxProducts !== null) {						
-						<div class="item_names row center hide-on-med-and-up">
+						<div class="item_names row center hide-on-large-only">
 							<div class="col s4">
 								<div class="item_name truncate"><a href="#box_product_0">@model.product.boxProducts[0].name</a></div>
 								<div class="item_type">@model.product.boxProducts[0].brand</div>
@@ -32,7 +32,7 @@
 					</div>
 					<div class="col s12 l4 area-row" id="right">
 						@if (model.product.boxProducts !== null) {						
-						<div class="item_names row center hide-on-small-only">
+						<div class="item_names row center hide-on-med-and-down">
 							<div class="col s4">
 								<div class="item_name truncate"><a href="#box_product_0">@model.product.boxProducts[0].name</a></div>
 								<div class="item_type">@model.product.boxProducts[0].brand</div>
@@ -69,10 +69,10 @@
 				</div>
 			</section>
 			@if (model.product.boxProducts !== null) {
-            <div class="box-products hide-on-med-and-up">
+            <div class="box-products hide-on-large-only">
                 @model.product.boxProducts.forEach(function(product, index) {
 					<section id="box_product_@index">
-						<div class="area-header hide-on-small-only">
+						<div class="area-header hide-on-med-and-down">
 							<div class="right">
 								<img src="@model.product.box_header" />
 							</div>
@@ -112,7 +112,7 @@
                 })
             </div>
 			}
-			<section id="individual" class="hide-on-small-only">
+			<section id="individual" class="hide-on-med-and-down">
 				<h2>SẢN PHẨM BÁN LẺ</h2>
 				<div class="row">
 					@model.hotProducts.forEach(function(product, index) {

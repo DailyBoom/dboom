@@ -5,7 +5,7 @@
                 <div class="col offset-l1">
                     <h2>GIỎ HÀNG CỦA BẠN GỒM</h2>
                     <div class="col s12 l8 cart-products">
-                        <div class="cart-header hide-on-small-only">
+                        <div class="cart-header hide-on-med-and-down">
                             <div class="col s5">
                                 @model.cart.length sản phẩm 
                             </div>
@@ -22,7 +22,7 @@
                                 <div class="col s4 l2">
                                     <img src="@item.product.images[0]" />
                                     @if (model.is_mobile) {
-                                        <div class="col s12 product-quantity hide-on-med-and-up">
+                                        <div class="col s12 product-quantity hide-on-large-only">
                                             <i class="fa fa-minus col s4"></i>
                                             <input type="text" value="@item.quantity" class="col s4 quantity" name="quantity" id="quantity_@index" >
                                             <i class="fa fa-plus col s4"></i>
@@ -41,13 +41,13 @@
                                         <div class="pre-order">Giao hàng @model.moment(item.product.scheduled_at).add(1, 'week').format('DD/MM/YYYY')</div>
                                     }
                                     @if (item.product.extend == 3 && model.moment().isAfter(model.moment(item.product.scheduled_at), 'week')) {
-                                        <div class="product-price hide-on-med-and-up">@(item.product.old_price * item.quantity)</div>
+                                        <div class="product-price hide-on-large-only">@(item.product.old_price * item.quantity)</div>
                                     }
                                     else {
-                                        <div class="product-price hide-on-med-and-up">@(item.product.price * item.quantity)</div>                                             
+                                        <div class="product-price hide-on-large-only">@(item.product.price * item.quantity)</div>                                             
                                     }
                                 </div>
-                                <div class="col s3 hide-on-small-only">
+                                <div class="col s3 hide-on-med-and-down">
                                     @if (item.product.extend == 3 && model.moment().isAfter(model.moment(item.product.scheduled_at), 'week')) {
                                         <div class="product-price">@(item.product.old_price * item.quantity)</div>
                                     }
@@ -56,7 +56,7 @@
                                     }
                                 </div>
                                 @if (!model.is_mobile) {                                
-                                    <div class="col s3 product-quantity hide-on-small-only">
+                                    <div class="col s3 product-quantity hide-on-med-and-down">
                                         <i class="fa fa-minus col s4"></i>
                                         <input type="text" value="@item.quantity" class="col s4 quantity" name="quantity" id="quantity_@index" >
                                         <i class="fa fa-plus col s4"></i>

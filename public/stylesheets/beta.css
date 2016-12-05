@@ -3468,6 +3468,10 @@ input[type=number]::-webkit-outer-spin-button {
     display: none;
   }
 
+  #detailed_product #center {
+    text-align: center;
+  }
+
   #mypage {
     margin-top: 46px;
   }

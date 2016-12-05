@@ -4,13 +4,13 @@
             <div class="checkout-progress">
                 <div class="row">
                     <div class="col s4">
-                        <h3><span class="hide-on-med-and-up">1. </span>ĐĂNG NHẬP</h3>
+                        <h3><span class="hide-on-large-only">1. </span>ĐĂNG NHẬP</h3>
                     </div>
                     <div class="col s4 active">
-                        <h3><span class="hide-on-med-and-up">2</span>ĐỊA CHỈ</h3>
+                        <h3><span class="hide-on-large-only">2</span>ĐỊA CHỈ</h3>
                     </div>
                     <div class="col s4">
-                        <h3><span class="hide-on-med-and-up">3. </span>THANH TOÁN</h3>
+                        <h3><span class="hide-on-large-only">3. </span>THANH TOÁN</h3>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                         <span class="sub">(@model.cart.length sản phẩm trong giỏ hàng của bạn)</span>
                     </div>
                     <div class="cart-content">
-                        <div class="content-header hide-on-small-only">
+                        <div class="content-header hide-on-med-and-down">
                             <div class="col s5">
                                 TÊN SẢN PHẨM
                             </div>

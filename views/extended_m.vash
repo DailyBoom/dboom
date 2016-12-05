@@ -34,12 +34,12 @@
 					<div class="social-login-wrapper">
 						<a class="btn-social-login tooltipped" data-position="top" data-delay="0" data-tooltip="페이스북으로 로그인" href="#!"><img class="circle z-depth-1" src="/images/icon_fb_social.png" id="facebook" data-product="@model.product.id" /></a>
 						<a class="btn-social-login tooltipped" data-position="top" data-delay="0" data-tooltip="카카오톡으로 로그인" href="#!"><img class="circle z-depth-1" src="/images/icon_kakao_social.png" id="kakao" data-product="@model.product.id" /></a>
-						<a class="btn-social-login mod hide-on-small-only" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;"><img class="rounded z-depth-1" src="/images/icon_buy_2.png" /></a>
-						<a class="btn-social-login hide-on-med-and-up" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;">
+						<a class="btn-social-login mod hide-on-med-and-down" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;"><img class="rounded z-depth-1" src="/images/icon_buy_2.png" /></a>
+						<a class="btn-social-login hide-on-large-only" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;">
 							<img class="circle z-depth-1" src="/images/icon_buy.png" />
 						</a>
-						<img class="responsive-img hide-on-med-and-up" src="/images/buynow.png" alt="비회원 바로구매 - 데일리 붐" />
-						<div class="right @(model.product.color ? model.product.color : 'light-blue')-text hide-on-med-and-up">
+						<img class="responsive-img hide-on-large-only" src="/images/buynow.png" alt="비회원 바로구매 - 데일리 붐" />
+						<div class="right @(model.product.color ? model.product.color : 'light-blue')-text hide-on-large-only">
 							<i class="fa fa-info-circle fa-fw"></i> 비회원 바로구매
 						</div>
 					</div>
@@ -143,7 +143,7 @@
 							<img class="sold-out" src="/images/sold-out.png" />
 						}
 						else if (model.sale > 0) {
-							<div class="sale-item hide-on-med-and-up">
+							<div class="sale-item hide-on-large-only">
 								<div class="mod">Sale</div>
 								<div class="item-price">@model.sale%</div>
 							</div>
@@ -168,7 +168,7 @@
 							<img class="sold-out" src="/images/sold-out.png" />
 						}
 						else if (model.sale > 0) {
-							<div class="sale-item hide-on-med-and-up">
+							<div class="sale-item hide-on-large-only">
 								<div class="mod">Sale</div>
 								<div class="item-price">@model.sale%</div>
 							</div>
@@ -208,7 +208,7 @@
 </div><!-- .container -->
 <div class="container@(model.is_mobile ? '-fluid' : '')">
 	<div class="row">
-		<div class="add-cart-sticky hide-on-small-only" >
+		<div class="add-cart-sticky hide-on-med-and-down" >
 			<div class="col s12">
 				<span class="add-cart-title">@model.__('mall.options')</span>
 				<hr>
@@ -244,13 +244,13 @@
 						<div class="item-name name-lg">@model.product.name</div>
 					}
 					@if (model.sale > 0) {
-						<div class="hide-on-small-only m-item right">
+						<div class="hide-on-med-and-down m-item right">
 							<div class="item-price-o mod red-text text-lighten-2">SALE</div>
 							<div class="item-price @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.sale%</div>
 						</div>
 					}
-					<!-- <span class="hide-on-small-only">&nbsp;</span> -->
-					<div class="hide-on-small-only m-item right">
+					<!-- <span class="hide-on-med-and-down">&nbsp;</span> -->
+					<div class="hide-on-med-and-down m-item right">
 						@if (model.sale > 0) {
 							<div class="item-price-o desk red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
 						}
@@ -339,13 +339,13 @@
 			</div>
 
 			<!-- Mobile -->
-			<div class="hide-on-med-and-up mobile-buy white-text">
+			<div class="hide-on-large-only mobile-buy white-text">
 				<a class="modal-trigger" id="add_to_cart_m" href="#modal-add-to-cart">
 					<div class="m-item">
 						<div class="item-price-o" id="product_old_price_mobile">@model.product.old_price</div>
 						<div class="item-price" id="product_price_mobile">@model.product.price</div>
 					</div>
-					<div class="hide-on-med-and-up right buy-text">
+					<div class="hide-on-large-only right buy-text">
 						@model.__('buy_now')
 					</div>
 				</a>

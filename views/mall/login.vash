@@ -44,12 +44,12 @@
 											<div class="social-login-wrapper">
 												<img class="social-login-btn circle z-depth-1" src="/images/icon_fb_social.png" id="facebook" data-mall="true"/>
 												<img class="social-login-btn circle z-depth-1" src="/images/icon_kakao_social.png" id="kakao" data-mall="true"/>
-                                                <a class="btn-social-login mod hide-on-small-only" href="/mall/checkout?no_login=1" style="margin-top: 1rem;"><img class="rounded z-depth-1 no-login" src="/images/icon_buy_2.png" /></a>
-                                                <a class="btn-social-login hide-on-med-and-up" href="/mall/checkout?no_login=1" style="margin-top: 1rem;">
+                                                <a class="btn-social-login mod hide-on-med-and-down" href="/mall/checkout?no_login=1" style="margin-top: 1rem;"><img class="rounded z-depth-1 no-login" src="/images/icon_buy_2.png" /></a>
+                                                <a class="btn-social-login hide-on-large-only" href="/mall/checkout?no_login=1" style="margin-top: 1rem;">
                                                     <img class="circle z-depth-1" src="/images/icon_buy.png" />
                                                 </a>
-                                                <img class="responsive-img hide-on-med-and-up" src="/images/buynow.png" alt="비회원 바로구매 - 데일리 붐" />
-                                                <div class="right light-blue-text hide-on-med-and-up">
+                                                <img class="responsive-img hide-on-large-only" src="/images/buynow.png" alt="비회원 바로구매 - 데일리 붐" />
+                                                <div class="right light-blue-text hide-on-large-only">
                                                     <i class="fa fa-info-circle fa-fw"></i> 비회원 바로구매
                                                 </div>
 											</div>

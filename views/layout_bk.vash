@@ -133,7 +133,7 @@
 				<div class="container center">
 					<a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
 					<a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
-        	<span id="time-left-mobile" class="hide-on-med-and-up d-clock white-text left"></span>
+        	<span id="time-left-mobile" class="hide-on-large-only d-clock white-text left"></span>
 					@if (model.user) {
 						<ul class="right">
 							<li class="nav-item">
@@ -165,7 +165,7 @@
 						</ul>
 					}
 					else {
-            <ul class="right hide-on-med-and-up">
+            <ul class="right hide-on-large-only">
 							<li class="nav-item">
 								<!-- Dropdown Trigger -->
 								<a class='dropdown-button btn btn-flat btn-mobile white-text' href='#' data-activates='dropdown-profile'>
@@ -178,7 +178,7 @@
 								</ul>
 							</li>
 						</ul>
-            <ul class="right hide-on-small-only user-link">
+            <ul class="right hide-on-med-and-down user-link">
               <li class="nav-item mod"><a class="white-text" href="/login">로그인</a></li>
               <li class="nav-item mod"><a class="white-text" href="/signup">회원가입</a></li>
             </ul>
@@ -238,7 +238,7 @@
 					<span class="text-footer">Copyright &copy; 2015 Daily Boom. All rights reserved.</span>
 				</div>
 			</div>
-			<div class="hide-on-med-and-up">
+			<div class="hide-on-large-only">
 				<p class="section"></p>
 			</div>
 		</footer><!-- .footer -->

@@ -163,14 +163,14 @@
           }
           <!-- Time Left Mobile -->
           @if (model.moment().day() == 6) {
-        	  <span id="time-left-mobile" class="hide-on-med-and-up d-clock @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') left"></span>
+        	  <span id="time-left-mobile" class="hide-on-large-only d-clock @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') left"></span>
           }
           else {
-        	  <span id="time-left-mobile" class="hide-on-med-and-up d-clock @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') left">@model.moment().add(1, 'weeks').startOf('isoweek').add(1, 'days').diff(model.moment(), 'days') Ngày Nữa</span>
+        	  <span id="time-left-mobile" class="hide-on-large-only d-clock @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') left">@model.moment().add(1, 'weeks').startOf('isoweek').add(1, 'days').diff(model.moment(), 'days') Ngày Nữa</span>
           }
           <!-- cart -->
           @if(@model.cart) {
-            <ul class="right hide-on-small-only">
+            <ul class="right hide-on-med-and-down">
               <li class="nav-item">
                 <!-- Cart dropdown trigger -->
                 <a class='btn btn-floating cart-top white-text right' data-beloworigin="true" href='#' data-activates='dropdown-cart'>
@@ -201,7 +201,7 @@
             </ul>
           }
 					@if (model.user) {
-						<ul class="right hide-on-small-only">
+						<ul class="right hide-on-med-and-down">
 							<li class="nav-item">
 								<!-- Dropdown Trigger -->
 								<a class='dropdown-button btn-floating btn-profile green z-depth-1' href='#' data-activates='dropdown-profile'>
@@ -234,7 +234,7 @@
 								</ul>
 							</li>
 						</ul>
-            <ul class="right hide-on-med-and-up">
+            <ul class="right hide-on-large-only">
 							<li class="nav-item">
 								<!-- Mobile Slider Menu -->
                 <a href="#" data-activates="slide-out" class="button-collapse mod"><i class="fa fa-bars fa-fw @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></i></a>
@@ -274,7 +274,7 @@
 						</ul>
 					}
 					else {
-            <ul class="right hide-on-med-and-up">
+            <ul class="right hide-on-large-only">
 
 							<li class="nav-item">
 								<!-- Dropdown Trigger -->
@@ -299,14 +299,14 @@
                 </ul>
 							</li>
 						</ul>
-            <ul class="right hide-on-small-only user-link">
+            <ul class="right hide-on-med-and-down user-link">
                 <li class="nav-item mod"><a class="@(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/login">@model.__('login')</a></li>
                 <li class="nav-item mod"><a class="@(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/signup">@model.__('signup')</a></li>
             </ul>
 					}
-          <span class="nav-item mod hide-on-small-only right @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'core-text')">Hotline Hỗ Trợ 0169 987 6023</span>          
-          <a href="/blog" class="nav-item mod hide-on-small-only right @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'core-text')">Blog</a>          
-          <a href="/mall" class="nav-item mod hide-on-small-only right @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'core-text')">Bán Chạy Nhất</a>          
+          <span class="nav-item mod hide-on-med-and-down right @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'core-text')">Hotline Hỗ Trợ 0169 987 6023</span>          
+          <a href="/blog" class="nav-item mod hide-on-med-and-down right @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'core-text')">Blog</a>          
+          <a href="/mall" class="nav-item mod hide-on-med-and-down right @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'core-text')">Bán Chạy Nhất</a>          
 				</div><!-- .container -->
 			</nav>
 		</div><!-- .navbar -->
@@ -318,7 +318,7 @@
 		  		<img class="hiw" src="/images/how_it_works.png" />
 		    </div>
     </div>
-    <ul id="sns-fixed" class="hide-on-small-only">
+    <ul id="sns-fixed" class="hide-on-med-and-down">
       <li>
         <a href="#hiw_modal" class="modal-trigger">
           <img class="footer-social" src="/images/db_ko_05.png" title="Đặt Hàng Thế Nào"/>
@@ -341,7 +341,7 @@
       </li>
     </ul>
       @html.block("body")
-    <span class="hide-on-med-and-up buy-help white-text core-color">Hotline Hỗ Trợ 0169 987 6023</span>
+    <span class="hide-on-large-only buy-help white-text core-color">Hotline Hỗ Trợ 0169 987 6023</span>
 		<footer class="page-footer @(model.product && model.product.color ? model.product.color : 'white') darken-3">
 			<div class="container">
         <div class="row flex-s">
@@ -391,7 +391,7 @@
 					<span class="text-footer @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') right">Logo Design & Packaging by Vũ Cẩm Phương</span>
 				</div>
 			</div>
-			<div class="hide-on-med-and-up">
+			<div class="hide-on-large-only">
 				<p class="section"></p>
 			</div>
 		</footer><!-- .footer -->

@@ -2,7 +2,7 @@
 	@html.block("body", function(model) {
 		<div class="container" id="mypage">
 			<div class="row">
-				<div class="col l2 offset-l1 hide-on-small-only">
+				<div class="col l2 offset-l1 hide-on-med-and-down">
 					<div class="username">@model.user.username</div>
 					<div class="account"><a href="/mypage">Thông tin tài khoản</a></div>
 					<div class="history"><a href="/myhistory">Đơn hàng của bạn</a></div>
@@ -11,7 +11,7 @@
 					<div class="col l6 s12">
 						<h2>Thông tin cá nhân</h2>
 					</div>
-					<div class="col s5 edit hide-on-small-only">
+					<div class="col s5 edit hide-on-med-and-down">
 						<a href="/users/edit">THAY ĐỔI THÔNG TIN</a>
 					</div>
 					<div class="user-info col s12">
@@ -31,7 +31,7 @@
 						<div><span class="title col s4">Địa chỉ:</span><span class="content col s6">@model.user.shipping.address</span></div>
 						<div><span class="title col s4">Ngày sinh:</span><span class="content col s6">@model.user.shipping.phone_number</span></div>
 					</div>
-					<div class="col l5 s12 edit hide-on-med-and-up">
+					<div class="col l5 s12 edit hide-on-large-only">
 						<a href="/users/edit">THAY ĐỔI THÔNG TIN</a>
 					</div>
 				</div>

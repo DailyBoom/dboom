@@ -70,7 +70,7 @@
 				</div>
 			</div>
 			<div class="file-field input-field col s12" id="boxHeader">
-				<span class="hide-on-med-and-up"><br></span>
+				<span class="hide-on-large-only"><br></span>
 				<span for="box_header" class="input-file-mod grey-text">Box Header *</span>
 				<div class="btn blue-grey darken-2">
 					<span>선택 <i class="fa fa-image right"></i></span>
@@ -86,7 +86,7 @@
 					<label for="brandname">@model.__('product.brandName') *</label>
 				</div>
 				<div class="file-field input-field col s12 m4 l4">
-					<span class="hide-on-med-and-up"><br></span>
+					<span class="hide-on-large-only"><br></span>
 					<span for="brandlogo" class="input-file-mod grey-text">@model.__('product.brandLogo') *</span>
 					<div class="btn blue-grey darken-2">
 						<span>선택 <i class="fa fa-image right"></i></span>
@@ -219,7 +219,7 @@
 			</div>
 			<div class="file-field input-field">
 				<br>
-				<span class="hide-on-small-only"><br></span>
+				<span class="hide-on-med-and-down"><br></span>
 				<span for="photosmain" class="input-file-mod grey-text">@model.__('product.photosMain') (Max: 4) * (1 image: 1900x800px, 2~4 images: 750x460px)</span>
 				<div class="btn blue-grey darken-2">
 					<span><i class="fa fa-image left"></i>선택</span>
@@ -231,7 +231,7 @@
 			</div>
 			<div class="file-field input-field hide">
 				<br>
-				<span class="hide-on-small-only"><br></span>
+				<span class="hide-on-med-and-down"><br></span>
 				<span for="box_background" class="input-file-mod grey-text">Box background (box page only)</span>
 				<div class="btn blue-grey darken-2">
 					<span><i class="fa fa-image left"></i>선택</span>
@@ -243,7 +243,7 @@
 			</div>
 			<div class="file-field input-field hide">
 				<br>
-				<span class="hide-on-small-only"><br></span>
+				<span class="hide-on-med-and-down"><br></span>
 				<span for="description_image" class="input-file-mod grey-text">@model.__('product.descriptionPhoto')</span>
 				<div class="btn blue-grey darken-2">
 					<span><i class="fa fa-image left"></i>선택</span>
@@ -255,7 +255,7 @@
 			</div>
 			<div class="file-field input-field hide">
 				<br>
-				<span class="hide-on-small-only"><br></span>
+				<span class="hide-on-med-and-down"><br></span>
 				<span for="homepage_image" class="input-file-mod grey-text">Homepage image</span>
 				<div class="btn blue-grey darken-2">
 					<span><i class="fa fa-image left"></i>선택</span>

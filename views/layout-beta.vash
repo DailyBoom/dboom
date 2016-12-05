@@ -193,7 +193,7 @@
         </div>
       </div>
       }
-      <nav class="@(model.zone == 0 ? 'north' : '') @(model.zone == 1 ? 'central' : '') @(model.zone == 2 ? 'south' : '') hide-on-med-and-up">
+      <nav class="@(model.zone == 0 ? 'north' : '') @(model.zone == 1 ? 'central' : '') @(model.zone == 2 ? 'south' : '') hide-on-large-only">
         <div class="nav-wrapper">
           <a href="/home" class="logo"><img class="svg svg-logo" src="/images/logo.svg"/></a>
           <ul id="nav-mobile" class="right">
@@ -246,7 +246,7 @@
       }
       <ul id="slide-out" class="side-nav @(model.zone == 0 ? 'north' : '') @(model.zone == 1 ? 'central' : '') @(model.zone == 2 ? 'south' : '')">
         <div class="slide-menu-wrapper">
-          <li class="hide-on-small-only"><a href="/home" class="logo"><img class="svg svg-logo" src="/images/logo.svg"/></a></li>
+          <li class="hide-on-med-and-down"><a href="/home" class="logo"><img class="svg svg-logo" src="/images/logo.svg"/></a></li>
           <li><a class="waves-effect side-header" href="#!">TRANG CHỦ</a></li>        
           <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
@@ -499,7 +499,7 @@
         </div>
       </ul>
       
-      <ul id="side-menu" class="side-nav hide-on-small-only @(model.zone == 0 ? 'north' : '') @(model.zone == 1 ? 'central' : '') @(model.zone == 2 ? 'south' : '')">
+      <ul id="side-menu" class="side-nav hide-on-med-and-down @(model.zone == 0 ? 'north' : '') @(model.zone == 1 ? 'central' : '') @(model.zone == 2 ? 'south' : '')">
         <a href="/" class="logo blue-text"><img src="/images/logo.svg" class="svg svg-logo"/></a>
         <div class="top-menu">
           <a href="#" data-activates="slide-out" class="button-collapse"><img class="svg svg-menu" src="/images/menu.svg" /></a>
@@ -519,7 +519,7 @@
       </ul>
   		@html.include("error", model)
       <main>
-      <div class="area-header hide-on-small-only">
+      <div class="area-header hide-on-med-and-down">
         <div class="right">
           <a href="@(model.zone == 0 ? '#' : '/home?zone=0')" class="@(model.zone == 0 ? '' : 'zone-hide')">
             <span class="north">Miền Bắc</span>
@@ -538,7 +538,7 @@
       @html.block("body")
       </main>
       <footer>
-        <div class="hide-on-med-and-up">
+        <div class="hide-on-large-only">
           <div class="footer-content">
             <div class="container">
               <div class="row">
@@ -568,7 +568,7 @@
             </div>
           </div>
         </div>
-        <div class="hide-on-small-only">
+        <div class="hide-on-med-and-down">
           <div class="footer-content">
             <div class="container">
               <div class="row">

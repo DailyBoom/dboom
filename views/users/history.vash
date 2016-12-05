@@ -2,7 +2,7 @@
 	@html.block("body", function(model) {
 		<div class="container history" id="mypage">
 			<div class="row">
-				<div class="col l2 offset-l1 hide-on-small-only">
+				<div class="col l2 offset-l1 hide-on-med-and-down">
 					<div class="username">@model.user.username</div>
 					<div class="account"><a href="/mypage">Thông tin tài khoản</a></div>
 					<div class="history"><a href="/myhistory">Đơn hàng của bạn</a></div>
