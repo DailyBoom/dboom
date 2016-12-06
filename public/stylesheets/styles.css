@@ -56,6 +56,13 @@ input[type=number]::-webkit-outer-spin-button {
   -moz-appearance: none;
   margin: 0;
 }
+.input-field input[type="search"], .input-field input[type="search"]:focus {
+  background: none;
+  padding-left: 0;
+  width: 100%;
+  border: inherit;
+  border-bottom: 1px solid #9e9e9e;
+}
 .min-h-lg { min-height: 500px; }
 .m-b-0 { margin-bottom: 0!important; }
 .m-t-0 { margin-top: 0     !important; }

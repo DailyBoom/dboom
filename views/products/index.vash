@@ -3,8 +3,13 @@
 <div class="container m-y-3">
 	<div class="row">
 		<div class="col s12">
-			<h4 class="left">지난 상품</h4>
+			<h4 class="left">Products</h4>
 			<form method="get" id="type_form">
+				<div class="col s12 m1 right">
+					<div class="input-field">
+						<button class="btn"><i class="fa fa-search"></i></button>
+					</div>
+				</div>
 				<div class="col s12 m3 right">
 					<div class="input-field">
 						<select name="type" id="type">
@@ -15,12 +20,18 @@
 						<label for="type">Listing Type</label>
 					</div>
 				</div>
+				<div class="col s12 m3 right">
+					<div class="input-field">
+						<input type="search" id="s" name="s" />
+						<label for="s">Search</label>
+					</div>
+				</div>
 			</form>
 		</div><!-- .col -->
 	</div><!-- .row -->
 	<div class="row">
 		<ul class="pagination">
-			@model.pages.forEach(function(page) { 
+			@model.pages.forEach(function(page) {
 				@if(model.currentPage == page.number) {
 					<li class="active">@page.number</li>
 				} else {
@@ -35,7 +46,6 @@
 	<div class="row">
 
 		@model.products.forEach(function(product){
-
 			<div class="col s12 m4 l4">
 				<div class="card list">
 					<div class="card-image">

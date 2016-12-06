@@ -65,6 +65,9 @@ router.get('/products/list', isMerchantOrAdmin, function(req, res) {
   else if (req.query.type == 2) {
     query.where('extend').equals(4);
   }
+  if (req.query.s) {
+    query.or([{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }])
+  }
   query.paginate(page, 9, function(err, Products, total) {
     res.render('products/index', { products: Products, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 9), page), currentPage: page, lastPage: Math.ceil(total / 9) });
   });
