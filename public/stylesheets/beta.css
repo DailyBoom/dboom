@@ -213,6 +213,15 @@ button {
   padding: 6px 21px 5px;
 }
 
+.select-wrapper input.select-dropdown {
+  padding: 10px 0 10px 20px;
+  line-height: 1;
+  width: calc(100% - 20px);
+  height: auto;
+  box-shadow: none;
+  border: solid 1px #b3c2cf;
+}
+
 #sidenav-overlay {
   opacity: 0 !important;
 }
@@ -1727,6 +1736,12 @@ header, main {
   line-height: 1;
 }*/
 
+.category.select-wrapper .caret {
+  top: 13px;
+  right: 30px;
+  color: #2074bd;
+}
+
 .combodate .select-wrapper .caret {
   top: 14px;
   right: 10px;
@@ -3034,6 +3049,8 @@ input[type=number]::-webkit-outer-spin-button {
 
   #individual img {
     padding: 0;
+    height: auto;
+    width: 100%;
   }
 
   footer .footer-content {

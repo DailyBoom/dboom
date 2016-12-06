@@ -57,7 +57,7 @@
 					@if(model.product.product_region.length > 0) {					
 					<div class="regions">
 						<h4>VÙNG MIỀN</h4>
-						<div>
+						<div class="col s8">
 							@if(model.product.product_region && model.product.product_region[0] == true) {
 								<div class="col s4">
 									<img src="/images/north-logo.svg">
