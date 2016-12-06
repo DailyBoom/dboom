@@ -2185,6 +2185,7 @@ header, main {
   color: #5aa0d6;
   height: auto;
   padding: 10px 0 9px 20px;
+  width: 100%;
 }
 
 #detailed_product .select-wrapper .caret {
@@ -3260,7 +3261,6 @@ input[type=number]::-webkit-outer-spin-button {
 
   #detailed_product input {
     margin-left: 10px;
-    height: 45px !important;
   }
 
   #detailed_product button {
