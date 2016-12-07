@@ -79,7 +79,7 @@
 						</div>
 					</div>
 					}
-					@if(model.product.options_skin.length > 0) {
+					@if(model.product.options_skin.length > 0 && (model.product.category < 38 || model.product.category > 43)) {
 						<div class="skin-types">
 							<h4>LOẠI DA</h4>
 							<select class="col s8">
@@ -92,13 +92,16 @@
 					@if (model.product.options[0].name != '') {
 						<div class="options">
 							<h4>MÀU SẮC</h4>
-							<ul id="options">
+							<div id="options">
 								@model.product.options.forEach(function(option, index){
-									<li data-option="@index" class="@(index == 0 ? 'active' : '')">
+									<div data-option="@index" class="@(index == 0 ? 'active' : '') option">
 										<div class="option-color" style="background-color:@option.name;"></div>
-									</li>
+										@if (model.product.category > 38 && model.product.category < 43) {
+											<div class="option-name">@model.product.options_skin[index]</div>
+										}
+									</div>
 								})
-							</ul>
+							</div>
 						</div>
 					}
 					<div class="quantity">
@@ -153,8 +156,8 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			
-			$('.options li').on('click', function() {
-				$('.options li').removeClass('active');
+			$('.options .option').on('click', function() {
+				$('.options .option').removeClass('active');
 				$(this).addClass('active');
 			})
 
