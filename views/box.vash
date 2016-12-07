@@ -1,5 +1,13 @@
 @html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.7";
+		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
 		<div id="detailed_box" class="container @(model.product.boxZone == 0 ? 'north' : '') @(model.product.boxZone == 1 ? 'central' : '') @(model.product.boxZone == 2 ? 'south' : '')">
 			<div class="row">
 				<section id="box" class="left">
@@ -21,6 +29,11 @@
 								<div class="item_type">@model.product.boxProducts[2].brand</div>
 							</div>
 						</div>
+						}
+						@if (!model.is_mobile) {
+							<div class="fb-share-button right" data-href="http://yppuna.vn@model.url" data-layout="button" data-size="large" data-mobile-iframe="true">
+								<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yppuna.vn@model.url">@model.__('blog.share')</a>
+							</div>
 						}
 					</div>
 					<div class="col s12 l4" id="center">

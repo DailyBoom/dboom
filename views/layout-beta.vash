@@ -482,6 +482,9 @@
           @if(model.user) {
             <li><a class="waves-effect side-header" href="/logout">@model.__('logout')</a></li>
           }
+          @if(model.user && model.user.admin) {
+            <li><a class="waves-effect side-header" href="/products/list">Product List</a></li>
+          }
           <div class="slide-bottom">
             <div class="search">
               <form action="/mall" method="GET">

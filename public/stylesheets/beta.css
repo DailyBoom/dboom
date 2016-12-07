@@ -2061,6 +2061,11 @@ header, main {
   color: #fea3a3;
 }
 
+#detailed_product .fb-share-button {
+  margin-top: 20px;
+}
+
+
 .old_price {
   font-family: SVN-Karla;
   font-size: 14px;
@@ -2979,7 +2984,6 @@ input[type=number]::-webkit-outer-spin-button {
 
 #blog_post article iframe {
   width: 100%;
-  height: auto;
 }
 
 #blog_post #comments {
@@ -3631,6 +3635,10 @@ input[type=number]::-webkit-outer-spin-button {
 
   .pagination {
     width: auto;
+  }
+
+  #blog_post article iframe {
+    height: auto;
   }
 }
 
