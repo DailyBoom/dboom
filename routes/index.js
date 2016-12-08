@@ -91,7 +91,7 @@ router.get('/beta', function(req, res, next) {
 });
 
 router.get('/mall', function(req, res, next) {
-  var query = Product.find({ extend: 4, is_published: true, is_hot: null }, {}, { sort: { 'created_at' : -1 }});
+  var query = Product.find({ extend: 4, is_published: true, is_hot: null }, {}, { sort: { 'position' : 1 }});
   var page = req.query.page ? req.query.page : 1;
   var per_page = req.is_mobile ? 8 : 16;
   if (req.query.category) {

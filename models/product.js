@@ -43,7 +43,8 @@ var productSchema = new Schema({
   boxProducts: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
   boxZone: Number,
   box_background: String,
-  product_region: [Boolean]
+  product_region: [Boolean],
+  position: Number
 });
 
 var Product = mongoose.model("Product", productSchema);

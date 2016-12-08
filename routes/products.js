@@ -382,4 +382,21 @@ router.post('/products/search', function(req, res) {
   })
 })
 
+router.get('/products/order', isAdmin, function(req, res) {
+  Product.find({ extend: 4 }, {}, { sort: { 'position' : 1 } }, function(err, products) {
+    res.render('products/order', { products: products });
+  });
+})
+
+router.post('/products/order', isAdmin, function(req, res) {
+  console.log(req.body);
+  req.body['products[position]'].forEach(function(item, index) {
+    Product.findOneAndUpdate({ _id: req.body['products[id]'][index] }, { position: item }, function() {
+      if (index == req.body['products[position]'].length - 1) {
+        res.redirect('/products/order');
+      }
+    });
+  });
+});
+
 module.exports = router;

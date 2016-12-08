@@ -132,7 +132,7 @@
 									<div class="center south">Miền Nam</div>
 								}
 								<div class="prod_name"><a href="/box/@product.id">@product.name</a></div>
-								@if (model.moment().isAfter(model.moment(product.scheduled_at), 'week')) {
+								@if (model.moment().isAfter(model.moment(product.scheduled_at, 'week'))) {
 									<span class="prod_price">@product.old_price</span>
 								}
 								else {
