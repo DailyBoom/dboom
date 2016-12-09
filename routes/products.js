@@ -21,7 +21,7 @@ var storage = s3({
     region: 'ap-northeast-2',
     filename: function (req, file, cb) {
         console.log(file);
-        cb(null, Date.now() + file.originalname);
+        cb(null, Date.now() + file.originalname.replace(/ /g,"-"));
     }
 })
 
