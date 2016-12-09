@@ -8,6 +8,26 @@
 		js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.7";
 		fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
+		<script>window.twttr = (function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0],
+			t = window.twttr || {};
+		if (d.getElementById(id)) return t;
+		js = d.createElement(s);
+		js.id = id;
+		js.src = "https://platform.twitter.com/widgets.js";
+		fjs.parentNode.insertBefore(js, fjs);
+
+		t._e = [];
+		t.ready = function(f) {
+			t._e.push(f);
+		};
+
+		return t;
+		}(document, "script", "twitter-wjs"));</script>
+		<script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
+		<script src="https://apis.google.com/js/platform.js" async defer>
+		{lang: 'vi'}
+		</script>
 		<div id="detailed_box" class="container @(model.product.boxZone == 0 ? 'north' : '') @(model.product.boxZone == 1 ? 'central' : '') @(model.product.boxZone == 2 ? 'south' : '')">
 			<div class="row">
 				<section id="box" class="left">
@@ -31,8 +51,13 @@
 						</div>
 						}
 						@if (!model.is_mobile) {
-							<div class="fb-share-button right" data-href="http://yppuna.vn@model.url" data-layout="button" data-size="large" data-mobile-iframe="true">
-								<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yppuna.vn@model.url">@model.__('blog.share')</a>
+							<div class="sns right">
+								<div class="fb-share-button" data-href="http://yppuna.vn@model.url" data-layout="button" data-size="small" data-mobile-iframe="true">
+									<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yppuna.vn@model.url">@model.__('blog.share')</a>
+								</div>
+								<a class="twitter-share-button"	href="https://twitter.com/intent/tweet">Tweet</a>
+								<a data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/?media=@model.product.images[0]"></a>
+								<div class="g-plus" data-action="share" data-annotation="none"></div>
 							</div>
 						}
 					</div>
@@ -78,6 +103,16 @@
 								<span class="item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.product.scheduled_at).format("DD/MM/YYYY")</span></span>
 							}
 						</div>
+						@if (model.is_mobile) {
+							<div class="sns right">
+								<div class="fb-share-button" data-href="http://yppuna.vn@model.url" data-layout="button" data-size="small" data-mobile-iframe="true">
+									<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yppuna.vn@model.url">@model.__('blog.share')</a>
+								</div>
+								<a class="twitter-share-button"	href="https://twitter.com/intent/tweet">Tweet</a>
+								<a data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/?media=@model.product.images[0]"></a>
+								<div class="g-plus" data-action="share" data-annotation="none"></div>
+							</div>
+						}
 					</div>
 				</div>
 			</section>
