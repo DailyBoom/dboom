@@ -1960,9 +1960,7 @@ header, main {
   min-height: 1px;
 }
 
-#detailed_product #center .pinned {
-  /* width: calc((100% - 152px) * 0.3333333333 - 1.5rem); */
-}
+
 
 #detailed_product #center .img-list {
   text-align: center;  
@@ -2995,6 +2993,14 @@ input[type=number]::-webkit-outer-spin-button {
   margin-top: 30px;
   padding-top: 30px;
   border-top: dashed 1px #b3c2cf;
+}
+
+
+
+@media only screen and (max-width : 1200px) {
+  #detailed_product #center .pinned {
+    width: calc((100% - 152px) * 0.3333333333 - 1.5rem);
+  }
 }
 
 @media only screen and (max-width : 992px) {
