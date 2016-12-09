@@ -9,7 +9,7 @@ var productSchema = new Schema({
   how_to: { type: String },
   why_love: String,
   ingredients: String,
-  category: Number,
+  category: [Number],
   description_image: String,
   homepage_image: String,
   brand: { type: String, required: false },

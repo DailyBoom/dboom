@@ -131,7 +131,7 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
-					<select id="category" class="validate" name="category">
+					<select id="category" class="validate" name="category" multiple>
 						<optgroup label="Chăm sóc da"></optgroup>
 						<optgroup label="Sản phẩm rửa mặt - Rửa mặt">
 							<option value="1">Nước rửa mặt</option>

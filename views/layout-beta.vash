@@ -30,23 +30,23 @@
     }
 		<meta itemprop="pageType" content="Product" />
     @if(model.cover){
-      <meta itemprop="image" content="http://www.yppuna.vn/@model.cover" />
-      <meta property="og:image" content="http://www.yppuna.vn/@model.cover" />
+      <meta itemprop="image" content="http://yppuna.vn/@model.cover" />
+      <meta property="og:image" content="http://yppuna.vn/@model.cover" />
     }
     else if (model.ext_cover) {
       <meta itemprop="image" content="@model.ext_cover" />
       <meta property="og:image" content="@model.ext_cover" />
     }
     else {
-  		<meta itemprop="image" content="http://www.yppuna.vn/images/db_ko_05.png" />
-      <meta property="og:image" content="http://www.yppuna.vn/images/db_ko_05.png" />
+  		<meta itemprop="image" content="http://yppuna.vn/images/db_ko_05.png" />
+      <meta property="og:image" content="http://yppuna.vn/images/db_ko_05.png" />
     }
     <meta property="og:site_name" content="Yppuna">
-    <meta property="og:url" content="http://www.yppuna.vn@model.url" />
+    <meta property="og:url" content="http://yppuna.vn@model.url" />
     <meta property="og:type" content="product">
     <meta property="fb:app_id" content="1216374348393191">
 
-    <link rel="canonical" href="http://www.yppuna.vn@model.url" />
+    <link rel="canonical" href="http://yppuna.vn@model.url" />
     <meta name="google-site-verification" content="yS0UpQrgmF43CA3mnxY8Qke583Hq_yJMSfw2USHiVxI" />
 
 		<!-- favicon -->

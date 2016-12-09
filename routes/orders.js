@@ -643,8 +643,8 @@ router.get('/success', function(req, res) {
     if (app.get("env") === "production") {
       slack.send({
         channel: '#new-order',
-        icon_url: 'http://www.yppuna.vn/images/favicon/favicon-96x96.png',
-        text: 'New order <http://www.yppuna.vn/orders/view/' + order._id + '>',
+        icon_url: 'http://yppuna.vn/images/favicon/favicon-96x96.png',
+        text: 'New order <http://yppuna.vn/orders/view/' + order._id + '>',
         unfurl_links: 1,
         username: 'Yppuna-bot'
       });
