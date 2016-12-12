@@ -3657,6 +3657,24 @@ input[type=number]::-webkit-outer-spin-button {
     height: 100%;
   }
 
+  .error-template {
+    color: #1b5eaf;
+  }
+
+  .icon-error {
+    font-size: 7em;
+  }
+  .error-details {
+    font-size: 3em;
+  }
+  .error-title {
+    font-size: 1.4em;
+  }
+  .error-actions {
+    display: block;
+    margin-top: 150px;
+  }
+
   .logo {
     width: 107px;
     padding: 0px !important;
@@ -3722,7 +3740,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-stretch: normal;
     color: #1b5eaf;
     margin-bottom: 13px;
-    display: block;
+    display: inline-block;
   }
 
   footer .footer-bg img {
