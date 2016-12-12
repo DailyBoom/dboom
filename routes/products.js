@@ -21,7 +21,7 @@ var storage = s3({
     region: 'ap-northeast-2',
     filename: function (req, file, cb) {
         console.log(file);
-        cb(null, Date.now() + file.originalname);
+        cb(null, Date.now() + file.originalname.replace(/ /g,"-"));
     }
 })
 
@@ -381,5 +381,22 @@ router.post('/products/search', function(req, res) {
     res.status(200).json({ products: products});
   })
 })
+
+router.get('/products/order', isAdmin, function(req, res) {
+  Product.find({ extend: 4 }, {}, { sort: { 'position' : 1 } }, function(err, products) {
+    res.render('products/order', { products: products });
+  });
+})
+
+router.post('/products/order', isAdmin, function(req, res) {
+  console.log(req.body);
+  req.body['products[position]'].forEach(function(item, index) {
+    Product.findOneAndUpdate({ _id: req.body['products[id]'][index] }, { position: item }, function() {
+      if (index == req.body['products[position]'].length - 1) {
+        res.redirect('/products/order');
+      }
+    });
+  });
+});
 
 module.exports = router;

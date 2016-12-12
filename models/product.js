@@ -9,7 +9,7 @@ var productSchema = new Schema({
   how_to: { type: String },
   why_love: String,
   ingredients: String,
-  category: Number,
+  category: [Number],
   description_image: String,
   homepage_image: String,
   brand: { type: String, required: false },
@@ -43,7 +43,8 @@ var productSchema = new Schema({
   boxProducts: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
   boxZone: Number,
   box_background: String,
-  product_region: [Boolean]
+  product_region: [Boolean],
+  position: Number
 });
 
 var Product = mongoose.model("Product", productSchema);

@@ -1960,9 +1960,7 @@ header, main {
   min-height: 1px;
 }
 
-#detailed_product #center .pinned {
-  width: calc((100% - 152px) * 0.3333333333 - 1.5rem);
-}
+
 
 #detailed_product #center .img-list {
   text-align: center;  
@@ -2061,10 +2059,15 @@ header, main {
   color: #fea3a3;
 }
 
-#detailed_product .fb-share-button {
+#detailed_product .sns, #detailed_box .sns {
   margin-top: 20px;
 }
 
+#detailed_product .sns > *, #detailed_box .sns > * {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: top;
+}
 
 .old_price {
   font-family: SVN-Karla;
@@ -2992,6 +2995,14 @@ input[type=number]::-webkit-outer-spin-button {
   border-top: dashed 1px #b3c2cf;
 }
 
+
+
+@media only screen and (max-width : 1200px) {
+  #detailed_product #center .pinned {
+    width: calc((100% - 152px) * 0.3333333333 - 1.5rem);
+  }
+}
+
 @media only screen and (max-width : 992px) {
 
   header, main, footer {
@@ -3489,9 +3500,8 @@ input[type=number]::-webkit-outer-spin-button {
     padding-top: 56px;
   }
 
-  #detailed_box h2 {
+  #detailed_box .box-products h2 {
     text-align: center;
-    padding: 0 62px;
     font-size: 50px;
   }
 
