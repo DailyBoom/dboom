@@ -2997,7 +2997,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 
-@media only screen and (max-width : 1200px) {
+@media only screen and (max-width : 1400px) {
   #detailed_product #center .pinned {
     width: calc((100% - 152px) * 0.3333333333 - 1.5rem);
   }
