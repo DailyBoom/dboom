@@ -188,7 +188,7 @@ router.post('/contact', function(req, res, next) {
 router.get('/home', function(req, res, next) {
   if (typeof req.session.zone === 'undefined')
     return res.redirect('/');
-  Product.find({ boxZone: req.session.zone, scheduled_at: { "$gte": moment().subtract(13, 'days') } }, {}, {}).populate('boxProducts').exec(function (err, products) {
+  Product.find({ boxZone: req.session.zone, scheduled_at: { "$gte": moment().subtract(13, 'days') } }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts').exec(function (err, products) {
     console.log(products);
     var query = Product.find({ extend: 4, is_published: true });
     //query.where('product_region.'+req.session.zone, true)
