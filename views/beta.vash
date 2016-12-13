@@ -271,13 +271,13 @@
 					var waypoint = this;
 					var section = $(this.element).closest('section');
 					if (direction == 'down' && section.next().not('#individual').length) {
-						$('body').css('overflow', 'hidden');
+						//$('body').css('overflow', 'hidden');
 						section.find(".l8").add($(section).find(".l4")).css('transform', 'translate3d(0, -'+section.height()+'px, 0)');
 						section.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
 							var nextSection = $(section).next('section');
 							nextSection.find(".l8").add(nextSection.find(".l4")).css('transform', 'translate3d(0, -'+nextSection.height()+'px, 0)');
 							nextSection.find(".l4").one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
-								$('body').css('overflow', 'scroll');
+								//$('body').css('overflow', 'scroll');
 								Waypoint.refreshAll();
 							});
 						});
@@ -290,13 +290,13 @@
 				handler: function(direction) {
 					if (direction == 'up') {
 						var section = $(this.element).closest('section');					
-						$('body').css('overflow', 'hidden');
+						//$('body').css('overflow', 'hidden');
 						var nextSection = $(section).next('section');
 						nextSection.find(".l8").add(nextSection.find(".l4")).css('transform', 'translate3d(0, 0, 0)');
 						nextSection.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
 							section.find(".l8").add($(section).find(".l4")).css('transform', 'translate3d(0, 0, 0)');
 							section.find(".l4").one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(event) {
-								$('body').css('overflow', 'scroll');
+								//$('body').css('overflow', 'scroll');
 								Waypoint.refreshAll();
 							});
 						});
