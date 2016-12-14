@@ -1,0 +1,37 @@
+@html.extend("layout-beta", function(model) {
+	@html.block("body", function(model) {
+        <div class="container">
+            <div class="row">
+                <div class="col s12 l6 offset-l3">
+                    <canvas id="zoneChart" width="400" height="400"></canvas>
+                </div>
+            </div>
+        </div>
+        <script>
+            var myChart = new Chart($("#zoneChart"), {
+                type: 'bar',
+                data: {
+                    labels: ["North", "Central", "South"],
+                    datasets: [{
+                        label: '# of clicks',
+                        data: @JSON.stringify(model.result),
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                        ],
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+        </script>
+    })
+});

@@ -716,6 +716,7 @@ header, main {
 
 #homepage #boxes {
   overflow: hidden;
+  min-height: 700px;
 }
 
 #homepage #central, #homepage #south {
@@ -2273,7 +2274,6 @@ input[type=number]::-webkit-outer-spin-button {
 /*Detailed Box*/
 
 #detailed_box .row section, #detailed_box .box-products section {
-  background: url('/images/box_background.png') no-repeat;
 }
 
 #detailed_box #left, #detailed_box #right {
@@ -3218,7 +3218,6 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   #south .area-row {
-    background: url('/images/south_bg_m.png') no-repeat;
     background-size: 81%;
     background-position: 71px 145px;
   }
@@ -3914,7 +3913,6 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   #south .item_img {
-    background-image: url('/images/south_bg.png');
     background-size: cover;
     padding-left: 168px;
     padding-top: 88px;

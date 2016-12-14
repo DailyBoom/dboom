@@ -8,6 +8,7 @@ var Coupon = require('../models/coupon');
 var Comment = require('../models/comment');
 var Partner = require('../models/partner');
 var Article = require('../models/article');
+var Behavior = require('../models/behavior');
 var smtpTransport = require('nodemailer-smtp-transport');
 var config = require('config-heroku');
 var fs = require("fs");
@@ -188,6 +189,12 @@ router.post('/contact', function(req, res, next) {
 router.get('/home', function(req, res, next) {
   if (typeof req.session.zone === 'undefined')
     return res.redirect('/');
+  if (req.query.zone) {
+    var behavior = new Behavior({
+      zone: req.query.zone
+    });
+    behavior.save();
+  }
   Product.find({ boxZone: req.session.zone, scheduled_at: { "$gte": moment().subtract(13, 'days') } }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts').exec(function (err, products) {
     console.log(products);
     var query = Product.find({ extend: 4, is_published: true });
