@@ -1444,6 +1444,22 @@ header, main {
   margin-top: 12px;
 }
 
+.ybtn-o:hover {
+  background-color: #3ebbed;
+  color: #ffffff;  
+}
+
+/* Admin */
+
+#dashboard .tabs {
+  margin-bottom: 50px;
+  overflow-x: hidden;
+}
+
+#dashboard .btn-large {
+  line-height: 42px;
+}
+
 /* Checkout */
 
 

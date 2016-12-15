@@ -17,6 +17,10 @@ var isAdmin = function (req, res, next) {
   res.redirect('/login');
 }
 
+router.get('/admin/dashboard', isAdmin, function(req, res) {
+    res.render('admin/dashboard');
+});
+
 router.get('/behaviors/zone', isAdmin, function(req, res) {
     Behavior.aggregate([
         {$group: {
