@@ -46,17 +46,14 @@
   <body>
       <div class="container" id="intro">
           <div class="row center">
-            <div class="intro-title hide">
+            <div class="intro-title @(model.has_zone ? 'hide' : '')">
                 <span>yppuna</span>
             </div>
-            <img class="intro-logo" src="/images/logo.svg">
+            <img class="intro-logo" style="@(!model.has_zone ? 'display:none;' : '')" src="/images/logo.svg">
             <!--<video class="intro-video" width="400" muted style="display:none;">
                 <source src="/video/yppuna_logo.mp4" type="video/mp4">
             </video>-->
             <div class="intro-text">
-                Yppuna rất xin lỗi các bạn đẹp. Hiện website đang bị quá tải và cần vài ngày chỉnh sửa để có thể đáp ứng được hết nhu cầu của mọi người. Yppuna sẽ sớm quay lại.
-            </div>
-            <div class="intro-text hide">
                 <span style="@(model.has_zone ? 'display:none;' : '')">Là Gì?</span>
                 <span style="display:none;">Yppuna là thương hiệu mang những sản phẩm làm đẹp dựa trên vùng miền bạn đang sinh sống</span>
                 <span style="display:none;">Chúng tôi tự tay lựa chọn từng sản phẩm để phù hợp nhất cho làn da của bạn dựa trên khí hậu bạn đang sinh sống</span>
@@ -80,41 +77,41 @@
       </div>
   </body>
     <script>
-        //var has_zone = @model.has_zone;
-        //$(window).load(function() {
-        //    if (!has_zone) {
-        //        $('.intro-text span').first().add($('.intro-title')).delay(1000).fadeOut().promise().done(function() {
-        //            $(this).eq(1).next().add($('.intro-logo')).fadeIn().promise().done(function() {
-        //                $(this).eq(1).delay(3000).fadeOut(function() {
-        //                    $(this).next().fadeIn(function() {              
-        //                        $(this).add($('.intro-logo')).delay(3000).fadeOut().promise().done(function() {
-        //                            var text = $(this).eq(1);
+        var has_zone = @model.has_zone;
+        $(window).load(function() {
+            if (!has_zone) {
+                $('.intro-text span').first().add($('.intro-title')).delay(1000).fadeOut().promise().done(function() {
+                    $(this).eq(1).next().add($('.intro-logo')).fadeIn().promise().done(function() {
+                        $(this).eq(1).delay(3000).fadeOut(function() {
+                            $(this).next().fadeIn(function() {              
+                                $(this).add($('.intro-logo')).delay(3000).fadeOut().promise().done(function() {
+                                    var text = $(this).eq(1);
                                     //$('.intro-video').fadeIn(function() {
                                         // $(this)[0].defaultPlaybackRate = 1.5;
                                         // $(this)[0].play();
                                         // $(this)[0].addEventListener('ended', function() {
                                         //    $('.intro-video').fadeOut(function() {
-        //                                        text.next().add($('.intro-logo')).fadeIn().promise().done(function() {
-        //                                            $('.intro-logo').css('margin-top', '100px');
-        //                                            $('.intro-logo').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
-        //                                                $('.zones').css('bottom', '0');
-        //                                            });
-        //                                        });
+                                                text.next().add($('.intro-logo')).fadeIn().promise().done(function() {
+                                                    $('.intro-logo').css('margin-top', '100px');
+                                                    $('.intro-logo').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
+                                                        $('.zones').css('bottom', '0');
+                                                    });
+                                                });
                                         //  });
                                     // });
                                 // });
-        //                        });
-        //                    });
-        //                });
-        //            });
-        //        });
-        //    }
-        //    else {
-        //        $('.intro-logo').css('margin-top', '100px');
-        //        $('.intro-logo').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
-        //            $('.zones').css('bottom', '0');
-        //        });
-        //    }
-        //});
+                                });
+                            });
+                        });
+                    });
+                });
+            }
+            else {
+                $('.intro-logo').css('margin-top', '100px');
+                $('.intro-logo').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
+                    $('.zones').css('bottom', '0');
+                });
+            }
+        });
     </script>
 </html>
