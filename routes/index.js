@@ -58,6 +58,13 @@ var isAdmin = function (req, res, next) {
   res.redirect('/login');
 }
 
+var isContentOrAdmin = function (req, res, next) {
+  if (req.isAuthenticated() && (req.user.admin === true || req.user.role === "content"))
+    return next();
+  req.session.redirect_to = req.originalUrl;
+  res.redirect('/login');
+}
+
 /* GET Home Page */
 router.get('/beta', function(req, res, next) {
   var date = moment().startOf('isoweek').format("MM/DD/YYYY");
@@ -318,17 +325,17 @@ router.get('/blog', function(req, res, next) {
   });
 });
 
-router.get('/blog/list', isAdmin, function(req, res, next) {
+router.get('/blog/list', isContentOrAdmin, function(req, res, next) {
   Article.find({ }, {}, { sort: { 'created_at': -1 } }, function(err, articles) {
     res.render('articles/list', { articles: articles });
   });
 });
 
-router.get('/blog/new', isAdmin, function(req, res, next) {
+router.get('/blog/new', isContentOrAdmin, function(req, res, next) {
   res.render('articles/new');
 });
 
-router.post('/blog/new', isAdmin, function(req, res, next) {
+router.post('/blog/new', isContentOrAdmin, function(req, res, next) {
   console.log(req.body);
   var content = "";
   JSON.parse(req.body.article).data.forEach(function(data) {
@@ -357,13 +364,13 @@ router.post('/blog/new', isAdmin, function(req, res, next) {
   });
 });
 
-router.get('/blog/edit/:id', isAdmin, function(req, res, next) {
+router.get('/blog/edit/:id', isContentOrAdmin, function(req, res, next) {
   Article.findOne({ _id: req.params.id }, function(err, article) {
     res.render('articles/edit', { article: article });
   });
 });
 
-router.post('/blog/edit/:id', isAdmin, function(req, res, next) {
+router.post('/blog/edit/:id', isContentOrAdmin, function(req, res, next) {
   Article.findOne({ _id: req.params.id }, function(err, article) {
     
     var content = "";
@@ -391,13 +398,13 @@ router.post('/blog/edit/:id', isAdmin, function(req, res, next) {
   });
 });
 
-router.get('/blog/delete/:id', isAdmin, function(req, res, next) {
+router.get('/blog/delete/:id', isContentOrAdmin, function(req, res, next) {
   Article.findOneAndRemove({ _id: req.params.id }, function(err, article) {
     res.redirect('/blog/list');
   });
 });
 
-router.get('/blog/comments/delete/:id', isAdmin, function(req, res, next) {
+router.get('/blog/comments/delete/:id', isContentOrAdmin, function(req, res, next) {
   Comment.findOneAndRemove({ _id: req.params.id }, function(err, article) {
     res.redirect('back');
   });

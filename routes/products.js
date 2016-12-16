@@ -77,7 +77,7 @@ router.get('/products/new', isMerchantOrAdmin, function(req, res) {
   res.render("products/new");
 });
 
-router.get('/products/delete/:id', isAdmin, function(req, res) {
+router.get('/products/delete/:id', isMerchantOrAdmin, function(req, res) {
   Product.findOneAndRemove({ _id: req.params.id }, function(err, user) {
     res.redirect('/products/list');
   });
@@ -298,7 +298,7 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
   });
 });
 
-router.get('/products/:id/delete_img/:pos', isAdmin, function(req, res) {
+router.get('/products/:id/delete_img/:pos', isMerchantOrAdmin, function(req, res) {
   Product.findOne({ _id: req.params.id }, function(err, product) {
     if (err)
       console.log(err);
@@ -309,7 +309,7 @@ router.get('/products/:id/delete_img/:pos', isAdmin, function(req, res) {
   });
 });
 
-router.get('/products/:id/delete_mobile_img/:pos', isAdmin, function(req, res) {
+router.get('/products/:id/delete_mobile_img/:pos', isMerchantOrAdmin, function(req, res) {
   Product.findOne({ _id: req.params.id }, function(err, product) {
     if (err)
       console.log(err);
@@ -320,7 +320,7 @@ router.get('/products/:id/delete_mobile_img/:pos', isAdmin, function(req, res) {
   });
 });
 
-router.get('/products/:id/delete_desc_img', isAdmin, function(req, res) {
+router.get('/products/:id/delete_desc_img', isMerchantOrAdmin, function(req, res) {
   Product.findOne({ _id: req.params.id }, function(err, product) {
     if (err)
       console.log(err);
@@ -344,7 +344,7 @@ router.get('/products/preview/:id', function(req, res) {
   });
 });
 
-router.get('/products/publish/:id', isAdmin, function(req, res) {
+router.get('/products/publish/:id', isMerchantOrAdmin, function(req, res) {
   Product.findOneAndUpdate({ _id: req.params.id }, { is_published: true }, function(err, product) {
     if (err)
       console.log(err);
@@ -382,13 +382,13 @@ router.post('/products/search', function(req, res) {
   })
 })
 
-router.get('/products/order', isAdmin, function(req, res) {
+router.get('/products/order', isMerchantOrAdmin, function(req, res) {
   Product.find({ extend: 4 }, {}, { sort: { 'position' : 1 } }, function(err, products) {
     res.render('products/order', { products: products });
   });
 })
 
-router.post('/products/order', isAdmin, function(req, res) {
+router.post('/products/order', isMerchantOrAdmin, function(req, res) {
   console.log(req.body);
   req.body['products[position]'].forEach(function(item, index) {
     Product.findOneAndUpdate({ _id: req.body['products[id]'][index] }, { position: item }, function() {
