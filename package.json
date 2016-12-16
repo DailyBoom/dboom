@@ -13,7 +13,7 @@
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
     "vash": "~0.9.3",
-    "mongoose": "~4.4.10",
+    "mongoose": "~4.4.20",
     "materialize-css": "~0.96.1",
     "bcrypt": "~0.8.5",
     "passport": "~0.3.0",
