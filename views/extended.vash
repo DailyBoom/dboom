@@ -250,7 +250,7 @@
 					data: {
 						product_id: id,
 						quantity: $("#quantity").val(),
-						option: @(model.product.options[0].name == '' ? '0' : html.raw("$('.options li.active').data('option')"))
+						option: @(model.product.options[0].name == '' ? '0' : html.raw("$('.options .option.active').data('option')"))
 					},
 					success: function (res) {
 						window.location = '/cart';
