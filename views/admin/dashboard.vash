@@ -5,16 +5,25 @@
                 <div class="col s12 l8 offset-l1">
                     <div class="col s12">
                         <ul class="tabs">
-                            <li class="tab col s3"><a class="active" href="#products">Products</a></li>
-                            <li class="tab col s3"><a href="#behavior">User behavior</a></li>
-                            <li class="tab col s3"><a href="#orders">Orders</a></li>
-                            <li class="tab col s3"><a href="#blog">Blog</a></li>
+                            @if (model.user.admin || model.user.role == 'merchant') {
+                                <li class="tab col s3"><a class="active" href="#products">Products</a></li>
+                            }
+                            @if (model.user.admin) {
+                                <li class="tab col s3"><a href="#behavior">User behavior</a></li>
+                                <li class="tab col s3"><a href="#orders">Orders</a></li>
+                            }
+                            @if (model.user.admin || model.user.role == 'content') {                            
+                                <li class="tab col s3"><a href="#blog">Blog</a></li>
+                            }
                         </ul>
                     </div>
+                    @if (model.user.admin || model.user.role == 'merchant') {                    
                     <div class="col s12 center" id="products">
                         <a class="waves-effect waves-light btn-large ybtn-o" href="/products/new"><i class="fa fa-plus"></i> New Product</a>
                         <a class="waves-effect waves-light btn-large ybtn-o" href="/products/list"><i class="fa fa-cubes"></i> Products List</a>
                     </div>
+                    }
+                    @if (model.user.admin) {                    
                     <div class="col s12 center" id="behavior">
                         <a class="waves-effect waves-light btn-large ybtn-o" href="/behaviors/zone"><i class="fa fa-bar-chart"></i> Zones</a>
                         <a class="waves-effect waves-light btn-large ybtn-o" href="/users/list"><i class="fa fa-user"></i> Users List</a>
@@ -22,10 +31,13 @@
                     <div class="col s12 center" id="orders">
                         <a class="waves-effect waves-light btn-large ybtn-o" href="/orders/list"><i class="fa fa-tasks"></i> Orders List</a>                        
                     </div>
+                    }
+                    @if (model.user.admin || model.user.role == 'content') {                    
                     <div class="col s12 center" id="blog">
                         <a class="waves-effect waves-light btn-large ybtn-o" href="/blog/new"><i class="fa fa-plus"></i> New Blog Post</a>                        
                         <a class="waves-effect waves-light btn-large ybtn-o" href="/blog/list"><i class="fa fa-list"></i> Blog Post List</a>                        
                     </div>
+                    }
                 </div>
             </div>
         </div>

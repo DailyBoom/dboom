@@ -2503,10 +2503,6 @@ input[type=number]::-webkit-outer-spin-button {
   margin-right: 18px;
 }
 
-#mypage input.select-dropdown {
-  padding: 0 15px;
-}
-
 #mypage .caret {
   top: 8px;
   right: 4px;
