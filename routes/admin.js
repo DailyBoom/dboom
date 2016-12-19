@@ -17,7 +17,14 @@ var isAdmin = function (req, res, next) {
   res.redirect('/login');
 }
 
-router.get('/admin/dashboard', isAdmin, function(req, res) {
+var isAdmins = function (req, res, next) {
+  if (req.isAuthenticated() && (req.user.admin === true || req.user.role === "content" || req.user.role === "merchant"))
+    return next();
+  req.session.redirect_to = req.originalUrl;
+  res.redirect('/login');
+}
+
+router.get('/admin/dashboard', isAdmins, function(req, res) {
     res.render('admin/dashboard');
 });
 

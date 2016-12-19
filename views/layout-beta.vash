@@ -483,7 +483,7 @@
           @if(model.user) {
             <li><a class="waves-effect side-header" href="/logout">@model.__('logout')</a></li>
           }
-          @if(model.user && model.user.admin) {
+          @if(model.user && (model.user.admin || model.user.role == 'merchant' || model.user.role == 'content')) {
             <li><a class="waves-effect side-header" href="/admin/dashboard">Admin Dashboard</a></li>
           }
           <div class="slide-bottom">
