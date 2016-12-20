@@ -1,4 +1,5 @@
 var express = require('express');
+var app = express();
 var router = express.Router();
 var mongoose = require("mongoose");
 var moment = require('moment');
@@ -196,7 +197,7 @@ router.post('/contact', function(req, res, next) {
 router.get('/home', function(req, res, next) {
   if (typeof req.session.zone === 'undefined')
     return res.redirect('/');
-  if (req.query.zone) {
+  if (req.query.zone && app.get('env') === 'production') {
     var behavior = new Behavior({
       zone: req.query.zone
     });

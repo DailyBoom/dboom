@@ -248,7 +248,7 @@
       <ul id="slide-out" class="side-nav @(model.zone == 0 ? 'north' : '') @(model.zone == 1 ? 'central' : '') @(model.zone == 2 ? 'south' : '')">
         <div class="slide-menu-wrapper">
           <li class="hide-on-med-and-down"><a href="/home" class="logo"><img class="svg svg-logo" src="/images/logo.svg"/></a></li>
-          <li><a class="waves-effect side-header" href="#!">TRANG CHỦ</a></li>        
+          <li><a class="waves-effect side-header" href="/home">TRANG CHỦ</a></li>        
           <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
               <li>
