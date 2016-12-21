@@ -34,7 +34,7 @@
                                     <div class="product-brand">@item.product.brand</div>
                                     @if (item.product.options[item.option].name !== '') {
                                         <div class="product-color" style="background-color: @item.product.options[item.option].name"></div>
-										@if (item.product.category >= 38 && item.product.category <= 43) {
+										@if (model.product.category[0] >= 38 && model.product.category[0] <= 43) {
 											<div class="option-name">@item.product.options_skin[index]</div>
 										}
                                     }
