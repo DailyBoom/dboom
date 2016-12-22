@@ -111,6 +111,9 @@
     <script src="/javascripts/popOut.js"></script>
     <script src="/javascripts/imgToSvg.js"></script>
     <script src="/javascripts/combodate.js"></script>
+    <script src="/javascripts/picker.js"></script>
+    <script src="/javascripts/picker.time.js"></script>
+    <script src="/javascripts/legacy.js"></script>
     <script src="/javascripts/jquery.animatecss.min.js"></script>
     <script src="/javascripts/jquery.waypoints.min.js"></script>
     <script src="/javascripts/jquery.stellar.min.js"></script>

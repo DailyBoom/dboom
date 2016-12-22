@@ -2,8 +2,13 @@
 	@html.block("body", function(model) {
         <div class="container">
             <div class="row">
+                <h1 class="center">User behavior: Zones</h1>
                 <div class="col s12 l6 offset-l3">
-                    <canvas id="zoneChart" width="400" height="400"></canvas>
+                    <form method="get" id="picker">
+                        <label for="time">Pick a hour</label>
+                        <input id="time" type="date" class="timepicker" name="time" >
+                        <canvas id="zoneChart" width="400" height="400"></canvas>
+                    </form>
                 </div>
             </div>
         </div>
@@ -32,6 +37,13 @@
                     }
                 }
             });
+            $('.timepicker').pickatime({
+                interval: 60,
+                format: 'HH',
+                onSet: function(context) {
+                    $("#picker").submit();
+                }
+            })
         </script>
     })
 });

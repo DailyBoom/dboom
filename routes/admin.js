@@ -29,7 +29,13 @@ router.get('/admin/dashboard', isAdmins, function(req, res) {
 });
 
 router.get('/behaviors/zone', isAdmin, function(req, res) {
+    var hour = req.query.time ? req.query.time : 0;
+    var now = moment().hours(hour).minute(0).second(0);
+    var next = req.query.time ? now.clone().add(1, 'hour') : now.clone().add(1, 'day');
     Behavior.aggregate([
+        {$match: {
+            created_at: { $gte: new Date(now), $lt: new Date(next) }
+        }},
         {$group: {
             _id: '$zone',
             count: {$sum: 1}
