@@ -8,8 +8,10 @@
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
     <div class="container@(model.is_mobile ? '-fluid' : '')" id="blog_post">
-        <h2 class="center">@model.article.title</h2>
-        <div class="date center"><i class="fa fa-calendar"></i> @model.moment(model.article.created_at).format("DD.MM.YYYY")</div>
+        <div class="title" style="background: url(@model.article.cover) no-repeat;">
+            <h2 class="center">@model.article.title</h2>
+            <div class="date center"><i class="fa fa-calendar"></i> @model.moment(model.article.created_at).format("DD.MM.YYYY")</div>
+        </div>
         <article class="row">
             @html.raw(model.article.content)
         </article>

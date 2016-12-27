@@ -2965,7 +2965,12 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #blog_post {
-  padding: 221px 182px 0 33px;
+  padding: 107px 0 0 33px;
+}
+
+#blog_post .title {
+  padding: 109px 0 188px 0;
+  background-size: cover !important; 
 }
 
 #blog_post h2 {
@@ -2976,7 +2981,7 @@ input[type=number]::-webkit-outer-spin-button {
   font-stretch: normal;
   line-height: 0.81;
   text-align: center;
-  color: #fea3a3;
+  color: white;
   text-transform: lowercase;
 }
 
