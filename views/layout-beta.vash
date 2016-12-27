@@ -580,14 +580,15 @@
             <div class="container">
               <div class="row">
                 <div class="col l4">
+                  <div><a href="/about">VỀ YPPUNA</a></div>
                   <div><a href="#">BOX CONCEPT</a></div>
                   <div><a href="#">NHÃN HIỆU</a></div>
-                  <div><a href="/mall">SẢN PHẨM BÁN LẺ</a></div>
                   <div class="footer-bg">
                     <img src="/images/footer_bg.png" />
                   </div>
                 </div>
                 <div class="col l4">
+                  <div><a href="/mall">SẢN PHẨM BÁN LẺ</a></div>
                   <div><a href="/contact">LIÊN HỆ</a></div>
                   <div><a href="#">TIN TỨC & SỰ KIỆN</a></div>
                   <div><a href="#"></a></div>

@@ -2871,7 +2871,7 @@ input[type=number]::-webkit-outer-spin-button {
   border-radius: 5px;
   background-color: #ffffff;
   box-shadow: 0 2px 4px 0 rgba(206, 206, 206, 0.5);
-  padding: 0 30px 18px;
+  padding: 0 0 18px 0;
   margin-bottom: 14px;
 }
 
@@ -2881,6 +2881,14 @@ input[type=number]::-webkit-outer-spin-button {
 
 #blog article:nth-child(3n+1) {
   margin-right: 0;
+}
+
+#blog article .cover img {
+  width: 100%;
+}
+
+#blog article > *:not(.cover) {
+  padding: 0 30px;
 }
 
 #blog .tags a {
@@ -2940,6 +2948,20 @@ input[type=number]::-webkit-outer-spin-button {
   font-style: normal;
   font-stretch: normal;
   color: #fea3a3;
+}
+
+#blog h3 {
+  margin-top: 75px;
+  font-family: SVN-Karla;
+  font-size: 35px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #fea3a3;
+}
+
+.lightwidget__image {
+  border-radius: 90px;
 }
 
 #blog_post {

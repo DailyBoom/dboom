@@ -312,7 +312,7 @@ var smart_substr = function(str, len) {
 }
 
 router.get('/blog', function(req, res, next) {
-  var query = Article.find({ published: true }, {}, { sort: { 'created_at': -1 } });
+  var query = Article.find({ published: true, video: false }, {}, { sort: { 'created_at': -1 } });
   if (req.query.tag) {
     query.where('tags', req.query.tag);
   }
@@ -322,7 +322,9 @@ router.get('/blog', function(req, res, next) {
     if (err) {
       console.log(err);
     }
-    res.render('articles/index', { articles: articles, smart_substr: smart_substr, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });
+    Article.find({ published: true, video: true }, {}, { sort: { 'created_at': -1 } }).limit(3).exec(function(err, videos) {
+      res.render('articles/index', { articles: articles, videos: videos, striptags: striptags, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });
+    });
   });
 });
 
@@ -336,7 +338,7 @@ router.get('/blog/new', isContentOrAdmin, function(req, res, next) {
   res.render('articles/new');
 });
 
-router.post('/blog/new', isContentOrAdmin, function(req, res, next) {
+router.post('/blog/new', isContentOrAdmin, upload.single('cover'), function(req, res, next) {
   console.log(req.body);
   var content = "";
   JSON.parse(req.body.article).data.forEach(function(data) {
@@ -355,10 +357,12 @@ router.post('/blog/new', isContentOrAdmin, function(req, res, next) {
   var article = new Article({
     title: req.body.title,
     url: getSlug(req.body.title, { lang: 'vn' }),
+    cover: '/' + req.file.path,
     content: content,
     data: req.body.article,
     tags: req.body.tags,
-    published: req.body.publish
+    published: req.body.publish,
+    video: req.body.video
   });
   article.save(function(err){
     res.redirect('/blog/list');
@@ -371,7 +375,7 @@ router.get('/blog/edit/:id', isContentOrAdmin, function(req, res, next) {
   });
 });
 
-router.post('/blog/edit/:id', isContentOrAdmin, function(req, res, next) {
+router.post('/blog/edit/:id', isContentOrAdmin, upload.single('cover'), function(req, res, next) {
   Article.findOne({ _id: req.params.id }, function(err, article) {
     
     var content = "";
@@ -392,7 +396,14 @@ router.post('/blog/edit/:id', isContentOrAdmin, function(req, res, next) {
     article.data = req.body.article;
     article.content = content;
     article.tags = req.body.tags;
+    article.published = req.body.publish;
+    article.video = req.body.video;
     
+    console.log(req.file);
+    if (req.file) {
+      article.cover = '/' + req.file.path;
+    }
+
     article.save(function(err){
       res.redirect('/blog/list');
     });

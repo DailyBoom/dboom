@@ -1,11 +1,23 @@
 @html.extend("layout", function(model) { @html.block("body", function(model) {
     <div class="container">
         <h2 class="center">New Blog Post</h2>
-        <form action="/blog/new" method="POST" class="st-form">
+        <form action="/blog/new" method="POST" class="st-form" enctype="multipart/form-data">
             <div class="input-field col s12 m12 l12">
                 <input type="text" name="title" id="title"/>
                 <label for="title">Title</label>
             </div>
+            <div class="file-field input-field">
+				<br>
+				<span class="hide-on-med-and-down"><br></span>
+				<span for="cover" class="input-file-mod grey-text">Cover</span>
+				<div class="btn blue-grey darken-2">
+					<span><i class="fa fa-image left"></i>Choose</span>
+					<input id="cover" type="file" class="validate" name="cover" multiple>
+				</div>
+				<div class="file-path-wrapper">
+					<input class="file-path validate" type="text">
+				</div>
+			</div>
             <label for="article">Content</label>
             <textarea name="article" id="article" class="js-st-instance"></textarea>
             <label for="tags">Tags</label>
@@ -13,6 +25,10 @@
             <div class="input-field col s12 m12 l12">
                 <input type="checkbox" name="publish" id="publish" checked/>
                 <label for="publish">Publish</label>
+            </div>
+            <div class="hide input-field col s12">
+                <input type="checkbox" name="video" id="video"/>
+                <label for="video">Video Post</label>
             </div>
             <button class="btn right">Post</button>
         </form>

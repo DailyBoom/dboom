@@ -1,10 +1,37 @@
 @html.extend("layout-beta", function(model) { @html.block("body", function(model) {
+    <script src="//lightwidget.com/widgets/lightwidget.js"></script>
     <div class="container@(model.is_mobile ? '-fluid' : '')" id="blog">
         <div class="row">
             <h1 class="center">Phòng Làm Đẹp Yppuna</h1>
+            @if (model.video.length > 0) {
+                <article class="col s12 hide-on-med-and-up top-vid">
+                    <div class="col s8">
+                        <img src="@model.videos[0].cover" />
+                    </div>
+                    <div class="col s4">
+                        @if(model.videos[0].tags.length > 0) {
+                            <div class="tags">
+                                @article.tags.forEach(function(tag) {
+                                    <a href="/blog?tag=@tag">@tag</a>
+                                })
+                            </div>
+                        }
+                        <div class="title"><a href="/blog/@model.videos[0].url" >@article.title</a></div>
+                        <div class="date"><i class="fa fa-calendar"></i> @model.moment(model.videos[0].created_at).format("DD.MM.YYYY")</div>
+                        <div class="content">
+                            @html.raw(model.striptags(model.videos[0].content).substr(0, 400))...
+                        </div>
+                    </div>
+                </article>
+            }
             <div class="grid">
                 @model.articles.forEach(function(article) {
                     <article class="grid-item">
+                        @if(article.cover) {
+                        <div class="cover">
+                            <img src="@article.cover" />
+                        </div>
+                        }
                         @if(article.tags.length > 0) {
                             <div class="tags">
                                 @article.tags.forEach(function(tag) {
@@ -15,7 +42,7 @@
                         <div class="title"><a href="/blog/@article.url" >@article.title</a></div>
                         <div class="date"><i class="fa fa-calendar"></i> @model.moment(article.created_at).format("DD.MM.YYYY")</div>
                         <div class="content">
-                            @html.raw(model.smart_substr(article.content, 400))...
+                            @html.raw(model.striptags(article.content).substr(0, 400))...
                         </div>
                         <div class="more"><a href="/blog/@article.url">Xem thêm <i class="fa fa-caret-right"></i></a></div>
                     </article>
@@ -39,6 +66,11 @@
                     <li class="next"><i class="fa fa-caret-right"></i></li>
                 }
             </ul>
+            <h3 class="center">INSTAGRAM</h3>
+            <div>
+                <!-- LightWidget WIDGET -->
+                <iframe src="//lightwidget.com/widgets/dbe39ab3a81b57d8ae2fd819e848fd34.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 100%; border: 0; overflow: hidden;"></iframe>
+            </div>
         </div>
     </div>
     <script>
@@ -52,6 +84,7 @@
                     percentPosition: true
                 });
             }
+            $(".lightwidget__image").css("border-radius", "90px");
         });
     </script>
     })
