@@ -2981,7 +2981,7 @@ input[type=number]::-webkit-outer-spin-button {
   font-stretch: normal;
   line-height: 0.81;
   text-align: center;
-  color: white;
+  color: #fea3a3;
   text-transform: lowercase;
 }
 
@@ -3676,6 +3676,15 @@ input[type=number]::-webkit-outer-spin-button {
   #blog_post {
     padding: 120px 35px 0;
   }
+
+  #blog_post .title {
+    background-size: 100% !important;
+    padding: 67px 25px 56px;
+  }
+
+  #blog_post h2 {
+    font-size: 50px;
+  }  
 
   #blog_post article, #blog_post .fb-share-button, #blog_post #comments {
     padding: 0;
