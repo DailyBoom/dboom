@@ -2867,6 +2867,35 @@ input[type=number]::-webkit-outer-spin-button {
   color: #fea3a3;
 }
 
+#videos {
+  margin-bottom: 66px;
+}
+
+#blog h2 {
+  font-family: SVN-Karla;
+  font-size: 35px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #fea3a3;
+}
+
+#blog .top-vid {
+  float: none;
+  margin: 0 auto;
+}
+
+#blog .top-vid .col {
+  display: inline-block;
+  float: none;
+  margin: 0;
+  padding: 0;  
+}
+
+#blog .top-vid img {
+  width: 100%;
+}
+
 #blog article {
   border-radius: 5px;
   background-color: #ffffff;
@@ -2887,7 +2916,7 @@ input[type=number]::-webkit-outer-spin-button {
   width: 100%;
 }
 
-#blog article > *:not(.cover) {
+#blog article:not(.top-vid) > *:not(.cover) {
   padding: 0 30px;
 }
 
