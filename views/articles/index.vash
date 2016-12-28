@@ -4,7 +4,7 @@
         <div class="row">
             <h1 class="center">Phòng Làm Đẹp Yppuna</h1>
             @if (model.videos.length > 0) {
-                <article class="col s12 hide-on-med-and-up top-vid">
+                <article class="col s12 hide top-vid">
                     <div class="col s8">
                         <img src="@model.videos[0].cover" />
                     </div>
@@ -16,7 +16,7 @@
                                 })
                             </div>
                         }
-                        <div class="title"><a href="/blog/@model.videos[0].url" >@article.title</a></div>
+                        <div class="title"><a href="/blog/@model.videos[0].url" >@model.videos[0].title</a></div>
                         <div class="date"><i class="fa fa-calendar"></i> @model.moment(model.videos[0].created_at).format("DD.MM.YYYY")</div>
                         <div class="content">
                             @html.raw(model.striptags(model.videos[0].content).substr(0, 400))...

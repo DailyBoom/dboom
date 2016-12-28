@@ -26,7 +26,7 @@
                 <input type="checkbox" name="publish" id="publish" checked/>
                 <label for="publish">Publish</label>
             </div>
-            <div class="hide input-field col s12">
+            <div class="input-field col s12">
                 <input type="checkbox" name="video" id="video"/>
                 <label for="video">Video Post</label>
             </div>
