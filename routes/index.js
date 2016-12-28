@@ -312,7 +312,7 @@ var smart_substr = function(str, len) {
 }
 
 router.get('/blog', function(req, res, next) {
-  var query = Article.find({ published: true, video: false }, {}, { sort: { 'created_at': -1 } });
+  var query = Article.find({ published: true, video: {$in: [null, false]} }, {}, { sort: { 'created_at': -1 } });
   if (req.query.tag) {
     query.where('tags', req.query.tag);
   }
@@ -323,6 +323,7 @@ router.get('/blog', function(req, res, next) {
       console.log(err);
     }
     Article.find({ published: true, video: true }, {}, { sort: { 'created_at': -1 } }).limit(3).exec(function(err, videos) {
+      console.log(articles.length);
       res.render('articles/index', { articles: articles, videos: videos, striptags: striptags, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });
     });
   });

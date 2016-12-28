@@ -3,7 +3,7 @@
     <div class="container@(model.is_mobile ? '-fluid' : '')" id="blog">
         <div class="row">
             <h1 class="center">Phòng Làm Đẹp Yppuna</h1>
-            @if (model.video.length > 0) {
+            @if (model.videos.length > 0) {
                 <article class="col s12 hide-on-med-and-up top-vid">
                     <div class="col s8">
                         <img src="@model.videos[0].cover" />
