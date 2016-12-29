@@ -2854,10 +2854,6 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* Blog */
 
-#blog {
-  padding: 0 90px;
-}
-
 #blog .title .content {
   margin-top: 38px;
   margin-bottom: 28px;
@@ -3041,7 +3037,7 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 107px 0 0 33px;
 }
 
-#blog_post .title, #blog .row > .title {
+#blog_post .title, #blog > .title {
   padding: 109px 0 188px 0;
   background-size: cover !important; 
 }
@@ -3742,6 +3738,12 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 0 25px;
   }
 
+  #blog .title .content {
+    padding: 0;
+    font-size: 13px;
+    color: #5aa0d6;
+  }
+
   #blog h1 a {
     font-size: 50px;
   }
@@ -3766,7 +3768,7 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 120px 35px 0;
   }
 
-  #blog_post .title, #blog .row > .title {
+  #blog_post .title, #blog > .title {
     background-size: 100% !important;
     padding: 67px 0 56px;
   }
@@ -4167,6 +4169,10 @@ input[type=number]::-webkit-outer-spin-button {
     border: 5px solid #2074bd;
     transform: scale(0.8);
     -webkit-transform: scale(0.8);
+  }
+
+  #blog .row {
+    padding: 0 90px;
   }
 
   #blog #videos .vids:nth-child(2) {
