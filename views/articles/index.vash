@@ -2,18 +2,21 @@
     <script src="//lightwidget.com/widgets/lightwidget.js"></script>
     <div class="container@(model.is_mobile ? '-fluid' : '')" id="blog">
         <div class="row">
-            <h1 class="center">Phòng Làm Đẹp Yppuna</h1>
+            <div class="title" style="background: url(@model.articles[0].cover) no-repeat;">
+                <h1 class="center"><a href="/blog/@model.articles[0].url" >@model.articles[0].title</a></h1>
+                <div class="date center"><i class="fa fa-calendar"></i> @model.moment(model.articles[0].created_at).format("DD.MM.YYYY")</div>
+            </div>
             @if (model.videos.length > 0) {
-                <div id="videos" class="hide">
-                    <h2 class="center">VIDEO</h2>
-                    <article class="col s12 hide-on-med-and-down top-vid">
-                        <div class="col s8">
-                            <img class="cover" src="@model.videos[0].cover" />
-                        </div>
+                <h3 class="center">VIDEO</h3>
+                <div id="videos" class="">
+                    @if (!model.is_mobile) {
+                    <article class="col s12 top-vid">
+                        <a class="col s7" href="/blog/@model.videos[0].url" style="background: url(@model.videos[0].cover) no-repeat;">
+                        </a>
                         <div class="col s4">
                             @if(model.videos[0].tags.length > 0) {
                                 <div class="tags">
-                                    @article.tags.forEach(function(tag) {
+                                    @model.videos[0].tags.forEach(function(tag) {
                                         <a href="/blog?tag=@tag">@tag</a>
                                     })
                                 </div>
@@ -25,15 +28,44 @@
                             </div>
                         </div>
                     </article>
+                    }
+                    @model.videos.forEach(function(article, index) {
+                        @if (!model.is_mobile && index == 0) {
+                            @{ return; }
+                        }
+                        <article class="col s12 l6 center vids">
+                            <div class="card">
+                                @if(article.cover) {
+                                    <div class="card-image">
+                                        <a href="/blog/@article.url" ><img src="@article.cover" /></a>
+                                    </div>
+                                }
+                                <div class="card-content">
+                                    @if(article.tags.length > 0) {
+                                        <div class="tags">
+                                            @article.tags.forEach(function(tag) {
+                                                <a href="/blog?tag=@tag">@tag</a>
+                                            })
+                                        </div>
+                                    }
+                                    <div class="title"><a href="/blog/@article.url" >@article.title</a></div>
+                                    <div class="date"><i class="fa fa-calendar"></i> @model.moment(article.created_at).format("DD.MM.YYYY")</div>
+                                    <div class="content">
+                                        @html.raw(model.striptags(article.content).substr(0, 400))...
+                                    </div>
+                                </div>
+                            </div>
+                        </article>    
+                    })
                 </div>
             }
-            <h2 class="center">BLOG</h2>            
+            <h3 class="center">BLOG</h3>            
             <div class="grid">
                 @model.articles.forEach(function(article) {
                     <article class="grid-item">
-                        @if(article.cover) {
+                        @if(article.cover && !model.is_mobile) {
                         <div class="cover">
-                            <img src="@article.cover" />
+                            <a href="/blog/@article.url" ><img src="@article.cover" /></a>
                         </div>
                         }
                         @if(article.tags.length > 0) {
@@ -45,31 +77,35 @@
                         }
                         <div class="title"><a href="/blog/@article.url" >@article.title</a></div>
                         <div class="date"><i class="fa fa-calendar"></i> @model.moment(article.created_at).format("DD.MM.YYYY")</div>
+                        @if (!model.is_mobile) {
                         <div class="content">
                             @html.raw(model.striptags(article.content).substr(0, 400))...
                         </div>
+                        }
                         <div class="more"><a href="/blog/@article.url">Xem thêm <i class="fa fa-caret-right"></i></a></div>
                     </article>
                 })
             </div>
-            <ul class="pagination right">
-                @if(model.paginate.hasPreviousPages) {
-                    <li class="previous"><i class="fa fa-caret-left"></i></li>
-                }
-                <!-- -->
-                @model.pages.forEach(function(page) {
-                    @if(model.currentPage == page.number) {
-                        <li class="active">@page.number</li>
+            <div class="pag-wrapper">
+                <ul class="pagination">
+                    @if(model.paginate.hasPreviousPages) {
+                        <li class="previous"><i class="fa fa-caret-left"></i></li>
                     }
-                    else {
-                        <li class="waves-effect"><a href="@page.url">@page.number</a></li>
+                    <!-- -->
+                    @model.pages.forEach(function(page) {
+                        @if(model.currentPage == page.number) {
+                            <li class="active">@page.number</li>
+                        }
+                        else {
+                            <li class="waves-effect"><a href="@page.url">@page.number</a></li>
+                        }
+                    })
+                    <!-- -->
+                    @if(model.paginate.hasNextPages(model.lastPage)) {
+                        <li class="next"><i class="fa fa-caret-right"></i></li>
                     }
-                })
-                <!-- -->
-                @if(model.paginate.hasNextPages(model.lastPage)) {
-                    <li class="next"><i class="fa fa-caret-right"></i></li>
-                }
-            </ul>
+                </ul>
+            </div>
             <h3 class="center">INSTAGRAM</h3>
             <div>
                 <!-- LightWidget WIDGET -->
@@ -91,6 +127,19 @@
                     itemSelector: '.grid-item',
                     gutter: 15,
                     percentPosition: true
+                });
+            }
+            else {
+                var owl = $("#videos");
+                owl.owlCarousel({
+                    items : 3,
+                    singleItem: true,
+                    itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
+                    navigation: false,
+                    pagination: false,
+                    responsive: true,
+                    rewindNav: true,
+                    autoPlay: false
                 });
             }
             $(".lightwidget__image").css("border-radius", "90px");
