@@ -2858,6 +2858,25 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 0 90px;
 }
 
+#blog .title .content {
+  margin-top: 38px;
+  margin-bottom: 28px;
+  font-family: SVN-Karla;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #fea3a3;
+  padding: 0 252px;
+}
+
+#blog .ybtn {
+  display: inline-block;
+  padding: 5px 21px 6px;
+  width: auto;
+}
+
 #blog h1 a {
   font-family: Estilo;
   font-size: 80px;
