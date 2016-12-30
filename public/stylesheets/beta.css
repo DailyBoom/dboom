@@ -3037,8 +3037,13 @@ input[type=number]::-webkit-outer-spin-button {
   padding-top: 107px;
 }
 
-#blog_post .title, #blog > .title {
+#blog_post .title {
   padding: 109px 0 188px 0;
+  background-size: cover !important; 
+}
+
+#blog > .title {
+  padding: 63px 0 37px 0;
   background-size: cover !important; 
 }
 
