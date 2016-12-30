@@ -335,6 +335,12 @@ router.get('/blog/list', isContentOrAdmin, function(req, res, next) {
   });
 });
 
+router.get('/blog/videos', function(req, res, next) {
+  Article.find({ published: true, video: true }, {}, { sort: { 'created_at': -1 } }, function(err, videos) {
+    res.render('articles/video', { videos: videos });
+  });
+});
+
 router.get('/blog/new', isContentOrAdmin, function(req, res, next) {
   res.render('articles/new');
 });

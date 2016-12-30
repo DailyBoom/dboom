@@ -3034,7 +3034,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #blog_post {
-  padding: 107px 0 0 33px;
+  padding-top: 107px;
 }
 
 #blog_post .title, #blog > .title {
@@ -3745,7 +3745,12 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   #blog h1 a {
+    line-height: 0.78;
+  }
+
+  #blog h1 a {
     font-size: 50px;
+    line-height: 0.78;
   }
 
   #blog h3 {

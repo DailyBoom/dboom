@@ -62,6 +62,7 @@
                         </article>    
                     })
                 </div>
+                <a class="center" href="/blog/videos">Xem thêm video <i class="fa fa-caret-right"></i></a>
             }
             <h3 class="center">BLOG</h3>            
             <div class="grid">
