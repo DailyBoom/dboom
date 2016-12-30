@@ -365,13 +365,16 @@ router.post('/blog/new', isContentOrAdmin, upload.single('cover'), function(req,
   var article = new Article({
     title: req.body.title,
     url: getSlug(req.body.title, { lang: 'vn' }),
-    cover: '/' + req.file.path,
     content: content,
     data: req.body.article,
     tags: req.body.tags,
     published: req.body.publish,
     video: req.body.video
   });
+
+  if (req.file) {
+    article.cover = '/' + req.file.path;
+  }
   article.save(function(err){
     res.redirect('/blog/list');
   });
