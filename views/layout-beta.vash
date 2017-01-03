@@ -543,12 +543,21 @@
               <div class="row">
                 <span class="newsletter">ĐĂNG KÝ NEWSLETTER</span>
                 <div class="newsletter-email row">
-                  <div class="col s12">
-                    <input type="email" placeholder="Email address" />
-                  </div>
-                  <div class="col s12">
-                    <button type="submit">SUBMIT</button>
-                  </div>
+                  <form action="//yppuna.us14.list-manage.com/subscribe/post?u=30b0c98747e753f8c060d0152&amp;id=01d3acbb22" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                    <div class="col s12">
+                      <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+                    </div>                 
+                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_30b0c98747e753f8c060d0152_01d3acbb22" tabindex="-1" value=""></div>
+                    <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+                    <script type='text/javascript'>
+                      (function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);
+                    </script>
+                    <!--End mc_embed_signup-->
+                    <div class="col s12">
+                      <button type="submit">SUBMIT</button>
+                    </div>
+                  </form>
                 </div>
               </div>
               <div class="sns">
@@ -599,12 +608,22 @@
                     Nhận newsletter mỗi tuần để nhận được cơ hội khuyến mãi những sản phẩm mới nhất
                   </div>
                   <div class="newsletter-email row">
-                    <div class="col l8">
-                      <input type="email" placeholder="Email address"/>
-                    </div>
-                    <div class="col l4">
-                      <button type="submit">SUBMIT</button>
-                    </div>
+                      <!-- Begin MailChimp Signup Form -->
+                      <form action="//yppuna.us14.list-manage.com/subscribe/post?u=30b0c98747e753f8c060d0152&amp;id=01d3acbb22" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                        <div class="col l8">
+                          <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+                        </div>                 
+                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_30b0c98747e753f8c060d0152_01d3acbb22" tabindex="-1" value=""></div>
+                        <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+                        <script type='text/javascript'>
+                          (function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);
+                        </script>
+                        <!--End mc_embed_signup-->
+                        <div class="col l4">
+                          <button type="submit">SUBMIT</button>
+                        </div>
+                      </form>
                   </div>
                   <div class="cards">
                     <div class="title">
@@ -639,6 +658,9 @@
           menuWidth: is_mobile ? 306 : 391
         });
         $(document).ready(function(){
+          $("#mc-embedded-subscribe-form").on("submit", function() {
+                Materialize.toast("Để hoàn tất quy trình đăng ký, xin vui lòng nhấp chuột vào liên kết (link) trong email chúng tôi vừa gửi cho bạn.", 4000);            
+          });
           $(".area-header a[href='#']").on("click", function() {
             $('.area-header a.zone-hide').first().toggleClass('zone-view-first');
             $('.area-header a.zone-hide').nextAll('.zone-hide').toggleClass('zone-view-second');
