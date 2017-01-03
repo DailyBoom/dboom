@@ -203,7 +203,7 @@ router.get('/home', function(req, res, next) {
     });
     behavior.save();
   }
-  Product.find({ boxZone: req.session.zone, scheduled_at: moment().date(1).hour(0).minute(0).second(0).local() }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts').exec(function (err, products) {
+  Product.find({ boxZone: req.session.zone, scheduled_at: moment().utc().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts').exec(function (err, products) {
     console.log(products);
     var query = Product.find({ extend: 4, is_published: true });
     //query.where('product_region.'+req.session.zone, true)
