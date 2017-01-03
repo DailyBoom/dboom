@@ -110,7 +110,7 @@ router.get('/mall', function(req, res, next) {
     query.or([{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }])
   }
   query.paginate(page, per_page, function(err, products, total) {
-    Product.find({ extend: 3, scheduled_at: { "$gte": moment().subtract(13, 'days') } }, {}, {}, function(err, boxes) {
+    Product.find({ extend: 3, scheduled_at: moment().utc().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
       Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
         res.render('mall', { title: "Yppuna Mall", description: "", products: products, hotProducts: hotProducts, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });
       });
@@ -496,6 +496,10 @@ router.get('/', function(req, res, next) {
   }
   console.log(req.cookies);
   res.render('intro', { has_zone : has_zone });
+});
+
+router.get('/brands', function(req, res, next) {
+  res.render('brand');
 });
 
 module.exports = router;

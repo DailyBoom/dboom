@@ -1,0 +1,88 @@
+@html.extend("layout-beta", function(model) {
+	@html.block("body", function(model) {
+        <div class="container" id="brands">
+            <div class="row">
+                <h1>Nhãn Hiệu</h1>
+                <div class="col s12 l2">
+                    <b>A</b>
+                    <p><a href="/mall/?s=Aritaum">Aritaum</a></p>
+                    <p><a href="/mall/?s=A'pieu">A'pieu</a></p>
+                    <p><a href="/mall/?s=Aromatica">Aromatica</a></p>
+                </div>
+                <div class="col s12 l2">
+                    <b>B</b>
+                    <p><a href="/mall/?s=Bom">Bom</a></p>
+                    <p><a href="/mall/?s=Blossom+Jeju">Blossom Jeju</a></p>
+                    <p><a href="/mall/?s=Banilla+Co.">Banilla Co.</a></p>
+                </div>
+                <div class="col s12 l2">
+                    <b>C</b>
+                    <p><a href="/mall/?s=Caolion">Caolion</a></p>
+                </div>
+                <div class="col s12 l2">
+                    <b>D</b>
+                    <p><a href="/mall/?s=Dr.Jart">Dr.Jart</a></p>
+                </div>
+                <div class="col s12 l2">
+                    <b>E</b>
+                    <p><a href="/mall/?s=Espoir">Espoir</a></p>
+                    <p><a href="/mall/?s=3CE">3CE</a></p>
+                </div>
+                <div class="col s12 l2">
+                    <b>F</b>
+                    <p><a href="/mall/?s=FacePerm">FacePerm</a></p>
+                </div>
+                <div class="col s12 l2">
+                    <b>I</b>
+                    <p><a href="/mall/?s=Innisfree">Innisfree</a></p>
+                    <p><a href="/mall/?s=It's+Skin">It's Skin</a></p>
+                </div>
+                <div class="col s12 l2">
+                    <b>K</b>
+                    <p><a href="/mall/?s=Klairs">Klairs</a></p>
+                </div>
+                <div class="col s12 l2">
+                    <b>M</b>
+                    <p><a href="/mall/?s=Mediheal">Mediheal</a></p>
+                    <p><a href="/mall/?s=Mizon">Mizon</a></p>
+                    <p><a href="/mall/?s=Miss+Rich">Miss Rich</a></p>
+                </div>
+                <div class="col s12 l2">
+                    <b>N</b>
+                    <p><a href="/mall/?s=Nature+Republic">Nature Republic</a></p>
+                </div>
+                <div class="col s12 l2">
+                    <b>O</b>
+                    <p><a href="/mall/?s=Osum">Osum</a></p>
+                </div>
+                <div class="col s12 l2">
+                    <b>P</b>
+                    <p><a href="/mall/?s=Pony+Affect">Pony Affect</a></p>
+                    <p><a href="/mall/?s=Peripera">Peripera</a></p>
+                </div>
+                <div class="col s12 l2">
+                    <b>S</b>
+                    <p><a href="/mall/?s=Sunsumini">Sunsumini</a></p>
+                    <p><a href="/mall/?s=Sigonan">Sigonan</a></p>
+                    <p><a href="/mall/?s=Skin+Food">Skin Food</a></p>
+                    <p><a href="/mall/?s=Shingmulnara">Shingmulnara</a></p>
+                    <p><a href="/mall/?s=2SOL">2SOL</a></p>
+                    <p><a href="/mall/?s=Scinic">Scinic</a></p>
+                </div>
+                <div class="col s12 l2">
+                    <b>T</b>
+                    <p><a href="/mall/?s=The+Saem">The Saem</a></p>
+                </div>
+                <div class="col s12 l2">
+                    <b>W</b>
+                    <p><a href="/mall/?s=Whamisa">Whamisa</a></p>
+                    <p><a href="/mall/?s=White+Rabbit">White Rabbit</a></p>
+                </div>
+                <div class="col s12 l2">
+                    <b>T</b>
+                    <p><a href="/mall/?s=Yuri+Pibu">Yuri Pibu</a></p>
+                </div>
+            </div>
+        </div>
+    })
+})

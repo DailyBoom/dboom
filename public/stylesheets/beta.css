@@ -3118,7 +3118,29 @@ input[type=number]::-webkit-outer-spin-button {
   border-top: dashed 1px #b3c2cf;
 }
 
+/* Brand list */
 
+#brands {
+  padding: 0 20px;
+}
+
+#brands h1 {
+  font-family: SVN-Karla;
+  font-size: 35px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #fea3a3;
+  border-bottom: 2px solid #fea3a3;
+}
+
+#brands a {
+  color: #b3c2cf;
+}
+
+#brands a:hover {
+  color: #2074bd;
+}
 
 @media only screen and (max-width : 1400px) {
   #detailed_product #center .pinned {
