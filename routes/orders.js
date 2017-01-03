@@ -143,10 +143,7 @@ var deliveryPrices = {
 var getOrderCartTotal = function(order) {
   order.totalOrderAmt = 0;
   order.cart.forEach(function(item) {
-    if (item.product.extend == 3 && moment().isAfter(moment(item.product.scheduled_at), 'week'))
-      order.totalOrderAmt += item.product.old_price * item.quantity;
-    else
-      order.totalOrderAmt += item.product.price * item.quantity;
+    order.totalOrderAmt += item.product.price * item.quantity;
   });
   order.shipping_cost = deliveryPrices[order.shipping.city.toUpperCase()][order.shipping.district.toUpperCase()];
   order.totalOrderAmt += order.shipping_cost;

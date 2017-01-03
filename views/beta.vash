@@ -27,19 +27,14 @@
 						@model.products[0].description
 					</div>
 					<div class="item_prices hide-on-med-and-down">
-						@if (model.moment().isAfter(model.moment(model.products[0].scheduled_at), 'week')) {
-							<div class="item_price">@model.products[0].old_price</div>
-						}
-						else {
-							<div class="col s6">
-								<div class="title">GIÁ ĐẶT HÀNG</div>
-								<span class="item_price">@model.products[0].price</span>
-							</div>
-							<div class="col s6">
-								<div class="title-old">GIÁ GỐC</div>
-								<span class="item_old_price">@model.products[0].old_price</span>
-							</div>
-						}
+						<div class="col s6">
+							<div class="title">GIÁ ĐẶT HÀNG</div>
+							<span class="item_price">@model.products[0].price</span>
+						</div>
+						<div class="col s6">
+							<div class="title-old">GIÁ GỐC</div>
+							<span class="item_old_price">@model.products[0].old_price</span>
+						</div>
 					</div>
 					<div class="item_detail hide-on-med-and-down">
 						<a href="/box/@model.products[0].id">
@@ -62,10 +57,10 @@
 		@if(model.products[1]) {
 		<section id="central">
 			<div class="row area-row">
-				<div class="col s12 l8 hide-on-med-and-down" style="@(model.is_mobile ? '' : 'display:none')">
+				<div class="col s12 l8 hide-on-med-and-down" >
 					<div class="item_img" data-stellar-ratio="0.9"><img src="@model.products[1].images[0]"/></div>
 				</div>
-				<div class="col s12 l4" data-stellar-ratio="1.7" style="@(model.is_mobile ? '' : 'display:none')">
+				<div class="col s12 l4" data-stellar-ratio="1.7" >
 					<img class="item_cover"  src="@model.products[1].box_header" />
 					@if (model.products[1].boxProducts !== null) {
 					<div class="item_names row center">
@@ -95,7 +90,7 @@
 							<div class="title-old">GIÁ GỐC</div>
 							<span class="item_old_price">@model.products[1].old_price</span>
 						</div>
-						<div class="col s12 item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.products[1].scheduled_at).format("DD/MM/YYYY")</span></div>
+						<div class="col s12 item_to_come hide">ra mắt ngày <span class="item_date">@model.moment(model.products[1].scheduled_at).format("DD/MM/YYYY")</span></div>
 					</div>
 					<div class="col s12 item_detail hide-on-med-and-down">
 						<a href="/box/@model.products[1].id">
@@ -118,7 +113,7 @@
 		@if(model.products[2]) {		
 		<section id="south">
 			<div class="row area-row">
-				<div class="col s12 l4" style="@(model.is_mobile ? '' : 'display:none')">
+				<div class="col s12 l4" >
 					<img class="item_cover" src="@model.products[2].box_header" />
 					@if (model.products[2].boxProducts !== null) {
 					<div class="item_names row center">
@@ -148,7 +143,7 @@
 							<div class="title-old">GIÁ GỐC</div>
 							<span class="item_old_price">@model.products[2].old_price</span>
 						</div>
-						<span class="col s12 item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.products[2].scheduled_at).format("DD/MM/YYYY")</span></span>
+						<span class="col s12 item_to_come hide">ra mắt ngày <span class="item_date">@model.moment(model.products[2].scheduled_at).format("DD/MM/YYYY")</span></span>
 					</div>
 					<div class="col s12 item_detail hide-on-med-and-down">
 						<a href="/box/@model.products[2].id">
@@ -156,7 +151,7 @@
 						</a>
 					</div>
 				</div>
-				<div class="col s12 l8" style="@(model.is_mobile ? '' : 'display:none')">
+				<div class="col s12 l8" >
 					<div class="item_img"><img src="@model.products[2].images[0]"/></div>
 					<div class="item_detail hide-on-large-only">
 						<a href="/box/@model.products[2].id">
@@ -170,10 +165,10 @@
 		@if(model.products[3]) {
 		<section id="central">
 			<div class="row area-row">
-				<div class="col s12 l8 hide-on-med-and-down" style="@(model.is_mobile ? '' : 'display:none')">
+				<div class="col s12 l8 hide-on-med-and-down" >
 					<div class="item_img"><img src="@model.products[3].images[0]"/></div>
 				</div>
-				<div class="col s12 l4" style="@(model.is_mobile ? '' : 'display:none')">
+				<div class="col s12 l4" >
 					<img class="item_cover" src="@model.products[3].box_header" />
 					@if (model.products[3].boxProducts !== null) {
 					<div class="item_names row center">
@@ -203,7 +198,7 @@
 							<div class="title-old">GIÁ GỐC</div>
 							<span class="item_old_price">@model.products[3].old_price</span>
 						</div>
-						<span class="col s12 item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.products[3].scheduled_at).format("DD/MM/YYYY")</span></span>
+						<span class="col s12 item_to_come hide">ra mắt ngày <span class="item_date">@model.moment(model.products[3].scheduled_at).format("DD/MM/YYYY")</span></span>
 					</div>
 					<div class="col s12 item_detail hide-on-med-and-down">
 						<a href="/box/@model.products[3].id">
@@ -310,16 +305,17 @@
 						});
 					}
 				},
+				enabled: false,				
 				offset: '5%'
 			});
 			$(window).load(function() {
 				//$('#boxes').css('height', $('#north').height()+50+'px');				
 			})
 			$(window).on("scroll", function() {
-				Waypoint.enableAll();
+			//	Waypoint.enableAll();
 			});
 			$(document).one("scrollstart",function(){
-				Waypoint.enableAll();
+			//	Waypoint.enableAll();
 			});
 		}
 	</script>

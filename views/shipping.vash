@@ -91,20 +91,12 @@
                                     <div class="col s5">
                                         <div class="name">@item.product.name</div>
                                         <div class="brand">@item.product.brand</div>
-                                        @if(item.is_preorder) {
-                                            <div class="pre-order">Giao hàng @model.moment(item.product.scheduled_at).add(1, 'week').format('DD/MM/YYYY')</div>
-                                        }
                                     </div>
                                     <div class="col s3">
                                         <div class="quantity">@item.quantity</div>
                                     </div>
                                     <div class="col s4">
-                                        @if (item.product.extend == 3 && model.moment().isAfter(model.moment(item.product.scheduled_at), 'week')) {
-                                            <div class="price">@(item.product.old_price * item.quantity)</div>
-                                         }
-                                         else {
-                                            <div class="price">@(item.product.price * item.quantity)</div>                                             
-                                         }
+                                        <div class="price">@(item.product.price * item.quantity)</div>                                             
                                     </div>
                                 </div>
                             })

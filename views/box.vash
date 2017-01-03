@@ -117,7 +117,7 @@
 				</div>
 			</section>
 			@if (model.product.boxProducts !== null) {
-            <div class="box-products hide-on-large-only">
+            <div class="box-products">
                 @model.product.boxProducts.forEach(function(product, index) {
 					<section id="box_product_@index">
 						<div class="area-header hide-on-med-and-down">
@@ -230,7 +230,8 @@
 						$('body').css('overflow', 'hidden');
 					}
 				},
-				offset: '90%'
+				offset: '90%',
+				enabled: false
 			});
 			$('section#box .main-img').waypoint({
 				handler: function(direction) {
@@ -239,6 +240,7 @@
 						$('body').css('overflow', 'hidden');
 					}
 				},
+				enabled: false				
 			});
 			var finalCallback = function(obj) {
 				if (dir) {

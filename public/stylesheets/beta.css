@@ -3048,7 +3048,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 #blog_post .title {
   padding: 109px 0 188px 0;
-  background-size: cover !important; 
+  background-size: cover !important;
+  margin-bottom: 71px;
 }
 
 #blog > .title {
