@@ -483,6 +483,9 @@ router.get('/cart', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
+  if (req.cookies.ypp_f_time && req.cookies.ypp_s_time && req.cookies.ypp_zone) {
+    res.redirect('/home');
+  }
   if (req.cookies.ypp_f_time && !req.cookies.ypp_s_time) {
     res.cookie('ypp_s_time', 'true', { maxAge: 31536000000, httpOnly: true, path: '/' });
   } 

@@ -120,6 +120,10 @@ app.use(function(req, res, next) {
   res.locals.url = req.url;
   if (req.query.zone) {
     req.session.zone = req.query.zone;
+    res.cookie('ypp_zone', req.query.zone, { maxAge: 31536000000, httpOnly: true, path: '/' });
+  }
+  if (typeof req.session.zone === 'undefined' && req.cookies.ypp_zone) {
+    req.session.zone = req.cookies.ypp_zone
   }
   if (req.session.zone) {
     res.locals.zone = req.session.zone;
