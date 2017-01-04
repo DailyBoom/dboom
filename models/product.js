@@ -13,6 +13,8 @@ var productSchema = new Schema({
   description_image: String,
   homepage_image: String,
   brand: { type: String, required: false },
+  origin: { type: String, required: false },
+  special: { type: String, required: false },
   brand_logo: { type: String, required: false },
   company_url: { type: String, required: false },
   company_facebook: String,
