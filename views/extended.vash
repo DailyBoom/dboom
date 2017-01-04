@@ -38,11 +38,11 @@
 							<div class="item_type">NHÃN HIỆU</div>
 						</div>
 						<div class="col s4 ">
-							<div class="item_name truncate"><a href="#box_product_1">@model.product.origin</a></div>
+							<div class="item_name truncate">@model.product.origin</div>
 							<div class="item_type">SẢN XUẤT</div>
 						</div>
 						<div class="col s4">
-							<div class="item_name truncate"><a href="#box_product_2">@model.product.special</a></div>
+							<div class="item_name truncate">@model.product.special</div>
 							<div class="item_type">ĐẶC BIỆT</div>
 						</div>
 					</div>
