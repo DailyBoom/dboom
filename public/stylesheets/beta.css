@@ -3256,6 +3256,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-stretch: normal;
     color: #ffffff;
     border: none;
+    border-radius: 0;
     padding: 8px 0 16px 21px;
     width: calc(100% - 21px);
     height: auto;
@@ -3268,8 +3269,9 @@ input[type=number]::-webkit-outer-spin-button {
   footer .footer-content button {
     background: transparent;
     border: solid 1px #2074bd;
+    border-radius: 0;
     width: 100%;
-    padding: 0 9px;
+    padding: 8px 0;
     font-family: SVN-Karla;
     font-size: 16px;
     font-weight: bold;
