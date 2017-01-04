@@ -94,6 +94,20 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="origin" type="text" class="validate" name="origin" value="@model.product.origin">
+					<label for="origin">Origin (SẢN XUẤT) *</label>
+				</div>
+				<div class="input-field col s12">
+					<select id="special" class="validate" name="special">
+						<option value="Hữu Cơ">Organic - Hữu Cơ</option>
+						<option value="Được Chứng Nhận">Certified - Được Chứng Nhận</option>
+						<option value="Được Giải Thưởng">Awarded - Được Giải Thưởng</option>
+					</select>
+					<label for="name">Special (ĐẶC BIỆT) *</label>
+				</div>
+			</div>
 			<!-- .row -->
 			<div class="row">
 				<div class="input-field col s12">

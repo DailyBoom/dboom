@@ -153,6 +153,8 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         images: paths,
         scheduled_at: req.body.selldate,
         brand: req.body.brandname,
+        origin: req.body.origin,
+        special: req.body.special,
         brand_logo: req.files['brandlogo'] ? "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['brandlogo'][0].key : '',
         description_image: req.files['description_image'] ? "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['description_image'][0].key : '',
         homepage_image: req.files['homepage_image'] ? "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['homepage_image'][0].key : '',
@@ -222,6 +224,8 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
     product.old_price = req.body.oldPrice,
     product.scheduled_at = req.body.selldate;
     product.brand = req.body.brandname;
+    product.origin = req.body.origin;
+    product.special = req.body.special;
     product.options = req.body.options;
     product.options_skin = req.body.options_skin;
     product.video = req.body.videoUrl;

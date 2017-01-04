@@ -30,8 +30,22 @@
 	</script>
 		<div id="detailed_product" class="container">
 			<div class="row">
-				<div class="col s12 l4" id="left">
+				<div class="col s12 l4 area-row" id="left">
 					<h1>@model.product.name</h1>
+					<div class="item_names row center">
+						<div class="col s4">
+							<div class="item_name truncate">@model.product.brand</div>
+							<div class="item_type">NHÃN HIỆU</div>
+						</div>
+						<div class="col s4 ">
+							<div class="item_name truncate"><a href="#box_product_1">@model.product.origin</a></div>
+							<div class="item_type">SẢN XUẤT</div>
+						</div>
+						<div class="col s4">
+							<div class="item_name truncate"><a href="#box_product_2">@model.product.special</a></div>
+							<div class="item_type">ĐẶC BIỆT</div>
+						</div>
+					</div>
 					<a href="#" class="read-less hide-on-large-only">Hình sản phẩm <i class="fa fa-caret-right"></i></a>					
 					<div class="description">
 						<h4>MÔ TẢ CHI TIẾT</h4>
