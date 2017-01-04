@@ -537,6 +537,7 @@
       @html.block("body")
       </main>
       <footer>
+        @if (model.is_mobile) {
         <div class="hide-on-large-only">
           <div class="footer-content">
             <div class="container">
@@ -576,6 +577,8 @@
             </div>
           </div>
         </div>
+        }
+        else {
         <div class="hide-on-med-and-down">
           <div class="footer-content">
             <div class="container">
@@ -645,6 +648,7 @@
             </div>
           </div>
         </div>
+        }
       </footer>
       <script type="text/javascript">
         // Show sideNav
