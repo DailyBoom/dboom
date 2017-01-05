@@ -162,7 +162,7 @@
 						<button type="button" id="checkout" class="add_cart" data-id="@model.product.id">THÊM VÀO GIỎ HÀNG</button>
 						@if (model.is_mobile) {
 							<div class="sns">
-								<div class="fb-share-button" data-href="http://yppuna.vn@model.url" data-layout="button" data-size="small" data-mobile-iframe="true">
+								<div class="fb-share-button" data-href="http://yppuna.vn@model.url?utm_source=facebook&utm_medium=social" data-layout="button" data-size="small" data-mobile-iframe="true">
 									<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yppuna.vn@model.url">@model.__('blog.share')</a>
 								</div>
 								<a class="twitter-share-button"	href="https://twitter.com/intent/tweet">Tweet</a>

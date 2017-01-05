@@ -88,20 +88,10 @@
 						<div class="description"><div class="body">@model.product.description</div></div>
 						<div class="how-to"></div>
 						<div class="prices">
-							@if (model.moment().isAfter(model.moment(model.product.scheduled_at), 'week')) {
-								<span class="price">@model.product.old_price</span>
-							}
-							else {
-								<span class="price">@model.product.price</span>
-								<span class="old_price">@model.product.old_price</span>
-							}
+							<span class="price">@model.product.price</span>
+							<span class="old_price">@model.product.old_price</span>
 							<!-- -->
-							@if (model.moment().isBetween(model.product.scheduled_at, model.moment(model.product.scheduled_at).add(13, 'days'))) {
-								<button id="checkout" class="add_cart" data-id="@model.product.id" type="button">THÊM BOX VÀO GIỎ HÀNG</button>
-							}
-							else {
-								<span class="item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.product.scheduled_at).format("DD/MM/YYYY")</span></span>
-							}
+							<button id="checkout" class="add_cart" data-id="@model.product.id" type="button">THÊM BOX VÀO GIỎ HÀNG</button>
 						</div>
 						@if (model.is_mobile) {
 							<div class="sns right">
