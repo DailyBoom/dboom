@@ -85,6 +85,7 @@ router.get('/products/delete/:id', isMerchantOrAdmin, function(req, res) {
 
 router.get('/products/edit/:id', isMerchantOrAdmin, function(req, res) {
   Product.findOne({_id: req.params.id}, function(err, product) {
+      console.log(moment(product.scheduled_at).toISOString());
       res.render("products/edit", { product: product });
     });
 });
