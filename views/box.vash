@@ -69,22 +69,20 @@
 						</div>
 					</div>
 					<div class="col s12 l4 area-row" id="right">
-						@if (model.product.boxProducts !== null) {						
-						<div class="item_names row center hide-on-med-and-down">
+						<div class="item_names row center">
 							<div class="col s4">
-								<div class="item_name truncate"><a href="#box_product_0">@model.product.boxProducts[0].name</a></div>
-								<div class="item_type">@model.product.boxProducts[0].brand</div>
+								<div class="item_name truncate">@model.product.brand</div>
+								<div class="item_type">NHÃN HIỆU</div>
 							</div>
 							<div class="col s4 ">
-								<div class="item_name truncate"><a href="#box_product_1">@model.product.boxProducts[1].name</a></div>
-								<div class="item_type">@model.product.boxProducts[1].brand</div>
+								<div class="item_name truncate">@model.product.origin</div>
+								<div class="item_type">SẢN XUẤT</div>
 							</div>
 							<div class="col s4">
-								<div class="item_name truncate"><a href="#box_product_2">@model.product.boxProducts[2].name</a></div>
-								<div class="item_type">@model.product.boxProducts[2].brand</div>
+								<div class="item_name truncate">@model.product.special</div>
+								<div class="item_type">ĐẶC BIỆT</div>
 							</div>
 						</div>
-						}
 						<div class="description"><div class="body">@model.product.description</div></div>
 						<div class="how-to"></div>
 						<div class="prices">
