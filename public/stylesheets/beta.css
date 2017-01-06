@@ -968,6 +968,22 @@ header, main {
   color: #1b5eaf;
   vertical-align: top;
 }
+#individual .hmenu {
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+
+#individual .hmenu a {
+  font-family: SVN-Karla;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: left;
+  color: #4a8dcc;
+  border-right: solid 1px #b3c2cf;
+  padding: 0 7px;
+} 
 
 .central svg.svg-logo path, .central svg.svg-fb path, .central svg.svg-insta path, .central svg.svg-yt path {
   fill: #3ebbed;
