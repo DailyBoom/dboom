@@ -3085,6 +3085,10 @@ input[type=number]::-webkit-outer-spin-button {
   background-size: cover !important; 
 }
 
+#blog > .title * {
+  color: white !important;
+}
+
 #blog_post h1 {
   font-family: Estilo;
   font-size: 80px;
