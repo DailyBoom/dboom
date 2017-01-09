@@ -970,8 +970,7 @@ header, main {
 }
 
 #individual .hmenu {
-  white-space: nowrap;
-  overflow-x: scroll;
+  text-align: center;
 }
 
 #individual .hmenu a {
@@ -984,7 +983,11 @@ header, main {
   color: #4a8dcc;
   border-right: solid 1px #b3c2cf;
   padding: 0 7px;
-} 
+}
+
+#individual .hmenu a:last-child {
+  border-right: none;
+}
 
 .central svg.svg-logo path, .central svg.svg-fb path, .central svg.svg-insta path, .central svg.svg-yt path {
   fill: #3ebbed;
@@ -3848,6 +3851,11 @@ input[type=number]::-webkit-outer-spin-button {
 
   #blog_post article iframe {
     height: auto;
+  }
+
+  #individual .hmenu {
+    white-space: nowrap;
+    overflow-x: scroll;
   }
 }
 

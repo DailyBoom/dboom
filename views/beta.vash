@@ -169,7 +169,7 @@
 							<div class="item_name truncate">@model.products[3].brand</div>
 							<div class="item_type">NHÃN HIỆU</div>
 						</div>
-						<div class="col s4 ">
+						<div class="col s4">
 							<div class="item_name truncate">@model.products[3].origin</div>
 							<div class="item_type">SẢN XUẤT</div>
 						</div>

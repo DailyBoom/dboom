@@ -1,7 +1,7 @@
 @html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
 		<div class="container" id="individual">
-			<div class="hide-on-large-only hmenu">
+			<div class="hmenu">
 				<a href="/mall?group=0">CHĂM SÓC DA</a>
 				<a href="/mall?group=1">TRANG ĐIỂM</a>
 				<a href="/mall?group=2">SẢN PHẨM DƯỠNG THỂ</a>
