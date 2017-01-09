@@ -131,7 +131,7 @@
     <script>
         $(document).ready(function(){
             // Target your element
-            $('.title').colourBrightness();
+            $('#blog > .title').colourBrightness();
         });
         $(window).load(function() {
             var is_mobile = @model.is_mobile;

@@ -100,11 +100,11 @@ body, nav {
   margin-right: auto;
 }
 
-.light {
-  color: #fea3a3 !important;
+.light *:not(.ybtn) {
+  color: #b3c2cf !important;
 }
 
-.dark {
+.dark *:not(.ybtn) {
   color: white !important;
 }
 
