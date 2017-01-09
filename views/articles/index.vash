@@ -1,7 +1,7 @@
 @html.extend("layout-beta", function(model) { @html.block("body", function(model) {
     <script src="//lightwidget.com/widgets/lightwidget.js"></script>
     <div class="container@(model.is_mobile ? '-fluid' : '')" id="blog">
-        <div class="title center" style="background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(@model.articles[0].cover) no-repeat;">
+        <div class="title center" style="background: @(!model.is_mobile ? 'linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),' : '') url(@model.articles[0].cover) no-repeat;">
             <h1 class="center"><a href="/blog/@model.articles[0].url" >@model.articles[0].title</a></h1>
             <div class="date center"><i class="fa fa-calendar"></i> @model.moment(model.articles[0].created_at).format("DD.MM.YYYY")</div>
             <div class="content">

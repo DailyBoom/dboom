@@ -3085,10 +3085,6 @@ input[type=number]::-webkit-outer-spin-button {
   background-size: cover !important; 
 }
 
-#blog > .title *, #blog_post > .title * {
-  color: white !important;
-}
-
 #blog_post h1 {
   font-family: Estilo;
   font-size: 80px;
@@ -3805,7 +3801,7 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 0;
   }
 
-  #blog {
+  #blog > .row {
     padding: 0 25px;
   }
 
@@ -3841,12 +3837,17 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   #blog_post {
-    padding: 120px 35px 0;
+    padding: 0;
+  }
+
+  #blog_post > .row {
+    padding: 0 35px;
   }
 
   #blog_post .title, #blog > .title {
     background-size: 100% !important;
-    padding: 67px 0 56px;
+    padding: 67px 25px 56px;
+    margin: 0;
   }
 
   #blog_post h2 {
@@ -4262,5 +4263,9 @@ input[type=number]::-webkit-outer-spin-button {
 
   #blog #videos .vids {
     width: calc(50% - 10px);
+  }
+
+  #blog > .title *, #blog_post > .title * {
+    color: white !important;
   }
 }
