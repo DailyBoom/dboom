@@ -204,9 +204,9 @@
 				<div class="row">
 					@model.hotProducts.forEach(function(product) {
 						<div class="">
-							<a href="/detailed/@product.id"><img src="@product.images[0]" /></a>
+							<a href="/shop/products/@product.url"><img src="@product.images[0]" /></a>
 							<div class="prod_brand">@product.brand</div>
-							<div class="prod_name"><a href="/detailed/@product.id">@product.name</a></div>
+							<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
 							<div class="prod_price">@product.price<span class="currency">đ</span></div>
 						</div>
 					})

@@ -73,11 +73,11 @@
 						<a class="waves-effect waves-light blue-grey-text text-darken-3" href="#"><i class="fa fa-thumbs-up fa-fw"></i> 사고싶다 (@product.wanna_buy.length)<!--<span class="badge">5</span>--></a>
 					</div>
 					<div class="blue-grey lighten-4 center p-y-2">
-						<a class="amber-text text-darken-3 m-x-1" href="/products/edit/@product.id">Edit</a>
-						<a class="amber-text text-darken-3 m-x-1" href="/products/preview/@product.id">Preview</a>
+						<a class="amber-text text-darken-3 m-x-1" href="/products/edit/@product.url">Edit</a>
+						<a class="amber-text text-darken-3 m-x-1" href="/products/preview/@product.url">Preview</a>
 						@if (model.user) {
 							if (model.user.admin == 1) {
-								<a class="red-text text-darken-3 m-x-1" href="/products/delete/@product.id" onclick="return confirm('Are you sure you want to delete?');">Delete</a>
+								<a class="red-text text-darken-3 m-x-1" href="/products/delete/@product.url" onclick="return confirm('Are you sure you want to delete?');">Delete</a>
 						} }
 					</div>
 				</div><!-- .card -->

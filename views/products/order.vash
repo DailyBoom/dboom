@@ -6,12 +6,12 @@
                 <div class="col s12 l11 offset-l1" id="sortable">
                     @model.products.forEach(function(product, index) {
                         <div class="col s6 l3">
-                            <a href="/detailed/@product.id"><img src="@product.images[0]" /></a>
+                            <a href="/shop/products/@product.url"><img src="@product.images[0]" /></a>
                             <div class="prod_brand">@product.brand</div>
-                            <div class="prod_name"><a href="/detailed/@product.id">@product.name</a></div>
+                            <div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
                             <div class="prod_price">@product.price</div>
                             <input type="hidden" class="position" value="@index" name="products[position]" />
-                            <input type="hidden" value="@product.id" name="products[id]" />
+                            <input type="hidden" value="@product.url" name="products[id]" />
                         </div>
                     })
                 </div>

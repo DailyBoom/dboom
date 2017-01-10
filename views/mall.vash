@@ -96,9 +96,9 @@
 				<div class="col s12 l11 offset-l1">
 				@model.products.forEach(function(product) {
 					<div class="col s6 l3">
-						<a href="/detailed/@product.id"><img src="@product.images[0]" /></a>
+						<a href="/shop/products/@product.url"><img src="@product.images[0]" /></a>
 						<div class="prod_brand">@product.brand</div>
-						<div class="prod_name"><a href="/detailed/@product.id">@product.name</a></div>
+						<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
 						<div class="prod_price">@product.price</div>
 					</div>
 				})
@@ -127,7 +127,7 @@
 					<div class="row">
 						@model.boxes.forEach(function(product) {
 							<div class="box">
-								<a href="/box/@product.id"><img src="@product.images[0]" /></a>
+								<a href="/shop/box/@product.url"><img src="@product.images[0]" /></a>
 								@if(product.boxZone == 0) {
 									<div class="center north">Miền Bắc</div>
 								}
@@ -137,7 +137,7 @@
 								else if (product.boxZone == 2) {
 									<div class="center south">Miền Nam</div>
 								}
-								<div class="prod_name"><a href="/box/@product.id">@product.name</a></div>
+								<div class="prod_name"><a href="/shop/box/@product.url">@product.name</a></div>
 								@if (model.moment().isAfter(model.moment(product.scheduled_at), 'week')) {
 									<span class="prod_price">@product.old_price</span>
 								}

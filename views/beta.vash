@@ -35,7 +35,7 @@
 						</div>
 					</div>
 					<div class="item_detail hide-on-med-and-down">
-						<a href="/box/@model.products[0].id">
+						<a href="/shop/box/@model.products[0].url">
 							XEM CHI TIẾT
 						</a>
 					</div>
@@ -43,7 +43,7 @@
 				<div class="col s12 l8" >
 					<div class="item_img"><img  src="@model.products[0].images[0]"/></div>
 					<div class="item_detail hide-on-large-only">
-						<a href="/box/@model.products[0].id">
+						<a href="/shop/box/@model.products[0].url">
 							XEM CHI TIẾT
 						</a>
 					</div>
@@ -89,7 +89,7 @@
 						<div class="col s12 item_to_come hide">ra mắt ngày <span class="item_date">@model.moment(model.products[1].scheduled_at).format("DD/MM/YYYY")</span></div>
 					</div>
 					<div class="col s12 item_detail hide-on-med-and-down">
-						<a href="/box/@model.products[1].id">
+						<a href="/shop/box/@model.products[1].url">
 							XEM CHI TIẾT
 						</a>
 					</div>
@@ -97,7 +97,7 @@
 				<div class="col s12 l8 hide-on-large-only">
 					<div class="item_img"><img src="@model.products[1].images[0]"/></div>
 					<div class="item_detail hide-on-large-only">
-						<a href="/box/@model.products[1].id">
+						<a href="/shop/box/@model.products[1].url">
 							XEM CHI TIẾT
 						</a>
 					</div>
@@ -140,7 +140,7 @@
 						<span class="col s12 item_to_come hide">ra mắt ngày <span class="item_date">@model.moment(model.products[2].scheduled_at).format("DD/MM/YYYY")</span></span>
 					</div>
 					<div class="col s12 item_detail hide-on-med-and-down">
-						<a href="/box/@model.products[2].id">
+						<a href="/shop/box/@model.products[2].url">
 							XEM CHI TIẾT
 						</a>
 					</div>
@@ -148,7 +148,7 @@
 				<div class="col s12 l8" >
 					<div class="item_img"><img src="@model.products[2].images[0]"/></div>
 					<div class="item_detail hide-on-large-only">
-						<a href="/box/@model.products[2].id">
+						<a href="/shop/box/@model.products[2].url">
 							XEM CHI TIẾT
 						</a>
 					</div>
@@ -193,7 +193,7 @@
 						<span class="col s12 item_to_come hide">ra mắt ngày <span class="item_date">@model.moment(model.products[3].scheduled_at).format("DD/MM/YYYY")</span></span>
 					</div>
 					<div class="col s12 item_detail hide-on-med-and-down">
-						<a href="/box/@model.products[3].id">
+						<a href="/shop/box/@model.products[3].url">
 							XEM CHI TIẾT
 						</a>
 					</div>
@@ -201,7 +201,7 @@
 				<div class="col s12 l8 hide-on-large-only">
 					<div class="item_img"><img src="@model.products[3].images[0]"/></div>
 					<div class="item_detail hide-on-large-only">
-						<a href="/box/@model.products[3].id">
+						<a href="/shop/box/@model.products[3].url">
 							XEM CHI TIẾT
 						</a>
 					</div>
@@ -215,9 +215,9 @@
 			<div class="row">
 			@model.hotProducts.forEach(function(product) {
 				<div class="center">
-					<a href="/detailed/@product.id"><img src="@product.images[0]" /></a>
+					<a href="/shop/products/@product.url"><img src="@product.images[0]" /></a>
 					<div class="prod_brand">@product.brand</div>
-					<div class="prod_name"><a href="/detailed/@product.id">@product.name</a></div>
+					<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
 					<div class="prod_price">@product.price<span class="currency">đ</span></div>
 				</div>
 			})

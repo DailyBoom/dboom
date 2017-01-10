@@ -11,6 +11,7 @@ var crypto = require("crypto");
 var config = require('config-heroku');
 var paginate = require('express-paginate');
 var querystring = require('querystring');
+var getSlug = require('speakingurl');
 var app = express();
 
 var storage = s3({
@@ -143,6 +144,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
       
       var product = new Product({
         name: req.body.name,
+        url: getSlug(req.body.name, { lang: 'vn' }),
         description: req.body.description,
         how_to: req.body.how_to,
         why_love: req.body.why_love,
@@ -216,6 +218,7 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
     if (req.body.merchant_id)
       product.merchant_id = req.body.merchant_id;
     product.name = req.body.name;
+    product.url = getSlug(req.body.name, { lang: 'vn' });
     product.description = req.body.description;
     product.how_to = req.body.how_to;
     product.why_love = req.body.why_love;
@@ -398,8 +401,17 @@ router.post('/products/order', isMerchantOrAdmin, function(req, res) {
   req.body['products[position]'].forEach(function(item, index) {
     Product.findOneAndUpdate({ _id: req.body['products[id]'][index] }, { position: item }, function() {
       if (index == req.body['products[position]'].length - 1) {
-        res.redirect('/products/order');
+        res.redirefindct('/products/order');
       }
+    });
+  });
+});
+
+router.get('/products/generateurl', function() {
+  Product.find({}, function(err, products) {
+    products.forEach(function(product) {
+      product.url = getSlug(product.name, { lang: 'vn' });
+      product.save();
     });
   });
 });

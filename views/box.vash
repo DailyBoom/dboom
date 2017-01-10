@@ -140,7 +140,7 @@
 									else {
 										<span class="item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.product.scheduled_at).format("DD/MM/YYYY")</span></span>
 									}
-									<a class="ybtn-o" href="/detailed/@product.id">MUA SẢN PHẨM LẺ</a>
+									<a class="ybtn-o" href="/shop/products/@product.url">MUA SẢN PHẨM LẺ</a>
 								</div>
 							</div>
 						</div>
@@ -153,9 +153,9 @@
 				<div class="row">
 					@model.hotProducts.forEach(function(product, index) {
 						<div class="">
-							<a href="/detailed/@product.id"><img src="@product.images[0]" /></a>
+							<a href="/shop/products/@product.url"><img src="@product.images[0]" /></a>
 							<div class="prod_brand">@product.brand</div>
-							<div class="prod_name"><a href="/detailed/@product.id">@product.name</a></div>
+							<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
 							<div class="prod_price">@product.price<span class="currency">đ</span></div>
 						</div>
 					})

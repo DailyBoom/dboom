@@ -224,7 +224,7 @@
                 <img src="@item.product.images[0]" />
               </div>
               <div class="col s8">
-                <div class="truncate product-name"><a href="/detailed/@item.product.id" class="truncate">@item.product.name</a></div>
+                <div class="truncate product-name"><a href="/shop/products/@item.product.id" class="truncate">@item.product.name</a></div>
                 <div class="product-brand">@item.product.brand</div>
                 <div class="product-price">@(item.product.price * item.quantity)</div>                                             
                 <!-- -->

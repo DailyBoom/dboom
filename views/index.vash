@@ -247,7 +247,7 @@
 					}
 				</div>
 				@if(model.product.homepage_image) {
-					<a href="/detailed/@model.product.id" ><img class="responsive-img" src="@model.product.homepage_image" alt="" /></a>
+					<a href="/shop/products/@model.product.id" ><img class="responsive-img" src="@model.product.homepage_image" alt="" /></a>
 				}
 				<div class="right-align">
 				@if (model.user) {
@@ -353,7 +353,7 @@
 													<div class="past-img" style="background-image: url('@(product.mobile_images[0] ? product.mobile_images[0] : product.images[0])')" alt=""></div>
 												</div>
 												<div class="card-action mod center green">
-													<a class="waves-effect waves-light btn-flat white-text text-darken-3 extended-time" href="/mall/@product.id">@model.__('available')!</a>
+													<a class="waves-effect waves-light btn-flat white-text text-darken-3 extended-time" href="/mall/@product.url">@model.__('available')!</a>
 												</div>
 											</div>
 										</div>

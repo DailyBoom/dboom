@@ -364,7 +364,7 @@
 										<div class="col s12 m12 l12">
 											<div class="card past">
 												<div class="card-image">
-													<a href="/mall/@product.brand/@product.id">
+													<a href="/mall/@product.brand/@product.url">
 													<div class="card-image-ol">
 														@if(product.old_price != product.price) {
 															<div class="ol-old-p">
@@ -383,7 +383,7 @@
 													<span class="blue-grey-text text-darken-1">@product.description</span>
 												</div>
 												<div class="card-action mod center green">
-													<a class="waves-effect waves-light btn-flat white-text text-darken-3" href="/mall/@product.brand/@product.id">@model.__('available')!</a>
+													<a class="waves-effect waves-light btn-flat white-text text-darken-3" href="/mall/@product.brand/@product.url">@model.__('available')!</a>
 												</div>
 											</div>
 										</div>
