@@ -177,9 +177,7 @@
 							<div class="comment">
 								<span class="user-com">@(comment.user ? comment.user.username : comment.name)</span>
 								<span class="date-com">@model.moment(comment.created_at).format("DD.MM.YYYY")</span>
-								<div class="body">
-									@comment.body
-								</div>
+								<div class="body">@comment.body</div>
 							</div>
 						})
 						<div class="new-comment">

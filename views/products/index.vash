@@ -14,8 +14,8 @@
 					<div class="input-field">
 						<select name="type" id="type">
 							<option value="" selected>All</option>
-							<option value="1">Daily Sale</option>
-							<option value="2">Boom Mall</option>
+							<option value="1">Box</option>
+							<option value="2">Mall</option>
 						</select>
 						<label for="type">Listing Type</label>
 					</div>
