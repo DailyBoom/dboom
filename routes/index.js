@@ -106,7 +106,7 @@ var group = [
 ]
 
 router.get('/mall', function(req, res, next) {
-  var query = Product.find({ extend: 4, is_published: true, is_hot: null }, {}, { sort: { 'position' : 1 }});
+  var query = Product.find({ extend: 4, is_published: true }, {}, { sort: { 'position' : 1 }});
   var page = req.query.page ? req.query.page : 1;
   var per_page = req.is_mobile ? 8 : 16;
   if (req.query.group) {
@@ -119,7 +119,7 @@ router.get('/mall', function(req, res, next) {
     query.or([{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }])
   }
   query.paginate(page, per_page, function(err, products, total) {
-    Product.find({ extend: 3, scheduled_at: moment().utc().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
+    Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
       Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
         res.render('mall', { title: "Yppuna Mall", description: "", products: products, hotProducts: hotProducts, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });
       });
@@ -212,10 +212,9 @@ router.get('/home', function(req, res, next) {
     });
     behavior.save();
   }
-  console.log(moment().date(1).hour(0).minute(0).second(0).millisecond(0).toISOString());
   Product.find({ boxZone: req.session.zone, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts').exec(function (err, products) {
     console.log(products);
-    var query = Product.find({ extend: 4, is_published: true });
+    var query = Product.find({ extend: 4, is_published: true, is_hot: true });
     //query.where('product_region.'+req.session.zone, true)
     query.limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
       res.render('beta', { progress: 75, products: products, hotProducts: hotProducts });
@@ -225,7 +224,7 @@ router.get('/home', function(req, res, next) {
 
 router.get('/detailed/:id', function(req, res, next) {
   Product.findOne({_id: req.params.id}, function(err, product) {
-    Product.find({ extend: 4 }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
+    Product.find({ extend: 4, is_published: true, is_hot: true }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
       Comment.find( { product: req.params.id }).populate('user').exec(function(err, comments) {
         var current_quantity = 0;
         product.options.forEach(function(option) {
@@ -241,7 +240,7 @@ router.get('/detailed/:id', function(req, res, next) {
 
 router.get('/box/:id', function(req, res, next) {
   Product.findOne({_id: req.params.id}).populate('boxProducts').exec(function(err, product) {
-    Product.find({ extend: 4 }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
+    Product.find({ extend: 4, is_published: true, is_hot: true }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
       Comment.find( { product: req.params.id }).populate('user').exec(function(err, comments) {
         var current_quantity = 0;
         product.options.forEach(function(option) {
