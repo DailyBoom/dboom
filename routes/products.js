@@ -181,6 +181,10 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         product_region: req.body.product_region
       });
     
+      if(req.body.extend == 3) {
+        product.url = product.url + '-' + product.boxZone;
+      }
+
       if (req.files['photosmobile']) {
         var paths = req.files['photosmobile'].map(function(item) {
             return "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + item.key;
@@ -247,6 +251,7 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
     console.log(req.body.boxProducts);
     if(req.body.extend == 3) {
       product.boxProducts = req.body.boxProducts[0] !== '' ? JSON.parse(JSON.stringify(req.body.boxProducts)) : null;
+      product.url = product.url + '-' + product.boxZone;
     }
     
     if (product.price >= 50000)
@@ -408,9 +413,9 @@ router.post('/products/order', isMerchantOrAdmin, function(req, res) {
 });
 
 router.get('/products/generateurl', function() {
-  Product.find({}, function(err, products) {
+  Product.find({ extend: 3 }, function(err, products) {
     products.forEach(function(product) {
-      product.url = getSlug(product.name, { lang: 'vn' });
+      product.url = product.url + '-' + product.boxZone;
       product.save();
     });
   });
