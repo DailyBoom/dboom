@@ -121,10 +121,21 @@ router.get('/mall', function(req, res, next) {
   query.paginate(page, per_page, function(err, products, total) {
     Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
       Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
-        res.render('mall', { title: "Yppuna Mall", description: "", products: products, hotProducts: hotProducts, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });
+        res.render('mall', { title: "Sản Phẩm Bán Chạy Nhất", description: "", products: products, hotProducts: hotProducts, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });
       });
     });
   });
+});
+
+router.get('/mall/new', function(req, res, next) {
+  var query = Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }, {}, { sort: { 'position' : 1 }});
+  var page = req.query.page ? req.query.page : 1;
+  var per_page = req.is_mobile ? 8 : 16;
+  query.paginate(page, per_page, function(err, products, total) {
+  Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
+      res.render('mall', { title: "Mua Lẻ Mới Nhất", description: "", products: products, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });      
+    });    
+  });  
 });
 
 // router.get('/wholesale/:brand', function(req, res, next) {
@@ -217,7 +228,9 @@ router.get('/home', function(req, res, next) {
     var query = Product.find({ extend: 4, is_published: true, is_hot: true });
     //query.where('product_region.'+req.session.zone, true)
     query.limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
-      res.render('beta', { progress: 75, products: products, hotProducts: hotProducts });
+      Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }, function() {
+        res.render('beta', { progress: 75, products: products, hotProducts: hotProducts });
+      });
     });
   });
 });

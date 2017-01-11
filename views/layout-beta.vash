@@ -246,6 +246,7 @@
           <li class="hide-on-med-and-down"><a href="/home" class="logo"><img alt="Yppuna Logo" class="svg svg-logo" src="/images/logo.svg"/></a></li>
           <li><a class="waves-effect side-header" href="/home">TRANG CHỦ</a></li>        
           <li><a class="waves-effect side-header" href="/mall">SẢN PHẨM BÁN LẺ</a></li>        
+          <li><a class="waves-effect side-header" href="/mall/new">MUA LẺ MỚI NHẤT</a></li>        
           <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
               <li>

@@ -257,6 +257,11 @@ button {
   margin-top: 36px; 
 }
 
+#slide-out {
+  height: auto;
+  max-height: 100%;
+}
+
 #slide-out .slide-menu-wrapper, #slide-cart .slide-menu-wrapper {
   position: relative;
   height: calc(100% - 49px);
@@ -3196,11 +3201,6 @@ input[type=number]::-webkit-outer-spin-button {
 
   #slide-out, #slide-cart {
     top: 56px;
-  }
-
-  #slide-out {
-    height: auto;
-    max-height: 100%;
   }
 
   #slide-out .bottom-menu {

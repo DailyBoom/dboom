@@ -175,6 +175,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         review_url: req.body.reviewUrl,
         extend: req.body.extend ? req.body.extend : 0,        
         is_hot: req.body.is_hot,
+        is_new: req.body.is_new,
         color: req.body.color,
         boxProducts: req.body.extend == 3 && req.body.boxProducts[0] !== '' ? JSON.parse(JSON.stringify(req.body.boxProducts)) : null,
         boxZone: req.body.boxZone,
@@ -245,6 +246,7 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
     product.review_url = req.body.reviewUrl;
     product.extend = req.body.extend ? req.body.extend : 0;
     product.is_hot = req.body.is_hot;
+    product.is_new = req.body.is_new;
     product.color = req.body.color;
     product.boxZone = req.body.boxZone;
     product.product_region = req.body.product_region;
@@ -406,7 +408,7 @@ router.post('/products/order', isMerchantOrAdmin, function(req, res) {
   req.body['products[position]'].forEach(function(item, index) {
     Product.findOneAndUpdate({ _id: req.body['products[id]'][index] }, { position: item }, function() {
       if (index == req.body['products[position]'].length - 1) {
-        res.redirefindct('/products/order');
+        res.redirect('/products/order');
       }
     });
   });

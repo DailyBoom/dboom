@@ -11,12 +11,16 @@
 					<div class="col s12">
 						@model.__('product.selectOption')
 					</div>
-				@if(@model.user.admin) {
-					<div class="input-field col m2 s4">
-						<input name="is_hot" type="checkbox" id="is_hot" @(model.product.is_hot ? 'checked' : '') />
-						<label for="is_hot">@model.__('product.optionHot')<br>(* Mall Only)</label>
-					</div>
-				}
+					@if(@model.user.admin) {
+						<div class="input-field col m2 s4">
+							<input name="is_hot" type="checkbox" id="is_hot" @(model.product.is_hot ? 'checked' : '') />
+							<label for="is_hot">@model.__('product.optionHot')<br>(* Mall Only)</label>
+						</div>
+						<div class="input-field col s3">
+							<input name="is_new" type="checkbox" id="is_new" />
+							<label for="is_new">New arrival</label>
+						</div>
+					}
 					<div class="input-field col m2 s4">
 						<input name="extend" type="radio" id="extend_db" value="3" @(model.product.extend == 3 ? 'checked' : '')/>
 						<label for="extend_db">@model.__('product.optionMain')</label>

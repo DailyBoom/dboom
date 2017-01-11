@@ -211,9 +211,22 @@
 		}
 		</div>
 		<section id="individual">
-			<h2>SẢN PHẨM BÁN LẺ</h2>
+			<h2>MUA LẺ BÁN CHẠY NHẤT</h2>
 			<div class="row">
 			@model.hotProducts.forEach(function(product) {
+				<div class="center">
+					<a href="/shop/products/@product.url"><img src="@product.images[0]" /></a>
+					<div class="prod_brand">@product.brand</div>
+					<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
+					<div class="prod_price">@product.price<span class="currency">đ</span></div>
+				</div>
+			})
+		</div>
+		</section>
+		<section id="individual">
+			<h2>MUA LẺ MỚI NHẤT</h2>
+			<div class="row">
+			@model.newProducts.forEach(function(product) {
 				<div class="center">
 					<a href="/shop/products/@product.url"><img src="@product.images[0]" /></a>
 					<div class="prod_brand">@product.brand</div>

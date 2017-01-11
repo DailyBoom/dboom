@@ -6,8 +6,9 @@
 				<a href="/mall?group=1">TRANG ĐIỂM</a>
 				<a href="/mall?group=2">SẢN PHẨM DƯỠNG THỂ</a>
 				<a href="/brands">NHÃN HIỆU</a>
+				<a href="/mall/new">MUA LẺ MỚI NHẤT</a>
 			</div>
-			<h2>Sản Phẩm Bán Chạy Nhất</h2>
+			<h2>@model.title</h2>
 			<div class="row">
 				<select class="col s12 hide-on-large-only category" id="category_list">
 					<option value="" selected disabled>Chọn Danh Mục Sản Phẩm</option>

@@ -38,6 +38,7 @@ var productSchema = new Schema({
   is_published: Boolean,
   extend: Number,
   is_hot: Boolean,
+  is_new: Boolean,
   color: String,
   wanna_buy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   created_at: { type : Date, default : Date.now },
