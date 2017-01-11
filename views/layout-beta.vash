@@ -483,6 +483,21 @@
           @if(model.user && (model.user.admin || model.user.role == 'merchant' || model.user.role == 'content')) {
             <li><a class="waves-effect side-header" href="/admin/dashboard">Admin Dashboard</a></li>
           }
+          @if (model.is_mobile) {          
+          <div class="area-header hide-on-large-only">
+            <div class="right">
+              <a href="@(model.zone == 0 ? '#' : '/home?zone=0')" class="@(model.zone == 0 ? '' : 'zone-hide')">
+                <img class="north" src="/images/north-logo.svg" />
+              </a>
+              <a href="@(model.zone == 1 ? '#' : '/home?zone=1')" class="@(model.zone == 1 ? '' : 'zone-hide')">
+                <img class="central" src="/images/central-logo.svg" />
+              </a>
+              <a href="@(model.zone == 2 ? '#' : '/home?zone=2')" class="@(model.zone == 2 ? '' : 'zone-hide')">
+                <img class="south" src="/images/south-logo.svg"/>
+              </a>
+            </div>
+          </div>
+          }
           <div class="slide-bottom">
             <div class="search">
               <form action="/mall" method="GET">

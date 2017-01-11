@@ -3198,8 +3198,30 @@ input[type=number]::-webkit-outer-spin-button {
     top: 56px;
   }
 
+  #slide-out {
+    height: auto;
+    max-height: 100%;
+  }
+
   #slide-out .bottom-menu {
     -webkit-transform: translateY(-135px);    
+  }
+
+  #slide-out .area-header {
+    padding-right: 0 !important;
+  }
+
+  #slide-out .area-header a.zone-view-first {
+    right: 100px;
+  }
+
+  #slide-out .area-header a.zone-view-second {
+    right: 190px;
+  }
+
+  #slide-out .area-header a {
+    right: 0px;
+    padding: 0;
   }
 
   .logo {
