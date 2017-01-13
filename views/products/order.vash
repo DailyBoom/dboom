@@ -3,6 +3,15 @@
 		<div class="container" id="individual">
             <form method="POST" class="row">
                 <button class="right">Update</button>
+                <div class="col s12 m3 right">
+                    <label for="type">Group</label>
+                    <select name="group" id="group">
+                        <option value="" @(model.group == '' || model.group == null ? 'selected' : '')>General</option>
+                        <option value="0" @(model.group == 0 ? 'selected' : '')>Chăm sóc da</option>
+                        <option value="1" @(model.group == 1 ? 'selected' : '')>Trang điểm</option>
+                        <option value="2" @(model.group == 2 ? 'selected' : '')>Sản phẩm dưỡng thể</option>
+                    </select>
+				</div>
                 <div class="col s12 l11 offset-l1" id="sortable">
                     @model.products.forEach(function(product, index) {
                         <div class="col s6 l3">
@@ -31,6 +40,9 @@
             $('#individual form button').pushpin({
                 top: $('#individual form').offset().top,
                 offset: 20
+            });
+            $('#group').on('change', function() {
+                window.location = '/products/order?group='+$('#group option:selected').val();
             });
         });
         </script>

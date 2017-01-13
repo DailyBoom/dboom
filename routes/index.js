@@ -103,14 +103,18 @@ var group = [
   [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
   [26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 49, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 50, 48],
   [51, 52]
-]
+];
 
 router.get('/mall', function(req, res, next) {
-  var query = Product.find({ extend: 4, is_published: true }, {}, { sort: { 'position' : 1 }});
+  var query = Product.find({ extend: 4, is_published: true }, {}, {});
   var page = req.query.page ? req.query.page : 1;
   var per_page = req.is_mobile ? 8 : 16;
   if (req.query.group) {
     query.where('category').in(group[req.query.group]);
+    query.sort({ 'position_group' : 1 });
+  }
+  else {
+    query.sort({ 'position' : 1 });
   }
   if (req.query.category) {
     query.where('category', req.query.category);

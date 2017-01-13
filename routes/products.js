@@ -397,18 +397,40 @@ router.post('/products/search', function(req, res) {
   })
 })
 
+var category_group = [
+  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
+  [26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 49, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 50, 48],
+  [51, 52]
+];
+
 router.get('/products/order', isMerchantOrAdmin, function(req, res) {
-  Product.find({ extend: 4 }, {}, { sort: { 'position' : 1 } }, function(err, products) {
-    res.render('products/order', { products: products });
+  var query = Product.find({ extend: 4 }, {}, { });
+  var group = req.query.group ? req.query.group : null;
+  if (req.query.group && req.query.group != '') {
+    query.where('category').in(category_group[req.query.group]);
+    query.sort({ 'position_group' : 1 });
+  }
+  else {
+    query.sort({ 'position' : 1 });
+  }
+  query.exec(function(err, products) {
+    res.render('products/order', { products: products, group: group });
   });
 })
 
 router.post('/products/order', isMerchantOrAdmin, function(req, res) {
+  var query;
   console.log(req.body);
   req.body['products[position]'].forEach(function(item, index) {
-    Product.findOneAndUpdate({ _id: req.body['products[id]'][index] }, { position: item }, function() {
+    if (req.body.group && req.body.group != '') {
+      query = Product.findOneAndUpdate({ _id: req.body['products[id]'][index] }, { position_group: item });
+    }
+    else {
+      query = Product.findOneAndUpdate({ _id: req.body['products[id]'][index] }, { position: item });
+    }
+    query.exec(function() {
       if (index == req.body['products[position]'].length - 1) {
-        res.redirect('/products/order');
+        res.redirect('back');
       }
     });
   });

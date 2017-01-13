@@ -48,7 +48,8 @@ var productSchema = new Schema({
   boxZone: Number,
   box_background: String,
   product_region: [Boolean],
-  position: Number
+  position: Number,
+  position_group: Number
 });
 
 var Product = mongoose.model("Product", productSchema);

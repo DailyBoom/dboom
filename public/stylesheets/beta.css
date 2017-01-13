@@ -230,6 +230,11 @@ button {
   border: solid 1px #b3c2cf;
 }
 
+.select-wrapper span.caret {
+  top: 12px;
+  right: 10px;
+}
+
 #sidenav-overlay {
   opacity: 0 !important;
 }
@@ -260,6 +265,7 @@ button {
 #slide-out {
   height: auto;
   max-height: 100%;
+  min-height: 100%;
 }
 
 #slide-out .slide-menu-wrapper, #slide-cart .slide-menu-wrapper {
