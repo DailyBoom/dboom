@@ -17,18 +17,18 @@
                     <article class="col s12 top-vid">
                         <a class="col s7" href="/blog/@model.videos[0].url" style="background: url(@model.videos[0].cover) no-repeat;">
                         </a>
-                        <div class="col s4">
+                        <div class="col s5">
                             @if(model.videos[0].tags.length > 0) {
                                 <div class="tags">
                                     @model.videos[0].tags.forEach(function(tag) {
-                                        <a href="/blog?tag=@tag">@tag</a>
+                                        <a href="/blog?tag=@tag">@tag </a>
                                     })
                                 </div>
                             }
                             <div class="title"><a href="/blog/@model.videos[0].url" >@model.videos[0].title</a></div>
                             <div class="date"><i class="fa fa-calendar"></i> @model.moment(model.videos[0].created_at).format("DD.MM.YYYY")</div>
                             <div class="content">
-                                @html.raw(model.striptags(model.videos[0].content).substr(0, 400))...
+                                @html.raw(model.striptags(model.videos[0].content).substr(0, 200))...
                             </div>
                         </div>
                     </article>

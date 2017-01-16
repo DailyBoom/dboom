@@ -7,22 +7,18 @@
 				<table class="responsive-table bordered highlight table-sm">
 					<thead>
 						<tr>
-							<th>ID</th>
+							<th>Code</th>
 							<th>Expires at</th>
-							<th>User</th>
 							<th>Type</th>
 							<th>Amount</th>
-							<th>Used</th>
 						</tr>
 					</thead>
 					
 					<tbody>
 						@model.coupons.forEach(function(coupon) {
-							@if (coupon.user) {
 							<tr>
-								<td>@coupon.id</td>
+								<td>@coupon.code</td>
 								<td>@model.moment(coupon.expires_at).format('YYYY/MM/DD')</td>
-								<td>@coupon.user.name (@coupon.user.username)</td>
 								<td>@coupon.type</td>
 								@if(coupon.type == 2) {
 									<td>@coupon.price</td>
@@ -33,9 +29,7 @@
 								else {
 									<td></td>
 								}
-								<td>@coupon.used</td>
 							</tr>
-							}
 						})
 					</tbody>
 				</table>

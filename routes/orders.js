@@ -146,8 +146,51 @@ var getOrderCartTotal = function(order) {
     order.totalOrderAmt += item.product.price * item.quantity;
   });
   order.shipping_cost = deliveryPrices[order.shipping.city.toUpperCase()][order.shipping.district.toUpperCase()];
-  order.totalOrderAmt += order.shipping_cost;
+
+  if (order.coupon && order.coupon.type == 2) {
+    order.discount = order.shipping_cost;
+  }
+  else if (order.coupon && order.coupon.type == 2) {
+    order.totalOrderAmt -= order.coupon.price;
+    order.discount = order.coupon.price;
+  }
+  else if (order.coupon && order.coupon.type == 3) {
+    order.discount = order.totalOrderAmt * (order.coupon.percentage / 100);
+    order.totalOrderAmt -= order.totalOrderAmt * (order.coupon.percentage / 100);
+  }
+  if (!order.coupon || order.coupon && order.coupon.type != 1) {
+    order.totalOrderAmt += order.shipping_cost;
+  }
 };
+
+var getOrderCartRecap = function(order) {
+  order.totalOrderAmt = 0;
+  order.cart.forEach(function(item) {
+    order.totalOrderAmt += item.product.price * item.quantity;
+  });
+  if (order.coupon && order.coupon.type == 2) {
+    order.totalOrderAmt -= order.coupon.price;
+    order.discount = order.coupon.price;
+  }
+  else if (order.coupon && order.coupon.type == 3) {
+    order.discount = order.totalOrderAmt * (order.coupon.percentage / 100);
+    order.totalOrderAmt -= order.totalOrderAmt * (order.coupon.percentage / 100);
+  }
+};
+
+router.post('/orders/apply_code', function(req, res) {
+  Coupon.findOne({ code: req.body.code }, function(err, coupon) {
+    if (!coupon) {
+      return res.redirect('/cart');
+    }
+    Order.findOne({ _id: req.session.cart_order }, function(err, order) {
+      order.coupon = coupon.id;
+      order.save(function(err) {
+        return res.redirect('/cart');
+      });
+    });    
+  });
+});
 
 router.get('/orders/success', isAdmin, function(req, res) {
   res.render('mailer/buy_success');
@@ -284,7 +327,7 @@ router.get('/checkout', function(req, res) {
     // if (!req.user && !req.session.no_login) {
     //     return res.redirect('/mall/login');
     // }
-    Order.findOne({ _id: req.session.cart_order }).populate('cart.product').exec(function(err, order) {
+    Order.findOne({ _id: req.session.cart_order }).populate('cart.product coupon').exec(function(err, order) {
       if (err)
         console.log(err);
       if (hasShipping(order)) {
@@ -295,13 +338,7 @@ router.get('/checkout', function(req, res) {
         }
         getOrderCartTotal(order);
         order.save(function(err) {
-          if (req.user) {
-            Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
-              res.render('checkout', { order: order, title: req.__('payment'), coupons: coupons });
-            });
-          }
-          else
-            res.render('checkout', { order: order, title: req.__('payment') });
+          res.render('checkout', { order: order, title: req.__('payment') });
         });
       }
       else {
@@ -309,6 +346,13 @@ router.get('/checkout', function(req, res) {
       }
     });
   }
+});
+
+router.get('/cart', function(req, res, next) {
+  Order.findOne({ _id: req.session.cart_order }).populate('cart.product coupon').exec(function(err, order) {
+    getOrderCartRecap(order);
+    res.render('cart', { order: order });
+  });
 });
 
 router.post('/mall/update_cart', function(req, res) {
@@ -364,12 +408,15 @@ router.get('/checkout/login', function(req, res) {
   if (!res.locals.cart) {
     return res.redirect('/');
   }
-  res.render('checkout_login');
+  Order.findOne({ _id: req.session.cart_order }).populate('cart.product coupon').exec(function(err, order) {
+    getOrderCartRecap(order);
+    res.render('checkout_login', { order: order });
+  });
 });
 
 router.post('/checkout', function(req, res) {
   if (req.session.order) {
-    Order.findOne({ '_id': req.session.order }).populate('product user').exec(function(err, order) {
+    Order.findOne({ '_id': req.session.order }).populate('product user coupon').exec(function(err, order) {
         if (err)
           console.log(err);
         order.option = req.body.order_option;
@@ -874,10 +921,11 @@ router.get('/shipping', function(req, res) {
   if (!req.session.order && !req.session.cart_order)
     res.redirect('/');
   else
-    Order.findOne({ '_id': req.session.order || req.session.cart_order }, function(err, order) {
+    Order.findOne({ '_id': req.session.cart_order }).populate('cart.product coupon').exec(function(err, order) {
       if (req.user && hasShipping(req.user) && !hasShipping(order)) {
         order.shipping = JSON.parse(JSON.stringify(req.user.shipping));
       }
+      getOrderCartRecap(order);
       res.render('shipping', { title: req.__('shipping'), order: order });
     });
 });

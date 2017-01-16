@@ -272,55 +272,25 @@ router.get('/shop/box/:url', function(req, res, next) {
 });
 
 router.get('/coupons/new', function(req, res, next) {
-  User.find({ role: 'user' }, function(err, users) {
-    res.render('coupons/new', { users: users });
-  });
+  res.render('coupons/new', { users: users });
 });
 
 router.post('/coupons/new', function(req, res, next) {
-  if (!util.isArray(req.body.users)) {
-    req.body.users = req.body.users.split();
-  }
-  req.body.users.forEach(function(user) {
-    var coupon = new Coupon({
-      user: user,
-      type: req.body.type,
-      price: req.body.price,
-      percentage: req.body.percentage,
-      expires_at: req.body.expire_date
-    });
-
-    coupon.save(function() {
-      coupon.populate('user', function(err, coupon) {
-        console.log(coupon);
-        if (coupon.user.email) {
-          fs.readFile('./views/mailer/coupon_new.vash', "utf8", function(err, file) {
-            if(err){
-              //handle errors
-              console.log('ERROR!');
-              return res.send('ERROR!');
-            }
-            var html = vash.compile(file);
-            transporter.sendMail({
-              from: 'Yppuna <hello@yppuna.vn>',
-              to: coupon.user.email,
-              subject: '쿠폰이 발급되었습니다.',
-              html: html({ user: coupon.user })
-            }, function (err, info) {
-                if (err) { console.log(err); }
-                //console.log('Message sent: ' + info.response);
-                transporter.close();
-            });
-          });
-        }
-      });
-    });
+  var coupon = new Coupon({
+    code: req.body.code,
+    type: req.body.type,
+    price: req.body.price,
+    percentage: req.body.percentage,
+    expires_at: req.body.expire_date
   });
-  res.redirect('/coupons/list');
+
+  coupon.save(function() {
+    res.redirect('/coupons/list');
+  });
 });
 
 router.get('/coupons/list', function(req, res, next) {
-  Coupon.find({}).populate('user').exec(function(err, coupons) {
+  Coupon.find({}).exec(function(err, coupons) {
     res.render('coupons/list', { coupons: coupons });
   });
 });
@@ -502,10 +472,6 @@ router.get('/blog/:url', function(req, res, next) {
       res.render('articles/view', { article: article, title: article.title, description: description, cover: cover, comments: comments });
     });
   });
-});
-
-router.get('/cart', function(req, res, next) {
-  res.render('cart');
 });
 
 router.get('/', function(req, res, next) {

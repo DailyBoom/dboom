@@ -123,15 +123,15 @@
                         <div class="cart-total">
                             <div class="col s8">
                                 <div>Tổng tiền:</div>
-                                <div>Phí vận chuyển:</div>
                                 <div>Khuyến mãi:</div>
+                                <div>Phí vận chuyển:</div>
                                 <div class="amount">Thành tiền:</div>
                                 <span>(Đã bao gồm VAT)</span>
                             </div>
                             <div class="col s4">
                                 <div class="total">@model.cart_total</div>
+                                <div class="total-dc">- @model.order.discount</div>
                                 <div class="total-delivery">@model.order.shipping_cost</div>
-                                <div class="total-dc">0</div>
                                 <div class="total-amount">@model.order.totalOrderAmt</div>                                
                             </div>
                             <div class="col s12 delivery-info">

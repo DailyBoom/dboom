@@ -110,8 +110,8 @@
                             </div>
                             <div class="col s4">
                                 <div class="total">@model.cart_total</div>
-                                <div class="total-dc">@model.cart_total</div>
-                                <div class="total-amount">@model.cart_total</div>                                
+                                <div class="total-dc">- @model.order.discount</div>
+                                <div class="total-amount">@model.order.totalOrderAmt</div>                                
                             </div>
                         </div>
                     </div>

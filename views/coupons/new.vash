@@ -2,26 +2,21 @@
 <div class="container">
 	<div class="set-margin-xl">
 	</div>
-	<h4>New coupon</h4>
+	<h4>New code</h4>
 	<div class="row">
 		<form class="col s12" method="post" action="/coupons/new">
 			<div class="row">
 				<br>
 				<div class="input-field col s12 m12 l12">
-					<input id="expire_date" type="date" class="datepicker" name="expire_date" required>
-					<label for="expire_date" style="margin-top: -1.75rem;">Expire date</label>
+					<input id="code" type="text" name="code">
+					<label for="code" style="margin-top: -1.75rem;">Code</label>
 				</div>
 			</div>
-			<button class="select_all" type="button">Select All</button>
-			<button class="clear_all" type="button">Clear All</button>
 			<div class="row">
-				<div class="input-field col s12">
-					<select id="users" name="users" multiple>
-						@model.users.forEach(function(user) {
-							<option value="@user.id">@user.name (@user.username)</option>
-						})
-					</select>
-					<label>User</label>
+				<br>
+				<div class="input-field col s12 m12 l12">
+					<input id="expire_date" type="date" class="datepicker" name="expire_date" required>
+					<label for="expire_date" style="margin-top: -1.75rem;">Expire date</label>
 				</div>
 			</div>
 			<div class="row">
@@ -31,7 +26,7 @@
 						<option value="2">Price (amount)</option>
 						<option value="3">Price (percentage)</option>
 					</select>
-					<label>Coupon type</label>
+					<label>Code type</label>
 				</div>
 			</div>
 			<div class="row price" hidden>

@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var couponSchema = new Schema({
-	user: { type: Schema.Types.ObjectId, ref: 'User' },
+	code: String,
 	type: Number,
 	expires_at: Date,
 	price: Number,

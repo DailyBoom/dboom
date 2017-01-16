@@ -7,7 +7,7 @@
                     <div class="col s12 l8 cart-products">
                         <div class="cart-header hide-on-med-and-down">
                             <div class="col s5">
-                                @model.cart.length sản phẩm 
+                                @model.order.cart.length sản phẩm 
                             </div>
                             <div class="col s3">
                                 Giá mua
@@ -17,7 +17,7 @@
                             </div>
                         </div>
                         <form method="POST" action="/mall/update_cart">
-                            @model.cart.forEach(function(item, index) {
+                            @model.order.cart.forEach(function(item, index) {
                             <div class="cart-product">
                                 <div class="col s4 l2">
                                     <img src="@item.product.images[0]" />
@@ -34,7 +34,7 @@
                                     <div class="product-brand">@item.product.brand</div>
                                     @if (item.product.options[item.option].name !== '') {
                                         <div class="product-color" style="background-color: @item.product.options[item.option].name"></div>
-										@if (model.product.category[0] >= 38 && model.product.category[0] <= 43) {
+										@if (item.product.category[0] >= 38 && item.product.category[0] <= 43) {
 											<div class="option-name">@item.product.options_skin[index]</div>
 										}
                                     }
@@ -62,11 +62,16 @@
                     <div class="col s12 l3">
                         <div class="cart-total">
                             <div>Tổng tiền: <span class="right total">@model.cart_total</span></div>
-                            <div class="discount">Khuyến mãi: <span class="right total-dc">@model.cart_total</span></div>
-                            <div>Thành tiền: <span class="right total-amount">@model.cart_total</span></div>
+                            <div class="discount">Khuyến mãi: <span class="right total-dc">- @model.order.discount</span></div>
+                            <div>Thành tiền: <span class="right total-amount">@model.order.totalOrderAmt</span></div>
                             <span class="vat">(Đã bao gồm VAT)</span>
                         </div>
-                        <a class="ybtn" href="/checkout/login">THANH TOÁN</a>
+                        <form method="post" action="/orders/apply_code" class="col s12" id="code_form">
+                            <label for="code" class="col s12">Mã giảm giá</label>
+                            <input id="code" name="code" class="col s7" type="text" />
+                            <button class="col s5 ybtn">XÁC NHẬN</button>
+                        </form>
+                        <a class="ybtn col s12" href="/checkout/login">THANH TOÁN</a>
                     </div>
                 </div>
             </div>

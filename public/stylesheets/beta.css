@@ -1452,6 +1452,25 @@ header, main {
   color: #b3c2cf;
 }
 
+#cart_recap #code_form {
+  padding: 0;
+  margin-bottom: 26px;
+}
+
+#cart_recap #code_form label {
+  margin-bottom: 9px;
+  padding: 0;
+}
+
+#cart_recap #code_form input {
+  padding: 7px 0 7px 14px;
+  margin: 0;
+}
+
+#cart_recap #code_form button {
+  padding: 4px 0 5px;
+}
+
 .ybtn {
   font-family: SVN-Karla;
   font-size: 16px;
@@ -1656,6 +1675,11 @@ header, main {
   font-stretch: normal;
   color: #b3c2cf;
   text-align: right;
+  line-height: 1;
+}
+
+#cart .cart-total .total-delivery {
+  border-bottom:  dashed 1px #b3c2cf;
 }
 
 #cart .cart-total .total-dc {
@@ -1666,8 +1690,8 @@ header, main {
   font-stretch: normal;
   color: #b3c2cf;
   padding-bottom: 3px;
-  border-bottom:  dashed 1px #b3c2cf;
   text-align: right;
+  line-height: 1;
 }
 
 #cart .cart-total .total-amount {
@@ -2956,8 +2980,12 @@ input[type=number]::-webkit-outer-spin-button {
   background-position: center !important;
 }
 
-#blog .top-vid .s4 {
+#blog .top-vid .s5 {
   padding: 35px 18px 22px 27px;
+}
+
+#blog .top-vid .s5 .date {
+  margin-bottom: 33px;
 }
 
 #blog .top-vid img {
@@ -3625,7 +3653,7 @@ input[type=number]::-webkit-outer-spin-button {
 
   #cart_recap .cart-product .product-price {
     text-align: left;
-  }  
+  }
 
   #shipping_row label {
     text-align: left;
