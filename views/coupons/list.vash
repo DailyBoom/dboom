@@ -2,7 +2,7 @@
 	@html.block("body", function(model) {
 		<div class="container min-h-lg">
 			<div class="row">
-				<h3 class="blue-grey-text text-darken-3">Coupons List</h3>
+				<h3 class="blue-grey-text text-darken-3">Codes List</h3>
 				<br>
 				<table class="responsive-table bordered highlight table-sm">
 					<thead>

@@ -272,7 +272,7 @@ router.get('/shop/box/:url', function(req, res, next) {
 });
 
 router.get('/coupons/new', function(req, res, next) {
-  res.render('coupons/new', { users: users });
+  res.render('coupons/new');
 });
 
 router.post('/coupons/new', function(req, res, next) {

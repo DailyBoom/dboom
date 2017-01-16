@@ -30,6 +30,8 @@
                     </div>
                     <div class="col s12 center" id="orders">
                         <a class="waves-effect waves-light btn-large ybtn-o" href="/orders/list"><i class="fa fa-tasks"></i> Orders List</a>                        
+                        <a class="waves-effect waves-light btn-large ybtn-o" href="/coupons/new"><i class="fa fa-barcode"></i> New code</a>                        
+                        <a class="waves-effect waves-light btn-large ybtn-o" href="/coupons/list"><i class="fa fa-bars"></i> Codes list</a>                        
                     </div>
                     }
                     @if (model.user.admin || model.user.role == 'content') {                    
