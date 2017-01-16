@@ -229,15 +229,14 @@ router.post('/add_to_cart', function(req, res) {
     if (err)
       console.log(err);
     if (!product)
-      res.status(500).json({ error: "Product is invalid" });
-    if (req.body.quantity > product.options[req.body.option].quantity)
-      res.status(500).json({ error: "Quantity is invalid" });      
+      return res.status(500).json({ error: "Product is invalid" });
+    if (parseInt(req.body.quantity) > product.options[req.body.option].quantity)
+      return res.status(500).json({ error: "Quantity is invalid" });      
     if (!req.session.cart_order) {
       var order = new Order({
         cart_merchants: [product.merchant_id],
         cart: [{ product: product._id, quantity: req.body.quantity, option: req.body.option }],
-        status: "Submitted",
-        is_preorder: product.extend == 3 && !moment().isAfter(moment(product.scheduled_at), 'week')
+        status: "Submitted"
       });
       if (req.user) {
         order.user = req.user.id;
@@ -245,6 +244,10 @@ router.post('/add_to_cart', function(req, res) {
           order.shipping = req.user.shipping;
       }
       order.save(function(err) {
+        if (err) {
+          console.log(err);          
+          return res.status(500).json({ error: "Error with order" });          
+        }
         req.session.cart_order = order._id;
         return res.status(200).json({ success: true, message: "Product added" });
       });
@@ -256,8 +259,12 @@ router.post('/add_to_cart', function(req, res) {
           return res.status(500).json({ error: "Error with order" });          
         }
         order.cart_merchants.push(product.merchant_id);
-        order.cart.push({ product: product._id, quantity: req.body.quantity, option: req.body.option, is_preorder: product.extend == 3 && !moment().isAfter(moment(product.scheduled_at), 'week') });
+        order.cart.push({ product: product._id, quantity: req.body.quantity, option: req.body.option });
         order.save(function(err) {
+          if (err) {
+            console.log(err);          
+            return res.status(500).json({ error: "Error with order" });          
+          }
           return res.status(200).json({ success: true, message: "Product added" });
         });
       });

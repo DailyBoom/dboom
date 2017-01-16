@@ -30,7 +30,7 @@
                                     }
                                 </div>
                                 <div class="col s7 l3">
-                                    <div class="truncate product-name"><a href="/shop/products/@item.product.id" class="truncate">@item.product.name</a></div>
+                                    <div class="truncate product-name"><a href="/shop/products/@item.product.url" class="truncate">@item.product.name</a></div>
                                     <div class="product-brand">@item.product.brand</div>
                                     @if (item.product.options[item.option].name !== '') {
                                         <div class="product-color" style="background-color: @item.product.options[item.option].name"></div>
