@@ -158,7 +158,7 @@
 					}
 					<div class="quantity">
 						<h4>SỐ LƯỢNG</h4>
-						<input type="number" id="quantity" min="0" />
+						<input type="number" id="quantity" min="1" value="1" />
 						<button type="button" id="checkout" class="add_cart" data-id="@model.product.id">THÊM VÀO GIỎ HÀNG</button>
 						@if (model.is_mobile) {
 							<div class="sns">

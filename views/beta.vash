@@ -35,6 +35,9 @@
 						</div>
 					</div>
 					<div class="item_detail hide-on-med-and-down">
+						<a href="#" class="add-cart" data-id="@model.products[0].id">
+							THÊM BOX VÀO GIỎ HÀNG
+						</a><br/><br/>
 						<a href="/shop/box/@model.products[0].url">
 							XEM CHI TIẾT
 						</a>
@@ -43,6 +46,9 @@
 				<div class="col s12 l8" >
 					<div class="item_img"><img  src="@model.products[0].images[0]"/></div>
 					<div class="item_detail hide-on-large-only">
+						<a href="#" class="add-cart" data-id="@model.products[0].id">
+							THÊM BOX VÀO GIỎ HÀNG
+						</a><br/><br/>
 						<a href="/shop/box/@model.products[0].url">
 							XEM CHI TIẾT
 						</a>
@@ -89,6 +95,9 @@
 						<div class="col s12 item_to_come hide">ra mắt ngày <span class="item_date">@model.moment(model.products[1].scheduled_at).format("DD/MM/YYYY")</span></div>
 					</div>
 					<div class="col s12 item_detail hide-on-med-and-down">
+						<a href="#" class="add-cart" data-id="@model.products[1].id">
+							THÊM BOX VÀO GIỎ HÀNG
+						</a><br/><br/>
 						<a href="/shop/box/@model.products[1].url">
 							XEM CHI TIẾT
 						</a>
@@ -97,6 +106,9 @@
 				<div class="col s12 l8 hide-on-large-only">
 					<div class="item_img"><img src="@model.products[1].images[0]"/></div>
 					<div class="item_detail hide-on-large-only">
+						<a href="#" class="add-cart" data-id="@model.products[1].id">
+							THÊM BOX VÀO GIỎ HÀNG
+						</a><br/><br/>
 						<a href="/shop/box/@model.products[1].url">
 							XEM CHI TIẾT
 						</a>
@@ -245,7 +257,26 @@
 		//];
 		//Materialize.scrollFire(options);
 		var is_mobile = @model.is_mobile;
-
+		$(".add-cart").on("click", function(e) {
+			e.preventDefault();
+			var id = $(this).data("id");
+			$.ajax({
+				type: "POST",
+				url: "/add_to_cart",
+				dataType: "json",
+				data: {
+					product_id: id,
+					quantity: 1,
+					option: '0'
+				},
+				success: function (res) {
+					window.location = '/cart';
+				},
+				error: function (res) {
+					Materialize.toast(res.responseJSON.message, 4000);
+				}
+			});
+		});
 		$(".item_price, .item_old_price, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
 		var owl = $("#individual .row");
 		owl.owlCarousel({

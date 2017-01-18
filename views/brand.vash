@@ -11,9 +11,9 @@
                 </div>
                 <div class="col s12 l2">
                     <b>B</b>
-                    <p><a href="/mall/?s=Bom">Bom</a></p>
-                    <p><a href="/mall/?s=Blossom+Jeju">Blossom Jeju</a></p>
                     <p><a href="/mall/?s=Banilla+Co.">Banilla Co.</a></p>
+                    <p><a href="/mall/?s=Blossom+Jeju">Blossom Jeju</a></p>
+                    <p><a href="/mall/?s=Bom">Bom</a></p>
                 </div>
                 <div class="col s12 l2">
                     <b>C</b>
@@ -57,18 +57,18 @@
                 </div>
                 <div class="col s12 l2">
                     <b>P</b>
-                    <p><a href="/mall/?s=Pony+Affect">Pony Affect</a></p>
                     <p><a href="/mall/?s=Peripera">Peripera</a></p>
+                    <p><a href="/mall/?s=Pony+Affect">Pony Affect</a></p>
                 </div>
                 <div class="col s12 l2">
                     <b>S</b>
-                    <p><a href="/mall/?s=Sunsumini">Sunsumini</a></p>
+                    <p><a href="/mall/?s=Scinic">Scinic</a></p>
+                    <p><a href="/mall/?s=Shingmulnara">Shingmulnara</a></p>
                     <p><a href="/mall/?s=Sigonan">Sigonan</a></p>
                     <p><a href="/mall/?s=Skin+Food">Skin Food</a></p>
-                    <p><a href="/mall/?s=Shingmulnara">Shingmulnara</a></p>
+                    <p><a href="/mall/?s=Skinmiso">Skinmiso</a></p>
+                    <p><a href="/mall/?s=Sunsumini">Sunsumini</a></p>
                     <p><a href="/mall/?s=2SOL">2SOL</a></p>
-                    <p><a href="/mall/?s=Scinic">Scinic</a></p>
-                    <p><a href="/mall/?s= Skinmiso">Skinmiso</a></p>
                 </div>
                 <div class="col s12 l2">
                     <b>T</b>
@@ -80,7 +80,7 @@
                     <p><a href="/mall/?s=White+Rabbit">White Rabbit</a></p>
                 </div>
                 <div class="col s12 l2">
-                    <b>T</b>
+                    <b>Y</b>
                     <p><a href="/mall/?s=Yuri+Pibu">Yuri Pibu</a></p>
                 </div>
             </div>
