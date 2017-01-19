@@ -1,6 +1,6 @@
 @html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
-		<div class="container" id="individual">
+		<div class="container mall" id="individual">
 			<div class="hmenu">
 				<a href="/mall?group=0">CHĂM SÓC DA</a>
 				<a href="/mall?group=1">TRANG ĐIỂM</a>
@@ -8,7 +8,14 @@
 				<a href="/brands">NHÃN HIỆU</a>
 				<a href="/mall/new">MUA LẺ MỚI NHẤT</a>
 			</div>
-			<h2>@model.title</h2>
+			<h2 class="title wrapper">
+				@model.title.toUpperCase()
+				<img class="svg g-49 hide-on-med-and-down" src="/images/group-49.svg" />
+				<img class="svg g-50 hide-on-med-and-down" src="/images/group-50.svg" />
+				<img class="svg g-51 hide-on-med-and-down" src="/images/group-51.svg" />
+				<img class="svg p-1 hide-on-med-and-down" src="/images/page-1.svg" />
+				<img class="svg p-2 hide-on-med-and-down" src="/images/page-2.svg" />
+			</h2>
 			<div class="row">
 				<select class="col s12 hide-on-large-only category" id="category_list">
 					<option value="" selected disabled>Chọn Danh Mục Sản Phẩm</option>
@@ -124,7 +131,13 @@
 					}
 				</ul>
 				<div class="boxes col s12">
-					<h3 class="center">XEM CÁC BOX KHÍ HẬU</h3>
+					<h3 class="center wrapper">
+						XEM CÁC BOX KHÍ HẬU
+						<img class="svg g-52 hide-on-med-and-down" src="/images/group-52.svg" />
+						<img class="svg g-53 hide-on-med-and-down" src="/images/group-53.svg" />
+						<img class="svg g-55 hide-on-med-and-down" src="/images/group-55.svg" />
+						<img class="svg g-56 hide-on-med-and-down" src="/images/group-56.svg" />
+					</h3>
 					<div class="row">
 						@model.boxes.forEach(function(product) {
 							<div class="box">

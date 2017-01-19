@@ -764,20 +764,66 @@ header, main {
 }
 
 .wrapper .g-52 {
-  left: 404px;
+  left: 31%;
   top: 40px;
 }
+
 .wrapper .g-53 {
-  left: 395px;
+  left: 31%;
   top: -13px;
 }
 
 .wrapper .g-55 {
-  left: 350px;  
+  left: 28%;  
 }
 
 .wrapper .g-56 {
-  right: 365px;
+  right: 28%;
+}
+
+.boxes .g-56 {
+  right: 32%;
+  top: -25px;
+}
+
+.boxes .g-52 {
+  left: 42%;
+  top: 33px;
+}
+
+.boxes .g-53 {
+  left: 40%;
+  top: -25px;
+}
+
+.boxes .g-55 {
+  left: 37%;
+  top: -15px;
+}
+
+.wrapper .g-51 {
+  right: 32%;
+  top: -15px;
+}
+
+.wrapper .g-50 {
+  right: 33%;
+  top: 15px;
+}
+
+.wrapper .g-49 {
+  right: 35%;
+  top: -30px;
+}
+
+.wrapper .p-1 {
+  left: 32%;
+  top: 5px;
+}
+
+.wrapper .p-2 {
+  left: 36%;
+  top: -25px;
 }
 
 .area-header {
@@ -909,6 +955,15 @@ header, main {
     background-color: #3ebbed;
     padding: 5px 21px 6px;
   }
+
+#individual.mall h2 {
+  font-family: SVN-Karla;
+  font-size: 25px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #3ebbed;
+}
 
 #individual h2 {
   font-family: SVN-Karla;
