@@ -475,6 +475,9 @@ router.get('/blog/:url', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
+  if (req.cookies.ypp_f_time) {
+    res.redirect('/home');
+  }  
   if (req.cookies.ypp_f_time && req.cookies.ypp_s_time && req.cookies.ypp_zone) {
     res.redirect('/home');
   }
@@ -490,7 +493,7 @@ router.get('/', function(req, res, next) {
      has_zone = true;
   }
   console.log(req.cookies);
-  res.render('intro', { has_zone : has_zone });
+  res.render('intro', { has_zone : true });
 });
 
 router.get('/brands', function(req, res, next) {

@@ -755,6 +755,31 @@ header, main {
   transition-timing-function: ease-in-out;
 }
 
+.wrapper {
+  position: relative;
+}
+
+.wrapper .svg {
+  position: absolute;
+}
+
+.wrapper .g-52 {
+  left: 404px;
+  top: 40px;
+}
+.wrapper .g-53 {
+  left: 395px;
+  top: -13px;
+}
+
+.wrapper .g-55 {
+  left: 350px;  
+}
+
+.wrapper .g-56 {
+  right: 365px;
+}
+
 .area-header {
   width: 100%;
   font-size: 15px;
@@ -893,6 +918,7 @@ header, main {
   font-stretch: normal;
   color: #fea3a3;
   text-align: center;
+  margin-bottom: 55px;
 }
 
 #individual h3 {
