@@ -207,7 +207,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
   });
 });
 
-router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: 'photosmobile', maxCount: 4}, {name: "brandlogo", maxCount: 1}, { name: "description_image", maxCount: 1}, { name: "homepage_image", maxCount: 1}, { name: "box_header", maxCount: 1}, { name: "box_background", maxCount: 1}]), function(req, res) {
+router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: 'photosmobile', maxCount: 4}, {name: "brandlogo", maxCount: 1}, { name: "description_image", maxCount: 1}, { name: "homepage_image", maxCount: 1}, { name: "box_header", maxCount: 1}, { name: "box_background", maxCount: 1}, { name: "options.photo" }]), function(req, res) {
   Product.findOne({_id: req.params.id}, function (err, product) {
     if (err)
       console.log(err);
@@ -345,9 +345,6 @@ router.get('/products/:id/delete_desc_img', isMerchantOrAdmin, function(req, res
 
 router.get('/products/preview/:id', function(req, res) {
   var query = Product.findOne({ _id: req.params.id });
-  if (req.user && req.user.role == 'merchant') {
-    query.where('merchant_id').equals(req.user._id);
-  }
   query.exec(function(err, product) {
     if (err)
       console.log(err);
