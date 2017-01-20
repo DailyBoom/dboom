@@ -151,6 +151,7 @@
 										@if (model.product.category[0] >= 38 && model.product.category[0] <= 43) {
 											<div class="option-name">@model.product.options_skin[index]</div>
 										}
+										<img src="@option.photo" class="hide option-photo" />
 									</div>
 								})
 							</div>
@@ -219,6 +220,15 @@
 			$('.options .option').on('click', function() {
 				$('.options .option').removeClass('active');
 				$(this).addClass('active');
+				var main = $('.main-img img').attr('src');
+				var side = $(this).find('.option-photo').attr('src');
+				console.log(side);
+				if (side != '' && main !== side) {
+					$('.main-img img').animateCSS('fadeOut');
+					$('.main-img').animateCSS('slideOutUp', function() {
+						$('.main-img img').attr('src', side);
+					});
+				}
 			})
 
 			$('.read-more, .read-less').on('click', function() {

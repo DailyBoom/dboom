@@ -92,7 +92,7 @@ router.get('/products/preview', isMerchantOrAdmin, function(req, res) {
   res.render("products/preview");
 });
 
-router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: 'photosmobile', maxCount: 4}, {name: "brandlogo", maxCount: 1}, { name: "description_image", maxCount: 1}, { name: "homepage_image", maxCount: 1}, { name: "box_header", maxCount: 1}, { name: "box_background", maxCount: 1}]), function(req, res) {
+router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: 'photosmobile', maxCount: 4}, {name: "brandlogo", maxCount: 1}, { name: "description_image", maxCount: 1}, { name: "homepage_image", maxCount: 1}, { name: "box_header", maxCount: 1}, { name: "box_background", maxCount: 1}, { name: "options[photo]"}]), function(req, res) {
   console.log(req.body);
   // req.Validator.validate('selldate', i18n.__('product.sellDate'), {
   //   required: true
@@ -135,8 +135,11 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
       }
       
       var quantity = 0;
-      req.body.options.forEach(function(option) {
-        quantity += parseInt(option.quantity);
+      req.body.options.forEach(function(option, index) {
+        if (req.files['options[photo]'] && req.files['options[photo]'][index]) {
+          req.body.options[index].photo = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['options[photo]'][index].key;
+        }
+        quantity += parseInt(option.quantity);      
       });
       
       var product = new Product({
@@ -207,14 +210,17 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
   });
 });
 
-router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: 'photosmobile', maxCount: 4}, {name: "brandlogo", maxCount: 1}, { name: "description_image", maxCount: 1}, { name: "homepage_image", maxCount: 1}, { name: "box_header", maxCount: 1}, { name: "box_background", maxCount: 1}, { name: "options.photo" }]), function(req, res) {
+router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: 'photosmobile', maxCount: 4}, {name: "brandlogo", maxCount: 1}, { name: "description_image", maxCount: 1}, { name: "homepage_image", maxCount: 1}, { name: "box_header", maxCount: 1}, { name: "box_background", maxCount: 1}, {name: "options[photo]"}]), function(req, res) {
   Product.findOne({_id: req.params.id}, function (err, product) {
     if (err)
       console.log(err);
 
     var quantity = 0;
-    req.body.options.forEach(function(option) {
-      quantity += parseInt(option.quantity);
+    req.body.options.forEach(function(option, index) {
+      if (req.files['options[photo]'] && req.files['options[photo]'][index]) {
+        req.body.options[index].photo = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['options[photo]'][index].key;
+      }
+      quantity += parseInt(option.quantity);      
     });
 
     if (req.body.merchant_id)
