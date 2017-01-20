@@ -57,9 +57,6 @@ var isMerchantOrAdmin = function (req, res, next) {
 router.get('/products/list', isMerchantOrAdmin, function(req, res) {
   var query = Product.find({}, {}, { sort: { 'scheduled_at' : -1 } });
   var page = req.query.page ? req.query.page : 1;
-  if (req.user.role == 'merchant') {
-    query.where('merchant_id').equals(req.user._id);
-  }
   if (req.query.type == 1) {
     query.where('extend').gte(1).lte(3);
   }
