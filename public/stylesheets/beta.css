@@ -965,6 +965,11 @@ header, main {
   color: #3ebbed;
 }
 
+#individual .banner img {
+  width: 100%;
+  height: auto;
+}
+
 #individual h2 {
   font-family: SVN-Karla;
   font-size: 35px;
