@@ -110,12 +110,12 @@
 						<a href="/shop/products/@product.url"><img src="@product.images[0]" /></a>
 						<div class="prod_brand">@product.brand</div>
 						<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
-						<div class="prod_price">
-							@product.price
-							@if (product.old_price) {
-								<span class="old_price">@product.old_price</span>
-							}
-						</div>
+						<span class="prod_price">
+							@product.price	
+						</span>
+						@if (product.old_price) {
+							<span class="old_price">@product.old_price</span>
+						}
 					</div>
 				})
 				
