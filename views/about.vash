@@ -2,10 +2,10 @@
 	@html.block("body", function(model) {
 		<div class="container" id="terms">
 			<div class="row">
-				<div class="col l3 hide-on-small-only">
+				<div class="col l4 hide-on-small-only">
 					<img src="/images/Aboutus.gif" />
 				</div>
-				<ul class="col s12 offset-l1 l8 info-details">
+				<ul class="col s12 l8 info-details">
 					<h2>@model.__('about.title')</h2>
 					<li>@model.__('about.text_1')</li>
 					<li>@model.__('about.text_2')</li>
@@ -31,6 +31,7 @@
 		<script>
 			$(document).ready(function(){
 				$('.parallax').parallax();
+				//$('#terms .l4').pushpin({ top: $('#terms .l4').offset().top, bottom: $('footer').offset().top });
 			});
 		</script>
 	})
