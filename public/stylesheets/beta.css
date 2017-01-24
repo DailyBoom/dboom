@@ -2961,6 +2961,15 @@ input[type=number]::-webkit-outer-spin-button {
   padding-top: 4px;
 }
 
+#terms .circle-list {
+  color: #fea3a3;
+  padding-left: 40px;
+}
+
+#terms .circle-list li {
+  list-style-type: circle;  
+}
+
 /* Wholesale */
 
 #wholesale h2 {
