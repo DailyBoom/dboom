@@ -232,11 +232,19 @@
 			</h2>
 			<div class="row">
 			@model.hotProducts.forEach(function(product) {
-				<div class="center">
+				<div class="center mall-product">
 					<a href="/shop/products/@product.url"><img src="@product.images[0]" /></a>
 					<div class="prod_brand">@product.brand</div>
 					<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
 					<div class="prod_price">@product.price<span class="currency">đ</span></div>
+					@if (product.old_price) {
+						<span class="old_price">@product.old_price</span>
+						@{
+							var price =  product.old_price - product.price
+							var sale = price / product.old_price * 100; 
+						}							
+						<span class="sale">-@sale.toFixed(0)%</span>
+					}
 				</div>
 			})
 		</div>
@@ -245,11 +253,19 @@
 			<h2>MUA LẺ MỚI NHẤT</h2>
 			<div class="row">
 			@model.newProducts.forEach(function(product) {
-				<div class="center">
+				<div class="center mall-product">
 					<a href="/shop/products/@product.url"><img src="@product.images[0]" /></a>
 					<div class="prod_brand">@product.brand</div>
 					<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
 					<div class="prod_price">@product.price<span class="currency">đ</span></div>
+					@if (product.old_price) {
+						<span class="old_price">@product.old_price</span>
+						@{
+							var price =  product.old_price - product.price
+							var sale = price / product.old_price * 100; 
+						}							
+						<span class="sale">-@sale.toFixed(0)%</span>
+					}
 				</div>
 			})
 		</div>
