@@ -1008,7 +1008,10 @@ header, main {
     right: 30px;
     background-color: #f19996;
     border-radius: 90px;
-    padding: 21px 14px;
+    padding: 21px 0;
+    height: 64px;
+    width: 64px;
+    text-align: center;
   }  
 
 #individual .owl-item {

@@ -150,7 +150,7 @@ router.get('/mall/sale', function(req, res, next) {
   console.log(products);
   Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
       res.render('mall', { title: "Happy Tết Sale", description: "", products: products, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });      
-    });    
+    });
   });
 });
 
