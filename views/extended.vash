@@ -148,7 +148,7 @@
 								@model.product.options.forEach(function(option, index){
 									<div data-option="@index" class="@(index == 0 ? 'active' : '') option">
 										<div class="option-color" style="background-color:@option.name;"></div>
-										@if (model.product.category[0] >= 38 && model.product.category[0] <= 43) {
+										@if (model.product.category[0] == 60 || (model.product.category[0] >= 38 && model.product.category[0] <= 43)) {
 											<div class="option-name">@model.product.options_skin[index]</div>
 										}
 										<img src="@option.photo" class="hide option-photo" />

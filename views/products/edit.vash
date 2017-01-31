@@ -442,10 +442,12 @@
 <!-- .container -->
 <script>
 	$(document).ready(function() {
-		var category = '@model.product.category';
+		var category = '@model.product.category'.split(",");
+		var i = 0;
 		$('#category option').each(function () {
-			if ($(this).val() == category) {
+			if ($(this).val() == category[i]) {
 				$(this).attr('selected', 'selected');
+				i++;
 			}
 		})
 		$('select').material_select();
