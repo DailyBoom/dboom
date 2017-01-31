@@ -968,6 +968,7 @@ header, main {
 #individual .banner img {
   width: 100%;
   height: auto;
+  margin: 20px 0;
 }
 
 #individual h2 {
@@ -4258,10 +4259,45 @@ input[type=number]::-webkit-outer-spin-button {
     font-style: normal;
     font-stretch: normal;
     color: #1b5eaf;
+    margin-bottom: 15px;
   }
 
   footer .cards img {
     margin-right: 12px;
+  }
+
+  footer .cards .logos div {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  footer .cards .logos .dollar {
+    font-family: SVN-Karla;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ffffff;
+    background-color: #a8d8ff;
+    border-radius: 90px;
+    width: 23px;
+    height: 23px;
+    text-align: center;
+  }
+
+  footer .cards .logos .account {
+    font-family: SVN-Karla;
+    font-size: 13px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #2074bd;
   }
 
   #north .area-row .item_cover {

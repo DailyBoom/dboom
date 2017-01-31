@@ -547,9 +547,11 @@
                       HÌNH THỨC THANH TOÁN
                     </div>
                     <div class="logos">
-                      <img src="/images/visa.png" />
-                      <img src="/images/mastercard.png" />
+                      <!--<img src="/images/visa.png" />
+                      <img src="/images/mastercard.png" />-->
                       <img src="/images/cod.png" />
+                      <div class="dollar">$</div>
+                      <div class="account">ACCOUNT<br/> TRANSFER</div>
                     </div>
                   </div>
                 </div>
