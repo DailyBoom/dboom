@@ -1,57 +1,7 @@
 @html.extend(model.layout, function(model) {
 	@html.block("body", function(model) {
 <!-- Login Modal Structure -->
-<div id="modal-check" class="modal">
-	<div class="modal-header-c @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') center">
-		로그인
-	</div>
-	<div class="modal-content-c">
-		<div class="row">
-			<form method="post" action="/login?product_id=@model.product.id">
-				<div class="input-field col s12">
-					<input id="username" type="text" class="validate" name="username">
-					<label for="username">아이디</label>
-				</div>
-				<div class="input-field col s12">
-					<input id="password" type="password" class="validate" name="password">
-					<label for="password">비밀번호</label>
-				</div>
-				<div class="col s12">
-					<span class="left">
-						<input type="checkbox" id="remember-me" name="remember_me"/>
-						<label for="remember-me">아이디 저장</label>
-					</span>
-					<span class="right">
-						<button class="waves-effect waves-light btn light-blue darken-2" type="submit" name="action">로그인</button>
-					</span>
-				</div><!-- .col -->
-				<div class="col s12">
-					<div class="or-wrapper">
-						<img class="responsive-img" src="/images/or_2.png" alt="" />
-					</div>
-				</div>
-				<div class="col s12 center">
-					<div class="social-login-wrapper">
-						<a class="btn-social-login tooltipped" data-position="top" data-delay="0" data-tooltip="페이스북으로 로그인" href="#!"><img class="circle z-depth-1" src="/images/icon_fb_social.png" id="facebook" data-product="@model.product.id" /></a>
-						<a class="btn-social-login tooltipped" data-position="top" data-delay="0" data-tooltip="카카오톡으로 로그인" href="#!"><img class="circle z-depth-1" src="/images/icon_kakao_social.png" id="kakao" data-product="@model.product.id" /></a>
-						<a class="btn-social-login mod hide-on-small-only" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;"><img class="rounded z-depth-1" src="/images/icon_buy_2.png" /></a>
-						<a class="btn-social-login hide-on-med-and-up" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;">
-							<img class="circle z-depth-1" src="/images/icon_buy.png" />
-						</a>
-						<img class="responsive-img hide-on-med-and-up" src="/images/buynow.png" alt="비회원 바로구매 - 데일리 붐" />
-						<div class="right light-blue-text hide-on-med-and-up">
-							<i class="fa fa-info-circle fa-fw"></i> 비회원 바로구매
-						</div>
-					</div>
-				</div>
-			</form>
-		</div><!-- .row -->
-	</div><!-- .modal-content -->
-	<div class="modal-footer-c white lighten-5 red-text text-darken-3">
-		<a class="black-text text-darken-3 left" href="/forgot">비밀번호를 잊으셨나요?</a>
-		<!-- <a class="red-text text-darken-3 right" href="/signup">회원가입</a> -->
-	</div>
-</div><!-- #modal-check -->
+
 <!-- End Login Modal -->
 <!-- Login Modal Structure -->
 <div id="modal-ask" class="modal modal-lg center">
@@ -70,257 +20,47 @@
 		</div><!-- .row -->
 	</div><!-- .modal-content -->
 </div><!-- #modal-check -->
-<!-- Buy Wrapper -->
-<div id="buy-sticky" class="hide-on-small-only buy-sticky-wrapper center @(model.product.color ? model.product.color : 'white')">
-	<a href="#modal-ask" class="buy-help-d modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Can't Read Korean? Click here.</a>
-	@if (model.user) {
-		@if (model.progress < 100) {
-			<a href="/checkout?product_id=@model.product.id">
-				<img class="buy-mod-img right" src="/images/db_buy_btn.png" alt="Buy Button Daily Boom Korea 데일리 붐" />
-			</a>
-		}
-	}
-	else {
-		@if (model.progress < 100) {
-			<a href="#modal-check" class="modal-trigger right">
-				<img class="buy-mod-img right" src="/images/db_buy_btn.png" alt="Buy Button Daily Boom Korea 데일리 붐" />
-			</a>
-		}
-	}
-	<span id="time-left-label" class="d-clock label @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.__('time_left')</span>
-	<br><span id="time-left" class="d-clock @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></span>
-</div>
-@if(model.product.images.length == 1 || model.product.mobile_images.length == 1) {
-<!-- Parallax -->
-	@if(model.is_mobile && model.product.mobile_images.length == 1) {
-		<div class="index-mobile-parallax-container">
-			<div class="parallax">
-				<img class="ie-fix" src="@model.product.mobile_images[0]" alt="@model.product.name" />
-				<div class="sale-item">
-					<div class="mod">Sale</div>
-					<div class="item-price">@model.sale%</div>
-				</div>
-			</div>
-		</div>
-	}
-	else if (!model.is_mobile && model.product.images.length == 1) {
-		<div class="index-parallax-container">
-			<div class="parallax">
-				<img class="ie-fix" src="@model.product.images[0]" alt="@model.product.name" />
-			</div>
-		</div>
-	}
-}
-<div class="container@(model.is_mobile ? '-fluid' : '')">
-	@if(model.progress >= 50){
-		 <div class="progress-wrapper">
-			<div class="progress-h red lighten-4"></div>
-			<div class="determinate-h red darken-2" style=""></div>
-			<div class="progress-h-text white-text hide">@model.progress% 팔림</div>
-		</div>
-	}
-
-@if(model.product.images.length > 1 || model.product.mobile_images.length > 1) {
-    <!-- L Slider -->
-	<div class="hero-wrapper">
-		@if(model.is_mobile && model.product.mobile_images.length > 1) {
-		<div class="hero-left bxslider-wrap mobile-wrap">
-			<div id="main-slider" class="slider-wrapper z-depth-1">
-				@model.product.mobile_images.forEach(function(img, index) {
-					<div class="slide" style="background-image: url(@img);">
-						@if(model.progress >= 100) {
-							<img class="sold-out" src="/images/sold-out.png" />
-						}
-						else {
-							<div class="sale-item hide-on-med-and-up">
-								<div class="mod">Sale</div>
-								<div class="item-price">@model.sale%</div>
-							</div>
-						}
-					</div>
-				})
-				
-			</div><!-- #main-slider -->
-		</div><!-- .hero-left -->
-		}
-		else if (!model.is_mobile && model.product.images.length > 1){
-		<div class="hero-left bxslider-wrap">
-			<div id="main-slider" class="slider-wrapper z-depth-1">
-				@model.product.images.forEach(function(img, index) {
-					<div class="slide" style="background-image: url(@img);">
-						@if(model.progress >= 100) {
-							<img class="sold-out" src="/images/sold-out.png" />
-						}
-						else {
-							<div class="sale-item hide-on-med-and-up">
-								<div class="mod">Sale</div>
-								<div class="item-price">@model.sale%</div>
-							</div>
-						}
-					</div>
-				})
-				@if(model.product.video) {
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/@model.product.video" frameborder="0" allowfullscreen></iframe>
-				}
-				else {
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/4ZU_BZMt87k" frameborder="0" allowfullscreen></iframe>
-				}
-			</div><!-- #main-slider -->
-		</div><!-- .hero-left -->
-		<div class="hero-right" id="bx-pager">
-			@{ var x = 0; }
-			@model.product.images.forEach(function(img) {
-				<a class="hero-img" data-slide-index="@x">
-					<div class="hero-thumbnail" style="background-image: url(@img);"></div>
-				</a>
-				@{ x++; }
-			})
-			@if(model.product.video) {
-				<a class="hero-img" data-slide-index="@x">
-					<div class="hero-thumbnail" style="background-image: url('http://img.youtube.com/vi/@model.product.video/sddefault.jpg');"></div>
-				</a>
-			}
-			else {
-				<a class="hero-img" data-slide-index="@x">
-					<div class="hero-thumbnail" style="background-image: url('http://img.youtube.com/vi/4ZU_BZMt87k/sddefault.jpg');"></div>
-				</a>
-			}
-		</div><!-- .hero-right -->
-		}
-	</div><!-- .hero-wrapper -->
-}
-</div><!-- .container -->
-
 <!-- b4 -->
-<div class="container@(model.is_mobile ? '-fluid' : '')">
+<div class="container@(model.is_mobile ? '-fluid' : '')" id="home">
 	<div class="row">
 		<div class="col s12">
-			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'white') darken-3 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
-					<img class="brand-img" src="@model.product.brand_logo" alt="@model.product.brand - Logo" />
-					@if (model.product.name.length >= 12) {
-						<div class="item-name name-md">@model.product.name</div>
-					}
-					else {
-						<div class="item-name name-lg">@model.product.name</div>
-					}
-						<div class="hide-on-small-only m-item right">
-							<div class="item-price-o mod red-text text-lighten-2">SALE</div>
-							<div class="item-price">@model.sale%</div>
+		@if (model.product) {			
+			<div class="daily" style="background: url(@model.product.images[0]) no-repeat">
+				<div class="col l4 s12 red white-text">
+					<h3>
+						Today's sale
+					</h3>
+					<a href="/mall/products/@model.product.id">Shop Now</a>
+				</div>
+			</div>
+		}
+			<div class="col s12 products">
+				<h2 class="center">AS SEEN ON CELEBRITIES</h2>
+				@model.mallProducts.forEach(function(product) {
+				<div class="col s12 m4 m-y-3">
+					<div class="card">
+						<div class="card-image">
+							<a href="/mall/products/@product.id">
+								<div class="mall-card-img" style="background-image: url('/@product.images[0]')"></div>
+							</a>
 						</div>
-					<span class="hide-on-small-only">&nbsp;</span>
-					<div class="hide-on-small-only m-item right">
-							<div class="item-price-o desk red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
-						<div class="item-price desk" id="product_price_mobile">@model.product.price</div>
+						<div class="card-content mall center">
+							<span>@product.brand</span>
+							<div class="mall-title left"><a href="/extent/@product.id"><b>@product.name</b></a></div>
+							<!--<a class="right" href="/blushop/@product.brand/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>-->
+							<!--<button class="btn-xs add_cart right" data-id="@product.id">Add to cart <i class="fa fa-cart-plus"></i></button>-->
+							<p class="mall-price-o">@(product.old_price != product.price ? product.old_price : '')</p>
+							<p class="mall-price-n">@product.price</p>
+						</div>
 					</div>
+				</div>
+				})
 			</div>
-			<div class="buy-box-info @(model.product.color ? model.product.color : 'white') lighten-5 blue-grey-text text-darken-4">
-				<div class="item-info">@html.raw(model.product.description)</div>
-				<div class="item-info-links">
-					@if(model.product.review_url) {
-						<a href="@model.product.review_url" target="_blank"><i class="fa fa-hand-o-right"></i> 상품 리뷰 보기</a>
-						<br>
-					}
-					@if(model.product.company_url) {
-						<a href="@model.product.company_url" target="_blank"><i class="fa fa-home"></i> @model.product.brand @model.__('merchant.website')</a>
-						<br>
-					}
-					@if(model.product.company_facebook) {
-						<a href="@model.product.company_facebook" target="_blank"><i class="fa fa-facebook-official"></i> @model.product.brand @model.__('merchant.facebook')</a>
-						<br>
-					}
-					@if(model.product.company_youtube) {
-						<a href="@model.product.company_youtube" target="_blank"><i class="fa fa-youtube"></i> @model.product.brand YouTube @model.__('merchant.youtube')</a>
-						<br>
-					}
-					@if(model.product.company_instagram) {
-						<a href="@model.product.company_instagram" target="_blank"><i class="fa fa-instagram"></i> @model.product.brand @model.__('merchant.instagram')</a>
-						<br>
-					}
-				</div>
-				@if(model.product.description_image) {
-					<img class="responsive-img" src="/@model.product.description_image" alt="" />
-				}
-				<div class="right-align">
-				@if (model.user) {
-					@if (model.progress < 100) {
-						<a class="hide-on-small-only btn btn-large buy-mod red darken-1" href="/checkout?product_id=@model.product.id">@model.__('buy_today') <i class="fa fa-chevron-right fa-fw"></i></a>
-					}
-				}
-				else {
-					@if (model.progress < 100) {
-						<a class="hide-on-small-only btn btn-large buy-mod red darken-1 modal-trigger" href="#modal-check">@model.__('buy_today') <i class="fa fa-chevron-right fa-fw"></i></a>
-					}
-				}
-					<br><br>
-					<a href="#modal-ask" class="hide-on-small-only btn btn-flat buy-help-dd modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Can't Read Korean? Click here.</a>
-				</div>
-			</div>
-			<div class="buy-box-footer @(model.product.color ? model.product.color : 'white') lighten-3">
-				<div class="center">
-					<span class="share-text @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">상품 공유하기</span>
-					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
-					<img id="sharekakao" class="social" src="/images/icon_kakao.png" alt="Kakao Logo" />
-					<a href="mailto:?subject=데일리 붐: 오늘 뭐 사지?&body=http://dailyboom.co"><img id="sharemail"  class="social" src="/images/icon_email.png" alt="Email Image" /></a>
-					<a class="modal-trigger" href="#share_url_modal"><img id="shareurl" class="social" src="/images/link_icon.png" alt="Link Image" /></a>
-				</div>
-			</div><!-- .buy-box-footer -->
-			<!-- Modal Structure -->
-		  <div id="share_url_modal" class="modal">
-				<div class="modal-header @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') center">
-					공유하기
-				</div>
-		    <div class="modal-content">
-					<input readonly type="text" id="share_url" value="http://dailyboom.co">
-					<br>
-					<br>
-					<a href="#!" class="modal-action modal-close waves-effect waves-light btn @(model.product.color ? model.product.color : 'white') darken-2">닫기</a>
-		    </div>
-		  </div>
-			<!-- Merchant xInfo -->
-			<div class="mt-info">
-				<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
-					<li>
-						<div class="collapsible-header @(model.product.color ? model.product.color : 'white') darken-1 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
-							<span>@model.__('shipping_info') <i class="fa fa-chevron-down fa-fw right"></i></span>
-						</div>
-						<div class="collapsible-body @(model.product.color ? model.product.color : 'white') lighten-5">
-							@if(model.product.delivery_info) {
-							<img class="responsive-img" src="@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - 데일리 붐"/> }
-							else {
-							<div class="item-shipping-info-box">
-								<p><b>배송 진행상황 조회</b></p>
-								<ol class="item-shipping-info">
-									<li>처리상황이 [발송완료]일 때 배송진행사항은 주문내역의 송장번호로 해당 택배사 홈페이지를 통해 확인하실 수 있습니다.</li>
-									<li>발송완료 등록 및 발송완료 SMS 문자 메시지를 받으신 후 고객님께 배달완료 되기까지 1~2일정도 소요됩니다. (토요일, 공휴일 제외)</li>
-									<li>택배사 또는 고객사정(고객님 연락이 되지 않을 경우)으로 인해 배송이 지연되는 경우가 있으니 해당 택배사로 전화문의를 하시면 배송상태를 확인 하실 수 있습니다.</li>
-								</ol>
-								<p><b>제품 교환/환불 정책</b></p>
-								<span>모든 제품은 해당 제품 회사의 물품 환불 및 교환 정책에 따릅니다.</span>
-								<br><span>해당 제품 회사가 아직 배송관련 교환 및 환불 정책이 없을 때, 모든 물품은 수령한지 10일 이내에 사용하지 않은 새 것 일 때 교환및 환불이 가능합니다. 환불을 원하는 경우, 해당 회사에 직접 연락을 하거나 데일리 붐 회계팀(contact@dailyboom.co)로 연락주시기 바랍니다.</span>
-							</div>
-							}
-						</div>
-					</li>
-				</ul>
-			</div>
+			<a href="#modal-ask" class="hide-on-med-and-up buy-help modal-trigger dark-text">Can't Read Korean? Click here.</a>
 
-			<!-- Mobile -->
-			<div class="hide-on-med-and-up mobile-buy white-text">
-				<a class="modal-trigger" href="@(model.user ? '/checkout?product_id='+model.product.id : '#modal-check')">
-					<div class="m-item">
-						<div class="item-price-o" id="product_old_price_mobile">@model.product.old_price</div>
-						<div class="item-price" id="product_price_mobile">@model.product.price</div>
-					</div>
-					<div class="hide-on-med-and-up right buy-text">
-						Buy Now
-					</div>
-				</a>
-			</div>
-			<a href="#modal-ask" class="hide-on-med-and-up buy-help modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Can't Read Korean? Click here.</a>
-
-			<div class="hide-on-small-only past-box-wrapper @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
+			<div class="col s12 hide-on-small-only center past-box-wrapper">
 				@model.__('past_items')
-				<a class="hide @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') right" href="/mall"><i class="fa fa-shopping-bag fa-fw @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></i> 쇼핑몰 보기</a>
+				<a class="hide dark-text right" href="/mall"><i class="fa fa-shopping-bag fa-fw dark-text"></i> 쇼핑몰 보기</a>
 			</div>
 			<div class="row">
 				<div class="col s12 m12 l12">
@@ -331,7 +71,7 @@
 										<div class="col s12 m12 l12">
 											<div class="card past">
 												<div class="card-image">
-													<div class="past-date-box @(model.product.color ? model.product.color : 'white') darken-1 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
+													<div class="past-date-box white darken-1 dark-text">
 														@model.moment(product.scheduled_at).format("YYYY/MM/DD")@(model.moment(product.scheduled_at).day() == 6 ? model.moment(product.scheduled_at).add(1, 'days').format('-DD') : '')@(model.moment(product.scheduled_at).isSame('2016-02-08') ? '-09-10' : '')
 													</div>
 													<div class="card-image-ol">
@@ -345,12 +85,12 @@
 												</div>
 													@if(product.extend == 1 && model.moment().isBefore(model.moment(product.scheduled_at).add(3, 'days'), 'days')){
 														<div class="card-action mod center green">
-															<a class="waves-effect waves-light btn-flat white-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/extend/@product.id">@model.__('available')! (<span class="time-left"></span>)</a>
+															<a class="waves-effect waves-light btn-flat white-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/mall/products/@product.id">@model.__('available')! (<span class="time-left"></span>)</a>
 														</div>
 													}
 													else if (product.extend == 2){
 														<div class="card-action mod center green">
-															<a class="waves-effect waves-light btn-flat white-text text-darken-3" href="/extend/@product.id">@model.__('available')!</a>
+															<a class="waves-effect waves-light btn-flat white-text text-darken-3" href="/mall/products/@product.id">@model.__('available')!</a>
 														</div>
 													}
 													else if (model.user && product.wanna_buy.indexOf(model.user.id) != -1) {
@@ -375,7 +115,7 @@
 			<!-- Featured section -->
 			<div class="row">
 				<div class="col s12">
-					<div class="past-box-wrapper @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
+					<div class="past-box-wrapper white darken-2 dark-text">
 						@model.__('featured')
 					</div>
 					<br>
@@ -572,7 +312,7 @@ $(window).scroll(function() {
 		if (lang == 'vi')
 			$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile, .ol-old-p, .ol-new-p").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
 		else
-			$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile, .ol-old-p, .ol-new-p").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});			
+			$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile, .ol-old-p, .ol-new-p, .mall-price-o, .mall-price-n").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});			
 
 		var owl = $("#db-past");
 		owl.owlCarousel({

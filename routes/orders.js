@@ -246,7 +246,7 @@ router.get('/orders/delete/:id', isAdmin, function(req, res) {
 });
 
 router.post('/add_to_cart', function(req, res) {
-  Product.findOne({_id: req.body.product_id, is_published: true, extend: 4}, function(err, product) {
+  Product.findOne({ _id: req.body.product_id, is_published: true }, function(err, product) {
     console.log(req.body);
     if (err)
       console.log(err);
@@ -284,9 +284,9 @@ router.post('/add_to_cart', function(req, res) {
   });
 });
 
-router.get('/blushop/checkout', function(req, res) {
+router.get('/mall/checkout', function(req, res) {
   if (typeof req.session.cart_order === 'undefined' || !req.session.cart_order) {
-    return res.redirect('/blushop');
+    return res.redirect('/mall');
   }
   else {
     if (req.query.no_login && req.query.no_login == 1) {
@@ -294,7 +294,7 @@ router.get('/blushop/checkout', function(req, res) {
         req.session.no_login = true;
     }
     if (!req.user && !req.session.no_login) {
-        return res.redirect('/blushop/login');
+        return res.redirect('/mall/login');
     }
     Order.findOne({ _id: req.session.cart_order }).populate('cart.product').exec(function(err, order) {
       if (err)
@@ -311,14 +311,14 @@ router.get('/blushop/checkout', function(req, res) {
               if (!error && body.code == 0) {
                 if (req.user) {
                   Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
-                    res.render('blushop/checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, title: "주문결제", coupons: coupons });
+                    res.render('mall/checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, title: "주문결제", coupons: coupons });
                   });
                 }
                 else
-                  res.render('blushop/checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, title: "주문결제" });
+                  res.render('mall/checkout', { order: order, orderSheetUrl: body.result.orderSheetUrl, title: "주문결제" });
               }
               else
-                res.redirect('/blushop');
+                res.redirect('/mall');
             }
           );
         });
@@ -330,7 +330,7 @@ router.get('/blushop/checkout', function(req, res) {
   }
 });
 
-router.post('/blushop/update_cart', function(req, res) {
+router.post('/mall/update_cart', function(req, res) {
   if (typeof req.session.cart_order === 'undefined' || !req.session.cart_order) {
     return res.status(500).json({});
   }
@@ -349,7 +349,7 @@ router.post('/blushop/update_cart', function(req, res) {
   }
 });
 
-router.post('/blushop/remove_from_cart', function(req, res) {
+router.post('/mall/remove_from_cart', function(req, res) {
   if (typeof req.session.cart_order === 'undefined' || !req.session.cart_order) {
     return res.status(500).json({});
   }
@@ -368,8 +368,8 @@ router.post('/blushop/remove_from_cart', function(req, res) {
   }
 });
 
-// I'mport callback for blushop checkout
-router.post('/blushop/iamport_callback', function (req, res) {
+// I'mport callback for mall checkout
+router.post('/mall/iamport_callback', function (req, res) {
   Order.findOne({ _id: req.body.id }).populate('user cart.product').exec(function (err, order) {
     order.status = "Paid";
     order.imp = JSON.parse(req.body.imp);
@@ -714,8 +714,8 @@ router.post('/checkout', function(req, res) {
 });
 
 router.post('/deposit_checkout', function(req, res) {
-  if (req.session.order) {
-    Order.findOne({ '_id': req.session.order || req.session.cart_order }).populate('product coupon user').exec(function(err, order) {
+  if (req.session.order || req.session.cart_order) {
+    Order.findOne({ '_id': req.session.order || req.session.cart_order }).populate('product coupon user cart.product').exec(function(err, order) {
         if (order.status == "Waiting")
           return res.redirect('/success');
         if (err)
@@ -725,7 +725,12 @@ router.post('/deposit_checkout', function(req, res) {
         order.created_at = Date.now();
         if (req.user)
           order.shipping = req.user.shipping;
-        getOrderTotal(order);
+        if (order.cart) {
+          getOrderCartTotal(order);
+        }
+        else {
+          getOrderTotal(order);
+        }
         if (order.coupon) {
           order.coupon.used = true;
           order.coupon.save();
@@ -869,8 +874,8 @@ router.all('/payco_callback', function (req, res) {
   }
 });
 
-// Callback for payco on a blushop checkout
-router.all('/blushop/payco_callback', function (req, res) {
+// Callback for payco on a mall checkout
+router.all('/mall/payco_callback', function (req, res) {
   var resp;
   if (req.query.code) {
     resp = req.query;
@@ -966,6 +971,8 @@ router.get('/success', function(req, res) {
       return res.redirect('/');
     delete req.session.order;
     delete req.session.cart_order;
+    delete res.locals.cart;
+    delete res.locals.cart_total;
     res.render('success', { code: req.query.code, order: order, title: "주문 완료", description: "고객님, 데일리 붐을 이용해 주셔서 감사합니다." });
   });
 });
@@ -1020,7 +1027,7 @@ router.get('/orders/paid/:id', isAdmin, function(req, res) {
   });
 });
 
-// When a blushop cart gets paid
+// When a mall cart gets paid
 router.get('/orders/cart_paid/:id', isAdmin, function(req, res) {
   Order.findOne({ '_id': req.params.id }).populate('cart.product user coupon').exec(function(err, order) {
       if (err)
@@ -1330,7 +1337,7 @@ router.post('/shipping', function(req, res) {
                               console.log(err);
                             }
                             if (req.session.cart_order)
-                              return res.redirect('/blushop/checkout')
+                              return res.redirect('/mall/checkout')
                             else
                               return res.redirect('/checkout');
                           });
@@ -1382,7 +1389,7 @@ router.post('/shipping', function(req, res) {
                     }
                     else {
                       if (req.session.cart_order)
-                        return res.redirect('/blushop/checkout')
+                        return res.redirect('/mall/checkout')
                       else
                         return res.redirect('/checkout');
                     }
@@ -1417,7 +1424,7 @@ router.post('/shipping', function(req, res) {
               }
               else {
                 if (req.session.cart_order)
-                  return res.redirect('/blushop/checkout')
+                  return res.redirect('/mall/checkout')
                 else
                   return res.redirect('/checkout');
               }

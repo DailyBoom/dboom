@@ -36,45 +36,36 @@ router.get('/', function(req, res, next) {
   else
     now = moment().format("MM/DD/YYYY");
   var date = null;
-  if (now == "03/30/2016" || now == "03/31/2016")
-  {
-      now = "03/30/2016";
-      date = "03/30/2016";
-  }
   Product.findOne({scheduled_at: now, is_published: true }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
     Product.find({scheduled_at: {$lt: now} }).limit(6).sort({ 'scheduled_at' : -1 }).exec(function (err, pastProducts) {
-      if (!product) {
-        Product.findOne({ _id: "5652e5343185841a787c43eb" }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
-          var current_quantity = 0;
-          product.options.forEach(function(option) {
-            current_quantity += parseInt(option.quantity);
-          });
-          var progress = (product.quantity - current_quantity) / product.quantity * 100;
-          var sale = (product.old_price - product.price) / product.old_price * 100;
-          res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, pastProducts: pastProducts, title: "오늘 뭐 사지?" });
-        });
-      }
-      else {
-        var current_quantity = 0;
-        product.options.forEach(function(option) {
-          current_quantity += parseInt(option.quantity);
-        });
-        var progress = (product.quantity - current_quantity) / product.quantity * 100;
-        var sale = (product.old_price - product.price) / product.old_price * 100;
-        console.log(sale);
+      Product.find({ extend: 4, is_published: true, is_hot: null }, {}, { sort: { 'price' : -1 }}).limit(6).exec(function(err, mallProducts) {
+        // var current_quantity = 0;
+        // product.options.forEach(function(option) {
+        //   current_quantity += parseInt(option.quantity);
+        // });
+        // var progress = (product.quantity - current_quantity) / product.quantity * 100;
+        // var sale = (product.old_price - product.price) / product.old_price * 100;
+        // console.log(sale);
         Partner.find({}, function(err, partners) {
-          res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, pastProducts: pastProducts, title: "오늘 뭐 사지?", partners: partners, date: date });
+          res.render('index', { product: product, pastProducts: pastProducts, mallProducts: mallProducts, title: "오늘 뭐 사지?", partners: partners, date: date });
         });
-      }
+      });
     });
   });
 });
 
-router.get('/blushop', function(req, res, next) {
+router.get('/mall', function(req, res, next) {
   Product.find({ extend: 4, is_published: true, is_hot: null }, {}, { sort: { 'price' : -1 }}, function(err, products) {
     Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
-      res.render('mall', { title: "BluSHOP", description: 'BluSHOP은 "최고"의 품질, "최저"의 가격을 보장하는 리퍼폰 전문 샵입니다.', products: products, hotProducts: hotProducts });
+      res.render('mall', { title: "Mall", description: '', products: products, hotProducts: hotProducts });
     });
+  });
+});
+
+router.get('/mall/:category', function(req, res, next) {
+  Product.find({ category: req.params.category, extend: 4, is_published: true }, {}, { sort: { 'price' : -1 }}, function(err, products) {
+    console.log(products);
+    res.render('mall', { title: req.params.category, products: products });
   });
 });
 
@@ -88,26 +79,23 @@ router.get('/blushop/:brand', function(req, res, next) {
   });
 });
 
-router.get('/blushop/:brand/:product_id', function(req, res, next) {
-  Product.findOne({ extend: 4, _id: req.params.product_id, is_published: true }, function(err, product) {
-    if (!product)
-      return res.redirect('/blushop');
-    Product.find({ extend: 4, brand: product.brand, _id: { $ne: product.id } }, {}, { sort: { 'created_at' : -1 }}, function(err, pastProducts) {
-      console.log(pastProducts);
-      if (err)
-        console.log(err);
-      if (!product || product.length == 0)
-        return res.redirect('/blushop');
-      var current_quantity = 0;
-      product.options.forEach(function(option) {
-        current_quantity += parseInt(option.quantity);
-      });
-      var progress = (product.quantity - current_quantity) / product.quantity * 100;
-      var sale = (product.old_price - product.price) / product.old_price * 100;
-      res.render('extended_m', { product: product, title: product.brand + ' - ' + product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: true, cover: product.images[0], mall: true, pastProducts: pastProducts });
-    });    
-  });
-});
+// router.get('/mall/products/:id', function(req, res, next) {
+//   Product.findOne({ extend: 4, _id: req.params.id, is_published: true }, function(err, product) {
+//     if (!product)
+//       return res.redirect('/mall');
+//     if (err)
+//       console.log(err);
+//     if (!product || product.length == 0)
+//       return res.redirect('/mall');
+//     var current_quantity = 0;
+//     product.options.forEach(function(option) {
+//       current_quantity += parseInt(option.quantity);
+//     });
+//     var progress = (product.quantity - current_quantity) / product.quantity * 100;
+//     var sale = (product.old_price - product.price) / product.old_price * 100;
+//     res.render('extended_m', { product: product, title: product.brand + ' - ' + product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: true, cover: product.images[0], mall: true });
+//   });    
+// });
 
 router.get('/about', function(req, res, next) {
   res.render('about', { title: "회사 소개", description: "데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다." });
@@ -165,7 +153,7 @@ router.get('/beta', function(req, res, next) {
   });
 });
 
-router.get('/extend/:id', function(req, res, next) {
+router.get('/mall/products/:id', function(req, res, next) {
   Product.findOne({_id: req.params.id}, function(err, product) {
     var current_quantity = 0;
     product.options.forEach(function(option) {
@@ -173,18 +161,6 @@ router.get('/extend/:id', function(req, res, next) {
     });
     var progress = (product.quantity - current_quantity) / product.quantity * 100;
     var sale = (product.old_price - product.price) / product.old_price * 100;
-    if (product.extend == 1) {
-      if (moment().isAfter(moment(product.scheduled_at).add(3, 'days'), 'days'))
-        return res.redirect('/');
-    }
-    else if (product.extend == 2 || product.extend == 4) {
-      if (current_quantity <= 0) {
-        return res.redirect('/');
-      }
-    }
-    else {
-      res.redirect('/');
-    }
     Partner.find({}, function(err, partners) {
         res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2, cover: product.images[0], partners: partners });
     });

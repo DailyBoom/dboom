@@ -193,9 +193,24 @@ input[type=number]::-webkit-outer-spin-button {
   .logo-m { display: block; margin-left: 5px; }
   .logo-img { height: 40px; margin-top: 6px;}
   nav {
+    box-shadow: none;
     height: 51px;
     line-height: 51px;
   }
+
+  nav ul a {
+    color: #cf4b32;
+    transition: color 2s;
+  }
+
+  nav ul a:hover {
+    color: black;
+  }
+
+  nav ul.left li {
+    margin-right: 75px;
+  }
+
   nav .button-collapse {
     height: 51px;
   }
@@ -363,11 +378,81 @@ input[type=number]::-webkit-outer-spin-button {
     height: 100px;
     margin-top: 20px;
   }
+
+  .daily {
+    height: 422px !important;
+    background-size: cover !important; 
+    padding-top: 55px !important;
+    padding-left: 30px !important;
+    margin-bottom: 100px !important;
+  }
+
+  .daily .red {
+    padding: 40px 30px;
+    background-color: #cf4b32 !important;
+  }
+
+  .daily .red h3 {
+    padding-bottom: 30px !important;
+    font-size: 56px !important;
+    text-align: center !important;
+    border-bottom: 2px solid white;
+  }
+
+  .daily .red a {
+    display: block !important;
+    text-align: center !important;
+    font-size: 34px !important;
+  } 
+
+  #home .products {
+    background-color: rgba(245, 245, 245, 1);
+  }
+
+  #home .products h2 {
+    font-size: 34px;
+    letter-spacing: 0.3em;
+  }
+  
+
 }
 @media only screen and (min-width: 1200px) {}
 
 /* Preview Navbar */
 @media only screen and (min-width: 0) {
+
+  .daily {
+    height: 200px;
+    background-size: 100% !important; 
+    padding: 100px 20px 0;
+    margin-bottom: 100px;
+  }
+
+  .daily .red h3 {
+    text-align: left;
+    font-size: 25px;
+    display: inline-block;
+    margin: 10px 20px;
+    font-family: georgia, palatino, "book antiqua", "palatino linotype", serif;
+    font-style: italic;    
+  }
+
+  .daily .red a {
+    color: white;
+    font-family: georgia, palatino, "book antiqua", "palatino linotype", serif;
+    font-size: 20px;
+    font-style: italic;
+    transition: color 1s;    
+  }
+
+  .daily .red a:hover {
+    color: black;
+  } 
+
+  #home .products {
+    padding: 0 20px;
+  }
+
   .preview-bar {
     position: fixed;
     top: 0;
@@ -413,6 +498,46 @@ input[type=number]::-webkit-outer-spin-button {
     -o-transform: translate(0,-51px);
     -ms-transform: translate(0,-51px);
     transform: translate(0,-51px);
+  }
+  #detail {
+    padding: 0 20px;
+  }
+
+  #detail h1 {
+    margin: 10px 0;
+  }
+
+  .buy-text {
+    background-color: rgb(204, 65, 65) !important;
+    text-align: center;
+    color: white;
+    padding: 15px 0;
+    margin: 25px 0;
+    cursor: pointer;
+  }
+  .quantity .select-wrapper {
+    width: 75px;
+    border: 1px solid #9e9e9e;
+    margin: 0;
+  }
+
+  .quantity input.select-dropdown {
+    border: none !important;
+    margin: 0 !important;
+    font-size: 12px !important;
+    height: 35px !important;
+    padding-left: 8px;
+  }
+
+  .quantity .dropdown-content li > span {
+    color: black;
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .quantity .select-wrapper span.caret {
+    top: 10px;
+    right: 10px;
   }
 }
 @media only screen and (min-width: 601px) {}
@@ -466,6 +591,7 @@ input[type=number]::-webkit-outer-spin-button {
     -ms-transform: translate(0,-72px);
     transform: translate(0,-72px);
   }
+  
 }
 @media only screen and (min-width: 1200px) {}
 
@@ -502,6 +628,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 @media only screen and (min-width: 992px) {
+
   .footer-social { height: 50px; }
   .footer-box { text-align: right; }
   .footer-link {
@@ -1073,7 +1200,8 @@ input[type=number]::-webkit-outer-spin-button {
   font-size: 2em;
 }
 .m-item {
-  display: inline-block;
+  display: block;
+  text-align: center;
 }
 .m-item .item-price-o.mod {
   text-decoration: none !important;
@@ -1100,10 +1228,19 @@ input[type=number]::-webkit-outer-spin-button {
   }
   
   #top_banner {
-    height: 71px;
+    height: 90px;
     width: 100%;
     word-break: keep-all;
+    margin-bottom: 40px;
   }
+
+  #top_banner .logo-d {
+    display: inline-block;
+  }
+
+  #top_banner .logo-img {
+    height: 90px;
+  }  
   
   #top_banner .close-banner {
     font-size: 47px;
@@ -1282,18 +1419,14 @@ input[type=number]::-webkit-outer-spin-button {
     right: 5px;
   }
   .buy-box-wrapper {
-    position: relative;
-    height: 50px;
     line-height: 2.5;
     vertical-align: middle;
     width: 100%;
     /* margin-top: -60px; */
-    padding: 0 5px;
     z-index: 10;
   }
   .buy-box-info {
     position: relative;
-    padding: 20px;
   }
   .btn-buy-wrapper {
     margin-top: -20px;
@@ -1327,12 +1460,13 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 2px;
   }
   .item-name {
-    width: 84%;
+    width: 100%;
+    text-align: center;
     font-weight: bold;
     display: inline-block;
-    position: absolute;
     margin-left: 5px;
     line-height: 50px;
+    font-size: 30px;
   }
   .item-name.name-md {
     font-size: 1em;
@@ -1343,14 +1477,13 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 6vw;
   }
   .item-price {
-    display: block;
-    font-size: 1em;
+    font-size: 30px;
     margin-top: -7px;
     padding-top: 0;
   }
   .item-price-o {
     text-decoration: line-through;
-    font-size: 0.6em;
+    font-size: 15px;
     margin-bottom: 0;
     padding-top: 0;
   }
@@ -1668,14 +1801,14 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .buy-box-footer {
     height: 60px;
-    padding: 5px 20px 5px 20px;
+    padding: 0;
   }
   .share-text {
     font-size: 2em;
   }
   img.social {
-    height: 36px;
-    width: 36px;
+    height: 20px;
+    width: 20px;
     margin: 5px;
     border-radius: 50%;
   }
@@ -1687,7 +1820,7 @@ input[type=number]::-webkit-outer-spin-button {
     margin-top: -15px;
   }
   .item-name {
-    width: 55%;
+    width: 100%;
     display: inline-block;
     position: absolute;
     margin-left: 10px;
@@ -1719,11 +1852,13 @@ input[type=number]::-webkit-outer-spin-button {
     margin-right: 20px;
   }
   .past-box-wrapper {
-    height: 51px;
+    height: auto;
     line-height: 51px;
     vertical-align: middle;
     width: 100%;
-    padding: 0 20px;
+    padding: 15px 0 !important;
+    color: white;
+    background: rgb(44, 44, 43);
   }
   .seemore {
     font-size: 0.6em !important;
@@ -1769,6 +1904,10 @@ input[type=number]::-webkit-outer-spin-button {
     height: 120px;
     font-size: 0.9em;
     padding-top: 7px;
+  }
+
+  #detail {
+    padding: 0;
   }
 }
 @media only screen and (min-width: 1200px) {}

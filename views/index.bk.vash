@@ -237,12 +237,12 @@
 												</div>
 													@if(product.extend == 1 && model.moment().isBefore(model.moment(product.scheduled_at).add(3, 'days'), 'days')){
 														<div class="card-action mod center green">
-															<a class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'blue-grey')-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/extend/@product.id">구매가능! (<span class="time-left"></span>)</a>
+															<a class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'blue-grey')-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/mall/products/@product.id">구매가능! (<span class="time-left"></span>)</a>
 														</div>
 													}
 													else if (product.extend == 2){
 														<div class="card-action mod center green">
-															<a class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'blue-grey')-text text-darken-3" href="/extend/@product.id">구매가능!</a>
+															<a class="waves-effect waves-light btn-flat @(model.product.color ? model.product.color : 'blue-grey')-text text-darken-3" href="/mall/products/@product.id">구매가능!</a>
 														</div>
 													}
 													else if (model.user && product.wanna_buy.indexOf(model.user.id) != -1) {

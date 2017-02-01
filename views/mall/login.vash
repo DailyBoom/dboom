@@ -1,4 +1,4 @@
-@html.extend("mall/layout", function(model) {
+@html.extend("layout", function(model) {
 	@html.block("body", function(model) {
 		<div class="container">
 			<div class="row">

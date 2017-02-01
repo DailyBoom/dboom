@@ -17,10 +17,7 @@ nav {
 
 /* Global Settings */
 body {
-  background: -webkit-radial-gradient(#ffffff, #cfd8dc);
-  background: -o-radial-gradient(#ffffff, #cfd8dc);
-  background: -moz-radial-gradient(#ffffff, #cfd8dc);
-  background: radial-gradient(#ffffff, #cfd8dc);
+  background: white;
 }
 
 /* Nav */

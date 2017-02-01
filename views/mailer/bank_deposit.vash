@@ -35,7 +35,7 @@
 		<table class="db-mail">
 			<thead class="db-nav blue-grey darken-3">
 				<tr>
-					<th><img class="db-logo-img" src="http://dailyboom.co/images/db_korea.png" alt="데일리 붐 로고" /></th>
+					<th><img class="db-logo-img" src="http://dailyboom.co/images/db_ko_05.png" alt="데일리 붐 로고" /></th>
 				</tr>
 			</thead>
 			<tbody class="blue-grey lighten-5 blue-grey-text text-darken-3">
@@ -52,11 +52,24 @@
 							<br>IBK 기업은행
 							<br>@model.accounting.formatNumber(model.order.totalOrderAmt) 원
 							<br>
-							<br>@model.order.product.brand
-							<br>@model.order.product.name
-							<br>@model.order.option
-							<br>@model.order.quantity
-							<br>
+							@if (model.order.cart) {
+								<br>@('장바구니:')
+								@model.order.cart.forEach(function(item) {
+									<br>@item.product.brand
+									<br>@item.product.name
+									<br>@item.quantity
+									<br>@model.accounting.formatNumber(item.product.price * item.quantity) 원
+									<br>
+								})
+								<br>합계: @model.accounting.formatNumber(model.order.totalOrderAmt) 원
+							}
+							else {
+								<br>@model.order.product.brand
+								<br>@model.order.product.name
+								<br>@model.order.option
+								<br>@model.order.quantity
+								<br>
+							}
               				<br>@model.order.shipping.full_name
 							<br>@model.order.shipping.phone_number
 							<br>@model.order.shipping.address

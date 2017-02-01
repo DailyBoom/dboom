@@ -89,6 +89,17 @@
 					<label for="description">상품 정보 *</label>
 				</div>
 			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<select id="category" class="validate" name="category">
+							<option value=""></option>
+							<option value="beauty">Beauty</option>
+							<option value="tools">Tools</option>
+							<option value="gadgets">gadgets</option>
+						</select>
+					<label for="category">Category</label>
+				</div>
+			</div>
 			<div class="file-field input-field">
 				<br>
 				<span class="hide-on-small-only"><br></span>

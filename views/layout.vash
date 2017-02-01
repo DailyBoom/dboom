@@ -116,14 +116,9 @@
     </script>
   </head>
   <body>
-    @if (!model.user && !model.top_banner) {
-      <div id="top_banner" class="cyan white-text">
-        <span class="right close-banner"><li class="fa fa-times"></li></span>
-        <div class="container center">
-          <a href="/login" class="white-text"><b>하루 한번 로그인으로 매일 100원씩 받자!</b></a>
-        </div>
-      </div>
-    }
+    <div id="top_banner" class="center hide-on-small-only">
+        <a href="/" class="logo-d"><img class="logo-img" src="/images/db_ko_05.png" /></a>
+    </div>
     @if(model.cart) {
       <div id="cart-modal" class="modal">
         <div class="modal-header-c light-blue darken-2 white-text center">
@@ -132,28 +127,26 @@
         <ul class="row">
             @model.cart.forEach(function(item) {
               <li class="col s12">
-                <a href="/blushop/@item.product.brand/@item.product.id" class="left">
+                <a href="/mall/products/@item.product.id" class="left">
                   <img class="col s4" src="/@item.product.images[0]"/>
                   <span class="col s8">@item.product.name</span>
                 </a>
               </li>
             })
-            <div class="col s12 checkout"><a href="/blushop/checkout" class="btn green right">구매하기 <i class="fa fa-chevron-right"></i></a></div>
+            <div class="col s12 checkout"><a href="/mall/checkout" class="btn green right">구매하기 <i class="fa fa-chevron-right"></i></a></div>
         </ul>
       </div>
     }
 		<div class="navbar">
-			<nav class="@(model.product && model.product.color ? model.product.color : 'white') darken-3">
+			<nav class="white darken-3">
 				<div class="container">
-                    @if (model.product && model.product.color && model.product.color != 'white') {
-                        <a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
-                        <a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
-                    }
-                    else {
-                        <a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_05.png" /></a>
-                        <a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_05.png" /></a>
-                    }
-        	<span id="time-left-mobile" class="hide-on-med-and-up d-clock @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') left"></span>
+          <a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_05.png" /></a>
+          <ul class="left hide-on-small-only">
+            <li><a href="/">HOME</a></li>
+            <li><a href="/mall/beauty">Beauty</a></li>
+            <li><a href="/mall/tools">Tools</a></li>
+            <li><a href="/mall/gadgets">Gadgets</a></li>
+          </ul>
           @if(@model.cart) {
             <ul class="right hide-on-small-only">
               <li class="nav-item">
@@ -170,7 +163,7 @@
                     </li>
                     @model.cart.forEach(function(item) {
                       <li class="col s12">
-                        <a href="/blushop/@item.product.brand/@item.product.id" class="row m-b-0">
+                        <a href="/mall/products/@item.product.id" class="row m-b-0">
                           <img class="col s3" src="/@item.product.images[0]"/>
                           <span class="col s5 truncate">@item.product.name</span>
                           <span class="col s1">@item.quantity</span>
@@ -180,7 +173,7 @@
                       <li class="divider"></li>
                     })
                     <li class="col s12 checkout"><span class="right">합계: @model.cart_total 원</span></li>
-                    <li class="col s12 checkout"><a href="/blushop/checkout" class="btn green right">구매하기 <i class="fa fa-chevron-right"></i></a></li>
+                    <li class="col s12 checkout"><a href="/mall/checkout" class="btn green right">구매하기 <i class="fa fa-chevron-right"></i></a></li>
                 </ul>
               </li>
             </ul>
@@ -194,33 +187,33 @@
 								</a>
 								<!-- Dropdown Structure -->
 								<ul id="dropdown-profile" class="dropdown-content">
-									<a class="@(model.product && model.product.color ? model.product.color : 'white') darken-4 @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="#!">@model.user.username</a>
-                                    @if (model.user.admin || model.user.role == "merchant") {
-                                        <li class="divider"></li>
-                                        <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus fa-fw right"></i></a></li>
-                                        <li><a class="deep-purple-text text-darken-2" href="/products/list">Products <i class="fa fa-list fa-fw right"></i></a></li>
-                                        <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck fa-fw right"></i></a></li>
-                                    }
+									<a class="white darken-4 dark-text" href="#!">@model.user.username</a>
+                  @if (model.user.admin || model.user.role == "merchant") {
+                      <li class="divider"></li>
+                      <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus fa-fw right"></i></a></li>
+                      <li><a class="deep-purple-text text-darken-2" href="/products/list">Products <i class="fa fa-list fa-fw right"></i></a></li>
+                      <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck fa-fw right"></i></a></li>
+                  }
 									<li class="divider"></li>
 									<li><a class="text-darken-2 black-text" href="/mypage">마이 페이지 <i class="fa fa-user fa-fw right"></i></a></li>
 									<li><a class="text-darken-2 black-text" href="/logout">로그아웃 <i class="fa fa-sign-out fa-fw right"></i></a></li>
-                                    @if (model.user.admin == 1) {
-                                        <li class="divider"></li>
-                                        <li><a class="deep-purple-text text-darken-2" href="/orders/list">Orders List <i class="fa fa-shopping-cart fa-fw right"></i></a></li>
-                                        <li><a class="deep-purple-text text-darken-2" href="/users/list">Users List <i class="fa fa-users fa-fw right"></i></a></li>
-                                        <li><a class="deep-purple-text text-darken-2" href="/coupons/list">Coupons <i class="fa fa-list fa-fw right"></i></a></li>
-                                        <li><a class="deep-purple-text text-darken-2" href="/coupons/new">New Coupon <i class="fa fa-plus fa-fw right"></i></a></li>
-                                        <li><a class="deep-purple-text text-darken-2" href="/partners/new">Add Partner <i class="fa fa-plus fa-fw right"></i></a></li>
-                                    }
+                  @if (model.user.admin == 1) {
+                      <li class="divider"></li>
+                      <li><a class="deep-purple-text text-darken-2" href="/orders/list">Orders List <i class="fa fa-shopping-cart fa-fw right"></i></a></li>
+                      <li><a class="deep-purple-text text-darken-2" href="/users/list">Users List <i class="fa fa-users fa-fw right"></i></a></li>
+                      <li><a class="deep-purple-text text-darken-2" href="/coupons/list">Coupons <i class="fa fa-list fa-fw right"></i></a></li>
+                      <li><a class="deep-purple-text text-darken-2" href="/coupons/new">New Coupon <i class="fa fa-plus fa-fw right"></i></a></li>
+                      <li><a class="deep-purple-text text-darken-2" href="/partners/new">Add Partner <i class="fa fa-plus fa-fw right"></i></a></li>
+                  }
 								</ul>
 							</li>
 						</ul>
-                        <ul class="right hide-on-med-and-up">
+            <ul class="right hide-on-med-and-up">
 							<li class="nav-item">
 								<!-- Mobile Slider Menu -->
-                <a href="#" data-activates="slide-out" class="button-collapse mod"><i class="fa fa-bars fa-fw @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></i></a>
+                <a href="#" data-activates="slide-out" class="button-collapse mod"><i class="fa fa-bars fa-fw dark-text"></i></a>
                 <ul id="slide-out" class="side-nav">
-                    <a class="@(model.product && model.product.color ? model.product.color : 'white') darken-4 @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') center" href="#!">@model.user.username</a>
+                    <a class="white darken-4 dark-text center" href="#!">@model.user.username</a>
                     @if(@model.cart) {
                         <li>
                         <a class='deep-purple-text text-darken-2 modal-trigger' href='#cart-modal'>
@@ -256,57 +249,57 @@
 								<!-- <a class='dropdown-button btn btn-flat btn-mobile white-text' href='#' data-activates='dropdown-profile'>
 									<i class="fa fa-bars fa-fw fa-4x"></i>
 								</a> -->
-                <a href="#" data-activates="slide-out" class="button-collapse mod"><i class="fa fa-bars fa-fw @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></i></a>
+                <a href="#" data-activates="slide-out" class="button-collapse mod"><i class="fa fa-bars fa-fw dark-text"></i></a>
 								<!-- Dropdown Structure -->
 								<!-- <ul id="dropdown-profile" class="dropdown-content @(model.product && model.product.color ? model.product.color : 'light-blue')-text text-darken-2"> -->
                 <ul id="slide-out" class="side-nav">
                   @if(@model.cart) {
                     <li>
-                      <a class="modal-trigger waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'white')-text text-darken-2" href='#cart-modal'>
+                      <a class="modal-trigger waves-effect waves-light white-text text-darken-2" href='#cart-modal'>
                         <i class="fa fa-cart-arrow-down fa-cx"></i>@if(@model.cart) {<span class="cart-badge badge">@model.cart.length</span>}
                       </a>
                     </li>
                   }
-									<li><a class="waves-effect waves-light black-text text-darken-2" href="/login">@model.__('login') <i class="fa fa-sign-in right"></i></a></li>
-									<li><a class="waves-effect waves-light black-text text-darken-2" href="/signup">@model.__('signup') <i class="fa fa-user-plus right"></i></a></li>
+									<li><a class="waves-effect waves-light text-darken-2" href="/login">@model.__('login') <i class="fa fa-sign-in right"></i></a></li>
+									<li><a class="waves-effect waves-light text-darken-2" href="/signup">@model.__('signup') <i class="fa fa-user-plus right"></i></a></li>
 								</ul>
 							</li>
 						</ul>
                         <ul class="right hide-on-small-only user-link">
-                            <li class="nav-item mod"><a class="@(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/login">@model.__('login')</a></li>
-                            <li class="nav-item mod"><a class="@(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/signup">@model.__('signup')</a></li>
+                            <li class="nav-item mod"><a href="/login">@model.__('login')</a></li>
+                            <li class="nav-item mod"><a href="/signup">@model.__('signup')</a></li>
                         </ul>
 					}
 				</div><!-- .container -->
 			</nav>
 		</div><!-- .navbar -->
       @html.block("body")
-		<footer class="page-footer @(model.product && model.product.color ? model.product.color : 'white') darken-3">
+		<footer class="page-footer white darken-3">
 			<div class="container">
         <div class="row flex-s">
           <div class="col s12 m3 l3 box-2">
-            <p class="follow-us @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Follow Us</p>
+            <p class="follow-us dark-text">Follow Us</p>
             <span>
                 <a href="https://www.facebook.com/dailyboomkorea" target="_blank">
-                    <img class="footer-social" src="@(model.product && model.product.color && model.product.color != 'white' ? '/images/facebook.png' : '/images/facebook_b.png')" />
+                    <img class="footer-social" src="/images/facebook_b.png" />
                 </a>
                 <a href="http://instagram.com/dailyboomkorea" target="_blank">
-                    <img class="footer-social" src="@(model.product && model.product.color && model.product.color != 'white' ? '/images/insta.png' : '/images/insta_b.png')" />
+                    <img class="footer-social" src="/images/insta_b.png" />
                 </a>
                 <a href="http://blog.naver.com/dailyboomkorea" target="_blank">
-                    <img class="footer-social" src="@(model.product && model.product.color && model.product.color != 'white' ? '/images/nblog.png' : '/images/nblog_b.png')" />
+                    <img class="footer-social" src="/images/nblog_b.png" />
                 </a>
             </span>
           </div><!-- .col -->
-          <div class="col s12 m9 l9 footer-box @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') box-1">
-            <a class="footer-link @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/about">@model.__('about')</a>&#149;
-            <a class="footer-link @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/advertise">@model.__('advertise')</a>&#149;
-            <a class="footer-link @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/privacy">@model.__('privacy')</a>&#149;
-            <a class="footer-link @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/terms">@model.__('terms')</a>&#149;
-            <a class="footer-link @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')" href="/merchant">@model.__('merchant_contact')</a>
+          <div class="col s12 m9 l9 footer-box dark-text box-1">
+            <a class="footer-link dark-text" href="/about">@model.__('about')</a>&#149;
+            <a class="footer-link dark-text" href="/advertise">@model.__('advertise')</a>&#149;
+            <a class="footer-link dark-text" href="/privacy">@model.__('privacy')</a>&#149;
+            <a class="footer-link dark-text" href="/terms">@model.__('terms')</a>&#149;
+            <a class="footer-link dark-text" href="/merchant">@model.__('merchant_contact')</a>
           </div><!-- .col -->
           <div class="col s12 m4 l4 box-3">
-            <p class="text-footer @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
+            <p class="text-footer dark-text">
               폭스트론 (주)
               <br>대표이사: 김지완
               <br>서울특별시 성북구 삼양로 22, 국민대 창업보육센터 103호(길음동)
@@ -317,7 +310,7 @@
             </p>
           </div>
           <div class="col s12 m5 l5 box-4">
-            <p class="text-footer @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
+            <p class="text-footer dark-text">
               @model.__('footer_1')
               <br><br>
               @model.__('footer_2')
@@ -327,7 +320,7 @@
 			</div><!-- .container -->
 			<div class="footer-copyright">
 				<div class="container">
-					<span class="text-footer @(model.product && model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Copyright &copy; 2016 Dailyboom. All rights reserved.</span>
+					<span class="text-footer dark-text">Copyright &copy; 2016 Dailyboom. All rights reserved.</span>
 				</div>
 			</div>
 			<div class="hide-on-med-and-up">

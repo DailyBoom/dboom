@@ -85,6 +85,7 @@ router.get('/products/edit/:id', isMerchantOrAdmin, function(req, res) {
           return [product.scheduled_at.getFullYear(), product.scheduled_at.getMonth(), product.scheduled_at.getDate()];
         }
       });
+      console.log(product);
       res.render("products/edit", { product: product, scheduled: scheduled });
     });
   });
@@ -144,6 +145,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
       var product = new Product({
         name: req.body.name,
         description: req.body.description,
+        category: req.body.category,
         price: req.body.price,
         old_price: req.body.oldPrice,
         quantity: quantity,
@@ -214,6 +216,7 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
       product.merchant_id = req.body.merchant_id;
     product.name = req.body.name;
     product.description = req.body.description;
+    product.category = req.body.category;
     product.price = req.body.price;
     product.old_price = req.body.oldPrice,
     product.scheduled_at = req.body.selldate;
