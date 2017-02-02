@@ -435,16 +435,25 @@
       <div class="area-header hide-on-med-and-down">
         <div class="right">
           <a href="@(model.zone == 0 ? '#' : '/home?zone=0')" class="@(model.zone == 0 ? '' : 'zone-hide')">
-            <span class="north">Miền Bắc</span>
-            <img class="north" src="/images/north-logo.svg" />
+            <div class="left">
+              <span class="north">Miền Bắc</span>
+              @(model.zone == 0 ? html.raw('<br/><span class="change">Thay đổi địa điểm</span>') : '')
+            </div>
+            <img class="north @(model.zone == 0 ? 'right' : '')" src="/images/north-logo.svg" />
           </a>
           <a href="@(model.zone == 1 ? '#' : '/home?zone=1')" class="@(model.zone == 1 ? '' : 'zone-hide')">
-            <span class="central">Miền Trung</span>
-            <img class="central" src="/images/central-logo.svg" />
+            <div class="left">
+              <span class="central">Miền Trung</span>
+              @(model.zone == 1 ? html.raw('<br/><span class="change">Thay đổi địa điểm</span>') : '')
+            </div>
+            <img class="central @(model.zone == 1 ? 'right' : '')" src="/images/central-logo.svg" />
           </a>
           <a href="@(model.zone == 2 ? '#' : '/home?zone=2')" class="@(model.zone == 2 ? '' : 'zone-hide')">
-            <span class="south">Miền Nam</span>
-            <img class="south" src="/images/south-logo.svg"/>
+            <div class="left">
+              <span class="south">Miền Nam</span>
+              @(model.zone == 2 ? html.raw('<br/><span class="change">Thay đổi địa điểm</span>') : '')
+            </div>
+            <img class="south @(model.zone == 1 ? 'right' : '')" src="/images/south-logo.svg"/>
           </a>
         </div>
       </div>

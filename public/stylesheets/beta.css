@@ -861,14 +861,28 @@ header, main {
 }
 
 .area-header a.zone-view-second {
-  right: 246px;
+  right: 262px;
   opacity: 1;
   z-index: 10;
+}
+
+.area-header .left {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.area-header .zone-hide .left {
+  margin-top: 30px;
 }
 
 .area-header img {
   height: 90px;
   vertical-align: middle;
+}
+
+.area-header .change {
+  color: #bfdaee;
+  font-size: 12px;
 }
 
 .area-row {
