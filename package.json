@@ -52,7 +52,8 @@
     "shortid": "~2.2.6",
     "moment-timezone": "~0.5.5",
     "speakingurl": "~9.0.0",
-    "striptags": "~2.1.1"
+    "striptags": "~2.1.1",
+    "sitemap": "~1.9.0"
   },
   "description": "",
   "main": "app.js",

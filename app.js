@@ -9,7 +9,7 @@ var validate = require('form-validate');
 var config = require("config-heroku");
 var moment = require("moment-timezone");
 var crypto = require('crypto');
-var sitemap = require('express-sitemap')({url: 'yppuna.vn'});
+var sm = require('sitemap');
 var i18n = require('i18n');
 var querystring = require('querystring');
 i18n.configure({
@@ -34,6 +34,8 @@ var User = require('./models/user');
 var Token = require('./models/token');
 var Coupon = require('./models/coupon');
 var Order = require('./models/order');
+var Product = require('./models/product');
+var Article = require('./models/article');
 //var materialize = require('materialize-css');
 
 var routes = require('./routes/index');
@@ -155,10 +157,50 @@ app.use('/', products);
 app.use('/', partners);
 app.use('/', admin);
 
-if (app.get('env') === 'production') {
-  sitemap.generate4(app, ['/']);
-  sitemap.XMLtoFile('./public/sitemap/sitemap.xml');
+if (app.get('env') !== 'production') {
+  sitemap = sm.createSitemap({
+    hostname: 'http://yppuna.vn',
+    cacheTime: 600000,        // 600 sec - cache purge period 
+    urls: [
+      { url: '/', priority: 0.7 },
+      { url: '/mall', priority: 0.9 },
+      { url: '/mall?group=0', priority: 0.7 },
+      { url: '/mall?group=1', priority: 0.7 },
+      { url: '/mall?group=2', priority: 0.7 },
+      { url: '/mall/new', priority: 0.9 },
+      { url: '/blog', priority: 0.9 },
+      { url: '/blog/video', priority: 0.8 },
+      { url: '/home?zone=0',  changefreq: 'monthly',  priority: 1 },
+      { url: '/home?zone=1',  changefreq: 'monthly',  priority: 1 },
+      { url: '/home?zone=2',  changefreq: 'monthly',  priority: 1 },
+      { url: '/about'},
+      { url: '/brands'},
+      { url: '/wholesale'},
+      { url: '/contact'},
+      { url: '/terms'}
+    ]
+  });
+  Product.find({ is_published: true, extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, 'url', function(err, products) {
+    products.forEach(function(product) {
+      sitemap.add({ url: '/shop/box/'+product.url })
+    });
+  });
+  Product.find({ is_published: true, extend: 4 }, 'url', function(err, products) {
+    products.forEach(function(product) {
+      sitemap.add({ url: '/shop/products/'+product.url })
+    });
+  });
+  Article.find({ published: true }, 'url', function(err, articles) {
+    articles.forEach(function(article) {
+      sitemap.add({ url: '/blog/'+article.url })
+    });
+  });
 }
+
+app.get('/sitemap.xml', function(req, res) {
+  res.header('Content-Type', 'application/xml');
+  res.send( sitemap.toString() );
+});
 
 passport.use(new LocalStrategy({ 
     usernameField: 'email',
