@@ -157,7 +157,7 @@ app.use('/', products);
 app.use('/', partners);
 app.use('/', admin);
 
-if (app.get('env') !== 'production') {
+if (app.get('env') === 'production') {
   sitemap = sm.createSitemap({
     hostname: 'http://yppuna.vn',
     cacheTime: 600000,        // 600 sec - cache purge period 
