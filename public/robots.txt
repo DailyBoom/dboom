@@ -1,7 +1,7 @@
-# Copyright 2016 Yppuna. All rights reserved.
+# Copyright 2017 Yppuna. All rights reserved.
 # http://yppuna.vn/robots.txt
 # January 01, 2016
 
 User-agent: *
 
-Sitemap: http://yppuna.vn/sitemap/sitemap.xml
+Sitemap: http://yppuna.vn/sitemap.xml

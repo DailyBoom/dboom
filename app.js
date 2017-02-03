@@ -173,11 +173,11 @@ if (app.get('env') === 'production') {
       { url: '/home?zone=0',  changefreq: 'monthly',  priority: 1 },
       { url: '/home?zone=1',  changefreq: 'monthly',  priority: 1 },
       { url: '/home?zone=2',  changefreq: 'monthly',  priority: 1 },
-      { url: '/about'},
-      { url: '/brands'},
-      { url: '/wholesale'},
-      { url: '/contact'},
-      { url: '/terms'}
+      { url: '/about' },
+      { url: '/brands' },
+      { url: '/wholesale' },
+      { url: '/contact' },
+      { url: '/terms' }
     ]
   });
   Product.find({ is_published: true, extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, 'url', function(err, products) {
