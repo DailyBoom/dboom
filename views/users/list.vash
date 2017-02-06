@@ -11,13 +11,13 @@
 					<div class="col s4">
 						<input name="email" id="email" type="email" placeholder="email">
 					</div>
-					<div class="col s4">
+					<!--<div class="col s4">
 						<select name="role" id="role">
 							<option value="">Role</option>
 							<option value="user">User</option>
 							<option value="merchant">Merchant</option>
 						</select>
-					</div>
+					</div>-->
 					<button type="submit" class="right">Search</button>
 				</form>
 				<table class="responsive-table bordered highlight table-sm">

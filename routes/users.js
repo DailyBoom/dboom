@@ -49,6 +49,13 @@ router.get('/mall/login', function(req, res, next) {
   res.render('mall/login', { title: req.__('login'), errors: message });
 });
 
+var isMerchantOrAdmin = function (req, res, next) {
+  if (req.isAuthenticated() && (req.user.admin === true || req.user.role === "merchant"))
+    return next();
+  req.session.redirect_to = req.originalUrl;
+  res.redirect('/login');
+}
+
 router.post('/checkout/login', passport.authenticate('local', {
       failureRedirect: '/checkout/login',
       failureMessage: 'ID hoặc mật khẩu không hợp lệ.'
@@ -510,10 +517,74 @@ router.post('/checkout/signup', function(req, res) {
 });
 
 
-router.get('/merchant_signup', function(req, res, next) {
-  if (req.user)
-    res.redirect('/');
+router.get('/wholesalers/signup', isMerchantOrAdmin, function(req, res, next) {
   req.Validator.getErrors(function() { res.render('users/new_merchant', { title: "판매자 가입하기" }); });
+});
+
+router.post('/wholesalers/signup', isMerchantOrAdmin, function(req, res) {
+  // form validation rules
+  console.log(req.body);
+  req.Validator.validate('username', i18n.__('user.username'), {
+    required: true
+  })
+  .validate('email', i18n.__('user.email'), {
+    required: true
+  })
+  .validate('phone_number', i18n.__('user.phoneNumber'), {
+    required: true,
+    numeric: true
+  });
+
+  // form validation
+  req.Validator.getErrors(function(errors){
+    if (errors.length > 0) {
+      console.log(errors);
+      return res.render('users/new_merchant', { message: 'Sorry but there was an error.'});
+    }
+    else {
+      var user = new User({
+        username: req.body.username,
+        email: req.body.email,
+        website: req.body.website,
+        facebook: req.body.facebook,
+        role: 'wholesaler',
+        shipping: {
+          phone_number: req.body.phone_number,
+          address: req.body.address1
+        }
+      });
+      user.save(function(err) {
+        if (err) {
+          console.log(err);
+          var errors = [];
+          for (var path in err.errors) {
+            errors.push(i18n.__("unique", i18n.__("user."+path)));
+          }
+          return res.render('users/new_merchant', { message: 'Sorry but there was an error.'});
+        }
+        else {
+          return res.redirect('/wholesalers/list');
+        }
+      });
+    }
+  });
+});
+
+router.get('/wholesalers/list', isAdmin, function(req, res){
+  var page = req.query.page ? req.query.page : 1;
+  var query = User.find({ role: 'wholesaler' }, {}, {$sort: { created_at: -1 }});
+  if (req.query.name) {
+    query.where('name', req.query.name);
+  }
+  if (req.query.email) {
+    query.where('email', req.query.email);
+  }
+  query.paginate(page, 10, function(err, users, total) {
+    if (err)
+      console.log(err);
+    console.log(total);
+    res.render('users/list', { users: users, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, lastPage: Math.ceil(total / 10) });
+  });
 });
 
 router.post('/wholesale', function(req, res) {

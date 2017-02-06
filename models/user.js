@@ -38,7 +38,9 @@ var userSchema = new Schema({
   company_name: String,
   business_reg: String,
   last_connec: { type : Date, default : Date.now },
-  wallet: { type: Number, default: 0 }
+  wallet: { type: Number, default: 0 },
+  website: String,
+  facebook: String
 });
 
 userSchema.plugin(uniqueValidator);

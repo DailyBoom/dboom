@@ -1,0 +1,52 @@
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+        <div class="container">
+            <div class="row">
+                <form class="col s12" method="post">
+                    <div class="input-field col s12">
+                        <select id="username" type="text" class="validate" name="username" value="@model.Validator.getValue('username')" required>
+                            @model.users.forEach(function(user) {
+                                <option value="@user.id">@user.username</option>
+                            })
+                        </select>
+                        <label for="username">@model.__('user.username')</label>
+                    </div>
+                    <div class="input-field col s12 m6 l6">
+                        <input id="p_name_0" type="text" class="validate product" name="products[0][id]">
+                        <label for="p_name_0">@model.__('product.optionName')</label>
+                    </div>
+                    <div class="input-field col s12 m6 l6">
+                        <input id="p_quantity_0" type="number" class="validate" name="products[0][quantity]">
+                        <label for="p_quantity_0">@model.__('product.optionQuantity') *</label>
+                    </div> 
+                </form>
+            </div>
+        </div>
+        <script>
+	        $(document).ready(function() {
+                $('select').material_select();
+                $("#products input").autocomplete({
+                    source: function(request, response) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/products/search",
+                            dataType: "json",
+                            data: {
+                                term: request.term
+                            },
+                            success: function(data) {
+                                response($.map(data.products, function (item) {
+                                    return {
+                                        label: item.name + ' - ' + item.brand,
+                                        value: item._id
+                                    };
+                                }));
+                            }
+                        });
+                    },
+                    minLength: 4
+                });
+            });
+        </script>
+    })
+})

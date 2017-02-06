@@ -8,9 +8,9 @@
 				<a href="/brands">NHÃN HIỆU</a>
 				<a href="/mall/new">MUA LẺ MỚI NHẤT</a>
 			</div>
-			<div class="banner">
+			<!--<div class="banner">
 				<a href="/mall/sale"><img src="/images/banner.png" /></a>
-			</div>
+			</div>-->
 			<h2 class="title wrapper">
 				@model.title.toUpperCase()
 				<img class="svg g-49 hide-on-med-and-down" src="/images/group-49.svg" />

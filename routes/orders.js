@@ -222,6 +222,24 @@ router.get('/orders/list', isAdmin, function(req, res) {
   });
 });
 
+router.get('/wholesalers/orders', isMerchantOrAdmin, function(req, res) {
+  var page = req.query.page ? req.query.page : 1;
+  var query = Order.find({ type: 'wholesale' }, {}, { sort: { 'created_at': -1 } }).populate('product');
+  if (req.query.order_date)
+    query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
+  if (req.query.status)
+    query.where('status').equals(req.query.status);
+  query.paginate(page, 10, function(err, orders, total) {
+    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
+  });
+});
+
+router.get('/wholesalers/orders/new', isMerchantOrAdmin, function(req, res) {
+  User.find({ role: 'wholesaler' }, function(err, users) {
+    res.render('/admin/wholesale_order', { users: users });
+  });
+});
+
 router.get('/orders/view/:id', isMerchantOrAdmin, function(req, res) {
   Order.findOne({ _id: req.params.id }).populate('product user cart.product').exec(function(err, order) {
     if (err)

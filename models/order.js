@@ -49,7 +49,8 @@ var orderSchema = new Schema({
 	cart: [{ product: { type: Schema.Types.ObjectId, ref: 'Product' }, quantity: Number, option: Number, is_preorder: Boolean }],
 	wallet_dc: Number,
 	pickup_date: Date,
-	discount: Number
+	discount: Number,
+	type: String
 });
 
 orderSchema.plugin(mongooseToCsv, {
