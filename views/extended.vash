@@ -331,7 +331,7 @@
 			</div><!-- .buy-box-footer -->
 		</div>
 			<!-- Featured section -->
-			<div class="row">
+			<div class="col s12">
 				<div class="col s12">
 					<div class="past-box-wrapper white darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
 						@model.__('featured')

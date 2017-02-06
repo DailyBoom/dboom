@@ -46,7 +46,7 @@
 						</div>
 						<div class="card-content mall center">
 							<span>@product.brand</span>
-							<div class="mall-title left"><a href="/extent/@product.id"><b>@product.name</b></a></div>
+							<div class="mall-title left"><a href="/mall/products/@product.id"><b>@product.name</b></a></div>
 							<!--<a class="right" href="/blushop/@product.brand/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>-->
 							<!--<button class="btn-xs add_cart right" data-id="@product.id">Add to cart <i class="fa fa-cart-plus"></i></button>-->
 							<p class="mall-price-o">@(product.old_price != product.price ? product.old_price : '')</p>
