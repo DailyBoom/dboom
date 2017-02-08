@@ -1,6 +1,13 @@
 @html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
 	<div class="container" id="homepage">
+		<div class="hmenu">
+			<a href="/mall?group=0">CHĂM SÓC DA</a>
+			<a href="/mall?group=1">TRANG ĐIỂM</a>
+			<a href="/mall?group=2">SẢN PHẨM DƯỠNG THỂ</a>
+			<a href="/brands">NHÃN HIỆU</a>
+			<a href="/mall/new">MUA LẺ MỚI NHẤT</a>
+		</div>
 		<div id="boxes">
 		@if(model.products[0]) {
 		<section id="north">

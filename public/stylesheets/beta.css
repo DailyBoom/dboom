@@ -1113,11 +1113,11 @@ header, main {
   vertical-align: top;
 }
 
-#individual .hmenu {
+.hmenu {
   text-align: center;
 }
 
-#individual .hmenu a {
+.hmenu a {
   font-family: SVN-Karla;
   font-size: 15px;
   font-weight: normal;
@@ -1129,7 +1129,7 @@ header, main {
   padding: 0 7px;
 }
 
-#individual .hmenu a:last-child {
+.hmenu a:last-child {
   border-right: none;
 }
 
