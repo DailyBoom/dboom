@@ -468,7 +468,6 @@
 		$('.determinate-h').animate({width: progress_h}, 1500, function() {
 			$('.progress-h-text').fadeIn().removeClass('hide');
 		});
-		console.log($("#quantity").html());
 		var price = @model.product.price;
 		$(".product-price").html(price * parseInt($(this).val()));
 	});

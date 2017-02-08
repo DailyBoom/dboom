@@ -236,7 +236,14 @@ router.get('/wholesalers/orders', isMerchantOrAdmin, function(req, res) {
 
 router.get('/wholesalers/orders/new', isMerchantOrAdmin, function(req, res) {
   User.find({ role: 'wholesaler' }, function(err, users) {
-    res.render('/admin/wholesale_order', { users: users });
+    res.render('admin/wholesale_order', { users: users });
+  });
+});
+
+router.post('/wholesalers/orders/new', isMerchantOrAdmin, function(req, res) {
+  var order = new Order({
+    cart: [{ product: product._id, quantity: req.body.quantity, option: req.body.option }],
+    status: "Submitted"
   });
 });
 

@@ -373,6 +373,11 @@
 					<input id="price" type="number" class="validate" name="price" value="@model.product.price">
 					<label for="price">@model.__('product.price') *</label>
 				</div>
+				<div class="input-field col s12 m6 l6">
+					<i class="fa fa-krw prefix"></i>
+					<input id="wholesale_price" type="number" class="validate" name="wholesale_price" >
+					<label for="wholesale_price">Wholesale price *</label>
+				</div>
 			</div>
 			<!-- .row -->
 			<br>

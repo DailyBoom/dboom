@@ -152,6 +152,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         category: req.body.category,
         price: req.body.price,
         old_price: req.body.oldPrice,
+        wholesale_price: req.body.wholesale_price,
         quantity: quantity,
         images: paths,
         scheduled_at: req.body.selldate,
@@ -234,6 +235,7 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
     product.category = req.body.category;
     product.price = req.body.price;
     product.old_price = req.body.oldPrice,
+    product.wholesale_price = req.body.wholesale_price,
     product.scheduled_at = req.body.selldate;
     product.brand = req.body.brandname;
     product.origin = req.body.origin;
@@ -392,7 +394,7 @@ router.get('/products/naver', function(req, res) {
 });
 
 router.post('/products/search', function(req, res) {
-  Product.find({ extend: 4 }, '_id name brand').or([{ 'name': { $regex: req.body.term, $options: "i" } }, { 'brand': { $regex: req.body.term, $options: "i" } }]).exec(function(err, products) {
+  Product.find({ extend: 4 }, '_id name brand wholesale_price options').or([{ 'name': { $regex: req.body.term, $options: "i" } }, { 'brand': { $regex: req.body.term, $options: "i" } }]).exec(function(err, products) {
     res.status(200).json({ products: products});
   })
 })

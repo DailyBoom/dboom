@@ -129,12 +129,7 @@
 										<div class="col s12">SỐ LƯỢNG: @item.quantity</div>
 									</div>
 									<div class="col s3 center">
-										@if (item.product.extend == 3 && model.moment(model.order.created_at).isAfter(model.moment(item.product.scheduled_at, 'week'))) {
-                                        	<p class="product-price">@(item.product.old_price * item.quantity)</p>
-										}
-										else {
-											<p class="product-price">@(item.product.price * item.quantity)</p>                                             
-										}
+										<p class="product-price">@(item.product.price * item.quantity)</p>                                             
 									</div>
 								</div>
 							})
