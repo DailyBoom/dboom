@@ -241,9 +241,16 @@ router.get('/wholesalers/orders/new', isMerchantOrAdmin, function(req, res) {
 });
 
 router.post('/wholesalers/orders/new', isMerchantOrAdmin, function(req, res) {
+  console.log(req.body);
   var order = new Order({
-    cart: [{ product: product._id, quantity: req.body.quantity, option: req.body.option }],
-    status: "Submitted"
+    cart: req.body.products,
+    user: req.body.username,
+    status: "Submitted",
+    type: "wholesale"
+  });
+  getOrderCartRecap(order);
+  order.save(function(err) {
+    res.redirect('/wholesalers/orders');
   });
 });
 

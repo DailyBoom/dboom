@@ -375,7 +375,7 @@
 				</div>
 				<div class="input-field col s12 m6 l6">
 					<i class="fa fa-krw prefix"></i>
-					<input id="wholesale_price" type="number" class="validate" name="wholesale_price" >
+					<input id="wholesale_price" type="number" class="validate" name="wholesale_price" value="@model.product.wholesale_price">
 					<label for="wholesale_price">Wholesale price *</label>
 				</div>
 			</div>
