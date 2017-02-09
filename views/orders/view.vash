@@ -120,8 +120,8 @@
 									<a href="/mall/product/@item.product.id"><img class="col s3" src="@item.product.images[0]" /></a>
 									<div class="col s6">
 										<a href="/mall/product/@item.product.id" class="product-name blue-grey-text col s12">@item.product.name</a>
-										@if (item.product.options[item.option].name !== '') {
-											<div class="col s12"><div class="product-color" style="background-color: @item.product.options[item.option].name;"></div></div>
+										@if (item.product.options[item.option ? item.option : 0].name !== '') {
+											<div class="col s12"><div class="product-color" style="background-color: @item.product.options[item.option ? item.option : 0].name;"></div></div>
 											@if (item.product.category[0] == 60 || (item.product.category[0] >= 38 && item.product.category[0] <= 43)) {
 												<div class="option-name">@item.product.options_skin[index]</div>
 											}
@@ -129,10 +129,12 @@
 										<div class="col s12">SỐ LƯỢNG: @item.quantity</div>
 									</div>
 									<div class="col s3 center">
-										@if (order.type == "wholesale") {
+										@if (model.order.type == "wholesale") {
 											<p class="product-price">@(item.product.price * item.quantity)</p>
 										}
-										<p class="product-price">@(item.product.price * item.quantity)</p>
+										else {
+											<p class="product-price">@(item.product.price * item.quantity)</p>
+										}
 									</div>
 								</div>
 							})
