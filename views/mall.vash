@@ -1,13 +1,6 @@
 @html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
 		<div class="container mall" id="individual">
-			<div class="hmenu">
-				<a href="/mall?group=0">CHĂM SÓC DA</a>
-				<a href="/mall?group=1">TRANG ĐIỂM</a>
-				<a href="/mall?group=2">SẢN PHẨM DƯỠNG THỂ</a>
-				<a href="/brands">NHÃN HIỆU</a>
-				<a href="/mall/new">MUA LẺ MỚI NHẤT</a>
-			</div>
 			<div class="banner">
 				<a href="/mall/sale"><img src="/images/banner.png" /></a>
 			</div>

@@ -840,7 +840,7 @@ header, main {
   height: 90px;
 }
 
-.area-header a {
+.area-header .right a {
   position: absolute;
   top: 0;
   right: 46px;
@@ -1115,6 +1115,7 @@ header, main {
 
 .hmenu {
   text-align: center;
+  margin-top: 30px;
 }
 
 .hmenu a {

@@ -38,8 +38,8 @@
 								<label for="website">Website</label>
 							</div>
 							<div class="input-field col s12 m6 l6">
-								<input id="facebook" type="text" class="validate" name="facebook" value="@model.Validator.getValue('facebook')">
-								<label for="facebook">Facebook page</label>
+								<input id="fb_page" type="text" class="validate" name="facebook" value="@model.Validator.getValue('facebook')">
+								<label for="fb_page">Facebook page</label>
 							</div>
 							<div class="row">
 								<div class="input-field col s12 m12 l12">

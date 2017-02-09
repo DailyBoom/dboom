@@ -433,6 +433,13 @@
   		@html.include("error", model)
       <main>
       <div class="area-header hide-on-med-and-down">
+        <div class="hmenu">
+          <a href="/mall?group=0">CHĂM SÓC DA</a>
+          <a href="/mall?group=1">TRANG ĐIỂM</a>
+          <a href="/mall?group=2">SẢN PHẨM DƯỠNG THỂ</a>
+          <a href="/brands">NHÃN HIỆU</a>
+          <a href="/mall/new">MUA LẺ MỚI NHẤT</a>
+        </div>
         <div class="right">
           <a href="@(model.zone == 0 ? '#' : '/home?zone=0')" class="@(model.zone == 0 ? '' : 'zone-hide')">
             <div class="left">
