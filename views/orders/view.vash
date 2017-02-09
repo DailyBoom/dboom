@@ -129,7 +129,10 @@
 										<div class="col s12">SỐ LƯỢNG: @item.quantity</div>
 									</div>
 									<div class="col s3 center">
-										<p class="product-price">@(item.product.price * item.quantity)</p>                                             
+										@if (order.type == "wholesale") {
+											<p class="product-price">@(item.product.price * item.quantity)</p>
+										}
+										<p class="product-price">@(item.product.price * item.quantity)</p>
 									</div>
 								</div>
 							})

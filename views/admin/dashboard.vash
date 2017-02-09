@@ -7,6 +7,7 @@
                         <ul class="tabs">
                             @if (model.user.admin || model.user.role == 'merchant') {
                                 <li class="tab col s3"><a class="active" href="#products">Products</a></li>
+                                <li class="tab col s3"><a class="active" href="#wholesaler">Wholesaler</a></li>
                             }
                             @if (model.user.admin) {
                                 <li class="tab col s3"><a href="#behavior">User behavior</a></li>
@@ -21,6 +22,11 @@
                     <div class="col s12 center" id="products">
                         <a class="waves-effect waves-light btn-large ybtn-o" href="/products/new"><i class="fa fa-plus"></i> New Product</a>
                         <a class="waves-effect waves-light btn-large ybtn-o" href="/products/list"><i class="fa fa-cubes"></i> Products List</a>
+                    </div>
+                    <div class="col s12 center" id="wholesaler">
+                        <a class="waves-effect waves-light btn-large ybtn-o" href="/wholesalers/signup"><i class="fa fa-plus"></i> New Wholesaler</a>
+                        <a class="waves-effect waves-light btn-large ybtn-o" href="/wholesalers/orders/new"><i class="fa fa-plus"></i> New Order</a>
+                        <a class="waves-effect waves-light btn-large ybtn-o" href="/wholesaler/orders"><i class="fa fa-list"></i> Order List</a>
                     </div>
                     }
                     @if (model.user.admin) {                    

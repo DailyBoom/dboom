@@ -61,7 +61,7 @@ app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser('keyboard cat'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(device.capture());
 device.enableDeviceHelpers(app)
 app.use(session({ store: new MongoStore({ mongooseConnection: mongoose.connection }), secret: 'keyboard cat', name: 'session_id', saveUninitialized: true, resave: true })); // store: new RedisStore({ host: '127.0.0.1',  port: 6379 }),
@@ -136,13 +136,15 @@ app.use(function(req, res, next) {
   }
   if (req.session.cart_order) {
     Order.findOne({ _id: req.session.cart_order }).populate('cart.product').exec(function(err, order) {
-      res.locals.cart = order.cart;
-      res.locals.cart_total = 0;      
-      order.cart.forEach(function(item) {
-        if (item.product != null) {
-            res.locals.cart_total += item.product.price * item.quantity;
-        }
-      });
+      if (order) {
+        res.locals.cart = order.cart;
+        res.locals.cart_total = 0;      
+        order.cart.forEach(function(item) {
+          if (item.product != null) {
+              res.locals.cart_total += item.product.price * item.quantity;
+          }
+        });
+      }
       next();
     });
   }

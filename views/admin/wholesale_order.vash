@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <h1 class="center">Wholesale Order</h1>
-                <form class="col s12" method="post" enctype="multipart/form-data">
+                <form class="col s12" method="post" >
                     <div class="input-field col s12">
                         <select id="username" type="text" class="validate" name="username" value="@model.Validator.getValue('username')" required>
                             @model.users.forEach(function(user) {
@@ -19,15 +19,15 @@
                         </div>
                         <div class="product-row">
                             <div class="input-field col s12 m4 l4 product">
-                                <input id="p_name_0" type="text" class="validate" name="options[0][product]" value="">
+                                <input id="p_name_0" type="text" class="validate" name="products[0][product]" value="">
                                 <label for="p_name_0">Product</label>
                             </div>
                             <div class="input-field col s12 m4 l4 quantity">
-                                <input id="p_quantity_0" type="number" class="validate" name="options[0][quantity]" value="1" min="1">
+                                <input id="p_quantity_0" type="number" class="validate" name="products[0][quantity]" value="1" min="1">
                                 <label for="p_quantity_0">Quantity *</label>
                             </div>
                             <div class="input-field col s12 m4 l4 option">
-                                <select id="p_option_0" name="options[0][option]">
+                                <select id="p_option_0" name="products[0][option]">
                                 </select>
                                 <label for="p_option_0">Option *</label>
                             </div>  

@@ -166,7 +166,10 @@ var getOrderCartTotal = function(order) {
 var getOrderCartRecap = function(order) {
   order.totalOrderAmt = 0;
   order.cart.forEach(function(item) {
-    order.totalOrderAmt += item.product.price * item.quantity;
+    if (order.type == "wholesale")
+      order.totalOrderAmt += item.product.wholesale_price * item.quantity;
+    else
+      order.totalOrderAmt += item.product.price * item.quantity;
   });
   if (order.coupon && order.coupon.type == 2) {
     order.totalOrderAmt -= order.coupon.price;
@@ -241,16 +244,18 @@ router.get('/wholesalers/orders/new', isMerchantOrAdmin, function(req, res) {
 });
 
 router.post('/wholesalers/orders/new', isMerchantOrAdmin, function(req, res) {
-  console.log(req.body);
   var order = new Order({
     cart: req.body.products,
     user: req.body.username,
-    status: "Submitted",
+    status: "Waiting",
     type: "wholesale"
   });
-  getOrderCartRecap(order);
-  order.save(function(err) {
-    res.redirect('/wholesalers/orders');
+  order.populate('cart.product', function(err) {
+    getOrderCartRecap(order);
+    console.log(order.totalOrderAmt);
+    order.save(function(err) {
+      return res.redirect('/wholesalers/orders');
+    });
   });
 });
 
