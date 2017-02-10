@@ -852,6 +852,7 @@ header, main {
   right: 0;
   opacity: 0;
   z-index: -1;
+  background: white;
 }
 
 .area-header a.zone-view-first {

@@ -297,7 +297,7 @@ router.post('/users/list', isAdmin, function(req, res){
 
 router.get('/users/delete/:id', isAdmin, function(req, res) {
   User.findOneAndRemove({ _id: req.params.id }, function(err, user) {
-    res.redirect('/users/list');
+    res.redirect('back');
   });
 });
 
@@ -570,7 +570,7 @@ router.post('/wholesalers/signup', isMerchantOrAdmin, function(req, res) {
   });
 });
 
-router.get('/wholesalers/list', isAdmin, function(req, res){
+router.get('/wholesalers/list', isMerchantOrAdmin, function(req, res){
   var page = req.query.page ? req.query.page : 1;
   var query = User.find({ role: 'wholesaler' }, {}, {$sort: { created_at: -1 }});
   if (req.query.name) {
@@ -582,7 +582,6 @@ router.get('/wholesalers/list', isAdmin, function(req, res){
   query.paginate(page, 10, function(err, users, total) {
     if (err)
       console.log(err);
-    console.log(total);
     res.render('users/list', { users: users, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, lastPage: Math.ceil(total / 10) });
   });
 });
