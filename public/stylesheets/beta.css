@@ -7,11 +7,7 @@
   src: url('/fonts/bulkypix.ttf') format('truetype'); /* Safari, Android, iOS */
 }
 
-@font-face {
-  font-family: 'Cooper Black';
-  src: url('/fonts/CooperBlackStd.otf'); /* IE9 Compat Modes */
-  src: url('/fonts/CooperBlackStd.otf') format('truetype'); /* Safari, Android, iOS */
-}
+
 
 /* Settings */
 .container {
