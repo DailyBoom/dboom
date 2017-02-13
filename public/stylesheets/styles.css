@@ -21,10 +21,10 @@
 }
 @font-face {
   font-family: 'Cooper Black';
-  src: url('CooperBlackStd.eot');
-	src: url('CooperBlackStd.eot?#iefix') format('embedded-opentype'),
-		url('CooperBlackStd.woff') format('woff'),
-		url('CooperBlackStd.ttf') format('truetype'),
+  src: url('/fonts/CooperBlackStd.eot');
+	src: url('/fonts/CooperBlackStd.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/CooperBlackStd.woff') format('woff'),
+		url('/fonts/CooperBlackStd.ttf') format('truetype'),
     url('/fonts/CooperBlackStd.otf'); /* IE9 Compat Modes */
 }
 body {
