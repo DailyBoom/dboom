@@ -19,6 +19,11 @@
         url('/fonts/hcrdotum-webfont.woff') format('woff'),
         url('/fonts/hcrdotum-webfont.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'Cooper Black';
+  src: url('/fonts/CooperBlackStd.otf'); /* IE9 Compat Modes */
+  src: url('/fonts/CooperBlackStd.otf') format('truetype'); /* Safari, Android, iOS */
+}
 body {
   font-family: 'Dotum', sans-serif;
   word-break: keep-all;
@@ -202,6 +207,11 @@ input[type=number]::-webkit-outer-spin-button {
     color: #cf4b32;
     transition: color 2s;
   }
+
+  nav ul.left a {
+    font-family: "Cooper Black";
+    font-size: 20px;
+  }  
 
   nav ul a:hover {
     color: black;
