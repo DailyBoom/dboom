@@ -40,7 +40,8 @@ var userSchema = new Schema({
   last_connec: { type : Date, default : Date.now },
   wallet: { type: Number, default: 0 },
   website: String,
-  facebook: String
+  facebook: String,
+  amount: Number
 });
 
 userSchema.plugin(uniqueValidator);

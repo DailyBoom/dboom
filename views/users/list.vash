@@ -25,7 +25,7 @@
 						<tr>
 							<th>ID</th>
 							<th>Email</th>
-							<th>Name</th>
+							<th>@(model.wholesalers ? 'Amount' : 'Name')</th>
 							<th>Type</th>
 							<th>Admin</th>
 						</tr>
@@ -36,7 +36,7 @@
 						<tr>
 							<td>&nbsp;@user.username</td>
 							<td>&nbsp;@user.email</td>
-							<td>&nbsp;@user.name</td>
+							<td>&nbsp;@(model.wholesalers ? user.amount : user.name)</td>
 							@if(user.admin == 1) {
 								<td>&nbsp;admin</td>
 							}

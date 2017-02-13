@@ -582,7 +582,19 @@ router.get('/wholesalers/list', isMerchantOrAdmin, function(req, res){
   query.paginate(page, 10, function(err, users, total) {
     if (err)
       console.log(err);
-    res.render('users/list', { users: users, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, lastPage: Math.ceil(total / 10) });
+    var i = 0;
+    users.forEach(function(user) {
+      user.amount = 0;
+      Order.find({ user: user.id, created_at: { $gte: moment().subtract(req.query.t ? req.query.t : 1, 'month') } }, 'totalOrderAmt', function(err, orders) {
+        console.log(orders.length);
+        orders.forEach(function(order) {
+          user.amount += order.totalOrderAmt;
+        });        
+      });
+      if (++i == users.length) {
+        res.render('users/list', { users: users, wholesalers: true, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, lastPage: Math.ceil(total / 10) });
+      }
+    })
   });
 });
 
