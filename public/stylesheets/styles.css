@@ -21,8 +21,11 @@
 }
 @font-face {
   font-family: 'Cooper Black';
-  src: url('/fonts/CooperBlackStd.otf'); /* IE9 Compat Modes */
-  src: url('/fonts/CooperBlackStd.otf') format('truetype'); /* Safari, Android, iOS */
+  src: url('CooperBlackStd.eot');
+	src: url('CooperBlackStd.eot?#iefix') format('embedded-opentype'),
+		url('CooperBlackStd.woff') format('woff'),
+		url('CooperBlackStd.ttf') format('truetype'),
+    url('/fonts/CooperBlackStd.otf'); /* IE9 Compat Modes */
 }
 body {
   font-family: 'Dotum', sans-serif;
@@ -211,7 +214,7 @@ input[type=number]::-webkit-outer-spin-button {
   nav ul.left a {
     font-family: "Cooper Black";
     font-size: 20px;
-  }  
+  }
 
   nav ul a:hover {
     color: black;
