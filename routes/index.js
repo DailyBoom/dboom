@@ -467,6 +467,9 @@ router.post('/blog/new_comment', function(req, res, next) {
 
 router.get('/blog/:url', function(req, res, next) {
   Article.findOne({ url: req.params.url }, function(err, article) {
+    if (!article) {
+      return res.status(404).render('error_404');
+    }
     var description;
     var cover;
     JSON.parse(article.data).data.some(function(data) {
