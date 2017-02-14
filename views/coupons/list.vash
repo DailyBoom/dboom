@@ -11,6 +11,7 @@
 							<th>Expires at</th>
 							<th>Type</th>
 							<th>Amount</th>
+							<th>Manage</th>
 						</tr>
 					</thead>
 					
@@ -29,6 +30,7 @@
 								else {
 									<td></td>
 								}
+								<td><a class="users-link red-text text-darken-3" href="/coupons/delete/@coupon.id" onclick="return confirm('Are you sure?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a></td>
 							</tr>
 						})
 					</tbody>

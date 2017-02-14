@@ -66,6 +66,13 @@ var isContentOrAdmin = function (req, res, next) {
   res.redirect('/login');
 }
 
+var isMerchantOrAdmin = function (req, res, next) {
+  if (req.isAuthenticated() && (req.user.admin === true || req.user.role === "merchant"))
+    return next();
+  req.session.redirect_to = req.originalUrl;
+  res.redirect('/login');
+}
+
 /* GET Home Page */
 router.get('/beta', function(req, res, next) {
   var date = moment().startOf('isoweek').format("MM/DD/YYYY");
@@ -285,11 +292,11 @@ router.get('/shop/box/:url', function(req, res, next) {
   });
 });
 
-router.get('/coupons/new', function(req, res, next) {
+router.get('/coupons/new', isMerchantOrAdmin, function(req, res, next) {
   res.render('coupons/new');
 });
 
-router.post('/coupons/new', function(req, res, next) {
+router.post('/coupons/new', isMerchantOrAdmin, function(req, res, next) {
   var coupon = new Coupon({
     code: req.body.code,
     type: req.body.type,
@@ -303,9 +310,15 @@ router.post('/coupons/new', function(req, res, next) {
   });
 });
 
-router.get('/coupons/list', function(req, res, next) {
+router.get('/coupons/list', isMerchantOrAdmin, function(req, res, next) {
   Coupon.find({}).exec(function(err, coupons) {
     res.render('coupons/list', { coupons: coupons });
+  });
+});
+
+router.get('/coupons/delete/:id', isMerchantOrAdmin, function(req, res, next) {
+  Coupon.findOneAndRemove({ _id: req.params.id }).exec(function(err, coupon) {
+    res.redirect('/coupons/list');
   });
 });
 
@@ -437,7 +450,7 @@ router.get('/blog/delete/:id', isContentOrAdmin, function(req, res, next) {
 });
 
 router.get('/blog/comments/delete/:id', isContentOrAdmin, function(req, res, next) {
-  Comment.findOneAndRemove({ _id: req.params.id }, function(err, article) {
+  Comment.findOneAndRemove({ _id: req.params.id }, function(err, comment) {
     res.redirect('back');
   });
 });

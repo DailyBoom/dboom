@@ -182,7 +182,7 @@ var getOrderCartRecap = function(order) {
 };
 
 router.post('/orders/apply_code', function(req, res) {
-  Coupon.findOne({ code: req.body.code }, function(err, coupon) {
+  Coupon.findOne({ code: req.body.code, expires_at: { $gt: moment() } }, function(err, coupon) {
     if (!coupon) {
       return res.redirect('/cart');
     }
@@ -387,7 +387,9 @@ router.get('/checkout', function(req, res) {
 
 router.get('/cart', function(req, res, next) {
   Order.findOne({ _id: req.session.cart_order }).populate('cart.product coupon').exec(function(err, order) {
-    getOrderCartRecap(order);
+    if (order && order.cart.length > 0) {
+      getOrderCartRecap(order);
+    }
     res.render('cart', { order: order });
   });
 });
