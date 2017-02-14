@@ -142,6 +142,11 @@
 					</div>
 				</div>
 			 }
+			 <div class="col s8">
+				<div>Khuyến mãi: - <span class="price">@model.order.discount</span></div>
+				<div>Phí vận chuyển: <span class="price">@model.order.shipping_cost</span></div>
+				<div class="amount">Thành tiền: <span class="price">@model.order.totalOrderAmt</span></div>
+			</div>
 		 </div><!-- .row -->
 
 	@if (model.user.admin == 1) {
@@ -162,7 +167,7 @@
    </div><!-- .container -->
 	 <script>
 	 $(document).ready(function(){
-		$("#product_price, #product_price_mobile, #delivery_price, .product-price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+		$("#product_price, #product_price_mobile, #delivery_price, .product-price, .price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
 	 });
 	 </script>
   })
