@@ -260,7 +260,7 @@ router.post('/wholesalers/orders/new', isMerchantOrAdmin, function(req, res) {
 });
 
 router.get('/orders/view/:id', isMerchantOrAdmin, function(req, res) {
-  Order.findOne({ _id: req.params.id }).populate('product user cart.product').exec(function(err, order) {
+  Order.findOne({ _id: req.params.id }).populate('product user cart.product coupon').exec(function(err, order) {
     if (err)
       console.log(err);
     if (!order)

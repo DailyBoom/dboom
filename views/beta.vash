@@ -24,7 +24,7 @@
 					<div class="item_desc hide-on-med-and-down">
 						@model.products[0].description
 					</div>
-					<div class="item_prices hide-on-med-and-down">
+					<div class="item_prices hide-on-med-and-down left">
 						<div class="col s6">
 							<div class="title">GIÁ ĐẶT HÀNG</div>
 							<span class="item_price">@model.products[0].price</span>
@@ -34,7 +34,7 @@
 							<span class="item_old_price">@model.products[0].old_price</span>
 						</div>
 					</div>
-					<div class="item_detail hide-on-med-and-down">
+					<div class="item_detail hide-on-med-and-down left">
 						<a href="#" class="add-cart" data-id="@model.products[0].id">
 							THÊM BOX VÀO GIỎ HÀNG
 						</a><br/><br/>

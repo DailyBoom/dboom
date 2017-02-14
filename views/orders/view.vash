@@ -84,11 +84,11 @@
 						<span class="col s8 order-label">&nbsp;Nhận hàng vào buổi tối</span>
 					}
 					<!-- -->
-					@if (model.order.pickup_date) {
+					@if (model.order.coupon) {
 						<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
-							Pickup date:
+							Sale Code:
 						</span>
-						<span class="col s8 order-label">Pickup : @model.moment(model.order.pickup_date).format('MM/DD/YYYY')</span>
+						<span class="col s8 order-label">@model.order.coupon.code</span>
 					}
 			 	</div><!-- .row -->
 			 </div><!-- .col -->

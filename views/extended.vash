@@ -160,7 +160,9 @@
 					<div class="quantity">
 						<h4>SỐ LƯỢNG</h4>
 						<input type="number" id="quantity" min="1" value="1" />
-						<button type="button" id="checkout" class="add_cart" data-id="@model.product.id">THÊM VÀO GIỎ HÀNG</button>
+						@if(model.product.options[0].quantity == 0) {
+							<button type="button" id="checkout" class="add_cart" data-id="@model.product.id">THÊM VÀO GIỎ HÀNG</button>
+						}
 						@if (model.is_mobile) {
 							<div class="sns">
 								<div class="fb-share-button" data-href="http://yppuna.vn@model.url?utm_source=facebook&utm_medium=social" data-layout="button" data-size="small" data-mobile-iframe="true">
