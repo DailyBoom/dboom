@@ -50,7 +50,9 @@ var orderSchema = new Schema({
 	wallet_dc: Number,
 	pickup_date: Date,
 	discount: Number,
-	type: String
+	type: String,
+	ship_code: String,
+	notes: String
 });
 
 orderSchema.plugin(mongooseToCsv, {

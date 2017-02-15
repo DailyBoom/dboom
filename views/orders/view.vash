@@ -1,10 +1,24 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
+	<div id="shipping_modal" class="modal">
+		<div class="modal-content">
+			<form action="/orders/send/@model.order.id" method="post">
+				<label for="ship_code">Shipping code</label>
+				<input type="text" id="ship_code" name="ship_code" />
+				<button>Send</button>
+			</form>
+		</div>
+	</div>
    <div class="container min-h-lg">
 		 <div class="row">
 			@if(model.user.admin){
-			 <a href="/orders/edit/@model.order.id" class="btn right">EDIT</a>
-			 <a href="/orders/paid/@model.order.id" class="orange btn right" onclick="return confirm('Order has been paid?')">PAID</a>
+				<a href="/orders/edit/@model.order.id" class="btn right">EDIT</a>
+				@if(model.order.status=='Waiting'){
+					<a href="/orders/paid/@model.order.id" class="orange btn right" onclick="return confirm('Order has been paid?')">PAID</a>
+				}
+				else if(model.order.status == "Paid"){
+					<a href="#shipping_modal" class="green btn right modal-trigger">SENT</a>
+				}
 			}
 			 <h3 class="blue-grey-text text-darken-4">Order View</h3>
 			 <br>
@@ -90,6 +104,12 @@
 						</span>
 						<span class="col s8 order-label">@model.order.coupon.code</span>
 					}
+					@if (model.order.ship_code) {
+						<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+							Shipping Code:
+						</span>
+						<span class="col s8 order-label">@model.order.ship_code</span>
+					}
 			 	</div><!-- .row -->
 			 </div><!-- .col -->
 
@@ -152,14 +172,11 @@
 	@if (model.user.admin == 1) {
 		 <div class="row">
 			 <div class="col s12 m12 l12">
-			 	<h4>고객요청 사항</h4>
-				<div class="blue-grey-text text-darken-3">
-					@if (model.comments) {
-						@model.comments.forEach(function(comment) {
-							<p>@comment.body</p>
-						})
-					}
-				</div>
+			 	<h4>Notes</h4>
+				<form method="post" class="col l8">
+					<textarea id="notes" name="notes" class="white" rows="20">@model.order.notes</textarea>
+					<button>Add Notes</button>
+				</form>
 			 </div>
 		 </div><!-- .row -->
 	 }
@@ -168,6 +185,7 @@
 	 <script>
 	 $(document).ready(function(){
 		$("#product_price, #product_price_mobile, #delivery_price, .product-price, .price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+
 	 });
 	 </script>
   })

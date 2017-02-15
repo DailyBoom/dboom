@@ -1006,29 +1006,34 @@ header, main {
   color: #fea3a3;
 }
 
-  #individual .mall-product {
-    position: relative;
-  }
+#individual .sold-out {
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
 
-  #individual .mall-product .sale {
-    position: absolute;
-    font-family: SVN-Karla;
-    font-size: 17px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #ffffff;
-    top: 30px;
-    right: 30px;
-    background-color: #f19996;
-    border-radius: 90px;
-    padding: 21px 0;
-    height: 64px;
-    width: 64px;
-    text-align: center;
-  }  
+#individual .mall-product {
+  position: relative;
+}
+
+#individual .mall-product .sale {
+  position: absolute;
+  font-family: SVN-Karla;
+  font-size: 17px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  top: 30px;
+  right: 30px;
+  background-color: #f19996;
+  border-radius: 90px;
+  padding: 21px 0;
+  height: 64px;
+  width: 64px;
+  text-align: center;
+}  
 
 #individual .owl-item {
   text-align: center;

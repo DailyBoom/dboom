@@ -259,6 +259,15 @@ router.post('/wholesalers/orders/new', isMerchantOrAdmin, function(req, res) {
   });
 });
 
+router.post('/orders/view/:id', isMerchantOrAdmin, function(req, res) {
+  Order.findOne({ _id: req.params.id }, function(err, order) {
+    order.notes = req.body.notes;
+    order.save(function(err) {
+      res.redirect('back');
+    });
+  });
+});
+
 router.get('/orders/view/:id', isMerchantOrAdmin, function(req, res) {
   Order.findOne({ _id: req.params.id }).populate('product user cart.product coupon').exec(function(err, order) {
     if (err)
@@ -813,7 +822,7 @@ router.get('/orders/cart_paid/:id', isAdmin, function(req, res) {
             from: 'Yppuna <hello@yppuna.vn>',
             to: order.user ? order.user.email : order.email,
             subject: '데일리 붐 구매 안내.',
-            html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment })
+            html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment, i18n: i18n })
           }, function (err, info) {
               if (err) { console.log(err); }
               //console.log('Message sent: ' + info.response);
@@ -825,13 +834,14 @@ router.get('/orders/cart_paid/:id', isAdmin, function(req, res) {
   });
 });
 
-router.get('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
+router.post('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
   Order.findOne({_id: req.params.id}).populate('user').exec(function(err, order) {
     if (err)
       console.log(err);
     if (!order)
       return res.redirect('/orders/list');
     order.status = "Sent";
+    order.ship_code = req.body.ship_code;
     order.save(function(err) {
       fs.readFile('./views/mailer/shipped.vash', "utf8", function(err, file) {
         if(err){
@@ -844,8 +854,8 @@ router.get('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
         transporter.sendMail({
           from: 'Yppuna <hello@yppuna.vn>',
           to: order.user ? order.user.email : order.email,
-          subject: '데일리 붐 배송 안내.',
-          html: html({ moment: moment, order: order, accounting: accounting })
+          subject: 'Hàng của bạn đã được gửi.',
+          html: html({ moment: moment, order: order, accounting: accounting, i18n: i18n })
         }, function (err, info) {
             if (err) { console.log(err); }
             //console.log('Message sent: ' + info.response);

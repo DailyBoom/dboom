@@ -233,7 +233,7 @@
 			<div class="row">
 			@model.hotProducts.forEach(function(product) {
 				<div class="center mall-product">
-					<a href="/shop/products/@product.url"><img src="@product.images[0]" /></a>
+					<a href="/shop/products/@product.url"><img class="@(product.options[0].quantity == 0 ? 'sold-out' : '')" src="@product.images[0]" /></a>
 					<div class="prod_brand">@product.brand</div>
 					<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
 					<div class="prod_price">@product.price<span class="currency">đ</span></div>
@@ -254,7 +254,7 @@
 			<div class="row">
 			@model.newProducts.forEach(function(product) {
 				<div class="center mall-product">
-					<a href="/shop/products/@product.url"><img src="@product.images[0]" /></a>
+					<a href="/shop/products/@product.url"><img class="@(product.options[0].quantity == 0 ? 'sold-out' : '')" src="@product.images[0]" /></a>
 					<div class="prod_brand">@product.brand</div>
 					<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
 					<div class="prod_price">@product.price<span class="currency">đ</span></div>
