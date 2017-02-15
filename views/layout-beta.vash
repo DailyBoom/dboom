@@ -244,6 +244,12 @@
       <ul id="slide-out" class="side-nav @(model.zone == 0 ? 'north' : '') @(model.zone == 1 ? 'central' : '') @(model.zone == 2 ? 'south' : '')">
         <div class="slide-menu-wrapper">
           <li class="hide-on-med-and-down"><a href="/home" class="logo"><img alt="Yppuna Logo" class="svg svg-logo" src="/images/logo.svg"/></a></li>
+          <div class="search">
+            <form action="/mall" method="GET">
+              <img class="svg svg-search" src="/images/icon_search.svg" />
+              <input type="search" name="s" id="search" placeholder="Tìm kiếm sản phẩm" />
+            </form>
+          </div>
           <li><a class="waves-effect side-header" href="/home">TRANG CHỦ</a></li>        
           <li><a class="waves-effect side-header" href="/mall">SẢN PHẨM BÁN LẺ</a></li>        
           <li><a class="waves-effect side-header" href="/mall/new">MUA LẺ MỚI NHẤT</a></li>        
@@ -396,12 +402,6 @@
           </div>
           }
           <div class="slide-bottom">
-            <div class="search">
-              <form action="/mall" method="GET">
-                <img class="svg svg-search" src="/images/icon_search.svg" />
-                <input type="search" name="s" id="search" placeholder="Tìm kiếm sản phẩm" />
-              </form>
-            </div>
             <div class="sns">
               <a target="_blank" href="https://www.facebook.com/yppuna"><img class="svg svg-fb" src="/images/icon_fb.svg" /></a>
               <a target="_blank" href="http://instagram.com/yppuna"><img class="svg svg-insta" src="/images/icon_insta.svg" /></a>

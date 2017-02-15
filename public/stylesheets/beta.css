@@ -295,20 +295,20 @@ button {
   margin-right: 8px;
 }
 
-#slide-out .slide-bottom .search {
+#slide-out .search {
   padding-left: 19px;
   background: white;
 }
 
-#slide-out .slide-bottom .search .svg-search {
+#slide-out .search .svg-search {
   width: 20px;
 }
 
-#slide-out .slide-bottom .search .svg-search path {
+#slide-out .search .svg-search path {
   stroke: #b3c2cf;
 }
 
-#slide-out .slide-bottom .search input {
+#slide-out .search input {
   margin: 0;
   border: none;
   font-family: SVN-Karla;
