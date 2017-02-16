@@ -139,11 +139,8 @@
 									<div class="body">@product.how_to</div>
 								</div>
 								<div class="prices">
-									@if (model.moment().isBetween(model.product.scheduled_at, model.moment(model.product.scheduled_at).add(13, 'days'))) {
+									@if (model.product.options[0].quantity > 0) {
 										<button id="checkout" class="add_cart" data-id="@model.product.id" type="button">THÊM BOX VÀO GIỎ HÀNG</button>
-									}
-									else {
-										<span class="item_to_come">ra mắt ngày <span class="item_date">@model.moment(model.product.scheduled_at).format("DD/MM/YYYY")</span></span>
 									}
 									<a class="ybtn-o" href="/shop/products/@product.url">MUA SẢN PHẨM LẺ</a>
 								</div>
