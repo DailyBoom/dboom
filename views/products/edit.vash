@@ -105,9 +105,9 @@
 				</div>
 				<div class="input-field col s12">
 					<select id="special" class="validate" name="special">
-						<option value="Hữu Cơ">Organic - Hữu Cơ</option>
-						<option value="Được Chứng Nhận">Certified - Được Chứng Nhận</option>
-						<option value="Được Giải Thưởng">Awarded - Được Giải Thưởng</option>
+						<option value="Hữu Cơ" @(model.product.special=='Hữu Cơ' ? 'selected' : '')>Organic - Hữu Cơ</option>
+						<option value="Được Chứng Nhận" @(model.product.special=='Được Chứng Nhận' ? 'selected' : '')>Certified - Được Chứng Nhận</option>
+						<option value="Được Giải Thưởng" @(model.product.special=='Được Giải Thưởng' ? 'selected' : '')>Awarded - Được Giải Thưởng</option>
 					</select>
 					<label for="name">Special (ĐẶC BIỆT) *</label>
 				</div>

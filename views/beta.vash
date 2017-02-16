@@ -25,6 +25,7 @@
 						@model.products[0].description
 					</div>
 					<div class="item_prices hide-on-med-and-down left">
+						@if (model.products[0].options[0].quantity > 0) {
 						<div class="col s6">
 							<div class="title">GIÁ ĐẶT HÀNG</div>
 							<span class="item_price">@model.products[0].price</span>
@@ -33,11 +34,19 @@
 							<div class="title-old">GIÁ GỐC</div>
 							<span class="item_old_price">@model.products[0].old_price</span>
 						</div>
+						}
+						else {
+							<div class="col s6">
+								<span class="item_price">SOLD OUT</span>
+							</div>
+						}
 					</div>
 					<div class="item_detail hide-on-med-and-down left">
+						@if (model.products[0].options[0].quantity > 0) {
 						<a href="#" class="add-cart" data-id="@model.products[0].id">
 							THÊM BOX VÀO GIỎ HÀNG
 						</a><br/><br/>
+						}
 						<a href="/shop/box/@model.products[0].url">
 							XEM CHI TIẾT
 						</a>
@@ -46,9 +55,11 @@
 				<div class="col s12 l8" >
 					<div class="item_img"><img  src="@model.products[0].images[0]"/></div>
 					<div class="item_detail hide-on-large-only">
+						@if (model.products[0].options[0].quantity > 0) {
 						<a href="#" class="add-cart" data-id="@model.products[0].id">
 							THÊM BOX VÀO GIỎ HÀNG
 						</a><br/><br/>
+						}
 						<a href="/shop/box/@model.products[0].url">
 							XEM CHI TIẾT
 						</a>
