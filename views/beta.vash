@@ -36,7 +36,7 @@
 						</div>
 						}
 						else {
-							<div class="col s6">
+							<div class="col s12">
 								<span class="item_price">SOLD OUT</span>
 							</div>
 						}
