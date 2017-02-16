@@ -423,15 +423,15 @@ router.get('/products/order', isMerchantOrAdmin, function(req, res) {
 router.post('/products/order', isMerchantOrAdmin, function(req, res) {
   var query;
   console.log(req.body);
-  req.body['products[position]'].forEach(function(item, index) {
+  req.body.products.position.forEach(function(item, index) {
     if (req.body.group && req.body.group != '') {
-      query = Product.findOneAndUpdate({ _id: req.body['products[id]'][index] }, { position_group: item });
+      query = Product.findOneAndUpdate({ _id: req.body.products.id[index] }, { position_group: item });
     }
     else {
-      query = Product.findOneAndUpdate({ _id: req.body['products[id]'][index] }, { position: item });
+      query = Product.findOneAndUpdate({ _id: req.body.products.id[index] }, { position: item });
     }
     query.exec(function() {
-      if (index == req.body['products[position]'].length - 1) {
+      if (index == req.body.products.position.length - 1) {
         res.redirect('back');
       }
     });
