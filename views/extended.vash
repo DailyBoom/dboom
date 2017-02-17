@@ -101,8 +101,13 @@
 						<div class="body">@html.raw(model.product.how_to)</div>
 					</div>
 					<div class="prices">
-						<span class="price">@model.product.price</span>
-						@if (model.product.old_price) {
+						@if (model.product.options[0].quantity > 0) {
+							<span class="price">@model.product.price</span>
+						}
+						else {
+							<span class="price">SOLD OUT</span>
+						}
+						@if (model.product.old_price && model.product.options[0].quantity > 0) {
 							<span class="old_price">@model.product.old_price</span>
 						}
 					</div>

@@ -1006,9 +1006,13 @@ header, main {
   color: #fea3a3;
 }
 
-#individual .sold-out {
-  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+#individual img.sold-out {
+  -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
+}
+
+#individual span.sold-out {
+  color: #fea3a3;
 }
 
 #individual .mall-product {
