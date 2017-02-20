@@ -93,7 +93,8 @@
 							<button id="checkout" class="add_cart" data-id="@model.product.id" type="button">THÊM BOX VÀO GIỎ HÀNG</button>
 							}
 							else {
-								<span class="price">SOLD OUT</span>								
+								<span class="price">SOLD OUT</span>
+								<button id="checkout" onclick="alert('Chúng tôi xin lỗi hộp làm đẹp bạn muốn đặt đã hết hàng.');" type="button">THÊM BOX VÀO GIỎ HÀNG</button>															
 							}
 						</div>
 						@if (model.is_mobile) {
