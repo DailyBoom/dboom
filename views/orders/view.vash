@@ -16,7 +16,7 @@
 				@if(model.order.status=='Waiting'){
 					<a href="/orders/paid/@model.order.id" class="orange btn right" onclick="return confirm('Order has been paid?')">PAID</a>
 				}
-				else if(model.order.status=='Waiting' || model.order.status == "Paid"){
+				@if(model.order.status == 'Waiting' || model.order.status == "Paid"){
 					<a href="#shipping_modal" class="green btn right modal-trigger">SENT</a>
 				}
 			}
