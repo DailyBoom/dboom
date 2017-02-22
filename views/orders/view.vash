@@ -13,7 +13,7 @@
 		 <div class="row">
 			@if(model.user.admin){
 				<a href="/orders/edit/@model.order.id" class="btn right">EDIT</a>
-				@if(model.order.status=='Waiting'){
+				@if(model.order.status=='Waiting' || model.order.status == "Sent"){
 					<a href="/orders/paid/@model.order.id" class="orange btn right" onclick="return confirm('Order has been paid?')">PAID</a>
 				}
 				@if(model.order.status == 'Waiting' || model.order.status == "Paid"){
