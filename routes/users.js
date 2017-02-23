@@ -689,7 +689,7 @@ router.post('/wholesale', function(req, res) {
 
 router.get('/auth/facebook',
   passport.authenticate('facebook',
-    { display: 'popup' }
+    { display: 'popup', scope: ['profile', 'email'] }
 ));
 
 router.get('/auth/facebook/callback',
