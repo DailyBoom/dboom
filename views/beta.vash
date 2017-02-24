@@ -9,15 +9,12 @@
 					<img class="item_cover" src="@model.products[0].box_header" />
 					<div class="item_names row center">
 						<div class="col s12">
-							<div class="item_type">NHÃN HIỆU</div>
 							<div class="item_name truncate">@model.products[0].brand</div>
 						</div>
 						<div class="col s12">
-							<div class="item_type">SẢN XUẤT</div>
 							<div class="item_name truncate">@model.products[0].origin</div>
 						</div>
 						<div class="col s12">
-							<div class="item_type">ĐẶC BIỆT</div>
 							<div class="item_name truncate">@model.products[0].special</div>
 						</div>
 					</div>
