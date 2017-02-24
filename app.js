@@ -26,7 +26,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var KakaoStrategy = require('passport-kakao').Strategy;
 var RememberMeStrategy = require('passport-remember-me').Strategy;
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/dailyboom');
+mongoose.connect('mongodb://localhost/drpelo');
 var paginate = require('express-paginate');
 var device = require('express-device');
 var User = require('./models/user');

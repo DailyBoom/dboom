@@ -1,186 +1,49 @@
 @html.extend(model.layout, function(model) {
 	@html.block("body", function(model) {
-<!-- Login Modal Structure -->
-
-<!-- End Login Modal -->
-<!-- Login Modal Structure -->
-<div id="modal-ask" class="modal modal-lg center">
-	<div class="modal-content">
+<div class="home-background">
+	<div class="container@(model.is_mobile ? '-fluid' : '')" id="home">
 		<div class="row">
-			<p>Send a message to <a href="http://www.askajumma.com" target="_blank"><b><span class="aa-a">Ask</span> <span class="aa-b">Ajumma</span></b></a>* and say,</p>
-			<h5>"I want the Daily Boom product!"</h5>
-			<a href="http://goto.kakao.com/i1ala00r" target="_blank"><img class="help-icon" src="/images/kakao_lg.jpg" alt="Kakaotalk" /></a>
-			<a href="http://www.facebook.com/askthisajumma" target="_blank"><img class="help-icon" src="/images/icon_fb.png" alt="Kakaotalk" /></a>
-			<p>
-				Start by clicking on one of the icons above.
-			</p>
-			<p class="ask-text">
-				*Ask Ajumma is a virtual concierge service,  all major international credit cards are accepted.<br>A 20% surcharge will be assessed for each transaction.
-			</p>
+			<div class="col s12">
+				<div class="center">
+					<img src="/images/logo.png" class="home-logo"/>
+				</div>
+				<div class="col s12 l5">
+					<div class="hair-wrapper">
+						<div class="hair center">
+							<h4>All Natural & Organic Hair Care</h4>
+							<div class="separator"></div>
+							<a href="#">Read More ></a>
+						</div>
+					</div>
+					<div class="scalp center">
+						<div class="boost">BEAUTY<br/> BOOST</div>
+						<img src="/images/scalp.png" />
+						<h4>Treat yourself to the luxury of nature</h4>
+						<a href="#">Shop All Skincare ></a>						
+					</div>
+				</div>
+				<div class="col s12 l6">
+					<div class="new-wrapper">
+						<div class="new center">
+							<img src="/images/shampoo.png" />
+							<h4>NEW WINTER FRAGRANCES</h4>
+							<p>cinnamon, spice and everything nice</p>
+							<a href="#">Stock up now ></a>
+						</div>
+					</div>
+					<div class="hair-wrapper">
+						<div class="hair center">
+							<h4>Amazing</h4>
+							<h4>Skin Care</h4>
+							<div class="separator"></div>							
+							<a href="#">Read More ></a>							
+						</div>
+					</div>
+				</div>		
+			</div><!-- .col -->
 		</div><!-- .row -->
-	</div><!-- .modal-content -->
-</div><!-- #modal-check -->
-<!-- b4 -->
-<div class="container@(model.is_mobile ? '-fluid' : '')" id="home">
-	<div class="row">
-		<div class="col s12">
-		@if (model.product) {			
-			<div class="daily" style="background: url(@model.product.images[0]) no-repeat">
-				<div class="col l4 s12 red white-text">
-					<h3>
-						Today's sale
-					</h3>
-					<a href="/mall/products/@model.product.id">Shop Now</a>
-				</div>
-			</div>
-		}
-			<div class="col s12 products">
-				<h2 class="center">AS SEEN ON CELEBRITIES</h2>
-				@model.mallProducts.forEach(function(product) {
-				<div class="col s12 m4 m-y-3">
-					<div class="card">
-						<div class="card-image">
-							<a href="/mall/products/@product.id">
-								<div class="mall-card-img" style="background-image: url('/@product.images[0]')"></div>
-							</a>
-						</div>
-						<div class="card-content mall center">
-							<span>@product.brand</span>
-							<div class="mall-title left"><a href="/mall/products/@product.id"><b>@product.name</b></a></div>
-							<!--<a class="right" href="/blushop/@product.brand/@product.id"><img class="mall-btn-buy" src="/images/db_buy_btn.png" alt="" /></a>-->
-							<!--<button class="btn-xs add_cart right" data-id="@product.id">Add to cart <i class="fa fa-cart-plus"></i></button>-->
-							<p class="mall-price-o">@(product.old_price != product.price ? product.old_price : '')</p>
-							<p class="mall-price-n">@product.price</p>
-						</div>
-					</div>
-				</div>
-				})
-			</div>
-			<a href="#modal-ask" class="hide-on-med-and-up buy-help modal-trigger dark-text">Can't Read Korean? Click here.</a>
-
-			<div class="col s12 hide-on-small-only center past-box-wrapper">
-				@model.__('past_items')
-				<a class="hide dark-text right" href="/mall"><i class="fa fa-shopping-bag fa-fw dark-text"></i> 쇼핑몰 보기</a>
-			</div>
-			<div class="row">
-				<div class="col s12 m12 l12">
-					<div class="row">
-						<div id="db-past" class="owl-carousel owl-theme">
-								@if (model.pastProducts) {
-									@model.pastProducts.forEach(function(product) {
-										<div class="col s12 m12 l12">
-											<div class="card past">
-												<div class="card-image">
-													<div class="past-date-box white darken-1 dark-text">
-														@model.moment(product.scheduled_at).format("YYYY/MM/DD")@(model.moment(product.scheduled_at).day() == 6 ? model.moment(product.scheduled_at).add(1, 'days').format('-DD') : '')@(model.moment(product.scheduled_at).isSame('2016-02-08') ? '-09-10' : '')
-													</div>
-													<div class="card-image-ol">
-														<h5 class="white-text truncate"><b>@product.name</b></h5>
-														<div class="past-divider"></div>
-														<div>
-															<span class="ol-new-p">@product.price</span> (<span class="ol-old-p">@product.old_price</span>)
-														</div>
-													</div><!-- .card-image-ol -->
-													<div class="past-img" style="background-image: url(@(product.mobile_images[0] ? product.mobile_images[0] : product.images[0]))" alt=""></div>
-												</div>
-													@if(product.extend == 1 && model.moment().isBefore(model.moment(product.scheduled_at).add(3, 'days'), 'days')){
-														<div class="card-action mod center green">
-															<a class="waves-effect waves-light btn-flat white-text text-darken-3 extended-time" data-date="@model.moment(product.scheduled_at).format()" href="/mall/products/@product.id">@model.__('available')! (<span class="time-left"></span>)</a>
-														</div>
-													}
-													else if (product.extend == 2){
-														<div class="card-action mod center green">
-															<a class="waves-effect waves-light btn-flat white-text text-darken-3" href="/mall/products/@product.id">@model.__('available')!</a>
-														</div>
-													}
-													else if (model.user && product.wanna_buy.indexOf(model.user.id) != -1) {
-														<div class="card-action mod center want cyan" data-id="@product.id">
-															<span class=" waves-effect waves-light btn-flat white-text text-darken-3">@model.__('bring_back') <i class="fa fa-thumbs-up fa-fw right"></i></span>
-														</div>
-													}
-													else {
-														<div class="card-action mod center want cyan" data-id="@product.id">
-															<span class="waves-effect waves-light btn-flat white-text text-darken-3">@model.__('bring_back') <i class="fa fa-thumbs-o-up fa-fw right"></i></span>
-														</div>
-													}
-											</div>
-										</div>
-									})
-								}
-							<?}?>
-						</div><!-- /.owl-carousel -->
-					</div><!-- .row -->
-				</div><!-- /.col s12 m9 l9 -->
-			</div><!-- .row -->
-			<!-- Featured section -->
-			<div class="row">
-				<div class="col s12">
-					<div class="past-box-wrapper white darken-2 dark-text">
-						@model.__('featured')
-					</div>
-					<br>
-				</div>
-				<div id="db-partners" class="owl-carousel owl-theme">
-					@model.partners.forEach(function(partner) {
-						<div class="col s12">
-                            <div class="partner-logo" style="background-image: url('/@partner.logo');"></div>
-						</div><!-- .col -->
-					})
-				</div><!-- /.owl-carousel -->
-			</div><!-- .row -->
-			<br>
-			<br>
-			@if(!model.is_phone) {
-			<div class="a-wrapper">
-				<script type='text/javascript'>
-					<!--//<![CDATA[
-					document.MAX_ct0 ='';
-					var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
-					var m3_r = Math.floor(Math.random()*99999999999);
-					document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
-					document.write ("zoneid=292195");document.write("&amp;nodis=1");
-					document.write ('&amp;cb=' + m3_r);
-					if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
-					document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
-					document.write ("&amp;loc=" + escape(window.location).substring(0,1600));
-					if (document.context) document.write ("&context=" + escape(document.context));
-					if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
-						document.write ("&amp;ct0=" + escape(document.MAX_ct0));
-					}
-					if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
-
-					document.write ("'></scr"+"ipt>");
-					//]]>-->
-				</script>
-			</div>
-			}
-			else {
-            <div class="center">
-				<script type='text/javascript'>
-					<!--//<![CDATA[
-					document.MAX_ct0 ='';
-					var m3_u = (location.protocol=='https:'?'https://cas.criteo.com/delivery/ajs.php?':'http://cas.criteo.com/delivery/ajs.php?');
-					var m3_r = Math.floor(Math.random()*99999999999);
-					document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
-					document.write ("zoneid=305337");document.write("&amp;nodis=1");
-					document.write ('&amp;cb=' + m3_r);
-					if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
-					document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
-					document.write ("&amp;loc=" + escape(window.location).substring(0,1600));
-					if (document.context) document.write ("&context=" + escape(document.context));
-					if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
-						document.write ("&amp;ct0=" + escape(document.MAX_ct0));
-					}
-					if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
-
-					document.write ("'></scr"+"ipt>");
-					//]]>-->
-				</script>
-            </div>
-			}
-		</div><!-- .col -->
-	</div><!-- .row -->
-</div><!-- .container -->
+	</div><!-- .container -->
+</div>
 @if(!model.no_time){
 <script>
 var is_mobile = @model.is_phone;

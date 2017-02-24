@@ -7,20 +7,20 @@
 
     <title>데일리 붐 - @if(model.title){ @model.title }</title>
     @if(!model.title){
-      <meta name="title" content="데일리 붐 - 오늘 뭐 사지?">
-  		<meta itemprop="name" content="데일리 붐 - 오늘 뭐 사지?" />
-      <meta property="og:title" content="데일리 붐 - 오늘 뭐 사지?" />
+      <meta name="title" content="Dr. Pelo">
+  		<meta itemprop="name" content="Dr. Pelo" />
+      <meta property="og:title" content="Dr. Pelo" />
     }
     else {
-      <meta name="title" content="데일리 붐 - @model.title">
-	   	<meta itemprop="name" content="데일리 붐 - @model.title" />
-      <meta property="og:title" content="데일리 붐 - @model.title" />
+      <meta name="title" content="Dr. Pelo - @model.title">
+	   	<meta itemprop="name" content="Dr. Pelo - @model.title" />
+      <meta property="og:title" content="Dr. Pelo - @model.title" />
     }
     <meta name="copyright" content="Copyright 2015 Daily Boom">
     @if(!model.description){
-      <meta name="description" content="오늘 뭐 사지? 데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다. 상품이 공개된 후부터 ‘24시간 카운트 다운’으로 진행되기 때문에 고객들은 실시간으로 남은 할인가격 시간과 구매율(%)을 확인할 수 있습니다.">
-  		<meta itemprop="description" content="오늘 뭐 사지? 데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다. 상품이 공개된 후부터 ‘24시간 카운트 다운’으로 진행되기 때문에 고객들은 실시간으로 남은 할인가격 시간과 구매율(%)을 확인할 수 있습니다." />
-      <meta property="og:description" content="오늘 뭐 사지? 데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다. 상품이 공개된 후부터 ‘24시간 카운트 다운’으로 진행되기 때문에 고객들은 실시간으로 남은 할인가격 시간과 구매율(%)을 확인할 수 있습니다." />
+      <meta name="description" content="For your healthy hair">
+  		<meta itemprop="description" content="For your healthy hair" />
+      <meta property="og:description" content="For your healthy hair" />
     }
     else {
       <meta name="description" content="@model.description">
@@ -29,19 +29,19 @@
     }
 		<meta itemprop="pageType" content="Product" />
     @if(!model.cover){
-  		<meta itemprop="image" content="http://dailyboom.co/images/dailyboomNEW5.png" />
-      <meta property="og:image" content="http://dailyboom.co/images/dailyboomNEW5.png" />
+  		<meta itemprop="image" content="http://drpelo.co.kr/images/dailyboomNEW5.png" />
+      <meta property="og:image" content="http://drpelo.co.kr/images/dailyboomNEW5.png" />
     }
     else {
-  		<meta itemprop="image" content="http://dailyboom.co/@model.cover" />
-      <meta property="og:image" content="http://dailyboom.co/@model.cover" />
+  		<meta itemprop="image" content="http://drpelo.co.kr/@model.cover" />
+      <meta property="og:image" content="http://drpelo.co.kr/@model.cover" />
     }
-    <meta property="og:site_name" content="데일리 붐 - Daily Boom">
-    <meta property="og:url" content="http://dailyboom.co@model.url" />
+    <meta property="og:site_name" content="Dr. Pelo">
+    <meta property="og:url" content="http://drpelo.co.kr@model.url" />
     <meta property="og:type" content="product">
     <meta property="fb:app_id" content="636096523200038">
 
-    <link rel="canonical" href="http://dailyboom.co@model.url" />
+    <link rel="canonical" href="http://drpelo.co.kr@model.url" />
     <link rel="publisher" href="https://plus.google.com/107959815610933986765" />
 
 		<!-- favicon -->
@@ -116,9 +116,6 @@
     </script>
   </head>
   <body>
-    <div id="top_banner" class="center hide-on-small-only">
-        <a href="/" class="logo-d"><img class="logo-img" src="/images/db_ko_05.png" /></a>
-    </div>
     @if(model.cart) {
       <div id="cart-modal" class="modal">
         <div class="modal-header-c light-blue darken-2 white-text center">
@@ -137,15 +134,18 @@
         </ul>
       </div>
     }
-		<div class="navbar">
-			<nav class="white darken-3">
+		<div class="navbar-fixed">
+			<nav class="darken-3">
 				<div class="container">
+          <a href="/" class="logo-d"><img class="logo-img left" src="/images/logo.png" /></a>
           <a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_05.png" /></a>
           <ul class="left hide-on-small-only">
-            <li><a href="/">HOME</a></li>
-            <li><a href="/mall/beauty">Beauty</a></li>
-            <li><a href="/mall/tools">Tools</a></li>
-            <li><a href="/mall/gadgets">Gadgets</a></li>
+            <li><a href="/">홈</a></li>
+            <li><a href="/about">소개</a></li>
+            <li><a href="/mall/hair">모발&두피 케어</a></li>
+            <li><a href="/mall/beauty">피부 미용</a></li>
+            <li><a href="/contact">문의 사항</a></li>
+            <li><a href="/find-us">오시는길</a></li>
           </ul>
           @if(@model.cart) {
             <ul class="right hide-on-small-only">
@@ -274,7 +274,7 @@
 			</nav>
 		</div><!-- .navbar -->
       @html.block("body")
-		<footer class="page-footer white darken-3">
+		<footer class="">
 			<div class="container">
         <div class="row flex-s">
           <div class="col s12 m3 l3 box-2">
@@ -291,7 +291,7 @@
                 </a>
             </span>
           </div><!-- .col -->
-          <div class="col s12 m9 l9 footer-box dark-text box-1">
+          <div class="hide col s12 m9 l9 footer-box dark-text box-1">
             <a class="footer-link dark-text" href="/about">@model.__('about')</a>&#149;
             <a class="footer-link dark-text" href="/advertise">@model.__('advertise')</a>&#149;
             <a class="footer-link dark-text" href="/privacy">@model.__('privacy')</a>&#149;
@@ -315,14 +315,10 @@
               <br><br>
               @model.__('footer_2')
             </p>
+  					<span class="text-footer dark-text">Copyright &copy; 2017 Dr. Pelo. All rights reserved.</span>
           </div>
         </div><!-- .row -->
 			</div><!-- .container -->
-			<div class="footer-copyright">
-				<div class="container">
-					<span class="text-footer dark-text">Copyright &copy; 2016 Dailyboom. All rights reserved.</span>
-				</div>
-			</div>
 			<div class="hide-on-med-and-up">
 				<p class="section"></p>
 			</div>

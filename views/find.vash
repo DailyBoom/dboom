@@ -1,0 +1,16 @@
+@html.extend(model.layout, function(model) {
+	@html.block("body", function(model) {
+    <div class="find-background">
+        <div class="container@(model.is_mobile ? '-fluid' : '')" id="find_us">
+            <div class="row">
+                <div class="col s12">
+                    <h1 class="center">오시는길</h1>
+                    <div class="center">
+                        <img src="/images/find-us.png" class="home-logo"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    })
+})

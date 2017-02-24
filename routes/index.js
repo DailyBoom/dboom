@@ -54,6 +54,10 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/find-us', function(req, res, next) {
+  res.render('find', { title: "오시는길", description: '' });
+});
+
 router.get('/mall', function(req, res, next) {
   Product.find({ extend: 4, is_published: true, is_hot: null }, {}, { sort: { 'price' : -1 }}, function(err, products) {
     Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
@@ -101,8 +105,8 @@ router.get('/about', function(req, res, next) {
   res.render('about', { title: "회사 소개", description: "데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다." });
 });
 
-router.get('/advertise', function(req, res, next) {
-  res.render('advertise', { title: "광고·제휴 문의", description: "광고·제휴 문의" });
+router.get('/contact', function(req, res, next) {
+  res.render('contact', { title: "문의 사항", description: "문의 사항" });
 });
 
 router.get('/privacy', function(req, res, next) {
@@ -117,12 +121,12 @@ router.get('/merchant', function(req, res, next) {
   res.render('merchant', { title: "판매자 문의", description: "데일리 붐은 하루 24시간 오직 한개의 상품만을 판매함으로써 매출을 획기적으로 증가시켜 드립니다." });
 });
 
-router.post('/advertise', function(req, res, next) {
+router.post('/contact', function(req, res, next) {
   transporter.sendMail({
     from: '데일리 붐 <contact@dailyboom.co>',
     to: 'contact@dailyboom.co',
     subject: 'Advertise contact.',
-    html: '<p>회사 명: '+req.body.company+'</p><p>이름: '+req.body.fullname+'</p><p>이메일: '+req.body.email+'</p><p>내용: '+req.body.details+'</p>'
+    html: '<p>이름: '+req.body.name+'</p><p>이메일: '+req.body.email+'</p><p>제목: '+req.body.subject+'</p><p>내용: '+req.body.message+'</p>'
   }, function (err, info) {
       if (err) { console.log(err); res.status(500).json({ message: '죄송합니다. 오류가있었습다. 확인후 다시 시도해주세요.'}); }
      //console.log('Message sent: ' + info.response);

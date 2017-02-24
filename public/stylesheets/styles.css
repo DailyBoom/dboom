@@ -27,6 +27,15 @@
 		url('/fonts/CooperBlackStd.ttf') format('truetype'),
     url('/fonts/CooperBlackStd.otf'); /* IE9 Compat Modes */
 }
+
+@font-face {
+  font-family: 'Sacramento';
+  src: url('/fonts/sacramento-regular-webfont.eot');
+	src: url('/fonts/sacramento-regular-webfont.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/sacramento-regular-webfont.woff') format('woff'),
+		url('/fonts/Sacramento-Regular.ttf') format('truetype'),
+    url('/fonts/sacramento-regular-webfont.otf'); /* IE9 Compat Modes */
+}
 body {
   font-family: 'Dotum', sans-serif;
   word-break: keep-all;
@@ -43,7 +52,6 @@ nav {
   background: -o-linear-gradient(#37474f, #455a64, #37474f);
   background: -moz-linear-gradient(#37474f, #455a64, #37474f);
   background: linear-gradient(#37474f, #455a64, #37474f);
-  border-bottom: 3px solid #fff;
 }
 
 /* Global Settings */
@@ -202,18 +210,25 @@ input[type=number]::-webkit-outer-spin-button {
   .logo-img { height: 40px; margin-top: 6px;}
   nav {
     box-shadow: none;
-    height: 51px;
+    height: 0;
     line-height: 51px;
+    background: rgba(245, 245, 245, 0.71)
+  }
+
+  .navbar-fixed {
+    height: 0px;
+  }
+
+  nav ul.left {
+    margin-top: 13px;
   }
 
   nav ul a {
-    color: #cf4b32;
-    transition: color 1s;
+    color: black;
   }
 
   nav ul.left a {
-    font-family: "Cooper Black";
-    font-size: 20px;
+    font-size: 15px;
   }
 
   nav ul a:hover {
@@ -221,7 +236,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   nav ul.left li {
-    margin-right: 75px;
+    margin-right: 15px;
   }
 
   nav .button-collapse {
@@ -286,6 +301,11 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .btn-mobile {
     padding: 0;
+  }
+
+  footer {
+    background-color: rgb(246, 220, 208);
+    padding: 30px 0;
   }
 }
 @media only screen and (min-width: 601px) {
@@ -416,7 +436,26 @@ input[type=number]::-webkit-outer-spin-button {
     display: block !important;
     text-align: center !important;
     font-size: 34px !important;
-  } 
+  }
+
+  .home-background {
+    width: 100%;
+    background: url('/images/background.png') no-repeat;
+    padding-top: 650px;
+  }
+
+  .find-background {
+    width: 100%;
+    background: url('/images/background.png') no-repeat;
+    padding-top: 450px;
+  }
+
+  .contact-background {
+    width: 100%;
+    background: url('/images/background.png') no-repeat;
+    padding-top: 400px;
+  }
+
 
   #home .products {
     background-color: rgba(245, 245, 245, 1);
@@ -427,7 +466,143 @@ input[type=number]::-webkit-outer-spin-button {
     letter-spacing: 0.3em;
   }
   
+  #home .home-logo {
+    height: 120px;
+    margin-bottom: 200px;
+  }
 
+  #home .l5 {
+    margin-right: 10px;    
+  }
+
+  #home .hair-wrapper {
+    background-color: rgba(116, 128, 106, 1);
+    padding: 12px;    
+    margin-bottom: 30px;
+  }
+
+  #home .hair {
+    background-color: rgba(116, 128, 106, 1);
+    border: 2px solid white;
+    color: white;
+    padding: 86px 20px;
+  }
+
+  #home .hair h4 {
+    font-size: 36px;
+    margin: 0;
+    font-family: georgia, palatino, "book antiqua", "palatino linotype", serif;
+    text-align: center;
+  }
+
+  #home .hair a {
+    font: normal normal normal 15px/1.4em georgia,palatino,'book antiqua','palatino linotype',serif;
+    transition: color 0.4s ease 0s;
+    color: white;
+  }
+
+  #home .separator {
+    width: 31px;
+    border-bottom: 1px solid white;
+    height: 1px;
+    margin: 30px auto;
+  }
+
+  #home .scalp {
+    border: solid 1px black;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    position: relative;
+  }
+
+  #home .scalp .boost {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    font-size: 15px;
+    font-family: georgia, palatino, "book antiqua", "palatino linotype", serif;
+    background: rgb(59, 47, 41);
+    border-radius: 90px;
+    height: 119px;
+    width: 114px;
+    padding-top: 35px;
+  }
+
+  #home .scalp img {
+    width: 91px;
+  }  
+
+  #home .scalp h4 {
+    font: normal normal normal 31px/1.4em 'Sacramento',cursive;
+    color: #706C6C;
+  }
+
+  #home .new-wrapper {
+    border: 1px solid black;
+    padding: 5px;
+    margin-bottom: 30px;    
+  }
+
+  #home .new {
+    background-color: white;
+    border: 1px solid black;
+    box-shadow: 0 0 0 5px white;
+    color: black;
+    padding: 40px 0;
+  }
+
+  #home .new img {
+    width: 101px;
+  }
+
+  #home .new h4 {BEAUTY BOOST
+    font-size: 26px;
+    color: #404041;
+    font-family: georgia, palatino, "book antiqua", "palatino linotype", serif;
+  }
+
+  #home .new p {
+    color:rgb(112, 108, 108);
+    font-size: 15px;
+    margin: 0;
+    margin-bottom: 50px;
+  }
+
+  #home .new a, #home .scalp a {
+    font: normal normal normal 15px/1.4em georgia,palatino,'book antiqua','palatino linotype',serif;
+    transition: color 0.4s ease 0s;
+    color: #404041;
+  }
+
+  #home .new a:hover, #home .scalp a:hover {
+    color: rgb(64, 64, 65);
+  }
+
+  #find_us img {
+    width: 600px;
+  }
+
+  #find_us h1, #contact h1 {
+    font-size: 21px;
+    color: rgb(112, 108, 108);
+    font-family: georgia, palatino, "book antiqua", "palatino linotype", serif;
+  }
+
+  #contact input {
+    border: 1px solid black;
+    height: auto;
+    padding: 7px;
+    padding-right: 0;
+  }
+
+  #contact textarea {
+    min-height: 130px;
+    resize: none;
+    border: 1px solid black;
+    box-shadow: none;
+    padding: 7px;
+  }
 }
 @media only screen and (min-width: 1200px) {}
 
@@ -619,7 +794,7 @@ input[type=number]::-webkit-outer-spin-button {
   opacity: 0.7;
 }
 @media only screen and (min-width: 0) {
-  .footer-social { height: 40px; }
+  .footer-social { height: 20px; }
   .footer-box {
     text-align: center;
     padding: 0 0.25rem !important;
@@ -631,7 +806,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 @media only screen and (min-width: 601px) {
-  .footer-social { height: 50px; }
+  .footer-social { height: 20px; }
   .footer-box { text-align: right; }
   .footer-link {
     width: 140px;
@@ -642,7 +817,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 @media only screen and (min-width: 992px) {
 
-  .footer-social { height: 50px; }
+  .footer-social { height: 20px; }
   .footer-box { text-align: right; }
   .footer-link {
     width: 140px;
