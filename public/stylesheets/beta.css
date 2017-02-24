@@ -2516,7 +2516,8 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #detailed_box .area-row .item_names {
-  padding: 0;
+  margin-left: 0;
+  margin-right: 65px;
 }
 
 #detailed_box .description {
@@ -3880,7 +3881,8 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   #detailed_box .area-row .item_names {
-    margin: 15px 0 30px;
+    margin: 15px 30px 30px;
+    padding: 0 20px;
   }
 
   #detailed_box .img-wrapper {

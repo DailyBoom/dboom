@@ -14,9 +14,6 @@
 						<div class="col s12">
 							<div class="item_name truncate">@model.products[0].origin</div>
 						</div>
-						<div class="col s12">
-							<div class="item_name truncate">@model.products[0].special</div>
-						</div>
 					</div>
 					<div class="item_desc hide-on-med-and-down">
 						@model.products[0].description
