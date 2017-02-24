@@ -901,13 +901,21 @@ header, main {
 }
 
 .area-row .item_names {
-  margin: 37px 0 31px;
+  margin: 37px 0 31px 38px;
   position: relative;
+  border-top: 1px solid #4a8dcc;
+  border-bottom: 1px solid #4a8dcc;
+  padding: 20px 0;
 }
 
 .area-row .item_names .s4:nth-child(2) {
   border-left: solid 1px #b3c2cf;
   border-right: solid 1px #b3c2cf;
+}
+
+.area-row .item_names .item_name, .area-row .item_names .item_type {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .area-row .item_desc {
@@ -3565,11 +3573,12 @@ input[type=number]::-webkit-outer-spin-button {
 
   .area-row .item_names {
     padding: 0 30px;
+    margin-left: 0;
   }
 
   .area-row .item_names .item_name {
     font-family: SVN-Karla;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     font-style: normal;
     font-stretch: normal;
@@ -4331,7 +4340,7 @@ input[type=number]::-webkit-outer-spin-button {
 
   .area-row .item_names .item_name {
     font-family: SVN-Karla;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: bold;
     font-style: normal;
     font-stretch: normal;
@@ -4347,7 +4356,7 @@ input[type=number]::-webkit-outer-spin-button {
     color: #a4b5c4;
   }
 
-  .area-row .item_names, .area-row .item_desc, .area-row .item_prices {
+.area-row .item_desc, .area-row .item_prices {
     padding-left: 38px;
   }
 
