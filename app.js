@@ -95,7 +95,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.authenticate('remember-me'));
 if (app.get('env') === 'production') {
-  app.listen(3000);
+  app.listen(3003);
 }
 else {
   app.listen(3000);    
