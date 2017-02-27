@@ -139,7 +139,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         if (req.files['options[photo]'] && req.files['options[photo]'][index]) {
           req.body.options[index].photo = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['options[photo]'][index].key;
         }
-        quantity += parseInt(option.quantity);      
+        quantity += parseInt(option.quantity);     
       });
       
       var product = new Product({
@@ -223,6 +223,7 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
       }
       quantity += parseInt(option.quantity);      
     });
+    console.log(quantity);
 
     if (req.body.merchant_id)
       product.merchant_id = req.body.merchant_id;
@@ -237,6 +238,7 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
     product.old_price = req.body.oldPrice,
     product.wholesale_price = req.body.wholesale_price,
     product.scheduled_at = req.body.selldate;
+    product.quantity = quantity;
     product.brand = req.body.brandname;
     product.origin = req.body.origin;
     product.special = req.body.special;
@@ -265,9 +267,6 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
       product.delivery_price = 0;
     else
       product.delivery_price = 2500;
-
-    if (quantity > product.quantity || !product.quantity)
-      product.quantity = quantity;
 
     if (req.files['photosmain']) {
       var paths = req.files['photosmain'].map(function(item) {

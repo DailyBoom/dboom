@@ -100,10 +100,10 @@
 				<div class="col s12 l11 offset-l1">
 				@model.products.forEach(function(product) {
 					<div class="col s6 l3 mall-product">
-						<a href="/shop/products/@product.url"><img class="@(product.options[0].quantity == 0 ? 'sold-out' : '')" src="@product.images[0]" /></a>
+						<a href="/shop/products/@product.url"><img class="@(product.quantity == 0 ? 'sold-out' : '')" src="@product.images[0]" /></a>
 						<div class="prod_brand">@product.brand</div>
 						<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
-						@if (product.options[0].quantity > 0) {
+						@if (product.quantity > 0) {
 						<span class="prod_price">
 							@product.price	
 						</span>
@@ -113,7 +113,7 @@
 								SOLD OUT	
 							</span>
 						}
-						@if (product.old_price && product.options[0].quantity > 0) {
+						@if (product.old_price && product.quantity > 0) {
 							<span class="old_price">@product.old_price</span>
 							@{
 								var price =  product.old_price - product.price

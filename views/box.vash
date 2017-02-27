@@ -74,7 +74,7 @@
 						<div class="description"><div class="body">@model.product.description</div></div>
 						<div class="how-to"></div>
 						<div class="prices">
-							@if (model.product.options[0].quantity > 0) {
+							@if (model.product.quantity > 0) {
 							<span class="price">@model.product.price</span>
 							<span class="old_price">@model.product.old_price</span>
 							<!-- -->
@@ -128,7 +128,7 @@
 									<div class="body">@product.how_to</div>
 								</div>
 								<div class="prices">
-									@if (model.product.options[0].quantity > 0) {
+									@if (model.product.quantity > 0) {
 										<button id="checkout" class="add_cart" data-id="@model.product.id" type="button">THÊM BOX VÀO GIỎ HÀNG</button>
 									}
 									<a class="ybtn-o" href="/shop/products/@product.url">MUA SẢN PHẨM LẺ</a>

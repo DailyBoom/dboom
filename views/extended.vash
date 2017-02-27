@@ -95,13 +95,13 @@
 						<div class="body">@html.raw(model.product.how_to)</div>
 					</div>
 					<div class="prices">
-						@if (model.product.options[0].quantity > 0) {
+						@if (model.product.quantity > 0) {
 							<span class="price">@model.product.price</span>
 						}
 						else {
 							<span class="price">SOLD OUT</span>
 						}
-						@if (model.product.old_price && model.product.options[0].quantity > 0) {
+						@if (model.product.old_price && model.product.quantity > 0) {
 							<span class="old_price">@model.product.old_price</span>
 						}
 					</div>
@@ -145,6 +145,7 @@
 							<h4>MÀU SẮC</h4>
 							<div id="options">
 								@model.product.options.forEach(function(option, index){
+									@if (option.quantity > 0) {
 									<div data-option="@index" class="@(index == 0 ? 'active' : '') option">
 										<div class="option-color" style="background-color:@option.name;"></div>
 										@if (model.product.category[0] == 60 || model.product.category[0] == 59 || (model.product.category[0] >= 38 && model.product.category[0] <= 43)) {
@@ -152,12 +153,13 @@
 										}
 										<img src="@option.photo" class="hide option-photo" />
 									</div>
+									}
 								})
 							</div>
 						</div>
 					}
 					<div class="quantity">
-						@if(model.product.options[0].quantity > 0) {
+						@if(model.product.quantity > 0) {
 							<h4>SỐ LƯỢNG</h4>
 							<input type="number" id="quantity" min="1" value="1" />
 							<button type="button" id="checkout" class="add_cart" data-id="@model.product.id">THÊM VÀO GIỎ HÀNG</button>
