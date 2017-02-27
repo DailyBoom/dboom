@@ -33,17 +33,11 @@
 				<div class="col s12 l4 area-row" id="left">
 					<h1>@model.product.name</h1>
 					<div class="item_names row center">
-						<div class="col s4">
+						<div class="col s12">
 							<div class="item_name truncate">@model.product.brand</div>
-							<div class="item_type">NHÃN HIỆU</div>
 						</div>
-						<div class="col s4 ">
+						<div class="col s12">
 							<div class="item_name truncate">@model.product.origin</div>
-							<div class="item_type">SẢN XUẤT</div>
-						</div>
-						<div class="col s4">
-							<div class="item_name truncate">@model.product.special</div>
-							<div class="item_type">ĐẶC BIỆT</div>
 						</div>
 					</div>
 					<a href="#" class="read-less hide-on-large-only">Hình sản phẩm <i class="fa fa-caret-right"></i></a>					

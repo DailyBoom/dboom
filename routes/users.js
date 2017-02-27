@@ -1,4 +1,5 @@
 var express = require('express');
+var app = express();
 var router = express.Router();
 var passport = require('passport');
 var vash = require("vash");
@@ -15,6 +16,7 @@ var config = require('config-heroku');
 var i18n = require("i18n");
 var Token = require("../models/token");
 var crypto = require('crypto');
+var slack = require('slack-notify')(config.Slack.webhookUrl);
 var fs = require('fs');
 var paginate = require('express-paginate');
 require('mongoose-pagination');
@@ -821,8 +823,30 @@ router.post('/comments/new', function(req, res) {
       console.log(err);
       res.redirect('back');
     }
+    if (comment.product && app.get("env") === "production") {
+      comment.populate('product', function(err) {
+        slack.send({
+          channel: '#new-comment',
+          icon_url: 'http://yppuna.vn/images/favicon/favicon-96x96.png',
+          text: 'New comment <http://yppuna.vn/shop/products/' + comment.product.url + '>',
+          unfurl_links: 1,
+          username: 'Yppuna-bot'
+        });
+        transporter.sendMail({
+          from: 'hello@yppuna.vn',
+          to: 'hoa@yppuna.vn;hustler@yppuna.vn;',
+          subject: 'New comment on Yppuna',
+          html: 'New commment on Yppuna <a href="http://yppuna.vn/shop/products/' + comment.product.url + '">http://yppuna.vn/shop/products/' + comment.product.url + '</a>'
+        }, function (err, info) {
+            if (err) { console.log(err); res.status(500).json({ message: '죄송합니다. 오류가있었습다. 확인후 다시 시도해주세요.'}); }
+          //console.log('Message sent: ' + info.response);
+            transporter.close();
+            return res.redirect('back');            
+        });
+      });
+    }
     console.log(comment);
-    res.redirect('back');
+    return res.redirect('back');
   });
 });
 
