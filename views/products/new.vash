@@ -94,8 +94,7 @@
 					<select id="category" class="validate" name="category">
 							<option value=""></option>
 							<option value="beauty">Beauty</option>
-							<option value="tools">Tools</option>
-							<option value="gadgets">gadgets</option>
+							<option value="hair">Hair</option>
 						</select>
 					<label for="category">Category</label>
 				</div>

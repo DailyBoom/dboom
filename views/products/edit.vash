@@ -100,8 +100,7 @@
 					<select id="category" class="validate" name="category">
 						<option value=""></option>
 						<option value="beauty" @(model.product.category == 'beauty' ? 'selected' : '')>Beauty</option>
-						<option value="tools" @(model.product.category == 'tools' ? 'selected' : '')>Tools</option>
-						<option value="gadgets" @(model.product.category == 'gadgets' ? 'selected' : '')>Gadgets</option>
+						<option value="hair" @(model.product.category == 'tools' ? 'selected' : '')>Hair</option>
 					</select>
 					<label for="category">Category</label>
 				</div>

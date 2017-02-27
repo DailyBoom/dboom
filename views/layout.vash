@@ -273,7 +273,9 @@
 				</div><!-- .container -->
 			</nav>
 		</div><!-- .navbar -->
+    <main>
       @html.block("body")
+    </main>
 		<footer class="">
 			<div class="container">
         <div class="row flex-s">
