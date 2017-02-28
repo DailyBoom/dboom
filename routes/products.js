@@ -212,7 +212,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
 });
 
 router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'photosmain', maxCount: 4}, {name: 'photosmobile', maxCount: 4}, {name: "brandlogo", maxCount: 1}, { name: "description_image", maxCount: 1}, { name: "homepage_image", maxCount: 1}, { name: "box_header", maxCount: 1}, { name: "box_background", maxCount: 1}, {name: "options[photo]"}]), function(req, res) {
-  Product.findOne({_id: req.params.id}, function (err, product) {
+  Product.findOne({ _id: req.params.id }, function (err, product) {
     if (err)
       console.log(err);
 
