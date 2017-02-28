@@ -5,7 +5,7 @@
 				<div class="row">
 					<div class="col s12 center">
 						@if(model.products[0].brand_logo) {
-							<img class="img-brand-mall" src="/@model.products[0].brand_logo" alt="@model.products[0].brand - 데일리 붐 판매자" />
+							<img class="img-brand-mall" src="/@model.products[0].brand_logo" alt="@model.products[0].brand - Dr. Pelo 판매자" />
 						}
 						<!-- <h3>@model.products[0].brand</h3> -->
 					</div>

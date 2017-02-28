@@ -145,7 +145,7 @@
 							<div class="bank-box">
 								<button class="btn btn-large btn-block purple" id="iamport_btn">INICIS 바로결제</button><br/>
                                 <button class="btn btn-large btn-block blue" id="iamport_danal_btn">Danal 휴대폰 결제</button>
-								<img class="responsive-img" src="/images/or_2.png" alt="데일리 붐 or" />
+								<img class="responsive-img" src="/images/or_2.png" alt="Dr. Pelo or" />
 								<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">무통장입금</a>
 							</div>
 						}
@@ -197,7 +197,7 @@
 						<div class="col s12 m8 offset-m2">
 							<p class="bank-info blue-grey-text text-darken-1 center">
 								@model.moment().add(1, 'days').format('LL') 오후 12시까지 이내에 입금을 완료하셔야 신청 처리가 정상적으로 접수됩니다.
-								<br>데일리 붐을 사용해주셔서 감사합니다.
+								<br>Dr. Pelo을 사용해주셔서 감사합니다.
 							</p>
 						</div>
 				</div>
@@ -387,7 +387,7 @@
 					pay_method : 'card', // 'card':신용카드, 'trans':실시간계좌이체, 'vbank':가상계좌, 'phone':휴대폰소액결제
                     escrow : true,
 					merchant_uid : 'merchant_' + '@model.order.id',
-					name : '데일리 붐 몰 결제',
+					name : 'Dr. Pelo 몰 결제',
 					amount : @model.order.totalOrderAmt,
 					buyer_email : '@(model.user ? model.user.email : model.order.email)',
 					buyer_name : '@(model.user ? model.user.shipping.full_name : model.order.shipping.full_name)',
@@ -436,7 +436,7 @@
 					pay_method : 'card', // 'card':신용카드, 'trans':실시간계좌이체, 'vbank':가상계좌, 'phone':휴대폰소액결제
                     escrow : true,
 					merchant_uid : 'merchant_' + '@model.order.id',
-					name : '데일리 붐 몰 결제',
+					name : 'Dr. Pelo 몰 결제',
 					amount : @model.order.totalOrderAmt,
 					buyer_email : '@(model.user ? model.user.email : model.order.email)',
 					buyer_name : '@(model.user ? model.user.shipping.full_name : model.order.shipping.full_name)',

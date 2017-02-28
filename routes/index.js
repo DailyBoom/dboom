@@ -79,7 +79,7 @@ router.get('/blushop/:brand', function(req, res, next) {
       console.log(err);
     if (!products || products.length == 0)
       return res.redirect('/blushop');
-    res.render('mall', { title: "데일리 붐 쇼핑 몰", description: "데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다.", products: products, merchant: req.params.brand, cover: products[0].brand_logo });
+    res.render('mall', { title: "Dr. Pelo 쇼핑 몰", description: "Dr. Pelo은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다.", products: products, merchant: req.params.brand, cover: products[0].brand_logo });
   });
 });
 
@@ -102,7 +102,7 @@ router.get('/blushop/:brand', function(req, res, next) {
 // });
 
 router.get('/about', function(req, res, next) {
-  res.render('about', { title: "회사 소개", description: "데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다." });
+  res.render('about', { title: "회사 소개", description: "Dr. Pelo은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다." });
 });
 
 router.get('/contact', function(req, res, next) {
@@ -110,7 +110,7 @@ router.get('/contact', function(req, res, next) {
 });
 
 router.get('/privacy', function(req, res, next) {
-  res.render('privacy', { title: "개인정보 정책", description: "데일리 붐은 회원님의 개인정보를 안전하게 보호하기 위하여 최선의 노력을 다하고 있으며, 개인정보보호관련 법규 및 정부기관의 가이드라인을 준수하고 있습니다." });
+  res.render('privacy', { title: "개인정보 정책", description: "Dr. Pelo은 회원님의 개인정보를 안전하게 보호하기 위하여 최선의 노력을 다하고 있으며, 개인정보보호관련 법규 및 정부기관의 가이드라인을 준수하고 있습니다." });
 });
 
 router.get('/terms', function(req, res, next) {
@@ -118,12 +118,12 @@ router.get('/terms', function(req, res, next) {
 });
 
 router.get('/merchant', function(req, res, next) {
-  res.render('merchant', { title: "판매자 문의", description: "데일리 붐은 하루 24시간 오직 한개의 상품만을 판매함으로써 매출을 획기적으로 증가시켜 드립니다." });
+  res.render('merchant', { title: "판매자 문의", description: "Dr. Pelo은 하루 24시간 오직 한개의 상품만을 판매함으로써 매출을 획기적으로 증가시켜 드립니다." });
 });
 
 router.post('/contact', function(req, res, next) {
   transporter.sendMail({
-    from: '데일리 붐 <contact@dailyboom.co>',
+    from: 'Dr. Pelo <contact@dailyboom.co>',
     to: 'contact@dailyboom.co',
     subject: 'Advertise contact.',
     html: '<p>이름: '+req.body.name+'</p><p>이메일: '+req.body.email+'</p><p>제목: '+req.body.subject+'</p><p>내용: '+req.body.message+'</p>'
@@ -137,7 +137,7 @@ router.post('/contact', function(req, res, next) {
 
 router.post('/merchant', function(req, res, next) {
   transporter.sendMail({
-    from: '데일리 붐 <contact@dailyboom.co>',
+    from: 'Dr. Pelo <contact@dailyboom.co>',
     to: 'contact@dailyboom.co',
     subject: 'Merchant contact.',
     html: '<p>회사 명: '+req.body.company+'</p><p>이름: '+req.body.fullname+'</p><p>이메일: '+req.body.email+'</p><p>내용: '+req.body.details+'</p>'
@@ -202,7 +202,7 @@ router.post('/coupons/new', function(req, res, next) {
             }
             var html = vash.compile(file);
             transporter.sendMail({
-              from: '데일리 붐 <contact@dailyboom.co>',
+              from: 'Dr. Pelo <contact@dailyboom.co>',
               to: coupon.user.email,
               subject: '쿠폰이 발급되었습니다.',
               html: html({ user: coupon.user })

@@ -48,7 +48,7 @@
                                                 <a class="btn-social-login hide-on-med-and-up" href="/mall/checkout?no_login=1" style="margin-top: 1rem;">
                                                     <img class="circle z-depth-1" src="/images/icon_buy.png" />
                                                 </a>
-                                                <img class="responsive-img hide-on-med-and-up" src="/images/buynow.png" alt="비회원 바로구매 - 데일리 붐" />
+                                                <img class="responsive-img hide-on-med-and-up" src="/images/buynow.png" alt="비회원 바로구매 - Dr. Pelo" />
                                                 <div class="right light-blue-text hide-on-med-and-up">
                                                     <i class="fa fa-info-circle fa-fw"></i> 비회원 바로구매
                                                 </div>

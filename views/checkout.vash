@@ -156,7 +156,7 @@
 								<div class="bank-box">
 									<button class="btn btn-large btn-block purple" id="iamport_btn">신용카드 결제</button><br/>
 									<button class="btn btn-large btn-block blue" id="iamport_danal_btn">휴대폰 결제</button>
-									<img class="responsive-img" src="/images/or_2.png" alt="데일리 붐 or" />
+									<img class="responsive-img" src="/images/or_2.png" alt="Dr. Pelo or" />
 									<a class="waves-effect waves-light btn btn-large btn-block green darken-2 modal-trigger" href="#bank_modal">무통장입금</a><br/><br/>
 									<button class="btn blue col s6 btn-block" id="iamport_trans_btn">실시간계좌이체</button>
 									<button class="btn blue col s6 btn-block" id="iamport_vbank_btn">가상계좌</button><br/><br/>
@@ -206,7 +206,7 @@
 						<div class="col s12 m8 offset-m2">
 							<p class="bank-info blue-grey-text text-darken-1 center">
 								@model.moment().add(1, 'days').format('LL') 오후 12시까지 이내에 입금을 완료하셔야 신청 처리가 정상적으로 접수됩니다.
-								<br>데일리 붐을 사용해주셔서 감사합니다.
+								<br>Dr. Pelo을 사용해주셔서 감사합니다.
 							</p>
 						</div>
 					</div>

@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>데일리 붐에서 구매 해주셔서 감사합니다 - 데일리 붐</title>
+		<title>Dr. Pelo에서 구매 해주셔서 감사합니다 - Dr. Pelo</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Hanna:400,300,200,100' rel='stylesheet' type='text/css'>
@@ -35,16 +35,16 @@
 		<table class="db-mail">
 			<thead class="db-nav blue-grey darken-3">
 				<tr>
-					<th><img class="db-logo-img" src="http://dailyboom.co/images/db_ko_05.png" alt="데일리 붐 로고" /></th>
+					<th><img class="db-logo-img" src="http://dailyboom.co/images/db_ko_05.png" alt="Dr. Pelo 로고" /></th>
 				</tr>
 			</thead>
 			<tbody class="blue-grey lighten-5 blue-grey-text text-darken-3">
 				<tr>
 					<td class="db-mail-body">
-						<h1><span class="amber-text text-darken-3">@model.order.shipping.full_name 님</span>의 데일리 붐 주문 취소 안내 메일입니다.</h1>
+						<h1><span class="amber-text text-darken-3">@model.order.shipping.full_name 님</span>의 Dr. Pelo 주문 취소 안내 메일입니다.</h1>
 						<br>
 						<h3>
-							고객님, 데일리 붐을 이용해 주셔서 감사합니다.
+							고객님, Dr. Pelo을 이용해 주셔서 감사합니다.
 							<br>
 							<br>주문 하신 상품이 취소되었습니다.
 							<br>
@@ -59,7 +59,7 @@
 							<br>@model.order.shipping.address
 							<br>@model.order.shipping.zipcode
 							<br>
-							<br>데일리 붐을 사용해주셔서 감사합니다.
+							<br>Dr. Pelo을 사용해주셔서 감사합니다.
 							<br>
 							<br>주문내역 및 기타정보는 <span class="amber-text text-darken-3">마이페이지 > 주문내역</span>에서 확인가능 합니다.
 						</h3>
@@ -70,7 +70,7 @@
 						<h4>
 							문의 사항 <a class="amber-text" href="mailto:contact@dailyboom.co">contact@dailyboom.co</a>
 							<br><br>
-							데일리 붐 보러가기 <a class="amber-text" href="http://dailyboom.co/">dailyboom.co</a>
+							Dr. Pelo 보러가기 <a class="amber-text" href="http://dailyboom.co/">dailyboom.co</a>
 						</h4>
 					</td>
 				</tr>

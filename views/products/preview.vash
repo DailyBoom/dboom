@@ -229,7 +229,7 @@
 						</div>
 						<div class="collapsible-body white lighten-5">
 							@if(model.product.delivery_info) {
-							<img class="responsive-img" src="@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - 데일리 붐"/> }
+							<img class="responsive-img" src="@model.product.delivery_info" alt="@model.product.name 상새 내용 - @model.product.brand - Dr. Pelo"/> }
 							else {
 							<div class="item-shipping-info-box">
 								<p><b>배송 진행상황 조회</b></p>
@@ -240,7 +240,7 @@
 								</ol>
 								<p><b>제품 교환/환불 정책</b></p>
 								<span>모든 제품은 해당 제품 회사의 물품 환불 및 교환 정책에 따릅니다.</span>
-								<br><span>해당 제품 회사가 아직 배송관련 교환 및 환불 정책이 없을 때, 모든 물품은 수령한지 10일 이내에 사용하지 않은 새 것 일 때 교환및 환불이 가능합니다. 환불을 원하는 경우, 해당 회사에 직접 연락을 하거나 데일리 붐 회계팀(contact@dailyboom.co)로 연락주시기 바랍니다.</span>
+								<br><span>해당 제품 회사가 아직 배송관련 교환 및 환불 정책이 없을 때, 모든 물품은 수령한지 10일 이내에 사용하지 않은 새 것 일 때 교환및 환불이 가능합니다. 환불을 원하는 경우, 해당 회사에 직접 연락을 하거나 Dr. Pelo 회계팀(contact@dailyboom.co)로 연락주시기 바랍니다.</span>
 							</div>
 							}
 						</div>
@@ -278,7 +278,7 @@
 					<!-- <span class="share-text white-text">share</span> -->
 					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
 					<img id="sharekakao" class="social" src="/images/icon_kakao.png" alt="Kakao Logo" />
-					<a href="mailto:?subject=데일리 붐: 오늘 뭐 사지?&body=http://dailyboom.co"><img id="sharemail"  class="social" src="/images/icon_email.png" alt="Email Image" /></a>
+					<a href="mailto:?subject=Dr. Pelo: 오늘 뭐 사지?&body=http://dailyboom.co"><img id="sharemail"  class="social" src="/images/icon_email.png" alt="Email Image" /></a>
 					<a class="modal-trigger" href="#share_url_modal"><img id="shareurl" class="social" src="/images/link_icon.png" alt="Link Image" /></a>
 				</div>
 			</div><!-- .buy-box-footer -->

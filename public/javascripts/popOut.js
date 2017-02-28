@@ -42,7 +42,7 @@ $(document).ready(function() {
 	
 	$("#sharekakao").click(function(){
 		Kakao.Link.sendTalkLink({
-			label: "데일리 붐: 오늘 뭐 사지?",
+			label: "Dr. Pelo: 오늘 뭐 사지?",
 			image: {
 				src: "http://dailyboom.co/images/meta.jpg",
 				width: 1200,

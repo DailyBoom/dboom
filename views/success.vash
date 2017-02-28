@@ -22,14 +22,14 @@
 				@if(model.order.status == 'Paid') {
 				<p class="success-text blue-grey-text text-darken-3">
 					고객님, 결제가 완료되었습니다.
-					<br>데일리 붐에서 상품 구매해주셔서 감사합니다.
+					<br>Dr. Pelo에서 상품 구매해주셔서 감사합니다.
 					<br>
 					<br>좋은 하루 되세요!
 				</p>
 				}
 				else if(model.order.status == "Waiting") {
 				<p class="deposit-text blue-grey-text text-darken-3">
-					<span class="deposit-title">고객님, 데일리 붐을 이용해 주셔서 감사합니다.</span>
+					<span class="deposit-title">고객님, Dr. Pelo을 이용해 주셔서 감사합니다.</span>
 					<br>
 					<br>폭스트론 (주)
 					<br>043-105437-04-016
@@ -37,7 +37,7 @@
 					<br><span id="deposit_price">@model.order.totalOrderAmt</span>
 					<br>
 					<br>@model.moment().add(1, 'days').format('LL') 오후 12시까지 이내에 입금을 완료하셔야 신청 처리가 정상적으로 접수됩니다.
-					<br>데일리 붐을 사용해주셔서 감사합니다.
+					<br>Dr. Pelo을 사용해주셔서 감사합니다.
 					<br>
 					<br>좋은 하루 되세요!
 				</p>
@@ -49,7 +49,7 @@
 		        <form class="col s12" action="" id="new_comment">
 		          <div class="row blue-grey-text text-darken-2">
 		            <div class="col col s12 m6 l8">
-		              <h5>데일리 붐 피드백</h5>
+		              <h5>Dr. Pelo 피드백</h5>
 		            </div>
 		            <div class="input-field col s12 m6 l8">
 		              <textarea id="comment_body" class="materialize-textarea" name="comment_body"></textarea>
@@ -69,7 +69,7 @@
 					@if(model.is_phone) { <br> }
 					<img class="s-social" src="/images/icon_fb.png" id="sharefb"/>
 					<img class="s-social" src="/images/icon_kakao.png" id="sharekakao" />
-					<a href="mailto:?subject=데일리 붐: 오늘 뭐 사지?&body=http://dailyboom.co"><img class="s-social" src="/images/icon_email.png" /></a>
+					<a href="mailto:?subject=Dr. Pelo: 오늘 뭐 사지?&body=http://dailyboom.co"><img class="s-social" src="/images/icon_email.png" /></a>
 					<a href="#shareurl"><img class="s-social" src="/images/link_icon.png" /></a>
 					<div class="section-sm"></div>
 				</div>

@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>가입해 주셔서 감사합니다 - 데일리 붐</title>
+		<title>가입해 주셔서 감사합니다 - Dr. Pelo</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Hanna:400,300,200,100' rel='stylesheet' type='text/css'>
@@ -44,15 +44,15 @@
 		<table class="db-mail">
 			<thead class="db-nav blue-grey darken-3">
 				<tr>
-					<th><img class="db-logo-img" src="http://dailyboom.co/images/db_ko_05.png" alt="데일리 붐 로고" /></th>
+					<th><img class="db-logo-img" src="http://dailyboom.co/images/db_ko_05.png" alt="Dr. Pelo 로고" /></th>
 				</tr>
 			</thead>
 			<tbody class="blue-grey lighten-5 blue-grey-text text-darken-3">
 				<tr>
 					<td class="db-mail-body">
-						<h1>데일리 붐 비밀번호 재신청</h1>
+						<h1>Dr. Pelo 비밀번호 재신청</h1>
 						<h3>@(model.user.username)님,</h3>
-						<h3>데일리 붐 회원님의 비밀번호 변경 요청 메일입니다.<br>아래의 링크를 클릭하여 회원 님의 비밀번호를 변경하십시오:</h3>
+						<h3>Dr. Pelo 회원님의 비밀번호 변경 요청 메일입니다.<br>아래의 링크를 클릭하여 회원 님의 비밀번호를 변경하십시오:</h3>
 					</td>
 				</tr>
 				<tr>
@@ -60,7 +60,7 @@
 				</tr>
 				<tr>
 					<td>
-						<h3>오늘도 즐거운 쇼핑을 데일리 붐에서 확인하세요.</h3>
+						<h3>오늘도 즐거운 쇼핑을 Dr. Pelo에서 확인하세요.</h3>
 					</td>
 				</tr>
 				<tr class="blue-grey darken-1 white-text">
@@ -68,7 +68,7 @@
 						<h4>
 							문의 사항 <a class="amber-text" href="mailto:contact@dailyboom.co">contact@dailyboom.co</a>
 							<br><br>
-							데일리 붐 보러가기 <a class="amber-text" href="http://dailyboom.co/">dailyboom.co</a>
+							Dr. Pelo 보러가기 <a class="amber-text" href="http://dailyboom.co/">dailyboom.co</a>
 						</h4>
 					</td>
 				</tr>

@@ -407,7 +407,7 @@ router.post('/signup', function(req, res) {
             }
             var html = vash.compile(file);
             transporter.sendMail({
-              from: '데일리 붐 <contact@dailyboom.co>',
+              from: 'Dr. Pelo <contact@dailyboom.co>',
               to: user.email,
               subject: user.username+'님 회원가입을 축하드립니다.',
               html: html({ user : user, i18n: i18n })
@@ -527,7 +527,7 @@ router.post('/merchant_signup', function(req, res) {
             }
             var html = vash.compile(file);
             transporter.sendMail({
-              from: '데일리 붐 <contact@dailyboom.co>',
+              from: 'Dr. Pelo <contact@dailyboom.co>',
               to: user.email,
               subject: user.username+'님 회원가입을 축하드립니다.',
               html: html({ user : user })
@@ -596,9 +596,9 @@ router.post('/forgot', function(req, res, next) {
         }
         var html = vash.compile(file);
         transporter.sendMail({
-          from: '데일리 붐 <contact@dailyboom.co>',
+          from: 'Dr. Pelo <contact@dailyboom.co>',
           to: user.email,
-          subject: '데일리 붐 비밀번호 재신청',
+          subject: 'Dr. Pelo 비밀번호 재신청',
           html: html({ host : req.headers.host, token: token, user: user })
         }, function (err, info) {
             if (err) return next(err);
@@ -663,10 +663,10 @@ router.post('/reset/:token', function(req, res) {
       user.save(function(err) {
         var mailOptions = {
         to: user.email,
-        from: '데일리 붐 <contact@dailyboom.co>',
+        from: 'Dr. Pelo <contact@dailyboom.co>',
         subject: '비밀번호 변경 되었습니다',
         text: user.username + '님,\n\n' +
-          '데일리 붐 회원님의 비밀번호 변경 확인 메일입니다.\n\n'
+          'Dr. Pelo 회원님의 비밀번호 변경 확인 메일입니다.\n\n'
         };
         transporter.sendMail(mailOptions, function(err) {
           req.session.toast = "비밀번호 변경 되었습니다";
