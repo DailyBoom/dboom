@@ -63,6 +63,31 @@
 							XEM CHI TIẾT
 						</a>
 					</div>
+					<div class="comments col s12 l8 offset-l2">
+						<h4>ĐÁNH GIÁ CỦA KHÁCH HÀNG</h4>
+						@model.comments.forEach(function(comment) {
+							<div class="comment">
+								<span class="user-com">@(comment.user ? comment.user.username : comment.name)</span>
+								<span class="date-com">@model.moment(comment.created_at).format("DD.MM.YYYY")</span>
+								<div class="body">@comment.body</div>
+							</div>
+						})
+						<div class="new-comment">
+							<h4>THÊM ĐÁNH GIÁ SẢN PHẨM</h4>
+							<form action="/comments/new" method="post">
+								@if(!model.user) {
+									<label for="name">Tên</label>
+									<input id="name" name="name" placeholder="Tên của bạn" type="text" />
+									<label for="email">Email</label>
+									<input id="email" name="email" placeholder="Email của bạn" type="text" />
+								}
+								<label for="body">Đánh giá sản phẩm</label>
+								<textarea name="body" placeholder="Đánh giá của bạn" id="body"></textarea>
+								<input type="hidden" value="@model.products[0].id" name="product" />
+								<button class="right">GỬI ĐÁNH GIÁ</button>
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>

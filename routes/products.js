@@ -76,7 +76,7 @@ router.get('/products/new', isMerchantOrAdmin, function(req, res) {
 });
 
 router.get('/products/delete/:id', isMerchantOrAdmin, function(req, res) {
-  Product.findOneAndRemove({ _id: req.params.id }, function(err, user) {
+  Product.findOneAndRemove({ _id: req.params.id }, function(err, product) {
     res.redirect('/products/list');
   });
 });

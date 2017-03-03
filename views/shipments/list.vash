@@ -8,7 +8,7 @@
 					<form action="/shipments/new" method="post">
 						<label for="name">Product Name</label>
 						<input type="text" class="search validate" id="name" name="name" />
-						<label for="name">Product Line</label>
+						<label for="line_input">Product Line</label>
 						<input type="text" id="line_input" name="line" class="validate">
 						<select id="line_select" name="line" class="options hide" disabled></select>
 						<div class="col s12 l6">
@@ -24,7 +24,7 @@
 							<input type="text" class="validate" id="from" name="from" />
 						</div>
 						<div class="col s12 l3">
-							<label for="est_date">From</label>
+							<label for="est_date">Est. Arrived Date </label>
 							<input type="date" class="datepicker validate" id="est_date" name="est_date" />
 						</div>
 						<div class="input-field col s12">
@@ -32,6 +32,42 @@
 							<label for="note">Note</label>
 						</div>
 						<button class="btn right">Create a shipment</button>
+					</form>
+				</div>
+			</div>
+    	</div>
+    </div>
+	<div id="edit_modal" class="modal">
+        <div class="modal-content">
+			<h4>Edit a shipment</h4>
+			<div class="row">
+				<div class="col s12">
+					<form action="/shipments/edit" method="post">
+						<label for="name">Product Name</label>
+						<input type="text" class="search validate" id="name" name="name" />
+						<label for="line">Product Line</label>
+						<input type="text" id="line" name="line" class="validate">
+						<div class="col s12 l6">
+							<label for="rec_quantity">Received Quantity</label>
+							<input type="text" class="validate" id="rec_quantity" name="rec_quantity" />
+						</div>
+						<div class="col s12 l6">
+							<label for="brk_quantity">Broken Product Number (If yes)</label>
+							<input type="text" class="validate" id="brk_quantity" name="brk_quantity" />
+						</div>
+						<div class="col s12 l9">
+							<label for="to">To</label>
+							<input type="text" class="validate" id="to" name="to" />
+						</div>
+						<div class="col s12 l3">
+							<label for="arr_date">Arrived Date</label>
+							<input type="date" class="datepicker validate" id="arr_date" name="arr_date" />
+						</div>
+						<div class="input-field col s12">
+							<textarea class="materialize-textarea" id="note" name="note"></textarea>
+							<label for="note">Note</label>
+						</div>
+						<button class="btn right">Update a shipment</button>
 					</form>
 				</div>
 			</div>
@@ -78,17 +114,18 @@
 	<tbody>
 		@model.shipments.forEach(function(shipment){
 			<tr>
-				<td>@shipment.id</td>
-				<td class="truncate ">@shipment.name</td>
-				<td>@shipment.line</td>
+				<td class="id">@shipment.id</td>
+				<td class="truncate name">@shipment.name</td>
+				<td class="line">@shipment.line</td>
 				<td><span class="price">@shipment.price</span></td>
-				<td>@shipment.quantity</td>
-				<td>@shipment.from</td>
-				<td>@model.moment(shipment.est_date).format("YYYY/MM/DD")</td>
-				<td>@shipment.status</td>
-				<td>@shipment.note</td>
+				<td class="quantity">@shipment.quantity</td>
+				<td class="from">@shipment.from</td>
+				<td class="est_date">@model.moment(shipment.est_date).format("YYYY/MM/DD")</td>
+				<td class="status">@shipment.status</td>
+				<td class="note">@shipment.note</td>
 				<td>
-					<a class="users-link blue-grey-text" href="/shipments/edit/@shipment.id"><i class="fa fa-pencil-square-o fa-fw fa-1-5x"></i></a>
+					<a class="users-link blue-grey-text text-darken-2" href="/shipments/view/@shipment.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
+					<a class="users-link blue-grey-text edit" href="#"><i class="fa fa-pencil-square-o fa-fw fa-1-5x"></i></a>
 					<a class="users-link red-text" href="/shipments/delete/@shipment.id" onclick="return confirm('Delete shipment?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
 				</td>
 			</tr>
@@ -158,6 +195,14 @@ $(document).ready(function() {
 		min: true,
 		selectMonths: true, // Creates a dropdown to control month
 		selectYears: 15, // Creates a dropdown of 15 years to control year
+	});
+	$('.edit').on("click", function() {
+		var form = $('#edit_modal form');
+		var ship = $(this).parent().parent();
+		form.attr('action', '/shipments/edit/'+ship.find('id').html());
+		form.find('#name').val(ship.find('.name').html());
+		form.find('#line').val(ship.find('.line').html());
+		$('#edit_modal').openModal();
 	});
 });
 </script>

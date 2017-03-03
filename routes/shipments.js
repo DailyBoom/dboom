@@ -51,7 +51,7 @@ var isMerchant = function (req, res, next) {
   res.redirect('/login');
 }
 
-router.get('/shipments/list', isAdmin, function(req, res) {
+router.get('/shipments/list', isMerchantOrAdmin, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
   var query = Shipment.find({}, {}, { sort: { 'created_at': -1 } }).populate('product');
   if (req.query.order_date)
@@ -59,11 +59,17 @@ router.get('/shipments/list', isAdmin, function(req, res) {
   if (req.query.status)
     query.where('status').equals(req.query.status);
   query.paginate(page, 10, function(err, shipments, total) {
-    res.render('shipment/list', { shipments: shipments, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
+    res.render('shipments/list', { shipments: shipments, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
   });
 });
 
-router.post('/shipments/new', isAdmin, function(req, res) {
+router.get('/shipments/delete/:id', isMerchantOrAdmin, function(req, res) {
+  Shipment.findOneAndRemove({ _id: req.params.id }, function(err, shipment) {
+    res.redirect('/shipments/list');
+  });
+});
+
+router.post('/shipments/new', isMerchantOrAdmin, function(req, res) {
   console.log(req.body);
   
   var shipment = new Shipment({
@@ -82,6 +88,36 @@ router.post('/shipments/new', isAdmin, function(req, res) {
       console.log(err);
     return res.redirect('/shipments/list');
   })
+});
+
+router.post('/shipments/edit/:id', isMerchantOrAdmin, function(req, res) {
+  console.log(req.body);
+  
+  Shipment.findOne({ _id: req.params.id }, {}, function(err, shipment){
+    
+    shipment.rec_quantity = req.body.rec_quantity;
+    shipment.brk_quantity = req.body.brk_quantity;
+    shipment.to = req.body.to;
+    shipment.arr_date = req.body.arr_date;
+    shipment.note = req.body.note;
+    shipment.status = "Arrived";
+
+    shipment.save(function(err) {
+      if (err)
+        console.log(err);
+      return res.redirect('/shipments/list');
+    });
+  });
+});
+
+router.get('/shipments/view/:id', isMerchantOrAdmin, function(req, res) {
+  Shipment.findOne({ _id: req.params.id }, function(err, shipment) {
+    if (err)
+      console.log(err);
+    if (!shipment)
+      res.redirect('/');
+    res.render('shipments/view', { shipment: shipment });
+  });
 });
 
 module.exports = router;

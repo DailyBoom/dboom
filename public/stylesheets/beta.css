@@ -2154,7 +2154,7 @@ header, main {
   width: 100%;
 }
 
-#detailed_product h4, #detailed_box h4 {
+#detailed_product h4, #detailed_box h4, .comments h4 {
   font-family: SVN-Karla;
   font-size: 15.1px;
   font-weight: bold;

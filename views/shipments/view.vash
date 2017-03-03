@@ -1,0 +1,44 @@
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+        <div class="container min-h-lg">
+          <div class="row">
+            <h3 class="blue-grey-text text-darken-4">Shipment View</h3>
+			 <br>
+			 <div class="col s12 m8 l8">
+			 	<div class="row blue-grey-text text-darken-3">
+					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+						Id :
+					</span>
+					<span class="col s8 order-label">
+						&nbsp;@model.shipment.id
+					</span>
+                    <span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+						Name :
+					</span>
+					<span class="col s8 order-label">
+						&nbsp;@model.shipment.name
+					</span>
+                    <span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+						Line :
+					</span>
+					<span class="col s8 order-label">
+						&nbsp;@model.shipment.line
+					</span>
+                    <span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+						Quantity :
+					</span>
+					<span class="col s8 order-label">
+						&nbsp;@model.shipment.quantity
+					</span>
+					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+						Estimated Arrival Date :
+					</span>
+					<span class="col s8 order-label">
+						&nbsp;@model.shipment.est_date
+					</span>
+			 	</div>
+			 </div>
+          </div>
+        </div>
+    })
+})

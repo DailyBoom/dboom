@@ -17,6 +17,10 @@ var shipmentSchema = new Schema({
     est_date: Date,
     status: String,
     note: String,
+    rec_quantity: Number,
+    brk_quantity: Number,
+    to: String,
+    arr_date: Date,
     created_at: { type : Date, default : Date.now }
 });
 
