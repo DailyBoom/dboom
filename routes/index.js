@@ -129,7 +129,7 @@ router.get('/mall', function(req, res, next) {
   if (req.query.s) {
     query.or([{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }])
   }
-  query.where('product_region.'+req.session.zone, true);
+  //query.where('product_region.'+req.session.zone, true);
   query.paginate(page, per_page, function(err, products, total) {
     Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
       Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
@@ -251,7 +251,7 @@ router.get('/home', function(req, res, next) {
   Product.find({ boxZone: req.session.zone, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts').exec(function (err, products) {
     console.log(products);
     var query = Product.find({ extend: 4, is_published: true, is_hot: true });
-    query.where('product_region.'+req.session.zone, true);
+    //query.where('product_region.'+req.session.zone, true);
     query.limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
       Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }).where('product_region.'+req.session.zone, true).exec(function(err, newProducts) {
         res.render('beta', { progress: 75, products: products, hotProducts: hotProducts, newProducts: newProducts });

@@ -44,6 +44,7 @@ var products = require('./routes/products');
 var orders = require('./routes/orders');
 var partners = require('./routes/partners');
 var admin = require('./routes/admin');
+var shipments = require('./routes/shipments');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -158,6 +159,7 @@ app.use('/', routes);
 app.use('/', products);
 app.use('/', partners);
 app.use('/', admin);
+app.use('/', shipments);
 
 if (app.get('env') === 'production') {
   sitemap = sm.createSitemap({

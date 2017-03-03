@@ -23,6 +23,7 @@
 
 /* Preview Navbar */
 @media only screen and (min-width: 0) {
+
   .preview-bar {
     position: fixed;
     top: 0;

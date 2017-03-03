@@ -1,0 +1,165 @@
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+    <div id="new_modal" class="modal">
+        <div class="modal-content">
+			<h4>Create a shipment</h4>
+			<div class="row">
+				<div class="col s12">
+					<form action="/shipments/new" method="post">
+						<label for="name">Product Name</label>
+						<input type="text" class="search validate" id="name" name="name" />
+						<label for="name">Product Line</label>
+						<input type="text" id="line_input" name="line" class="validate">
+						<select id="line_select" name="line" class="options hide" disabled></select>
+						<div class="col s12 l6">
+							<label for="quantity">Quantity</label>
+							<input type="text" class="validate" id="quantity" name="quantity" />
+						</div>
+						<div class="col s12 l6">
+							<label for="price">Price</label>
+							<input type="text" class="validate" id="price" name="price" />
+						</div>
+						<div class="col s12 l9">
+							<label for="from">From</label>
+							<input type="text" class="validate" id="from" name="from" />
+						</div>
+						<div class="col s12 l3">
+							<label for="est_date">From</label>
+							<input type="date" class="datepicker validate" id="est_date" name="est_date" />
+						</div>
+						<div class="input-field col s12">
+							<textarea class="materialize-textarea" id="note" name="note"></textarea>
+							<label for="note">Note</label>
+						</div>
+						<button class="btn right">Create a shipment</button>
+					</form>
+				</div>
+			</div>
+    	</div>
+    </div>
+<div class="container m-y-3">
+	<div class="row">
+		<div class="col s12">
+			<h4 class="left">Shipments</h4>
+			<a href="#new_modal" class="modal-trigger btn right"><i class="fa fa-plus"></i> New Shipment</a>
+		</div><!-- .col -->
+	</div><!-- .row -->
+	<div class="row">
+		<ul class="pagination">
+			@model.pages.forEach(function(page) {
+				@if(model.currentPage == page.number) {
+					<li class="active">@page.number</li>
+				} else {
+					<li class="waves-effect"><a href="@page.url">@page.number</a></li>
+				}
+			})
+			@if(model.currentPage != model.lastPage) {
+				<li class="waves-effect"><a href="/shipments/list?page=@model.lastPage&limit=10">Last</a></li>
+			}
+		</ul>
+	</div><!-- .row -->
+	<div class="row">
+
+	<table class="responsive-table bordered highlight table-sm table-orders">
+	<thead class="blue-grey darken-2 blue-grey-text text-lighten-5">
+		<tr>
+			<th>ID</th>
+			<th>shipment Name</th>
+			<th>Line</th>
+			<th>Price</th>
+			<th>Quantity</th>
+			<th>From</th>
+			<th>Est. Arrived Day</th>
+			<th>Status</th>
+			<th>Note</th>
+			<th>Manage</th>
+		</tr>
+	</thead>
+	<tbody>
+		@model.shipments.forEach(function(shipment){
+			<tr>
+				<td>@shipment.id</td>
+				<td class="truncate ">@shipment.name</td>
+				<td>@shipment.line</td>
+				<td><span class="price">@shipment.price</span></td>
+				<td>@shipment.quantity</td>
+				<td>@shipment.from</td>
+				<td>@model.moment(shipment.est_date).format("YYYY/MM/DD")</td>
+				<td>@shipment.status</td>
+				<td>@shipment.note</td>
+				<td>
+					<a class="users-link blue-grey-text" href="/shipments/edit/@shipment.id"><i class="fa fa-pencil-square-o fa-fw fa-1-5x"></i></a>
+					<a class="users-link red-text" href="/shipments/delete/@shipment.id" onclick="return confirm('Delete shipment?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
+				</td>
+			</tr>
+		})
+	</tbody>
+	</table>
+	</div><!-- .row -->
+	<div class="row">
+		<ul class="pagination">
+			@model.pages.forEach(function(page) {
+				@if(model.currentPage == page.number) {
+					<li class="active">@page.number</li>
+				} else {
+					<li class="waves-effect"><a href="@page.url">@page.number</a></li>
+				}
+			})
+			@if(model.currentPage != model.lastPage) {
+				<li class="waves-effect"><a href="/shipments/list?page=@model.lastPage&limit=10">Last</a></li>
+			}
+		</ul>
+	</div><!-- .row -->
+</div><!-- .container -->
+<script>
+$(document).ready(function() {
+	$(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+	$('select').material_select();
+	$('#type').on('change', function() {
+		$('#type_form').submit();
+	});
+	var autocomp_opt= {
+		source: function(request, response) {
+			var input = this.element;
+			$.ajax({
+				type: "POST",
+				url: "/products/search",
+				dataType: "json",
+				data: {
+					term: request.term
+				},
+				success: function(data) {
+					response($.map(data.products, function (item) {
+						return {
+							label: item.name + ' - ' + item.brand,
+							value: item.name,
+							options: item.options
+						};
+					}));
+				}
+			});
+		},
+		select: function(event, ui) {
+			var input = $(this);
+			$.each(ui.item.options, function(index, value) {
+				input.parent().find('#line_select').append('<option value="'+value.name+'">'+value.name+'</option>');
+				$('.options').removeClass('hide');
+				$('#line_input').addClass('hide');
+				$('.options').prop('disabled', false);
+				$('#line_input').prop('disabled', true);
+				$('select').material_select();                
+			});
+		},
+		minLength: 4
+	};
+	$(".search").autocomplete(autocomp_opt);
+	$('.datepicker').pickadate({
+		format: 'mm/dd/yyyy',
+		min: true,
+		selectMonths: true, // Creates a dropdown to control month
+		selectYears: 15, // Creates a dropdown of 15 years to control year
+	});
+});
+</script>
+	})
+})
