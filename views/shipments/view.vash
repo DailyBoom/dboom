@@ -4,38 +4,90 @@
           <div class="row">
             <h3 class="blue-grey-text text-darken-4">Shipment View</h3>
 			 <br>
-			 <div class="col s12 m8 l8">
+			 <div class="col s12 m8 l10 offset-l1">
 			 	<div class="row blue-grey-text text-darken-3">
+					<div class="col s12">
 					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
 						Id :
 					</span>
 					<span class="col s8 order-label">
 						&nbsp;@model.shipment.id
 					</span>
+					</div>
+					<div class="col s12">
                     <span class="col s4 order-label blue-grey-text text-darken-2 right-align">
 						Name :
 					</span>
 					<span class="col s8 order-label">
 						&nbsp;@model.shipment.name
 					</span>
+					</div>
+					<div class="col s12">
                     <span class="col s4 order-label blue-grey-text text-darken-2 right-align">
 						Line :
 					</span>
 					<span class="col s8 order-label">
 						&nbsp;@model.shipment.line
 					</span>
+					</div>
+					<div class="col s12">
                     <span class="col s4 order-label blue-grey-text text-darken-2 right-align">
 						Quantity :
 					</span>
 					<span class="col s8 order-label">
 						&nbsp;@model.shipment.quantity
 					</span>
+					</div>
+					<div class="col s12">
 					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
-						Estimated Arrival Date :
+						Est. Arrival Date :
 					</span>
 					<span class="col s8 order-label">
 						&nbsp;@model.shipment.est_date
 					</span>
+					</div>
+					<div class="col s12">
+					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+						Note :
+					</span>
+					<span class="col s8 order-label">
+						&nbsp;@model.shipment.note
+					</span>
+					</div>
+					@if (@model.shipment.status == "Arrived") {
+					<div class="col s12">
+					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+						Received Quantity :
+					</span>
+					<span class="col s8 order-label">
+						&nbsp;@model.shipment.rec_quantity
+					</span>
+					</div>
+					<div class="col s12">
+					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+						Broken Product Number :
+					</span>
+					<span class="col s8 order-label">
+						&nbsp;@model.shipment.brk_quantity
+					</span>
+					</div>
+					<div class="col s12">
+					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+						To :
+					</span>
+					<span class="col s8 order-label">
+						&nbsp;@model.shipment.to
+					</span>
+					</div>
+					<div class="col s12">
+					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+						Arrived Date :
+					</span>
+					<span class="col s8 order-label">
+						&nbsp;@model.shipment.arrived_date
+					</span>
+					</div>
+					}
 			 	</div>
 			 </div>
           </div>

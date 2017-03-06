@@ -8,6 +8,7 @@
                             @if (model.user.admin || model.user.role == 'merchant') {
                                 <li class="tab col s3"><a class="active" href="#products">Products</a></li>
                                 <li class="tab col s3"><a class="active" href="#wholesaler">Wholesaler</a></li>
+                                <li class="tab col s3"><a class="active" href="#shipments">Shipments</a></li>
                             }
                             @if (model.user.admin) {
                                 <li class="tab col s3"><a href="#behavior">User behavior</a></li>
@@ -28,6 +29,10 @@
                         <a class="waves-effect waves-light btn-large ybtn-o" href="/wholesalers/list"><i class="fa fa-list"></i> Wholesalers List</a>
                         <a class="waves-effect waves-light btn-large ybtn-o" href="/wholesalers/orders/new"><i class="fa fa-plus"></i> New Order</a>
                         <a class="waves-effect waves-light btn-large ybtn-o" href="/wholesaler/orders"><i class="fa fa-list"></i> Order List</a>
+                    </div>
+                    <div class="col s12 center" id="shipments">
+                        <a class="waves-effect waves-light btn-large ybtn-o" href="/shipments/new"><i class="fa fa-plus"></i> New Shipment</a>
+                        <a class="waves-effect waves-light btn-large ybtn-o" href="/shipments/list"><i class="fa fa-cubes"></i> Shipments List</a>
                     </div>
                     }
                     @if (model.user.admin) {                    
