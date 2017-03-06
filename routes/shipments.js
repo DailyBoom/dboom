@@ -54,10 +54,14 @@ var isMerchant = function (req, res, next) {
 router.get('/shipments/list', isMerchantOrAdmin, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
   var query = Shipment.find({}, {}, { sort: { 'created_at': -1 } }).populate('product');
-  if (req.query.order_date)
-    query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
-  if (req.query.status)
-    query.where('status').equals(req.query.status);
+  if (req.query.s_id)
+    query.where('id').equals(req.query.s_id);
+  if (req.query.s_name)
+    query.where('name').regex('/^'+req.query.s_name+'/i');
+  if (req.query.s_est_date)
+    query.where('est_date').equals(req.query.s_est_date);
+  if (req.query.s_status)
+    query.where('status').equals(req.query.s_status);
   query.paginate(page, 10, function(err, shipments, total) {
     res.render('shipments/list', { shipments: shipments, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
   });

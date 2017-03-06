@@ -347,7 +347,9 @@ router.post('/add_to_cart', function(req, res) {
           console.log(err);          
           return res.status(500).json({ error: "Error with order" });          
         }
-        order.cart_merchants.push(product.merchant_id);
+        if (!order) {
+          return res.status(500).json({ error: "Error with order" });
+        }
         order.cart.push({ product: product._id, quantity: req.body.quantity, option: req.body.option });
         order.save(function(err) {
           if (err) {

@@ -73,7 +73,7 @@
 			</div>
     	</div>
     </div>
-<div class="container m-y-3">
+<div class="container m-y-3" id="shipments">
 	<div class="row">
 		<div class="col s12">
 			<h4 class="left">Shipments</h4>
@@ -107,11 +107,30 @@
 			<th>From</th>
 			<th>Est. Arrived Day</th>
 			<th>Status</th>
-			<th>Note</th>
 			<th>Manage</th>
 		</tr>
 	</thead>
 	<tbody>
+		<tr>
+			<form method="get">
+				<td><input type="text" id="s_id" name="s_id" /></td>
+				<td><input type="text" id="s_name" name="s_name" /></td>
+				<td><input type="text" id="s_line" name="s_line" /></td>
+				<td><input type="text" id="s_price" name="s_price" /></td>
+				<td><input type="number" id="s_quantity" name="s_quantity" /></td>
+				<td><input type="text" id="s_from" name="s_from" /></td>
+				<td><input class="datepicker" type="date" id="s_est_date" name="s_est_date" /></td>
+				<td>
+					<select id="s_status">
+						<option value=""></option>
+						<option value="Submitted">Submitted</option>
+						<option value="Shipping">Shipping</option>
+						<option value="Arrived">Arrived</option>
+					</select>
+				</td>
+				<td><button class="btn">Search</button></td>
+			</form>
+		</tr>
 		@model.shipments.forEach(function(shipment){
 			<tr>
 				<td class="id">@shipment.id</td>
@@ -122,7 +141,6 @@
 				<td class="from">@shipment.from</td>
 				<td class="est_date">@model.moment(shipment.est_date).format("YYYY/MM/DD")</td>
 				<td class="status">@shipment.status</td>
-				<td class="note">@shipment.note</td>
 				<td>
 					<a class="users-link blue-grey-text text-darken-2" href="/shipments/view/@shipment.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
 					<a class="users-link blue-grey-text edit" href="#"><i class="fa fa-pencil-square-o fa-fw fa-1-5x"></i></a>
