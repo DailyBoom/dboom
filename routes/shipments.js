@@ -56,8 +56,20 @@ router.get('/shipments/list', isMerchantOrAdmin, function(req, res) {
   var query = Shipment.find({}, {}, { sort: { 'created_at': -1 } }).populate('product');
   if (req.query.s_id)
     query.where('id').equals(req.query.s_id);
-  if (req.query.s_name)
-    query.where('name').regex('/^'+req.query.s_name+'/i');
+  if (req.query.s_name) {
+    var regex = new RegExp(req.query.s_name, "i");
+    query.where('name').regex(regex);
+  }
+  if (req.query.s_line)
+    query.where('line').equals(req.query.s_line);
+  if (req.query.s_price)
+    query.where('price').equals(req.query.s_price);
+  if (req.query.s_quantity)
+    query.where('quantity').equals(req.query.s_quantity);
+  if (req.query.s_from) {
+    var regex = new RegExp(req.query.s_from, "i");
+    query.where('from').regex(regex);
+  }
   if (req.query.s_est_date)
     query.where('est_date').equals(req.query.s_est_date);
   if (req.query.s_status)
