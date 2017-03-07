@@ -85,6 +85,31 @@
 								<button id="checkout" onclick="alert('Chúng tôi xin lỗi hộp làm đẹp bạn muốn đặt đã hết hàng.');" type="button">THÊM BOX VÀO GIỎ HÀNG</button>															
 							}
 						</div>
+						<div class="comments">
+							<h4>ĐÁNH GIÁ CỦA KHÁCH HÀNG</h4>
+							@model.comments.forEach(function(comment) {
+								<div class="comment">
+									<span class="user-com">@(comment.user ? comment.user.username : comment.name)</span>
+									<span class="date-com">@model.moment(comment.created_at).format("DD.MM.YYYY")</span>
+									<div class="body">@comment.body</div>
+								</div>
+							})
+							<div class="new-comment">
+								<h4>THÊM ĐÁNH GIÁ SẢN PHẨM</h4>
+								<form action="/comments/new" method="post">
+									@if(!model.user) {
+										<label for="name">Tên</label>
+										<input id="name" name="name" placeholder="Tên của bạn" type="text" />
+										<label for="email">Email</label>
+										<input id="email" name="email" placeholder="Email của bạn" type="text" />
+									}
+									<label for="body">Đánh giá sản phẩm</label>
+									<textarea name="body" placeholder="Đánh giá của bạn" id="body"></textarea>
+									<input type="hidden" value="@model.product.id" name="product" />
+									<button class="right">GỬI ĐÁNH GIÁ</button>
+								</form>
+							</div>
+						</div>
 						@if (model.is_mobile) {
 							<div class="sns right">
 								<div class="fb-share-button" data-href="http://yppuna.vn@model.url" data-layout="button" data-size="small" data-mobile-iframe="true">

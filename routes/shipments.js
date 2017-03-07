@@ -96,7 +96,7 @@ router.post('/shipments/new', isMerchantOrAdmin, function(req, res) {
     from: req.body.from,
     est_date: req.body.est_date,
     note: req.body.note,
-    status: "Submitted"
+    status: "Shipping"
   });
 
   shipment.save(function(err) {
@@ -115,7 +115,7 @@ router.post('/shipments/edit/:id', isMerchantOrAdmin, function(req, res) {
     shipment.brk_quantity = req.body.brk_quantity;
     shipment.to = req.body.to;
     shipment.arr_date = req.body.arr_date;
-    shipment.note = req.body.note;
+    shipment.note = req.body.e_note;
     shipment.status = "Arrived";
 
     shipment.save(function(err) {

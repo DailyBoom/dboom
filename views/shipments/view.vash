@@ -8,10 +8,18 @@
 			 	<div class="row blue-grey-text text-darken-3">
 					<div class="col s12">
 					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
-						Id :
+						ID :
 					</span>
 					<span class="col s8 order-label">
 						&nbsp;@model.shipment.id
+					</span>
+					</div>
+					<div class="col s12">
+					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
+						Status :
+					</span>
+					<span class="col s8 order-label">
+						&nbsp;@model.shipment.status
 					</span>
 					</div>
 					<div class="col s12">
@@ -43,7 +51,7 @@
 						Est. Arrival Date :
 					</span>
 					<span class="col s8 order-label">
-						&nbsp;@model.shipment.est_date
+						&nbsp;@model.moment(@model.shipment.est_date).format("YYYY/MM/DD")
 					</span>
 					</div>
 					<div class="col s12">
@@ -65,7 +73,7 @@
 					</div>
 					<div class="col s12">
 					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
-						Broken Product Number :
+						Broken Product :
 					</span>
 					<span class="col s8 order-label">
 						&nbsp;@model.shipment.brk_quantity
@@ -84,7 +92,7 @@
 						Arrived Date :
 					</span>
 					<span class="col s8 order-label">
-						&nbsp;@model.shipment.arrived_date
+						&nbsp;@model.moment(@model.shipment.arr_date).format("YYYY/MM/DD")
 					</span>
 					</div>
 					}

@@ -28,8 +28,8 @@
 							<input type="date" class="datepicker validate" id="est_date" name="est_date" />
 						</div>
 						<div class="input-field col s12">
-							<textarea class="materialize-textarea" id="note" name="note"></textarea>
-							<label for="note">Note</label>
+							<textarea class="materialize-textarea" id="e_note" name="e_note"></textarea>
+							<label for="e_note">Note</label>
 						</div>
 						<button class="btn right">Create a shipment</button>
 					</form>
@@ -44,9 +44,9 @@
 				<div class="col s12">
 					<form action="/shipments/edit" method="post">
 						<label for="name">Product Name</label>
-						<input type="text" class="search validate" id="name" name="name" />
+						<input type="text" class="search validate" id="name" name="name" readonly/>
 						<label for="line">Product Line</label>
-						<input type="text" id="line" name="line" class="validate">
+						<input type="text" id="line" name="line" class="validate" readonly>
 						<div class="col s12 l6">
 							<label for="rec_quantity">Received Quantity</label>
 							<input type="text" class="validate" id="rec_quantity" name="rec_quantity" />
@@ -216,9 +216,10 @@ $(document).ready(function() {
 	$('.edit').on("click", function() {
 		var form = $('#edit_modal form');
 		var ship = $(this).parent().parent();
-		form.attr('action', '/shipments/edit/'+ship.find('id').html());
+		form.attr('action', '/shipments/edit/'+ship.find('.id').html());
 		form.find('#name').val(ship.find('.name').html());
 		form.find('#line').val(ship.find('.line').html());
+		form.find('#e_note').val(ship.find('.note').html());
 		$('#edit_modal').openModal();
 	});
 });
