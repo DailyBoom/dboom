@@ -107,21 +107,32 @@ router.post('/shipments/new', isMerchantOrAdmin, function(req, res) {
 });
 
 router.post('/shipments/edit/:id', isMerchantOrAdmin, function(req, res) {
-  console.log(req.body);
-  
   Shipment.findOne({ _id: req.params.id }, {}, function(err, shipment){
     
     shipment.rec_quantity = req.body.rec_quantity;
     shipment.brk_quantity = req.body.brk_quantity;
     shipment.to = req.body.to;
     shipment.arr_date = req.body.arr_date;
-    shipment.note = req.body.e_note;
+    shipment.note += req.body.e_note;
     shipment.status = "Arrived";
 
     shipment.save(function(err) {
       if (err)
         console.log(err);
       return res.redirect('/shipments/list');
+    });
+  });
+});
+
+router.post('/shipments/edit_note/:id', isMerchantOrAdmin, function(req, res) {
+  Shipment.findOne({ _id: req.params.id }, {}, function(err, shipment){
+    
+    shipment.note = req.body.e_note;
+
+    shipment.save(function(err) {
+      if (err)
+        console.log(err);
+      return res.redirect('back');
     });
   });
 });
