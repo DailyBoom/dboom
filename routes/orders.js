@@ -319,11 +319,10 @@ router.post('/add_to_cart', function(req, res) {
       console.log(err);
     if (!product)
       return res.status(500).json({ error: "Product is invalid" });
-    if (parseInt(req.body.quantity) > product.options[req.body.option].quantity)
+    if (parseInt(req.body.quantity) > parseInt(product.options[req.body.option].quantity))
       return res.status(500).json({ error: "Quantity is invalid" });      
     if (!req.session.cart_order) {
       var order = new Order({
-        cart_merchants: [product.merchant_id],
         cart: [{ product: product._id, quantity: req.body.quantity, option: req.body.option }],
         status: "Submitted"
       });

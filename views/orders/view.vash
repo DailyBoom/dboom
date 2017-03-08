@@ -143,7 +143,7 @@
 										@if (item.product.options[item.option ? item.option : 0].name !== '') {
 											<div class="col s12"><div class="product-color" style="background-color: @item.product.options[item.option ? item.option : 0].name;"></div></div>
 											@if (item.product.category[0] == 59 || item.product.category[0] == 60 || (item.product.category[0] >= 38 && item.product.category[0] <= 43)) {
-												<div class="option-name">@item.product.options_skin[index]</div>
+												<div class="option-name">@item.product.options_skin[item.option]</div>
 											}
 										}
 										<div class="col s12">SỐ LƯỢNG: @item.quantity</div>
