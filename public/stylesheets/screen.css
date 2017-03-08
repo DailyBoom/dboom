@@ -1,0 +1,224 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+@font-face {
+  font-family: "Pierrot";
+  src: url("/fonts/Pierrot.otf");
+}
+/* line 5, ../../../../usr/local/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../usr/local/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../usr/local/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../usr/local/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../usr/local/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../usr/local/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../usr/local/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../usr/local/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../usr/local/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 12, ../sass/screen.scss */
+html, body {
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* line 15, ../sass/screen.scss */
+h1 {
+  font-family: 'Pierrot';
+  text-align: center;
+  line-height: 2em;
+  font-size: 1.4em;
+}
+
+/* line 22, ../sass/screen.scss */
+h2 {
+  color: #FEA3A3;
+  font-size: 1.4em;
+  line-height: 2em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* line 30, ../sass/screen.scss */
+#right {
+  margin-left: 30px;
+}
+
+/* line 33, ../sass/screen.scss */
+.row, .col {
+  padding: 0 0rem !important;
+}
+
+/* line 36, ../sass/screen.scss */
+#first {
+  width: 740px;
+  height: 470px;
+  background-image: url("../images/mango.jpg");
+  background-size: cover;
+}
+
+/* line 42, ../sass/screen.scss */
+#second {
+  width: 340px;
+  height: 225px;
+  background-image: url("../images/korean10.jpg");
+  background-size: cover;
+}
+
+/* line 49, ../sass/screen.scss */
+#third {
+  margin-top: 20px;
+  width: 340px;
+  height: 225px;
+  background-image: url("../images/korean0.jpeg");
+  background-size: cover;
+}
+
+/* line 57, ../sass/screen.scss */
+#gateway {
+  padding: 110px 0 20px 0;
+  width: 87%;
+  margin: 0 auto;
+  display: flex;
+}
+
+/* line 64, ../sass/screen.scss */
+.transparent, .pale {
+  padding: 20px 0;
+}
+
+/* line 68, ../sass/screen.scss */
+.page-footer {
+  background-color: #F5F5F5 !important;
+  color: black;
+}
+
+/* line 73, ../sass/screen.scss */
+#description-box {
+  margin: 30px 0;
+  max-width: 520px;
+  height: 560px;
+  background-color: white;
+  border: 5px solid #FEA3A3;
+  padding: 20px 40px;
+  line-height: 20px;
+  text-align: justify;
+}
+
+/* line 84, ../sass/screen.scss */
+.pale {
+  background-color: #FAF7F4;
+}
+
+/* line 88, ../sass/screen.scss */
+.wrapped {
+  width: 87%;
+}
+
+/* line 92, ../sass/screen.scss */
+.box-image {
+  width: 520px;
+  height: 560px;
+  background-image: url("../images/feelbeautiful.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* line 101, ../sass/screen.scss */
+.item_names {
+  margin: 10px 0;
+  position: relative;
+  border-top: 1px solid #F5F5F5;
+  border-bottom: 1px solid #F5F5F5;
+  text-transform: uppercase;
+  font-size: 0.8em;
+}
+
+/* line 111, ../sass/screen.scss */
+.introducing {
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+  min-width: 0;
+  width: 87%;
+}
+
+/* line 121, ../sass/screen.scss */
+.introducing article {
+  order: 999999;
+  min-width: 300px;
+  max-width: 340px;
+  min-height: 200px;
+  flex: 1 1 23vw;
+  border: 1px solid #F5F5F5;
+  padding: 20px 2vw;
+  margin: 0 0 20px 0;
+}
+
+/* line 131, ../sass/screen.scss */
+.introducing article.filler {
+  order: 9999999;
+  border-color: transparent;
+  min-height: 0;
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
