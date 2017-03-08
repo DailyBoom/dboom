@@ -1,575 +1,80 @@
-@html.extend("layout", function(model) {
+@html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
-<!-- Login Modal Structure -->
-<div id="modal-check" class="modal">
-	<div class="modal-header-c @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') center">
-		@model.__('login')
-	</div>
-	<div class="modal-content-c">
-		<div class="row">
-			<form method="post" action="/login?product_id=@model.product.id">
-				<div class="input-field col s12">
-					<input id="username" type="text" class="validate" name="username">
-					<label for="username">@model.__('user.username')</label>
-				</div>
-				<div class="input-field col s12">
-					<input id="password" type="password" class="validate" name="password">
-					<label for="password">@model.__('user.password')</label>
-				</div>
-				<div class="col s12">
-					<span class="left">
-						<input type="checkbox" id="remember-me" name="remember_me"/>
-						<label for="remember-me">@model.__('remember_me')</label>
-					</span>
-					<span class="right">
-						<button class="waves-effect waves-light btn light-blue darken-2" type="submit" name="action">@model.__('login')</button>
-					</span>
-				</div><!-- .col -->
-				<div class="col s12">
-					<div class="or-wrapper">
-						<img class="responsive-img" src="/images/or_2.png" alt="" />
-					</div>
-				</div>
-				<div class="col s12 center">
-					<div class="social-login-wrapper">
-						<a class="btn-social-login tooltipped" data-position="top" data-delay="0" data-tooltip="Login with Facebook" href="#!"><img class="circle z-depth-1" src="/images/icon_fb_social.png" id="facebook" data-product="@model.product.id" /></a>
-						<a class="btn-social-login tooltipped" data-position="top" data-delay="0" data-tooltip="Sign in with Google" href="#!"><img class="circle z-depth-1" src="/images/g-logo.png" id="google" data-product="@model.product.id" /></a>
-						<a class="btn core-color mod hide-on-med-and-down" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;">
-							Mua Ngay Không Cần Đăng Ký
-						</a>
-						<a class="btn core-color hide-on-large-only" href="/checkout?product_id=@model.product.id" style="margin-top: 1rem;">
-							Mua Ngay Không Cần Đăng Ký
-						</a>
-					</div>
-				</div>
-			</form>
-		</div><!-- .row -->
-	</div><!-- .modal-content -->
-	<div class="modal-footer-c white lighten-5 red-text text-darken-3">
-		<a class="black-text text-darken-3 left" href="/forgot">@model.__('forgot_pass')</a>
-		<!-- <a class="red-text text-darken-3 right" href="/signup">회원가입</a> -->
-	</div>
-</div><!-- #modal-check -->
-<!-- End Login Modal -->
-<!-- Login Modal Structure -->
-<div id="modal-ask" class="modal modal-lg center">
-	<div class="modal-content">
-		<div class="row">
-			<p>Send a message to <a href="http://www.askajumma.com" target="_blank"><b><span class="aa-a">Ask</span> <span class="aa-b">Ajumma</span></b></a>* and say,</p>
-			<h5>"I want the Daily Boom product!"</h5>
-			<a href="http://goto.kakao.com/i1ala00r" target="_blank"><img class="help-icon" src="/images/kakao_lg.jpg" alt="Kakaotalk" /></a>
-			<a href="http://www.facebook.com/askthisajumma" target="_blank"><img class="help-icon" src="/images/icon_fb.png" alt="Kakaotalk" /></a>
-			<p>
-				Start by clicking on one of the icons above.
-			</p>
-			<p class="ask-text">
-				*Ask Ajumma is a virtual concierge service,  all major international credit cards are accepted.<br>A 20% surcharge will be assessed for each transaction.
-			</p>
-		</div><!-- .row -->
-	</div><!-- .modal-content -->
-</div><!-- #modal-check -->
-<!-- Buy Wrapper -->
-<div id="buy-sticky" class="hide-on-med-and-down buy-sticky-wrapper center @(model.product.color ? model.product.color : 'white')">
-	<a href="/wholesale" class="hide buy-help-d modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
-	@if (model.user) {
-		@if (model.progress < 100) {
-			<a href="/checkout?product_id=@model.product.id">
-				<span class="buy-mod right core-color white-text btn" >MUA NGAY</span>
-			</a>
-		}
-	}
-	else {
-		@if (model.progress < 100) {
-			<a href="#modal-check" class="modal-trigger right">
-				<span class="buy-mod right core-color white-text btn" >MUA NGAY</span>
-			</a>
-		}
-	}
-	<!-- time left -->
-	@if (model.moment().day() == 6) {
-		<span id="time-left-label" class="d-clock label @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.__('time_left')</span>
-		<br><span id="time-left" class="d-clock @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')"></span>
-	}
-	else {
-		<span id="time-left-label" class="d-day label @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">@model.moment().add(1, 'weeks').startOf('isoweek').add(1, 'days').diff(model.moment(), 'days') Ngày Nữa</span>		
-	}
-</div>
-@if(model.product.images.length == 1 || model.product.mobile_images.length == 1) {
-<!-- Parallax -->
-	@if(model.is_mobile && model.product.mobile_images.length == 1) {
-		<div class="index-mobile-parallax-container">
-			<div class="parallax">
-				<img class="ie-fix" src="@model.product.mobile_images[0]" alt="@model.product.name" />
-				<div class="sale-item">
-					<div class="mod">Sale</div>
-					<div class="item-price">@model.sale%</div>
-				</div>
-			</div>
-		</div>
-	}
-	else if (!model.is_mobile && model.product.images.length == 1) {
-		<div class="index-parallax-container">
-			<div class="parallax">
-				<img class="ie-fix" src="@model.product.images[0]" alt="@model.product.name" />
-			</div>
-		</div>
-	}
-}
-<div class="container@(model.is_mobile ? '-fluid' : '')">
-	@if(model.progress >= 50){
-		 <div class="hide progress-wrapper">
-			<div class="progress-h red lighten-4"></div>
-			<div class="determinate-h red darken-2" style=""></div>
-			<div class="progress-h-text @(model.product.color == 'white' ? 'black-text' : 'white-text') hide">@model.progress% 팔림</div>
-		</div>
-	}
-
-@if(model.product.images.length > 1 || model.product.mobile_images.length > 1) {
-    <!-- L Slider -->
-	<div class="hero-wrapper">
-		@if(model.is_mobile && model.product.mobile_images.length > 1) {
-		<div class="hero-left bxslider-wrap mobile-wrap">
-			<div id="main-slider" class="slider-wrapper z-depth-1">
-				@model.product.mobile_images.forEach(function(img, index) {
-					<div class="slide" style="background-image: url(@img);">
-						@if(model.progress >= 100) {
-							<img class="sold-out" src="/images/sold-out.png" />
-						}
-						else {
-							<div class="sale-item hide-on-large-only">
-								<div class="mod">Sale</div>
-								<div class="item-price">@model.sale%</div>
-							</div>
-						}
-					</div>
-				})
-				@if(model.product.video) {
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/@model.product.video" frameborder="0" allowfullscreen></iframe>
-				}
-				else {
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/4ZU_BZMt87k" frameborder="0" allowfullscreen></iframe>
-				}
-			</div><!-- #main-slider -->
-		</div><!-- .hero-left -->
-		}
-		else if (!model.is_mobile && model.product.images.length > 1){
-		<div class="hero-left bxslider-wrap">
-			<div id="main-slider" class="slider-wrapper z-depth-1">
-				@model.product.images.forEach(function(img, index) {
-					<div class="slide" style="background-image: url(@img);">
-						@if(model.progress >= 100) {
-							<img class="sold-out" src="/images/sold-out.png" />
-						}
-						else {
-							<div class="sale-item hide-on-large-only">
-								<div class="mod">Sale</div>
-								<div class="item-price">@model.sale%</div>
-							</div>
-						}
-					</div>
-				})
-				@if(model.product.video) {
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/@model.product.video" frameborder="0" allowfullscreen></iframe>
-				}
-				else {
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/4ZU_BZMt87k" frameborder="0" allowfullscreen></iframe>
-				}
-			</div><!-- #main-slider -->
-		</div><!-- .hero-left -->
-		<div class="hero-right" id="bx-pager">
-			@{ var x = 0; }
-			@model.product.images.forEach(function(img) {
-				<a class="hero-img" data-slide-index="@x">
-					<div class="hero-thumbnail" style="background-image: url(@img);"></div>
-				</a>
-				@{ x++; }
-			})
-			@if(model.product.video) {
-				<a class="hero-img" data-slide-index="@x">
-					<div class="hero-thumbnail" style="background-image: url('http://img.youtube.com/vi/@model.product.video/sddefault.jpg');"></div>
-				</a>
-			}
-			else {
-				<a class="hero-img" data-slide-index="@x">
-					<div class="hero-thumbnail" style="background-image: url('http://img.youtube.com/vi/4ZU_BZMt87k/sddefault.jpg');"></div>
-				</a>
-			}
-		</div><!-- .hero-right -->
-		}
-	</div><!-- .hero-wrapper -->
-}
-</div><!-- .container -->
-
-<!-- b4 -->
-<div class="container@(model.is_mobile ? '-fluid' : '')">
-	<div class="row">
-		<div class="col s12">
-			<div class="buy-box-wrapper @(model.product.color ? model.product.color : 'white') darken-3 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
-					<img class="brand-img" src="@model.product.brand_logo" alt="@model.product.brand - Logo" />
-					@if (model.product.name.length >= 12) {
-						<div class="item-name name-md">@model.product.name</div>
-					}
-					else {
-						<div class="item-name name-lg">@model.product.name</div>
-					}
-						<div class="hide-on-med-and-down m-item right">
-							<div class="item-price-o mod red-text text-lighten-2">SALE</div>
-							<div class="item-price">@model.sale%</div>
-						</div>
-					<span class="hide-on-med-and-down">&nbsp;</span>
-					<div class="hide-on-med-and-down m-item right">
-						<div class="item-price-o desk red-text text-lighten-2" id="product_old_price_mobile">@model.product.old_price</div>
-						<div class="item-price desk" id="product_price_mobile">@model.product.price</div>
-					</div>
-			</div>
-			<div class="buy-box-info @(model.product.color ? model.product.color : 'white') lighten-5 blue-grey-text text-darken-4">
-				<div class="item-info">@html.raw(model.product.description)</div>
-				<div class="item-info-links">
-					@if(model.product.review_url) {
-						<a href="@model.product.review_url" target="_blank"><i class="fa fa-hand-o-right"></i> 상품 리뷰 보기</a>
-						<br>
-					}
-					@if(model.product.company_url) {
-						<a href="@model.product.company_url" target="_blank"><i class="fa fa-home"></i> @model.product.brand @model.__('merchant.website')</a>
-						<br>
-					}
-					@if(model.product.company_facebook) {
-						<a href="@model.product.company_facebook" target="_blank"><i class="fa fa-facebook-official"></i> @model.product.brand @model.__('merchant.facebook')</a>
-						<br>
-					}
-					@if(model.product.company_youtube) {
-						<a href="@model.product.company_youtube" target="_blank"><i class="fa fa-youtube"></i> @model.product.brand YouTube @model.__('merchant.youtube')</a>
-						<br>
-					}
-					@if(model.product.company_instagram) {
-						<a href="@model.product.company_instagram" target="_blank"><i class="fa fa-instagram"></i> @model.product.brand @model.__('merchant.instagram')</a>
-						<br>
-					}
-				</div>
-				@if(model.product.homepage_image) {
-					<a href="/shop/products/@model.product.id" ><img class="responsive-img" src="@model.product.homepage_image" alt="" /></a>
-				}
-				<div class="right-align">
-				@if (model.user) {
-					@if (model.progress < 100) {
-						<a class="hide-on-med-and-down btn btn-large buy-mod core-color darken-1" href="/checkout?product_id=@model.product.id">@model.__('buy_today') <i class="fa fa-chevron-right fa-fw"></i></a>
-					}
-				}
-				else {
-					@if (model.progress < 100) {
-						<a class="hide-on-med-and-down btn btn-large buy-mod core-color darken-1 modal-trigger" href="#modal-check">@model.__('buy_today') <i class="fa fa-chevron-right fa-fw"></i></a>
-					}
-				}
-					<br><br>
-					<a href="/wholesale" class="hide hide-on-med-and-down btn btn-flat buy-help-dd modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
-				</div>
-			</div>
-			<div class="buy-box-footer @(model.product.color ? model.product.color : 'white') lighten-3">
-				<div class="center">
-					<span class="share-text @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Share Product</span>
-					<img id="sharefb" class="social" src="/images/icon_fb.png" alt="Facebook Logo"/>
-					<a href="mailto:?subject=Yppuna&body=http://dailyboom.co"><img id="sharemail"  class="social" src="/images/icon_email.png" alt="Email Image" /></a>
-					<a class="modal-trigger" href="#share_url_modal"><img id="shareurl" class="social" src="/images/link_icon.png" alt="Link Image" /></a>
-				</div>
-			</div><!-- .buy-box-footer -->
-			<!-- Modal Structure -->
-		  <div id="share_url_modal" class="modal">
-				<div class="modal-header @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text') center">
-					Share Product
-				</div>
-		    <div class="modal-content">
-					<input readonly type="text" id="share_url" value="http://dailyboom.co">
-					<br>
-					<br>
-					<a href="#!" class="modal-action modal-close waves-effect waves-light btn @(model.product.color ? model.product.color : 'white') darken-2">닫기</a>
-		    </div>
-		  </div>
-			<!-- Merchant xInfo -->
-			<div class="mt-info">
-				<ul class="collapsible mod z-depth-0" data-collapsible="accordion">
-					<li>
-						<div class="collapsible-header @(model.product.color ? model.product.color : 'white') darken-1 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
-							<span>@model.__('shipping_info') <i class="fa fa-chevron-down fa-fw right"></i></span>
-						</div>
-						<div class="collapsible-body @(model.product.color ? model.product.color : 'white') lighten-5">
-							<div class="item-shipping-info-box">
-								<p><b>Shipping, return and exchange policy</b></p>
-								<p class="item-shipping-info">
-									<b>Chính sách giao hàng</b><br/>
-									Địa chỉ giao hàng cần được điền đầy đủ khi đặt hàng, trước khi thanh toán đơn hàng.<br/>
-									Mọi thay đổi cần phải liên hệ trực tiếp qua XYZ hoặc email XYZ<br/>
-									– Giao hàng miễn phí tại các quận nội thành HCM: quận 1,2,3,4,5,6,7,8,10,11, Bình Thạnh, Gò Vấp, Phú Nhuận, Tân Bình, Tân Phú<br/>
-									– Tính phí giao hàng 10.000 vnđ/hộp đối với các quận ngoại thành: quận 9, 12, Thủ Đức, Bình Tân,Hóc Môn, Bình Chánh, Nhà Bè, Củ Chi<br/>
-									– Tính phí giao hàng 30.000 vnđ/hộp đối với nội thành Hà Nội và Đà Nẵng<br/>
-									– Tính phí giao hàng 50.000 vnđ/hộp đối với các tỉnh, thành khác trên toàn quốc<br/>
-									Phí giao hàng tới các vùng lận cận/tỉnh xa phụ thuộc vào địa chỉ giao hàng.
-								</p>
-								<p class="item-shipping-info">
-									<b>Chính sách đổi hoặc trả hàng</b><br/>
-									Với những sản phẩm có tem của Yppuna  nếu phát hiện là nhái fake/không đúng hãng, chúng tôi sẽ hoàn trả lại tiền 100%.<br/> 
-									Những đơn hàng đã được nhận và mở rồi sẽ không được chấp nhận đổi hoặc trả.<br/>
-									Những sản phẩm bị lỗi do bộ phận giao hàng (hộp bị hỏng, vỡ) nên được hoàn trả lại cho bộ phận giao hàng ngay lập tức.<br/>
-									Đối với những lỗi sản phẩm bên trong hộp, bao gồm sản phẩm đã bị chảy, đã mở, không sử dụng được, khách hàng hoàn trả lại cho Yppuna và sẽ được gửi sản phẩm mới thay thế. Với những trường hợp này, bạn có thể liên hệ qua email hello@yppuna.vn cùng với hình ảnh của sản phẩm bị lỗi. 
-								</p>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</div>
-
-			<!-- Mobile -->
-			<div class="hide-on-large-only mobile-buy white-text">
-				<a class="modal-trigger" href="@(model.user ? '/checkout?product_id='+model.product.id : '#modal-check')">
-					<div class="m-item">
-						<div class="item-price-o" id="product_old_price_mobile">@model.product.old_price</div>
-						<div class="item-price" id="product_price_mobile">@model.product.price</div>
-					</div>
-					<div class="hide-on-large-only right buy-text">
-						Mua Ngay
-					</div>
-				</a>
-			</div>
-			<a href="/wholesale" class="hide hide-on-large-only buy-help modal-trigger @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">Want to buy in wholesale?</a>
-			<div class="mall-container"><h3 class="center core-text mall-header"><a href="/mall" class="core-text">Bán Chạy Nhất</a></h3></div>
+		<div id="gateway">
 			<div class="row">
-				<div class="col s12 m12 l12">
-					<div class="row">
-						<div id="db-past" class="owl-carousel owl-theme">
-								@if (model.mallProducts) {
-									@model.mallProducts.forEach(function(product) {
-										<div class="col s12 m12 l12">
-											<div class="card past">
-												<div class="card-image">
-													<div class="card-image-ol">
-														<h5 class="white-text truncate"><b>@product.name</b></h5>
-														<div class="past-divider"></div>
-														<div>
-															<span class="ol-new-p">@product.price</span> 
-															@if(product.old_price) {
-																@: (<span class="ol-old-p">@product.old_price</span>) 
-															}
-														</div>
-													</div><!-- .card-image-ol -->
-													<div class="past-img" style="background-image: url('@(product.mobile_images[0] ? product.mobile_images[0] : product.images[0])')" alt=""></div>
-												</div>
-												<div class="card-action mod center green">
-													<a class="waves-effect waves-light btn-flat white-text text-darken-3 extended-time" href="/mall/@product.url">@model.__('available')!</a>
-												</div>
-											</div>
-										</div>
-									})
-								}
-							<?}?>
-						</div><!-- /.owl-carousel -->
-					</div><!-- .row -->
-				</div><!-- /.col s12 m9 l9 -->
-			</div><!-- .row -->
-			<div class="row">
-				<div class="col s12">
-					<div class="past-box-wrapper @(model.product.color ? model.product.color : 'white') darken-2 @(model.product.color && model.product.color != 'white' ? 'white-text' : 'black-text')">
-						@model.__('featured')
-					</div>
-					<br>
+				<div class="col s12 m8">
+				<article class="box" id="first">
+				</article>
 				</div>
-				<div id="db-partners" class="owl-carousel owl-theme">
-                    @if (model.partners) {
-						@model.partners.forEach(function(partner) {
-							<div class="col s12">
-								<div class="partner-logo" style="background-image: url('@partner.logo');"></div>
-							</div><!-- .col -->
-						})
-                    }
-				</div><!-- /.owl-carousel -->
-			</div><!-- .row -->
-			<br>
-			<br>
-			<!-- ad -->
-			@if(!model.is_phone) {
-				<div class="a-wrapper">
-				</div>
-			}
-			else {
-				<div class="center">
-				</div>
-			}
-		</div><!-- .col -->
-	</div><!-- .row -->
-</div><!-- .container -->
-@if(!model.no_time){
-<script>
-var is_mobile = @model.is_phone;
-$(window).load(function() {
-	// $('#time-left-label').fadeOut(2500, function(){
-		var now = moment();
-		if (now.day() == 6) {
-			momentTom = moment().tz("Asia/Seoul").add(1, 'days').hours(0).minutes(0).seconds(0);
-			var timeLeft = moment.duration(momentTom.diff(now), 'milliseconds');
-			if (!is_mobile) {
-				$('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-			}
-			else {
-				$('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-			}
-			var interval = setInterval(function() {
-				timeLeft = moment.duration(momentTom.diff(moment().tz("Asia/Seoul"), 'milliseconds'));
-				if (timeLeft._milliseconds == 0) {
-					window.location = '/';
-				}
-				if (!is_mobile) {
-					$('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-				}
-				else {
-					$('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-				}
-			}, 1000);
-		}
-	// });
-});
-</script>
-}
-else {
-<script>
-$('#time-left-label').hide();
-</script>
-}
-<script>
-var footer = $('#buy-sticky'),
-extra = 245; // In case you want to trigger it a bit sooner than exactly at the bottom.
-footer.css({ display: 'block' });
-$(window).scroll(function() {
-	var scrolledLength = ( $(window).height() + extra ) + $(window).scrollTop(),
-	documentHeight = $(document).height();
-	console.log( 'Scroll length: ' + scrolledLength + ' Document height: ' + documentHeight )
-	if( scrolledLength >= documentHeight && footer.hasClass('bottom') ) {
-		footer
-		.removeClass('bottom')
-		.stop().animate({ bottom: '-150' }, 300);
-	}
-	else if ( scrolledLength <= documentHeight ) {
-		footer
-		.addClass('bottom')
-		.stop().animate({ bottom: '0' }, 300);
-	}
-});
-	$(document).ready(function(){
-		$("#main-slider").bxSlider({
-			mode:'horizontal',
-			pagerCustom: '#bx-pager',
-			infiniteLoop:true,
-			auto:true,
-			autoHover:true,
-			controls:false,
-            video: is_mobile,
-            useCss: true,
-            onSliderLoad: function(){
-                $(".bxslider-wrap").css("visibility", "visible");
-            }
-		});
-    });
-	$(document).ready(function(){
-		$('.want').on('click', function(){
-			var btn = $(this);
-			$.ajax({
-				type: "POST",
-				url: "/products/wanna_buy",
-				dataType: "json",
-				data: {
-					id: btn.data('id'),
-				},
-				success: function (res) {
-					btn.toggleClass('cyan text-darken-3');
-					btn.find('span').toggleClass('white-text');
-					btn.find('i').toggleClass('fa-thumbs-o-up fa-thumbs-up');
-				},
-				error: function (res) {
-					Materialize.toast(res.responseJSON.message, 4000);
-				}
-			});
-		});
-	});
-	$(window).load(function() {
-		var progress_h = @model.progress + "%";
-		$('.determinate-h').animate({width: progress_h}, 1500, function() {
-			$('.progress-h-text').fadeIn().removeClass('hide');
-		});
-	});
-	$(document).ready(function(){
-		$('.parallax').parallax();
-		if ($('.index-parallax-container').length) {
-			$('.index-parallax-container').css('height', $('.parallax img')[0].clientHeight + 'px');
-			$('.parallax img').css('transform', 'translate3d(-50%, 0px, 0px)');
-		}
-		$('.tooltipped').tooltip({delay: 0});
-		$('.iframe-video').each(function(){
-			var url = $(this).attr("src");
-			$(this).attr("src",url+"?wmode=transparent");
-		});
-		// $('.modal-trigger').leanModal({
-		// 	dismissible: true, // Modal can be dismissed by clicking outside of the modal
-		// 	opacity: .5, // Opacity of modal background
-		// 	in_duration: 300, // Transition in duration
-		// 	out_duration: 200, // Transition out duration
-		// 	ready: function() { $('#share_url').select(); }
-		// });
-		$('.collapsible').collapsible({
-      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-    });
-		
-		var lang = '@model.getLocale()';
-		if (lang == 'vi')
-			$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile, .ol-old-p, .ol-new-p").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
-		else
-			$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile, .ol-old-p, .ol-new-p").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});			
+				<div class="col s12 m4">
+				<div class="row" id="right">
+					<article class="box col s12" id="second">
+					</article>
+					<article class="box col s12" id="third">
 
-		var owl = $("#db-past");
-		owl.owlCarousel({
-			items : 3,
-			itemsDesktop : [1200,3],
-			itemsDesktopSmall : [992,2],
-			itemsTablet: [600,1],
-			itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
-			navigation: true,
-			navigationText: ["<", ">"],
-			pagination: false,
-			responsive: true,
-			rewindNav: true,
-			autoPlay: true
-		});
-		var partners = $("#db-partners");
-		partners.owlCarousel({
-			items : 6,
-			itemsDesktop : [1200,6],
-			itemsDesktopSmall : [992,5],
-			itemsTablet: [600,4],
-			itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
-			autoPlay: 2500,
-			navigation: false,
-			pagination: false,
-			responsive: true,
-			rewindNav: true
-		});
-		// Custom Navigation Events
-		$(".next").click(function(){owl.trigger('owl.next');});
-		$(".prev").click(function(){owl.trigger('owl.prev');});
-		var timer = function(elem) {
-			var date = moment(elem.data('date')).tz("Asia/Seoul").add(3, 'days');
-			var now = moment().tz("Asia/Seoul");
-			var timeLeft = moment.duration(date.diff(now), 'milliseconds');
-			elem.find('.time-left').hide();
-			elem.find('.time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-			elem.find('.time-left').fadeIn(1000);
-			setInterval(function() {
-				timeLeft = moment.duration(date.diff(moment().tz("Asia/Seoul"), 'milliseconds'));
-				elem.find('.time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-			}, 1000);
-		}
-		$(".extended-time").each(function() {
-			timer($(this));
-		});
-	});
-	$('#hide-c').on('click', function(){
-		$(this).parent().fadeOut();
-	});
-</script>
+					</article>
+				</div>
+				</div>
+
+			</div>
+
+		</div>
+		<div id="box" class="pale">
+			<div class="row wrapped">
+				<div class="col s12 m6">
+				<section id="description-box">
+					<h1>Box of the month</h1>
+					<h2>Feel Beautiful</h2>
+					<div class="item_names row center">
+						<div class="col s12">
+						Skinmiso
+						</div>
+						<div class="col s12">
+						Hàn Quốc
+						</div>
+
+					</div>
+					<p>Đẹp là khi một người phụ nữ biết yêu và nâng niu bản thân mình. Hãy bắt đầu yêu và năng niu làn da, một phần vô cùng quan trọng trên của cơ thể của người phụ nữ, với những sản phẩm chăm sóc da uy tín và hiệu quả. Box làm đẹp tháng này với 2 sản phẩm đặc trị cho mụn và lỗ chân lông của Skinmiso cùng rất rất nhiều mẫu thử của Klairs, da bạn sẽ chính thức sáng, sạch, mịn và đẹp hơn từng ngày.</p>
+				</section>
+
+				</div>
+				<div class="col s12 m6">
+				<div class="box-image">
+
+				</div>
+				</div>
+
+			</div>
+
+		</div>
+		<div id="introducing" class="transparent">
+		<h1>Gioi Thieu</h1>
+		<section class="introducing">
+			<article>
+			<h1>Bestsellers</h1>
+			</article>
+			<article>
+			<h1>Newest items</h1>
+			</article>
+			<article>
+			<h1>Sales</h1>
+			</article>
+		</section>
+		</div>
+
+		<div id="videofeed" class="pale">
+		<h1>Video</h1>
+		</div>
+
+		<div id="community" class="transparent">
+		<h1>Yppuna community</h1>
+		</div>
+
+		<div id="blogfeed" class="pale">
+		<h1>Blog</h1>
+		</div>
+
+		<div class="contact" class="transparent">
+		</div>
 	})
 })

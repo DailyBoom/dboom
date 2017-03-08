@@ -5,22 +5,23 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>데일리 붐 - @if(model.title){ @model.title }</title>
     @if(!model.title){
-      <meta name="title" content="데일리 붐 - 오늘 뭐 사지?">
-  		<meta itemprop="name" content="데일리 붐 - 오늘 뭐 사지?" />
-      <meta property="og:title" content="데일리 붐 - 오늘 뭐 사지?" />
+      <title>@model.__('title') - @model.__('about.title')</title>
+      <meta name="title" content="@model.__('title') - Mỹ Phẩm Hàn Quốc">
+  		<meta itemprop="name" content="@model.__('title') - Mỹ Phẩm Hàn Quốc" />
+      <meta property="og:title" content="@model.__('title') - Mỹ Phẩm Hàn Quốc" />
     }
     else {
-      <meta name="title" content="데일리 붐 - @model.title">
-	   	<meta itemprop="name" content="데일리 붐 - @model.title" />
-      <meta property="og:title" content="데일리 붐 - @model.title" />
+      <title>@model.__('title') - @model.title</title>
+      <meta name="title" content="@model.__('title') - @model.title">
+	   	<meta itemprop="name" content="@model.__('title') - @model.title" />
+      <meta property="og:title" content="@model.__('title') - @model.title" />
     }
-    <meta name="copyright" content="Copyright 2015 Daily Boom">
+    <meta name="copyright" content="Copyright 2016 Yppuna">
     @if(!model.description){
-      <meta name="description" content="오늘 뭐 사지? 데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다. 상품이 공개된 후부터 ‘24시간 카운트 다운’으로 진행되기 때문에 고객들은 실시간으로 남은 할인가격 시간과 구매율(%)을 확인할 수 있습니다.">
-  		<meta itemprop="description" content="오늘 뭐 사지? 데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다. 상품이 공개된 후부터 ‘24시간 카운트 다운’으로 진행되기 때문에 고객들은 실시간으로 남은 할인가격 시간과 구매율(%)을 확인할 수 있습니다." />
-      <meta property="og:description" content="오늘 뭐 사지? 데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다. 상품이 공개된 후부터 ‘24시간 카운트 다운’으로 진행되기 때문에 고객들은 실시간으로 남은 할인가격 시간과 구매율(%)을 확인할 수 있습니다." />
+      <meta name="description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp.">
+  		<meta itemprop="description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp." />
+      <meta property="og:description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp." />
     }
     else {
       <meta name="description" content="@model.description">
@@ -28,21 +29,25 @@
       <meta property="og:description" content="@model.description" />
     }
 		<meta itemprop="pageType" content="Product" />
-    @if(!model.cover){
-  		<meta itemprop="image" content="http://dailyboom.co/images/dailyboomNEW5.jpg" />
-      <meta property="og:image" content="http://dailyboom.co/images/dailyboomNEW5.jpg" />
+    @if(model.cover){
+      <meta itemprop="image" content="http://yppuna.vn/@model.cover" />
+      <meta property="og:image" content="http://yppuna.vn/@model.cover" />
+    }
+    else if (model.ext_cover) {
+      <meta itemprop="image" content="@model.ext_cover" />
+      <meta property="og:image" content="@model.ext_cover" />
     }
     else {
-  		<meta itemprop="image" content="http://dailyboom.co/@model.cover" />
-      <meta property="og:image" content="http://dailyboom.co/@model.cover" />
+  		<meta itemprop="image" content="http://yppuna.vn/images/db_ko_05.png" />
+      <meta property="og:image" content="http://yppuna.vn/images/db_ko_05.png" />
     }
-    <meta property="og:site_name" content="데일리 붐 - Daily Boom">
-    <meta property="og:url" content="http://dailyboom.co@model.url" />
+    <meta property="og:site_name" content="Yppuna">
+    <meta property="og:url" content="http://yppuna.vn@model.url" />
     <meta property="og:type" content="product">
-    <meta property="fb:app_id" content="636096523200038">
+    <meta property="fb:app_id" content="1216374348393191">
 
-    <link rel="canonical" href="http://dailyboom.co@model.url" />
-    <link rel="publisher" href="https://plus.google.com/107959815610933986765" />
+    <link rel="canonical" href="http://yppuna.vn@model.url" />
+    <meta name="google-site-verification" content="yS0UpQrgmF43CA3mnxY8Qke583Hq_yJMSfw2USHiVxI" />
 
 		<!-- favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png" />
@@ -62,37 +67,63 @@
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png" />
     <meta name="theme-color" content="#ffffff" />
-    <meta name="naver-site-verification" content="68fedd545178dfc377372fddcd4828bfa281726d" />
 
 		<!-- Materialize CSS -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/stylesheets/materialize.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+		<!-- Tag-it CSS -->
+		<link rel="stylesheet" href="/stylesheets/jquery.tagit.css" />
+    
 		<!-- Sliders CSS -->
 		<link rel="stylesheet" href="/stylesheets/owl.carousel.css" />
+		<link rel="stylesheet" href="/stylesheets/owl.theme.css" />
 		<link rel="stylesheet" href="/stylesheets/bxslider.css" />
 		<!-- Custom CSS -->
-		<link rel="stylesheet" href="/stylesheets/styles.css">
-		<link rel="stylesheet" href="/stylesheets/theme.css">
-
+		<link rel="stylesheet" href="/stylesheets/beta.css">
+    <link rel="stylesheet" href="/stylesheets/print.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito|Quicksand" rel="stylesheet">
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="/stylesheets/animate.css">
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+    <link rel='stylesheet' href='/stylesheets/spectrum.css' />
 		<!-- jQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-		<!-- Materialize CSS JS -->
+    <script
+			  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+			  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+			  crossorigin="anonymous"></script>
+    <!-- Materialize CSS JS -->
 		<script src="/javascripts/materialize.min.js"></script>
+		<!-- Tag-itS JS -->
+		<script src="/javascripts/tag-it.min.js"></script>
     <!-- Slider JS -->
 		<script src="/javascripts/owl.carousel.min.js"></script>
-		<script src="/javascripts/bxslider.min.js"></script>
+		<script src="/javascripts/jquery.bxslider.min.js"></script>
 		<script src="/javascripts/fitvids.js"></script>
 		<script src="/javascripts/moment.js"></script>
+		<script src="/javascripts/moment-vi.js"></script>
 		<script src="/javascripts/moment-timezone-with-data.js"></script>
     <!-- Custom JS -->
+    <script src="/javascripts/jquery.colourbrightness.min.js"></script>
+    <script src="/javascripts/Chart.js"></script>
+    <script src='/javascripts/masonry.pkgd.min.js'></script>
+    <script src='/javascripts/spectrum.js'></script>
 		<script src="/javascripts/formatCurrency/jquery.formatCurrency-1.4.0.min.js"></script>
 		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.ko-KR.js"></script>
+		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.vi-VN.js"></script>
     <script src="/javascripts/popOut.js"></script>
+    <script src="/javascripts/imgToSvg.js"></script>
+    <script src="/javascripts/combodate.js"></script>
+    <script src="/javascripts/picker.js"></script>
+    <script src="/javascripts/picker.time.js"></script>
+    <script src="/javascripts/legacy.js"></script>
+    <script src="/javascripts/jquery.animatecss.min.js"></script>
+    <script src="/javascripts/jquery.waypoints.min.js"></script>
+    <script src="/javascripts/jquery.stellar.min.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <!-- Modernizr -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-    <!-- Payco -->
-    <script type="text/javascript" src="https://static-bill.nhnent.com/payco/checkout/js/payco.js" charset="UTF-8"></script>
     <!--[if IE 9]>
       <style>
       .ie-fix { left: 0 !important; top: 0 !important; }
@@ -106,197 +137,262 @@
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-70085144-1', 'auto');
+      ga('create', 'UA-84475807-1', 'auto');
       ga('send', 'pageview');
 
     </script>
   </head>
-  <body>
-    <nav class="@(model.product && model.product.color ? model.product.color : 'blue-grey') darken-3 snow">
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#!">First Sidebar Link</a></li>
-        <li><a href="#!">Second Sidebar Link</a></li>
-      </ul>
-      <ul id="slide-out" class="side-nav">
-        <li><a href="#!">First Sidebar Link</a></li>
-        <li><a href="#!">Second Sidebar Link</a></li>
-      </ul>
-      <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-    </nav>
+    <body>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=1216374348393191";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+      @if(!model.user) {
+      <div id="login_modal" class="modal">
+        <div class="modal-content">
+          <div class="row">
+            <div class="col s12">
+              <ul class="tabs">
+                <li class="tab col s6"><a href="#login">Đăng nhập</a></li>
+                <li class="tab col s6"><a href="#signup">Đăng ký</a></li>
+                <li class="right"><a href="#!" class="modal-action modal-close"><img src="/images/close.svg" class="svg svg-close" /></a></li>
+              </ul>
+            </div>
+            <div id="login" class="col s12">
+              <form method="post" action="/login">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="Nhập email" />
+                <label for="password">Mật khẩu</label>
+                <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" />
+                <div class="right"><a class="forgot" href="/forgot" >Quên mật khẩu?</a></div>
+                <button>ĐĂNG NHẬP</button>
+              </form>
+              <div id="facebook">Đăng nhập bằng Facebook</div>
+            </div>
+            <div id="signup" class="col s12">
+              <form method="post" action="/signup">
+                <label for="username">Họ và tên</label>
+                <input id="username" name="username" type="text" placeholder="Họ và tên" />
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="Nhập email" />
+                <label for="password">Mật khẩu</label>
+                <input id="password" name="password" type="password" placeholder="Mật khẩu trên 6 ký tự" />
+                <label for="confirm_password">Nhập lại mật khẩu</label>
+                <input id="confirm_password" name="confirm_password" type="password" placeholder="Nhập lại mật khẩu" />
+                <label for="birthday" class="bday">Ngày sinh</label>
+                <input id="birthday" name="birthday" type="text" />
+                <div class="gender">
+                  <label>Giới tính</label><input name="gender" type="radio" value="0" id="male" /><label for="male" class="sub">Nam</label><input name="gender" type="radio" value="0" id="female" /><label for="female" class="sub">Nữ</label>
+                </div>
+                <div class="terms">
+                  Khi nhấn đăng ký, bạn đã đồng ý thực hiện mọi giao dịch mua bán theo <a href="/terms">điều kiện sử dụng và chính sách</a> và chính sách
+                </div>
+                <button>ĐĂNG KÝ</button>
+                <div id="facebook">Đăng nhập bằng Facebook</div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+        <header class="so-header _fixed">
+          <div class="-container">
+              <div class="-main">
+                  <a href="#" class="-logo _glyph">
+                      <span class="-img">Yppuna</span>
+                  </a>
+                  <nav class="navigation">
+                    <ol class="-list">
+                      <li class="-item">
+                        <a href="#" class="-link">Box</a>
+                      </li>
+                      <li class="-item _current">
+                        <a href="#" class="-link">Chăm sóc da</a>
+                      </li>
+                      <li class="-item">
+                        <a href="#" class="-link">Trang điểm</a>
+                      </li>
+                      <li class="-item">
+                        <a href="#" class="-link">Cơ thể</a>
+                      </li>
+                      <li class="-item">
+                        <a href="#" class="-link">NhÃn hiỆu</a>
+                      </li>
+                      <li class="-item">
+                        <a href="#" class="-link">GiỚi thiỆu</a>
+                      </li>
+                      <li class="-item">
+                        <a href="/blog/video" class="-link">Video</a>
+                      </li>
+                      <li class="-item">
+                        <a href="/blog" class="-link">Blog</a>
+                      </li>
+                    </ol>
+                  </nav>
+                </div>
+                <!-- End of main part of nav -->
 
+                <div class="-actions">
+                  <nav class="secondary-nav">
+                    <ol class="-list">
+                      <li class="-item">
+                        <a href="@(model.user ? '/mypage' : '#login_modal')" class="modal-trigger -link">
+                          Tìm kiếm
+                          <svg width="13px" height="13px" viewBox="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                  <g id="100-Basic-Element-Icons-Dark" transform="translate(-572.000000, -1104.000000)" fill="#000000">
+                                      <path d="M577.058671,1114.11734 C578.292494,1114.11734 579.41415,1113.6799 580.289042,1112.9396 L584.21484,1116.8654 C584.304573,1116.95513 584.416739,1117 584.540121,1117 C584.663503,1117 584.775669,1116.95513 584.865401,1116.8654 C585.044866,1116.68594 585.044866,1116.39431 584.865401,1116.21484 L580.939603,1112.28904 C581.66868,1111.41415 582.117343,1110.28128 582.117343,1109.05867 C582.117343,1106.26575 579.851596,1104 577.058671,1104 C574.276963,1104 572,1106.27696 572,1109.05867 C572,1111.8516 574.276963,1114.11734 577.058671,1114.11734 L577.058671,1114.11734 Z M577.058671,1104.91976 C579.346851,1104.91976 581.197584,1106.78171 581.197584,1109.05867 C581.197584,1111.34685 579.346851,1113.19758 577.058671,1113.19758 C574.770492,1113.19758 572.919758,1111.33563 572.919758,1109.05867 C572.919758,1106.78171 574.781708,1104.91976 577.058671,1104.91976 L577.058671,1104.91976 Z" id="search"></path>
+                                  </g>
+                              </g>
+                          </svg>
+                        </a>
+                  </li>
 
-
-		<div class="navbar">
-			<nav class="@(model.product && model.product.color ? model.product.color : 'blue-grey') darken-3 snow">
-				<div class="container center">
-					<a href="/" class="logo-d"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
-					<a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_03.png" /></a>
-        	<span id="time-left-mobile" class="hide-on-large-only d-clock white-text left"></span>
-					@if (model.user) {
-						<ul class="right">
-							<li class="nav-item">
-								<!-- Dropdown Trigger -->
-								<a class='dropdown-button btn-floating btn-profile green z-depth-1' href='#' data-activates='dropdown-profile'>
-									<i class="fa fa-user fa-cx"></i>
-								</a>
-								<!-- Dropdown Structure -->
-								<ul id="dropdown-profile" class="dropdown-content">
-									<li><a class="@(model.product && model.product.color ? model.product.color : 'blue-grey') darken-4 white-text" href="#!">@model.user.username</a></li>
-                @if (model.user.admin == 1) {
-                  <li class="divider"></li>
-                  <li><a class="deep-purple-text text-darken-2" href="/products/new">Add Product <i class="fa fa-plus fa-fw right"></i></a></li>
-                  <li><a class="deep-purple-text text-darken-2" href="/coupons/new">New Coupon <i class="fa fa-plus fa-fw right"></i></a></li>
-                  <li><a class="deep-purple-text text-darken-2" href="/coupons/list">Coupons <i class="fa fa-list fa-fw right"></i></a></li>
-                  <li><a class="deep-purple-text text-darken-2" href="/users/list">Users List <i class="fa fa-users fa-fw right"></i></a></li>
-                  <li><a class="deep-purple-text text-darken-2" href="/orders/list">Orders List <i class="fa fa-shopping-cart fa-fw right"></i></a></li>
-                }
-                @if (model.user.admin || model.user.role == "merchant") {
-									<li class="divider"></li>
-                  <li><a class="deep-purple-text text-darken-2" href="/products/list">Products <i class="fa fa-list fa-fw right"></i></a></li>
-                  <li><a class="cyan-text text-darken-2" href="/merchants/orders/list">주문 내역 <i class="fa fa-truck fa-fw right"></i></a></li>
-                }
-									<li class="divider"></li>
-									<li><a class="@(model.product && model.product.color ? model.product.color : 'blue-grey')-text text-darken-2" href="/mypage">마이 페이지 <i class="fa fa-user fa-fw right"></i></a></li>
-									<li><a class="@(model.product && model.product.color ? model.product.color : 'blue-grey')-text text-darken-2" href="/logout">로그아웃 <i class="fa fa-sign-out fa-fw right"></i></a></li>
-								</ul>
-							</li>
-						</ul>
-					}
-					else {
-            <ul class="right hide-on-large-only">
-							<li class="nav-item">
-								<!-- Dropdown Trigger -->
-								<a class='dropdown-button btn btn-flat btn-mobile white-text' href='#' data-activates='dropdown-profile'>
-									<i class="fa fa-bars fa-fw fa-4x"></i>
-								</a>
-								<!-- Dropdown Structure -->
-								<ul id="dropdown-profile" class="dropdown-content @(model.product && model.product.color ? model.product.color : 'blue-grey')-text text-darken-2">
-									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'blue-grey')-text text-darken-2" href="/login">로그인 <i class="fa fa-sign-in fa-fw right"></i></a></li>
-									<li><a class="waves-effect waves-light @(model.product && model.product.color ? model.product.color : 'blue-grey')-text text-darken-2" href="/signup">회원가입 <i class="fa fa-user-plus fa-fw right"></i></a></li>
-								</ul>
-							</li>
-						</ul>
-            <ul class="right hide-on-med-and-down user-link">
-              <li class="nav-item mod"><a class="white-text" href="/login">로그인</a></li>
-              <li class="nav-item mod"><a class="white-text" href="/signup">회원가입</a></li>
-            </ul>
-					}
-				</div><!-- .container -->
-			</nav>
-		</div><!-- .navbar -->
-
-
-
-
-
+                  <li class="-item">
+                    <a href="#" class="-link">
+                      Tài khoản
+                      <svg width="14px" height="13px" viewBox="0 0 14 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="100-Basic-Element-Icons-Dark" transform="translate(-236.000000, -951.000000)" fill="#000000">
+                                <path d="M242.813756,958.29569 C244.83431,958.29569 246.473204,956.659483 246.473204,954.642241 C246.473204,952.625 244.83431,951 242.813756,951 C240.793203,951 239.154309,952.636207 239.154309,954.642241 C239.154309,956.648276 240.793203,958.29569 242.813756,958.29569 L242.813756,958.29569 Z M242.813756,951.952586 C244.295496,951.952586 245.507828,953.162931 245.507828,954.642241 C245.507828,956.121552 244.295496,957.331897 242.813756,957.331897 C241.332017,957.331897 240.119685,956.121552 240.119685,954.642241 C240.119685,953.162931 241.332017,951.952586 242.813756,951.952586 Z M236.482688,964 L249.189726,964 C249.459133,964 249.672414,963.787069 249.672414,963.518103 C249.672414,960.996552 247.618184,958.934483 245.081267,958.934483 L240.591147,958.934483 C238.065455,958.934483 236,960.985345 236,963.518103 C236,963.787069 236.213281,964 236.482688,964 L236.482688,964 Z M240.591147,959.898276 L245.081267,959.898276 C246.922216,959.898276 248.437631,961.265517 248.673362,963.036207 L236.999052,963.036207 C237.234783,961.276724 238.750198,959.898276 240.591147,959.898276 Z" id="profile"></path>
+                            </g>
+                        </g>
+                      </svg>
+                    </a>
+                  </li>
+                  <li class="-item">
+                    <a href="#" class="-link">
+                      Giỏ hàng
+                      <svg width="13px" height="13px" viewBox="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="100-Basic-Element-Icons-Dark" transform="translate(-1707.000000, -337.000000)" fill="#000000">
+                                <path d="M1718.47927,340.403962 C1718.44573,340.180017 1718.25563,340.023256 1718.032,340.023256 L1715.46018,340.023256 L1715.46018,338.970715 C1715.46018,337.884582 1714.57681,337 1713.49217,337 C1712.40753,337 1711.52417,337.884582 1711.52417,338.970715 L1711.52417,340.023256 L1708.95235,340.023256 C1708.72871,340.023256 1708.53862,340.180017 1708.50507,340.403962 L1707.00671,349.47373 C1706.98435,349.608096 1707.01789,349.742463 1707.10735,349.843239 C1707.1968,349.944014 1707.3198,350 1707.45398,350 L1719.53036,350 L1719.54154,350 C1719.79873,350 1720,349.79845 1720,349.540913 C1720,349.484927 1719.98882,349.440138 1719.97764,349.395349 L1718.47927,340.403962 L1718.47927,340.403962 Z M1712.44108,338.970715 C1712.44108,338.388458 1712.91072,337.918174 1713.49217,337.918174 C1714.07363,337.918174 1714.54327,338.388458 1714.54327,338.970715 L1714.54327,340.023256 L1712.44108,340.023256 L1712.44108,338.970715 L1712.44108,338.970715 Z M1707.99071,349.093023 L1709.34371,340.94143 L1711.52417,340.94143 L1711.52417,343.505599 C1711.52417,343.763135 1711.72544,343.964686 1711.98263,343.964686 C1712.23981,343.964686 1712.44108,343.763135 1712.44108,343.505599 L1712.44108,340.94143 L1714.54327,340.94143 L1714.54327,343.505599 C1714.54327,343.763135 1714.74454,343.964686 1715.00172,343.964686 C1715.2589,343.964686 1715.46018,343.763135 1715.46018,343.505599 L1715.46018,340.94143 L1717.64063,340.94143 L1718.99363,349.093023 L1707.99071,349.093023 L1707.99071,349.093023 Z" id="bag"></path>
+                            </g>
+                        </g>
+                      </svg>
+                    </a>
+                  </li>
+                </ol>
+              </nav>
+              <!-- End of secondary nav -->
+            </div>
+            <!-- End of actions -->
+          </div>
+          <!-- End of container -->
+        </header>
+      <!-- End of header -->
+  		@html.include("error", model)
+      <main>
       @html.block("body")
-		<footer class="page-footer @(model.product && model.product.color ? model.product.color : 'blue-grey') darken-3">
-			<div class="container">
-        <div class="row flex-s">
-          <div class="col s12 m3 l3 box-2">
-            <p class="follow-us white-text">Follow Us</p>
-  					<span>
-  						<a class="grey-text text-lighten-4" href="https://www.facebook.com/dailyboomkorea" target="_blank">
-                <img class="footer-social" src="/images/facebook.png" />
-              </a>
-  						<a class="grey-text text-lighten-4" href="http://instagram.com/dailyboomkorea" target="_blank">
-                <img class="footer-social" src="/images/insta.png" />
-              </a>
-  					</span>
-          </div><!-- .col -->
-          <div class="col s12 m9 l9 footer-box white-text box-1">
-            <a class="footer-link white-text" href="/about">회사 소개</a>&#149;
-            <a class="footer-link white-text" href="/advertise">광고·제휴 문의</a>&#149;
-            <a class="footer-link white-text" href="/privacy">개인정보 정책</a>&#149;
-            <a class="footer-link white-text" href="/terms">이용약관</a>&#149;
-            <a class="footer-link white-text" href="/merchant">판매자 문의</a>
-          </div><!-- .col -->
-          <div class="col s12 m4 l4 box-3">
-            <p class="text-footer">
-              폭스트론 (주)
-              <br>대표이사: 김지완
-              <br>서울특별시 성북구 삼양로22, 국민대학교 기린빌딩 103호
-              <br>사업자등록번호: 206-86-90012
-              <br>통신판매업신고: 2015-서울성북-00524호
-              <br>Office: 070-4234-1257
-              <br>Fax: 02-985-1257
-            </p>
+      </main>
+      <footer class="page-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Yppuna</h5>
+              <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+            </div>
+            <div class="col l3 s12">
+              <h5 class="white-text">About Yppuna</h5>
+              <ul>
+                <li><a class="white-text" href="#!">VỀ YPPUNA</a></li>
+                <li><a class="white-text" href="#!">Link 2</a></li>
+                <li><a class="white-text" href="#!">Link 3</a></li>
+                <li><a class="white-text" href="#!">Link 4</a></li>
+              </ul>
+            </div>
+            <div class="col l3 s12">
+              <h5 class="white-text">Connect</h5>
+              <ul>
+                <li><a class="white-text" href="#!">Link 1</a></li>
+                <li><a class="white-text" href="#!">Link 2</a></li>
+                <li><a class="white-text" href="#!">Link 3</a></li>
+                <li><a class="white-text" href="#!">Link 4</a></li>
+              </ul>
+            </div>
           </div>
-          <div class="col s12 m5 l5 box-4">
-            <p class="text-footer">
-              폭스트론(주)의 사전 동의 없이 Daily Boom 사이트의 정보, 콘텐츠, UI등을 상업적 목적으로 전재, 전송, 스크래핑 등에  무단 사용할 수 없습니다.
-              <br><br>
-              Daily Boom은 통신판매 중개자로서 통신판매의 당사자가 아니며 상품주문, 배송, 환불의 의무와 책임은 각 판매업체에 있습니다.
-            </p>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+            Yppuna VN
           </div>
-        </div><!-- .row -->
-			</div><!-- .container -->
-			<div class="footer-copyright">
-				<div class="container">
-					<span class="text-footer">Copyright &copy; 2015 Daily Boom. All rights reserved.</span>
-				</div>
-			</div>
-			<div class="hide-on-large-only">
-				<p class="section"></p>
-			</div>
-		</footer><!-- .footer -->
-      @if(!model.no_time){
-        <script>
-        $(window).load(function() {
-            // $('#time-left-label').fadeOut(2500, function(){
-              var now = moment();
-              var is_mobile = @model.is_mobile;
-              var momentTom = '@(model.date ? model.date : null)';
-              if (momentTom)
-                momentTom = moment(momentTom).tz("Asia/Seoul").add(3, 'days').hours(0).minutes(0).seconds(0);
-              else if (now.day() == 6) {
-                momentTom = moment().tz("Asia/Seoul").add(2, 'days').hours(0).minutes(0).seconds(0);
-              }
-              else
-                momentTom = moment().tz("Asia/Seoul").add(1, 'days').hours(0).minutes(0).seconds(0);
-              var timeLeft = moment.duration(momentTom.diff(now), 'milliseconds');
-              if (!is_mobile) {
-                $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-              }
-              else {
-                $('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-              }
-              var interval = setInterval(function() {
-                timeLeft = moment.duration(momentTom.diff(moment().tz("Asia/Seoul"), 'milliseconds'));
-                if (timeLeft._milliseconds == 0) {
-                  window.location = '/';
-                }
-                if (!is_mobile) {
-                  $('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-                }
-                else {
-                  $('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-                }
-              }, 1000);
-            // });
+        </div>
+    </footer>
+      <script type="text/javascript">
+        // Show sideNav
+        var is_mobile = @model.is_mobile
+        $('.button-collapse').sideNav({
+          edge: is_mobile ? 'right' : 'left',
+          menuWidth: 295
         });
+        $('.cart-collapse').sideNav({
+          edge: is_mobile ? 'right' : 'left',
+          menuWidth: is_mobile ? 306 : 391
+        });
+        $(document).ready(function(){
+          $("#mc-embedded-subscribe-form").on("submit", function() {
+                Materialize.toast("Để hoàn tất quy trình đăng ký, xin vui lòng nhấp chuột vào liên kết (link) trong email chúng tôi vừa gửi cho bạn.", 4000);            
+          });
+          $(".area-header a[href='#']").on("click", function() {
+            $('.area-header a.zone-hide').first().toggleClass('zone-view-first');
+            $('.area-header a.zone-hide').nextAll('.zone-hide').toggleClass('zone-view-second');
+          });
+          $(".product-price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+          moment().locale('vi');
+          $("#birthday, .birthday").combodate({
+              firtItem: 'name',
+              template: "DD MM YYYY",
+              format: "MM/DD/YYYY",
+              smartDays: true,
+              customClass: "col s3"
+          });
+          $('select').material_select();
+          $('select').on('contentChanged', function() {
+            // re-initialize (update)
+            $(this).material_select();
+          });
+          $('.modal-trigger').leanModal();
+          //$('#side-menu').pushpin({ bottom: $('#south').offset().top });
+          $('.cart-remove').on("click", function() {
+            if (confirm('Bạn có chắc muốn huỷ mua sản phẩm này ?')) {
+              var index = $(this).data("index");
+              $.ajax({
+                type: "POST",
+                url: "/mall/remove_from_cart",
+                dataType: "json",
+                data: {
+                  index: index
+                },
+                success: function (res) {
+                  location.reload();
+                },
+                error: function (res) {
+                  Materialize.toast(res.responseJSON.message, 4000);
+                }
+              });
+            }
+          });
+        });
+	    </script>
+      <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/57e35ef30251ff28078ca0fd/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
       </script>
-    }
-    else {
-      <script>
-        $('#time-left-label').hide();
-      </script>
-    }
-    <script>
-    $(window).load(function() {
-        $('.dropdown-button').dropdown({
-  					inDuration: 300,
-  					outDuration: 225,
-  					constrain_width: false, // Does not change width of dropdown to that of the activator
-  					hover: false, // Activate on hover
-  					gutter: 0, // Spacing from edge
-  					belowOrigin: false, // Displays dropdown below the button
-  					alignment: 'right' // Displays dropdown with edge aligned to the left of button
-  				}
-  			);
-      });
-    </script>
-  </body>
+      <!--End of Tawk.to Script-->
+    </body>
 </html>
