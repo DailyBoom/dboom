@@ -200,7 +200,7 @@
       }
       <nav class="@(model.zone == 0 ? 'north' : '') @(model.zone == 1 ? 'central' : '') @(model.zone == 2 ? 'south' : '') hide-on-large-only">
         <div class="nav-wrapper">
-          <a href="/home" class="logo"><img alt="Yppuna Logo" class="svg svg-logo" src="/images/logo.svg"/></a>
+          <a href="/home" class="logo"><img alt="Yppuna Logo" class="svg svg-logo" src="/images/old_logo.svg"/></a>
           <ul id="nav-mobile" class="right">
             <li><a href="@(model.user ? '/mypage' : '#login_modal')" class="modal-trigger"><img class="svg svg-account" src="/images/icon-account.svg" /></a></li>
             <li><a href="#" data-activates="slide-cart" class="button-collapse cart-collapse">
@@ -243,7 +243,7 @@
       }
       <ul id="slide-out" class="side-nav @(model.zone == 0 ? 'north' : '') @(model.zone == 1 ? 'central' : '') @(model.zone == 2 ? 'south' : '')">
         <div class="slide-menu-wrapper">
-          <li class="hide-on-med-and-down"><a href="/home" class="logo"><img alt="Yppuna Logo" class="svg svg-logo" src="/images/logo.svg"/></a></li>
+          <li class="hide-on-med-and-down"><a href="/home" class="logo"><img alt="Yppuna Logo" class="svg svg-logo" src="/images/old_logo.svg"/></a></li>
           <div class="search">
             <form action="/mall" method="GET">
               <img class="svg svg-search" src="/images/icon_search.svg" />
@@ -413,7 +413,7 @@
       </ul>
       
       <ul id="side-menu" class="side-nav hide-on-med-and-down @(model.zone == 0 ? 'north' : '') @(model.zone == 1 ? 'central' : '') @(model.zone == 2 ? 'south' : '')">
-        <a href="/" class="logo blue-text"><img src="/images/logo.svg" class="svg svg-logo"/></a>
+        <a href="/" class="logo blue-text"><img src="/images/old_logo.svg" class="svg svg-logo"/></a>
         <div class="top-menu">
           <a href="#" data-activates="slide-out" class="button-collapse"><img alt="menu" class="svg svg-menu" src="/images/menu.svg" /></a>
           <a href="#" data-activates="slide-cart" class="button-collapse cart-collapse">
