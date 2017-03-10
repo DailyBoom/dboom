@@ -232,6 +232,12 @@
 					<label for="ingredients">Thành Phần *</label>
 				</div>
 			</div>
+			<div class="row">
+				<div class=" col s12">
+					<label for="tags">Tags</label>
+					<ul id="tags" name="tags" ></ul>
+				</div>
+			</div>
 			<!-- .file -->
 			<div class="row" id="j_pickdate">
 				<div class="input-field col s12 m12 l12">
@@ -355,6 +361,7 @@
 <!-- .container -->
 <script>
 	$(document).ready(function() {
+		$("#tags").tagit();
 		$('select').material_select();
 		$('.color-select').spectrum({
     		preferredFormat: "hex",

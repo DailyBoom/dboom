@@ -49,7 +49,7 @@
             <div class="intro-title @(model.has_zone ? 'hide' : '')">
                 <span>yppuna</span>
             </div>
-            <img class="intro-logo" style="@(!model.has_zone ? 'display:none;' : '')" src="/images/logo.svg">
+            <img class="intro-logo" style="@(!model.has_zone ? 'display:none;' : '')" src="/images/old_logo.svg">
             <!--<video class="intro-video" width="400" muted style="display:none;">
                 <source src="/video/yppuna_logo.mp4" type="video/mp4">
             </video>-->

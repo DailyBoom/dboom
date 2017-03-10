@@ -145,6 +145,16 @@
 				</div>
 			</div>
 			<div class="row">
+				<div class=" col s12">
+					<label for="tags">Tags</label>
+					<ul id="tags" name="tags" >
+						@model.product.tags.forEach(function(tag) {
+							<li>@tag</li>
+						})
+					</ul>
+				</div>
+			</div>
+			<div class="row">
 				<div class="input-field col s12">
 					<select id="category" class="validate" name="category" multiple>
 						<option value="53" class="bold">Sản phẩm rửa mặt</option>
@@ -447,6 +457,7 @@
 <!-- .container -->
 <script>
 	$(document).ready(function() {
+		$("#tags").tagit();
 		var category = '@model.product.category'.split(",");
 		var i = 0;
 		$('#category option').each(function () {

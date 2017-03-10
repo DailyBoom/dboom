@@ -127,7 +127,7 @@ router.get('/mall', function(req, res, next) {
     query.where('category', req.query.category);
   }
   if (req.query.s) {
-    query.or([{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }])
+    query.or([{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }, { 'tags' : req.query.s }])
   }
   //query.where('product_region.'+req.session.zone, true);
   query.paginate(page, per_page, function(err, products, total) {
@@ -248,7 +248,7 @@ router.get('/home', function(req, res, next) {
     });
     behavior.save();
   }
-  Product.find({ boxZone: req.session.zone, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts').exec(function (err, products) {
+  Product.find({ boxZone: req.session.zone, scheduled_at: moment().date(1).hour(config.Timezone).minute(0).second(0).millisecond(0) }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts').exec(function (err, products) {
     console.log(products);
     var query = Product.find({ extend: 4, is_published: true, is_hot: true });
     //query.where('product_region.'+req.session.zone, true);
