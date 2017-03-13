@@ -361,7 +361,9 @@
 <!-- .container -->
 <script>
 	$(document).ready(function() {
-		$("#tags").tagit();
+		$("#tags").tagit({
+			allowSpaces: true
+		});
 		$('select').material_select();
 		$('.color-select').spectrum({
     		preferredFormat: "hex",

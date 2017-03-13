@@ -457,7 +457,9 @@
 <!-- .container -->
 <script>
 	$(document).ready(function() {
-		$("#tags").tagit();
+		$("#tags").tagit({
+			allowSpaces: true
+		});
 		var category = '@model.product.category'.split(",");
 		var i = 0;
 		$('#category option').each(function () {
