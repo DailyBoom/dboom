@@ -31,7 +31,6 @@
                         <a class="waves-effect waves-light btn-large ybtn-o" href="/wholesaler/orders"><i class="fa fa-list"></i> Order List</a>
                     </div>
                     <div class="col s12 center" id="shipments">
-                        <a class="waves-effect waves-light btn-large ybtn-o" href="/shipments/new"><i class="fa fa-plus"></i> New Shipment</a>
                         <a class="waves-effect waves-light btn-large ybtn-o" href="/shipments/list"><i class="fa fa-cubes"></i> Shipments List</a>
                     </div>
                     }
