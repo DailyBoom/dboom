@@ -57,15 +57,25 @@ var isMerchantOrAdmin = function (req, res, next) {
 router.get('/products/list', isMerchantOrAdmin, function(req, res) {
   var query = Product.find({}, {}, { sort: { 'scheduled_at' : -1 } });
   var page = req.query.page ? req.query.page : 1;
+  if (req.query.id)
+    query.where('id').equals(req.query.id);
   if (req.query.type == 1) {
     query.where('extend').gte(1).lte(3);
   }
   else if (req.query.type == 2) {
     query.where('extend').equals(4);
   }
-  if (req.query.s) {
-    query.or([{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }])
+  if (req.query.name) {
+    query.or([{ 'name': { $regex: req.query.name, $options: "i" } }, { 'brand': { $regex: req.query.name, $options: "i" } }])
   }
+  if (req.query.line)
+    query.where('line').equals(req.query.line);
+  if (req.query.price)
+    query.where('price').equals(req.query.price);
+  if (req.query.quantity)
+    query.where('quantity').equals(req.query.quantity);
+  if (req.query.scheduled_date)
+    query.where('scheduled_at').equals(req.query.scheduled_date);
   query.paginate(page, 9, function(err, Products, total) {
     res.render('products/index', { products: Products, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 9), page), currentPage: page, lastPage: Math.ceil(total / 9) });
   });

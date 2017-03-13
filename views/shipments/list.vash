@@ -121,9 +121,8 @@
 				<td><input type="text" id="s_from" name="s_from" /></td>
 				<td><input class="datepicker" type="date" id="s_est_date" name="s_est_date" /></td>
 				<td>
-					<select id="s_status">
+					<select id="s_status" name="s_status" class="browser-default">
 						<option value=""></option>
-						<option value="Submitted">Submitted</option>
 						<option value="Shipping">Shipping</option>
 						<option value="Arrived">Arrived</option>
 					</select>
