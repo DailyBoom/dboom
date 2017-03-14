@@ -109,12 +109,16 @@ router.post('/shipments/new', isMerchantOrAdmin, function(req, res) {
 router.post('/shipments/edit/:id', isMerchantOrAdmin, function(req, res) {
   Shipment.findOne({ _id: req.params.id }, {}, function(err, shipment){
     
+    shipment.quantity = req.body.e_quantity;
+    shipment.price = req.body.e_price;
+    shipment.from = req.body.e_from;
+    shipment.est_date = req.body.e_est_date;
     shipment.rec_quantity = req.body.rec_quantity;
     shipment.brk_quantity = req.body.brk_quantity;
     shipment.to = req.body.to;
     shipment.arr_date = req.body.arr_date;
-    shipment.note += req.body.e_note;
-    shipment.status = "Arrived";
+    shipment.note = req.body.e_note;
+    shipment.status = req.body.e_status;
 
     shipment.save(function(err) {
       if (err)
