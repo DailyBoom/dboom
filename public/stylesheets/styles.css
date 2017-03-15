@@ -327,6 +327,16 @@ input[type=number]::-webkit-outer-spin-button {
   .st-blocks button:focus {
     background-color: transparent; 
   }
+
+  /* Product Detail */
+
+  #product_detail h1 {
+    font-size: 30px;
+  }
+
+  #product_detail img {
+    width: 100%;
+  }
 }
 @media only screen and (min-width: 601px) {
   .logo-d { display: block; }

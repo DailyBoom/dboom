@@ -4,6 +4,8 @@ var multer  = require('multer');
 var s3 = require('multer-s3');
 var moment = require("moment");
 var Product = require("../models/product");
+var Order = require("../models/order");
+var Shipment = require("../models/shipment");
 var User = require("../models/user");
 var i18n = require('i18n');
 var mime = require('mime-types');
@@ -80,6 +82,28 @@ router.get('/products/list', isMerchantOrAdmin, function(req, res) {
     res.render('products/index', { products: Products, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 9), page), currentPage: page, lastPage: Math.ceil(total / 9) });
   });
 });
+
+router.get('/products/details/:id/:option', isMerchantOrAdmin, function(req, res) {
+  Product.findOne({ _id: req.params.id }).populate('boxProducts').exec(function(err, product) {
+    Order.find({ 'cart.product': req.params.id, 'cart.option': req.params.option }, function(err, orders) {
+      var sold = 0;
+      for (i = 0; i < orders.length; i++) {
+        for (j = 0; j < orders[i].cart.length; j++) {
+          if (orders[i].cart[j].product == req.params.id)
+            sold += orders[i].cart[j].quantity;
+        }
+      }
+      Shipment.find({ product: req.params.id }, function(err, shipments) {
+        var incoming = 0;
+        for (h = 0; i < shipments.length; h++) {
+          incoming += shipments[h].quantity;
+        }
+        console.log(incoming);
+        res.render('products/detail', { product: product, option: req.params.option, sold: sold, incoming: incoming });
+      })
+    })
+  })
+})
 
 router.get('/products/new', isMerchantOrAdmin, function(req, res) {
   res.render("products/new");

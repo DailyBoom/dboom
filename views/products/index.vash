@@ -74,6 +74,7 @@
 				<td>
 					<a class="users-link blue-grey-text" href="/products/preview/@product.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
 					<a class="users-link blue-grey-text" href="/products/edit/@product.id"><i class="fa fa-pencil-square-o fa-fw fa-1-5x"></i></a>
+					<a class="users-link blue-grey-text" href="/products/details/@product.id/@index"><i class="fa fa-info fa-fw fa-1-5x"></i></a>
 					<a class="users-link red-text" href="/products/delete/@product.id" onclick="return confirm('Delete Product?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
 				</td>
 			</tr>

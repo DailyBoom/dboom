@@ -1,0 +1,59 @@
+@html.extend("layout", function(model) { 
+    @html.block("body", function(model) {
+    <div class="container" id="product_detail">
+        <div class="p_head">
+            <h1>Product #: @model.product.name</h1>
+        </div>
+        <div class="row">
+            <div class="col s12 l7">
+                <div>All Product > Product #</div>
+                <div class="col s12 l7">
+                    <img src="@model.product.images[0]" class="p_image" />
+                </div>
+                <div class="col s12 l5">
+                    <div>
+                        <b>Line</b>: 
+                        @if (model.product.category.indexOf(59) >= 0 || model.product.category.indexOf(60) >= 0 || (model.product.category[0] >= 38 && model.product.category[0] <= 43)) {
+                            @model.product.options_skin[model.option]
+                        }
+                    </div>
+                    <div>
+                        <b>Categories</b>: @model.product.category.forEach(function(category, index) {
+                            @category
+                        })
+                    </div>
+                    <br/>
+                    <div><b>Price</b>: <span class="price">@model.product.price</span></div>
+                    <div><b>Market</b>: <span class="price">@model.product.old_price</span></div>
+                    <div><b>Wholesale</b>: <span class="price">@model.product.wholesale_price</span></div>
+                    <br/>
+                    <div><b>Sold</b>: @model.sold</div>
+                    <div><b>Stock</b>: @model.product.options[model.option].quantity</div>
+                    <div><b>Incoming</b>: @model.incoming</div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col s12 l7">
+                <div><b>Description</b></div>
+                <div>@model.product.description</div>
+            </div>
+            <div class="col s12 l5">
+                <div><b>Box / Product contains</b></div>
+                <div>
+                    @if (model.product.extend == 3) {
+                        @model.product.boxProducts.forEach(function(item) {
+                            <div>@item.name</div>
+                        })
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+        })
+    </script>
+    })
+})

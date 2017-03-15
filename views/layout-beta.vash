@@ -7,9 +7,9 @@
 
     @if(!model.title){
       <title>@model.__('title') - @model.__('about.title')</title>
-      <meta name="title" content="@model.__('title') - Mỹ Phẩm Hàn Quốc">
-  		<meta itemprop="name" content="@model.__('title') - Mỹ Phẩm Hàn Quốc" />
-      <meta property="og:title" content="@model.__('title') - Mỹ Phẩm Hàn Quốc" />
+      <meta name="title" content="@model.__('title') - Son Hot, Mỹ Phẩm, Dưỡng Da, Trị Mụn, Skincare, Makeup">
+  		<meta itemprop="name" content="@model.__('title') - Son Hot, Mỹ Phẩm, Dưỡng Da, Trị Mụn, Skincare, Makeup" />
+      <meta property="og:title" content="@model.__('title') - Son Hot, Mỹ Phẩm, Dưỡng Da, Trị Mụn, Skincare, Makeup" />
     }
     else {
       <title>@model.__('title') - @model.title</title>
