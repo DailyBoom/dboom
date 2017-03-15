@@ -4072,6 +4072,10 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 0;
   }
 
+  #blog_post h1 {
+    font-size: 50px;
+  }  
+
   #blog_post > .row {
     padding: 0 35px;
   }
