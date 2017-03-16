@@ -7,7 +7,7 @@
 				</div>
 				<ul class="col s12 l8 info-details">
 					<h2>@model.__('about.title')</h2>
-					<li>@model.__('about.text_1')</li>
+					<li>@html.raw(model.__('about.text_1'))</li>
 					<li>@model.__('about.text_2')</li>
 					<li>@model.__('about.text_3')</li>
 					<li>@model.__('about.text_4')</li>
