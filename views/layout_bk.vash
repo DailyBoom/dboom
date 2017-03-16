@@ -87,6 +87,9 @@
 		<link rel="stylesheet" href="/stylesheets/animate.css">
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
     <link rel='stylesheet' href='/stylesheets/spectrum.css' />
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
 		<!-- jQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script
@@ -144,7 +147,8 @@
 
     </script>
   </head>
-    <body>
+  <script src="https://use.fontawesome.com/890c64e218.js"></script>
+  <body>
       <div id="fb-root"></div>
       <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -202,130 +206,111 @@
       </div>
       }
         <header class="so-header _fixed">
-          <div class="-container">
-              <div class="-main">
-                  <a href="#" class="-logo _glyph">
-                      <span class="-img">Yppuna</span>
-                  </a>
-                  <nav class="navigation">
-                    <ol class="-list">
-                      <li class="-item">
-                        <a href="#" class="-link">Box</a>
-                      </li>
-                      <li class="-item _current">
-                        <a href="#" class="-link">Chăm sóc da</a>
-                      </li>
-                      <li class="-item">
-                        <a href="#" class="-link">Trang điểm</a>
-                      </li>
-                      <li class="-item">
-                        <a href="#" class="-link">Cơ thể</a>
-                      </li>
-                      <li class="-item">
-                        <a href="#" class="-link">NhÃn hiỆu</a>
-                      </li>
-                      <li class="-item">
-                        <a href="#" class="-link">GiỚi thiỆu</a>
-                      </li>
-                      <li class="-item">
-                        <a href="/blog/video" class="-link">Video</a>
-                      </li>
-                      <li class="-item">
-                        <a href="/blog" class="-link">Blog</a>
-                      </li>
-                    </ol>
-                  </nav>
-                </div>
-                <!-- End of main part of nav -->
-
-                <div class="-actions">
-                  <nav class="secondary-nav">
-                    <ol class="-list">
-                      <li class="-item">
-                        <a href="@(model.user ? '/mypage' : '#login_modal')" class="modal-trigger -link">
-                          Tìm kiếm
-                          <svg width="13px" height="13px" viewBox="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                  <g id="100-Basic-Element-Icons-Dark" transform="translate(-572.000000, -1104.000000)" fill="#000000">
-                                      <path d="M577.058671,1114.11734 C578.292494,1114.11734 579.41415,1113.6799 580.289042,1112.9396 L584.21484,1116.8654 C584.304573,1116.95513 584.416739,1117 584.540121,1117 C584.663503,1117 584.775669,1116.95513 584.865401,1116.8654 C585.044866,1116.68594 585.044866,1116.39431 584.865401,1116.21484 L580.939603,1112.28904 C581.66868,1111.41415 582.117343,1110.28128 582.117343,1109.05867 C582.117343,1106.26575 579.851596,1104 577.058671,1104 C574.276963,1104 572,1106.27696 572,1109.05867 C572,1111.8516 574.276963,1114.11734 577.058671,1114.11734 L577.058671,1114.11734 Z M577.058671,1104.91976 C579.346851,1104.91976 581.197584,1106.78171 581.197584,1109.05867 C581.197584,1111.34685 579.346851,1113.19758 577.058671,1113.19758 C574.770492,1113.19758 572.919758,1111.33563 572.919758,1109.05867 C572.919758,1106.78171 574.781708,1104.91976 577.058671,1104.91976 L577.058671,1104.91976 Z" id="search"></path>
-                                  </g>
-                              </g>
-                          </svg>
-                        </a>
-                  </li>
-
-                  <li class="-item">
-                    <a href="#" class="-link">
-                      Tài khoản
-                      <svg width="14px" height="13px" viewBox="0 0 14 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="100-Basic-Element-Icons-Dark" transform="translate(-236.000000, -951.000000)" fill="#000000">
-                                <path d="M242.813756,958.29569 C244.83431,958.29569 246.473204,956.659483 246.473204,954.642241 C246.473204,952.625 244.83431,951 242.813756,951 C240.793203,951 239.154309,952.636207 239.154309,954.642241 C239.154309,956.648276 240.793203,958.29569 242.813756,958.29569 L242.813756,958.29569 Z M242.813756,951.952586 C244.295496,951.952586 245.507828,953.162931 245.507828,954.642241 C245.507828,956.121552 244.295496,957.331897 242.813756,957.331897 C241.332017,957.331897 240.119685,956.121552 240.119685,954.642241 C240.119685,953.162931 241.332017,951.952586 242.813756,951.952586 Z M236.482688,964 L249.189726,964 C249.459133,964 249.672414,963.787069 249.672414,963.518103 C249.672414,960.996552 247.618184,958.934483 245.081267,958.934483 L240.591147,958.934483 C238.065455,958.934483 236,960.985345 236,963.518103 C236,963.787069 236.213281,964 236.482688,964 L236.482688,964 Z M240.591147,959.898276 L245.081267,959.898276 C246.922216,959.898276 248.437631,961.265517 248.673362,963.036207 L236.999052,963.036207 C237.234783,961.276724 238.750198,959.898276 240.591147,959.898276 Z" id="profile"></path>
-                            </g>
-                        </g>
-                      </svg>
-                    </a>
-                  </li>
-                  <li class="-item">
-                    <a href="#" class="-link">
-                      Giỏ hàng
-                      <svg width="13px" height="13px" viewBox="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="100-Basic-Element-Icons-Dark" transform="translate(-1707.000000, -337.000000)" fill="#000000">
-                                <path d="M1718.47927,340.403962 C1718.44573,340.180017 1718.25563,340.023256 1718.032,340.023256 L1715.46018,340.023256 L1715.46018,338.970715 C1715.46018,337.884582 1714.57681,337 1713.49217,337 C1712.40753,337 1711.52417,337.884582 1711.52417,338.970715 L1711.52417,340.023256 L1708.95235,340.023256 C1708.72871,340.023256 1708.53862,340.180017 1708.50507,340.403962 L1707.00671,349.47373 C1706.98435,349.608096 1707.01789,349.742463 1707.10735,349.843239 C1707.1968,349.944014 1707.3198,350 1707.45398,350 L1719.53036,350 L1719.54154,350 C1719.79873,350 1720,349.79845 1720,349.540913 C1720,349.484927 1719.98882,349.440138 1719.97764,349.395349 L1718.47927,340.403962 L1718.47927,340.403962 Z M1712.44108,338.970715 C1712.44108,338.388458 1712.91072,337.918174 1713.49217,337.918174 C1714.07363,337.918174 1714.54327,338.388458 1714.54327,338.970715 L1714.54327,340.023256 L1712.44108,340.023256 L1712.44108,338.970715 L1712.44108,338.970715 Z M1707.99071,349.093023 L1709.34371,340.94143 L1711.52417,340.94143 L1711.52417,343.505599 C1711.52417,343.763135 1711.72544,343.964686 1711.98263,343.964686 C1712.23981,343.964686 1712.44108,343.763135 1712.44108,343.505599 L1712.44108,340.94143 L1714.54327,340.94143 L1714.54327,343.505599 C1714.54327,343.763135 1714.74454,343.964686 1715.00172,343.964686 C1715.2589,343.964686 1715.46018,343.763135 1715.46018,343.505599 L1715.46018,340.94143 L1717.64063,340.94143 L1718.99363,349.093023 L1707.99071,349.093023 L1707.99071,349.093023 Z" id="bag"></path>
-                            </g>
-                        </g>
-                      </svg>
-                    </a>
-                  </li>
-                </ol>
-              </nav>
-              <!-- End of secondary nav -->
-            </div>
-            <!-- End of actions -->
+    <div class="-container">
+        <div class="-main">
+            <a href="#" class="-logo _glyph">
+                <span class="-title">Yppuna</span>
+            </a>
+            <nav class="navigation">
+              <ol class="-list">
+                <li class="-item">
+                  <a href="#" class="-link">Box</a>
+                </li>
+                <li class="-item _current">
+                  <a href="#" class="-link">Chăm sóc da</a>
+                </li>
+                <li class="-item">
+                  <a href="#" class="-link">Trang điểm</a>
+                </li>
+                <li class="-item">
+                  <a href="#" class="-link">Cơ thể</a>
+                </li>
+                <li class="-item">
+                  <a href="#" class="-link">NhÃn hiỆu</a>
+                </li>
+                <li class="-item">
+                  <a href="#" class="-link">GiỚi thiỆu</a>
+                </li>
+                <li class="-item">
+                  <a href="#" class="-link">Video</a>
+                </li>
+                <li class="-item">
+                  <a href="#" class="-link">Blog</a>
+                </li>
+              </ol>
+            </nav>
           </div>
-          <!-- End of container -->
-        </header>
-      <!-- End of header -->
+          <!-- End of main part of nav -->
+
+          <div class="-actions">
+            <nav class="secondary-nav">
+              <ol class="-list">
+                <li class="-item">
+                  <a href="#" class="-link">
+                    Tìm kiếm
+                    <svg width="13px" height="13px" viewBox="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="100-Basic-Element-Icons-Dark" transform="translate(-572.000000, -1104.000000)" fill="#000000">
+                                <path d="M577.058671,1114.11734 C578.292494,1114.11734 579.41415,1113.6799 580.289042,1112.9396 L584.21484,1116.8654 C584.304573,1116.95513 584.416739,1117 584.540121,1117 C584.663503,1117 584.775669,1116.95513 584.865401,1116.8654 C585.044866,1116.68594 585.044866,1116.39431 584.865401,1116.21484 L580.939603,1112.28904 C581.66868,1111.41415 582.117343,1110.28128 582.117343,1109.05867 C582.117343,1106.26575 579.851596,1104 577.058671,1104 C574.276963,1104 572,1106.27696 572,1109.05867 C572,1111.8516 574.276963,1114.11734 577.058671,1114.11734 L577.058671,1114.11734 Z M577.058671,1104.91976 C579.346851,1104.91976 581.197584,1106.78171 581.197584,1109.05867 C581.197584,1111.34685 579.346851,1113.19758 577.058671,1113.19758 C574.770492,1113.19758 572.919758,1111.33563 572.919758,1109.05867 C572.919758,1106.78171 574.781708,1104.91976 577.058671,1104.91976 L577.058671,1104.91976 Z" id="search"></path>
+                            </g>
+                        </g>
+                    </svg>
+                  </a>
+            </li>
+
+            <li class="-item">
+              <a href="#" class="-link">
+                Tài khoản
+                <svg width="14px" height="13px" viewBox="0 0 14 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g id="100-Basic-Element-Icons-Dark" transform="translate(-236.000000, -951.000000)" fill="#000000">
+                          <path d="M242.813756,958.29569 C244.83431,958.29569 246.473204,956.659483 246.473204,954.642241 C246.473204,952.625 244.83431,951 242.813756,951 C240.793203,951 239.154309,952.636207 239.154309,954.642241 C239.154309,956.648276 240.793203,958.29569 242.813756,958.29569 L242.813756,958.29569 Z M242.813756,951.952586 C244.295496,951.952586 245.507828,953.162931 245.507828,954.642241 C245.507828,956.121552 244.295496,957.331897 242.813756,957.331897 C241.332017,957.331897 240.119685,956.121552 240.119685,954.642241 C240.119685,953.162931 241.332017,951.952586 242.813756,951.952586 Z M236.482688,964 L249.189726,964 C249.459133,964 249.672414,963.787069 249.672414,963.518103 C249.672414,960.996552 247.618184,958.934483 245.081267,958.934483 L240.591147,958.934483 C238.065455,958.934483 236,960.985345 236,963.518103 C236,963.787069 236.213281,964 236.482688,964 L236.482688,964 Z M240.591147,959.898276 L245.081267,959.898276 C246.922216,959.898276 248.437631,961.265517 248.673362,963.036207 L236.999052,963.036207 C237.234783,961.276724 238.750198,959.898276 240.591147,959.898276 Z" id="profile"></path>
+                      </g>
+                  </g>
+                </svg>
+              </a>
+            </li>
+            <li class="-item">
+              <a href="#" class="-link">
+                Giỏ hàng
+                <svg width="13px" height="13px" viewBox="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g id="100-Basic-Element-Icons-Dark" transform="translate(-1707.000000, -337.000000)" fill="#000000">
+                          <path d="M1718.47927,340.403962 C1718.44573,340.180017 1718.25563,340.023256 1718.032,340.023256 L1715.46018,340.023256 L1715.46018,338.970715 C1715.46018,337.884582 1714.57681,337 1713.49217,337 C1712.40753,337 1711.52417,337.884582 1711.52417,338.970715 L1711.52417,340.023256 L1708.95235,340.023256 C1708.72871,340.023256 1708.53862,340.180017 1708.50507,340.403962 L1707.00671,349.47373 C1706.98435,349.608096 1707.01789,349.742463 1707.10735,349.843239 C1707.1968,349.944014 1707.3198,350 1707.45398,350 L1719.53036,350 L1719.54154,350 C1719.79873,350 1720,349.79845 1720,349.540913 C1720,349.484927 1719.98882,349.440138 1719.97764,349.395349 L1718.47927,340.403962 L1718.47927,340.403962 Z M1712.44108,338.970715 C1712.44108,338.388458 1712.91072,337.918174 1713.49217,337.918174 C1714.07363,337.918174 1714.54327,338.388458 1714.54327,338.970715 L1714.54327,340.023256 L1712.44108,340.023256 L1712.44108,338.970715 L1712.44108,338.970715 Z M1707.99071,349.093023 L1709.34371,340.94143 L1711.52417,340.94143 L1711.52417,343.505599 C1711.52417,343.763135 1711.72544,343.964686 1711.98263,343.964686 C1712.23981,343.964686 1712.44108,343.763135 1712.44108,343.505599 L1712.44108,340.94143 L1714.54327,340.94143 L1714.54327,343.505599 C1714.54327,343.763135 1714.74454,343.964686 1715.00172,343.964686 C1715.2589,343.964686 1715.46018,343.763135 1715.46018,343.505599 L1715.46018,340.94143 L1717.64063,340.94143 L1718.99363,349.093023 L1707.99071,349.093023 L1707.99071,349.093023 Z" id="bag"></path>
+                      </g>
+                  </g>
+                </svg>
+              </a>
+            </li>
+          </ol>
+        </nav>
+        <!-- End of secondary nav -->
+      </div>
+      <!-- End of actions -->
+    </div>
+    <!-- End of container -->
+  </header>
+<!-- End of header -->
   		@html.include("error", model)
       <main>
       @html.block("body")
       </main>
-      <footer class="page-footer">
+      <footer>
         <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text">Yppuna</h5>
-              <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-
-            </div>
-            <div class="col l3 s12">
-              <h5 class="white-text">About Yppuna</h5>
-              <ul>
-                <li><a class="white-text" href="#!">VỀ YPPUNA</a></li>
-                <li><a class="white-text" href="#!">Link 2</a></li>
-                <li><a class="white-text" href="#!">Link 3</a></li>
-                <li><a class="white-text" href="#!">Link 4</a></li>
-              </ul>
-            </div>
-            <div class="col l3 s12">
-              <h5 class="white-text">Connect</h5>
-              <ul>
-                <li><a class="white-text" href="#!">Link 1</a></li>
-                <li><a class="white-text" href="#!">Link 2</a></li>
-                <li><a class="white-text" href="#!">Link 3</a></li>
-                <li><a class="white-text" href="#!">Link 4</a></li>
-              </ul>
-            </div>
+          <ul>
+            <li><span class="footer-category">YPPUNA</span></li>
+            <li>VỀ YPPUNA</li>
+            <li>LIEN HE</li>
+            <li>YPPUNA FEED</li>
+            <li>CAREERS</li>
+          </ul>
+          <div class="row center">
+            Copyright &copy; YppunaVN. All rights reserved.
           </div>
         </div>
-        <div class="footer-copyright">
-          <div class="container">
-            Yppuna VN
-          </div>
-        </div>
-    </footer>
+
+
+      </footer>
       <script type="text/javascript">
         // Show sideNav
         var is_mobile = @model.is_mobile

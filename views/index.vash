@@ -1,80 +1,316 @@
 @html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
-		<div id="gateway">
+	<div id="homepage">
+		<div class="container">
+		<section id="call-to-action">
+			<div class="">
 			<div class="row">
 				<div class="col s12 m8">
-				<article class="box" id="first">
-				</article>
+				<div class="item-image">
+					<img src="/images/korean1.jpeg" class="responsive-img">
+					<div class="tag">on hydration</div>
 				</div>
-				<div class="col s12 m4">
-				<div class="row" id="right">
-					<article class="box col s12" id="second">
-					</article>
-					<article class="box col s12" id="third">
+				</div>
+				<div class="col s12 m4 hide-on-small-only">
+					<div class="col s12 m12">
+					<div class="row">
+						<div class="item-image">
+						<img src="/images/korean0.jpeg" class="responsive-img">
+						<div class="tag">cushion reviews</div>
+						</div>
+					</div>
 
-					</article>
+					</div>
+					<div class="col s12 m12">
+					<div class="row">
+						<div class="item-image">
+						<img src="/images/korean10.jpg" class="responsive-img">
+						<div class="tag">editor's picks</div>
+						</div>
+					</div>
+					</div>
 				</div>
-				</div>
-
 			</div>
 
-		</div>
-		<div id="box" class="pale">
-			<div class="row wrapped">
-				<div class="col s12 m6">
-				<section id="description-box">
-					<h1>Box of the month</h1>
-					<h2>Feel Beautiful</h2>
+			</div>
+		</section>
+
+
+		<section id="boxes">
+			<header>
+			Yppuna Boxes
+			</header>
+			<div class="-content">
+			<div class="row">
+
+				<div class="col s12 m7">
+				<img class="responsive-img" src="@model.products[0].images[0]" alt="whoa">
+				</div>
+				<div class="col s12 m5">
+					<div class="row center">
+						<span class="box-version">Box of the month</span>
+					</div>
+					<div class="row center">
+						<span class="box-title">@model.products[0].name</span>
+					</div>
 					<div class="item_names row center">
 						<div class="col s12">
-						Skinmiso
+							@model.products[0].brand
 						</div>
 						<div class="col s12">
-						Hàn Quốc
+							@model.products[0].origin
+						</div>
+					</div>
+					<div class="description">
+						@model.products[0].description
+					</div>
+
+				</div>
+			</div>
+
+			</div>
+		</section>
+
+		<section>
+			<header>
+			Gioi Thieu
+			</header>
+			<div class="-content">
+			<div class="row">
+				<div class="col s12 m6">
+				<div class="item-image">
+					<img src="/images/korean6.jpg" class="responsive-img">
+					<div class="tag">Bestsellers</div>
+				</div>
+				</div>
+
+				<div class="col s12 m6">
+				<div class="item-image">
+					<img src="/images/korean10.jpg" class="responsive-img">
+					<div class="tag">New in stock</div>
+				</div>
+
+				</div>
+			</div>
+
+			</div>
+		</section>
+
+		<section id="individual">
+			<header>
+			Products
+			</header>
+			<div class="-content">
+			<div class="row">
+			@model.hotProducts.forEach(function(product) {
+				<div class="center mall-product">
+					<a href="/shop/products/@product.url"><img class="@(product.quantity == 0 ? 'sold-out' : '')" src="@product.images[0]" /></a>
+					<div class="">@product.brand</div>
+					<div class=""><a href="/shop/products/@product.url">@product.name</a></div>
+					@if (product.quantity > 0) {
+						<span class="prod_price">
+							@product.price	
+						</span>
+					}
+					else {
+						<span class="sold-out">
+							SOLD OUT	
+						</span>
+					}
+					@if (product.old_price) {
+						<span class="old_price">@product.old_price</span>
+						@{
+							var price =  product.old_price - product.price
+							var sale = price / product.old_price * 100; 
+						}							
+						<span class="sale">-@sale.toFixed(0)%</span>
+					}
+				</div>
+			})
+		</div>
+
+			</div>
+		</section>
+
+		<section id="feed">
+			<header>
+			Yppuna Feed
+			</header>
+			<div class="-content">
+			<div class="row">
+
+				<div class="col s12 m8">
+				<div class="item-image">
+					<img src="/images/korean1.jpeg" class="responsive-img" alt="Video">
+					<div class="tag">Video</div>
+				</div>
+
+				</div>
+
+				<div class="col s12 m4">
+					<div class="col s12 m12">
+					<div class="row">
+						<div class="item-image">
+						<img src="/images/korean0.jpeg" class="responsive-img" alt="Blog post">
+						<div class="tag">Beauty event</div>
 						</div>
 
 					</div>
-					<p>Đẹp là khi một người phụ nữ biết yêu và nâng niu bản thân mình. Hãy bắt đầu yêu và năng niu làn da, một phần vô cùng quan trọng trên của cơ thể của người phụ nữ, với những sản phẩm chăm sóc da uy tín và hiệu quả. Box làm đẹp tháng này với 2 sản phẩm đặc trị cho mụn và lỗ chân lông của Skinmiso cùng rất rất nhiều mẫu thử của Klairs, da bạn sẽ chính thức sáng, sạch, mịn và đẹp hơn từng ngày.</p>
-				</section>
+
+					</div>
+					<div class="col s12 m12">
+					<div class="row">
+						<div class="item-image">
+						<img src="/images/korean10.jpg" class="responsive-img" alt="Blog post">
+						<div class="tag">Beauty pedia</div>
+						</div>
+
+					</div>
+					</div>
+				</div>
+			</div>
+
+			</div>
+		</section>
+
+		<section id="hall-of-fame">
+			<header>
+			Hall of Fame
+			</header>
+			<div class="-content">
+			<div class="row">
+
+				<div class="col s12 m4">
+				<div class="item-image">
+					<img src="/images/korean0.jpeg" class="responsive-img" alt="Daily deals">
+					<div class="tag">Daily deals</div>
+				</div>
 
 				</div>
-				<div class="col s12 m6">
-				<div class="box-image">
+				<div class="col s12 m4">
+				<div class="item-image">
+					<img src="/images/korean10.jpg" class="responsive-img" alt="Favorite boxes">
+					<div class="tag">Most favorite boxes</div>
+				</div>
 
 				</div>
+				<div class="col s12 m4">
+				<div class="item-image">
+					<img src="/images/korean13.jpeg" class="responsive-img" alt="Organic skincare">
+					<div class="tag">Organic skincare</div>
+				</div>
+
+				</div>
+			</div>
+			</div>
+		</section>
+
+		<section id="reviews">
+			<header>
+			Nhat Xet Ve Yppuna
+			</header>
+			<div class="-content">
+			<div class="row">
+				<div class="col s12 m3">
+				<img class="responsive-img" src="/images/laneige-clear.png" alt="wow">
+				</div>
+
+				<div class="col s12 m3">
+				<img class="responsive-img" src="/images/laneige-clear.png" alt="whoa">
+				</div>
+
+				<div class="col s12 m3">
+				<img class="responsive-img" src="/images/laneige-clear.png" alt="whoa">
+				</div>
+
+				<div class="col s12 m3">
+				<img class="responsive-img" src="/images/laneige-clear.png" alt="whoa">
 				</div>
 
 			</div>
 
-		</div>
-		<div id="introducing" class="transparent">
-		<h1>Gioi Thieu</h1>
-		<section class="introducing">
-			<article>
-			<h1>Bestsellers</h1>
-			</article>
-			<article>
-			<h1>Newest items</h1>
-			</article>
-			<article>
-			<h1>Sales</h1>
-			</article>
+			</div>
 		</section>
+
+		<section id="contact">
+			<header>
+			Lien He
+			</header>
+			<div class="-content">
+			<div class="row">
+				<div class="col s12 m4">
+				<div class="row">
+					<div class="col s12">
+					<span class="subtitle">Reach us</span>
+					<p class="top">Quan Binh Thanh <br>
+						Ho Chi Minh City <br>
+						Vietnam
+					</p>
+					</div>
+					<div class="col s12">
+					<span class="subtitle">Call us</span>
+					<p class="top">01699 876 023
+					</p>
+					</div>
+					<div class="col s12">
+					<span class="subtitle">Write us an e-mail</span>
+					<p class="top">hello@yppuna.vn
+					</p>
+					</div>
+
+				</div>
+
+
+				</div>
+				<div class="col s12 m8">
+				<div class="row">
+					<div class="col s12 m4">
+					<div class="row">
+
+					</div>
+
+					</div>
+
+
+					<div class="col s12 m8">
+
+					</div>
+
+				</div>
+
+
+				</div>
+
+			</div>
+
+			</div>
+		</section>
+		<div class="footer-social-links row center">
+			<ul>
+			<li><a href="#"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a></li>
+			<li><a href="#"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></li>
+			<li><a href="#"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a></li>
+			</ul>
 		</div>
 
-		<div id="videofeed" class="pale">
-		<h1>Video</h1>
 		</div>
-
-		<div id="community" class="transparent">
-		<h1>Yppuna community</h1>
-		</div>
-
-		<div id="blogfeed" class="pale">
-		<h1>Blog</h1>
-		</div>
-
-		<div class="contact" class="transparent">
-		</div>
+	</div>
+	<script type="text/javascript">
+		$(".item_price, .item_old_price, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+		var owl = $("#individual .row");
+		owl.owlCarousel({
+			items : 4,
+			itemsDesktop : [1200,4],
+			itemsDesktopSmall : [992,2],
+			itemsTablet: [600,2],
+			itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
+			navigation: true,
+			navigationText: ["<", ">"],
+			pagination: false,
+			responsive: true,
+			rewindNav: true,
+			autoPlay: true
+		});
+	</script>
 	})
 })
