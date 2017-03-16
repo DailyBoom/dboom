@@ -16,10 +16,9 @@
 						<li>@model.__('about.text_6')</li>
 						<li>@model.__('about.text_7')</li>
 						<li>@model.__('about.text_8')</li>
-						<li>@model.__('about.text_9')</li>
 						<li>@model.__('about.text_10')</li>
-						<li>@model.__('about.text_11')</li>
 					</ul>
+					<li>@model.__('about.text_11')</li>
 					<li>@model.__('about.text_12')</li>
 					<li>Thân Ái</li>
 					<li>Ypppuna</li> 

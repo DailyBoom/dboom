@@ -332,6 +332,7 @@ input[type=number]::-webkit-outer-spin-button {
 
   #product_detail h1 {
     font-size: 30px;
+    display: inline-block;
   }
 
   #product_detail img {

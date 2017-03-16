@@ -3,6 +3,11 @@
     <div class="container" id="product_detail">
         <div class="p_head">
             <h1>Product #: @model.product.name</h1>
+            <div class="right">
+                <a href="/shipments/list?name=@model.product.name" class="btn">Shipments</a>
+                <a href="/products/edit/@model.product.id" class="btn">Edit Product</a>
+                <a href="/products/new" class="btn"><i class="fa fa-plus"></i> New Product</a>
+            </div>
         </div>
         <div class="row">
             <div class="col s12 l7">
@@ -30,8 +35,12 @@
                     <div><b>Sold</b>: @model.sold</div>
                     <div><b>Stock</b>: @model.product.options[model.option].quantity</div>
                     <div><b>Incoming</b>: @model.incoming</div>
+                </div>
             </div>
-        </div>
+            <div class="col s12 l5">
+                <div>Sale vs Date</div>
+                <canvas id="saleChart"></canvas>
+            </div>
         </div>
         <div class="row">
             <div class="col s12 l7">
@@ -54,6 +63,30 @@
         $(document).ready(function() {
             $(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
         })
+        var myChart = new Chart($("#zoneChart"), {
+            type: 'line',
+            data: {
+                labels: ["North", "Central", "South"],
+                datasets: [{
+                    label: '# of clicks',
+                    data: @JSON.stringify(model.result),
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                    ],
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
     </script>
     })
 })
