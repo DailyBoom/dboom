@@ -604,7 +604,7 @@
           $(".product-price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
           moment().locale('vi');
           $("#birthday, .birthday").combodate({
-              firtItem: 'name',
+              firstItem: 'name',
               template: "DD MM YYYY",
               format: "MM/DD/YYYY",
               smartDays: true,

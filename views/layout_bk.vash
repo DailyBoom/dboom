@@ -323,6 +323,7 @@
           menuWidth: is_mobile ? 306 : 391
         });
         $(document).ready(function(){
+          $('.modal-trigger').leanModal();
           $("#mc-embedded-subscribe-form").on("submit", function() {
                 Materialize.toast("Để hoàn tất quy trình đăng ký, xin vui lòng nhấp chuột vào liên kết (link) trong email chúng tôi vừa gửi cho bạn.", 4000);            
           });

@@ -93,7 +93,8 @@ body, nav {
 
 .container {
   position: relative;
-  width: 100%;
+  width: 90%;
+  max-width: none;
 }
 
 .container .row {

@@ -1,4 +1,4 @@
-@html.extend("layout-beta", function(model) {
+@html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
 		<div id="checkout" class="container">
             <div id="confirm_modal" class="modal">
