@@ -338,6 +338,21 @@ input[type=number]::-webkit-outer-spin-button {
   #product_detail img {
     width: 100%;
   }
+
+  #product_detail .logs {
+    border: 1px solid black;
+    height: 150px;
+    overflow-y: scroll;
+  }
+
+  #product_detail .log {
+    border-bottom: 1px solid black;
+    padding: 10px;
+  }
+
+  #product_detail .log .right {
+    font-size: 10px;
+  }  
 }
 @media only screen and (min-width: 601px) {
   .logo-d { display: block; }

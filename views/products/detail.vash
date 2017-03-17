@@ -58,23 +58,41 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col s12 l7">
+                <div><b>Advertising Link</b></div>
+            </div>  
+            <div class="col s12 l5">
+                <div><b>Activity Log</b></div>
+                <div class="logs">
+                    @model.product.logs.forEach(function(item) {
+                        <div class="log">
+                            <span>@item.log</span><span class="right">@model.moment(item.date).format("ddd DD/M/YYYY")</span>
+                        </div>
+                    })
+                </div>
+            </div>
+        </div>
     </div>
     <script>
         $(document).ready(function() {
             $(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
         })
-        var myChart = new Chart($("#zoneChart"), {
+        var sales = @html.raw(model.sales)
+        var dates = [];
+        var count = [];
+        for (c = 0; c < sales.length; c++) {
+            dates.push(moment().year(sales[c]._id.year).month(sales[c]._id.month).date(sales[c]._id.day).format("DD/M/YY"));
+            count.push(sales[c].count);
+        }
+        console.log(dates);        
+        var myChart = new Chart($("#saleChart"), {
             type: 'line',
             data: {
-                labels: ["North", "Central", "South"],
+                labels: dates,
                 datasets: [{
-                    label: '# of clicks',
-                    data: @JSON.stringify(model.result),
-                    backgroundColor: [
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
-                    ],
+                    label: '# of sales',
+                    data: count,
                 }]
             },
             options: {

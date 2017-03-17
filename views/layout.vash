@@ -84,7 +84,7 @@
 		<link rel="stylesheet" href="/stylesheets/theme.css">
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
     <link rel='stylesheet' href='/stylesheets/spectrum.css' />
-
+    
 		<!-- jQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script
@@ -109,6 +109,7 @@
 		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.vi-VN.js"></script>
     <script src="/javascripts/popOut.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="/javascripts/Chart.js"></script>
     <!-- Modernizr -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <!--[if IE 9]>

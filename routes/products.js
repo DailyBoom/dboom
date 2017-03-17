@@ -14,6 +14,7 @@ var config = require('config-heroku');
 var paginate = require('express-paginate');
 var querystring = require('querystring');
 var getSlug = require('speakingurl');
+var mongoose = require('mongoose');
 var app = express();
 
 var storage = s3({
@@ -95,11 +96,26 @@ router.get('/products/details/:id/:option', isMerchantOrAdmin, function(req, res
       }
       Shipment.find({ product: req.params.id }, function(err, shipments) {
         var incoming = 0;
-        for (h = 0; i < shipments.length; h++) {
+        for (h = 0; h < shipments.length; h++) {
           incoming += shipments[h].quantity;
         }
         console.log(incoming);
-        res.render('products/detail', { product: product, option: req.params.option, sold: sold, incoming: incoming });
+        var now = moment().hours(0).minute(0).second(0);
+        var start = now.clone().subtract(1, 'year');
+        console.log(mongoose.mongo.ObjectId(req.params.id));
+        Order.aggregate([
+            {$match: {
+                created_at: { $lt: new Date(now), $gte: new Date(start) },
+                "cart.product": mongoose.mongo.ObjectId(req.params.id)
+            }},
+            {$group: {
+                _id: { year: { $year: "$created_at" }, month: { $month: "$created_at" }, day: { $dayOfMonth: "$created_at" } },
+                count: {$sum: 1}
+            }}
+        ], function(err, sales) {
+          console.log(JSON.stringify(sales));
+          res.render('products/detail', { product: product, option: req.params.option, sold: sold, incoming: incoming, sales: JSON.stringify(sales) });
+        })
       })
     })
   })
@@ -338,7 +354,10 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
       product.box_header = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['box_background'][0].key;
     }
 
-    console.log(product);
+    product.modifiedPaths().forEach(function(item) {
+      product.logs.unshift({ log: req.user.username + " has modified " + item, date: moment() });
+    });
+    console.log(product.logs);
     product.save(function(err) {
       if (err) { 
         console.log(err);
