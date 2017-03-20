@@ -77,7 +77,7 @@
     <script>
         $(document).ready(function() {
             $(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
-        })
+        });
         var sales = @html.raw(model.sales)
         var dates = [];
         var count = [];
@@ -85,7 +85,7 @@
             dates.push(moment().year(sales[c]._id.year).month(sales[c]._id.month).date(sales[c]._id.day).format("DD/M/YY"));
             count.push(sales[c].count);
         }
-        console.log(dates);        
+        console.log(dates);
         var myChart = new Chart($("#saleChart"), {
             type: 'line',
             data: {

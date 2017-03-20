@@ -67,7 +67,7 @@
                         <input type="radio" name="pay_method" id="card" /><label for="card">Thanh toán bằng thẻ tín dụng</label>-->
                     </div>
                     <div class="delivery">
-                        <span class="title">Chọn phương thức giao sách:</span>
+                        <span class="title">Chọn phương thức giao hàng:</span>
                         <input type="radio" name="deliv_method" id="noon" value="0" checked /><label for="noon">Nhận Hàng trước 12h trưa.</label>
                         <input type="radio" name="deliv_method" id="six" value="1" /><label for="six">Nhận hàng trước 6h chiều</label>
                         <input type="radio" name="deliv_method" id="evening" value="2" /><label for="evening">Nhận hàng vào buổi tối</label>
