@@ -23,6 +23,7 @@ var storage = s3({
     secretAccessKey: config.Amazon.secretAccessKey,
     accessKeyId: config.Amazon.accessKeyId,
     region: 'ap-northeast-2',
+    cacheControl: 'max-age=2592000',
     filename: function (req, file, cb) {
         console.log(file);
         cb(null, Date.now() + file.originalname.replace(/ /g,"-"));
