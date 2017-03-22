@@ -254,7 +254,10 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
     
       console.log(product);
       product.save(function(err) {
-        if (err) console.log(err), res.render('/products/new', { title: 'Index', error: err.errmsg });
+        if (err) {
+          console.log(err);
+          return res.render('/products/new', { title: 'Index', error: err.errmsg });
+        }
         else {
           res.redirect('/products/preview/'+product.id);
         }

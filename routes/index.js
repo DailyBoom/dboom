@@ -248,7 +248,9 @@ router.get('/home', function(req, res, next) {
     });
     behavior.save();
   }
+  console.log(moment().format("hh:mm:SSS"));
   Product.find({ boxZone: req.session.zone, scheduled_at: moment().date(1).hour(config.Timezone).minute(0).second(0).millisecond(0) }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts').exec(function (err, products) {
+    console.log(moment().format("hh:mm:SSS"));
     console.log(products);
     var query = Product.find({ extend: 4, is_published: true, is_hot: true });
     //query.where('product_region.'+req.session.zone, true);
@@ -264,6 +266,9 @@ router.get('/home', function(req, res, next) {
 
 router.get('/shop/products/:url', function(req, res, next) {
   Product.findOne({ url: req.params.url }, function(err, product) {
+    if (!product) {
+      return res.redirect('/mall');
+    }
     Product.find({ extend: 4, is_published: true, is_hot: true }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
       Comment.find( { product: product.id }).populate('user').exec(function(err, comments) {
         var current_quantity = 0;

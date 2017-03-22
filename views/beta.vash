@@ -102,17 +102,11 @@
 				<div class="col s12 l4" data-stellar-ratio="1.7" >
 					<img class="item_cover"  src="@model.products[1].box_header" />
 					<div class="item_names row center">
-						<div class="col s4">
-							<div class="item_name truncate">@model.products[1].brand</div>
-							<div class="item_type">NHÃN HIỆU</div>
+						<div class="col s12">
+							<div class="item_name truncate">@model.products[0].brand</div>
 						</div>
-						<div class="col s4 ">
-							<div class="item_name truncate">@model.products[1].origin</div>
-							<div class="item_type">SẢN XUẤT</div>
-						</div>
-						<div class="col s4">
-							<div class="item_name truncate">@model.products[1].special</div>
-							<div class="item_type">ĐẶC BIỆT</div>
+						<div class="col s12">
+							<div class="item_name truncate">@model.products[0].origin</div>
 						</div>
 					</div>
 					<div class="item_desc hide-on-med-and-down">
