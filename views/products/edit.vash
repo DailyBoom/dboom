@@ -26,7 +26,7 @@
 						<label for="extend_db">@model.__('product.optionMain')</label>
 					</div>
 					<div class="input-field col s2">
-						<input name="extend" type="radio" id="extend_extra" value="5"/>
+						<input name="extend" type="radio" id="extend_extra" value="5" @(model.product.extend == 5 ? 'checked' : '')/>
 						<label for="extend_extra">Extra Box</label>
 					</div>
 					<div class="input-field col m2 s3">

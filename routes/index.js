@@ -254,7 +254,7 @@ router.get('/home', function(req, res, next) {
       //query.where('product_region.'+req.session.zone, true);
       query.limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
         Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }).where('product_region.'+req.session.zone, true).exec(function(err, newProducts) {
-          Comment.find( { product: products[0].id }).populate('user').exec(function(err, comments) {
+          Comment.find( { product: products[0] ? products[0].id : null }).populate('user').exec(function(err, comments) {
             res.render('beta', { products: products, extraBoxes: extraBoxes, hotProducts: hotProducts, newProducts: newProducts, comments: comments });
           });
         });
