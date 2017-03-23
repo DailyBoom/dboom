@@ -1,6 +1,30 @@
 @html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
 	<div class="container" id="homepage">
+		@if (model.extraBoxes.length > 0) {
+		<section id="individual" class="extra">
+			<h2>HỘP LÀM ĐẸP BÁN CHẠY NHẤT</h2>
+			<div class="row">
+			@model.extraBoxes.forEach(function(product) {
+				<div class="center mall-product">
+					<a href="/shop/box/@product.url"><img class="@(product.quantity == 0 ? 'sold-out' : '')" src="@product.images[0]" /></a>
+					<div class="prod_brand">@product.brand</div>
+					<div class="prod_name"><a href="/shop/box/@product.url">@product.name</a></div>
+					@if (product.quantity > 0) {
+						<span class="prod_price">
+							@product.price	
+						</span>
+					}
+					else {
+						<span class="sold-out">
+							SOLD OUT	
+						</span>
+					}
+				</div>
+			})
+			</div>
+		</section>
+		}
 		<div id="boxes">
 		@if(model.products[0]) {
 		<section id="north">
@@ -251,30 +275,7 @@
 		</section>
 		}
 		</div>
-		@if (model.extraBoxes.length > 0) {
-		<section id="individual" class="extra">
-			<h2>HỘP LÀM ĐẸP BÁN CHẠY NHẤT</h2>
-			<div class="row">
-			@model.extraBoxes.forEach(function(product) {
-				<div class="center mall-product">
-					<a href="/shop/box/@product.url"><img class="@(product.quantity == 0 ? 'sold-out' : '')" src="@product.images[0]" /></a>
-					<div class="prod_brand">@product.brand</div>
-					<div class="prod_name"><a href="/shop/box/@product.url">@product.name</a></div>
-					@if (product.quantity > 0) {
-						<span class="prod_price">
-							@product.price	
-						</span>
-					}
-					else {
-						<span class="sold-out">
-							SOLD OUT	
-						</span>
-					}
-				</div>
-			})
-			</div>
-		</section>
-		}
+		
 		<section id="individual">
 			<h2 class="wrapper">
 				<img class="svg g-52 hide-on-med-and-down" src="/images/group-52.svg" />
