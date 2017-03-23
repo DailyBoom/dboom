@@ -19,11 +19,11 @@
 					@model.__('product.selectOption')
 				</div>
 				@if(@model.user.admin) {
-					<div class="input-field col s3">
+					<div class="input-field col s2">
 						<input name="is_hot" type="checkbox" id="is_hot" />
 						<label for="is_hot">@model.__('product.optionHot')</label>
 					</div>
-					<div class="input-field col s3">
+					<div class="input-field col s2">
 						<input name="is_new" type="checkbox" id="is_new" />
 						<label for="is_new">New arrival</label>
 					</div>
@@ -31,6 +31,10 @@
 				<div class="input-field col s3">
 					<input name="extend" type="radio" id="extend_db" value="3"/>
 					<label for="extend_db">@model.__('product.optionMain')</label>
+				</div>
+				<div class="input-field col s2">
+					<input name="extend" type="radio" id="extend_extra" value="5"/>
+					<label for="extend_extra">Extra Box</label>
 				</div>
 				<div class="input-field col s3">
 					<input name="extend" type="radio" id="extend_mall" value="4"/>

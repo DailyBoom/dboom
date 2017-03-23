@@ -1996,6 +1996,11 @@ header, main {
   padding: 0 16px 14px;
 }
 
+#shipping .caret {
+  top: 13px;
+  right: 25px;
+}
+
 #shipping_row .info {
   font-family: SVN-Karla;
   font-size: 14px;

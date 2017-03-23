@@ -142,10 +142,12 @@ var deliveryPrices = {
 
 var getOrderCartTotal = function(order) {
   order.totalOrderAmt = 0;
+  order.shipping_cost = 0;
   order.cart.forEach(function(item) {
     order.totalOrderAmt += item.product.price * item.quantity;
   });
-  order.shipping_cost = deliveryPrices[order.shipping.city.toUpperCase()][order.shipping.district.toUpperCase()];
+  if (deliveryPrices[order.shipping.city.toUpperCase()])
+    order.shipping_cost = deliveryPrices[order.shipping.city.toUpperCase()][order.shipping.district.toUpperCase()];
 
   if (order.coupon && order.coupon.type == 2) {
     order.discount = order.shipping_cost;

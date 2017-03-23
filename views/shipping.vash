@@ -63,6 +63,7 @@
                         }
 						<div class="col s12 l8 info offset-l4">
 							Nhân viên của Yppuna sẽ liên lạc với quý khách theo số máy trên, để xác nhận thông tin giao hàng.
+                            <p class='hide other-city'>Phí vận chuyển sẽ được tính sau khi bạn hoàn thành đơn hàng. Nhân viên của Yppuna sẽ thông báo với bạn phí vận chuyển qua tin nhắn hoặc gọi trực tiếp. Xin Cảm Ơn!</p>
 						</div>
 						<button class="col s12 l8 offset-l4">TIẾP TỤC</button>
 					</form>

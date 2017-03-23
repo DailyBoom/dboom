@@ -248,16 +248,15 @@ router.get('/home', function(req, res, next) {
     });
     behavior.save();
   }
-  console.log(moment().format("hh:mm:SSS"));
-  Product.find({ boxZone: req.session.zone, scheduled_at: moment().date(1).hour(config.Timezone).minute(0).second(0).millisecond(0) }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts').exec(function (err, products) {
-    console.log(moment().format("hh:mm:SSS"));
-    console.log(products);
-    var query = Product.find({ extend: 4, is_published: true, is_hot: true });
-    //query.where('product_region.'+req.session.zone, true);
-    query.limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
-      Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }).where('product_region.'+req.session.zone, true).exec(function(err, newProducts) {
-        Comment.find( { product: products[0].id }).populate('user').exec(function(err, comments) {
-          res.render('beta', { progress: 75, products: products, hotProducts: hotProducts, newProducts: newProducts, comments: comments });
+  Product.find({ boxZone: req.session.zone, scheduled_at: moment().date(1).hour(config.Timezone).minute(0).second(0).millisecond(0) }, {}, {sort : { 'created_at' : -1 }}).populate('boxProducts').exec(function (err, products) {
+    Product.find({ extend: 5 }, {}, {sort : { 'created_at' : -1 }}, function (err, extraBoxes) {
+      var query = Product.find({ extend: 4, is_published: true, is_hot: true });
+      //query.where('product_region.'+req.session.zone, true);
+      query.limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
+        Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }).where('product_region.'+req.session.zone, true).exec(function(err, newProducts) {
+          Comment.find( { product: products[0].id }).populate('user').exec(function(err, comments) {
+            res.render('beta', { products: products, extraBoxes: extraBoxes, hotProducts: hotProducts, newProducts: newProducts, comments: comments });
+          });
         });
       });
     });
