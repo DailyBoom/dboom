@@ -252,7 +252,7 @@
 		}
 		</div>
 		@if (model.extraBoxes.length > 0) {
-		<section id="individual">
+		<section id="individual" class="extra">
 			<h2>HỘP LÀM ĐẸP BÁN CHẠY NHẤT</h2>
 			<div class="row">
 			@model.extraBoxes.forEach(function(product) {
@@ -371,7 +371,7 @@
 			});
 		});
 		$(".item_price, .item_old_price, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
-		var owl = $("#individual .row");
+		var owl = $("#individual:not(.extra) .row");
 		owl.owlCarousel({
 			items : 4,
 			itemsDesktop : [1200,4],
@@ -383,7 +383,19 @@
 			pagination: false,
 			responsive: true,
 			rewindNav: true,
-			autoPlay: true
+			autoPlay: true,
+		});
+		$('.extra .row').owlCarousel({
+			items: 3,
+			itemsDesktop : [1200,3],
+			itemsDesktopSmall : [992,2],
+			itemsTablet: [600,2],
+			itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
+			navigation: true,
+			navigationText: ["<", ">"],
+			pagination: false,
+			responsive: true,
+			rewindNav: true,
 		});
 		if (!is_mobile) {
 			var isAnimating = false;

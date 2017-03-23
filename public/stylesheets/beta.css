@@ -1058,6 +1058,10 @@ header, main {
   height: 200px;
 }
 
+#individual.extra img {
+  height: 250px;
+}
+
 #individual .l3 {
   height: 300px;
   text-align: center;
