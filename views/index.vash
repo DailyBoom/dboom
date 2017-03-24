@@ -1,28 +1,33 @@
 @html.extend(model.layout, function(model) {
 	@html.block("body", function(model) {
-<div class="home-background">
 	<div class="container@(model.is_mobile ? '-fluid' : '')" id="home">
 		<div class="row">
 			<div class="col s12">
 				<div class="center">
 					<img src="/images/logo.png" class="home-logo"/>
 				</div>
+				<div class="center categories">
+					<a href="/about">Brand</a>
+					<a href="/mall">Product</a>
+					<a href="#">Reviews</a>
+					<a href="#">Special Set</a>
+				</div>
+				<div id="main-slider">
+					<img src="/images/KO_1.JPG" />
+					<img src="/images/KO_2.JPG" />
+					<img src="/images/KO_3.JPG" />
+				</div>
 				<div class="col s12 l5">
-					<div class="hair-wrapper">
-						<div class="hair center">
-							<h4>All Natural & Organic Hair Care</h4>
-							<div class="separator"></div>
-							<a href="/mall/hair">Read More ></a>
+					<div class="new-wrapper">
+						<div class="scalp center">
+							<div class="boost">BEAUTY<br/> BOOST</div>
+							<img src="/images/scalp.png" />
+							<h4>Treat yourself to the luxury of nature</h4>
+							<a href="/mall/beauty">Shop All Skincare ></a>						
 						</div>
 					</div>
-					<div class="scalp center">
-						<div class="boost">BEAUTY<br/> BOOST</div>
-						<img src="/images/scalp.png" />
-						<h4>Treat yourself to the luxury of nature</h4>
-						<a href="/mall/beauty">Shop All Skincare ></a>						
-					</div>
 				</div>
-				<div class="col s12 l6">
+				<div class="col s12 l7">
 					<div class="new-wrapper">
 						<div class="new center">
 							<img src="/images/shampoo.png" />
@@ -31,61 +36,19 @@
 							<a href="#">Stock up now ></a>
 						</div>
 					</div>
+				</div>
+				<div class="col s12 center">
 					<div class="hair-wrapper">
 						<div class="hair center">
-							<h4>Amazing</h4>
-							<h4>Skin Care</h4>
-							<div class="separator"></div>							
-							<a href="/mall/beauty">Read More ></a>							
+							<h4>All Natural & Organic Hair Care</h4>
+							<div class="separator"></div>
+							<a href="/mall/hair">Read More ></a>
 						</div>
 					</div>
-				</div>		
+				</div>
 			</div><!-- .col -->
 		</div><!-- .row -->
 	</div><!-- .container -->
-</div>
-@if(!model.no_time){
-<script>
-var is_mobile = @model.is_phone;
-$(window).load(function() {
-	// $('#time-left-label').fadeOut(2500, function(){
-		var now = moment();
-		var momentTom = '@(model.date ? model.date : null)';
-		if (momentTom)
-		    momentTom = moment(momentTom).tz("Asia/Seoul").add(2, 'days').hours(0).minutes(0).seconds(0);
-		else if (now.day() == 6) {
-		    momentTom = moment().tz("Asia/Seoul").add(2, 'days').hours(0).minutes(0).seconds(0);
-		}
-		else
-		momentTom = moment().tz("Asia/Seoul").add(1, 'days').hours(0).minutes(0).seconds(0);
-		var timeLeft = moment.duration(momentTom.diff(now), 'milliseconds');
-		if (!is_mobile) {
-		$('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-		}
-		else {
-		$('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-		}
-		var interval = setInterval(function() {
-		timeLeft = moment.duration(momentTom.diff(moment().tz("Asia/Seoul"), 'milliseconds'));
-		if (timeLeft._milliseconds == 0) {
-			window.location = '/';
-		}
-		if (!is_mobile) {
-			$('#time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-		}
-		else {
-			$('#time-left-mobile').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-		}
-		}, 1000);
-	// });
-});
-</script>
-}
-else {
-<script>
-$('#time-left-label').hide();
-</script>
-}
 <script>
 var footer = $('#buy-sticky'),
 extra = 245; // In case you want to trigger it a bit sooner than exactly at the bottom.
@@ -110,13 +73,15 @@ $(window).scroll(function() {
 	$(document).ready(function(){
 		$("#main-slider").bxSlider({
 			mode:'horizontal',
-			pagerCustom: '#bx-pager',
+			pager: true,
 			infiniteLoop:true,
 			auto:true,
 			autoHover:true,
-			controls:false,
+			controls:true,
             video:false,
             useCss: true,
+			nextText: '',
+			prevText: '',
             onSliderLoad: function(){
                 $(".bxslider-wrap").css("visibility", "visible");
             }
@@ -171,11 +136,7 @@ $(window).scroll(function() {
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
 		
-		var lang = '@model.getLocale()';
-		if (lang == 'vi')
-			$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile, .ol-old-p, .ol-new-p").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
-		else
-			$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile, .ol-old-p, .ol-new-p, .mall-price-o, .mall-price-n").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});			
+		$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile, .ol-old-p, .ol-new-p, .mall-price-o, .mall-price-n").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});			
 
 		var owl = $("#db-past");
 		owl.owlCarousel({
@@ -205,21 +166,6 @@ $(window).scroll(function() {
 		// Custom Navigation Events
 		$(".next").click(function(){owl.trigger('owl.next');});
 		$(".prev").click(function(){owl.trigger('owl.prev');});
-		var timer = function(elem) {
-			var date = moment(elem.data('date')).tz("Asia/Seoul").add(3, 'days');
-			var now = moment().tz("Asia/Seoul");
-			var timeLeft = moment.duration(date.diff(now), 'milliseconds');
-			elem.find('.time-left').hide();
-			elem.find('.time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-			elem.find('.time-left').fadeIn(1000);
-			setInterval(function() {
-				timeLeft = moment.duration(date.diff(moment().tz("Asia/Seoul"), 'milliseconds'));
-				elem.find('.time-left').html(Math.floor(timeLeft.asHours()) + ":" + timeLeft.minutes() + ":" + timeLeft.seconds());
-			}, 1000);
-		}
-		$(".extended-time").each(function() {
-			timer($(this));
-		});
 	});
 	$('#hide-c').on('click', function(){
 		$(this).parent().fadeOut();

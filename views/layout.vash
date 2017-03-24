@@ -139,13 +139,14 @@
 				<div class="container">
           <a href="/" class="logo-d"><img class="logo-img left" src="/images/logo.png" /></a>
           <a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_05.png" /></a>
-          <ul class="left hide-on-small-only">
-            <li><a href="/">홈</a></li>
-            <li><a href="/about">소개</a></li>
-            <li><a href="/mall/hair">모발&두피 케어</a></li>
-            <li><a href="/mall/beauty">피부 미용</a></li>
-            <li><a href="/contact">문의 사항</a></li>
-            <li><a href="/find-us">오시는길</a></li>
+          <ul class="right hide-on-small-only">
+            <li class="nav-item mod"><a href="/">홈</a></li>
+            @if (!model.user) {
+                <li class="nav-item mod"><a href="/login">@model.__('login')</a></li>
+                <li class="nav-item mod"><a href="/signup">@model.__('signup')</a></li>
+            }
+            <li class="nav-item mod"><a href="/about">회사 소개</a></li>
+            <li class="nav-item mod"><a href="/contact">문의 사항</a></li>
           </ul>
           @if(@model.cart) {
             <ul class="right hide-on-small-only">
@@ -265,10 +266,6 @@
 								</ul>
 							</li>
 						</ul>
-                        <ul class="right hide-on-small-only user-link">
-                            <li class="nav-item mod"><a href="/login">@model.__('login')</a></li>
-                            <li class="nav-item mod"><a href="/signup">@model.__('signup')</a></li>
-                        </ul>
 					}
 				</div><!-- .container -->
 			</nav>

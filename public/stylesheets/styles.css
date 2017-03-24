@@ -36,6 +36,19 @@
 		url('/fonts/Sacramento-Regular.ttf') format('truetype'),
     url('/fonts/sacramento-regular-webfont.otf'); /* IE9 Compat Modes */
 }
+
+@font-face {
+  font-family: 'Snell-Roundhand-Script';
+  src: url('/fonts/Snell-Roundhand-Script.eot');
+  src: url('/fonts/Snell-Roundhand-Script.eot#iefix') format('embedded-opentype'),
+    url('/fonts/SnellRoundhand-Script.woff') format('woff'),
+    url('/fonts/Snell-Roundhand-Script.woff2') format('woff2'),
+    url('/fonts/Snell-Roundhand-Script.ttf') format('truetype'),
+    url('/fonts/SnellRoundhand-Script.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   font-family: 'Dotum', sans-serif;
   word-break: keep-all;
@@ -467,12 +480,17 @@ input[type=number]::-webkit-outer-spin-button {
   }
   
   #home .home-logo {
-    height: 120px;
-    margin-bottom: 200px;
+    height: 157px;
+    margin-bottom: 20px;
   }
 
-  #home .l5 {
-    margin-right: 10px;    
+  #home .categories a {
+    font-size: 40px;
+    margin-right: 30px;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    font-family: 'Snell-Roundhand-Script', cursive;
+    font-weight: bold;
   }
 
   #home .hair-wrapper {
@@ -556,8 +574,8 @@ input[type=number]::-webkit-outer-spin-button {
     width: 101px;
   }
 
-  #home .new h4 {BEAUTY BOOST
-    font-size: 26px;
+  #home .new h4 {
+    font-size: 24px;
     color: #404041;
     font-family: georgia, palatino, "book antiqua", "palatino linotype", serif;
   }
@@ -1165,18 +1183,45 @@ input[type=number]::-webkit-outer-spin-button {
   .bx-wrapper .bx-viewport {
     height: 218px !important;
   }
+
+  .bx-wrapper .bx-pager .bx-pager-item, .bx-wrapper .bx-controls-auto .bx-controls-auto-item {
+    vertical-align: middle;
+  }
   .bx-wrapper .bx-pager.bx-default-pager a {
-  	background: rgba(255,255,255,0.5);;
+    border: none;
+    background: black !important;
   	text-indent: -9999px;
   	display: block;
-  	width: 10px;
-  	height: 10px;
+  	width: 8px !important;
+  	height: 8px !important;
   	margin: 0 5px;
   	outline: 0;
   	-moz-border-radius: 50px;
   	-webkit-border-radius: 50px;
   	border-radius: 50px;
   }
+  .bx-wrapper .bx-pager.bx-default-pager a.active {
+  	background: transparent !important;
+    border: 2px solid black;
+  	width: 17px !important;
+  	height: 17px !important;
+  }
+
+  .bx-wrapper .bx-controls-direction a {
+    width: 66px;
+    height: 21px;
+  }
+
+  .bx-prev {
+    background: url('/images/next.png') no-repeat !important;
+    -webkit-transform: scale(-1);
+    transform: scale(-1);
+  }
+
+  .bx-next {
+    background: url('/images/next.png') no-repeat !important;
+  }
+
   .slider-wrapper {
     margin-top: 0px;
   }
