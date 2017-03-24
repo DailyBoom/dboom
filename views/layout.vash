@@ -134,11 +134,11 @@
         </ul>
       </div>
     }
-		<div class="navbar-fixed">
+		<div class="@(model.is_mobile ? '' : 'navbar-fixed')">
 			<nav class="darken-3">
 				<div class="container">
           <a href="/" class="logo-d"><img class="logo-img left" src="/images/logo.png" /></a>
-          <a href="/" class="logo-m"><img class="logo-img left" src="/images/db_ko_05.png" /></a>
+          <a href="/" class="logo-m"><img class="logo-img left" src="/images/logo.png" /></a>
           <ul class="right hide-on-small-only">
             <li class="nav-item mod"><a href="/">홈</a></li>
             @if (!model.user) {
@@ -261,6 +261,9 @@
                       </a>
                     </li>
                   }
+                  <li class="nav-item mod"><a href="/">홈</a></li>
+                  <li class="nav-item mod"><a href="/about">회사 소개</a></li>
+                  <li class="nav-item mod"><a href="/contact">문의 사항</a></li>
 									<li><a class="waves-effect waves-light text-darken-2" href="/login">@model.__('login') <i class="fa fa-sign-in right"></i></a></li>
 									<li><a class="waves-effect waves-light text-darken-2" href="/signup">@model.__('signup') <i class="fa fa-user-plus right"></i></a></li>
 								</ul>

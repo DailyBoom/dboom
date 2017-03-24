@@ -3,7 +3,7 @@
 	<div class="container@(model.is_mobile ? '-fluid' : '')" id="home">
 		<div class="row">
 			<div class="col s12">
-				<div class="center">
+				<div class="center hide-on-small-only">
 					<img src="/images/logo.png" class="home-logo"/>
 				</div>
 				<div class="center categories">
