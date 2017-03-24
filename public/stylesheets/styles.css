@@ -760,7 +760,7 @@ input[type=number]::-webkit-outer-spin-button {
 
   .preview-bar {
     position: fixed;
-    top: 0;
+    top: 80px;
     width: 100%;
     height: 72px;
     background-color: rgba(0,0,0,.7);
