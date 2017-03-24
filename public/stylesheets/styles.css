@@ -2234,7 +2234,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .mall-card-img,
 .mall-card-img-s {
-  background-position: center;
+  background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
 }
