@@ -222,7 +222,6 @@ section .-content {
 .box-item {
   position: relative;
   max-width: 1120px;
-  max-height: 460px;
 }
 
 /* line 291, ../sass/screen.scss */
