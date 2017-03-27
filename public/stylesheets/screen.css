@@ -22,7 +22,6 @@ time, mark, audio, video {
   font: inherit;
   font-size: 100%;
   vertical-align: baseline;
-  line-height: 1.3;
 }
 
 /* line 22, ../../../../usr/local/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
@@ -68,125 +67,26 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-/* line 7, ../sass/screen.scss */
-html, body {
-  font-family: 'Nunito', sans-serif;
-}
-
-/* line 96, ../sass/screen.scss */
-.item_names {
-  margin: 10px 0;
-  padding: 10px 0;
-  position: relative;
-  border-top: 1px solid #F5F5F5;
-  border-bottom: 1px solid #F5F5F5;
-  text-transform: uppercase;
-  font-size: 0.8em;
-}
-
-/* line 135, ../sass/screen.scss */
-#call-to-action {
-  margin-top: 30px;
-}
-
-/* line 139, ../sass/screen.scss */
-section {
-  margin-top: 2em;
-}
-/* line 141, ../sass/screen.scss */
-section header {
-  font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-bottom: 1em;
-  font-size: 1em;
-}
-/* line 149, ../sass/screen.scss */
-section .-content {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  padding-top: 1em;
-}
-
-/* line 155, ../sass/screen.scss */
+/* line 40, ../sass/screen.scss */
 .subtitle {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Brandon Bold', sans-serif;
   font-size: 0.8em;
   font-weight: 600;
   text-transform: uppercase;
 }
 
-/* line 162, ../sass/screen.scss */
+/* line 47, ../sass/screen.scss */
 .top {
   margin: 1em 0 1.2em 0;
   font-weight: 300;
 }
 
-/* line 166, ../sass/screen.scss */
-.item-image {
-  position: relative;
-  overflow: hidden;
-  padding-bottom: 60%;
-  /* here the desired aspect ratio */
-}
-
-/* line 172, ../sass/screen.scss */
-.item-image-narrow {
-  position: relative;
-  overflow: hidden;
-  padding-bottom: 80%;
-  /* here the desired aspect ratio */
-}
-
-/* line 178, ../sass/screen.scss */
-.item-image-narrow img {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-/* line 188, ../sass/screen.scss */
-.item-image img {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-/* line 198, ../sass/screen.scss */
-.tag {
-  float: left;
-  position: absolute;
-  left: 0px;
-  bottom: 0px;
-  width: 100%;
-  z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 10px;
-  color: black;
-  font-weight: 400;
-  font-style: italic;
+/* line 111, ../sass/screen.scss */
+.footer-social-links {
   text-align: center;
 }
 
-/* line 213, ../sass/screen.scss */
-footer {
-  background-color: #F5F5F5;
-  line-height: 150%;
-  padding: 20px 0;
-  font-size: 0.8em;
-}
-
-/* line 220, ../sass/screen.scss */
-.footer-category {
-  font-weight: 500;
-}
-
-/* line 224, ../sass/screen.scss */
+/* line 114, ../sass/screen.scss */
 .footer-social-links ul li > a {
   display: inline-block;
   padding: 5px;
@@ -194,21 +94,314 @@ footer {
   color: black !important;
 }
 
-/* line 232, ../sass/screen.scss */
-*, *:before, *:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-/* line 238, ../sass/screen.scss */
-.footer-social-links li:first-child {
-  margin: 0 15px 0 0;
-}
-
-/* line 242, ../sass/screen.scss */
+/* line 132, ../sass/screen.scss */
 .footer-social-links li {
   margin: 0 15px;
   display: inline-block;
   vertical-align: middle;
+}
+
+/** NEW LAYOUT **/
+@font-face {
+  font-family: 'Brandon Regular';
+  src: url(/fonts/BrandonText-Regular.ttf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Brandon Bold';
+  src: url(/fonts/BrandonText-Bold.ttf);
+  font-weight: bolder;
+}
+/* line 152, ../sass/screen.scss */
+html, body {
+  font-family: 'Brandon Regular', sans-serif;
+}
+
+/* line 156, ../sass/screen.scss */
+#top-bar {
+  height: 40px;
+  background-color: #FF9891;
+  width: 100%;
+  z-index: 1000;
+  position: fixed;
+}
+
+/* line 164, ../sass/screen.scss */
+.blank {
+  height: 40px;
+}
+
+/* line 168, ../sass/screen.scss */
+#logo-container {
+  height: 100px;
+}
+
+/* line 173, ../sass/screen.scss */
+#menu {
+  top: 140;
+  height: 50px;
+  background-color: white;
+}
+/* line 178, ../sass/screen.scss */
+#menu.container {
+  background-color: white;
+}
+/* line 181, ../sass/screen.scss */
+#menu > ul > li {
+  display: block;
+}
+
+/* line 186, ../sass/screen.scss */
+.navigation {
+  height: 50px;
+  border-top: 1px;
+  border-bottom: 1px;
+  border-color: #EDEDEB;
+  border-style: solid;
+}
+/* line 192, ../sass/screen.scss */
+.navigation .fa {
+  color: #FF9891;
+}
+
+/* line 197, ../sass/screen.scss */
+#menu li {
+  display: inline-block;
+  line-height: 50px;
+  padding: 0 15px;
+  margin: 0;
+}
+
+/* line 204, ../sass/screen.scss */
+#main-nav li a {
+  color: black;
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+/* line 212, ../sass/screen.scss */
+.navigation {
+  text-align: center;
+}
+
+/* line 216, ../sass/screen.scss */
+.fa {
+  margin: 0 10px;
+}
+
+/* line 221, ../sass/screen.scss */
+.sticky-wrapper {
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+/* line 266, ../sass/screen.scss */
+section {
+  margin-top: 2em;
+}
+/* line 268, ../sass/screen.scss */
+section header {
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-size: 0.9em;
+}
+/* line 275, ../sass/screen.scss */
+section .-content {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 1em;
+}
+
+/* line 281, ../sass/screen.scss */
+.spacer {
+  height: 20px;
+}
+
+/* line 285, ../sass/screen.scss */
+.box-item {
+  position: relative;
+  max-width: 1120px;
+  max-height: 460px;
+}
+
+/* line 291, ../sass/screen.scss */
+.box-desc {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  opacity: 0.95;
+  background-color: white;
+  top: 20px;
+  right: 20px;
+  padding: 20px 25px;
+}
+/* line 300, ../sass/screen.scss */
+.box-desc p {
+  margin-top: 15px;
+  text-align: justify;
+  line-height: 20px;
+  color: black;
+}
+
+/* line 308, ../sass/screen.scss */
+.box-photo {
+  width: 100%;
+}
+
+/* line 312, ../sass/screen.scss */
+.box-title {
+  text-transform: uppercase;
+  display: block;
+  text-align: center;
+  font-size: 1.2em;
+  letter-spacing: 1px;
+}
+
+/* line 320, ../sass/screen.scss */
+.-space {
+  margin-top: 15px;
+}
+
+/* line 324, ../sass/screen.scss */
+.bold {
+  font-family: "Brandon Bold";
+}
+
+/* line 328, ../sass/screen.scss */
+.centered {
+  text-align: center;
+  display: block;
+}
+
+/*another shot*/
+/* line 336, ../sass/screen.scss */
+.product {
+  text-align: center;
+}
+
+/* line 341, ../sass/screen.scss */
+.product-brand {
+  font-family: 'Brandon Bold', sans-serif;
+  font-weight: bolder;
+}
+
+/* line 346, ../sass/screen.scss */
+.product-name {
+  text-transform: uppercase;
+  margin: 0.4em 0;
+}
+
+/* line 351, ../sass/screen.scss */
+.product-price {
+  color: black;
+  font-size: 1.2em;
+  margin-bottom: 0.4em;
+}
+
+/* line 357, ../sass/screen.scss */
+.items-inside li {
+  display: inline-block;
+  max-width: 100px;
+  font-family: 'Brandon Regular';
+  padding: 0;
+}
+
+/* line 364, ../sass/screen.scss */
+.highlight {
+  color: #FF9891;
+  padding: 5px 10px;
+  margin: 0 10px 0 0;
+  font-size: 1.3em;
+}
+
+/* line 371, ../sass/screen.scss */
+.striked {
+  text-decoration: line-through;
+}
+
+/* line 375, ../sass/screen.scss */
+.tagged {
+  background-color: #FF9891;
+  color: white;
+  padding: 5px 10px;
+  margin: 0 10px 0 0;
+  font-size: 1.1em;
+  font-family: 'Brandon Bold';
+  border-radius: 25px;
+}
+
+/* line 386, ../sass/screen.scss */
+footer {
+  margin-top: 2em;
+  background-color: #F5F5F5;
+  padding: 2em 0;
+  line-height: 1.5;
+}
+
+/* line 394, ../sass/screen.scss */
+#payment-methods li {
+  display: inline-block;
+  color: black;
+}
+/* line 397, ../sass/screen.scss */
+#payment-methods li .fa {
+  color: black;
+  opacity: 0.5;
+}
+
+/* line 403, ../sass/screen.scss */
+#logo-container {
+  position: relative;
+}
+
+/* line 407, ../sass/screen.scss */
+#logo-container img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -25px;
+  margin-left: -25px;
+}
+
+/* line 415, ../sass/screen.scss */
+#top-bar li {
+  display: inline-block;
+  color: white;
+  padding: 10px;
+  height: 40px;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  line-height: 20px;
+}
+/* line 423, ../sass/screen.scss */
+#top-bar li:first-child {
+  padding-left: 0;
+}
+/* line 426, ../sass/screen.scss */
+#top-bar li .fa {
+  margin-left: 0;
+  margin-right: 5px;
+}
+
+/* line 432, ../sass/screen.scss */
+#top-bar .fa {
+  color: white;
+}
+
+/* line 436, ../sass/screen.scss */
+.right-part li {
+  float: right;
+  margin: 0 15px;
+}
+
+/* line 442, ../sass/screen.scss */
+input[type=text] {
+  font-family: 'Brandon Regular';
+}
+
+/* line 447, ../sass/screen.scss */
+#contact .fa {
+  color: #F2DEDE;
+  margin: 0 10px;
 }

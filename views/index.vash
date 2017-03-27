@@ -2,297 +2,336 @@
 	@html.block("body", function(model) {
 	<div id="homepage">
 		<div class="container">
-		<section id="call-to-action">
-			<div class="">
-			<div class="row">
-				<div class="col s12 m8">
-				<div class="item-image">
-					<img src="/images/korean1.jpeg" class="responsive-img">
-					<div class="tag">on hydration</div>
-				</div>
-				</div>
-				<div class="col s12 m4 hide-on-small-only">
-					<div class="col s12 m12">
-					<div class="row">
-						<div class="item-image">
-						<img src="/images/korean0.jpeg" class="responsive-img">
-						<div class="tag">cushion reviews</div>
-						</div>
-					</div>
-
-					</div>
-					<div class="col s12 m12">
-					<div class="row">
-						<div class="item-image">
-						<img src="/images/korean10.jpg" class="responsive-img">
-						<div class="tag">editor's picks</div>
-						</div>
-					</div>
-					</div>
-				</div>
-			</div>
-
-			</div>
-		</section>
-
-
-		<section id="boxes">
-			<header>
-			Yppuna Boxes
-			</header>
-			<div class="-content">
-			<div class="row">
-
-				<div class="col s12 m7">
-				<img class="responsive-img" src="@model.products[0].images[0]" alt="whoa">
-				</div>
-				<div class="col s12 m5">
-					<div class="row center">
-						<span class="box-version">Box of the month</span>
-					</div>
-					<div class="row center">
-						<span class="box-title">@model.products[0].name</span>
-					</div>
-					<div class="item_names row center">
-						<div class="col s12">
-							@model.products[0].brand
-						</div>
-						<div class="col s12">
-							@model.products[0].origin
-						</div>
-					</div>
-					<div class="description">
-						@model.products[0].description
-					</div>
-
-				</div>
-			</div>
-
-			</div>
-		</section>
-
-		<section>
-			<header>
-			Gioi Thieu
-			</header>
-			<div class="-content">
-			<div class="row">
-				<div class="col s12 m6">
-				<div class="item-image">
-					<img src="/images/korean6.jpg" class="responsive-img">
-					<div class="tag">Bestsellers</div>
-				</div>
-				</div>
-
-				<div class="col s12 m6">
-				<div class="item-image">
-					<img src="/images/korean10.jpg" class="responsive-img">
-					<div class="tag">New in stock</div>
-				</div>
-
-				</div>
-			</div>
-
-			</div>
-		</section>
-
-		<section id="individual">
-			<header>
-			Products
-			</header>
-			<div class="-content">
-			<div class="row">
-			@model.hotProducts.forEach(function(product) {
-				<div class="center mall-product">
-					<a href="/shop/products/@product.url"><img class="@(product.quantity == 0 ? 'sold-out' : '')" src="@product.images[0]" /></a>
-					<div class="">@product.brand</div>
-					<div class=""><a href="/shop/products/@product.url">@product.name</a></div>
-					@if (product.quantity > 0) {
-						<span class="prod_price">
-							@product.price	
-						</span>
-					}
-					else {
-						<span class="sold-out">
-							SOLD OUT	
-						</span>
-					}
-					@if (product.old_price) {
-						<span class="old_price">@product.old_price</span>
-						@{
-							var price =  product.old_price - product.price
-							var sale = price / product.old_price * 100; 
-						}							
-						<span class="sale">-@sale.toFixed(0)%</span>
-					}
-				</div>
-			})
-		</div>
-
-			</div>
-		</section>
-
-		<section id="feed">
-			<header>
-			Yppuna Feed
-			</header>
-			<div class="-content">
-			<div class="row">
-
-				<div class="col s12 m8">
-				<div class="item-image">
-					<img src="/images/korean1.jpeg" class="responsive-img" alt="Video">
-					<div class="tag">Video</div>
-				</div>
-
-				</div>
-
-				<div class="col s12 m4">
-					<div class="col s12 m12">
-					<div class="row">
-						<div class="item-image">
-						<img src="/images/korean0.jpeg" class="responsive-img" alt="Blog post">
-						<div class="tag">Beauty event</div>
-						</div>
-
-					</div>
-
-					</div>
-					<div class="col s12 m12">
-					<div class="row">
-						<div class="item-image">
-						<img src="/images/korean10.jpg" class="responsive-img" alt="Blog post">
-						<div class="tag">Beauty pedia</div>
-						</div>
-
-					</div>
-					</div>
-				</div>
-			</div>
-
-			</div>
-		</section>
-
-		<section id="hall-of-fame">
-			<header>
-			Hall of Fame
-			</header>
-			<div class="-content">
-			<div class="row">
-
-				<div class="col s12 m4">
-				<div class="item-image">
-					<img src="/images/korean0.jpeg" class="responsive-img" alt="Daily deals">
-					<div class="tag">Daily deals</div>
-				</div>
-
-				</div>
-				<div class="col s12 m4">
-				<div class="item-image">
-					<img src="/images/korean10.jpg" class="responsive-img" alt="Favorite boxes">
-					<div class="tag">Most favorite boxes</div>
-				</div>
-
-				</div>
-				<div class="col s12 m4">
-				<div class="item-image">
-					<img src="/images/korean13.jpeg" class="responsive-img" alt="Organic skincare">
-					<div class="tag">Organic skincare</div>
-				</div>
-
-				</div>
-			</div>
-			</div>
-		</section>
-
-		<section id="reviews">
-			<header>
-			Nhat Xet Ve Yppuna
-			</header>
-			<div class="-content">
-			<div class="row">
-				<div class="col s12 m3">
-				<img class="responsive-img" src="/images/laneige-clear.png" alt="wow">
-				</div>
-
-				<div class="col s12 m3">
-				<img class="responsive-img" src="/images/laneige-clear.png" alt="whoa">
-				</div>
-
-				<div class="col s12 m3">
-				<img class="responsive-img" src="/images/laneige-clear.png" alt="whoa">
-				</div>
-
-				<div class="col s12 m3">
-				<img class="responsive-img" src="/images/laneige-clear.png" alt="whoa">
-				</div>
-
-			</div>
-
-			</div>
-		</section>
-
-		<section id="contact">
-			<header>
-			Lien He
-			</header>
-			<div class="-content">
-			<div class="row">
-				<div class="col s12 m4">
+			<section id="call-to-action">
+				<div class="">
 				<div class="row">
-					<div class="col s12">
-					<span class="subtitle">Reach us</span>
+					<div class="col-xs-12 col-md-8">
+					<div class="">
+						<img src="images/korean1.jpeg" class="img-responsive">
+					</div>
+					</div>
+					<div class="col-xs-12 col-md-4 hide-on-small-only">
+						<div class="col col-xs-12">
+						<div class="row">
+							<div class="item-image">
+							<img src="images/korean0.jpeg" class="img-responsive">
+							</div>
+						</div>
+						<div class="spacer">
+						</div>
+						</div>
+						<div class="col-xs-12">
+						<div class="row">
+							<div class="item-image">
+							<img src="images/korean10.jpg" class="img-responsive">
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+				</div>
+			</section>
+			<section id="boxes">
+				<header>
+				Yppuna Boxes
+				</header>
+				<div class="-content">
+				<div class="box-item">
+					<img class="box-photo" src="images/korean6.jpg" alt="Box 1">
+					<div class="box-desc">
+					<span class="box-title center">Feel beautiful <i class="fa fa-leaf" aria-hidden="true"></i></span>
+					<p>Đẹp là khi một người phụ nữ biết yêu và nâng niu bản thân mình. Box làm đẹp tháng này với 2 sản phẩm đặc trị cho mụn và lỗ chân lông của Skinmiso cùng rất rất nhiều mẫu thử của Klairs, da bạn sẽ chính thức sáng, sạch, mịn và đẹp hơn từng ngày.</p>
+					<div class="-space">
+						<span class="bold">What's included in the box:</span>
+						<div class="-space">
+						<ul class="items-inside">
+							<li>
+							<div class="row">
+								<div class= "col-xs-12 mini"><img src="images/mizon2.JPG" height="60px"></div>
+								<div class="col-xs-12"><span class="-space item">1. serum</span></div>
+							</div>
+							</li>
+							<li>
+							<div class="row">
+								<div class= "col-xs-12"><img src="images/mizon.jpg" height="60px"></div>
+								<div class="col-xs-12"><span class="-space item">2. cream</span></div>
+							</div>
+							</li>
+							<li>
+							<div class="row">
+								<div class= "col-xs-12"><img src="images/mizon3.jpg" height="60px"></div>
+								<div class="col-xs-12"><span class="-space item">3. mask</span></div>
+							</div>
+							</li>
+						</ul>
+						</div>
+					</div>
+					<div class="-space">
+						<span class="tagged"> - 20%</span>
+						<span class="highlight">650.000</span>
+						<span class="striked">1.190.000</span>
+					</div>
+					<div class="-space">
+						<button class="btn btn-default" type="button" name="button">THÊM BOX VÀO GIỎ HÀNG</button>
+						<button class="btn btn-default" type="button" name="button">XEM CHI TIẾT</button>
+					</div>
+					</div>
+				</div>
+				</div>
+			</section>
+			<section id="introducing">
+				<header>
+				Giới thiệu
+				</header>
+				<div class="-content">
+				<div class="row">
+					<span class="col-xs-12 subtitle centered">Bestsellers <i class="fa fa-hand-peace-o" aria-hidden="true"></i></span>
+					<!-- One product -->
+					<div class="col-xs-12 col-md-3 product">
+					<div class="row">
+						<div class="col-xs-12">
+						<img class="img-responsive" src="images/laneige-clear.png" alt="Laneige Clear">
+						</div>
+						<span class="col-xs-12 product-brand">Laneige</span>
+						<span class="col-xs-12 product-name">Laneige Clear</span>
+						<span class="col-xs-12 product-price">
+						550.000
+						</span>
+						<div class="col-xs-12 product-add">
+						<button class="btn btn-default" type="button" name="button">Add to cart</button>
+						</div>
+					</div>
+					</div>
+					<!-- End of one product -->
+					<!-- One product -->
+					<div class="col-xs-12 col-md-3 product">
+					<div class="row">
+						<div class="col-xs-12">
+						<img class="img-responsive" src="images/laneige.png" alt="Laneige">
+						</div>
+						<span class="col-xs-12 product-brand">Laneige</span>
+						<span class="col-xs-12 product-name">Laneige Eye Cream</span>
+						<span class="col-xs-12 product-price">
+						550.000
+						</span>
+						<div class="col-xs-12 product-add">
+						<button class="btn btn-default" type="button" name="button">Add to cart</button>
+						</div>
+					</div>
+					</div>
+					<!-- End of one product -->
+					<!-- One product -->
+					<div class="col-xs-12 col-md-3 product">
+					<div class="row">
+						<div class="col-xs-12">
+						<img class="img-responsive" src="images/laneige-clear.png" alt="Laneige Clear">
+						</div>
+						<span class="col-xs-12 product-brand">Laneige</span>
+						<span class="col-xs-12 product-name">Micro-fit cushion</span>
+						<span class="col-xs-12 product-price">
+						550.000
+						</span>
+						<div class="col-xs-12 product-add">
+						<button class="btn btn-default" type="button" name="button">Add to cart</button>
+						</div>
+					</div>
+					</div>
+					<!-- End of one product -->
+					<!-- One product -->
+					<div class="col-xs-12 col-md-3 product">
+					<div class="row">
+						<div class="col-xs-12">
+						<img class="img-responsive" src="images/laneige.png" alt="Laneige Clear">
+						</div>
+						<span class="col-xs-12 product-brand">Moonshot</span>
+						<span class="col-xs-12 product-name">Micro-fit cushion</span>
+						<span class="col-xs-12 product-price">
+						550.000
+						</span>
+						<div class="col-xs-12 product-add">
+						<button class="btn btn-default" type="button" name="button">Add to cart</button>
+						</div>
+					</div>
+					</div>
+					<!-- End of one product -->
+				</div>
+				<div class="spacer"></div>
+				<div class="row">
+					<span class="col-xs-12 subtitle centered">New items<i class="fa fa-cubes" aria-hidden="true"></i></span>
+					<!-- One product -->
+					<div class="col-xs-12 col-md-3 product">
+					<div class="row">
+						<div class="col-xs-12">
+						<img class="img-responsive" src="images/laneige.png" alt="Laneige Clear">
+						</div>
+						<span class="col-xs-12 product-brand">Moonshot</span>
+						<span class="col-xs-12 product-name">Micro-fit cushion</span>
+						<span class="col-xs-12 product-price">
+						550.000
+						</span>
+						<div class="col-xs-12 product-add">
+						<button class="btn btn-default" type="button" name="button">Add to cart</button>
+						</div>
+					</div>
+					</div>
+					<!-- End of one product -->
+					<!-- One product -->
+					<div class="col-xs-12 col-md-3 product">
+					<div class="row">
+						<div class="col-xs-12">
+						<img class="img-responsive" src="images/laneige-clear.png" alt="Laneige Clear">
+						</div>
+						<span class="col-xs-12 product-brand">Laneige</span>
+						<span class="col-xs-12 product-name">Clear C Peeling Mask</span>
+						<span class="col-xs-12 product-price">
+						550.000
+						</span>
+						<div class="col-xs-12 product-add">
+						<button class="btn btn-default" type="button" name="button">Add to cart</button>
+						</div>
+					</div>
+					</div>
+					<!-- End of one product -->
+					<!-- One product -->
+					<div class="col-xs-12 col-md-3 product">
+					<div class="row">
+						<div class="col-xs-12">
+						<img class="img-responsive" src="images/laneige.png" alt="Laneige Clear">
+						</div>
+						<span class="col-xs-12 product-brand">Laneige</span>
+						<span class="col-xs-12 product-name">Water Sleeping Mask</span>
+						<span class="col-xs-12 product-price">
+						550.000
+						</span>
+						<div class="col-xs-12 product-add">
+						<button class="btn btn-default" type="button" name="button">Add to cart</button>
+						</div>
+					</div>
+					</div>
+					<!-- End of one product -->
+					<!-- One product -->
+					<div class="col-xs-12 col-md-3 product">
+					<div class="row">
+						<div class="col-xs-12">
+						<img class="img-responsive" src="images/laneige-clear.png" alt="Laneige Clear">
+						</div>
+						<span class="col-xs-12 product-brand">Moonshot</span>
+						<span class="col-xs-12 product-name">Micro-fit cushion</span>
+						<span class="col-xs-12 product-price">
+						550.000
+						</span>
+						<div class="col-xs-12 product-add">
+						<button class="btn btn-default" type="button" name="button">Add to cart</button>
+						</div>
+					</div>
+					</div>
+					<!-- End of one product -->
+				</div>
+				</div>
+			</section>
+			<section id="feed">
+				<header>
+				Yppuna Feed
+				</header>
+				<div class="-content">
+				<div class="row">
+					<div class="col-xs-12 col-md-8">
+					<div class="item-image">
+						<img src="images/korean5.jpeg" class="img-responsive">
+					</div>
+					</div>
+					<div class="col-xs-12 col-md-4 hide-on-small-only">
+						<div class="col col-xs-12">
+						<div class="row">
+							<div class="item-image">
+							<img src="images/korean0.jpeg" class="img-responsive">
+							</div>
+						</div>
+						<div class="spacer">
+						</div>
+						</div>
+						<div class="col-xs-12">
+						<div class="row">
+							<div class="item-image">
+							<img src="images/korean10.jpg" class="img-responsive">
+							</div>
+						</div>
+						</div>
+
+					</div>
+				</div>
+				</div>
+			</section>
+			<section id="reviews">
+				<header>
+				NHẬN XÉT VỀ YPPUNA
+				</header>
+				<div class="-content">
+				</div>
+			</section>
+			<section id="hall-of-fame">
+				<header>
+				Hall of fame
+				</header>
+				<div class="-content">
+				<div class="row">
+					<div class="col-xs-12 col-md-4">
+					<div class="item-image">
+						<img src="images/masks.jpg" class="img-responsive" alt="Daily deals">
+					</div>
+					</div>
+					<div class="col-xs-12 col-md-4">
+					<div class="item-image">
+						<img src="images/mango.jpg" class="img-responsive" alt="Favorite boxes">
+					</div>
+					</div>
+					<div class="col-xs-12 col-md-4">
+					<div class="item-image">
+						<img src="images/korean13.jpeg" class="img-responsive" alt="Organic skincare">
+					</div>
+
+					</div>
+				</div>
+				</div>
+			</section>
+			<section id="contact">
+				<header>
+				LIÊN HỆ
+				</header>
+				<div class="-content">
+				<div class="row">
+					<div class="col-xs-12 col-md-3">
+					<span class="subtitle">Reach us <i class="fa fa-anchor fa-2x" aria-hidden="true"></i></span>
 					<p class="top">Quan Binh Thanh <br>
 						Ho Chi Minh City <br>
 						Vietnam
 					</p>
 					</div>
-					<div class="col s12">
-					<span class="subtitle">Call us</span>
+					<div class="col-xs-12 col-md-3">
+					<span class="subtitle">Hotline hỗ trợ <i class="fa fa-phone fa-2x" aria-hidden="true"></i></span>
 					<p class="top">01699 876 023
 					</p>
 					</div>
-					<div class="col s12">
-					<span class="subtitle">Write us an e-mail</span>
+					<div class="col-xs-12 col-md-3">
+					<span class="subtitle">Write us an e-mail <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i></span>
 					<p class="top">hello@yppuna.vn
 					</p>
 					</div>
-
-				</div>
-
-
-				</div>
-				<div class="col s12 m8">
-				<div class="row">
-					<div class="col s12 m4">
-					<div class="row">
-
+					<div class="col-xs-12 col-md-3">
+					<span class="subtitle">ĐĂNG KÝ NEWSLETTER <i class="fa fa-send-o fa-2x" aria-hidden="true"></i></span>
+					<p class="top">hello@yppuna.vn
+					</p>
 					</div>
-
-					</div>
-
-
-					<div class="col s12 m8">
-
-					</div>
-
 				</div>
-
-
 				</div>
-
+			</section>
+			<div class="footer-social-links row center">
+				<ul>
+				<li><a href="#"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a></li>
+				</ul>
 			</div>
-
-			</div>
-		</section>
-		<div class="footer-social-links row center">
-			<ul>
-			<li><a href="#"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a></li>
-			<li><a href="#"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></li>
-			<li><a href="#"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a></li>
-			</ul>
-		</div>
-
 		</div>
 	</div>
 	<script type="text/javascript">
