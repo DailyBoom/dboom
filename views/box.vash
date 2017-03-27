@@ -178,6 +178,8 @@
 				</div>
 			</section>
 		</div>
+	})
+	@html.block("script", function(model) {
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var cw = $('.main-img').width();

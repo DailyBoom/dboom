@@ -218,10 +218,20 @@ router.get('/merchants/orders/list', isMerchant, function(req, res) {
 router.get('/orders/list', isAdmin, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
   var query = Order.find({}, {}, { sort: { 'created_at': -1 } }).populate('product');
-  if (req.query.order_date)
-    query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
-  if (req.query.status)
-    query.where('status').equals(req.query.status);
+  if (req.query.s_date)
+    query.where('created_at').gte(req.query.s_date).lt(moment(req.query.s_date).add(1, 'days'));
+  if (req.query.s_status)
+    query.where('status').equals(req.query.s_status);
+  if (req.query.s_status)
+    query.where('status').equals(req.query.s_quantity);
+  if (req.query.s_type)
+    query.where('pay_method').equals(req.query.s_type);
+  if (req.query.s_id)
+    query.where('id').equals(req.query.s_id);
+  if (req.query.s_name) {
+    var regex = new RegExp(req.query.s_name, "i");
+    query.where('shipping.full_name').regex(regex);
+  }
   query.paginate(page, 10, function(err, orders, total) {
     res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
   });

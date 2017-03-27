@@ -161,6 +161,8 @@
                 </div>
 			</div>
 		</div>
+    })
+    @html.block("script", function(model) {
         <script>
             $(document).ready(function(){
                 $(".price, .total, .total-dc, .total-amount").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });

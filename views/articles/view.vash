@@ -48,6 +48,8 @@
             </div>
         </div>
     </div>
+    })
+	@html.block("script", function(model) {
     <script type="text/javascript">
         $(document).ready(function() {
             moment().locale('vi');

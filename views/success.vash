@@ -75,6 +75,8 @@
 				</div>
 			</div><!-- .row -->
 		</div><!-- .container -->
+	})
+	@html.block("script", function(model) {
 		<script>
 		$(document).ready(function(){
 			$('#new_comment').on("submit", function(event) {

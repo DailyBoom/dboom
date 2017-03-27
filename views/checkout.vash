@@ -142,6 +142,8 @@
                 
             </div>
 		</div>
+    })
+    @html.block("script", function(model) {
 		<script>
 			$(document).ready(function(){
                 var shipping = 0;

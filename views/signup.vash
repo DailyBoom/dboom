@@ -37,6 +37,8 @@
 				</div>
 			</div><!-- .row -->
 		</div>
+	})
+	@html.block("script", function(model) {
 		<script>
 			$(document).ready(function() {
 				$('select').material_select();

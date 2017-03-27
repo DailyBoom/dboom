@@ -119,6 +119,8 @@
                 </div>
 			</div>
 		</div>
+    })
+    @html.block("script", function(model) {
         <script src="/javascripts/dependentDrop.js" type="text/javascript"></script>
 		<script>
 		 $(document).ready(function(){

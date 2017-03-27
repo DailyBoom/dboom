@@ -130,6 +130,8 @@
             </div>
         </div>
     </div>
+    })
+	@html.block("script", function(model) {
     <script>
         $(window).load(function() {
             var is_mobile = @model.is_mobile;

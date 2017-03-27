@@ -18,6 +18,8 @@
                 </form>
             </div>
         </div>
+        })
+        @html.block("script", function(model) {
         <script>
             $('form').on("submit", function(event) {
                 event.preventDefault();

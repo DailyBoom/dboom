@@ -12,6 +12,8 @@
                 </div>
             </div>
         </div>
+    })
+    @html.block("script", function(model) {
         <script>
             var myChart = new Chart($("#zoneChart"), {
                 type: 'bar',

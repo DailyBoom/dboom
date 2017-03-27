@@ -343,6 +343,8 @@
 			</div>
 		</section>
     </div><!-- .container-fluid -->
+	})
+	@html.block("script", function(model) {
 	<script type="text/javascript">
 		//var options = [
 		//	{selector: '#north', offset: 0, callback: "$('#side-menu, #slide-out').removeClass('central south').addClass('north');", repeat: true },
