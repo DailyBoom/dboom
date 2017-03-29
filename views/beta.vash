@@ -20,6 +20,14 @@
 							SOLD OUT	
 						</span>
 					}
+					@if (product.old_price) {
+						<span class="old_price">@product.old_price</span>
+						@{
+							var price =  product.old_price - product.price
+							var sale = price / product.old_price * 100; 
+						}							
+						<span class="sale">-@sale.toFixed(0)%</span>
+					}
 				</div>
 			})
 			</div>
