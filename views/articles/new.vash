@@ -33,8 +33,6 @@
             <button class="btn right">Post</button>
         </form>
     </div>
-    })
-	@html.block("script", function(model) {
     <script src="/bower/sir-trevor-js/build/sir-trevor.js"></script>
     <link rel="stylesheet" type="text/css" href="/bower/sir-trevor-js/build/sir-trevor.css" />
     <script>    
