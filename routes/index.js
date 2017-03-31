@@ -38,7 +38,7 @@ router.get('/', function(req, res, next) {
   var date = null;
   Product.findOne({scheduled_at: now, is_published: true }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
     Product.find({scheduled_at: {$lt: now} }).limit(6).sort({ 'scheduled_at' : -1 }).exec(function (err, pastProducts) {
-      Product.find({ extend: 4, is_published: true, is_hot: null }, {}, { sort: { 'price' : -1 }}).limit(6).exec(function(err, mallProducts) {
+      Product.find({ extend: 4, is_published: true, is_hot: null, category: "beauty" }, {}, { sort: { 'price' : -1 }}).limit(6).exec(function(err, mallProducts) {
         // var current_quantity = 0;
         // product.options.forEach(function(option) {
         //   current_quantity += parseInt(option.quantity);
