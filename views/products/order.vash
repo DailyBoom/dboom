@@ -26,6 +26,8 @@
                 </div>
             </form>
 		</div>
+        })
+	    @html.block("script", function(model) {
         <script>
         $(document).ready(function(){
             $(".mall-price-o, .mall-price-n, .prod_price, .old_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
