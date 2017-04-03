@@ -197,7 +197,7 @@
       <div class="container">
         <div class="navigation">
           <ul id="main-nav">
-            @if (model.user.admin) {
+            @if (model.user && model.user.admin) {
               <li><a href="/admin/dashboard">Admin Dashboard</a></li>
             }
             <li><a href="#">Box</a><i class="fa fa-heart-o"></i></li>
