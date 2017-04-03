@@ -10,6 +10,7 @@ var Comment = require('../models/comment');
 var Partner = require('../models/partner');
 var Article = require('../models/article');
 var Behavior = require('../models/behavior');
+var Homepage = require('../models/homepage');
 var smtpTransport = require('nodemailer-smtp-transport');
 var config = require('config-heroku');
 var fs = require("fs");
@@ -72,39 +73,6 @@ var isMerchantOrAdmin = function (req, res, next) {
   req.session.redirect_to = req.originalUrl;
   res.redirect('/login');
 }
-
-/* GET Home Page */
-router.get('/beta', function(req, res, next) {
-  var date = moment().startOf('isoweek').format("MM/DD/YYYY");
-  Product.findOne({scheduled_at: date, is_published: true }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
-    Product.find({ is_published: true, extend: 4 }, {}, { sort : { 'created_at' : -1 } }, function(err, mallProducts) {
-      if (!product) {
-        Product.findOne({ _id: "57d27619e4af52823a8a073c" }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
-          var current_quantity = 0;
-          product.options.forEach(function(option) {
-            current_quantity += parseInt(option.quantity);
-          });
-          var progress = (product.quantity - current_quantity) / product.quantity * 100;
-          var sale = (product.old_price - product.price) / product.old_price * 100;
-          Partner.find({}, function(err, partners) {
-            res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, partners: partners, mallProducts: mallProducts });
-          });
-        });
-      }
-      else {
-        var current_quantity = 0;
-        product.options.forEach(function(option) {
-          current_quantity += parseInt(option.quantity);
-        });
-        var progress = (product.quantity - current_quantity) / product.quantity * 100;
-        var sale = (product.old_price - product.price) / product.old_price * 100;
-        Partner.find({}, function(err, partners) {
-          res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, partners: partners, date: date, mallProducts: mallProducts });
-        });
-      }
-    });
-  });
-});
 
 var group = [
   [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
@@ -253,15 +221,17 @@ router.get('/home', function(req, res, next) {
     var query = Product.find({ extend: 4, is_published: true, is_hot: true });
     // query.where('product_region.'+req.session.zone, true);
     query.limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
-    //Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }).where('product_region.'+req.session.zone, true).exec(function(err, newProducts) {
-    //     Comment.find( { product: products[0].id }).populate('user').exec(function(err, comments) {
-      Article.find({ published: true, video: {$in: [null, false]} }, {}, { sort: { 'created_at': -1 } }).limit(3).exec(function(err, articles) {
-        Article.find({ published: true, video: true }, {}, { sort: { 'created_at': -1 } }).limit(3).exec(function(err, videos) {
-          res.render('index', { products: products, articles: articles, videos: videos, hotProducts: hotProducts });
+      Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }).where('product_region.'+req.session.zone, true).exec(function(err, newProducts) {
+      //     Comment.find( { product: products[0].id }).populate('user').exec(function(err, comments) {
+        Article.find({ published: true, video: {$in: [null, false]} }, 'title url cover', { sort: { 'created_at': -1 } }).limit(3).exec(function(err, articles) {
+          Article.findOne({ published: true, video: true }, 'title url cover', { sort: { 'created_at': -1 } }).exec(function(err, video) {
+            Homepage.findOne({}, function(err, homepage) {
+              res.render('index', { products: products, articles: articles, video: video, hotProducts: hotProducts, newProducts: newProducts, homepage: homepage });
+            })
+          });
         });
       });
     });
-    //   });
     // });
   });
 });

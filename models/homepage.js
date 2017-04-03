@@ -5,7 +5,6 @@ var homepageSchema = new Schema({
     main_banner: String,
     right_1_banner: String,
     right_2_banner: String,
-    video_banner: String,
     beauty_banner: String,
     news_banner: String,
     pedia_banner: String,
@@ -17,6 +16,6 @@ var homepageSchema = new Schema({
     review_3_banner: String
 });
 
-var Homepage = mongoose.model("Article", homepageSchema);
+var Homepage = mongoose.model("Homepage", homepageSchema);
 
 module.exports = Homepage;

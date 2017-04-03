@@ -1,0 +1,154 @@
+@html.extend("layout", function(model) {
+    @html.block("body", function(model) {
+        <div class="container" id="edit_homepage">
+            <h1 class="center">Edit homepage banners</h1>
+            <form method="POST" enctype="multipart/form-data">
+                <div class="file-field input-field">
+                    <br>
+                    <span class="hide-on-med-and-down"><br></span>
+                    <label for="main_banner" class="input-file-mod grey-text">Main Banner</label>
+                    <div class="btn blue-grey darken-2">
+                        <span><i class="fa fa-image left"></i>Choose</span>
+                        <input id="main_banner" type="file" class="validate" name="main_banner">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <div class="file-field input-field">
+                    <br>
+                    <span class="hide-on-med-and-down"><br></span>
+                    <label for="right_1_banner" class="input-file-mod grey-text">Top right banner 1</label>
+                    <div class="btn blue-grey darken-2">
+                        <span><i class="fa fa-image left"></i>Choose</span>
+                        <input id="right_1_banner" type="file" class="validate" name="right_1_banner">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <div class="file-field input-field">
+                    <br>
+                    <span class="hide-on-med-and-down"><br></span>
+                    <label for="right_2_banner" class="input-file-mod grey-text">Top right banner 2</label>
+                    <div class="btn blue-grey darken-2">
+                        <span><i class="fa fa-image left"></i>Choose</span>
+                        <input id="right_2_banner" type="file" class="validate" name="right_2_banner">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <div class="file-field input-field">
+                    <br>
+                    <span class="hide-on-med-and-down"><br></span>
+                    <label for="beauty_banner" class="input-file-mod grey-text">Beauty Banner</label>
+                    <div class="btn blue-grey darken-2">
+                        <span><i class="fa fa-image left"></i>Choose</span>
+                        <input id="beauty_banner" type="file" class="validate" name="beauty_banner">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <div class="file-field input-field">
+                    <br>
+                    <span class="hide-on-med-and-down"><br></span>
+                    <label for="news_banner" class="input-file-mod grey-text">News Banner</label>
+                    <div class="btn blue-grey darken-2">
+                        <span><i class="fa fa-image left"></i>Choose</span>
+                        <input id="news_banner" type="file" class="validate" name="news_banner">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <div class="file-field input-field">
+                    <br>
+                    <span class="hide-on-med-and-down"><br></span>
+                    <label for="pedia_banner" class="input-file-mod grey-text">Pedia Banner</label>
+                    <div class="btn blue-grey darken-2">
+                        <span><i class="fa fa-image left"></i>Choose</span>
+                        <input id="pedia_banner" type="file" class="validate" name="pedia_banner">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <div class="file-field input-field">
+                    <br>
+                    <span class="hide-on-med-and-down"><br></span>
+                    <label for="deal_banner" class="input-file-mod grey-text">Deal Banner</label>
+                    <div class="btn blue-grey darken-2">
+                        <span><i class="fa fa-image left"></i>Choose</span>
+                        <input id="deal_banner" type="file" class="validate" name="deal_banner">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <div class="file-field input-field">
+                    <br>
+                    <span class="hide-on-med-and-down"><br></span>
+                    <label for="fav_banner" class="input-file-mod grey-text">Favorites Banner</label>
+                    <div class="btn blue-grey darken-2">
+                        <span><i class="fa fa-image left"></i>Choose</span>
+                        <input id="fav_banner" type="file" class="validate" name="fav_banner">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <div class="file-field input-field">
+                    <br>
+                    <span class="hide-on-med-and-down"><br></span>
+                    <label for="organic_banner" class="input-file-mod grey-text">Organic Banner</label>
+                    <div class="btn blue-grey darken-2">
+                        <span><i class="fa fa-image left"></i>Choose</span>
+                        <input id="organic_banner" type="file" class="validate" name="organic_banner">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <div class="file-field input-field">
+                    <br>
+                    <span class="hide-on-med-and-down"><br></span>
+                    <label for="review_1_banner" class="input-file-mod grey-text">User review Banner 1</label>
+                    <div class="btn blue-grey darken-2">
+                        <span><i class="fa fa-image left"></i>Choose</span>
+                        <input id="review_1_banner" type="file" class="validate" name="review_1_banner">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <div class="file-field input-field">
+                    <br>
+                    <span class="hide-on-med-and-down"><br></span>
+                    <label for="review_2_banner" class="input-file-mod grey-text">User review Banner 2</label>
+                    <div class="btn blue-grey darken-2">
+                        <span><i class="fa fa-image left"></i>Choose</span>
+                        <input id="review_2_banner" type="file" class="validate" name="review_2_banner">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <div class="file-field input-field">
+                    <br>
+                    <span class="hide-on-med-and-down"><br></span>
+                    <label for="review_3_banner" class="input-file-mod grey-text">User review Banner 3</label>
+                    <div class="btn blue-grey darken-2">
+                        <span><i class="fa fa-image left"></i>Choose</span>
+                        <input id="review_3_banner" type="file" class="validate" name="review_3_banner">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <button class="btn">Submit</button>
+            </form>
+        </div>
+    })
+})

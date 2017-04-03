@@ -228,7 +228,6 @@ section .-content {
 .box-desc {
   position: absolute;
   width: 420px;
-  height: 420px;
   opacity: 0.95;
   background-color: white;
   top: 20px;
@@ -289,6 +288,7 @@ section .-content {
 .product-name {
   text-transform: uppercase;
   margin: 0.4em 0;
+  color: rgb(51, 51, 51);
 }
 
 /* line 351, ../sass/screen.scss */
@@ -304,6 +304,7 @@ section .-content {
   max-width: 100px;
   font-family: 'Brandon Regular';
   padding: 0;
+  vertical-align: top;
 }
 
 /* line 364, ../sass/screen.scss */
@@ -403,4 +404,36 @@ input[type=text] {
 #contact .fa {
   color: #F2DEDE;
   margin: 0 10px;
+}
+
+.item-image {
+  background-size: cover !important;
+  background-position: center center !important;
+  position: relative;
+  display: block;
+}
+
+.video {
+  height: 500px;  
+}
+
+.blog {
+  height: 153px;
+  margin-bottom: 20px;
+}
+
+.blog:nth-last-child() {
+  margin-bottom: 0;
+}
+
+.blog-title {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7);
+  width: 100%;
+  font-size: 12px;
+  padding: 10px;
+  font-style: italic;
+  color: black;
 }

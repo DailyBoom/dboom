@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 var Schema = mongoose.Schema;
 
 // create a schema
@@ -52,6 +53,8 @@ var productSchema = new Schema({
   position: Number,
   position_group: Number
 });
+
+productSchema.plugin(mongoosePaginate);
 
 var Product = mongoose.model("Product", productSchema);
 

@@ -7,14 +7,14 @@
 				<div class="row">
 					<div class="col-xs-12 col-md-8">
 					<div class="">
-						<img src="images/korean1.jpeg" class="img-responsive">
+						<img src="@model.homepage.main_banner" class="img-responsive">
 					</div>
 					</div>
 					<div class="col-xs-12 col-md-4 hide-on-small-only">
 						<div class="col col-xs-12">
 						<div class="row">
 							<div class="item-image">
-							<img src="images/korean0.jpeg" class="img-responsive">
+							<img src="@model.homepage.right_1_banner" class="img-responsive">
 							</div>
 						</div>
 						<div class="spacer">
@@ -23,7 +23,7 @@
 						<div class="col-xs-12">
 						<div class="row">
 							<div class="item-image">
-							<img src="images/korean10.jpg" class="img-responsive">
+							<img src="@model.homepage.right_2_banner" class="img-responsive">
 							</div>
 						</div>
 						</div>
@@ -37,43 +37,37 @@
 				</header>
 				<div class="-content">
 				<div class="box-item">
-					<img class="box-photo" src="images/korean6.jpg" alt="Box 1">
+					<img class="box-photo" src="@model.products[0].images[0]" alt="Box 1">
 					<div class="box-desc">
-					<span class="box-title center">Feel beautiful <i class="fa fa-leaf" aria-hidden="true"></i></span>
-					<p>Đẹp là khi một người phụ nữ biết yêu và nâng niu bản thân mình. Box làm đẹp tháng này với 2 sản phẩm đặc trị cho mụn và lỗ chân lông của Skinmiso cùng rất rất nhiều mẫu thử của Klairs, da bạn sẽ chính thức sáng, sạch, mịn và đẹp hơn từng ngày.</p>
+					<span class="box-title center">@model.products[0].name <i class="fa fa-leaf" aria-hidden="true"></i></span>
+					<p>@model.products[0].description</p>
 					<div class="-space">
 						<span class="bold">What's included in the box:</span>
 						<div class="-space">
 						<ul class="items-inside">
+							@model.products[0].boxProducts.forEach(function(product, index) {
 							<li>
-							<div class="row">
-								<div class= "col-xs-12 mini"><img src="images/mizon2.JPG" height="60px"></div>
-								<div class="col-xs-12"><span class="-space item">1. serum</span></div>
-							</div>
+								<div class="row">
+									<div class= "col-xs-12 mini"><img src="@product.images[0]" height="60px"></div>
+									<div class="col-xs-12"><span class="-space item">@(index +1). @product.name</span></div>
+								</div>
 							</li>
-							<li>
-							<div class="row">
-								<div class= "col-xs-12"><img src="images/mizon.jpg" height="60px"></div>
-								<div class="col-xs-12"><span class="-space item">2. cream</span></div>
-							</div>
-							</li>
-							<li>
-							<div class="row">
-								<div class= "col-xs-12"><img src="images/mizon3.jpg" height="60px"></div>
-								<div class="col-xs-12"><span class="-space item">3. mask</span></div>
-							</div>
-							</li>
+							})
 						</ul>
 						</div>
 					</div>
 					<div class="-space">
-						<span class="tagged"> - 20%</span>
-						<span class="highlight">650.000</span>
-						<span class="striked">1.190.000</span>
+						@{
+							var price =  model.products[0].old_price - model.products[0].price
+							var sale = price / model.products[0].old_price * 100; 
+						}
+						<span class="tagged"> -@sale%</span>
+						<span class="item_price highlight">@model.products[0].price</span>
+						<span class="item_price striked">@model.products[0].old_price</span>
 					</div>
 					<div class="-space">
-						<button class="btn btn-default" type="button" name="button">THÊM BOX VÀO GIỎ HÀNG</button>
-						<button class="btn btn-default" type="button" name="button">XEM CHI TIẾT</button>
+						<button class="btn btn-default add-cart" type="button" name="button" data-id="@model.products[0].id">THÊM BOX VÀO GIỎ HÀNG</button>
+						<a href="/shop/box/@model.products[0].url" class="btn btn-default">XEM CHI TIẾT</a>
 					</div>
 					</div>
 				</div>
@@ -84,149 +78,51 @@
 				Giới thiệu
 				</header>
 				<div class="-content">
-				<div class="row">
 					<span class="col-xs-12 subtitle centered">Bestsellers <i class="fa fa-hand-peace-o" aria-hidden="true"></i></span>
-					<!-- One product -->
-					<div class="col-xs-12 col-md-3 product">
 					<div class="row">
-						<div class="col-xs-12">
-						<img class="img-responsive" src="images/laneige-clear.png" alt="Laneige Clear">
+						@model.hotProducts.forEach(function(product) {
+						<!-- One product -->
+						<div class="product">
+							<div class="row">
+								<a href="/shop/products/@product.url" class="col-xs-12">
+									<img class="img-responsive" src="@product.images[0]" alt="@product.name">
+								</a>
+								<span class="col-xs-12 product-brand">@product.brand</span>
+								<a href="/shop/products/@product.url" class="col-xs-12 product-name">@product.name</a>
+								<span class="col-xs-12 product-price">
+									@product.price
+								</span>
+								<div class="col-xs-12 product-add">
+								<button class="btn btn-default" type="button" name="button">Add to cart</button>
+								</div>
+							</div>
 						</div>
-						<span class="col-xs-12 product-brand">Laneige</span>
-						<span class="col-xs-12 product-name">Laneige Clear</span>
-						<span class="col-xs-12 product-price">
-						550.000
-						</span>
-						<div class="col-xs-12 product-add">
-						<button class="btn btn-default" type="button" name="button">Add to cart</button>
-						</div>
+						<!-- End of one product -->
+						})
 					</div>
-					</div>
-					<!-- End of one product -->
-					<!-- One product -->
-					<div class="col-xs-12 col-md-3 product">
-					<div class="row">
-						<div class="col-xs-12">
-						<img class="img-responsive" src="images/laneige.png" alt="Laneige">
-						</div>
-						<span class="col-xs-12 product-brand">Laneige</span>
-						<span class="col-xs-12 product-name">Laneige Eye Cream</span>
-						<span class="col-xs-12 product-price">
-						550.000
-						</span>
-						<div class="col-xs-12 product-add">
-						<button class="btn btn-default" type="button" name="button">Add to cart</button>
-						</div>
-					</div>
-					</div>
-					<!-- End of one product -->
-					<!-- One product -->
-					<div class="col-xs-12 col-md-3 product">
-					<div class="row">
-						<div class="col-xs-12">
-						<img class="img-responsive" src="images/laneige-clear.png" alt="Laneige Clear">
-						</div>
-						<span class="col-xs-12 product-brand">Laneige</span>
-						<span class="col-xs-12 product-name">Micro-fit cushion</span>
-						<span class="col-xs-12 product-price">
-						550.000
-						</span>
-						<div class="col-xs-12 product-add">
-						<button class="btn btn-default" type="button" name="button">Add to cart</button>
-						</div>
-					</div>
-					</div>
-					<!-- End of one product -->
-					<!-- One product -->
-					<div class="col-xs-12 col-md-3 product">
-					<div class="row">
-						<div class="col-xs-12">
-						<img class="img-responsive" src="images/laneige.png" alt="Laneige Clear">
-						</div>
-						<span class="col-xs-12 product-brand">Moonshot</span>
-						<span class="col-xs-12 product-name">Micro-fit cushion</span>
-						<span class="col-xs-12 product-price">
-						550.000
-						</span>
-						<div class="col-xs-12 product-add">
-						<button class="btn btn-default" type="button" name="button">Add to cart</button>
-						</div>
-					</div>
-					</div>
-					<!-- End of one product -->
-				</div>
-				<div class="spacer"></div>
-				<div class="row">
+					<div class="spacer"></div>
 					<span class="col-xs-12 subtitle centered">New items<i class="fa fa-cubes" aria-hidden="true"></i></span>
-					<!-- One product -->
-					<div class="col-xs-12 col-md-3 product">
 					<div class="row">
-						<div class="col-xs-12">
-						<img class="img-responsive" src="images/laneige.png" alt="Laneige Clear">
+						@model.newProducts.forEach(function(product) {
+						<!-- One product -->
+						<div class="product">
+							<div class="row">
+								<a href="/shop/products/@product.url" class="col-xs-12">
+									<img class="img-responsive" src="@product.images[0]" alt="@product.name">
+								</a>
+								<span class="col-xs-12 product-brand">@product.brand</span>
+								<a href="/shop/products/@product.url" class="col-xs-12 product-name">@product.name</a>
+								<span class="col-xs-12 product-price">
+									@product.price
+								</span>
+								<div class="col-xs-12 product-add">
+								<button class="btn btn-default" type="button" name="button">Add to cart</button>
+								</div>
+							</div>
 						</div>
-						<span class="col-xs-12 product-brand">Moonshot</span>
-						<span class="col-xs-12 product-name">Micro-fit cushion</span>
-						<span class="col-xs-12 product-price">
-						550.000
-						</span>
-						<div class="col-xs-12 product-add">
-						<button class="btn btn-default" type="button" name="button">Add to cart</button>
-						</div>
+						<!-- End of one product -->
+						})
 					</div>
-					</div>
-					<!-- End of one product -->
-					<!-- One product -->
-					<div class="col-xs-12 col-md-3 product">
-					<div class="row">
-						<div class="col-xs-12">
-						<img class="img-responsive" src="images/laneige-clear.png" alt="Laneige Clear">
-						</div>
-						<span class="col-xs-12 product-brand">Laneige</span>
-						<span class="col-xs-12 product-name">Clear C Peeling Mask</span>
-						<span class="col-xs-12 product-price">
-						550.000
-						</span>
-						<div class="col-xs-12 product-add">
-						<button class="btn btn-default" type="button" name="button">Add to cart</button>
-						</div>
-					</div>
-					</div>
-					<!-- End of one product -->
-					<!-- One product -->
-					<div class="col-xs-12 col-md-3 product">
-					<div class="row">
-						<div class="col-xs-12">
-						<img class="img-responsive" src="images/laneige.png" alt="Laneige Clear">
-						</div>
-						<span class="col-xs-12 product-brand">Laneige</span>
-						<span class="col-xs-12 product-name">Water Sleeping Mask</span>
-						<span class="col-xs-12 product-price">
-						550.000
-						</span>
-						<div class="col-xs-12 product-add">
-						<button class="btn btn-default" type="button" name="button">Add to cart</button>
-						</div>
-					</div>
-					</div>
-					<!-- End of one product -->
-					<!-- One product -->
-					<div class="col-xs-12 col-md-3 product">
-					<div class="row">
-						<div class="col-xs-12">
-						<img class="img-responsive" src="images/laneige-clear.png" alt="Laneige Clear">
-						</div>
-						<span class="col-xs-12 product-brand">Moonshot</span>
-						<span class="col-xs-12 product-name">Micro-fit cushion</span>
-						<span class="col-xs-12 product-price">
-						550.000
-						</span>
-						<div class="col-xs-12 product-add">
-						<button class="btn btn-default" type="button" name="button">Add to cart</button>
-						</div>
-					</div>
-					</div>
-					<!-- End of one product -->
-				</div>
 				</div>
 			</section>
 			<section id="feed">
@@ -234,32 +130,23 @@
 				Yppuna Feed
 				</header>
 				<div class="-content">
-				<div class="row">
-					<div class="col-xs-12 col-md-8">
-					<div class="item-image">
-						<img src="images/korean5.jpeg" class="img-responsive">
+					<div class="row">
+						<div class="col-xs-12 col-md-8">
+						<a href="@model.video.url" class="item-image video" style="background: url(https://yppuna.vn@model.video.cover) no-repeat;">
+						</a>
+						</div>
+						<div class="col-xs-12 col-md-4 hide-on-small-only">
+							@model.articles.forEach(function(article) {
+								<div class="col col-xs-12">
+									<div class="row">
+										<a href="@article.url" class="item-image blog" style="background: url(https://yppuna.vn@article.cover) no-repeat;">
+											<div class="blog-title">@article.title</div>
+										</a>
+									</div>
+								</div>
+							})
+						</div>
 					</div>
-					</div>
-					<div class="col-xs-12 col-md-4 hide-on-small-only">
-						<div class="col col-xs-12">
-						<div class="row">
-							<div class="item-image">
-							<img src="images/korean0.jpeg" class="img-responsive">
-							</div>
-						</div>
-						<div class="spacer">
-						</div>
-						</div>
-						<div class="col-xs-12">
-						<div class="row">
-							<div class="item-image">
-							<img src="images/korean10.jpg" class="img-responsive">
-							</div>
-						</div>
-						</div>
-
-					</div>
-				</div>
 				</div>
 			</section>
 			<section id="reviews">
@@ -267,6 +154,23 @@
 				NHẬN XÉT VỀ YPPUNA
 				</header>
 				<div class="-content">
+					<div class="row">
+						<div class="col-xs-12 col-md-4">
+							<div class="item-image">
+								<img src="@model.homepage.review_1_banner" class="img-responsive" alt="">
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-4">
+							<div class="item-image">
+								<img src="@model.homepage.review_2_banner" class="img-responsive" alt="">
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-4">
+							<div class="item-image">
+								<img src="@model.homepage.review_3_banner" class="img-responsive" alt="">
+							</div>
+						</div>
+					</div>
 				</div>
 			</section>
 			<section id="hall-of-fame">
@@ -276,20 +180,19 @@
 				<div class="-content">
 				<div class="row">
 					<div class="col-xs-12 col-md-4">
-					<div class="item-image">
-						<img src="images/masks.jpg" class="img-responsive" alt="Daily deals">
-					</div>
-					</div>
-					<div class="col-xs-12 col-md-4">
-					<div class="item-image">
-						<img src="images/mango.jpg" class="img-responsive" alt="Favorite boxes">
-					</div>
+						<div class="item-image">
+							<img src="@model.homepage.deal_banner" class="img-responsive" alt="Daily deals">
+						</div>
 					</div>
 					<div class="col-xs-12 col-md-4">
-					<div class="item-image">
-						<img src="images/korean13.jpeg" class="img-responsive" alt="Organic skincare">
+						<div class="item-image">
+							<img src="@model.homepage.fav_banner" class="img-responsive" alt="Favorite boxes">
+						</div>
 					</div>
-
+					<div class="col-xs-12 col-md-4">
+						<div class="item-image">
+							<img src="@model.homepage.organic_banner" class="img-responsive" alt="Organic skincare">
+						</div>
 					</div>
 				</div>
 				</div>
@@ -334,9 +237,11 @@
 			</div>
 		</div>
 	</div>
+	})
+	@html.block("script", function(model) {
 	<script type="text/javascript">
 		$(".item_price, .item_old_price, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
-		var owl = $("#individual .row");
+		var owl = $("#introducing .-content > .row");
 		owl.owlCarousel({
 			items : 4,
 			itemsDesktop : [1200,4],
@@ -349,6 +254,26 @@
 			responsive: true,
 			rewindNav: true,
 			autoPlay: true
+		});
+		$(".add-cart").on("click", function(e) {
+			e.preventDefault();
+			var id = $(this).data("id");
+			$.ajax({
+				type: "POST",
+				url: "/add_to_cart",
+				dataType: "json",
+				data: {
+					product_id: id,
+					quantity: 1,
+					option: '0'
+				},
+				success: function (res) {
+					window.location = '/cart';
+				},
+				error: function (res) {
+					Materialize.toast(res.responseJSON.message, 4000);
+				}
+			});
 		});
 	</script>
 	})

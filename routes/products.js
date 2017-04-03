@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var aws = require('aws-sdk');
 var multer  = require('multer');
-var s3 = require('multer-s3');
+var multers3 = require('multer-s3');
 var moment = require("moment");
 var Product = require("../models/product");
 var User = require("../models/user");
@@ -14,15 +15,23 @@ var querystring = require('querystring');
 var getSlug = require('speakingurl');
 var app = express();
 
-var storage = s3({
-    dirname: 'uploads',
+app.use(paginate.middleware(10, 50));
+
+var s3 = new aws.S3({
+    aws_secret_access_key: config.Amazon.secretAccessKey,
+    aws_access_key_id: config.Amazon.accessKeyId,
+    region: 'ap-northeast-2'
+});
+
+var storage = multers3({
+    s3: s3,
     bucket: 'dailyboom',
-    secretAccessKey: config.Amazon.secretAccessKey,
-    accessKeyId: config.Amazon.accessKeyId,
-    region: 'ap-northeast-2',
-    filename: function (req, file, cb) {
-        console.log(file);
-        cb(null, Date.now() + file.originalname.replace(/ /g,"-"));
+    cacheControl: 'max-age=31536000',
+    metadata: function (req, file, cb) {
+      cb(null, {fieldName: file.fieldname});
+    },
+    key: function (req, file, cb) {
+      cb(null, Date.now().toString() + file.originalname)
     }
 })
 
@@ -39,7 +48,6 @@ var storage = s3({
 
 var upload = multer({ storage: storage });
 
-
 var isAdmin = function (req, res, next) {
   if (req.isAuthenticated() && req.user.admin === true)
     return next();
@@ -55,8 +63,8 @@ var isMerchantOrAdmin = function (req, res, next) {
 }
 
 router.get('/products/list', isMerchantOrAdmin, function(req, res) {
-  var query = Product.find({}, {}, { sort: { 'scheduled_at' : -1 } });
   var page = req.query.page ? req.query.page : 1;
+  var query = Product.paginate({}, { page: page, limit: 9, sort: { 'scheduled_at' : -1 } });
   if (req.query.type == 1) {
     query.where('extend').gte(1).lte(3);
   }
@@ -66,8 +74,8 @@ router.get('/products/list', isMerchantOrAdmin, function(req, res) {
   if (req.query.s) {
     query.or([{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }])
   }
-  query.paginate(page, 9, function(err, Products, total) {
-    res.render('products/index', { products: Products, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 9), page), currentPage: page, lastPage: Math.ceil(total / 9) });
+  query.exec(function(err, Products, pageCount, total) {
+    res.render('products/index', { products: Products, pages: paginate.getArrayPages(req)(3, pageCount, page), currentPage: page, lastPage: Math.ceil(total / 9) });
   });
 });
 

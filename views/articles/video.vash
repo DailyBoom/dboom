@@ -1,4 +1,4 @@
-@html.extend("layout_bk", function(model) { @html.block("body", function(model) {
+@html.extend("layout-beta", function(model) { @html.block("body", function(model) {
         <div class="container@(model.is_mobile ? '-fluid' : '')" id="blog">
             <div class="row">
             @if (model.videos.length > 0) {

@@ -1,8 +1,8 @@
-@html.extend("layout_bk", function(model) {
+@html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
         <div class="container" id="dashboard">
             <div class="row">
-                <div class="col s12 l8 offset-l1">
+                <div class="col s12 l11 offset-l1">
                     <div class="col s12">
                         <ul class="tabs">
                             @if (model.user.admin || model.user.role == 'merchant') {
@@ -16,6 +16,7 @@
                             }
                             @if (model.user.admin || model.user.role == 'content') {                            
                                 <li class="tab col s3"><a href="#blog">Blog</a></li>
+                                <li class="tab col s3"><a href="#homepage">Homepage</a></li>
                             }
                         </ul>
                     </div>
@@ -50,6 +51,9 @@
                     <div class="col s12 center" id="blog">
                         <a class="waves-effect waves-light btn-large ybtn-o" href="/blog/new"><i class="fa fa-plus"></i> New Blog Post</a>                        
                         <a class="waves-effect waves-light btn-large ybtn-o" href="/blog/list"><i class="fa fa-list"></i> Blog Post List</a>                        
+                    </div>
+                    <div class="col s12 center" id="homepage">
+                        <a class="waves-effect waves-light btn-large ybtn-o" href="/homepage/edit"><i class="fa fa-picture-o"></i> Edit homepage banner</a>
                     </div>
                     }
                 </div>

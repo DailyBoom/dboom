@@ -1,4 +1,4 @@
-@html.extend("layout_bk", function(model) {
+@html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
 		<div class="container" id="forgot">
 			<div class="row">
