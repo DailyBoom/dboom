@@ -395,6 +395,10 @@ footer {
   margin: 0 15px;
 }
 
+.right-part li a {
+  color: white;
+}
+
 /* line 442, ../sass/screen.scss */
 input[type=text] {
   font-family: 'Brandon Regular';
