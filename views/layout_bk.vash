@@ -175,7 +175,7 @@
           <div class="col-md-6">
             <ul class="facts">
               <li><i class="fa fa-certificate"></i>Hàng Gửi Thẳng Từ Hàn Quốc</li>
-              <li><i class="fa fa-plane"></i>Đơn Hàng Trên 900k VND</li>
+              <li><i class="fa fa-plane"></i>FREE SHIP Đơn Hàng Trên 900k VND</li>
             </ul>
           </div>
           <div class="col-md-6">
@@ -200,6 +200,7 @@
             @if (model.user && model.user.admin) {
               <li><a href="/admin/dashboard">Admin Dashboard</a></li>
             }
+            <li><a href="/">TRANG CHỦ</a></li>
             <li><a href="#">Box</a><i class="fa fa-heart-o"></i></li>
             <li><a href="#">Chăm sóc da</a></li>
             <li><a href="#">Trang điểm</a></li>

@@ -65,7 +65,7 @@
 						<span class="item_price highlight">@model.products[0].price</span>
 						<span class="item_price striked">@model.products[0].old_price</span>
 					</div>
-					<div class="-space">
+					<div class="-space call-to-action">
 						<button class="btn btn-default add-cart" type="button" name="button" data-id="@model.products[0].id">THÊM BOX VÀO GIỎ HÀNG</button>
 						<a href="/shop/box/@model.products[0].url" class="btn btn-default">XEM CHI TIẾT</a>
 					</div>
@@ -204,24 +204,24 @@
 				<div class="-content">
 				<div class="row">
 					<div class="col-xs-12 col-md-3">
-					<span class="subtitle">Reach us <i class="fa fa-anchor fa-2x" aria-hidden="true"></i></span>
+					<span class="subtitle"><i class="fa fa-anchor fa-2x" aria-hidden="true"></i> Reach us</span>
 					<p class="top">Quan Binh Thanh <br>
 						Ho Chi Minh City <br>
 						Vietnam
 					</p>
 					</div>
 					<div class="col-xs-12 col-md-3">
-					<span class="subtitle">Hotline hỗ trợ <i class="fa fa-phone fa-2x" aria-hidden="true"></i></span>
+					<span class="subtitle"><i class="fa fa-phone fa-2x" aria-hidden="true"></i> Hotline hỗ trợ</span>
 					<p class="top">01699 876 023
 					</p>
 					</div>
 					<div class="col-xs-12 col-md-3">
-					<span class="subtitle">Write us an e-mail <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i></span>
+					<span class="subtitle"><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i> Write us an e-mail</span>
 					<p class="top">hello@yppuna.vn
 					</p>
 					</div>
 					<div class="col-xs-12 col-md-3">
-					<span class="subtitle">ĐĂNG KÝ NEWSLETTER <i class="fa fa-send-o fa-2x" aria-hidden="true"></i></span>
+					<span class="subtitle"><i class="fa fa-send-o fa-2x" aria-hidden="true"></i> ĐĂNG KÝ NEWSLETTER</span>
 					<p class="top">hello@yppuna.vn
 					</p>
 					</div>

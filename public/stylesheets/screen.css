@@ -73,6 +73,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   font-size: 0.8em;
   font-weight: 600;
   text-transform: uppercase;
+  text-decoration: underline;
 }
 
 /* line 47, ../sass/screen.scss */
@@ -205,7 +206,8 @@ section {
 section header {
   text-transform: uppercase;
   margin-bottom: 10px;
-  font-size: 0.9em;
+  font-size: 20px;
+  text-align: center;
 }
 /* line 275, ../sass/screen.scss */
 section .-content {
@@ -280,13 +282,14 @@ section .-content {
 
 /* line 341, ../sass/screen.scss */
 .product-brand {
-  font-family: 'Brandon Bold', sans-serif;
-  font-weight: bolder;
+  font-family: 'Brandon', sans-serif;
+  text-transform: uppercase;
 }
 
 /* line 346, ../sass/screen.scss */
 .product-name {
-  text-transform: uppercase;
+  text-transform: capitalize;
+  font-weight: bold;
   margin: 0.4em 0;
   color: rgb(51, 51, 51);
 }
@@ -298,6 +301,10 @@ section .-content {
   margin-bottom: 0.4em;
 }
 
+.items-inside {
+  text-align: center;
+}
+
 /* line 357, ../sass/screen.scss */
 .items-inside li {
   display: inline-block;
@@ -305,6 +312,11 @@ section .-content {
   font-family: 'Brandon Regular';
   padding: 0;
   vertical-align: top;
+  margin-left: 10px;
+}
+
+.items-inside li img {
+  height: 100px;
 }
 
 /* line 364, ../sass/screen.scss */
@@ -440,4 +452,8 @@ input[type=text] {
   padding: 10px;
   font-style: italic;
   color: black;
+}
+
+.call-to-action {
+  margin-top: 30px;
 }
