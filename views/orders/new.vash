@@ -1,0 +1,150 @@
+@html.extend("layout", function(model) {
+	@html.block("body", function(model) {
+        <div class="container">
+            <div class="row">
+                <h1 class="center">New Order</h1>
+                <form class="col s12" method="post" >
+                    <div class="input-field col s12">
+                        <label for="full_name">Full Name</label>
+                        <input id="full_name" name="full_name" />
+                    </div>
+                    <div class="input-field col s12">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" />
+                    </div>
+                    <div class="input-field col s12">
+                        <label for="phone">Phone</label>
+                        <input id="phone" name="phone" />
+                    </div>
+                    <div class="input-field col s12">
+                        <label for="address">Address</label>
+                        <textarea id="address" name="address"></textarea>
+                    </div>
+                    <div class="input-field col s6">
+                        <label for="status">Status</label>
+                        <select id="status" name="status" class="browser-default">
+							<option value=""></option>
+							<option value="Submitted">Submitted</option>
+							<option value="Waiting">Waiting</option>
+							<option value="Paid">Paid</option>
+							<option value="Sent">Sent</option>
+							<option value="Cancelled">Cancelled</option>
+						</select>
+                    </div>
+                    <div class="input-field col s6">
+                        <label for="pay_method">Order Type</label>
+                        <select id="pay_method" name="pay_method" class="browser-default">
+							<option value=""></option>
+							<option value="0">COD</option>
+							<option value="1">Bank Transfer</option>
+						</select>
+                    </div>
+                    <div class="input-field col s12">
+                        <label for="created_at">Created at</label>
+                        <input class="datepicker" type="date" id="created_at" name="created_at" />
+                    </div>
+                    <div id="product_wrapper">
+                         <div class="col s12 m12 l12">
+                            <a id="add_product" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>add product</a>
+                            <a id="remove_product" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>remove product</a>
+                        </div>
+                        <div class="product-row">
+                            <div class="input-field col s12 m4 l4 product">
+                                <input id="p_name_0" type="text" class="validate" name="products[0][product]" value="">
+                                <label for="p_name_0">Product</label>
+                            </div>
+                            <div class="input-field col s12 m4 l4 quantity">
+                                <input id="p_quantity_0" type="number" class="validate" name="products[0][quantity]" value="1" min="1">
+                                <label for="p_quantity_0">Quantity *</label>
+                            </div>
+                            <div class="input-field col s12 m4 l4 option">
+                                <select id="p_option_0" name="products[0][option]">
+                                </select>
+                                <label for="p_option_0">Option *</label>
+                            </div>  
+                        </div>
+                    </div>
+                    <div id="total">
+                        Total: <span class="price">0</span>
+                    </div>
+                    <button class="btn btn-large waves-effect waves-light btn-order blue-grey darken-3 right" type="submit" name="action">
+						Submit <i class="fa fa-pencil-square-o right"></i>
+					</button>
+                </form>
+            </div>
+        </div>
+        <script>
+	        $(document).ready(function() {
+                $(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+                $('select').material_select();
+                var autocomp_opt= {
+                    source: function(request, response) {
+                        var input = this.element;
+                        $.ajax({
+                            type: "POST",
+                            url: "/products/search",
+                            dataType: "json",
+                            data: {
+                                term: request.term
+                            },
+                            success: function(data) {
+                                response($.map(data.products, function (item) {
+                                    return {
+                                        label: item.name + ' - ' + item.brand,
+                                        value: item._id,
+                                        price: item.wholesale_price,
+                                        options: item.options
+                                    };
+                                }));
+                            }
+                        });
+                    },
+                    select: function(event, ui) {
+                        var input = $(this);
+                        console.log
+                        $(this).attr("data-price", ui.item.price);
+                        var current_price = parseInt($('.price').html().replace(/[^0-9]+/g,""));
+                        $('.price').html(current_price + ui.item.price);
+                        $(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+                        $.each(ui.item.options, function(index, value) {
+                            input.parent().parent().find('.option').find('select').append('<option value="'+index+'">'+value.name+'</option>');
+                            $('select').material_select();                
+                        });
+                    },
+                    minLength: 4
+                };
+                var update_total = function() {
+                    var total = 0;
+                    $('.quantity').each(function(index) {
+                        var quantity = parseInt($(this).find('input').val());
+                        var price = parseInt($(this).prev('.product').find('input').attr('data-price'));
+                        total += price * quantity;
+                    }).promise().done(function () {
+                        $('.price').html(total);
+                        $(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+                    });
+                }
+                $(".product input").autocomplete(autocomp_opt);
+                var x = 1;
+                $('#product_wrapper').on("click", "#remove_product", function(e){ //user click on remove text
+                    e.preventDefault();
+                    if (x > 1) {
+                        $('.product-row').last().remove();
+                        update_total();
+                        x--;
+                    }
+                });
+                $("#add_product").click(function(e){ //on add input button click
+                    var new_p = $('<div class="product-row"><div class="input-field col s12 m4 l4 product"><input id="p_name_'+x+'" type="text" class="validate" name="products['+x+'][product]"><label for="p_name_'+x+'">Product</label></div><div class="input-field col s12 m4 l4 quantity"><input id="p_quantity_'+x+'" type="number" class="validate" name="products['+x+'][quantity]" value="1"><label for="p_quantity_'+x+'">Quantity *</label></div><div class="input-field col s12 m4 l4 option"><select id="p_option_'+x+'" name="products['+x+'][option]"></select><label for="p_option_'+x+'">Option *</label></div></div>');
+                    $("#product_wrapper").append(new_p);
+                    $('.product input').autocomplete(autocomp_opt);
+                    x++;
+                    $('select').material_select();
+                });
+                $(document).on("change", '.quantity input', function() {
+                    update_total();
+                });
+            });
+        </script>
+    })
+})
