@@ -65,7 +65,7 @@
 						<span class="item_price highlight">@model.products[0].price</span>
 						<span class="item_price striked">@model.products[0].old_price</span>
 					</div>
-					<div class="-space call-to-action">
+					<div class="call-to-action">
 						<button class="btn btn-default add-cart" type="button" name="button" data-id="@model.products[0].id">THÊM BOX VÀO GIỎ HÀNG</button>
 						<a href="/shop/box/@model.products[0].url" class="btn btn-default">XEM CHI TIẾT</a>
 					</div>

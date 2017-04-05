@@ -1,4 +1,4 @@
-@html.extend("layout-beta", function(model) {
+@html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
 	<div id="fb-root"></div>
 	<script>(function(d, s, id) {
@@ -28,195 +28,175 @@
 	<script src="https://apis.google.com/js/platform.js" async defer>
 	{lang: 'vi'}
 	</script>
-		<div id="detailed_product" class="container">
-			<div class="row">
-				<div class="col s12 l4 area-row" id="left">
-					<h1>@model.product.name</h1>
-					<div class="item_names row center">
-						<div class="col s12">
-							<div class="item_name truncate">@model.product.brand</div>
-						</div>
-						<div class="col s12">
-							<div class="item_name truncate">@model.product.origin</div>
-						</div>
-					</div>
-					<a href="#" class="read-less hide-on-large-only">Hình sản phẩm <i class="fa fa-caret-right"></i></a>					
-					<div class="description">
-						<h4>MÔ TẢ CHI TIẾT</h4>
-						<div class="body">@html.raw(model.product.description)</div>
-					</div>
-					<div class="description">
-						<h4>Lý Do Để Yêu Sản Phẩm Này</h4>
-						<div class="body">@html.raw(model.product.why_love)</div>
-					</div>
-					<div class="description">
-						<h4>Thành Phần</h4>
-						<div class="body">@html.raw(model.product.ingredients)</div>
-					</div>
-					<div class="how-to hide-on-large-only">
-						<h4>HƯỚNG DẪN SỬ DỤNG</h4>
-						<div class="body">@html.raw(model.product.how_to)</div>
-					</div>
-					<a href="#" class="read-more hide-on-large-only">Xem chi tiết <i class="fa fa-caret-right"></i></a>
-					@if (!model.is_mobile) {
-						<div class="sns">
-							<div class="fb-share-button" data-href="http://yppuna.vn@model.url" data-layout="button" data-size="small" data-mobile-iframe="true">
-								<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yppuna.vn@model.url">@model.__('blog.share')</a>
-							</div>
-							<a class="twitter-share-button"	href="https://twitter.com/intent/tweet">Tweet</a>
-							<a data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/?media=@model.product.images[0]"></a>
-							<div class="g-plus" data-action="share" data-annotation="none"></div>
-						</div>
+<div class="container" id="product_detail">
+	<div class="breadcrumb">
+	<ol class="breadcrumb">
+		<li><a href="#">Skincare</a></li>
+		<li><a href="#">Moisturizers</a></li>
+		<li class="active">Ceramidin Cream</li>
+	</ol>
+	</div>
+	<div class="row">
+	<div id="product-view" class="col-xs-12">
+	<div class="col-sm-6 viewer-sm">
+		<div class="col-sm-2">
+		<ul class="multiple-images-sm">
+			@model.product.images.forEach(function(image) {
+				<li><img class="img-circle img-responsive" src="@image" alt=""></li>
+			})
+		</ul>
+
+		</div>
+		<div class="col-sm-10 main-img">
+			<img class="img-responsive" src="@model.product.images[0]" alt="@model.product.brand">
+		</div>
+
+
+	</div>
+	<div class="col-sm-6 brief-info">
+		<div class="row">
+		<div class="col-xs-12">
+			<span class="subtitle">@model.product.brand</span>
+		</div>
+		<div class="col-xs-12 top-space">
+			<span class="product-title-light">@model.product.name</span>
+		</div>
+		<!--<div class="col-xs-12">
+			<ul class="rating">
+			<li><i class="fa fa-star"></i></li>
+			<li><i class="fa fa-star"></i></li>
+			<li><i class="fa fa-star"></i></li>
+			<li><i class="fa fa-star"></i></li>
+			<li><i class="fa fa-star-o"></i></li>
+			</ul>
+		</div>-->
+		<div class="col-xs-12 top-space">
+			<p>@model.product.description</p>
+		</div>
+		<div class="col-xs-12 top-space">
+			<span class="subtitle">Giá</span>
+		</div>
+		<div class="col-xs-12 left-aligned top-space">
+			<span class="highlight price">@model.product.price</span>
+		</div>
+		<div class="col-xs-12 top-space">
+			<span class="subtitle">MÀU SẮC</span>
+		</div>
+		<div class="col-xs-12 top-space">
+			<ul class="product-options">
+				@model.product.options.forEach(function(option, index){
+					@if (option.quantity > 0) {
+					<li data-option="@index" class="@(index == 0 ? 'active' : '') option">
+						<div class="option-color" style="background-color:@option.name;"></div>
+						@if (model.product.category[0] == 60 || model.product.category[0] == 59 || (model.product.category[0] >= 38 && model.product.category[0] <= 43)) {
+							<div class="option-name">@model.product.options_skin[index]</div>
+						}
+						<img src="@option.photo" class="hide option-photo" />
+					</li>
 					}
-				</div>
-				<div class="col s12 l4" id="center">
-					<div class="wrapper">
-						<div class="img-wrapper">
-							<div class="main-img">
-								<img src="@model.product.images[0]" />
-							</div>
-						</div>
-						<div class="img-list">
-							<div class="img-wrapper">
-								<div class="side-img left-img"><img src="@model.product.images[2]" /></div>
-							</div>
-							<div class="img-wrapper">
-								<div class="current-img"><img src="@model.product.images[0]" /></div>
-							</div>
-							<div class="img-wrapper">
-								<div class="side-img"><img src="@model.product.images[1]" /></div>
-							</div>
-						</div>
+				})
+			</ul>
+
+		</div>
+		<div class="col-xs-12 top-space">
+			<span class="subtitle">Số lượng</span>
+		</div>
+
+		<div class="col-xs-12 col-sm-3 top-space">
+			<input type="number" name="quantity" id="quantity" value="1">
+		</div>
+		<div class="col-xs-12 col-sm-9 top-space">
+			<button type="button" name="button" class="add_cart btn btn-primary">THÊM VÀO GIỎ HÀNG</button>
+
+		</div>
+
+		</div>
+
+	</div>
+	</div>
+	<div class="spacer col-xs-12">
+	</div>
+	<div class="tabbed col-xs-12">
+
+		<!-- first panel -->
+
+		<input name="tabbed" id="tabbed1" type="radio" checked>
+		<section>
+		<header>
+			<label for="tabbed1">Lý Do Để Yêu Sản Phẩm Này</label>
+		</header>
+		<div>
+			<p>@html.raw(model.product.why_love)</p>
+		</div>
+		</section>
+
+		<!-- second panel -->
+
+		<input name="tabbed" id="tabbed2" type="radio">
+		<section>
+		<header>
+			<label for="tabbed2">Hướng Dẫn Sử Dụng</label>
+		</header>
+		<div>
+			<p>@html.raw(model.product.how_to)</p>
+		</div>
+		</section>
+		<input name="tabbed" id="tabbed3" type="radio">
+		<section>
+		<header>
+			<label for="tabbed3">Thành Phần</label>
+		</header>
+		<div>
+			<p>@html.raw(model.product.ingredients)</p>
+		</div>
+		</section>
+
+
+	</div>
+
+
+	</div>
+
+	<section id="product-related">
+	<header>
+		You might also like
+	</header>
+	<div class="-content">
+		<div class="row">
+			@model.hotProducts.forEach(function(product) {
+		<!-- One product -->
+			<div class="col-xs-12 col-md-3 product">
+				<div class="row">
+					<div class="col-xs-12">
+						<a href="/shop/products/@product.id"><img class="img-responsive" src="@product.images[0]" alt="@product.name"></a>
 					</div>
-				</div>
-				<div class="col s12 l4" id="right">
-					<div class="how-to hide-on-med-and-down">
-						<h4>HƯỚNG DẪN SỬ DỤNG</h4>
-						<div class="body">@html.raw(model.product.how_to)</div>
+					<span class="col-xs-12 product-brand">@product.brand</span>
+					<a href="/shop/products/@product.id" class="col-xs-12 product-name">@product.name</a>
+					<span class="col-xs-12 product-price">
+						@product.price
+					</span>
+					<div class="col-xs-12 product-add">
+						<button class="btn btn-secondary" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
 					</div>
-					<div class="prices">
-						@if (model.product.quantity > 0) {
-							<span class="price">@model.product.price</span>
-						}
-						else {
-							<span class="price">SOLD OUT</span>
-						}
-						@if (model.product.old_price && model.product.quantity > 0) {
-							<span class="old_price">@model.product.old_price</span>
-						}
-					</div>
-					@if(model.product.product_region.length > 0) {					
-					<div class="regions">
-						<h4>VÙNG MIỀN</h4>
-						<div class="col s8">
-							@if(model.product.product_region && model.product.product_region[0] == true) {
-								<div class="col s4">
-									<img src="/images/north-logo.svg">
-									<span class="north">Miền bắc</span>
-								</div>
-							}
-							@if(model.product.product_region && model.product.product_region[1] == true) {
-								<div class="col s4">
-									<img src="/images/central-logo.svg">
-									<span class="central">Miền Trung</span>
-								</div>
-							}
-							@if(model.product.product_region && model.product.product_region[2] == true) {
-								<div class="col s4">
-									<img src="/images/south-logo.svg">
-									<span class="south">Miền Nam</span>
-								</div>
-							}
-						</div>
-					</div>
-					}
-					@if(model.product.options_skin.length > 0 && (model.product.category < 38 || model.product.category > 43)) {
-						<div class="skin-types">
-							<h4>LOẠI DA</h4>
-							<select class="col s8">
-								@model.product.options_skin.forEach(function(item, index) {
-									<option @(index == 0 ? 'selected': '')>@item</option>
-								})
-							</select>
-						</div>
-					}
-					@if (model.product.options[0].name != '') {
-						<div class="options">
-							<h4>MÀU SẮC</h4>
-							<div id="options">
-								@model.product.options.forEach(function(option, index){
-									@if (option.quantity > 0) {
-									<div data-option="@index" class="@(index == 0 ? 'active' : '') option">
-										<div class="option-color" style="background-color:@option.name;"></div>
-										@if (model.product.category[0] == 60 || model.product.category[0] == 59 || (model.product.category[0] >= 38 && model.product.category[0] <= 43)) {
-											<div class="option-name">@model.product.options_skin[index]</div>
-										}
-										<img src="@option.photo" class="hide option-photo" />
-									</div>
-									}
-								})
-							</div>
-						</div>
-					}
-					<div class="quantity">
-						@if(model.product.quantity > 0) {
-							<h4>SỐ LƯỢNG</h4>
-							<input type="number" id="quantity" min="1" value="1" />
-							<button type="button" id="checkout" class="add_cart" data-id="@model.product.id">THÊM VÀO GIỎ HÀNG</button>
-						}
-						@if (model.is_mobile) {
-							<div class="sns">
-								<div class="fb-share-button" data-href="http://yppuna.vn@model.url?utm_source=facebook&utm_medium=social" data-layout="button" data-size="small" data-mobile-iframe="true">
-									<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yppuna.vn@model.url?utm_source=facebook&utm_medium=social">@model.__('blog.share')</a>
-								</div>
-								<a class="twitter-share-button"	href="https://twitter.com/intent/tweet">Tweet</a>
-								<a data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/?media=@model.product.images[0]"></a>
-								<div class="g-plus" data-action="share" data-annotation="none"></div>
-							</div>
-						}
-					</div>
-					<div class="comments">
-						<h4>ĐÁNH GIÁ CỦA KHÁCH HÀNG</h4>
-						@model.comments.forEach(function(comment) {
-							<div class="comment">
-								<span class="user-com">@(comment.user ? comment.user.username : comment.name)</span>
-								<span class="date-com">@model.moment(comment.created_at).format("DD.MM.YYYY")</span>
-								<div class="body">@comment.body</div>
-							</div>
-						})
-						<div class="new-comment">
-							<h4>THÊM ĐÁNH GIÁ SẢN PHẨM</h4>
-							<form action="/comments/new" method="post">
-								@if(!model.user) {
-									<label for="name">Tên</label>
-									<input id="name" name="name" placeholder="Tên của bạn" type="text" />
-									<label for="email">Email</label>
-									<input id="email" name="email" placeholder="Email của bạn" type="text" />
-								}
-								<label for="body">Đánh giá sản phẩm</label>
-								<textarea name="body" placeholder="Đánh giá của bạn" id="body"></textarea>
-								<input type="hidden" value="@model.product.id" name="product" />
-								<button class="right">GỬI ĐÁNH GIÁ</button>
-							</form>
-						</div>
-					</div>
-					
+
 				</div>
 			</div>
-			<section id="individual">
-				<h2>SẢN PHẨM BÁN LẺ</h2>
-				<div class="row">
-					@model.hotProducts.forEach(function(product) {
-						<div class="">
-							<a href="/shop/products/@product.url"><img src="@product.images[0]" /></a>
-							<div class="prod_brand">@product.brand</div>
-							<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
-							<div class="prod_price">@product.price<span class="currency">đ</span></div>
-						</div>
-					})
-				</div>
-			</section>
+		<!-- End of one product -->
+			})
 		</div>
+	</div>
+	</section>
+	<section id="product-reviews">
+		<header>
+			Reviews
+		</header>
+		<div class="-content">
+
+		</div>
+	</section>
+</div>
+	})
+	@html.block("script", function(model) {
 	<script type="text/javascript">
 		$(document).ready(function(){
 			
@@ -238,7 +218,7 @@
 				$('.description, .how-to, .read-more, .read-less, #center').toggle();
 			});
 
-			$(".img-list img").on("click", function () {
+			$(".multiple-images-sm img").on("click", function () {
 				var main = $('.main-img img').attr('src');
 				var side = $(this).attr('src')
 				if (main !== side) {
@@ -285,14 +265,6 @@
 					}
 				});
 			});
-			var is_mobile = @model.is_mobile;
-			if (!is_mobile) {
-				$('#center .wrapper').pushpin({
-					top: $('#center').offset().top,
-					bottom: $('#individual').offset().top - $('#center .wrapper').height(),
-					offset: 20
-				});
-			}
 		});
 	</script>
 	
