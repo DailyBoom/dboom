@@ -182,7 +182,7 @@
             <ul class="right-part">
               <li><i class="fa fa-shopping-bag"></i>Giỏ hàng</li>
               <li><a href="/login"><i class="fa fa-user-circle-o"></i>Đăng nhập/Đăng ký</a></li>
-              <li><input type="text" placeholder="Tìm kiếm"></li>
+              <li><input type="search" placeholder="Tìm kiếm"></li>
             </ul>
           </div>
         </div>
