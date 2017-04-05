@@ -106,7 +106,7 @@
 			<input type="number" name="quantity" id="quantity" value="1">
 		</div>
 		<div class="col-xs-12 col-sm-9 top-space">
-			<button type="button" name="button" class="add_cart btn btn-primary">THÊM VÀO GIỎ HÀNG</button>
+			<button data-id="@model.product.id" type="button" name="button" class="add_cart btn btn-primary">THÊM VÀO GIỎ HÀNG</button>
 
 		</div>
 
@@ -168,10 +168,10 @@
 			<div class="col-xs-12 col-md-3 product">
 				<div class="row">
 					<div class="col-xs-12">
-						<a href="/shop/products/@product.id"><img class="img-responsive" src="@product.images[0]" alt="@product.name"></a>
+						<a href="/shop/products/@product.url"><img class="img-responsive" src="@product.images[0]" alt="@product.name"></a>
 					</div>
 					<span class="col-xs-12 product-brand">@product.brand</span>
-					<a href="/shop/products/@product.id" class="col-xs-12 product-name">@product.name</a>
+					<a href="/shop/products/@product.url" class="col-xs-12 product-name">@product.name</a>
 					<span class="col-xs-12 product-price">
 						@product.price
 					</span>
@@ -200,8 +200,8 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			
-			$('.options .option').on('click', function() {
-				$('.options .option').removeClass('active');
+			$('.product-options .option').on('click', function() {
+				$('.product-options .option').removeClass('active');
 				$(this).addClass('active');
 				var main = $('.main-img img').attr('src');
 				var side = $(this).find('.option-photo').attr('src');
@@ -255,7 +255,7 @@
 					data: {
 						product_id: id,
 						quantity: parseInt($("#quantity").val()),
-						option: @(model.product.options[0].name == '' ? '0' : html.raw("$('.options .option.active').data('option')"))
+						option: @(model.product.options[0].name == '' ? '0' : html.raw("$('.product-options .option.active').data('option')"))
 					},
 					success: function (res) {
 						window.location = '/cart';

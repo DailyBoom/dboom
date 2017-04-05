@@ -530,11 +530,20 @@ input[type=search] {
   margin: 0 !important;
 }
 
+#product_detail .img-circle {
+  cursor: pointer;
+}
+
 /* line 519, ../sass/screen.scss */
 .product-options li {
   display: inline-block;
   margin-left: 0;
   padding-left: 0;
+  cursor: pointer;
+}
+
+.product-options li.active .option-color {
+  border: 1px solid black;
 }
 
 /* line 525, ../sass/screen.scss */
