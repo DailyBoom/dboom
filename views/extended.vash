@@ -31,9 +31,10 @@
 <div class="container" id="product_detail">
 	<div class="breadcrumb">
 	<ol class="breadcrumb">
-		<li><a href="#">Skincare</a></li>
-		<li><a href="#">Moisturizers</a></li>
-		<li class="active">Ceramidin Cream</li>
+		@model.product.category.forEach(function(id) {
+			<li><a href="/mall?category=@id">@model.category[id]</a></li>
+		})
+		<li class="active">@model.product.name</li>
 	</ol>
 	</div>
 	<div class="row">

@@ -471,7 +471,6 @@ input[type=text] {
 .breadcrumb {
   margin-top: 4px;
   margin-bottom: 10px !important;
-  padding-left: 0 !important;
 }
 
 /* line 470, ../sass/screen.scss */

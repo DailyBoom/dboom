@@ -80,6 +80,72 @@ var group = [
   [51, 52]
 ];
 
+var category = {
+    "53": "Sản phẩm rửa mặt",
+    "1": "Nước rửa mặt",
+    "2": "Rửa mặt dạng bọt",
+    "3": "Sữa rửa mặt",
+    "4": "Rửa Mặt Dạng Dầu",
+    "5": "Xà phòng rửa mặt",
+    "6": "Tẩy trang dành cho mặt",
+    "7": "Tẩy trang cho mắt và môi",
+    "8": "Tẩy da chết",
+    "9": "Nước hoa hồng",
+    "10": "Dầu tẩy trang",
+    "11": "Dụng cụ rửa mặt",
+    "54": "Dưỡng ẩm cho da mặt",
+    "12": "Kem dưỡng ẩm",
+    "13": "Sữa dưỡng cho da",
+    "14": "Gel dưỡng cho da",
+    "15": "Dầu dưỡng cho da",
+    "16": "Kem dưỡng cho vùng mắt",
+    "17": "Xịt khoáng",
+    "18": "BB/CC",
+    "55": "Kem chống nắng",
+    "19": "Kem chống nắng cho da mặt",
+    "56": "Sản phẩm trị liệu",
+    "20": "Sản phẩm trị mụn",
+    "21": "Sản phẩm trị nám",
+    "22": "Tinh chất",
+    "23": "Dưỡng mắt",
+    "57": "Mặt nạ",
+    "24": "Mặt nạ giấy",
+    "25": "Mặt nạ khác",
+    "58": "Trang điểm cho mắt",
+    "26": "Lót mắt",
+    "27": "Phấn mắt",
+    "28": "Mascara",
+    "29": "Kẻ mắt",
+    "30": "Kẻ chân mày",
+    "31": "Tẩy trang mắt",
+    "59": "Trang điểm cho mặt",
+    "32": "Kem lót",
+    "33": "Kem/Phấn nền",
+    "34": "BB/CC (kem đa năng)",
+    "35": "Kem che khuyết điểm",
+    "36": "Phấn phủ",
+    "37": "Má hồng",
+    "49": "Tạo khối",
+    "60": "Sản phẩm dành cho môi",
+    "38": "Son môi",
+    "39": "Son bóng",
+    "40": "Son lì",
+    "41": "Son dưỡng",
+    "42": "Son lỏng",
+    "43": "Son kẻ viền môi",
+    "61": "Phụ Kiện",
+    "44": "Mút Rửa Mặt",
+    "45": "Máy Rửa Mặt",
+    "46": "Giấy Thấm Dầu",
+    "47": "Bông Rửa Mặt",
+    "50": "Bông Trang Điểm",
+    "62": "Sản Phẩm Cho Nam",
+    "48": "Sản Phẩm Đa Công Dụng",
+    "51": "Sữa tắm",
+    "63": "Sản phẩm cho tóc",
+    "52": "Dầu gội",
+}
+
 router.get('/mall', function(req, res, next) {
   var query = Product.find({ extend: 4, is_published: true }, {}, {});
   var page = req.query.page ? req.query.page : 1;
@@ -246,7 +312,7 @@ router.get('/shop/products/:url', function(req, res, next) {
         });
         var progress = (product.quantity - current_quantity) / product.quantity * 100;
         var sale = (product.old_price - product.price) / product.old_price * 100;
-        res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2, ext_cover: product.images[0], comments: comments, hotProducts: hotProducts });
+        res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2, ext_cover: product.images[0], comments: comments, hotProducts: hotProducts, category: category });
       });
     });
   });
