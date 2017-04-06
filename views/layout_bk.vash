@@ -79,6 +79,7 @@
 		<link rel="stylesheet" href="/stylesheets/owl.carousel.css" />
 		<link rel="stylesheet" href="/stylesheets/owl.theme.css" />
 		<link rel="stylesheet" href="/stylesheets/bxslider.css" />
+		<link rel="stylesheet" href="/stylesheets/star-rating-svg.css" />
 		<!-- Custom CSS -->
     <link rel="stylesheet" href="/stylesheets/print.css">
     <link href="https://fonts.googleapis.com/css?family=Nunito|Quicksand" rel="stylesheet">
@@ -280,6 +281,7 @@
       <script src="/javascripts/jquery.animatecss.min.js"></script>
       <script src="/javascripts/jquery.waypoints.min.js"></script>
       <script src="/javascripts/jquery.stellar.min.js"></script>
+      <script src="/javascripts/jquery.star-rating-svg.js"></script>
       <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
       <!-- Modernizr -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>

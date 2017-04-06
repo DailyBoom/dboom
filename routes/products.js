@@ -48,6 +48,13 @@ var storage = multers3({
 
 var upload = multer({ storage: storage });
 
+var isAuthenticated = function (req, res, next) {
+  if (req.isAuthenticated())
+    return next();
+  req.session.redirect_to = req.originalUrl;
+  res.redirect('/login');
+}
+
 var isAdmin = function (req, res, next) {
   if (req.isAuthenticated() && req.user.admin === true)
     return next();
@@ -373,6 +380,32 @@ router.get('/products/publish/:id', isMerchantOrAdmin, function(req, res) {
     if (err)
       console.log(err);
     res.redirect('/products/list');
+  });
+});
+
+router.post('/products/rate', isAuthenticated, function(req, res) {
+  Product.findOne({ _id: req.body.product_id }, function(err, product) {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ message: 'error' });
+    }
+    console.log(product.rating);
+    var index = product.rating.findIndex(function(rating) { console.log(rating); return rating.user == req.user.id; });
+    console.log(index);
+    if (index >= 0) {
+      product.rating[index].count = req.body.rating;
+    }
+    else {
+      product.rating.push({ user: req.user.id, count: req.body.rating });
+    }
+    product.save(function(err) {
+      var avg = 0;
+      for (i = 0; i < product.rating.length; i++) {
+        avg += product.rating[i].count;
+      }
+      avg = avg / product.rating.length;
+      return res.status(200).json({ avg: avg });
+    });
   });
 });
 

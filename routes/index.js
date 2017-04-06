@@ -310,9 +310,12 @@ router.get('/shop/products/:url', function(req, res, next) {
         product.options.forEach(function(option) {
           current_quantity += parseInt(option.quantity);
         });
-        var progress = (product.quantity - current_quantity) / product.quantity * 100;
-        var sale = (product.old_price - product.price) / product.old_price * 100;
-        res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2, ext_cover: product.images[0], comments: comments, hotProducts: hotProducts, category: category });
+        var avg = 0;
+        for (i = 0; i < product.rating.length; i++) {
+          avg += product.rating[i].count;
+        }
+        avg = avg / product.rating.length;
+        res.render('extended', { product: product, title: product.name, description: product.description, ext_cover: product.images[0], comments: comments, hotProducts: hotProducts, category: category, avg: avg });
       });
     });
   });

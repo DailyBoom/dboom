@@ -62,15 +62,8 @@
 		<div class="col-xs-12 top-space">
 			<span class="product-title-light">@model.product.name</span>
 		</div>
-		<!--<div class="col-xs-12">
-			<ul class="rating">
-			<li><i class="fa fa-star"></i></li>
-			<li><i class="fa fa-star"></i></li>
-			<li><i class="fa fa-star"></i></li>
-			<li><i class="fa fa-star"></i></li>
-			<li><i class="fa fa-star-o"></i></li>
-			</ul>
-		</div>-->
+		<div class="rating col-xs-12" data-rating="@model.avg">
+		</div>
 		<div class="col-xs-12 top-space">
 			<p>@model.product.description</p>
 		</div>
@@ -200,7 +193,34 @@
 	@html.block("script", function(model) {
 	<script type="text/javascript">
 		$(document).ready(function(){
-			
+			var user = @(model.user ? true : false);
+			$(".rating").starRating({
+				totalStars: 5,
+				starSize: 20,
+				emptyColor: 'white',
+				hoverColor: 'black',
+				activeColor: 'black',
+				useGradient: false,
+				readOnly: !user,
+				callback: function(currentRating, $el){
+					$.ajax({
+						type: "POST",
+						url: "/products/rate",
+						dataType: "json",
+						data: {
+							product_id: "@model.product.id",
+							rating: currentRating
+						},
+						success: function (res) {
+							Materialize.toast("Rating success", 4000);
+							$(".rating").starRating('setRating', res.avg);
+						},
+						error: function (res) {
+							Materialize.toast(res.responseJSON.message, 4000);
+						}
+					});
+				}
+			});
 			$('.product-options .option').on('click', function() {
 				$('.product-options .option').removeClass('active');
 				$(this).addClass('active');
