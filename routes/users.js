@@ -271,8 +271,8 @@ router.post('/users/edit', isAuthenticated, function(req, res) {
 router.get('/users/list', isAdmin, function(req, res){
   var page = req.query.page ? req.query.page : 1;
   var query = User.find({}, {}, {$sort: { created_at: -1 }});
-  if (req.query.name) {
-    query.where('name', req.query.name);
+  if (req.query.username) {
+    query.where('username', req.query.username);
   }
   if (req.query.email) {
     query.where('email', req.query.email);

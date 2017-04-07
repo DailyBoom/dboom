@@ -62,7 +62,7 @@ router.get('/products/list', isMerchantOrAdmin, function(req, res) {
   var query = Product.find({}, {}, { sort: { 'scheduled_at' : -1 } });
   var page = req.query.page ? req.query.page : 1;
   if (req.query.id)
-    query.where('id').equals(req.query.id);
+    query.where('_id').equals(req.query.id);
   if (req.query.type == 1) {
     query.where('extend').gte(1).lte(3);
   }
@@ -452,7 +452,7 @@ router.get('/products/naver', function(req, res) {
 });
 
 router.post('/products/search', function(req, res) {
-  Product.find({ extend: 4 }, '_id name brand wholesale_price options').or([{ 'name': { $regex: req.body.term, $options: "i" } }, { 'brand': { $regex: req.body.term, $options: "i" } }]).exec(function(err, products) {
+  Product.find({ extend: 4 }, '_id name brand price wholesale_price options').or([{ 'name': { $regex: req.body.term, $options: "i" } }, { 'brand': { $regex: req.body.term, $options: "i" } }]).exec(function(err, products) {
     res.status(200).json({ products: products});
   })
 })

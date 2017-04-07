@@ -220,6 +220,25 @@ router.get('/orders/new', isAdmin, function(req, res) {
   res.render('orders/new');
 });
 
+router.post('/orders/new', isAdmin, function(req, res) {
+  var order = new Order({
+    shipping : {
+      full_name: req.body.full_name,
+      phone_number: req.body.phone,
+      address: req.body.address
+    },
+    status: req.body.status,
+    pay_method: req.body.pay_method,
+    created_at: req.body.created_at,
+    notes: req.body.notes,
+    cart: req.body.products
+  });
+
+  product.save(function(err) {
+    return res.redirect('/orders/list');
+  });
+});
+
 router.get('/orders/list', isAdmin, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
   var query = Order.find({}, {}, { sort: { 'created_at': -1 } }).populate('product');
@@ -228,7 +247,7 @@ router.get('/orders/list', isAdmin, function(req, res) {
   if (req.query.s_status)
     query.where('status').equals(req.query.s_status);
   if (req.query.s_quantity)
-    query.where('quantity').equals(req.query.s_quantity);
+    query.where('cart.quantity').equals(req.query.s_quantity);
   if (req.query.s_type)
     query.where('pay_method').equals(req.query.s_type);
   if (req.query.s_id)

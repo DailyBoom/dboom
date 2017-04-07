@@ -55,7 +55,7 @@ router.get('/shipments/list', isMerchantOrAdmin, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
   var query = Shipment.find({}, {}, { sort: { 'created_at': -1 } }).populate('product');
   if (req.query.s_id)
-    query.where('id').equals(req.query.s_id);
+    query.where('_id').equals(req.query.s_id);
   if (req.query.s_name) {
     var regex = new RegExp(req.query.s_name, "i");
     query.where('name').regex(regex);

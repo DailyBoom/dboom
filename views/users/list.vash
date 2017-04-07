@@ -6,7 +6,7 @@
 				<br>
 				<form method="get">
 					<div class="col s4">
-						<input name="name" id="name" type="text" placeholder="name">
+						<input name="username" id="username" type="text" placeholder="username">
 					</div>
 					<div class="col s4">
 						<input name="email" id="email" type="email" placeholder="email">
@@ -23,7 +23,7 @@
 				<table class="responsive-table bordered highlight table-sm">
 					<thead>
 						<tr>
-							<th>ID</th>
+							<th>Username</th>
 							<th>Email</th>
 							<th>@(model.wholesalers ? 'Amount' : 'Name')</th>
 							<th>Type</th>
