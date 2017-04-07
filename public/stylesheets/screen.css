@@ -670,3 +670,7 @@ input[type=search] {
 .tabbed > input:not(:checked) + section > div {
   display: none;
 }
+
+#hall-of-fame .item-image {
+  height: 250px;
+}

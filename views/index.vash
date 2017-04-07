@@ -180,18 +180,15 @@
 				<div class="-content">
 				<div class="row">
 					<div class="col-xs-12 col-md-4">
-						<div class="item-image">
-							<img src="@model.homepage.deal_banner" class="img-responsive" alt="Daily deals">
+						<div class="item-image" style="background: url(@model.homepage.deal_banner) no-repeat;">
 						</div>
 					</div>
 					<div class="col-xs-12 col-md-4">
-						<div class="item-image">
-							<img src="@model.homepage.fav_banner" class="img-responsive" alt="Favorite boxes">
+						<div class="item-image" style="background: url(@model.homepage.fav_banner) no-repeat">
 						</div>
 					</div>
 					<div class="col-xs-12 col-md-4">
-						<div class="item-image">
-							<img src="@model.homepage.organic_banner" class="img-responsive" alt="Organic skincare">
+						<div class="item-image" style="background: url(@model.homepage.organic_banner) no-repeat;">
 						</div>
 					</div>
 				</div>
