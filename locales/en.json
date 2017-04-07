@@ -124,5 +124,14 @@
 	"between.isNotNumeric": "The Field %s may only contain numbers",
 	"between.notInRange": "The Field %s may only contain numbers from %d-%d",
 	"between.tooBig": "The Field %s may only contain numbers below %d",
-	"email.invalid": "The field %s requires a valid Email address"
+	"email.invalid": "The field %s requires a valid Email address",
+	"title": "title",
+	"logout": "logout",
+	"about.text_5": "about.text_5",
+	"about.text_6": "about.text_6",
+	"about.text_7": "about.text_7",
+	"about.text_8": "about.text_8",
+	"about.text_10": "about.text_10",
+	"about.text_11": "about.text_11",
+	"about.text_12": "about.text_12"
 }

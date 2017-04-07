@@ -108,16 +108,9 @@ app.listen(process.env.PORT || 3000);
 mongoose.set('debug', true);
 // }
 app.use(function(req, res, next) {
-  if (req.query.lang) {
-    res.cookie('dboom_locale', req.query.lang, { maxAge: 900000, httpOnly: true });
-    i18n.setLocale(req, req.query.lang);
-  }
-  else if (!req.cookies.dboom_locale) {
-    i18n.setLocale(req, 'vi');
-  }
-  res.locals.top_banner = req.cookies.top_banner;
   res.locals.user = req.user;
   moment.locale('vi');
+  i18n.setLocale(req, 'vi');
   res.locals.moment = moment;
   res.locals.querystring = querystring;
   res.locals.url = req.url;
@@ -128,7 +121,7 @@ app.use(function(req, res, next) {
   if (typeof req.session.zone === 'undefined' && req.cookies.ypp_zone) {
     req.session.zone = req.cookies.ypp_zone
   }
-  if (req.session.zone) {
+  if (typeof res.locals.zone === 'undefined' && req.session.zone) {
     res.locals.zone = req.session.zone;
   }
   if (req.session.toast) {

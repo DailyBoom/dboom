@@ -232,7 +232,7 @@ router.get('/orders/list', isAdmin, function(req, res) {
   if (req.query.s_type)
     query.where('pay_method').equals(req.query.s_type);
   if (req.query.s_id)
-    query.where('id').equals(req.query.s_id);
+    query.where('_id').equals(req.query.s_id);
   if (req.query.s_name) {
     var regex = new RegExp(req.query.s_name, "i");
     query.where('shipping.full_name').regex(regex);
