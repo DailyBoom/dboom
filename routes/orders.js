@@ -227,8 +227,8 @@ router.get('/orders/list', isAdmin, function(req, res) {
     query.where('created_at').gte(req.query.s_date).lt(moment(req.query.s_date).add(1, 'days'));
   if (req.query.s_status)
     query.where('status').equals(req.query.s_status);
-  if (req.query.s_status)
-    query.where('status').equals(req.query.s_quantity);
+  if (req.query.s_quantity)
+    query.where('quantity').equals(req.query.s_quantity);
   if (req.query.s_type)
     query.where('pay_method').equals(req.query.s_type);
   if (req.query.s_id)
