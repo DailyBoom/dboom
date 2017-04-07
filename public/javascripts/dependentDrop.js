@@ -46,7 +46,7 @@ var stateObject = {
         "THANH OAI": ["THỊ TRẤN KIM BÀI", "Bích Hòa", "Bình Minh", "Cao Dương", "Cao Viên", "Cự Khê", "Dân Hòa", "Đỗ Động", "Hồng Dương", "Kim An", "Kim Thư", "Liên Châu", "Mỹ Hưng", "Phương Trung", "Tam Hưng", "Tân Ước", "Thanh Cao", "Thanh Mai", "Thanh Thùy", "Thanh Văn", "Xuân Dương"],
         "THANH TRÌ": ["THỊ TRẤN VĂN ĐIỂN", "Duyên Hà", "Đại Áng", "Đông Mỹ", "Hữu Hòa", "Liên Ninh", "Ngọc Hồi", "Ngũ Hiệp", "Tả Thanh Oai", "Tam Hiệp", "Tân Triều", "Thanh Liệt", "Tứ Hiệp", "Vạn Phúc", "Vĩnh Quỳnh", "Yên Mỹ"]
     },
-    //"KHÁC": {
+    "KHÁC": {
     //     "Cẩm Lệ": ["Phường Khuê Trung", "Phường Hòa An", "Phường Hòa Thọ Đông", "Phường Hòa Xuân", "Phường Hòa Phát", "Phường Hòa Thọ Tây" ],
     //     "Thanh Khê": ["Phường Hòa Khê", "Phường An Khê" , "Phường Thanh Khê Đông" , "Phường Xuân Hà" , "Phường Tam Thuận" , "Phường Tân Chính" , "Phường Thạc Gián" , "Phường Chính Gián" , "Phường Vĩnh Trung" , "Phường Thanh Khê Tây" ],
     //     "Hải Châu": ["Phường Thanh Bình" , "Phường Thuận Phước" , "Phường Thạch Thang" , "Phường hải Châu 1" ,  "Phường Hải Châu 2" , "Phường Phước Ninh" , "Phường Hòa Thuận Tây" , "Phường Hòa Thuận Đông" , "Phường Nam Dương" , "Phường Bình Hiên" , "Phường Bình Thuận" , "Phường Hòa Cường Bắc", "Phường Hòa Cường Nam" ],
@@ -54,7 +54,7 @@ var stateObject = {
     //     "Sơn Trà": ["Phường An Hải Bắc" , "Phường An Hải Đông" , "Phường An Hải Tây" , "Phường Mân Thái" , "Phường Nại Hiên Đông" , "Phường Phước Mỹ" , "Phường Thọ Quang"],
     //     "Liên Chiểu": ["Phường Hòa Hiệp Bắc" , "Phường Hòa Hiệp Nam" , "Phường Hòa Khánh Bắc" , "Phường Hòa Khánh Nam" , "Phường Hòa Minh"],
     //     "Huyện Hòa Vang": ["Xã Hòa Bắc" , "Xã Hòa Châu" , "Xã Hòa Khương" , "Xã Hòa Liên" , "Xã Hòa Nhơn" , "Xã Hòa Ninh" , "Xã Hòa Phong" , "Xã Hòa Phú" , "Xã Hòa Phước" , "Xã Hòa Sơn" , "Xã Hòa Tiến"]
-    //}
+    }
 
 }
 window.onload = function () {

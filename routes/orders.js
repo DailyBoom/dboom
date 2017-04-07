@@ -67,6 +67,8 @@ var isMerchant = function (req, res, next) {
 var hasShipping = function(obj) {
   if (!obj.shipping)
     return false;
+  if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.address && obj.shipping.city && obj.shipping.city == "KHÁC")
+    return true;
   if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.address && obj.shipping.city && obj.shipping.district && obj.shipping.ward)
     return true;
   return false;
@@ -137,7 +139,7 @@ var deliveryPrices = {
         "MÊ LINH": 45000,
         "THANH OAI": 45000,
         "THANH TRÌ": 45000
-    }
+    },
 };
 
 var getOrderCartTotal = function(order) {
@@ -148,7 +150,6 @@ var getOrderCartTotal = function(order) {
   });
   if (deliveryPrices[order.shipping.city.toUpperCase()])
     order.shipping_cost = deliveryPrices[order.shipping.city.toUpperCase()][order.shipping.district.toUpperCase()];
-
   if (order.coupon && order.coupon.type == 2) {
     order.discount = order.shipping_cost;
   }
@@ -350,7 +351,7 @@ router.post('/add_to_cart', function(req, res) {
       order.save(function(err) {
         if (err) {
           console.log(err);          
-          return res.status(500).json({ error: "Error with order" });          
+          return res.status(500).json({ error: "Error with order 1" });          
         }
         req.session.cart_order = order._id;
         return res.status(200).json({ success: true, message: "Product added" });
@@ -360,16 +361,16 @@ router.post('/add_to_cart', function(req, res) {
       Order.findOne({ _id: req.session.cart_order }, function(err, order) {
         if (err) {
           console.log(err);          
-          return res.status(500).json({ error: "Error with order" });          
+          return res.status(500).json({ error: "Error with order 2" });          
         }
         if (!order) {
-          return res.status(500).json({ error: "Error with order" });
+          return res.status(500).json({ error: "Error with order 3" });
         }
         order.cart.push({ product: product._id, quantity: req.body.quantity, option: req.body.option });
         order.save(function(err) {
           if (err) {
             console.log(err);          
-            return res.status(500).json({ error: "Error with order" });          
+            return res.status(500).json({ error: "Error with order 4" });          
           }
           return res.status(200).json({ success: true, message: "Product added" });
         });
