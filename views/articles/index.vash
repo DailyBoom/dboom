@@ -118,15 +118,17 @@
                     }
                 </ul>
             </div>
-            <h3 class="center">INSTAGRAM</h3>
             <div class="hide">
-                <!-- LightWidget WIDGET -->
-                @if (!model.is_mobile) {
-                    <iframe src="//lightwidget.com/widgets/dbe39ab3a81b57d8ae2fd819e848fd34.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 100%; border: 0; overflow: hidden;"></iframe>
-                }
-                else {
-                    <iframe src="//lightwidget.com/widgets/fa07348c00fa5bf89b967e09dfa383b7.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 100%; border: 0; overflow: hidden;"></iframe>
-                }
+                <h3 class="center">INSTAGRAM</h3>
+                <div class="hide">
+                    <!-- LightWidget WIDGET -->
+                    @if (!model.is_mobile) {
+                        <iframe src="//lightwidget.com/widgets/dbe39ab3a81b57d8ae2fd819e848fd34.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 100%; border: 0; overflow: hidden;"></iframe>
+                    }
+                    else {
+                        <iframe src="//lightwidget.com/widgets/fa07348c00fa5bf89b967e09dfa383b7.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 100%; border: 0; overflow: hidden;"></iframe>
+                    }
+                </div>
             </div>
         </div>
     </div>
