@@ -155,21 +155,18 @@
 				</header>
 				<div class="-content">
 					<div class="row">
+						@model.homepage.reviews.forEach(function(review) {
 						<div class="col-xs-12 col-md-4">
-							<div class="item-image">
-								<img src="@model.homepage.review_1_banner" class="img-responsive" alt="">
+							<div class="item-image col-xs-8">
+								<img src="@review.banner" class="img-responsive" alt="">
+							</div>
+							<div class="col-xs-4 text-center">
+								<img src="@review.avatar" class="img-circle" />
+								<div class="name">@review.name</div>
+								<div class="text">@review.text</div>
 							</div>
 						</div>
-						<div class="col-xs-12 col-md-4">
-							<div class="item-image">
-								<img src="@model.homepage.review_2_banner" class="img-responsive" alt="">
-							</div>
-						</div>
-						<div class="col-xs-12 col-md-4">
-							<div class="item-image">
-								<img src="@model.homepage.review_3_banner" class="img-responsive" alt="">
-							</div>
-						</div>
+						})
 					</div>
 				</div>
 			</section>

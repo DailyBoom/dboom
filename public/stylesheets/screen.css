@@ -674,3 +674,39 @@ input[type=search] {
 #hall-of-fame .item-image {
   height: 250px;
 }
+
+#reviews .col-md-4 {
+  border: 1px solid #1cc28b;
+  padding: 10px 0;
+  width: calc(33.33333333% - 20px) !important;
+  margin-right: 20px;
+  overflow: hidden;
+}
+
+#reviews .col-md-4:nth-last-child() {
+  margin-right: 0;
+}
+
+#reviews .img-responsive {
+  height: 240px;
+}
+
+#reviews .img-circle {
+  width: 40px;
+  height: 40px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+#reviews .name {
+  font-family: 'Brandon';
+  font-size: 14px;
+  color: #1cc28b;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#reviews .text {
+  font-family: 'Brandon';
+  font-size: 10px;
+}
