@@ -227,6 +227,7 @@ router.post('/orders/new', isAdmin, function(req, res) {
       phone_number: req.body.phone,
       address: req.body.address
     },
+    email: req.body.email,
     status: req.body.status,
     pay_method: req.body.pay_method,
     created_at: req.body.created_at,
@@ -234,7 +235,7 @@ router.post('/orders/new', isAdmin, function(req, res) {
     cart: req.body.products
   });
 
-  product.save(function(err) {
+  order.save(function(err) {
     return res.redirect('/orders/list');
   });
 });

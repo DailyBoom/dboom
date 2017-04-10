@@ -452,8 +452,8 @@ router.get('/products/naver', function(req, res) {
 });
 
 router.post('/products/search', function(req, res) {
-  Product.find({ extend: 4 }, '_id name brand price wholesale_price options').or([{ 'name': { $regex: req.body.term, $options: "i" } }, { 'brand': { $regex: req.body.term, $options: "i" } }]).exec(function(err, products) {
-    res.status(200).json({ products: products});
+  Product.find({ extend: 4 }, '_id name brand price wholesale_price options options_skin').or([{ 'name': { $regex: req.body.term, $options: "i" } }, { 'brand': { $regex: req.body.term, $options: "i" } }]).exec(function(err, products) {
+    res.status(200).json({ products: products });
   })
 })
 

@@ -62,7 +62,7 @@
                                         label: item.name + ' - ' + item.brand,
                                         value: item._id,
                                         price: item.wholesale_price,
-                                        options: item.options
+                                        options: item.options_skin
                                     };
                                 }));
                             }
@@ -76,7 +76,7 @@
                         $('.price').html(current_price + ui.item.price);
                         $(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
                         $.each(ui.item.options, function(index, value) {
-                            input.parent().parent().find('.option').find('select').append('<option value="'+index+'">'+value.name+'</option>');
+                            input.parent().parent().find('.option').find('select').append('<option value="'+index+'">'+value+'</option>');
                             $('select').material_select();                
                         });
                     },

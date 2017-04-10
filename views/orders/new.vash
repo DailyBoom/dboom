@@ -23,7 +23,7 @@
                         </div>
                         <div class="input-field col s6">
                             <label for="status">Status</label>
-                            <select id="status" name="status" class="browser-default">
+                            <select id="status" name="status">
                                 <option value=""></option>
                                 <option value="Submitted">Submitted</option>
                                 <option value="Waiting">Waiting</option>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="input-field col s6">
                             <label for="pay_method">Order Type</label>
-                            <select id="pay_method" name="pay_method" class="browser-default">
+                            <select id="pay_method" name="pay_method">
                                 <option value=""></option>
                                 <option value="0">COD</option>
                                 <option value="1">Bank Transfer</option>
@@ -84,6 +84,12 @@
         <script>
 	        $(document).ready(function() {
                 $(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+                $('.datepicker').pickadate({
+                    format: 'mm/dd/yyyy',
+                    min: true,
+                    selectMonths: true, // Creates a dropdown to control month
+                    selectYears: 15, // Creates a dropdown of 15 years to control year
+                });
                 $('select').material_select();
                 var autocomp_opt= {
                     source: function(request, response) {
@@ -101,7 +107,7 @@
                                         label: item.name + ' - ' + item.brand,
                                         value: item._id,
                                         price: item.price,
-                                        options: item.options
+                                        options: item.options_skin
                                     };
                                 }));
                             }
@@ -114,7 +120,7 @@
                         $('.price').html(current_price + ui.item.price);
                         $(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
                         $.each(ui.item.options, function(index, value) {
-                            input.parent().parent().find('.option').find('select').append('<option value="'+index+'">'+value.name+'</option>');
+                            input.parent().parent().find('.option').find('select').append('<option value="'+index+'">'+value+'</option>');
                             $('select').material_select();                
                         });
                     },
