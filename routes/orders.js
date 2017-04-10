@@ -236,6 +236,7 @@ router.post('/orders/new', isAdmin, function(req, res) {
   });
 
   order.save(function(err) {
+
     return res.redirect('/orders/list');
   });
 });
@@ -291,6 +292,11 @@ router.post('/wholesalers/orders/new', isMerchantOrAdmin, function(req, res) {
     getOrderCartRecap(order);
     console.log(order.totalOrderAmt);
     order.save(function(err) {
+      order.cart.forEach(function(item) {
+        item.product.options[item.option].quantity -= item.quantity;
+        item.product.markModified('options');
+        item.product.save();
+      });
       return res.redirect('/wholesalers/orders');
     });
   });
