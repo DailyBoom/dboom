@@ -229,7 +229,7 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         is_hot: req.body.is_hot,
         is_new: req.body.is_new,
         color: req.body.color,
-        boxProducts: req.body.extend == 3 && req.body.boxProducts[0] !== '' ? JSON.parse(JSON.stringify(req.body.boxProducts.filter(String))) : null,
+        boxProducts: (req.body.extend == 3 || req.body.extend == 5) && req.body.boxProducts[0] !== '' ? JSON.parse(JSON.stringify(req.body.boxProducts.filter(String))) : null,
         boxZone: req.body.boxZone,
         product_region: req.body.product_region,
         tags: req.body.tags
@@ -314,7 +314,7 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
     product.product_region = req.body.product_region;
     product.tags = req.body.tags;
     console.log(req.body.boxProducts);
-    if(req.body.extend == 3) {
+    if(req.body.extend == 3 || req.body.extend == 5) {
       product.boxProducts = req.body.boxProducts[0] !== '' ? JSON.parse(JSON.stringify(req.body.boxProducts.filter(String))) : null;
       product.url = product.url + '-' + product.boxZone;
     }

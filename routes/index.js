@@ -284,6 +284,8 @@ router.get('/shop/products/:url', function(req, res, next) {
 
 router.get('/shop/box/:url', function(req, res, next) {
   Product.findOne({ url: req.params.url }).populate('boxProducts').exec(function(err, product) {
+    if (!product)
+      return res.redirect('/');
     Product.find({ extend: 4, is_published: true, is_hot: true }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
       Comment.find( { product: product.id }).populate('user').exec(function(err, comments) {
         var current_quantity = 0;
