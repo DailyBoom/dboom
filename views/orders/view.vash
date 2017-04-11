@@ -20,166 +20,131 @@
 					<a href="#shipping_modal" class="green btn right modal-trigger">SENT</a>
 				}
 			}
-			 <h3 class="blue-grey-text text-darken-4">Order View</h3>
+			 <h3 class="blue-grey-text text-darken-4">Order #@model.order.id</h3>
 			 <br>
-			 <div class="col s12 m8 l8">
+			 <div class="col s12 m6 l6">
 			 	<div class="row blue-grey-text text-darken-3">
-					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
-						Order Id :
-					</span>
-					<span class="col s8 order-label">
-						&nbsp;@model.order.id
-					</span>
-					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
-						@model.__('user.recipient') :
-					</span>
-					<span class="col s8 order-label">
+					<label class=" order-label blue-grey-text text-darken-2 right-align">
+						@model.__('user.recipient')
+					</label>
+					<div class=" order-label">
                         &nbsp;
                         @if(model.order.shipping.full_name || (model.order.user && model.order.user.shipping)) {
     						@(model.order.shipping.full_name ? model.order.shipping.full_name : model.order.user.shipping.full_name)
                         }
-					</span>
-					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
-						@model.__('user.email') :
-					</span>
-					<span class="col s8 order-label">
+					</div>
+					<label class=" order-label blue-grey-text text-darken-2 right-align">
+						@model.__('user.email')
+					</label>
+					<div class=" order-label">
 						&nbsp;
 						@if(model.order.email || (model.order.user && model.order.user.shipping)) {
 							@(model.order.email ? model.order.email : model.order.user.email)
 						}
-					</span>
-					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
-						@model.__('user.phoneNumber') :
-					</span>
-					<span class="col s8 order-label">
+					</div>
+					<label class=" order-label blue-grey-text text-darken-2 right-align">
+						@model.__('user.phoneNumber')
+					</label>
+					<div class=" order-label">
                         &nbsp;
                         @if(model.order.shipping.phone_number || (model.order.user && model.order.user.shipping)) {
 						    @(model.order.shipping.phone_number ? model.order.shipping.phone_number : model.order.user.shipping.phone_number)
                         }
-					</span>
-					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
-						@model.__('user.address1') :
-					</span>
-					<span class="col s8 order-label">
+					</div>
+					<label class=" order-label blue-grey-text text-darken-2 right-align">
+						@model.__('user.address1')
+					</label>
+					<div class=" order-label">
                         &nbsp;
                         @if(model.order.shipping.address || (model.order.user && model.order.user.shipping)) {
-    						@(model.order.shipping.address ? model.order.shipping.address : model.order.user.shipping.address)
+    						@(model.order.shipping.address ? model.order.shipping.address : model.order.user.shipping.address) @model.order.shipping.district, @model.order.shipping.ward, @model.order.shipping.city
                         }
-					</span>
-					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
-						@model.__('user.city') :
-					</span>
-					<span class="col s8 order-label">
-						&nbsp;@model.order.shipping.district, @model.order.shipping.ward, @model.order.shipping.city
-					</span>
-					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
-						Thức thanh toán:
-					</span>
+					</div>
+					<label class=" order-label blue-grey-text text-darken-2 right-align">
+						Thức thanh toán
+					</label>
 					@if (model.order.pay_method == 0) { 
-						<span class="col s8 order-label">
+						<div class=" order-label">
 							&nbsp;Thanh toán khi nhận hàng
-						</span>
+						</div>
 					}
 					else if (model.order.pay_method == 1) { 
-						<span class="col s8 order-label">
+						<div class=" order-label">
 							&nbsp;Thanh toán thông qua chuyển khoản
-						</span>
+						</div>
 					}
-					<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
-						Thức giao sách:
-					</span>					
+					<label class=" order-label blue-grey-text text-darken-2 right-align">
+						Thức giao sách
+					</label>					
 					@if (model.order.deliv_method == 0) { 
-						<span class="col s8 order-label">&nbsp;Nhận Hàng trước 12h trưa.</span>
+						<div class=" order-label">&nbsp;Nhận Hàng trước 12h trưa.</div>
 					}
 					else if (model.order.deliv_method == 1) { 
-						<span class="col s8 order-label">&nbsp;Nhận hàng trước 6h chiều</span>
+						<div class=" order-label">&nbsp;Nhận hàng trước 6h chiều</div>
 					}
 					else if (model.order.deliv_method == 2) {
-						<span class="col s8 order-label">&nbsp;Nhận hàng vào buổi tối</span>
+						<div class=" order-label">&nbsp;Nhận hàng vào buổi tối</div>
 					}
 					<!-- -->
 					@if (model.order.coupon) {
-						<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
-							Sale Code:
-						</span>
-						<span class="col s8 order-label">@model.order.coupon.code</span>
+						<label class=" order-label blue-grey-text text-darken-2 right-align">
+							Sale Code
+						</label>
+						<div class=" order-label">@model.order.coupon.code</div>
 					}
 					@if (model.order.ship_code) {
-						<span class="col s4 order-label blue-grey-text text-darken-2 right-align">
-							Shipping Code:
-						</span>
-						<span class="col s8 order-label">@model.order.ship_code</span>
+						<label class=" order-label blue-grey-text text-darken-2 right-align">
+							Shipping Code
+						</label>
+						<div class=" order-label">@model.order.ship_code</div>
 					}
+					<div>
+					<label for="notes">Notes</label>
+					<form method="post" class="">
+						<textarea id="notes" name="notes" class="white" rows="20">@model.order.notes</textarea>
+						<button>Add Notes</button>
+					</form>
+					</div>
 			 	</div><!-- .row -->
 			 </div><!-- .col -->
-
-			@if (model.order.product) {
-				<div class="col s12 m6 l4">
-					<div class="row blue-grey-text text-darken-3">
-						<div class="summary-box white z-depth-1 right center-align">
-							<img class="responsive-img" src="@model.order.product.images[0]" alt="" />
-							<div class="check-price-box center">
-								<span class="check-item-name blue-grey-text text-darken-1 truncate"><b>@model.order.product.brand</b></span>
-								<span class="check-item-name blue-grey-text text-darken-2 truncate">@model.order.product.name<br>@model.order.option</span>
-								<span class="check-item-name blue-grey-text text-darken-2">+ <span id="delivery_price">@model.order.product.delivery_price</span> 배송비</span><br>
-								<span class="check-price blue-grey-text text-darken-3" id="product_price"> @(model.order.quantity * model.order.product.price + model.order.product.delivery_price)</span>
-							</div>
-						</div>
-					</div><!-- .row -->
-				</div><!-- .col -->
-			 }
-			 else if (model.order.cart) {
-				<div class="checkout-mall">
-					<div class="col s12 m6 l8 blue-grey-text text-darken-3">
-						<h5>THÔNG TIN ĐƠN HÀNG</h5>
-						<div class="col s12 white z-depth-1 cart">
-							<div class="col s12 cart-header center"><span class="col s9">TÊN SẢN PHẨM</span><span class="col s3">GIÁ</span></div>
-							@model.order.cart.forEach(function(item, index) {
-								@if(model.user.admin || (model.user.role == 'merchant' && model.user.id == item.product.merchant_id))
-								<div class="col s12 cart-item">
-									<a href="/mall/product/@item.product.id"><img class="col s3" src="@item.product.images[0]" /></a>
-									<div class="col s6">
-										<a href="/mall/product/@item.product.id" class="product-name blue-grey-text col s12">@item.product.name</a>
-										@if (item.product.options[item.option ? item.option : 0].name !== '') {
-											<div class="col s12"><div class="product-color" style="background-color: @item.product.options[item.option ? item.option : 0].name;"></div></div>
-											@if (item.product.category[0] == 59 || item.product.category[0] == 60 || (item.product.category[0] >= 38 && item.product.category[0] <= 43)) {
-												<div class="option-name">@item.product.options_skin[item.option]</div>
-											}
+			<div class="checkout-mall">
+				<div class="col s12 m6 l6 blue-grey-text text-darken-3">
+					<h5>THÔNG TIN ĐƠN HÀNG</h5>
+					<div class="col s12 white z-depth-1 cart">
+						@model.order.cart.forEach(function(item, index) {
+							@if(model.user.admin || (model.user.role == 'merchant' && model.user.id == item.product.merchant_id))
+							<div class="col s12 cart-item">
+								<div class="col s6">
+									<a href="/mall/product/@item.product.id" class="product-name blue-grey-text col s12">@item.product.name</a>
+									@if (item.product.options[item.option ? item.option : 0].name !== '') {
+										<div class="col s12"><div class="product-color" style="background-color: @item.product.options[item.option ? item.option : 0].name;"></div></div>
+										@if (item.product.category[0] == 59 || item.product.category[0] == 60 || (item.product.category[0] >= 38 && item.product.category[0] <= 43)) {
+											<div class="col s12 option-name">@item.product.options_skin[item.option]</div>
 										}
-										<div class="col s12">SỐ LƯỢNG: @item.quantity</div>
-									</div>
-									<div class="col s3 center">
-										@if (model.order.type == "wholesale") {
-											<p class="product-price">@(item.product.price * item.quantity)</p>
-										}
-										else {
-											<p class="product-price">@(item.product.price * item.quantity)</p>
-										}
-									</div>
+									}
 								</div>
-							})
-						</div>
+								<div class="col s3 center">
+									X@item.quantity
+								</div>
+								<div class="col s3 center">
+									@if (model.order.type == "wholesale") {
+										<p class="product-price">@(item.product.price * item.quantity)</p>
+									}
+									else {
+										<p class="product-price">@(item.product.price * item.quantity)</p>
+									}
+								</div>
+							</div>
+						})
+					</div>
+					<div class="">
+						<div>Khuyến mãi: - <span class="price">@model.order.discount</span></div>
+						<div>Phí vận chuyển: <span class="price">@model.order.shipping_cost</span></div>
+						<div class="amount">Thành tiền: <span class="price">@model.order.totalOrderAmt</span></div>
 					</div>
 				</div>
-			 }
-			 <div class="col s8">
-				<div>Khuyến mãi: - <span class="price">@model.order.discount</span></div>
-				<div>Phí vận chuyển: <span class="price">@model.order.shipping_cost</span></div>
-				<div class="amount">Thành tiền: <span class="price">@model.order.totalOrderAmt</span></div>
 			</div>
 		 </div><!-- .row -->
-
-	@if (model.user.admin == 1) {
-		 <div class="row">
-			 <div class="col s12 m12 l12">
-			 	<h4>Notes</h4>
-				<form method="post" class="col l8">
-					<textarea id="notes" name="notes" class="white" rows="20">@model.order.notes</textarea>
-					<button>Add Notes</button>
-				</form>
-			 </div>
-		 </div><!-- .row -->
-	 }
 
    </div><!-- .container -->
 	 <script>
