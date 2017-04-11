@@ -71,7 +71,7 @@ var isMerchantOrAdmin = function (req, res, next) {
 
 router.get('/products/list', isMerchantOrAdmin, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
-  var query = Product.paginate({}, { page: page, limit: 9, sort: { 'scheduled_at' : -1 } });
+  var query = {};
   if (req.query.type == 1) {
     query.where('extend').gte(1).lte(3);
   }
@@ -81,8 +81,9 @@ router.get('/products/list', isMerchantOrAdmin, function(req, res) {
   if (req.query.s) {
     query.or([{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }])
   }
-  query.exec(function(err, Products, pageCount, total) {
-    res.render('products/index', { products: Products, pages: paginate.getArrayPages(req)(3, pageCount, page), currentPage: page, lastPage: Math.ceil(total / 9) });
+  Product.paginate({}, { page: page, limit: 9, sort: { 'scheduled_at' : -1 } });
+  query.then(function(result) {
+    res.render('products/index', { products: result.docs, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / 9) });
   });
 });
 

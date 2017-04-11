@@ -147,27 +147,27 @@ var category = {
 }
 
 router.get('/mall', function(req, res, next) {
-  var query = Product.find({ extend: 4, is_published: true }, {}, {});
+  var query = {};
   var page = req.query.page ? req.query.page : 1;
   var per_page = req.is_mobile ? 8 : 16;
-  if (req.query.group) {
-    query.where('category').in(group[req.query.group]);
-    query.sort({ 'position_group' : 1 });
-  }
-  else {
-    query.sort({ 'position' : 1 });
-  }
-  if (req.query.category) {
-    query.where('category', req.query.category);
-  }
-  if (req.query.s) {
-    query.or([{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }])
-  }
+//  if (req.query.group) {
+//    query.where('category').in(group[req.query.group]);
+//    query.sort({ 'position_group': 1 });
+//  }
+//  else {
+//    query.sort({ 'position': 1 });
+//  }
+//  if (req.query.category) {
+//    query.where('category', req.query.category);
+//  }
+//  if (req.query.s) {
+//    query.or([{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }])
+//  }
   //query.where('product_region.'+req.session.zone, true);
-  query.paginate(page, per_page, function(err, products, total) {
+  Product.paginate({ extend: 4, is_published: true }, { page: page, limit: per_page, sort: { 'position' : 1 } }).then(function(result) {
     Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
       Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
-        res.render('mall', { title: "Sản Phẩm Bán Chạy Nhất", description: "", products: products, hotProducts: hotProducts, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });
+        res.render('mall', { title: "Sản Phẩm Bán Chạy Nhất", description: "", products: result.docs, hotProducts: hotProducts, boxes: boxes, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / per_page) });
       });
     });
   });

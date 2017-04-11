@@ -302,6 +302,9 @@ section .-content {
   font-weight: bold;
   margin: 0.4em 0;
   color: rgb(51, 51, 51);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 /* line 362, ../sass/screen.scss */
@@ -709,4 +712,44 @@ input[type=search] {
 #reviews .text {
   font-family: 'Brandon';
   font-size: 10px;
+}
+/* line 638, ../sass/screen.scss */
+.review-content {
+  margin: 0.5em 0;
+  padding: 1.5em 0;
+  border-top: 1px solid #F5F5F5;
+}
+/* line 642, ../sass/screen.scss */
+.review-content p {
+  text-align: justify;
+}
+
+/* line 647, ../sass/screen.scss */
+.no-top-border {
+  border-top: none;
+}
+
+/* line 651, ../sass/screen.scss */
+#mall-intro {
+  margin-top: 0 !important;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+/* line 656, ../sass/screen.scss */
+.mall-intro-text {
+  padding: 0 5em 0 1em;
+}
+/* line 658, ../sass/screen.scss */
+.mall-intro-text p {
+  text-align: justify;
+}
+
+/* line 663, ../sass/screen.scss */
+.big-titled {
+  font-size: 2em;
+}
+
+/* line 667, ../sass/screen.scss */
+p {
+  line-height: 1.5;
 }
