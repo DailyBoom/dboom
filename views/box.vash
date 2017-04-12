@@ -81,7 +81,7 @@
 							<button id="checkout" class="add_cart" data-id="@model.product.id" type="button">THÊM BOX VÀO GIỎ HÀNG</button>
 							}
 							else {
-								<span class="price">SOLD OUT</span>
+								<span>SOLD OUT</span>
 								<button id="checkout" onclick="alert('Chúng tôi xin lỗi hộp làm đẹp bạn muốn đặt đã hết hàng.');" type="button">THÊM BOX VÀO GIỎ HÀNG</button>															
 							}
 						</div>
@@ -172,7 +172,7 @@
 							<a href="/shop/products/@product.url"><img src="@product.images[0]" /></a>
 							<div class="prod_brand">@product.brand</div>
 							<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
-							<div class="prod_price">@product.price<span class="currency">đ</span></div>
+							<div class="prod_price">@product.price</div>
 						</div>
 					})
 				</div>

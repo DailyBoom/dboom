@@ -569,8 +569,7 @@
     <script src="/javascripts/Chart.js"></script>
     <script src='/javascripts/masonry.pkgd.min.js'></script>
     <script src='/javascripts/spectrum.js'></script>
-		<script src="/javascripts/formatCurrency/jquery.formatCurrency-1.4.0.min.js"></script>
-		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.ko-KR.js"></script>
+		<script src="/javascripts/formatCurrency/jquery.formatCurrency.js"></script>
 		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.vi-VN.js"></script>
     <script src="/javascripts/popOut.js"></script>
     <script src="/javascripts/imgToSvg.js"></script>
