@@ -82,7 +82,7 @@
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="/stylesheets/beta.css">
 		<link rel="stylesheet" href="/stylesheets/animate.css">
-    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.min.css">
     <link rel='stylesheet' href='/stylesheets/spectrum.css' />
 		<!-- jQuery -->
 		
