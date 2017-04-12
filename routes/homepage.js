@@ -37,6 +37,7 @@ var storage = multers3({
 var upload = multer({ storage: storage });
 
 router.get('/homepage/edit', isAdmin, function(req, res) {
+    console.log(config.Amazon.accessKeyId);
     res.render('homepage/edit');
 });
 

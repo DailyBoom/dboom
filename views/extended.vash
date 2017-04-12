@@ -56,54 +56,53 @@
 	</div>
 	<div class="col-sm-6 brief-info">
 		<div class="row">
-		<div class="col-xs-12">
-			<span class="subtitle">@model.product.brand</span>
-		</div>
-		<div class="col-xs-12 top-space">
-			<span class="product-title-light">@model.product.name</span>
-		</div>
-		<div class="rating col-xs-12" data-rating="@model.avg">
-		</div>
-		<div class="col-xs-12 top-space">
-			<p>@model.product.description</p>
-		</div>
-		<div class="col-xs-12 top-space">
-			<span class="subtitle">Giá</span>
-		</div>
-		<div class="col-xs-12 left-aligned top-space">
-			<span class="highlight price">@model.product.price</span>
-		</div>
-		<div class="col-xs-12 top-space">
-			<span class="subtitle">MÀU SẮC</span>
-		</div>
-		<div class="col-xs-12 top-space">
-			<ul class="product-options">
-				@model.product.options.forEach(function(option, index){
-					@if (option.quantity > 0) {
-					<li data-option="@index" class="@(index == 0 ? 'active' : '') option">
-						<div class="option-color" style="background-color:@option.name;"></div>
-						@if (model.product.category[0] == 60 || model.product.category[0] == 59 || (model.product.category[0] >= 38 && model.product.category[0] <= 43)) {
-							<div class="option-name">@model.product.options_skin[index]</div>
+			<div class="col-xs-12">
+				<span class="subtitle">@model.product.brand</span>
+			</div>
+			<div class="col-xs-12 top-space">
+				<span class="product-title-light">@model.product.name</span>
+			</div>
+			<div class="rating col-xs-12" data-rating="@model.avg">
+			</div>
+			<div class="col-xs-12 top-space">
+				<span class="subtitle">Giá</span>
+			</div>
+			<div class="col-xs-12 left-aligned top-space">
+				<span class="highlight price">@model.product.price</span>
+			</div>
+			<div class="col-xs-12 top-space">
+				<span class="subtitle">Số lượng</span>
+			</div>
+
+			<div class="col-xs-12 col-sm-3 top-space">
+				<input type="number" name="quantity" id="quantity" value="1">
+			</div>
+			<div class="col-xs-12 col-sm-9 top-space">
+				<button data-id="@model.product.id" type="button" name="button" class="add_cart btn btn-primary">THÊM VÀO GIỎ HÀNG</button>
+			</div>
+			@if (!(model.product.options.length == 1 && model.product.options[0].name == '')) {
+			<div class="col-xs-12 top-space">
+				<span class="subtitle">MÀU SẮC</span>
+			</div>
+			<div class="col-xs-12 top-space">
+				<ul class="product-options">
+					@model.product.options.forEach(function(option, index){
+						@if (option.quantity > 0) {
+						<li data-option="@index" class="@(index == 0 ? 'active' : '') option">
+							<div class="option-color" style="background-color:@option.name;"></div>
+							@if (model.product.category[0] == 60 || model.product.category[0] == 59 || (model.product.category[0] >= 38 && model.product.category[0] <= 43)) {
+								<div class="option-name">@model.product.options_skin[index]</div>
+							}
+							<img src="@option.photo" class="hide option-photo" />
+						</li>
 						}
-						<img src="@option.photo" class="hide option-photo" />
-					</li>
-					}
-				})
-			</ul>
-
-		</div>
-		<div class="col-xs-12 top-space">
-			<span class="subtitle">Số lượng</span>
-		</div>
-
-		<div class="col-xs-12 col-sm-3 top-space">
-			<input type="number" name="quantity" id="quantity" value="1">
-		</div>
-		<div class="col-xs-12 col-sm-9 top-space">
-			<button data-id="@model.product.id" type="button" name="button" class="add_cart btn btn-primary">THÊM VÀO GIỎ HÀNG</button>
-
-		</div>
-
+					})
+				</ul>
+			</div>
+			}
+			<div class="col-xs-12 top-space">
+				<p>@model.product.description</p>
+			</div>
 		</div>
 
 	</div>
@@ -185,7 +184,37 @@
 			Reviews
 		</header>
 		<div class="-content">
-
+          <div class="row">
+			@model.comments.forEach(function(comment) {
+            <!-- Review box begins here -->
+            <div class="col-xs-12">
+              <div class="row review-content no-top-border">
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                  <div class="row">
+                    <span class="col-xs-12">@(comment.user ? comment.user.username : comment.name)</span>
+                    <span class="col-xs-12 -space">@model.moment(comment.created_at).format("DD.MM.YYYY")</span>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-7">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <ul class="rating">
+                      </ul>
+                    </div>
+                    <span class="col-xs-12 -space subtitle">
+                    </span>
+                    <p class="col-xs-12 -space">
+						@comment.body
+                    </p>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                </div>
+              </div>
+            </div>
+            <!-- End of the review -->
+			})
+			</div>
 		</div>
 	</section>
 </div>

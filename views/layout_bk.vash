@@ -192,7 +192,7 @@
     <div class="blank">
     </div>
     <div id="logo-container">
-      <img src="images/logo.png" alt="logo" height="70px" >
+      <img src="/images/logo.png" alt="logo" height="70px" >
     </div>
     <div id="menu" class="sticky-wrapper">
       <div class="container">
