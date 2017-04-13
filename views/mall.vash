@@ -39,7 +39,7 @@
                   <span class="col-xs-12 product-price">
                     @product.price
                   </span>
-                  <div class="col-xs-12 product-add">
+                  <div class="col-xs-12 product-add top-space">
                     <button class="btn btn-secondary" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
                   </div>
 

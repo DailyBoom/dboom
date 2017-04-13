@@ -288,6 +288,7 @@ section .-content {
 /* line 347, ../sass/screen.scss */
 .product {
   text-align: center;
+  margin-bottom: 20px;
 }
 
 /* line 352, ../sass/screen.scss */
@@ -747,9 +748,24 @@ input[type=search] {
 /* line 663, ../sass/screen.scss */
 .big-titled {
   font-size: 2em;
+  color: #333;
 }
 
 /* line 667, ../sass/screen.scss */
 p {
   line-height: 1.5;
+}
+
+#feed-latest .cover {
+  height: 290px;
+  background-size: cover !important;
+  background-position: center center !important;
+}
+
+#blog-posts .product .cover {
+  height: 200px;
+  background-size: cover !important;
+  background-position: center center !important;
+  margin-left: 15px;
+  width: calc(100% - 30px);
 }

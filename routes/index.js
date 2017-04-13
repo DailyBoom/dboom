@@ -380,19 +380,14 @@ var smart_substr = function(str, len) {
 }
 
 router.get('/blog', function(req, res, next) {
-  var query = Article.find({ published: true, video: {$in: [null, false]} }, {}, { sort: { 'created_at': -1 } });
   if (req.query.tag) {
     query.where('tags', req.query.tag);
   }
   var page = req.query.page ? req.query.page : 1;
-  var per_page = 9;
-  query.paginate(page, per_page, function(err, articles, total) {
-    if (err) {
-      console.log(err);
-    }
-    Article.find({ published: true, video: true }, {}, { sort: { 'created_at': -1 } }).limit(3).exec(function(err, videos) {
-      console.log(articles.length);
-      res.render('articles/index', { articles: articles, videos: videos, striptags: striptags, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });
+  var per_page = 10;
+  Article.paginate({ published: true, video: {$in: [null, false]} }, { page: page, limit: per_page, sort: { 'created_at' : -1 } }).then(function(result) {
+    Article.findOne({ published: true, video: true }, {}, { sort: { 'created_at': -1 } }).exec(function(err, video) {
+      res.render('articles/index', { articles: result.docs, video: video, striptags: striptags, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / per_page) });
     });
   });
 });
