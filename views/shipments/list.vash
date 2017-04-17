@@ -196,7 +196,7 @@
 </div><!-- .container -->
 <script>
 $(document).ready(function() {
-	$(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+	$(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
 	$('select').material_select();
 	$('#type').on('change', function() {
 		$('#type_form').submit();

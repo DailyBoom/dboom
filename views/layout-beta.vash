@@ -569,6 +569,7 @@
     <script src="/javascripts/Chart.js"></script>
     <script src='/javascripts/masonry.pkgd.min.js'></script>
     <script src='/javascripts/spectrum.js'></script>
+    <script src="https://cdn.jsdelivr.net/autonumeric/2.0.0/autoNumeric.min.js"></script>
 		<script src="/javascripts/formatCurrency/jquery.formatCurrency.js"></script>
 		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.vi-VN.js"></script>
     <script src="/javascripts/popOut.js"></script>
@@ -583,8 +584,16 @@
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <!-- Modernizr -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-      @html.block("script")
       <script type="text/javascript">
+      const autoNumericOptions = {
+          digitGroupSeparator        : '.',
+          decimalCharacter           : ',',
+          decimalCharacterAlternative: '.',
+          currencySymbol             : '₫',
+          currencySymbolPlacement    : 's',
+          roundingMethod             : 'U',
+          allowDecimalPadding        : false
+      };
         // Show sideNav
         var is_mobile = @model.is_mobile
         $('.button-collapse').sideNav({
@@ -603,7 +612,7 @@
             $('.area-header a.zone-hide').first().toggleClass('zone-view-first');
             $('.area-header a.zone-hide').nextAll('.zone-hide').toggleClass('zone-view-second');
           });
-          $(".product-price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+          $(".product-price").autoNumeric('init', autoNumericOptions);
           moment().locale('vi');
           $("#birthday, .birthday").combodate({
               firtItem: 'name',
@@ -640,6 +649,7 @@
           });
         });
 	    </script>
+      @html.block("script")
       <script type="text/javascript">
         var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
         (function(){

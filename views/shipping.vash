@@ -125,7 +125,7 @@
         <script src="/javascripts/dependentDrop.js" type="text/javascript"></script>
 		<script>
 		 $(document).ready(function(){
-            $(".price, .total, .total-dc, .total-amount").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+            $(".price, .total, .total-dc, .total-amount").autoNumeric('init', autoNumericOptions);
 		 })
          $(window).load(function() {
             var ship = @(model.order.shipping ? 'true' : 'false');

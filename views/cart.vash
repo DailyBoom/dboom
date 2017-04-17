@@ -79,7 +79,7 @@
     })
     @html.block("script", function(model) {
         <script>
-            $(".total, .total-dc, .total-amount").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+            $(".total, .total-dc, .total-amount").autoNumeric('init', autoNumericOptions);
             $('.product-quantity .fa').on("click", function() {
                 $quantity = $(this).parent().find("input").val();
                 if ($(this).hasClass('fa-minus')) {

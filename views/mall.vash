@@ -104,9 +104,7 @@
 						<div class="prod_brand">@product.brand</div>
 						<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
 						@if (product.quantity > 0) {
-						<span class="prod_price">
-							@product.price	
-						</span>
+						<span class="prod_price">@product.price</span>
 						}
 						else {
 							<span class="sold-out">
@@ -181,7 +179,7 @@
 	})
 	@html.block("script", function(model) {
 	<script>
-		$(".mall-price-o, .mall-price-n, .prod_price, .old_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+		$(".mall-price-o, .mall-price-n, .prod_price, .old_price").autoNumeric('init', autoNumericOptions);
 		$(".add_cart").on("click", function() {
 			var id = $(this).data("id");
 			$.ajax({

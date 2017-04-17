@@ -99,7 +99,7 @@
 				});
 			});
 			$('.parallax').parallax();
-			$("#deposit_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+			$("#deposit_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
 		});
 		</script>
 	})

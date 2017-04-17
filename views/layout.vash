@@ -104,7 +104,7 @@
 		<script src="/javascripts/moment-timezone-with-data.js"></script>
     <!-- Custom JS -->
     <script src='/javascripts/spectrum.js'></script>
-		<script src="/javascripts/formatCurrency/jquery.formatCurrency-1.4.0.min.js"></script>
+    <script src="/javascripts/formatCurrency/jquery.formatCurrency-1.4.0.min.js"></script>
 		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.ko-KR.js"></script>
 		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.vi-VN.js"></script>
     <script src="/javascripts/popOut.js"></script>
@@ -403,7 +403,7 @@
     }
     <script>
       $(document).ready(function(){
-        $(".cart-price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+        $(".cart-price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
         $(document).on('click', '.toast-close', function() {
             $(this).parent().fadeOut(function(){
                 $(this).remove();

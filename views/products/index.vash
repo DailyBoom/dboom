@@ -106,7 +106,7 @@ $(document).ready(function() {
 		selectMonths: true, // Creates a dropdown to control month
 		selectYears: 15, // Creates a dropdown of 15 years to control year
 	});
-	$(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+	$(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
 	$('select').material_select();
 	$('#type').on('change', function() {
 		$('#type_form').submit();

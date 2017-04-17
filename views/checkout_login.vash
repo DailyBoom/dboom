@@ -51,7 +51,7 @@
                             <label for="birthday" class="bday">Ngày sinh</label>
                             <input id="birthday" class="birthday" name="birthday" type="text" />
                             <div class="gender">
-                            <label>Giới tính</label><input name="gender" type="radio" value="0" id="c_male" /><label for="c_male" class="sub">Nam</label><input name="gender" type="radio" value="0" id="c_female" /><label for="c_female" class="sub">Nữ</label>
+                                <label>Giới tính</label><input name="gender" type="radio" value="0" id="c_male" /><label for="c_male" class="sub">Nam</label><input name="gender" type="radio" value="0" id="c_female" /><label for="c_female" class="sub">Nữ</label>
                             </div>
                             <div class="terms">
                                 Khi nhấn đăng ký, bạn đã đồng ý thực hiện mọi giao dịch mua bán theo <a href="/terms">điều kiện sử dụng và chính sách</a> và chính sách
@@ -119,7 +119,7 @@
 	@html.block("script", function(model) {
         <script type="text/javascript">
             $(document).ready(function(){
-                $(".price, .total, .total-dc, .total-amount").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+                $(".price, .total, .total-dc, .total-amount").autoNumeric('init', autoNumericOptions);
                 if ($('#login_btn').is(':checked')) {
                     $('#c_login').removeClass('hide');
                     $('#c_signup').addClass('hide');

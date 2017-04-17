@@ -11,9 +11,7 @@
 					<div class="prod_brand">@product.brand</div>
 					<div class="prod_name"><a href="/shop/box/@product.url">@product.name</a></div>
 					@if (product.quantity > 0) {
-						<span class="prod_price">
-							@product.price	
-						</span>
+						<span class="prod_price">@product.price</span>
 					}
 					else {
 						<span class="sold-out">
@@ -299,9 +297,7 @@
 					<div class="prod_brand">@product.brand</div>
 					<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
 					@if (product.quantity > 0) {
-						<span class="prod_price">
-							@product.price	
-						</span>
+						<span class="prod_price">@product.price</span>
 					}
 					else {
 						<span class="sold-out">
@@ -329,9 +325,7 @@
 					<div class="prod_brand">@product.brand</div>
 					<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
 					@if (product.quantity > 0) {
-						<span class="prod_price">
-							@product.price	
-						</span>
+						<span class="prod_price">@product.price</span>
 					}
 					else {
 						<span class="sold-out">
@@ -381,7 +375,7 @@
 				}
 			});
 		});
-		$(".item_price, .item_old_price, .prod_price, .old_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+		$(".item_price, .item_old_price, .prod_price, .old_price").autoNumeric('init', autoNumericOptions);
 		var owl = $("#individual:not(.extra) .row");
 		owl.owlCarousel({
 			items : 4,

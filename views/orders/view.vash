@@ -149,7 +149,7 @@
    </div><!-- .container -->
 	 <script>
 	 $(document).ready(function(){
-		$("#product_price, #product_price_mobile, #delivery_price, .product-price, .price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+		$("#product_price, #product_price_mobile, #delivery_price, .product-price, .price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
 
 	 });
 	 </script>

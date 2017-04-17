@@ -30,7 +30,7 @@
 	    @html.block("script", function(model) {
         <script>
         $(document).ready(function(){
-            $(".mall-price-o, .mall-price-n, .prod_price, .old_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+            $(".mall-price-o, .mall-price-n, .prod_price, .old_price").autoNumeric('init', autoNumericOptions);
             $( "#sortable" ).sortable({
                 update: function (event, ui) {
                     $('.position').each(function (index) {

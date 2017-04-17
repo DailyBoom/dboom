@@ -76,7 +76,7 @@
     </div>
     <script>
         $(document).ready(function() {
-            $(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+            $(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
         });
         var sales = @html.raw(model.sales)
         var dates = [];

@@ -148,7 +148,7 @@
 			$(document).ready(function(){
                 var shipping = 0;
                 var cart_total = @model.cart_total;
-				$(".price, .total, .total-dc, .total-amount, .total-delivery").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+				$(".price, .total, .total-dc, .total-amount, .total-delivery").autoNumeric('init', autoNumericOptions);
                 $("#checkout_btn").on("click", function() {
                     $.ajax({
                         type: "POST",
