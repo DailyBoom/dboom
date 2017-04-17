@@ -14,7 +14,7 @@
 			}
 			</div>
 		</h3>
-		<a href="/orders/new" class="btn right">New Order</a>		
+		<a href="@(model.wholesaler ? '/wholesalers/orders/new' : '/orders/new')" class="btn right">New Order</a>
 		<table class="responsive-table bordered highlight table-sm table-orders">
 			<thead class="blue-grey darken-2 blue-grey-text text-lighten-5">
 				<tr>

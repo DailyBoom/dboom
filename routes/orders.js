@@ -271,7 +271,7 @@ router.get('/wholesalers/orders', isMerchantOrAdmin, function(req, res) {
   if (req.query.status)
     query.where('status').equals(req.query.status);
   query.paginate(page, 10, function(err, orders, total) {
-    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
+    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '', wholesaler: true });
   });
 });
 
