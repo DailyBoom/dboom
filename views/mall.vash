@@ -41,7 +41,7 @@
                     @product.price
                   </span>
                   <div class="col-xs-12 product-add top-space">
-                    <button class="btn btn-secondary" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
+                    <button class="btn btn-secondary add-cart" data-id="@product.id" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
                   </div>
 
                 </div>
@@ -75,7 +75,7 @@
 })
 <script>
 	$(".mall-price-o, .mall-price-n, .prod_price, .old_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
-	$(".add_cart").on("click", function() {
+	$(".add-cart").on("click", function() {
 		var id = $(this).data("id");
 		$.ajax({
 			type: "POST",
@@ -84,11 +84,10 @@
 			data: {
 				product_id: id,
 				quantity: 1,
-				option: 1
+				option: '0'
 			},
 			success: function (res) {
-				Materialize.toast(res.message, 4000);
-				$('form input, form textarea').val("");
+				window.location = '/cart';
 			},
 			error: function (res) {
 				Materialize.toast(res.responseJSON.message, 4000);

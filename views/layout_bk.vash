@@ -180,10 +180,20 @@
             </ul>
           </div>
           <div class="col-md-6">
-            <ul class="right-part">
-              <li><i class="fa fa-shopping-bag"></i>Giỏ hàng</li>
-              <li><a href="/login"><i class="fa fa-user-circle-o"></i>Đăng nhập/Đăng ký</a></li>
+            <ul class="pull-left">
               <li><input type="search" placeholder="Tìm kiếm"></li>
+            </ul>
+            <ul class="right-part">
+              @if(model.cart) {
+                <li><a href="/cart"><i class="fa fa-shopping-bag"></i>Giỏ hàng (@model.cart.length)</a></li>
+              }
+              @if (!model.user) {
+                <li><a href="/login"><i class="fa fa-sign-in"></i>Đăng nhập/Đăng ký</a></li>
+              }
+              else {
+                <li><a href="/mypage"><i class="fa fa-user-circle-o"></i>My Page</a></li>
+                <li><a href="/logout"><i class="fa fa-sign-out"></i>@model.__('logout')</a></li>
+              }
             </ul>
           </div>
         </div>

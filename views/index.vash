@@ -93,7 +93,7 @@
 									@product.price
 								</span>
 								<div class="col-xs-12 product-add">
-								<button class="btn btn-default" type="button" name="button">Add to cart</button>
+								<button class="btn btn-default add-cart" data-id="@product.id" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
 								</div>
 							</div>
 						</div>
@@ -112,11 +112,9 @@
 								</a>
 								<span class="col-xs-12 product-brand">@product.brand</span>
 								<a href="/shop/products/@product.url" class="col-xs-12 product-name">@product.name</a>
-								<span class="col-xs-12 product-price">
-									@product.price
-								</span>
+								<span class="col-xs-12 product-price">@product.price</span>
 								<div class="col-xs-12 product-add">
-								<button class="btn btn-default" type="button" name="button">Add to cart</button>
+								<button class="btn btn-default add-cart" data-id="@product.id" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
 								</div>
 							</div>
 						</div>
