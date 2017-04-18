@@ -55,7 +55,6 @@ var stateObject = {
     //     "Liên Chiểu": ["Phường Hòa Hiệp Bắc" , "Phường Hòa Hiệp Nam" , "Phường Hòa Khánh Bắc" , "Phường Hòa Khánh Nam" , "Phường Hòa Minh"],
     //     "Huyện Hòa Vang": ["Xã Hòa Bắc" , "Xã Hòa Châu" , "Xã Hòa Khương" , "Xã Hòa Liên" , "Xã Hòa Nhơn" , "Xã Hòa Ninh" , "Xã Hòa Phong" , "Xã Hòa Phú" , "Xã Hòa Phước" , "Xã Hòa Sơn" , "Xã Hòa Tiến"]
     }
-
 }
 window.onload = function () {
     var stateSel = document.getElementById("city"),

@@ -189,11 +189,10 @@
 				data: {
 					product_id: id,
 					quantity: 1,
-					option: 1
+					option: '0'
 				},
 				success: function (res) {
-					Materialize.toast(res.message, 4000);
-					$('form input, form textarea').val("");
+					window.location = '/cart';
 				},
 				error: function (res) {
 					Materialize.toast(res.responseJSON.message, 4000);

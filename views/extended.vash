@@ -146,7 +146,7 @@
 							<div id="options">
 								@model.product.options.forEach(function(option, index){
 									@if (option.quantity > 0) {
-									<div data-option="@index" class="@(index == 0 ? 'active' : '') option">
+									<div data-option="@index" class="option">
 										<div class="option-color" style="background-color:@option.name;"></div>
 										@if (model.product.category[0] == 60 || model.product.category[0] == 59 || (model.product.category[0] >= 38 && model.product.category[0] <= 43)) {
 											<div class="option-name">@model.product.options_skin[index]</div>
@@ -221,7 +221,7 @@
 	@html.block("script", function(model) {
 	<script type="text/javascript">
 		$(document).ready(function(){
-			
+			$('.options .option').eq(0).addClass('active');
 			$('.options .option').on('click', function() {
 				$('.options .option').removeClass('active');
 				$(this).addClass('active');
