@@ -11,6 +11,7 @@ var Partner = require('../models/partner');
 var Article = require('../models/article');
 var Behavior = require('../models/behavior');
 var Homepage = require('../models/homepage');
+var Mall = require('../models/mall');
 var smtpTransport = require('nodemailer-smtp-transport');
 var config = require('config-heroku');
 var fs = require("fs");
@@ -147,16 +148,16 @@ var category = {
 }
 
 router.get('/mall', function(req, res, next) {
-  var query = {};
+  var mall = null;
+  var query = { extend: 4, is_published: true };
   var page = req.query.page ? req.query.page : 1;
   var per_page = req.is_mobile ? 8 : 16;
-//  if (req.query.group) {
-//    query.where('category').in(group[req.query.group]);
-//    query.sort({ 'position_group': 1 });
-//  }
-//  else {
-//    query.sort({ 'position': 1 });
-//  }
+  var option = { page: page, limit: per_page, sort: { 'position' : 1 } };
+  if (req.query.group) {
+    query['category'] = { $in: group[req.query.group] };
+    option.sort = { 'position_group': 1 };
+    mall = req.query.group;
+  }
 //  if (req.query.category) {
 //    query.where('category', req.query.category);
 //  }
@@ -164,10 +165,12 @@ router.get('/mall', function(req, res, next) {
 //    query.or([{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }])
 //  }
   //query.where('product_region.'+req.session.zone, true);
-  Product.paginate({ extend: 4, is_published: true }, { page: page, limit: per_page, sort: { 'position' : 1 } }).then(function(result) {
+  Product.paginate(query, option).then(function(result) {
     Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
       Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
-        res.render('mall', { title: "Sản Phẩm Bán Chạy Nhất", description: "", products: result.docs, hotProducts: hotProducts, boxes: boxes, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / per_page) });
+        Mall.findOne({ category: mall }, function(err, mall) {
+          res.render('mall', { title: "Sản Phẩm Bán Chạy Nhất", description: "", products: result.docs, hotProducts: hotProducts, boxes: boxes, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / per_page), mall: mall });
+        });
       });
     });
   });
@@ -194,34 +197,6 @@ router.get('/mall/sale', function(req, res, next) {
   Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
       res.render('mall', { title: "Happy Tết Sale", description: "", products: products, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });      
     });
-  });
-});
-
-// router.get('/wholesale/:brand', function(req, res, next) {
-//   Product.find({ brand: req.params.brand, extend: 4, is_published: true }, {}, { sort: { 'created_at' : -1 }}, function(err, products) {
-//     if (err)
-//       console.log(err);
-//     if (!products || products.length == 0)
-//       return res.redirect('/wholesale');
-//     res.render('mall', { title: "데일리 붐 쇼핑 몰", description: "데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다.", products: products, merchant: req.params.brand, cover: products[0].brand_logo });
-//   });
-// });
-
-router.get('/mall/:product_id', function(req, res, next) {
-  Product.findOne({ extend: 4, _id: req.params.product_id, is_published: true }, function(err, product) {
-    if (!product)
-      return res.redirect('/mall');
-    if (err)
-      console.log(err);
-    if (!product || product.length == 0)
-      return res.redirect('/mall');
-    var current_quantity = 0;
-    product.options.forEach(function(option) {
-      current_quantity += parseInt(option.quantity);
-    });
-    var progress = (product.quantity - current_quantity) / product.quantity * 100;
-    var sale = (product.old_price - product.price) / product.old_price * 100;
-    res.render('extended_m', { product: product, title: product.brand + ' - ' + product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: true, ext_cover: product.images[0], mall: true });
   });
 });
 

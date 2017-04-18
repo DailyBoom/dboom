@@ -1,0 +1,48 @@
+@html.extend("layout", function(model) {
+    @html.block("body", function(model) {
+        <div class="container" id="edit_mall">
+            <h1>Edit Mall Intro</h1>
+            <div class="row">
+                <form enctype="multipart/form-data" method="POST">
+                    <div class="col s12 l6">
+                        <label for="category">Category</label>
+                        <select id="category" name="category">
+                            <option value=""></option>
+                            <option value="main">Main Banner</option>
+                            <option value="box">Box</option>
+                            <option value="0">Chăm sóc da</option>
+                            <option value="1">Trang điểm</option>
+                            <option value="2">Cơ thể</option>                    
+                        </select>
+                    </div>
+                    <div class="col s12 l6">
+                        <label for="title">Title</label>
+                        <input id="title" name="title" type="text" />
+                    </div>
+                    <div class="col s12">
+                        <label for="text">Intro text</label>
+                        <textarea id="text" name="text"></textarea>
+                    </div>
+                    <div class="col s12 file-field input-field">
+                        <br>
+                        <span class="hide-on-med-and-down"><br></span>
+                        <label for="banner" class="input-file-mod grey-text">Intro Banner</label>
+                        <div class="btn blue-grey darken-2">
+                            <span><i class="fa fa-image left"></i>Choose</span>
+                            <input id="banner" type="file" class="validate" name="banner">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                    <button class="btn">Submit</button>
+                </form>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function() {
+                $('select').material_select();
+            });
+        </script>
+    })
+})

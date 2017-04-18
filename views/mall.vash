@@ -9,22 +9,23 @@
       </div>
 
       <div class="row">
+				@if (model.mall) {
         <section id="mall-intro" class="col-xs-12">
           <div class="row">
             <div class="col-xs-12 col-sm-6 mall-intro-text">
-              <span class="big-titled">Lock that hydration.</span>
+              <span class="big-titled">@model.mall.title</span>
               <div class="spacer">
 
               </div>
-              <p class="top-space">Glowing, dewy skin is our thing. Our selection of skincare products are designed to instantly optimize skin’s tone, texture, and hydration levels so that it’s already at its best before you even think about makeup.</p>
-              <p class="top-space">Skin first. Make-up second. Smile always. </p>
+              <p class="top-space">@model.mall.text</p>
 
             </div>
             <div class="col-xs-12 col-sm-6">
-              <img class="img-responsive" src="/images/herbivore-cosmetics.jpg" alt="">
+              <img class="img-responsive" src="@model.mall.banner" alt="">
             </div>
           </div>
         </section>
+				}
         <section id="product-related" class="col-xs-12">
             <div class="row">
 				@model.products.forEach(function(product) {

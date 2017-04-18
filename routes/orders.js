@@ -344,16 +344,16 @@ router.post('/add_to_cart', function(req, res) {
       Order.findOne({ _id: req.session.cart_order }, function(err, order) {
         if (err) {
           console.log(err);          
-          return res.status(500).json({ error: "Error with order" });          
+          return res.status(500).json({ error: "Error with order 2" });          
         }
         if (!order) {
-          return res.status(500).json({ error: "Error with order" });
+          return res.status(500).json({ error: "Error with order 3" });
         }
         order.cart.push({ product: product._id, quantity: req.body.quantity, option: req.body.option });
         order.save(function(err) {
           if (err) {
             console.log(err);          
-            return res.status(500).json({ error: "Error with order" });          
+            return res.status(500).json({ error: "Error with order 4" });          
           }
           return res.status(200).json({ success: true, message: "Product added" });
         });

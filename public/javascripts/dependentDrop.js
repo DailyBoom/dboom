@@ -54,31 +54,25 @@ window.onload = function () {
     for (var state in stateObject) {
         stateSel.options[stateSel.options.length] = new Option(state, state);
     }
-    $('select').material_select();
     stateSel.onchange = function () {
         countySel.length = 1; // remove all options bar first
         citySel.length = 1; // remove all options bar first
         if (this.selectedIndex < 1) {
-            $('select').material_select();
             return; // done
         }   
         for (var county in stateObject[this.value]) {
             countySel.options[countySel.options.length] = new Option(county, county);
         }
-        $('select').material_select();
-        console.log('test');
     }
     stateSel.onchange(); // reset in case page is reloaded
     countySel.onchange = function () {
         citySel.length = 1; // remove all options bar first
         if (this.selectedIndex < 1) {
-            $('select').material_select();
             return; // done
         }   
         var cities = stateObject[stateSel.value][this.value];
         for (var i = 0; i < cities.length; i++) {
             citySel.options[citySel.options.length] = new Option(cities[i], cities[i]);
         }
-        $('select').material_select();
     }
 }

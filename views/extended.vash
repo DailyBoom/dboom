@@ -88,7 +88,7 @@
 				<ul class="product-options">
 					@model.product.options.forEach(function(option, index){
 						@if (option.quantity > 0) {
-						<li data-option="@index" class="@(index == 0 ? 'active' : '') option">
+						<li data-option="@index" class="option">
 							<div class="option-color" style="background-color:@option.name;"></div>
 							@if (model.product.category[0] == 60 || model.product.category[0] == 59 || (model.product.category[0] >= 38 && model.product.category[0] <= 43)) {
 								<div class="option-name">@model.product.options_skin[index]</div>
@@ -165,9 +165,7 @@
 					</div>
 					<span class="col-xs-12 product-brand">@product.brand</span>
 					<a href="/shop/products/@product.url" class="col-xs-12 product-name">@product.name</a>
-					<span class="col-xs-12 product-price">
-						@product.price
-					</span>
+					<span class="col-xs-12 product-price">@product.price</span>
 					<div class="col-xs-12 product-add">
 						<button class="btn btn-secondary" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
 					</div>
@@ -250,6 +248,7 @@
 					});
 				}
 			});
+			$('.product-options .option').eq(0).addClass('active');
 			$('.product-options .option').on('click', function() {
 				$('.product-options .option').removeClass('active');
 				$(this).addClass('active');

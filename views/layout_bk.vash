@@ -202,12 +202,12 @@
               <li><a href="/admin/dashboard">Admin Dashboard</a></li>
             }
             <li><a href="/">TRANG CHỦ</a></li>
-            <li><a href="#">Box</a><i class="fa fa-heart-o"></i></li>
-            <li><a href="#">Chăm sóc da</a></li>
-            <li><a href="#">Trang điểm</a></li>
-            <li><a href="#">Cơ thể</a></li>
-            <li><a href="#">NhÃn hiỆu</a></li>
-            <li><a href="#">GiỚi thiỆu</a><i class="fa fa-star-o"></i></li>
+            <li><a href="/mall/boxes">Box</a><i class="fa fa-heart-o"></i></li>
+            <li><a href="/mall?group=0">Chăm sóc da</a></li>
+            <li><a href="/mall?group=1">Trang điểm</a></li>
+            <li><a href="/mall?group=2">Cơ thể</a></li>
+            <li><a href="/brands">NhÃn hiỆu</a></li>
+            <li><a href="/about">GiỚi thiỆu</a><i class="fa fa-star-o"></i></li>
             <li><a href="/blog">Feed</a></li>
           </ul>
         </div>
@@ -253,6 +253,7 @@
           src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
           integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
           crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
       <!-- Materialize CSS JS -->
       <script src="/javascripts/materialize.min.js"></script>
       <!-- Tag-itS JS -->
@@ -314,7 +315,6 @@
               smartDays: true,
               customClass: "col s3"
           });
-          $('select').material_select();
           $('select').on('contentChanged', function() {
             // re-initialize (update)
             $(this).material_select();
