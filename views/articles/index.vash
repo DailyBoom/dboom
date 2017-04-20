@@ -83,7 +83,7 @@
                     @if (index == 0) {
                         @{ return; }
                     }
-                    <div class="col-xs-6 col-md-4 product">
+                    <div class="col-xs-12 col-md-4 product">
                         <div class="row">
                             <div class="col-xs-12 cover" style="background: url(https://yppuna.vn@article.cover) no-repeat;">
                             </div>

@@ -30,17 +30,17 @@
 	</script>
 <div class="container" id="product_detail">
 	<div class="breadcrumb">
-	<ol class="breadcrumb">
-		@model.product.category.forEach(function(id) {
-			<li><a href="/mall?category=@id">@model.category[id]</a></li>
-		})
-		<li class="active">@model.product.name</li>
-	</ol>
+		<ol class="breadcrumb">
+			@model.product.category.forEach(function(id) {
+				<li><a href="/mall?category=@id">@model.category[id]</a></li>
+			})
+			<li class="active">@model.product.name</li>
+		</ol>
 	</div>
 	<div class="row">
 	<div id="product-view" class="col-xs-12">
 	<div class="col-sm-6 viewer-sm">
-		<div class="col-sm-2">
+		<div class="col-sm-2 hidden-xs">
 		<ul class="multiple-images-sm">
 			@model.product.images.forEach(function(image) {
 				<li><img class="img-circle img-responsive" src="@image" alt=""></li>
@@ -109,42 +109,36 @@
 	</div>
 	<div class="spacer col-xs-12">
 	</div>
-	<div class="tabbed col-xs-12">
+	<div class="row">
+		<div class="tabbed col-xs-12">
+			<input id="tab1" type="radio" name="tabs" checked>
+			<label for="tab1">Lý Do Để Yêu Sản Phẩm Này</label>
+			
+			<input name="tabs" id="tab2" type="radio">
+			<label for="tab2">Hướng Dẫn Sử Dụng</label>
+			
+			<input name="tabs" id="tab3" type="radio">
+			<label for="tab3">Thành Phần</label>
 
-		<!-- first panel -->
-
-		<input name="tabbed" id="tabbed1" type="radio" checked>
-		<section>
-		<header>
-			<label for="tabbed1">Lý Do Để Yêu Sản Phẩm Này</label>
-		</header>
-		<div>
-			<p>@html.raw(model.product.why_love)</p>
+			<!-- first panel -->
+			<section class="col-xs-12 tab-div" id="content1">
+				<div>
+					<p>@html.raw(model.product.why_love)</p>
+				</div>
+			</section>
+			<!-- second panel -->
+			<section class="col-xs-12 tab-div" id="content2">
+				<div>
+					<p>@html.raw(model.product.how_to)</p>
+				</div>
+			</section>
+			<!-- third panel -->
+			<section class="col-xs-12 tab-div" id="content3">
+				<div>
+					<p>@html.raw(model.product.ingredients)</p>
+				</div>
+			</section>
 		</div>
-		</section>
-
-		<!-- second panel -->
-
-		<input name="tabbed" id="tabbed2" type="radio">
-		<section>
-		<header>
-			<label for="tabbed2">Hướng Dẫn Sử Dụng</label>
-		</header>
-		<div>
-			<p>@html.raw(model.product.how_to)</p>
-		</div>
-		</section>
-		<input name="tabbed" id="tabbed3" type="radio">
-		<section>
-		<header>
-			<label for="tabbed3">Thành Phần</label>
-		</header>
-		<div>
-			<p>@html.raw(model.product.ingredients)</p>
-		</div>
-		</section>
-
-
 	</div>
 
 
@@ -158,7 +152,7 @@
 		<div class="row">
 			@model.hotProducts.forEach(function(product) {
 		<!-- One product -->
-			<div class="col-xs-12 col-md-3 product">
+			<div class="col-xs-6 col-md-3 product">
 				<div class="row">
 					<div class="col-xs-12">
 						<a href="/shop/products/@product.url"><img class="img-responsive" src="@product.images[0]" alt="@product.name"></a>
@@ -195,10 +189,12 @@
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-7">
                   <div class="row">
-                    <div class="col-xs-12">
-                      <ul class="rating">
-                      </ul>
-                    </div>
+					@if(comment.rating) {
+						<div class="col-xs-12">
+							<ul class="rating">
+							</ul>
+						</div>
+					}
                     <span class="col-xs-12 -space subtitle">
                     </span>
                     <p class="col-xs-12 -space">
