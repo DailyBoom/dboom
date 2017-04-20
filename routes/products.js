@@ -505,4 +505,31 @@ router.get('/products/generateurl', function() {
   });
 });
 
+router.get('/products/generatecode', function() {
+  Product.find({ }, function(err, products) {
+    var prev_brand = '';
+    var brand = '';
+    var i = 1;
+    var cat = '';
+    products.forEach(function(product) {
+      if (product.brand) {
+        if (prev_brand == product.brand)
+          i++;
+        else
+          i = 1;
+        if (category_group[0].indexOf(product.category[0]) >= 0)
+          cat = 'S';
+        else if (category_group[1].indexOf(product.category[0]) >= 0)
+          cat = 'M';
+        else if (category_group[2].indexOf(product.category[0]) >= 0)
+          cat = 'B';
+        brand = product.brand.replace(/ /g, '');
+        product.inv_code = brand[0].toUpperCase() + brand[brand.length - 2].toUpperCase() + brand[brand.length - 1].toUpperCase() + '_' + cat + ('0' + i).slice(-2);
+        prev_brand = product.brand;
+        product.save();
+      }
+    });
+  });
+});
+
 module.exports = router;

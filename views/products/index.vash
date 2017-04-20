@@ -26,7 +26,7 @@
 	<table class="responsive-table bordered highlight table-sm table-orders">
 	<thead class="blue-grey darken-2 blue-grey-text text-lighten-5">
 		<tr>
-			<th>ID</th>
+			<th>Inv. ID</th>
 			<th>Product Name</th>
 			<th>Line</th>
 			<th>Quantity</th>
@@ -59,7 +59,7 @@
 		@model.products.forEach(function(product){
 			@product.options.forEach(function(item, index) {
 			<tr>
-				<td>@product.id <img class="list-img" src="@product.images[0]" /></td>
+				<td>@product.inv_code <img class="list-img" src="@product.images[0]" /></td>
 				<td>@product.name</td>
 				@if (product.category.indexOf(59) >= 0 || product.category.indexOf(60) >= 0 || (product.category[0] >= 38 && product.category[0] <= 43)) {
 					<td>@product.options_skin[index]</td>

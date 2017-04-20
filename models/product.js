@@ -52,7 +52,8 @@ var productSchema = new Schema({
   position: Number,
   position_group: Number,
   tags: [String],
-  logs: [{ log: String, date: Date }]
+  logs: [{ log: String, date: Date }],
+  inv_code: String,
 });
 
 var Product = mongoose.model("Product", productSchema);
