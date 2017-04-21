@@ -405,7 +405,10 @@ router.get('/cart', function(req, res, next) {
     if (order && order.cart.length > 0) {
       getOrderCartRecap(order);
     }
-    res.render('cart', { order: order });
+    else {
+      return res.redirect('/');
+    }
+    return res.render('cart', { order: order });
   });
 });
 
