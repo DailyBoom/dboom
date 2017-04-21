@@ -176,6 +176,21 @@ router.get('/mall', function(req, res, next) {
   });
 });
 
+router.get('/mall/boxes', function(req, res, next) {
+  var mall = null;
+  var query = { $or: [{ extend: 3, scheduled_at: moment().date(1).hour(config.Timezone).minute(0).second(0).millisecond(0) }, { extend: 5 }], is_published: true };
+  var page = req.query.page ? req.query.page : 1;
+  var per_page = req.is_mobile ? 8 : 16;
+  var option = { page: page, limit: per_page, sort: { 'position' : 1 } };
+  Product.paginate(query, option).then(function(result) {
+    Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
+      Mall.findOne({ category: mall }, function(err, mall) {
+        res.render('mall', { title: "Sản Phẩm Bán Chạy Nhất", description: "", products: result.docs, hotProducts: hotProducts, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / per_page), mall: mall });
+      });
+    });
+  });
+});
+
 router.get('/mall/new', function(req, res, next) {
   var query = Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }, {}, { sort: { 'position' : 1 }});
   var page = req.query.page ? req.query.page : 1;

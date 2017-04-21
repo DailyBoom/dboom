@@ -303,6 +303,10 @@ section .-content {
   margin-bottom: 20px;
 }
 
+.product .img-responsive {
+  min-height: 200px;
+}
+
 /* line 358, ../sass/screen.scss */
 .product-brand {
   font-family: 'Brandon', sans-serif;
@@ -818,8 +822,18 @@ p {
   box-sizing: border-box;
 }
 
-/* line 627, ../sass/screen.scss */
 h1 {
+  font-family: "Brandon Bold", serif;
+  text-transform: uppercase;
+  color: #1CC28B;
+  margin: 15px 0;
+  font-size: 36px;
+  border-bottom: 2px solid #1CC28B;
+  padding-left: 20px;
+}
+
+/* line 627, ../sass/screen.scss */
+#cart h1 {
   font-family: "Brandon Bold", serif;
   margin: -15px 0 25px 0;
   text-align: center;
@@ -867,7 +881,7 @@ section .tab-div {
 label {
   display: inline-block;
   margin: 0 0 -1px;
-  padding: 15px 25px;
+  padding: 15px;
   font-weight: 600;
   text-align: center;
   color: #bbb;
