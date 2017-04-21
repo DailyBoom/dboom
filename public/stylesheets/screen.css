@@ -822,7 +822,7 @@ p {
   box-sizing: border-box;
 }
 
-h1 {
+#brands h1 {
   font-family: "Brandon Bold", serif;
   text-transform: uppercase;
   color: #1CC28B;
