@@ -204,6 +204,8 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         price: req.body.price,
         old_price: req.body.oldPrice,
         wholesale_price: req.body.wholesale_price,
+        w_eu_price: req.body.w_eu_price,
+        w_cz_price: req.body.w_cz_price,
         quantity: quantity,
         images: paths,
         scheduled_at: req.body.selldate,
@@ -290,8 +292,10 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
     product.ingredients = req.body.ingredients;
     product.category = req.body.category;
     product.price = req.body.price;
-    product.old_price = req.body.oldPrice,
-    product.wholesale_price = req.body.wholesale_price,
+    product.old_price = req.body.oldPrice;
+    product.wholesale_price = req.body.wholesale_price;
+    product.w_eu_price = req.body.w_eu_price;
+    product.w_cz_price = req.body.w_cz_price;
     product.scheduled_at = req.body.selldate;
     product.quantity = quantity;
     product.brand = req.body.brandname;
