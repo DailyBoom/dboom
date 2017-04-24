@@ -1,12 +1,16 @@
-@html.extend("layout-beta", function(model) {
+@html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
 		<div class="container">
-			<div id="login_row" class="row">
-				<div class="col l6 offset-l3">
-					<div class="modal-header center">
-						<div class="col s6"><h3><a href="/login">@model.__('login')</a></h3></div>
-						<div class="col s6 active"><h3>@model.__('signup')</h3></div>
-					</div>
+      <div class="breadcrumb">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i>Về trang Home</a></li>
+        </ol>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h1 class="text-center">Đăng ký</h1>
+        </div>
+        <div class="col-xs-12 col-md-offset-4 col-md-4">
 					@if (model.errors) {
 						<ul class="red-text center">
 							@model.errors.forEach(function(error) {
@@ -14,29 +18,49 @@
 							})
 						</ul>
 					}
-					<form method="post" action="/signup">
-						<label for="username">Họ và tên</label>
-						<input id="username" name="username" type="text" placeholder="Họ và tên" />
-						<label for="email">Email</label>
-						<input id="email" name="email" type="email" placeholder="Nhập email" />
-						<label for="password">Mật khẩu</label>
-						<input id="password" name="password" type="password" placeholder="Mật khẩu trên 6 ký tự" />
-						<label for="confirm_password">Nhập lại mật khẩu</label>
-						<input id="confirm_password" name="confirm_password" type="password" placeholder="Nhập lại mật khẩu" />
-						<label for="birthday" class="bday">Ngày sinh</label>
-						<input id="birthday" name="birthday" type="text" />
-						<div class="gender">
-							<label>Giới tính</label><input name="gender" type="radio" value="0" id="c_male" /><label for="c_male" class="sub">Nam</label><input name="gender" type="radio" value="0" id="c_female" /><label for="c_female" class="sub">Nữ</label>
-						</div>
+          <form method="post" action="/signup">
+            <div class="form-group">
+              <label for="exampleInput">Họ và tên</label>
+              <input name="username" type="text" class="form-control top-space" id="exampleInputEmail1" placeholder="Họ và tên">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email</label>
+              <input name="email" type="email" class="form-control top-space" id="exampleInputEmail1" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Mật khẩu</label>
+              <input name="password" type="password" class="form-control top-space" id="exampleInputPassword1" placeholder="Mật khẩu">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Nhập lại mật khẩu</label>
+              <input name="confirm_password" type="password" class="form-control top-space" id="exampleInputPassword1" placeholder="Nhập lại mật khẩu">
+            </div>
+            <div class="form-group">
+							<label for="birthday" class="bday">Ngày sinh</label>
+							<input id="birthday" name="birthday" type="text" />
+            </div>
+            <div class="form-group">
+							<div class="gender">
+								<label>Giới tính</label><input name="gender" type="radio" value="0" id="c_male" /><label for="c_male" class="sub">Nam</label><input name="gender" type="radio" value="0" id="c_female" /><label for="c_female" class="sub">Nữ</label>
+							</div>
+            </div>
 						<div class="terms">
 							Khi nhấn đăng ký, bạn đã đồng ý thực hiện mọi giao dịch mua bán theo <a href="/terms">điều kiện sử dụng và chính sách</a> và chính sách
 						</div>
-						<button>ĐĂNG KÝ</button>
-						<div id="c_facebook">Đăng nhập bằng Facebook</div>
-					</form>
-				</div>
-			</div><!-- .row -->
-		</div>
+            <button type="submit" class="btn btn-primary btn-block top-space">Đăng ký</button>
+            <div class="checkbox">
+              <label class="centered">
+                hoặc là
+              </label>
+            </div>
+            <button id="c_facebook" type="button" class="btn btn-primary btn-block top-space" style="background-color:RGBA(72, 98, 163, 1.00);">Đăng nhập bằng Facebook</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+	})
+	@html.block("script", function(model) {	
 		<script>
 			$(document).ready(function() {
 				$('select').material_select();

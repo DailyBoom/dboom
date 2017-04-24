@@ -170,7 +170,7 @@
       </div>
       }
   <header>
-    <div id="top-bar" class="fixed">
+    <div id="top-bar" class="fixed hidden-xs">
       <div class="container">
         <div class="row">
           <div class="col-md-6">
@@ -199,30 +199,58 @@
         </div>
       </div>
     </div>
-    <div class="blank">
+    <div class="blank hidden-xs" >
     </div>
-    <div id="logo-container">
+    <div id="logo-container" class="hidden-xs">
       <img src="/images/logo.png" alt="logo" height="70px" >
     </div>
-    <div id="menu" class="sticky-wrapper">
-      <div class="container">
-        <div class="navigation">
-          <ul id="main-nav">
+    <nav class="navbar navbar-default">
+      <div class="container menu-border">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+            aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand hidden-lg" href="#">
+            <img class="img-responsive" alt="Brand" src="/images/logo-mini.png">
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
             @if (model.user && model.user.admin) {
               <li><a href="/admin/dashboard">Admin Dashboard</a></li>
             }
             <li><a href="/">TRANG CHỦ</a></li>
-            <li><a href="/mall/boxes">Box</a><i class="fa fa-heart-o"></i></li>
+            <li><a href="/mall/boxes">Box <i class="fa fa-heart-o"></i></a></li>
             <li><a href="/mall?group=0">Chăm sóc da</a></li>
             <li><a href="/mall?group=1">Trang điểm</a></li>
             <li><a href="/mall?group=2">Cơ thể</a></li>
             <li><a href="/brands">NhÃn hiỆu</a></li>
-            <li><a href="/about">GiỚi thiỆu</a><i class="fa fa-star-o"></i></li>
+            <li><a href="/about">GiỚi thiỆu <i class="fa fa-star-o"></i></a></li>
             <li><a href="/blog">Feed</a></li>
           </ul>
+          @if(model.cart) {          
+            <ul class="nav navbar-nav navbar-right visible-xs-block">
+              <li><a href="/cart"><i class="fa fa-shopping-bag"></i>GIỎ HÀNG (@model.cart.length)</a></li>
+            </ul>
+          }
+          <form action="/mall" method="get" class="navbar-form navbar-right visible-xs-block">
+            <div class="form-group">
+              <input name="s" type="text" class="form-control" placeholder="Tim kiem">
+            </div>
+            <button type="submit" class="btn btn-primary">Go</button>
+          </form>
         </div>
+        <!-- /.navbar-collapse -->
       </div>
-    </div>
+      <!-- /.container-fluid -->
+    </nav>
   </header>
 <!-- End of header -->
   		@html.include("error", model)

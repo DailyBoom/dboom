@@ -112,13 +112,13 @@
 	<div class="row">
 		<div class="tabbed col-xs-12">
 			<input id="tab1" type="radio" name="tabs" checked>
-			<label for="tab1">Lý Do Để Yêu Sản Phẩm Này</label>
+			<label class="tab-icon" for="tab1">Lý Do Để Yêu Sản Phẩm Này</label>
 			
 			<input name="tabs" id="tab2" type="radio">
-			<label for="tab2">Hướng Dẫn Sử Dụng</label>
+			<label class="tab-icon" for="tab2">Hướng Dẫn Sử Dụng</label>
 			
 			<input name="tabs" id="tab3" type="radio">
-			<label for="tab3">Thành Phần</label>
+			<label class="tab-icon" for="tab3">Thành Phần</label>
 
 			<!-- first panel -->
 			<section class="col-xs-12 tab-div" id="content1">
@@ -148,11 +148,11 @@
 	<header>
 		You might also like
 	</header>
-	<div class="-content">
+	<div class="-content" id="individual">
 		<div class="row">
 			@model.hotProducts.forEach(function(product) {
 		<!-- One product -->
-			<div class="col-xs-6 col-md-3 product">
+			<div class="product">
 				<div class="row">
 					<div class="col-xs-12">
 						<a href="/shop/products/@product.url"><img class="img-responsive" src="@product.images[0]" alt="@product.name"></a>
@@ -277,12 +277,12 @@
 			var cw = $('.main-img').width();
 			$('.main-img').css({'height':cw+'px'});
 			$(".price, .old_price, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
-			var owl = $("#individual .row");
+			var owl = $("#individual > .row");
 			owl.owlCarousel({
 				items : 4,
 				itemsDesktop : [1200,4],
 				itemsDesktopSmall : [992,2],
-				itemsTablet: [600,2],
+				itemsTablet: [600,1],
 				itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
 				navigation: true,
 				navigationText: ["<", ">"],
