@@ -838,10 +838,11 @@ p {
   font-size: 36px;
   border-bottom: 2px solid #1CC28B;
   padding-left: 20px;
+  text-align: left;
 }
 
 /* line 627, ../sass/screen.scss */
-#cart h1 {
+h1 {
   font-family: "Brandon Bold", serif;
   margin: -15px 0 25px 0;
   text-align: center;

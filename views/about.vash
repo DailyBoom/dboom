@@ -1,33 +1,66 @@
-@html.extend("layout-beta", function(model) {
+@html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
-		<div class="container" id="terms">
-			<div class="row">
-				<div class="col l4 hide-on-small-only">
-					<img src="/images/Aboutus.gif" />
-				</div>
-				<ul class="col s12 l8 info-details">
-					<h2>@model.__('about.title')</h2>
-					<li>@model.__('about.text_1')</li>
-					<li>@model.__('about.text_2')</li>
-					<li>@model.__('about.text_3')</li>
-					<li>@model.__('about.text_4')</li>
-					<ul class="circle-list">
-						<li>@model.__('about.text_5')</li>
-						<li>@model.__('about.text_6')</li>
-						<li>@model.__('about.text_7')</li>
-						<li>@model.__('about.text_8')</li>
-						<li>@model.__('about.text_9')</li>
-						<li>@model.__('about.text_10')</li>
-						<li>@model.__('about.text_11')</li>
-					</ul>
-					<li>@model.__('about.text_12')</li>
-					<li>Thân Ái</li>
-					<li>Ypppuna</li> 
-				</ul>
+	<div class="container">
+		<div class="breadcrumb">
+			<ol class="breadcrumb">
+				<li><a href="#"><i class="fa fa-home" aria-hidden="true"></i>Về trang Home</a></li>
+			</ol>
+		</div>
+		<div id="about" class="row">
+			<div class="col-xs-12">
+				<h1>Về Yppuna</h1>
 			</div>
-			<br>
-			<br>
-		</div><!-- .container -->
+			<div class="col-xs-12 col-md-6">
+				<img class="img-responsive" src="/images/ole.jpg" alt="">
+			</div>
+			<div class="col-xs-12 col-md-6">
+				<p>Yppuna ra đời để được đồng hành cùng các chị em trong vai trò là người phụ nữ Việt Nam một cách thật hân hoan, tự tin
+					và kiêu hãnh! Chính vì vậy, Yppuna mong muốn là nơi các chị em có thể tìm được những sản phẩm, công cụ, kiến thức, sự
+					động viên cũng như giúp đỡ để càng ngày càng đẹp và hạnh phúc hơn. Vào mỗi ngày mùng 1 đầu tiên của tháng trên web yppuna.vn,
+					một hộp làm đẹp gồm những sản phẩm chất lượng tốt nhất từ những hãng mỹ phẩm Hàn Quốc uy tín trên toàn thế giới - nhưng
+					lại chưa có nhiều tại Việt Nam, sẽ được ra mắt.</p>
+			</div>
+			<div class="col-xs-12 col-md-6">
+				<p>Những sản phẩm trong hộp làm đẹp đã được Yppuna dùng thử và cẩn thận chọn lựa, để thật phù hợp với nhu cầu làm đẹp tại
+					Việt Nam. Tại sao lại là những nhãn hiệu từ Hàn Quốc? Đơn giản, vì hiện nay sản phẩm của những hãng do Yppuna chọn lựa
+					đang được rất nhiều chuyên gia và người sử dụng đánh giá cao về chất lượng, và một thực tế không thể bỏ qua - Hàn Quốc
+					chính là quốc gia đang đi đầu thế giới về ngành mỹ phẩm, với những sản phẩm rất phù hợp với làn da châu Á. Chị em có
+					thể đặt hộp làm đẹp với giá cực kỳ ưu đãi chỉ có tại Yppuna, và thời gian gửi từ 1-3 ngày tuỳ thuộc vào địa chỉ người
+					nhận.</p>
+			</div>
+			<div class="col-xs-12 col-md-offset-2 col-md-8">
+				<p>Với đội ngũ làm việc tận tình tại Hàn Quốc và Việt Nam, Yppuna xin được cam kết:</p>
+			</div>
+			<div class="col-xs-12">
+				<div class="row">
+					<div class="col-xs-6 col-md-3 fact">
+						<i class="fa fa-plane fa-3x col-xs-12 centered" aria-hidden="true"></i>
+						<span class="col-xs-12 fact-text">Hàng chính hãng Made in Korea 100%. Nếu phát hiện là nhái fake/không đúng hãng, chúng tôi sẽ hoàn trả lại tiền 100%.</span>
+					</div>
+					<div class="col-xs-6 col-md-3 fact">
+						<i class="fa fa-check-circle-o fa-3x col-xs-12 centered" aria-hidden="true"></i>
+						<span class="col-xs-12 fact-text">Hàng được nhập thẳng từ công ty sản xuất mỹ phẩm Hàn Quốc vào kho của chúng tôi. Không qua công ty thứ 3 hay lấy lại từ các hãng đổ hàng tại Việt Nam hay Hàn Quốc.</span>
+					</div>
+					<div class="col-xs-6 col-md-3 fact">
+						<i class="fa fa-certificate fa-3x col-xs-12 centered" aria-hidden="true"></i>
+						<span class="col-xs-12 fact-text">Hàng được sản xuất theo công nghệ mới nhất tại Hàn Quốc và được chứng nhận chất lượng từ KFDA Cục Quản lý Thực phẩm và Dược phẩm Hàn Quốc.</span>
+					</div>
+					<div class="col-xs-6 col-md-3 fact">
+						<i class="fa fa-handshake-o fa-3x col-xs-12 centered" aria-hidden="true"></i>
+						<span class="col-xs-12 fact-text">Hàng chính hãng Made in Korea 100%. Nếu phát hiện là nhái fake/không đúng hãng, chúng tôi sẽ hoàn trả lại tiền 100%.</span>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-xs-12 col-md-offset-2 col-md-8">
+				<p>Thay mặt tất cả các thành viên, Yppuna xin cảm ơn bạn đã ghé thăm! Yppuna hứa là sẽ làm việc thật hết mình và chăm chỉ
+					để được đồng hành cùng mọi người lâu dài. Da châu Á hãy để mỹ phẩm chất lượng Châu Á chăm sóc!</p>
+			</div>
+		</div>
+	</div>
+	})
+	@html.block("script", function(model) {	
 		<script>
 			$(document).ready(function(){
 				$('.parallax').parallax();
