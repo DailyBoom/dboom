@@ -30,6 +30,14 @@
 						<div id="add-address">
 							<br>
 							<div class="input-field col s12 m6 l6">
+								<select id="country" class="validate" name="country" required>
+									<option value="vi-VN">Vietnam</option>
+									<option value="eu-ES">Europe</option>
+									<option value="cs-CZ">Czech</option>
+								</select>
+								<label for="country">@model.__('user.country') <span class="signup-info red-text"><i class="fa fa-exclamation-circle"></i></span></label>
+							</div>
+							<div class="input-field col s12 m6 l6">
 								<input id="phone_number" type="text" class="validate" name="phone_number" value="@model.Validator.getValue('phone_number')" maxlength="11" required>
 								<label for="phone_number">@model.__('merchant.phone') <span class="signup-info red-text"><i class="fa fa-exclamation-circle"></i></span></label>
 							</div>

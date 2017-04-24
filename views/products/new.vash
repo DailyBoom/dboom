@@ -131,6 +131,18 @@
 					<input id="wholesale_price" type="number" class="validate" name="wholesale_price" >
 					<label for="wholesale_price">Wholesale price *</label>
 				</div>
+				<div class="input-field col offset-m6">
+				</div>
+				<div class="input-field col s12 m6 l6">
+					<i class="fa fa-krw prefix"></i>
+					<input id="w_eu_price" type="number" class="validate" name="w_eu_price" >
+					<label for="w_eu_price">EU Wholesale price *</label>
+				</div>
+				<div class="input-field col s12 m6 l6">
+					<i class="fa fa-krw prefix"></i>
+					<input id="w_cz_price" type="number" class="validate" name="w_cz_price" >
+					<label for="w_cz_price">CZ Wholesale price *</label>
+				</div>
 				<div class="input-field col s12 m6 l6">
 					<i class="fa fa-krw prefix"></i>
 					<input id="oldPrice" type="number" class="validate" name="oldPrice">

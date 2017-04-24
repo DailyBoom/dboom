@@ -148,8 +148,8 @@ var getOrderCartTotal = function(order) {
   order.cart.forEach(function(item) {
     order.totalOrderAmt += item.product.price * item.quantity;
   });
-  if (deliveryPrices[order.shipping.city.toUpperCase()])
-    order.shipping_cost = deliveryPrices[order.shipping.city.toUpperCase()][order.shipping.district.toUpperCase()];
+  // if (deliveryPrices[order.shipping.city.toUpperCase()])
+  //   order.shipping_cost = deliveryPrices[order.shipping.city.toUpperCase()][order.shipping.district.toUpperCase()];
   if (order.coupon && order.coupon.type == 2) {
     order.discount = order.shipping_cost;
   }

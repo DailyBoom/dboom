@@ -27,6 +27,8 @@ var productSchema = new Schema({
   delivery_price: { type: Number, default: 2500 },
   old_price: Number,
   wholesale_price: Number,
+  w_price_eu: Number,
+  w_price_cz: Number,
   quantity: Number,
   images: { type: Array },
   mobile_images: { type: Array },

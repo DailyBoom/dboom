@@ -6,8 +6,9 @@
                 <form class="col s12" method="post" >
                     <div class="input-field col s12">
                         <select id="username" type="text" class="validate" name="username" value="@model.Validator.getValue('username')" required>
+                            <option value=""></option>
                             @model.users.forEach(function(user) {
-                                <option value="@user.id">@user.username</option>
+                                <option value="@user.id" data-country="@user.shipping.country">@user.username (@user.shipping.country)</option>
                             })
                         </select>
                         <label for="username">@model.__('user.username')</label>
@@ -44,8 +45,12 @@
         </div>
         <script>
 	        $(document).ready(function() {
-                $(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+                var country = 'vi-VN';
+                $(".price").formatCurrency({region: country, roundToDecimalPlace: 0 });
                 $('select').material_select();
+                $("#username").on("change", function() {
+                    country = $("#username option:selected").data('country');
+                });
                 var autocomp_opt= {
                     source: function(request, response) {
                         var input = this.element;
@@ -62,6 +67,8 @@
                                         label: item.name + ' - ' + item.brand,
                                         value: item._id,
                                         price: item.wholesale_price,
+                                        eu_price: item.w_eu.price,
+                                        cz_price: item.w_cz.price,
                                         options: item.options_skin
                                     };
                                 }));
@@ -70,11 +77,18 @@
                     },
                     select: function(event, ui) {
                         var input = $(this);
-                        console.log
                         $(this).attr("data-price", ui.item.price);
                         var current_price = parseInt($('.price').html().replace(/[^0-9]+/g,""));
-                        $('.price').html(current_price + ui.item.price);
-                        $(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+                        if (country == 'vi-VN') {
+                            $('.price').html(current_price + ui.item.price);
+                        }
+                        else if (country == 'eu-ES') {
+                            $('.price').html(current_price + ui.item.eu_price);
+                        }
+                        else if (country == 'cs-CZ') {
+                            $('.price').html(current_price + ui.item.cz_price);
+                        }
+                        $(".price").formatCurrency({region: country, roundToDecimalPlace: 0 });
                         $.each(ui.item.options, function(index, value) {
                             input.parent().parent().find('.option').find('select').append('<option value="'+index+'">'+value+'</option>');
                             $('select').material_select();                
@@ -90,7 +104,7 @@
                         total += price * quantity;
                     }).promise().done(function () {
                         $('.price').html(total);
-                        $(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+                        $(".price").formatCurrency({region: country, roundToDecimalPlace: 0 });
                     });
                 }
                 $(".product input").autocomplete(autocomp_opt);
