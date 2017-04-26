@@ -115,6 +115,7 @@
 							@if(model.user.admin || (model.user.role == 'merchant' && model.user.id == item.product.merchant_id))
 							<div class="col s12 cart-item">
 								<div class="col s6">
+									<div>@item.product.inv_code</div>
 									<a href="/mall/product/@item.product.id" class="product-name blue-grey-text col s12">@item.product.name</a>
 									@if (item.product.options[item.option ? item.option : 0].name !== '') {
 										<div class="col s12"><div class="product-color" style="background-color: @item.product.options[item.option ? item.option : 0].name;"></div></div>

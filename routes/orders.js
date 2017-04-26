@@ -263,6 +263,28 @@ router.get('/orders/list', isAdmin, function(req, res) {
   });
 });
 
+router.get('/orders/shipping', isAdmin, function(req, res) {
+  var page = req.query.page ? req.query.page : 1;
+  var query = Order.find({ status: { $in: ["Waiting", "Paid"] } }, {}, { sort: { 'created_at': -1 } }).populate('product');
+  if (req.query.s_date)
+    query.where('created_at').gte(req.query.s_date).lt(moment(req.query.s_date).add(1, 'days'));
+  if (req.query.s_status)
+    query.where('status').equals(req.query.s_status);
+  if (req.query.s_quantity)
+    query.where('cart.quantity').equals(req.query.s_quantity);
+  if (req.query.s_type)
+    query.where('pay_method').equals(req.query.s_type);
+  if (req.query.s_id)
+    query.where('_id').equals(req.query.s_id);
+  if (req.query.s_name) {
+    var regex = new RegExp(req.query.s_name, "i");
+    query.where('shipping.full_name').regex(regex);
+  }
+  query.paginate(page, 10, function(err, orders, total) {
+    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '', shipping: true });
+  });
+});
+
 router.get('/wholesalers/orders', isMerchantOrAdmin, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
   var query = Order.find({ type: 'wholesale' }, {}, { sort: { 'created_at': -1 } }).populate('product');
@@ -713,6 +735,23 @@ router.get('/orders/cart_paid/:id', isAdmin, function(req, res) {
   });
 });
 
+router.get('/orders/packing', isMerchantOrAdmin, function(req, res) {
+  Order.find({ status: "Packing" }, function(err, orders) {
+    res.render('orders/packing', { orders: orders })
+  });
+});
+
+router.get('/orders/packing/:id', isMerchantOrAdmin, function(req, res) {
+  Order.findOne({_id: req.params.id}).populate('user').exec(function(err, order) {
+    if (err)
+      console.log(err);
+    order.status = "Packing";
+    order.save(function(err) {
+      res.redirect('/orders/packing');
+    });
+  });
+});
+
 router.post('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
   Order.findOne({_id: req.params.id}).populate('user').exec(function(err, order) {
     if (err)
@@ -1069,6 +1108,12 @@ router.post('/shipping', function(req, res) {
           }
         });
       }
+  });
+});
+
+router.post('/orders/get_products', function(req, res) {
+  Order.findOne({ _id: req.body.id }, 'cart').populate('cart.product').exec(function(err, order) {
+    res.status(200).json({ order: order });
   });
 });
 

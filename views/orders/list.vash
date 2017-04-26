@@ -1,7 +1,7 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
    <div class="container min-h-lg">
-		<h3 class="blue-grey-text text-darken-3">Order list
+		<h3 class="blue-grey-text text-darken-3">Order @(model.shipping ? 'shipping' : 'list')
 			<div class="legend right right-align">
 				<span class="blue-grey-text text-darken-2">View Order <i class="fa fa-eye fa-fw"></i></span>
 				<span class="red-text text-darken-3">Cancel Order <i class="fa fa-ban fa-fw"></i></span>
@@ -14,7 +14,10 @@
 			}
 			</div>
 		</h3>
-		<a href="@(model.wholesaler ? '/wholesalers/orders/new' : '/orders/new')" class="btn right">New Order</a>
+		@if (!model.shipping) {
+			<a href="@(model.wholesaler ? '/wholesalers/orders/new' : '/orders/new')" class="btn right">New Order</a>
+			<a href="/orders/shipping" class="btn right">Orders Shipping</a>
+		}
 		<table class="responsive-table bordered highlight table-sm table-orders">
 			<thead class="blue-grey darken-2 blue-grey-text text-lighten-5">
 				<tr>
@@ -40,6 +43,7 @@
 							<option value="Submitted">Submitted</option>
 							<option value="Waiting">Waiting</option>
 							<option value="Paid">Paid</option>
+							<option value="Packing">Packing</option>
 							<option value="Sent">Sent</option>
 							<option value="Cancelled">Cancelled</option>
 						</select>
@@ -101,6 +105,7 @@
 						<a class="users-link blue-grey-text text-darken-2" href="/orders/view/@order.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
 						<a class="users-link red-text text-darken-3" href="/orders/cancel_deposit/@order.id" onclick="return confirm('Are you sure?')"><i class="fa fa-ban fa-fw fa-1-5x"></i></a>
 					@if(model.user.admin == 1){
+						<a class="users-link blue-text text-darken-3" href="/orders/packing/@order.id" onclick="return confirm('Start packing this order?')"><i class="fa fa-archive fa-fw fa-1-5x"></i></a>
 						<a class="users-link red-text text-darken-3" href="/orders/delete/@order.id" onclick="return confirm('Are you sure?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
 					}
 					</td>

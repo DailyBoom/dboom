@@ -741,10 +741,10 @@ input[type=number]::-webkit-outer-spin-button {
 
 /** Login Modal **/
 @media only screen and (min-width: 0) {
-  .modal {
+  /*.modal {
     width: 80%;
     max-height: 85%;
-  }
+  }*/
   .modal .modal-content-c {
     display: block;
     padding: 10px 10px 0px 10px;
@@ -775,9 +775,6 @@ input[type=number]::-webkit-outer-spin-button {
 @media only screen and (min-width: 601px) {
   img.responsive-img {
     width: 100%;
-  }
-  .modal {
-    width: 480px;
   }
   .modal .modal-content- {
     display: block;
@@ -832,9 +829,6 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 @media only screen and (min-width: 992px) {
-  .modal {
-    width: 480px;
-  }
   .modal .modal-content- {
     display: block;
     padding: 10px 20px;
