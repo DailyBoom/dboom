@@ -230,12 +230,14 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            @if (!model.user) {
-              <li><a href="/login"><i class="fa fa-sign-in"></i>Đăng nhập/Đăng ký</a></li>
-            }
-            else {
-              <li><a href="/mypage"><i class="fa fa-user-circle-o"></i>My Page</a></li>
-              <li><a href="/logout"><i class="fa fa-sign-out"></i>@model.__('logout')</a></li>
+            @if (model.is_mobile) {
+              @if (!model.user) {
+                <li><a href="/login"><i class="fa fa-sign-in"></i>Đăng nhập/Đăng ký</a></li>
+              }
+              else {
+                <li><a href="/mypage"><i class="fa fa-user-circle-o"></i>My Page</a></li>
+                <li><a href="/logout"><i class="fa fa-sign-out"></i>@model.__('logout')</a></li>
+              }
             }
             @if (model.user && model.user.admin) {
               <li><a href="/admin/dashboard">Admin Dashboard</a></li>
