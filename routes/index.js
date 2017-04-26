@@ -81,6 +81,12 @@ var group = [
   [51, 52]
 ];
 
+var group_name = [
+  'Chăm sóc da',
+  'Trang điểm',
+  'Cơ thể'
+]
+
 var category = {
     "53": "Sản phẩm rửa mặt",
     "1": "Nước rửa mặt",
@@ -151,25 +157,27 @@ router.get('/mall', function(req, res, next) {
   var mall = null;
   var query = { extend: 4, is_published: true };
   var page = req.query.page ? req.query.page : 1;
-  var per_page = req.is_mobile ? 8 : 16;
+  var per_page = res.locals.is_mobile ? 8 : 16;
   var option = { page: page, limit: per_page, sort: { 'position' : 1 } };
+  var title = "Sản Phẩm Bán Chạy Nhất";
   if (req.query.group) {
     query['category'] = { $in: group[req.query.group] };
     option.sort = { 'position_group': 1 };
     mall = req.query.group;
+    title = group_name[req.query.group];
   }
-//  if (req.query.category) {
-//    query.where('category', req.query.category);
-//  }
-//  if (req.query.s) {
-//    query.or([{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }])
-//  }
+  if (req.query.category) {
+    query['category'] = req.query.category;
+  }
+  if (req.query.s) {
+    query['$or'] = [{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }];
+  }
   //query.where('product_region.'+req.session.zone, true);
   Product.paginate(query, option).then(function(result) {
     Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
       Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
         Mall.findOne({ category: mall }, function(err, mall) {
-          res.render('mall', { title: "Sản Phẩm Bán Chạy Nhất", description: "", products: result.docs, hotProducts: hotProducts, boxes: boxes, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / per_page), mall: mall });
+          res.render('mall', { title: title, description: "", products: result.docs, hotProducts: hotProducts, boxes: boxes, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / per_page), mall: mall, group: group_name });
         });
       });
     });
@@ -180,37 +188,37 @@ router.get('/mall/boxes', function(req, res, next) {
   var mall = null;
   var query = { $or: [{ extend: 3, scheduled_at: moment().date(1).hour(config.Timezone).minute(0).second(0).millisecond(0) }, { extend: 5 }], is_published: true };
   var page = req.query.page ? req.query.page : 1;
-  var per_page = req.is_mobile ? 8 : 16;
+  var per_page = res.locals.is_mobile ? 8 : 16;
   var option = { page: page, limit: per_page, sort: { 'position' : 1 } };
   Product.paginate(query, option).then(function(result) {
     Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
       Mall.findOne({ category: mall }, function(err, mall) {
-        res.render('mall', { title: "Sản Phẩm Bán Chạy Nhất", description: "", products: result.docs, hotProducts: hotProducts, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / per_page), mall: mall });
+        res.render('mall', { title: "Box", description: "", products: result.docs, hotProducts: hotProducts, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / per_page), mall: mall });
       });
     });
   });
 });
 
 router.get('/mall/new', function(req, res, next) {
-  var query = Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }, {}, { sort: { 'position' : 1 }});
+  var query = { extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] };
   var page = req.query.page ? req.query.page : 1;
-  var per_page = req.is_mobile ? 8 : 16;
-  query.where('product_region.'+req.session.zone, true);
-  query.paginate(page, per_page, function(err, products, total) {
-  Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
-      res.render('mall', { title: "Mua Lẻ Mới Nhất", description: "", products: products, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });      
+  var per_page = res.locals.is_mobile ? 8 : 16;
+  var option = { page: page, limit: per_page, sort: { 'position' : 1 } };
+  Product.paginate(query, option).then(function(result) {
+    Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
+      res.render('mall', { title: "Mua Lẻ Mới Nhất", description: "", products: result.docs, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(result.total / per_page), page), currentPage: page, lastPage: Math.ceil(result.total / per_page) });      
     });
   });
 });
 
 router.get('/mall/sale', function(req, res, next) {
-  var query = Product.find({ extend: 4, is_published: true, old_price: { $exists: true, $ne: null } }, {}, { sort: { 'position' : 1 }});
+  var query = { extend: 4, is_published: true, old_price: { $exists: true, $ne: null } };
   var page = req.query.page ? req.query.page : 1;
-  var per_page = req.is_mobile ? 8 : 16;
-  query.paginate(page, per_page, function(err, products, total) {
-  console.log(products);
-  Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
-      res.render('mall', { title: "Happy Tết Sale", description: "", products: products, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });      
+  var per_page = res.locals.is_mobile ? 8 : 16;
+  var option = { page: page, limit: per_page, sort: { 'position' : 1 } };
+  Product.paginate(query, option).then(function(result) {
+    Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
+      res.render('mall', { title: "Happy Tết Sale", description: "", products: result.docs, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(result.total / per_page), page), currentPage: page, lastPage: Math.ceil(result.total / per_page) });
     });
   });
 });
@@ -221,6 +229,10 @@ router.get('/about', function(req, res, next) {
 
 router.get('/contact', function(req, res, next) {
   res.render('contact', { title: 'LIÊN HỆ' });
+});
+
+router.get('/careers', function(req, res, next) {
+  res.render('careers', { title: 'LIÊN HỆ' });
 });
 
 router.get('/privacy', function(req, res, next) {
@@ -246,6 +258,20 @@ router.post('/advertise', function(req, res, next) {
      //console.log('Message sent: ' + info.response);
       transporter.close();
       res.status(200).json({ message: '감사합니다. 성공적으로 전송이 되었습니다.'});
+  });
+});
+
+router.post('/careers', function(req, res, next) {
+  transporter.sendMail({
+    from: req.body.email,
+    to: 'hello@yppuna.vn',
+    subject: 'Careers',
+    html: '<p>Tên: '+req.body.username+'</p><p>Email: '+req.body.email+'</p><p>Số điện thoại: '+req.body.phone_number+'</p><p>message: '+req.body.message+'</p>'
+  }, function (err, info) {
+      if (err) { console.log(err); res.status(500).json({ message: ''}); }
+      //console.log('Message sent: ' + info.response);
+      transporter.close();
+      res.status(200).json({ message: 'Xin cảm ơn quý khách. Chúng tôi sẽ trả lời sớm nhất có thể'});
   });
 });
 

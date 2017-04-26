@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var mongooseToCsv = require("mongoose-to-csv");
+var mongoosePaginate = require('mongoose-paginate');
 var moment = require("moment");
 var shortid = require('shortid');
 var Schema = mongoose.Schema;
@@ -83,6 +84,8 @@ orderSchema.plugin(mongooseToCsv, {
 		'우편번호': function(doc) { return doc.shipping.zipcode ? doc.shipping.zipcode : doc.user.shipping.zipcode; }
 	}
 });
+
+orderSchema.plugin(mongoosePaginate);
 
 var Order = mongoose.model("Order", orderSchema);
 

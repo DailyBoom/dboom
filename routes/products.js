@@ -73,16 +73,15 @@ router.get('/products/list', isMerchantOrAdmin, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
   var query = {};
   if (req.query.type == 1) {
-    query.where('extend').gte(1).lte(3);
+    query['extend'] = { '$gte': 1, '$lte': 3 };
   }
   else if (req.query.type == 2) {
-    query.where('extend').equals(4);
+    query['extend'] = 4;
   }
   if (req.query.s) {
-    query.or([{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }])
+    query['$or'] = [{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }];
   }
-  Product.paginate({}, { page: page, limit: 9, sort: { 'scheduled_at' : -1 } });
-  query.then(function(result) {
+  Product.paginate(query, { page: page, limit: 9, sort: { 'scheduled_at' : -1 } }).then(function(result) {
     res.render('products/index', { products: result.docs, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / 9) });
   });
 });

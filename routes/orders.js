@@ -208,37 +208,29 @@ router.get('/orders/shipped', isAdmin, function(req, res) {
   res.render('mailer/shipped');
 });
 
-router.get('/merchants/orders/list', isMerchant, function(req, res) {
-  var page = req.query.page ? req.query.page : 1;
-  var query = Order.find({ status: { $in: ["Paid", "Sent"]}, $or: [ { cart_merchants: req.user.id }, { merchant_id: req.user.id }] }, {}, { sort: { 'created_at': -1 } }).populate('product');
-  if (req.query.order_date)
-    query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
-  query.paginate(page, 10, function(err, orders, total) {
-    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
-  });
-});
-
 router.get('/orders/list', isAdmin, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
-  var query = Order.find({}, {}, { sort: { 'created_at': -1 } }).populate('product');
+  var query = {};
   if (req.query.order_date)
-    query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
+    query['created_at'] = { '$gte': req.query.order_date, '$lt': moment(req.query.order_date).add(1, 'days') };
   if (req.query.status)
-    query.where('status').equals(req.query.status);
-  query.paginate(page, 10, function(err, orders, total) {
-    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
+    query['status'] = req.query.status;
+  var option = { page: page, limit: 10, sort: { 'created_at': -1 }, populate: 'populate' };
+  Order.paginate(query, option).then(function(result) {
+    res.render('orders/list', { orders: result.docs, pages: paginate.getArrayPages(req)(3, Math.ceil(result.total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
   });
 });
 
 router.get('/wholesalers/orders', isMerchantOrAdmin, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
-  var query = Order.find({ type: 'wholesale' }, {}, { sort: { 'created_at': -1 } }).populate('product');
+  var query = { type: 'wholesale' };
   if (req.query.order_date)
-    query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
+    query['created_at'] = { '$gte': req.query.order_date, '$lt': moment(req.query.order_date).add(1, 'days') };
   if (req.query.status)
-    query.where('status').equals(req.query.status);
-  query.paginate(page, 10, function(err, orders, total) {
-    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
+    query['status'] = req.query.status;
+  var option = { page: page, limit: 10, sort: { 'created_at': -1 }, populate: 'populate' };
+  Order.paginate(query, option).then(function(result) {
+    res.render('orders/list', { orders: result.docs, pages: paginate.getArrayPages(req)(3, Math.ceil(result.total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
   });
 });
 
@@ -348,7 +340,7 @@ router.post('/add_to_cart', function(req, res) {
     else {
       Order.findOne({ _id: req.session.cart_order }, function(err, order) {
         if (err) {
-          console.log(err);          
+          console.log(err);
           return res.status(500).json({ error: "Error with order 2" });          
         }
         if (!order) {

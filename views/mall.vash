@@ -1,10 +1,11 @@
 @html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
-		    <div class="container">
+		<div class="container">
       <div class="breadcrumb">
         <ol class="breadcrumb">
-          <li><a href="#">Skincare</a></li>
-          <li class="active">Moisturizers</li>
+					@if (model.title) {
+          	<li><a href="#">@model.title</a></li>
+					}
         </ol>
       </div>
 
@@ -30,7 +31,7 @@
             <div class="row">
 				@model.products.forEach(function(product) {
               <!-- One product -->
-              <div class="col-xs-6 col-md-3 product">
+              <div class="col-xs-12 col-md-3 product">
                 <div class="row">
                   <div class="col-xs-12">
                     <a href="/shop/products/@product.url"><img class="img-responsive" src="@product.images[0]" alt="@product.name"></a>
@@ -99,7 +100,7 @@
 		items : 3,
 		itemsDesktop : [1200, 3],
 		itemsDesktopSmall : [992,2],
-		itemsTablet: [600,2],
+		itemsTablet: [600,1],
 		itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
 		navigation: true,
 		navigationText: ["<", ">"],

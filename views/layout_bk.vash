@@ -181,7 +181,11 @@
           </div>
           <div class="col-md-6">
             <ul class="pull-left">
-              <li><input type="search" placeholder="Tìm kiếm"></li>
+              <li>
+                <form action="/mall" method="get">
+                  <input name="s" type="search" placeholder="Tìm kiếm">
+                </form>
+              </li>
             </ul>
             <ul class="right-part">
               @if(model.cart) {
@@ -207,7 +211,7 @@
     <nav class="navbar navbar-default">
       <div class="container menu-border">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
+        <div class="navbar-header text-center">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
             aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
@@ -218,11 +222,21 @@
           <a class="navbar-brand hidden-lg" href="#">
             <img class="img-responsive" alt="Brand" src="/images/logo-mini.png">
           </a>
+          <ul class="facts visible-xs-inline-block text-center">
+              <li><a href="/about"><i class="fa fa-plane"></i>FREE SHIP</a></li>
+          </ul>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
+            @if (!model.user) {
+              <li><a href="/login"><i class="fa fa-sign-in"></i>Đăng nhập/Đăng ký</a></li>
+            }
+            else {
+              <li><a href="/mypage"><i class="fa fa-user-circle-o"></i>My Page</a></li>
+              <li><a href="/logout"><i class="fa fa-sign-out"></i>@model.__('logout')</a></li>
+            }
             @if (model.user && model.user.admin) {
               <li><a href="/admin/dashboard">Admin Dashboard</a></li>
             }
@@ -242,7 +256,7 @@
           }
           <form action="/mall" method="get" class="navbar-form navbar-right visible-xs-block">
             <div class="form-group">
-              <input name="s" type="text" class="form-control" placeholder="Tim kiem">
+              <input name="s" type="search" class="form-control" placeholder="Tìm kiếm">
             </div>
             <button type="submit" class="btn btn-primary">Go</button>
           </form>
@@ -259,12 +273,48 @@
       </main>
       <footer>
         <div class="container">
+          <section id="contact">
+            <header @(model.is_mobile ? 'class=collapsed data-toggle=collapse data-target=#contact-collapse' : '')>LIÊN HỆ @(model.is_mobile ? html.raw('<i class="fa fa-caret-square-o-down"></i>') : '')</header>
+            <div class="-content @(model.is_mobile ? 'collapse' : '')" id="contact-collapse">
+            <div class="row">
+              <div class="col-xs-12 col-md-3">
+              <span class="subtitle"><i class="fa fa-anchor fa-2x" aria-hidden="true"></i> Reach us</span>
+              <p class="top">Quan Binh Thanh <br>
+                Ho Chi Minh City <br>
+                Vietnam
+              </p>
+              </div>
+              <div class="col-xs-12 col-md-3">
+              <span class="subtitle"><i class="fa fa-phone fa-2x" aria-hidden="true"></i> Hotline hỗ trợ</span>
+              <p class="top">01699 876 023
+              </p>
+              </div>
+              <div class="col-xs-12 col-md-3">
+              <span class="subtitle"><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i> Write us an e-mail</span>
+              <p class="top">hello@yppuna.vn
+              </p>
+              </div>
+              <div class="col-xs-12 col-md-3">
+              <span class="subtitle"><i class="fa fa-send-o fa-2x" aria-hidden="true"></i> ĐĂNG KÝ NEWSLETTER</span>
+              <p class="top">hello@yppuna.vn
+              </p>
+              </div>
+            </div>
+            </div>
+          </section>
+          <div class="footer-social-links row center">
+            <ul>
+            <li><a href="#"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a></li>
+            </ul>
+          </div>
           <div class="row">
             <div class="col-xs-12 col-md-8">
               <ul>
                 <li>Yppuna</li>
-                <li>FAQ</li>
-                <li>Careers</li>
+                <li class="hide">FAQ</li>
+                <li><a href="/careers">Careers</a></li>
               </ul>
             </div>
             <div class="col-xs-12 col-md-4">

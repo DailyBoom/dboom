@@ -53,29 +53,28 @@ var isMerchant = function (req, res, next) {
 
 router.get('/shipments/list', isMerchantOrAdmin, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
-  var query = Shipment.find({}, {}, { sort: { 'created_at': -1 } }).populate('product');
+  var query = {};
   if (req.query.s_id)
-    query.where('id').equals(req.query.s_id);
+    query['id'] = req.query.s_id;
   if (req.query.s_name) {
-    var regex = new RegExp(req.query.s_name, "i");
-    query.where('name').regex(regex);
+    query['name'] = { $regex: req.query.s_name, $options: "i" };
   }
   if (req.query.s_line)
-    query.where('line').equals(req.query.s_line);
+    query['line'] = req.query.s_line;
   if (req.query.s_price)
-    query.where('price').equals(req.query.s_price);
+    query['price'] = req.query.s_price;
   if (req.query.s_quantity)
-    query.where('quantity').equals(req.query.s_quantity);
+    query['quantity'] = req.query.s_quantity;
   if (req.query.s_from) {
-    var regex = new RegExp(req.query.s_from, "i");
-    query.where('from').regex(regex);
+    query['from'] = { $regex: req.query.s_from, $options: "i" };
   }
   if (req.query.s_est_date)
-    query.where('est_date').equals(req.query.s_est_date);
+    query['est_date'] = req.query.s_est_date;
   if (req.query.s_status)
-    query.where('status').equals(req.query.s_status);
-  query.paginate(page, 10, function(err, shipments, total) {
-    res.render('shipments/list', { shipments: shipments, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
+    query['status'] = req.query.s_status;
+  var option = { page: page, limit: 10, sort: { 'created_at': -1 }, populate: 'populate' };
+  Shipment.paginate(query, option).then(function(result) {
+    res.render('shipments/list', { shipments: result.docs, pages: paginate.getArrayPages(req)(3, Math.ceil(result.total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
   });
 });
 

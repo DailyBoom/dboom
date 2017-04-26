@@ -197,44 +197,6 @@
 				</div>
 				</div>
 			</section>
-			<section id="contact">
-				<header>
-				LIÊN HỆ
-				</header>
-				<div class="-content">
-				<div class="row">
-					<div class="col-xs-12 col-md-3">
-					<span class="subtitle"><i class="fa fa-anchor fa-2x" aria-hidden="true"></i> Reach us</span>
-					<p class="top">Quan Binh Thanh <br>
-						Ho Chi Minh City <br>
-						Vietnam
-					</p>
-					</div>
-					<div class="col-xs-12 col-md-3">
-					<span class="subtitle"><i class="fa fa-phone fa-2x" aria-hidden="true"></i> Hotline hỗ trợ</span>
-					<p class="top">01699 876 023
-					</p>
-					</div>
-					<div class="col-xs-12 col-md-3">
-					<span class="subtitle"><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i> Write us an e-mail</span>
-					<p class="top">hello@yppuna.vn
-					</p>
-					</div>
-					<div class="col-xs-12 col-md-3">
-					<span class="subtitle"><i class="fa fa-send-o fa-2x" aria-hidden="true"></i> ĐĂNG KÝ NEWSLETTER</span>
-					<p class="top">hello@yppuna.vn
-					</p>
-					</div>
-				</div>
-				</div>
-			</section>
-			<div class="footer-social-links row center">
-				<ul>
-				<li><a href="#"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a></li>
-				</ul>
-			</div>
 		</div>
 	</div>
 	})

@@ -2723,6 +2723,7 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 5px;
     margin-right: 5px;
   }
+
 }
 
 @media only screen and (min-width: 992px) {
@@ -2743,7 +2744,6 @@ input[type=number]::-webkit-outer-spin-button {
     display: inline-block;
     width: 100%;
   }
-
 
 }
 
