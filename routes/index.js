@@ -224,7 +224,9 @@ router.get('/mall/sale', function(req, res, next) {
 });
 
 router.get('/banner', function(req, res, next) {
-  res.render('banner', { });
+  Homepage.findOne({}, 'main_banner').populate('main_banner.products').exec(function(err, homepage) {  
+    res.render('banner', { homepage: homepage });
+  });
 });
 
 router.get('/about', function(req, res, next) {

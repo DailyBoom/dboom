@@ -4,6 +4,7 @@
             <h1 class="center">Edit homepage banners</h1>
             <form class="row" method="POST" enctype="multipart/form-data">
                 <div class="main">
+                    <input type="hidden" name="main_banner[banner]" value="@model.homepage.main_banner.banner" />
                     <div class=" file-field input-field">
                         <br>
                         <span class="hide-on-med-and-down"><br></span>
@@ -25,22 +26,14 @@
                             <a id="add_product" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>add product</a>
                             <a id="remove_product" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>remove product</a>
                         </div>
-                        <div class="product-row">
-                        @if (!model.homepage.main_banner.products) {
-                            <div class="input-field product">
-                                <input id="p_name_0" type="text" class="validate" name="main_banner[product][0]" value="">
-                                <label for="p_name_0">Product</label>
-                            </div>
-                        }
-                        else {
-                            @model.homepage.main_banner.products.forEach(function(product, index) {
+                        @model.homepage.main_banner.products.forEach(function(product, index) {
+                            <div class="product-row">
                                 <div class="input-field product">
-                                    <input id="p_name_@index" type="text" class="validate" name="main_banner[product][@index]" value="@product">
+                                    <input id="p_name_@index" type="text" class="validate" name="main_banner[products][@index]" value="@product">
                                     <label for="p_name_@index">Product</label>
                                 </div>
-                            })
-                        }
-                        </div>
+                            </div>
+                        })
                     </div>
                 </div>
                 <div class="file-field input-field">
@@ -105,6 +98,7 @@
                 </div>
                 @for (x = 0; x < 3; x++) {
                     <div class="review">
+                        <input type="hidden" name="reviews[@x][banner]" value="@model.homepage.reviews[x].banner" />
                         <div class="file-field input-field">
                             <br>
                             <span class="hide-on-med-and-down"><br></span>
@@ -164,7 +158,7 @@
                     minLength: 4
                 };
                 $(".product input").autocomplete(autocomp_opt);
-                var x = 1;
+                var x = @model.homepage.main_banner.products.length;
                 $('#product_wrapper').on("click", "#remove_product", function(e){ //user click on remove text
                     e.preventDefault();
                     if (x > 1) {
@@ -174,7 +168,7 @@
                     }
                 });
                 $("#add_product").click(function(e){ //on add input button click
-                    var new_p = $('<div class="product-row"><div class="input-field product"><input id="p_name_'+x+'" type="text" class="validate" name="main_banner[product]['+x+']"><label for="p_name_'+x+'">Product</label></div></div>');
+                    var new_p = $('<div class="product-row"><div class="input-field product"><input id="p_name_'+x+'" type="text" class="validate" name="main_banner[products]['+x+']"><label for="p_name_'+x+'">Product</label></div></div>');
                     $("#product_wrapper").append(new_p);
                     $('.product input').autocomplete(autocomp_opt);
                     x++;

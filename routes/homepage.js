@@ -45,7 +45,6 @@ router.get('/homepage/edit', isAdmin, function(req, res) {
 router.post('/homepage/edit', isAdmin, upload.fields([{ name: "main_banner" }, { name: "right_1_banner" }, { name: "right_2_banner" }, { name: "deal_banner" }, { name: "fav_banner" }, { name: "organic_banner" }, { name: "review_1_banner" }, { name: "review_2_banner" }, { name: "review_3_banner" }, { name: "review_1_avatar" }, { name: "review_2_avatar" }, { name: "review_3_avatar" }]), function(req, res) {
     Homepage.findOne({}, function(err, homepage) {
 
-        console.log(req.body.main_banner);
         homepage.main_banner = req.body.main_banner;
 
         if (req.files['main_banner'])
