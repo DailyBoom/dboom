@@ -243,7 +243,7 @@
               <li><a href="/admin/dashboard">Admin Dashboard</a></li>
             }
             <li><a href="/">TRANG CHỦ</a></li>
-            <li><a href="/mall/boxes">Box <i class="fa fa-heart-o"></i></a></li>
+            <li><a href="/mall/boxes">HỘP LÀM ĐẸP <i class="fa fa-heart-o"></i></a></li>
             <li><a href="/mall?group=0">Chăm sóc da</a></li>
             <li><a href="/mall?group=1">Trang điểm</a></li>
             <li><a href="/mall?group=2">Cơ thể</a></li>
@@ -280,7 +280,7 @@
             <div class="-content @(model.is_mobile ? 'collapse' : '')" id="contact-collapse">
             <div class="row">
               <div class="col-xs-12 col-md-3">
-              <span class="subtitle"><i class="fa fa-anchor fa-2x" aria-hidden="true"></i> Reach us</span>
+              <span class="subtitle"><i class="fa fa-anchor fa-2x" aria-hidden="true"></i> HỘP LÀM ĐẸP</span>
               <p class="top">Quan Binh Thanh <br>
                 Ho Chi Minh City <br>
                 Vietnam
@@ -292,12 +292,12 @@
               </p>
               </div>
               <div class="col-xs-12 col-md-3">
-              <span class="subtitle"><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i> Write us an e-mail</span>
+              <span class="subtitle"><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i> Phản hồi qua email</span>
               <p class="top">hello@yppuna.vn
               </p>
               </div>
               <div class="col-xs-12 col-md-3">
-              <span class="subtitle"><i class="fa fa-send-o fa-2x" aria-hidden="true"></i> ĐĂNG KÝ NEWSLETTER</span>
+              <span class="subtitle"><i class="fa fa-send-o fa-2x" aria-hidden="true"></i> Đăng ký nhận tin</span>
               <p class="top">hello@yppuna.vn
               </p>
               </div>

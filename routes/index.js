@@ -223,6 +223,10 @@ router.get('/mall/sale', function(req, res, next) {
   });
 });
 
+router.get('/banner', function(req, res, next) {
+  res.render('banner', { });
+});
+
 router.get('/about', function(req, res, next) {
   res.render('about', { title: req.__('about'), description: req.__('about.text_1') });
 });

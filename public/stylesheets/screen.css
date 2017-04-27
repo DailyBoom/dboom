@@ -511,6 +511,7 @@ input[type=search] {
   text-align: right;
   padding: 0 5px;
   color: black;
+  font-family: 'Brandon', fontawesome;
 }
 
 /* line 486, ../sass/screen.scss */
@@ -721,13 +722,16 @@ input[type=search] {
   padding: 10px 0;
   margin-right: 20px;
   overflow: hidden;
+  height: 250px;
 }
 
 #reviews .col-md-4:nth-last-child() {
   margin-right: 0;
 }
 
-
+#reviews .review .text-center {
+  padding: 0;
+}
 
 #reviews .img-circle {
   width: 40px;
@@ -747,6 +751,7 @@ input[type=search] {
 #reviews .text {
   font-family: 'Brandon';
   font-size: 10px;
+  text-align: justify;
 }
 /* line 638, ../sass/screen.scss */
 /* line 643, ../sass/screen.scss */

@@ -7,7 +7,7 @@
 				<div class="row">
 					<div class="col-xs-12 col-md-8">
 					<div class="">
-						<img src="@model.homepage.main_banner" class="img-responsive">
+						<img src="@model.homepage.main_banner.banner" class="img-responsive">
 					</div>
 					</div>
 					<div class="col-xs-12 col-md-4 hide-on-small-only">
@@ -32,9 +32,7 @@
 				</div>
 			</section>
 			<section id="boxes">
-				<header>
-				Yppuna Boxes
-				</header>
+				<header>HỘP LÀM ĐẸP</header>
 				<div class="-content tabbed">
 					@model.products.forEach(function(box, index) {
 						<input class="tab" id="tab@(index + 1)" type="radio" name="tabs" checked>
@@ -86,7 +84,7 @@
 				Giới thiệu
 				</header>
 				<div class="-content">
-					<span class="col-xs-12 subtitle centered">Bestsellers <i class="fa fa-hand-peace-o" aria-hidden="true"></i></span>
+					<span class="col-xs-12 subtitle centered">Sản phẩm bán chạy nhất <i class="fa fa-hand-peace-o" aria-hidden="true"></i></span>
 					<div class="row">
 						@model.hotProducts.forEach(function(product) {
 						<!-- One product -->
@@ -109,7 +107,7 @@
 						})
 					</div>
 					<div class="spacer"></div>
-					<span class="col-xs-12 subtitle centered">New items<i class="fa fa-cubes" aria-hidden="true"></i></span>
+					<span class="col-xs-12 subtitle centered">Sản phẩm mới <i class="fa fa-cubes" aria-hidden="true"></i></span>
 					<div class="row">
 						@model.newProducts.forEach(function(product) {
 						<!-- One product -->
@@ -132,9 +130,7 @@
 				</div>
 			</section>
 			<section id="feed">
-				<header>
-				Yppuna Feed
-				</header>
+				<header>YPPUNA BLOG & VIDEO</header>
 				<div class="-content">
 					<div class="row">
 						<div class="col-xs-12 col-md-8">
@@ -177,9 +173,6 @@
 				</div>
 			</section>
 			<section id="hall-of-fame">
-				<header>
-				Hall of fame
-				</header>
 				<div class="-content">
 				<div class="row">
 					<div class="col-xs-12 col-md-4">

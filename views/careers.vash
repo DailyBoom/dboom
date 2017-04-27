@@ -3,7 +3,7 @@
         <div class="container">
             <div class="breadcrumb">
                 <ol class="breadcrumb">
-                    <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i>Về trang Home</a></li>
+                    <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i>Về trang chủ</a></li>
                 </ol>
                 </div>
                 <div class="row">
