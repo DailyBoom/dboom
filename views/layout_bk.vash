@@ -183,7 +183,7 @@
             <ul class="pull-left">
               <li>
                 <form action="/mall" method="get">
-                  <input name="s" type="search" placeholder="Tìm kiếm">
+                  <input name="s" type="search" placeholder="&#xF002; Tìm kiếm">
                 </form>
               </li>
             </ul>

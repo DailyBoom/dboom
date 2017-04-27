@@ -68,7 +68,7 @@
 									var price =  box.old_price - box.price
 									var sale = price / box.old_price * 100; 
 								}
-								<span class="tagged"> -@sale%</span>
+								<span class="tagged"> -@sale.toFixed(0)%</span>
 								<span class="item_price highlight">@box.price</span>
 								<span class="item_price striked">@box.old_price</span>
 							</div>

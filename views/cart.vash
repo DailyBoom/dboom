@@ -88,6 +88,13 @@
                   <span class="col-xs-12 highlight top-space price">@model.order.totalOrderAmt</span>
                 </div>
               </div>
+              <form method="post" action="/orders/apply_code" class="col-xs-12" id="code_form">
+                  <div class="form-group">
+                    <label for="code" class="col-xs-12">Mã giảm giá</label>
+                    <input id="code" name="code" class="col-xs-7" type="text" />
+                  </div>
+                  <button class="col-xs-5 btn">XÁC NHẬN</button>
+              </form>
               <div class="row">
                 <div class="col-xs-12 top-space">
                   <a href="/checkout/login" class="btn btn-primary btn-block">Thanh toán</a>
