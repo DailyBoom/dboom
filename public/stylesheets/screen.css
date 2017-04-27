@@ -80,6 +80,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .top {
   margin: 1em 0 1.2em 0;
   font-weight: 300;
+  margin-left: 10px;  
 }
 
 /* line 19, ../sass/screen.scss */
@@ -309,6 +310,7 @@ section .-content {
 
 .product .img-responsive {
   min-height: 200px;
+  max-height: 275px;
 }
 
 /* line 261, ../sass/screen.scss */
@@ -1240,6 +1242,14 @@ nav {
     margin-top: 0;
     margin-bottom: 10px;
   }
+
+  #reviews .review {
+    height: auto;
+  }
+
+  #reviews .review .text-center {
+    padding: 0 10px;
+  }  
 }
 /* line 768, ../sass/screen.scss */
 #banner .desc-photo {

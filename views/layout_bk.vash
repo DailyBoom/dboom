@@ -219,7 +219,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand hidden-lg" href="#">
+          <a class="navbar-brand hidden-lg" href="/">
             <img class="img-responsive" alt="Brand" src="/images/logo-mini.png">
           </a>
           <ul class="facts visible-xs-inline-block text-center">
@@ -304,26 +304,27 @@
             </div>
             </div>
           </section>
-          <div class="footer-social-links row center">
-            <ul>
-            <li><a href="#"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a></li>
-            <li><a href="#"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></li>
-            <li><a href="#"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a></li>
-            </ul>
-          </div>
+          
           <div class="row">
-            <div class="col-xs-12 col-md-8">
+            <div class="col-xs-12 col-md-4">
               <ul>
                 <li>Yppuna</li>
                 <li class="hide">FAQ</li>
                 <li><a href="/careers">Careers</a></li>
               </ul>
             </div>
+            <div class="col-md-4 footer-social-links row center">
+              <ul>
+                <li><a href="#"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a></li>
+              </ul>
+            </div>
             <div class="col-xs-12 col-md-4">
 
             </div>
             <div id="payment-methods" class="col-xs-12 col-md-4">
-              <ul>
+              <ul class="hide">
                 <li><i class="fa fa-cc-visa fa-2x" aria-hidden="true"></i></li>
                 <li><i class="fa fa-cc-mastercard fa-2x" aria-hidden="true"></i></li>
                 <li><i class="fa fa-cc-paypal fa-2x" aria-hidden="true"></i></li>

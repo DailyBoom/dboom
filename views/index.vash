@@ -6,11 +6,15 @@
 				<div class="">
 				<div class="row">
 					<div class="col-xs-12 col-md-8">
-					<div class="">
-						<a href="/banner?type=main"><img src="@model.homepage.main_banner.banner" class="img-responsive"></a>
-					</div>
+						<div class="">
+							<a href="/banner?type=main"><img src="@model.homepage.main_banner.banner" class="img-responsive"></a>
+						</div>
 					</div>
 					<div class="col-xs-12 col-md-4 hide-on-small-only">
+						@if (model.is_mobile) {
+							<div class="spacer">
+							</div>
+						}
 						<div class="col col-xs-12">
 						<div class="row">
 							<div class="item-image">
@@ -99,7 +103,7 @@
 									@product.price
 								</span>
 								<div class="col-xs-12 product-add">
-								<button class="btn btn-default add-cart" data-id="@product.id" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
+								<button class="btn btn-secondary add-cart" data-id="@product.id" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
 								</div>
 							</div>
 						</div>
@@ -120,7 +124,7 @@
 								<a href="/shop/products/@product.url" class="col-xs-12 product-name">@product.name</a>
 								<span class="col-xs-12 product-price">@product.price</span>
 								<div class="col-xs-12 product-add">
-								<button class="btn btn-default add-cart" data-id="@product.id" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
+								<button class="btn btn-secondary add-cart" data-id="@product.id" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
 								</div>
 							</div>
 						</div>
