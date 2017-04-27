@@ -110,6 +110,11 @@ a, a:hover {
 
 /** NEW LAYOUT **/
 @font-face {
+  font-family: 'Brandon Medium';
+  src: url(/fonts/BrandonText-Medium.ttf);
+  font-weight: normal;
+}
+@font-face {
   font-family: 'Brandon Regular';
   src: url(/fonts/BrandonText-Regular.ttf);
   font-weight: normal;
@@ -126,7 +131,7 @@ a, a:hover {
 }
 /* line 60, ../sass/screen.scss */
 html, body {
-  font-family: 'Brandon Regular', sans-serif;
+  font-family: 'Brandon Medium', sans-serif;
 }
 
 /* line 162, ../sass/screen.scss */
@@ -348,7 +353,7 @@ section .-content {
 .items-inside li {
   display: inline-block;
   max-width: 100px;
-  font-family: 'Brandon Regular';
+  font-family: 'Brandon Medium';
   padding: 0;
   vertical-align: top;
   margin-left: 10px;
@@ -448,7 +453,7 @@ footer {
 
 /* line 458, ../sass/screen.scss */
 input[type=text] {
-  font-family: 'Brandon Regular';
+  font-family: 'Brandon Medium';
 }
 
 /* line 464, ../sass/screen.scss */
@@ -602,7 +607,7 @@ input[type=search] {
 
 /* line 458, ../sass/screen.scss */
 .product-title-light {
-  font-family: 'Graphik-Light', 'Brandon Regular', sans-serif;
+  font-family: 'Graphik-Light', 'Brandon Medium', sans-serif;
   font-size: 2em;
 }
 
