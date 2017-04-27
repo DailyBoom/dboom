@@ -311,7 +311,7 @@ router.get('/home', function(req, res, next) {
     });
     behavior.save();
   }
-  Product.find({ scheduled_at: moment().hour(config.Timezone).minute(0).second(0).millisecond(0) }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts').exec(function (err, products) {
+  Product.find({ scheduled_at: moment().day(1).hour(config.Timezone).minute(0).second(0).millisecond(0) }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts').exec(function (err, products) {
     // console.log(products);
     var query = Product.find({ extend: 4, is_published: true, is_hot: true });
     // query.where('product_region.'+req.session.zone, true);
