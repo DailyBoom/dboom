@@ -224,8 +224,15 @@ router.get('/mall/sale', function(req, res, next) {
 });
 
 router.get('/banner', function(req, res, next) {
-  Homepage.findOne({}, 'main_banner').populate('main_banner.products').exec(function(err, homepage) {  
-    res.render('banner', { homepage: homepage });
+  Homepage.findOne({}, 'main_banner right_1_banner right_2_banner').populate('main_banner.products right_1_banner.products right_2_banner.products').exec(function(err, homepage) {  
+    var banner;
+    if (req.query.type == "main")
+      banner = homepage.main_banner;
+    else if (req.query.type == "right_1")
+      banner = homepage.right_1_banner;
+    else if (req.query.type == "right_2")
+      banner = homepage.right_2_banner;
+    res.render('banner', { banner: banner });
   });
 });
 

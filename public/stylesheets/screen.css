@@ -1244,10 +1244,12 @@ nav {
 /* line 768, ../sass/screen.scss */
 #banner .desc-photo {
   padding: 2em 0;
+  text-align: center;
 }
 /* line 770, ../sass/screen.scss */
 #banner .desc-photo img {
-  width: 100%;
+  width: auto;
+  margin: 0 auto;
 }
 
 /* Preview Navbar */

@@ -3,8 +3,8 @@ var Schema = mongoose.Schema;
 
 var homepageSchema = new Schema({
     main_banner: { banner: String, title: String, products: [{ type: Schema.Types.ObjectId, ref: 'Product' }] },
-    right_1_banner: String,
-    right_2_banner: String,
+    right_1_banner: { banner: String, title: String, products: [{ type: Schema.Types.ObjectId, ref: 'Product' }] },
+    right_2_banner: { banner: String, title: String, products: [{ type: Schema.Types.ObjectId, ref: 'Product' }] },
     deal_banner: String,
     fav_banner: String,
     organic_banner: String,

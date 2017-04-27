@@ -46,13 +46,15 @@ router.post('/homepage/edit', isAdmin, upload.fields([{ name: "main_banner" }, {
     Homepage.findOne({}, function(err, homepage) {
 
         homepage.main_banner = req.body.main_banner;
+        homepage.right_1_banner = req.body.right_1_banner;
+        homepage.right_2_banner = req.body.right_2_banner;
 
         if (req.files['main_banner'])
             homepage.main_banner.banner = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['main_banner'][0].key
         if (req.files['right_1_banner'])
-            homepage.right_1_banner = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['right_1_banner'][0].key
+            homepage.right_1_banner.banner = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['right_1_banner'][0].key
         if (req.files['right_2_banner'])
-            homepage.right_2_banner = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['right_2_banner'][0].key
+            homepage.right_2_banner.banner = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['right_2_banner'][0].key
         if (req.files['deal_banner'])
             homepage.deal_banner = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['deal_banner'][0].key
         if (req.files['fav_banner'])

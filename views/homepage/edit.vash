@@ -23,7 +23,7 @@
                     </div>
                     <div id="product_wrapper">
                          <div class="">
-                            <a id="add_product" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>add product</a>
+                            <a id="" data-type="main_banner" class="add_product waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>add product</a>
                             <a id="remove_product" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>remove product</a>
                         </div>
                         @model.homepage.main_banner.products.forEach(function(product, index) {
@@ -36,28 +36,74 @@
                         })
                     </div>
                 </div>
-                <div class="file-field input-field">
-                    <br>
-                    <span class="hide-on-med-and-down"><br></span>
-                    <label for="right_1_banner" class="input-file-mod grey-text">Top right banner 1</label>
-                    <div class="btn blue-grey darken-2">
-                        <span><i class="fa fa-image left"></i>Choose</span>
-                        <input id="right_1_banner" type="file" class="validate" name="right_1_banner">
+                <div class="main">
+                    <input type="hidden" name="right_1_banner[banner]" value="@model.homepage.right_1_banner.banner" />
+                    <div class=" file-field input-field">
+                        <br>
+                        <span class="hide-on-med-and-down"><br></span>
+                        <label for="right_1_banner" class="input-file-mod grey-text">Top Right Banner</label>
+                        <div class="btn blue-grey darken-2">
+                            <span><i class="fa fa-image left"></i>Choose</span>
+                            <input id="right_1_banner" type="file" class="validate" name="right_1_banner">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
                     </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
+                    <div class="input-field">
+                        <label for="right_1_banner_title">Campaign Title</label>
+                        <input type="text" name="right_1_banner[title]" id="right_1_banner_title" value="@model.homepage.right_1_banner.title" />
+                    </div>
+                    <div id="product_wrapper">
+                         <div class="">
+                            <a id="" data-type="right_1_banner" class="add_product waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>add product</a>
+                            <a id="remove_product" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>remove product</a>
+                        </div>
+                        @if (model.homepage.right_1_banner.products) {
+                        @model.homepage.right_1_banner.products.forEach(function(product, index) {
+                            <div class="product-row">
+                                <div class="input-field product">
+                                    <input id="p_name_@index" type="text" class="validate" name="right_1_banner[products][@index]" value="@product">
+                                    <label for="p_name_@index">Product</label>
+                                </div>
+                            </div>
+                        })
+                        }
                     </div>
                 </div>
-                <div class="file-field input-field">
-                    <br>
-                    <span class="hide-on-med-and-down"><br></span>
-                    <label for="right_2_banner" class="input-file-mod grey-text">Top right banner 2</label>
-                    <div class="btn blue-grey darken-2">
-                        <span><i class="fa fa-image left"></i>Choose</span>
-                        <input id="right_2_banner" type="file" class="validate" name="right_2_banner">
+                <div class="main">
+                    <input type="hidden" name="right_2_banner[banner]" value="@model.homepage.right_2_banner.banner" />
+                    <div class=" file-field input-field">
+                        <br>
+                        <span class="hide-on-med-and-down"><br></span>
+                        <label for="right_2_banner" class="input-file-mod grey-text">Bottom Right Banner</label>
+                        <div class="btn blue-grey darken-2">
+                            <span><i class="fa fa-image left"></i>Choose</span>
+                            <input id="right_2_banner" type="file" class="validate" name="right_2_banner">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
                     </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
+                    <div class="input-field">
+                        <label for="right_2_banner_title">Campaign Title</label>
+                        <input type="text" name="right_2_banner[title]" id="right_2_banner_title" value="@model.homepage.right_2_banner.title" />
+                    </div>
+                    <div id="product_wrapper">
+                         <div class="">
+                            <a id="" data-type="right_2_banner" class="add_product waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>add product</a>
+                            <a id="remove_product" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>remove product</a>
+                        </div>
+                        @if (model.homepage.right_2_banner.products) {
+                        @model.homepage.right_2_banner.products.forEach(function(product, index) {
+                            <div class="product-row">
+                                <div class="input-field product">
+                                    <input id="p_name_@index" type="text" class="validate" name="right_2_banner[products][@index]" value="@product">
+                                    <label for="p_name_@index">Product</label>
+                                </div>
+                            </div>
+                        })
+                        }
                     </div>
                 </div>
                 <div class="file-field input-field">
@@ -158,20 +204,18 @@
                     minLength: 4
                 };
                 $(".product input").autocomplete(autocomp_opt);
-                var x = @model.homepage.main_banner.products.length;
                 $('#product_wrapper').on("click", "#remove_product", function(e){ //user click on remove text
                     e.preventDefault();
-                    if (x > 1) {
-                        $('.product-row').last().remove();
-                        update_total();
-                        x--;
+                    if ($(this).find('.product-row').length > 1) {
+                        $(this).find('.product-row').last().remove();
                     }
                 });
-                $("#add_product").click(function(e){ //on add input button click
-                    var new_p = $('<div class="product-row"><div class="input-field product"><input id="p_name_'+x+'" type="text" class="validate" name="main_banner[products]['+x+']"><label for="p_name_'+x+'">Product</label></div></div>');
-                    $("#product_wrapper").append(new_p);
-                    $('.product input').autocomplete(autocomp_opt);
-                    x++;
+                $(".add_product").click(function(e){ //on add input button click
+                    var wrapper = $(this).parent().parent();
+                    var x = wrapper.find('.product-row').length;
+                    var new_p = $('<div class="product-row"><div class="input-field product"><input id="p_name_'+x+'" type="text" class="validate" name="'+$(this).data('type')+'[products]['+x+']"><label for="p_name_'+x+'">Product</label></div></div>');
+                    wrapper.append(new_p);
+                    wrapper.find('.product input').autocomplete(autocomp_opt);
                 });
             })
         </script>
