@@ -308,15 +308,7 @@ router.post('/contact', function(req, res, next) {
   });
 });
 
-router.get('/home', function(req, res, next) {
-  if (typeof req.session.zone === 'undefined')
-    return res.redirect('/');
-  if (req.query.zone && app.get('env') === 'production') {
-    var behavior = new Behavior({
-      zone: req.query.zone
-    });
-    behavior.save();
-  }
+router.get('/', function(req, res, next) {
   Product.find({ scheduled_at: moment().date(1).hour(config.Timezone).minute(0).second(0).millisecond(0) }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts').exec(function (err, products) {
     // console.log(products);
     var query = Product.find({ extend: 4, is_published: true, is_hot: true });
@@ -584,21 +576,21 @@ router.get('/blog/:url', function(req, res, next) {
   });
 });
 
-router.get('/', function(req, res, next) {
-  if (req.cookies.ypp_f_time && req.cookies.ypp_zone) {
-    return res.redirect('/home');
-  }
-  if (!req.cookies.ypp_f_time) {
-    res.cookie('ypp_f_time', 'true', { maxAge: 31536000000, httpOnly: true, path: '/' });
-  }
-  var has_zone = false
-  if (typeof req.session.zone !== 'undefined' || req.cookies.ypp_s_time)
-  {
-     has_zone = true;
-  }
-  console.log(req.cookies);
-  res.render('intro', { has_zone : true });
-});
+// router.get('/', function(req, res, next) {
+//   if (req.cookies.ypp_f_time && req.cookies.ypp_zone) {
+//     return res.redirect('/home');
+//   }
+//   if (!req.cookies.ypp_f_time) {
+//     res.cookie('ypp_f_time', 'true', { maxAge: 31536000000, httpOnly: true, path: '/' });
+//   }
+//   var has_zone = false
+//   if (typeof req.session.zone !== 'undefined' || req.cookies.ypp_s_time)
+//   {
+//      has_zone = true;
+//   }
+//   console.log(req.cookies);
+//   res.render('intro', { has_zone : true });
+// });
 
 router.get('/brands', function(req, res, next) {
   res.render('brand');
