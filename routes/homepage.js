@@ -19,7 +19,11 @@ var isAdmin = function (req, res, next) {
 var s3 = new aws.S3({
     aws_secret_access_key: config.Amazon.secretAccessKey,
     aws_access_key_id: config.Amazon.accessKeyId,
-    region: 'ap-northeast-2'
+    region: 'ap-northeast-2',
+    s3Options: {
+      accessKeyId: config.Amazon.accessKeyId,
+      secretAccessKey: config.Amazon.secretAccessKey,
+    }
 });
 
 var storage = multers3({
