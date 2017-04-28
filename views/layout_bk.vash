@@ -204,7 +204,7 @@
         <header class="so-header _fixed">
           <div class="-container">
               <div class="-main">
-                  <a href="#" class="-logo _glyph">
+                  <a href="/" class="-logo _glyph">
                       <span class="-img">Yppuna</span>
                   </a>
                   <nav class="navigation">

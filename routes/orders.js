@@ -752,6 +752,18 @@ router.get('/orders/packing/:id', isMerchantOrAdmin, function(req, res) {
   });
 });
 
+router.post('/orders/packed/:id', isMerchantOrAdmin, function(req, res) {
+  Order.findOne({ _id: req.params.id }).populate('user').exec(function(err, order) {
+    if (err)
+      console.log(err);
+    console.log(req.body);
+//    order.status = "Packed";
+//    order.save(function(err) {
+      res.redirect('/orders/packing');
+//    });
+  });
+});
+
 router.post('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
   Order.findOne({_id: req.params.id}).populate('user').exec(function(err, order) {
     if (err)
@@ -1112,7 +1124,7 @@ router.post('/shipping', function(req, res) {
 });
 
 router.post('/orders/get_products', function(req, res) {
-  Order.findOne({ _id: req.body.id }, 'cart').populate('cart.product').exec(function(err, order) {
+  Order.findOne({ _id: req.body.id }, 'cart shipping').populate('cart.product').exec(function(err, order) {
     res.status(200).json({ order: order });
   });
 });

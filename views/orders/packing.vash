@@ -60,6 +60,7 @@
                     var form = $('#packing_modal form');
                     var body = $('#packing_modal tbody');
                     var id = $(this).data('id');
+                    var order;
                     form.attr('action', '/orders/packed/'+ id);
                     $.ajax({
                         type: "POST",
@@ -69,9 +70,14 @@
                             id: id
                         },
                         success: function(data) {
+                            body.html("");
                             $.each(data.order.cart, function(index, item) {
-                                body.append('<tr><td>'+item.product.inv_code+'</td><td>'+item.product.name+'</td><td class="center">'+item.quantity+'</td><td class="center"><input type="checkbox" class="browser-default" name="packed[]" id="packed_'+index+'"/><label for="packed_'+index+'"></label></td></tr>');
+                                var checked = "";
+                                if (item.checked)
+                                    checked = "checked";
+                                body.append('<tr><td>'+item.product.inv_code+'</td><td>'+item.product.name+'</td><td class="center">'+item.quantity+'</td><td class="center"><input type="checkbox" name="packed['+index+']" id="packed_'+index+'" '+checked+'/><label for="packed_'+index+'"></label></td></tr>');
                             });
+                            order = data.order;
                             $('#packing_modal').openModal();
                         }
                     });
