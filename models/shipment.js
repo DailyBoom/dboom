@@ -3,6 +3,7 @@ var mongooseToCsv = require("mongoose-to-csv");
 var moment = require("moment");
 var shortid = require('shortid');
 var Schema = mongoose.Schema;
+var mongoosePaginate = require('mongoose-paginate');
 
 var shipmentSchema = new Schema({
 	_id: {
@@ -23,6 +24,8 @@ var shipmentSchema = new Schema({
     arr_date: Date,
     created_at: { type : Date, default : Date.now }
 });
+
+shipmentSchema.plugin(mongoosePaginate);
 
 var Shipment = mongoose.model("Shipment", shipmentSchema);
 

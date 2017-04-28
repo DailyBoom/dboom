@@ -92,64 +92,18 @@ var getOrderTotal = function(order) {
   }
 }
 
-var deliveryPrices = {
-    "HỒ CHÍ MINH": {
-        "QUẬN 1": 20000,
-        "QUẬN 2": 20000,
-        "QUẬN 3": 20000,
-        "QUẬN 4": 20000,
-        "QUẬN 5": 20000,
-        "QUẬN 6": 20000,
-        "QUẬN 7": 20000,
-        "QUẬN 8": 20000,
-        "QUẬN 9": 25000,
-        "QUẬN 10": 20000,
-        "QUẬN 11": 20000,
-        "QUẬN 12": 25000,
-        "QUẬN TÂN BÌNH": 20000,
-        "QUẬN THỦ ĐỨC": 25000,
-        "QUẬN BÌNH TÂN": 25000,
-        "QUẬN BÌNH THẠNH": 20000,
-        "QUẬN GÒ VẤP": 20000,
-        "QUẬN PHÚ NHUẬN": 20000,
-        "QUẬN TÂN PHÚ": 20000,
-        "HUYỆN CỦ CHI": 35000,
-        "HUYỆN NHÀ BÈ": 35000,
-        "HUYỆN HÓC MÔN": 35000,
-        "HUYỆN BÌNH CHÁNH": 35000,
-        "HUYỆN CẦN GIỜ": 35000
-    },
-    "HÀ NỘI": {
-        "BA ĐÌNH": 30000,
-        "HÀ ĐÔNG": 35000,
-        "QUẬN THANH XUÂN": 30000,
-        "HOÀNG MAI": 30000,
-        "HAI BÀ TRƯNG": 30000,
-        "ĐỐNG ĐA": 30000,
-        "CẦU GIẤY": 30000,
-        "LONG BIÊN": 35000,
-        "TÂY HỒ": 30000,
-        "QUẬN HOÀN KIẾM": 30000,
-        "TỪ LIÊM": 35000,
-        "CHƯƠNG MỸ": 45000,
-        "ĐAN PHƯỢNG": 45000,
-        "ĐÔNG ANH": 45000,
-        "GIA LÂM": 45000,
-        "HOÀI ĐỨC": 45000,
-        "MÊ LINH": 45000,
-        "THANH OAI": 45000,
-        "THANH TRÌ": 45000
-    },
-};
-
 var getOrderCartTotal = function(order) {
   order.totalOrderAmt = 0;
   order.shipping_cost = 0;
   order.cart.forEach(function(item) {
     order.totalOrderAmt += item.product.price * item.quantity;
   });
-  // if (deliveryPrices[order.shipping.city.toUpperCase()])
-  //   order.shipping_cost = deliveryPrices[order.shipping.city.toUpperCase()][order.shipping.district.toUpperCase()];
+  if (order.shipping.city.toUpperCase() == "KHÁC") {
+    order.shipping_cost = 30000;
+  }
+  else {
+    order.shipping_cost = 20000;    
+  }
   if (order.coupon && order.coupon.type == 2) {
     order.discount = order.shipping_cost;
   }
@@ -206,94 +160,60 @@ router.get('/orders/shipped', isAdmin, function(req, res) {
   res.render('mailer/shipped');
 });
 
-router.get('/merchants/orders/list', isMerchant, function(req, res) {
-  var page = req.query.page ? req.query.page : 1;
-  var query = Order.find({ status: { $in: ["Paid", "Sent"]}, $or: [ { cart_merchants: req.user.id }, { merchant_id: req.user.id }] }, {}, { sort: { 'created_at': -1 } }).populate('product');
-  if (req.query.order_date)
-    query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
-  query.paginate(page, 10, function(err, orders, total) {
-    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
-  });
-});
-
-router.get('/orders/new', isAdmin, function(req, res) {
-  res.render('orders/new');
-});
-
-router.post('/orders/new', isAdmin, function(req, res) {
-  var order = new Order({
-    shipping : {
-      full_name: req.body.full_name,
-      phone_number: req.body.phone,
-      address: req.body.address
-    },
-    email: req.body.email,
-    status: req.body.status,
-    pay_method: req.body.pay_method,
-    created_at: req.body.created_at,
-    notes: req.body.notes,
-    cart: req.body.products
-  });
-
-  order.save(function(err) {
-
-    return res.redirect('/orders/list');
-  });
-});
-
 router.get('/orders/list', isAdmin, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
-  var query = Order.find({}, {}, { sort: { 'created_at': -1 } }).populate('product');
-  if (req.query.s_date)
-    query.where('created_at').gte(req.query.s_date).lt(moment(req.query.s_date).add(1, 'days'));
+  var query = {};
+    if (req.query.s_date)
+    query['created_at'] = { '$gte': req.query.s_date, '$lt': moment(req.query.s_date).add(1, 'days') };
   if (req.query.s_status)
-    query.where('status').equals(req.query.s_status);
+    query['status'] = req.query.s_status;
   if (req.query.s_quantity)
-    query.where('cart.quantity').equals(req.query.s_quantity);
+    query['cart.quantity'] = req.query.s_quantity;
   if (req.query.s_type)
-    query.where('pay_method').equals(req.query.s_type);
+    query['pay_method'] = req.query.s_type;
   if (req.query.s_id)
-    query.where('_id').equals(req.query.s_id);
+    query['_id'] = req.query.s_id;
   if (req.query.s_name) {
-    var regex = new RegExp(req.query.s_name, "i");
-    query.where('shipping.full_name').regex(regex);
+    query['shipping.full_name'] = { $regex: req.query.s_name, $options: "i" };
   }
-  query.paginate(page, 10, function(err, orders, total) {
-    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
+  var option = { page: page, limit: 10, sort: { 'created_at': -1 }, populate: 'populate' };
+  Order.paginate(query, option).then(function(result) {
+    res.render('orders/list', { orders: result.docs, pages: paginate.getArrayPages(req)(3, Math.ceil(result.total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
   });
 });
 
 router.get('/orders/shipping', isAdmin, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
-  var query = Order.find({ status: { $in: ["Waiting", "Paid"] } }, {}, { sort: { 'created_at': -1 } }).populate('product');
+  var query = { status: { $in: ["Waiting", "Paid"] } };
+  var option = { sort: { 'created_at': -1 } , populate: 'product' };
   if (req.query.s_date)
-    query.where('created_at').gte(req.query.s_date).lt(moment(req.query.s_date).add(1, 'days'));
+    query['created_at'] = { '$gte': req.query.s_date, '$lt': moment(req.query.s_date).add(1, 'days') };
   if (req.query.s_status)
-    query.where('status').equals(req.query.s_status);
+    query['status'] = req.query.s_status;
   if (req.query.s_quantity)
-    query.where('cart.quantity').equals(req.query.s_quantity);
+    query['cart.quantity'] = req.query.s_quantity;
   if (req.query.s_type)
-    query.where('pay_method').equals(req.query.s_type);
+    query['pay_method'] = req.query.s_type;
   if (req.query.s_id)
-    query.where('_id').equals(req.query.s_id);
+    query['_id'] = req.query.s_id;
   if (req.query.s_name) {
-    var regex = new RegExp(req.query.s_name, "i");
-    query.where('shipping.full_name').regex(regex);
+    query['shipping.full_name'] = { $regex: req.query.s_name, $options: "i" };
   }
-  query.paginate(page, 10, function(err, orders, total) {
+  query.paginate(query, option).then(function(result) {
     res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '', shipping: true });
   });
 });
 
 router.get('/wholesalers/orders', isMerchantOrAdmin, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
-  var query = Order.find({ type: 'wholesale' }, {}, { sort: { 'created_at': -1 } }).populate('product');
+  var query = { type: 'wholesale' };
   if (req.query.order_date)
-    query.where('created_at').gte(req.query.order_date).lt(moment(req.query.order_date).add(1, 'days'));
+    query['created_at'] = { '$gte': req.query.order_date, '$lt': moment(req.query.order_date).add(1, 'days') };
   if (req.query.status)
-    query.where('status').equals(req.query.status);
-  query.paginate(page, 10, function(err, orders, total) {
-    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '', wholesaler: true });
+    query['status'] = req.query.status;
+  var option = { page: page, limit: 10, sort: { 'created_at': -1 }, populate: 'populate' };
+  Order.paginate(query, option).then(function(result) {
+    res.render('orders/list', { orders: result.docs, pages: paginate.getArrayPages(req)(3, Math.ceil(result.total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
   });
 });
 
@@ -465,7 +385,10 @@ router.get('/cart', function(req, res, next) {
     if (order && order.cart.length > 0) {
       getOrderCartRecap(order);
     }
-    res.render('cart', { order: order });
+    else {
+      return res.redirect('/');
+    }
+    return res.render('cart', { order: order });
   });
 });
 

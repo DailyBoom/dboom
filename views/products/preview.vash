@@ -1,12 +1,12 @@
-@html.extend("layout-beta", function(@model) {
+@html.extend("layout_bk", function(@model) {
 	@html.block("body", function(@model) {
 @if(model.user && (model.user.admin || model.user.role == 'merchant')) {
 <div id="navbar-preview" class="preview-bar">
 	<div class="container">
-		<ul class="preview-menu left">
+		<ul class="preview-menu pull-left">
 			<li><span class="preview white-text">PREVIEW MODE</span></li>
 		</ul>
-		<ul class="preview-menu right">
+		<ul class="preview-menu pull-right">
 		@if(model.user.admin) {
 			<li>
 				<a class="btn-preview white-text center" href="/products/publish/@model.product.id">
@@ -34,109 +34,109 @@
 	</div>
 </div><!-- .preview-bar -->
 }
-	<div id="detailed_product" class="container">
+<div class="container">
+	<div class="row">
+	<div id="product-view" class="col-xs-12">
+	<div class="col-sm-6 viewer-sm">
+		<div class="col-sm-2 hidden-xs">
+		<ul class="multiple-images-sm">
+			<li><img class="img-circle img-responsive" src="@model.product.images[0]" alt=""></li>
+
+		</ul>
+
+		</div>
+		<div class="col-sm-10 main-img">
+			<img class="img-responsive" src="@model.product.images[0]" alt="@model.product.brand">
+		</div>
+
+
+	</div>
+	<div class="col-sm-6 brief-info">
 		<div class="row">
-			<div class="col s12 l4" id="left">
-				<h1>@model.product.name</h1>
-				<a href="#" class="read-less hide-on-large-only">Hình sản phẩm <i class="fa fa-caret-right"></i></a>					
-				<div class="description">
-					<h4>MÔ TẢ CHI TIẾT</h4>
-					<div class="body">@html.raw(model.product.description)</div>
-				</div>
-				<div class="description">
-					<h4>Lý Do Để Yêu Sản Phẩm Này</h4>
-					<div class="body">@html.raw(model.product.why_love)</div>
-				</div>
-				<div class="description">
-					<h4>Thành Phần</h4>
-					<div class="body">@html.raw(model.product.ingredients)</div>
-				</div>
-				<div class="how-to hide-on-large-only">
-					<h4>HƯỚNG DẪN SỬ DỤNG</h4>
-					<div class="body">@html.raw(model.product.how_to)</div>
-				</div>
-				<a href="#" class="read-more hide-on-large-only">Xem chi tiết <i class="fa fa-caret-right"></i></a>
+			<div class="col-xs-12">
+				<span class="subtitle">@model.product.brand</span>
 			</div>
-			<div class="col s12 l4" id="center">
-				<div class="img-wrapper">
-					<div class="main-img">
-						<img src="@model.product.images[0]" />
-					</div>
-				</div>
-				<div class="img-list">
-					<div class="img-wrapper">
-						<div class="side-img left-img"><img src="@model.product.images[2]" /></div>
-					</div>
-					<div class="img-wrapper">
-						<div class="current-img"><img src="@model.product.images[0]" /></div>
-					</div>
-					<div class="img-wrapper">
-						<div class="side-img"><img src="@model.product.images[1]" /></div>
-					</div>
-				</div>
+			<div class="col-xs-12 top-space">
+				<span class="product-title-light">@model.product.name</span>
 			</div>
-			<div class="col s12 l4" id="right">
-				<div class="how-to hide-on-med-and-down">
-					<h4>HƯỚNG DẪN SỬ DỤNG</h4>
-					<div class="body">@html.raw(model.product.how_to)</div>
-				</div>
-				<div class="prices">
-					<span class="price">@model.product.price</span>
-					@if (model.product.old_price) {
-						<span class="old_price">@model.product.old_price</span>
-					}
-				</div>
-				@if(model.product.product_region.length > 0) {					
-				<div class="regions">
-					<h4>VÙNG MIỀN</h4>
-					<div>
-						@if(model.product.product_region && model.product.product_region[0] == true) {
-							<div class="col s4">
-								<img src="/images/north-logo.svg">
-								<span class="north">Miền bắc</span>
-							</div>
-						}
-						@if(model.product.product_region && model.product.product_region[1] == true) {
-							<div class="col s4">
-								<img src="/images/central-logo.svg">
-								<span class="central">Miền bắc</span>
-							</div>
-						}
-						@if(model.product.product_region && model.product.product_region[2] == true) {
-							<div class="col s4">
-								<img src="/images/south-logo.svg">
-								<span class="south">Miền bắc</span>
-							</div>
-						}
-					</div>
-				</div>
-				}
-				@if(model.product.options_skin.length > 0) {
-					<div class="skin-types">
-						<h4>LOẠI DA</h4>
-						<select class="col s8">
-							@model.product.options_skin.forEach(function(item, index) {
-								<option @(index == 0 ? 'selected': '')>@item</option>
-							})
-						</select>
-					</div>
-				}
-				@if (model.product.options[0].name != '') {
-					<div class="options">
-						<h4>MÀU SẮC</h4>
-						<ul id="options">
-							@model.product.options.forEach(function(option, index){
-								<li data-option="@index" style="background-color:@option.name;" class="@(index == 0 ? 'active' : '')"></li>
-							})
-						</ul>
-					</div>
-				}
-				<div class="quantity">
-					<h4>SỐ LƯỢNG</h4>
-					<input type="number" id="quantity" />
-					<button type="button" id="checkout" class="add_cart" data-id="@model.product.id">THÊM VÀO GIỎ HÀNG</button>
-				</div>
+			<div class="rating col-xs-12" data-rating="@model.avg">
 			</div>
+			<div class="col-xs-12 top-space">
+				<span class="subtitle">Giá</span>
+			</div>
+			<div class="col-xs-12 left-aligned top-space">
+				<span class="highlight price">@model.product.price</span>
+			</div>
+			<div class="col-xs-12 top-space">
+				<span class="subtitle">Số lượng</span>
+			</div>
+
+			<div class="col-xs-12 col-sm-3 top-space">
+				<input type="number" name="quantity" id="quantity" value="1">
+			</div>
+			<div class="col-xs-12 col-sm-9 top-space">
+				<button data-id="@model.product.id" type="button" name="button" class="add_cart btn btn-primary">THÊM VÀO GIỎ HÀNG</button>
+			</div>
+			@if (!(model.product.options.length == 1 && model.product.options[0].name == '')) {
+			<div class="col-xs-12 top-space">
+				<span class="subtitle">MÀU SẮC</span>
+			</div>
+			<div class="col-xs-12 top-space">
+				<ul class="product-options">
+					@model.product.options.forEach(function(option, index){
+						@if (option.quantity > 0) {
+						<li data-option="@index" class="option">
+							<div class="option-color" style="background-color:@option.name;"></div>
+							@if (model.product.category[0] == 60 || model.product.category[0] == 59 || (model.product.category[0] >= 38 && model.product.category[0] <= 43)) {
+								<div class="option-name">@model.product.options_skin[index]</div>
+							}
+							<img src="@option.photo" class="hide option-photo" />
+						</li>
+						}
+					})
+				</ul>
+			</div>
+			}
+			<div class="col-xs-12 top-space">
+				<p>@model.product.description</p>
+			</div>
+		</div>
+
+	</div>
+	</div>
+	<div class="spacer col-xs-12">
+	</div>
+	<div class="row hide">
+		<div class="tabbed col-xs-12">
+			<input id="tab1" type="radio" name="tabs" checked>
+			<label for="tab1">Lý Do Để Yêu Sản Phẩm Này</label>
+			
+			<input name="tabs" id="tab2" type="radio">
+			<label for="tab2">Hướng Dẫn Sử Dụng</label>
+			
+			<input name="tabs" id="tab3" type="radio">
+			<label for="tab3">Thành Phần</label>
+
+			<!-- first panel -->
+			<section class="col-xs-12 tab-div" id="content1">
+				<div>
+					<p>@html.raw(model.product.why_love)</p>
+				</div>
+			</section>
+			<!-- second panel -->
+			<section class="col-xs-12 tab-div" id="content2">
+				<div>
+					<p>@html.raw(model.product.how_to)</p>
+				</div>
+			</section>
+			<!-- third panel -->
+			<section class="col-xs-12 tab-div" id="content3">
+				<div>
+					<p>@html.raw(model.product.ingredients)</p>
+				</div>
+			</section>
+		</div>
+	</div>
 		</div>
 	</div>
 	})

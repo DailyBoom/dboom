@@ -2,10 +2,6 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-@font-face {
-  font-family: "Pierrot";
-  src: url("/fonts/Pierrot.otf");
-}
 /* line 5, ../../../../usr/local/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -71,154 +67,1399 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-/* line 12, ../sass/screen.scss */
-html, body {
-  font-family: 'Quicksand', sans-serif;
+/* line 7, ../sass/screen.scss */
+.subtitle {
+  font-family: 'Brandon Bold', sans-serif;
+  font-size: 0.8em;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: underline;
 }
 
-/* line 15, ../sass/screen.scss */
-h1 {
-  font-family: 'Pierrot';
+/* line 14, ../sass/screen.scss */
+.top {
+  margin: 1em 0 1.2em 0;
+  font-weight: 300;
+  margin-left: 10px;  
+}
+
+/* line 19, ../sass/screen.scss */
+.footer-social-links {
   text-align: center;
-  line-height: 2em;
-  font-size: 1.4em;
 }
 
 /* line 22, ../sass/screen.scss */
-h2 {
-  color: #FEA3A3;
-  font-size: 1.4em;
-  line-height: 2em;
-  text-transform: uppercase;
-  text-align: center;
+.footer-social-links ul li > a {
+  display: inline-block;
+  padding: 5px;
+  line-height: 2;
+  color: black !important;
 }
 
 /* line 30, ../sass/screen.scss */
-#right {
-  margin-left: 30px;
-}
-
-/* line 33, ../sass/screen.scss */
-.row, .col {
-  padding: 0 0rem !important;
+.footer-social-links li {
+  margin: 0 15px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /* line 36, ../sass/screen.scss */
-#first {
-  width: 740px;
-  height: 470px;
-  background-image: url("../images/mango.jpg");
-  background-size: cover;
+a, a:hover {
+  color: RGBA(28, 194, 139, 1);
 }
 
-/* line 42, ../sass/screen.scss */
-#second {
-  width: 340px;
-  height: 225px;
-  background-image: url("../images/korean10.jpg");
-  background-size: cover;
+/** NEW LAYOUT **/
+@font-face {
+  font-family: 'Brandon Medium';
+  src: url(/fonts/BrandonText-Medium.ttf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Brandon Regular';
+  src: url(/fonts/BrandonText-Regular.ttf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Brandon Bold';
+  src: url(/fonts/BrandonText-Bold.ttf);
+  font-weight: bolder;
+}
+@font-face {
+  font-family: 'Graphik Light';
+  src: url(../fonts/Graphik-Light.otf);
+  font-weight: lighter;
+}
+@font-face {
+  font-family: 'Graphik Bold';
+  src: url(../fonts/Graphik-Medium.otf);
+  font-weight: bolder;
+}
+/* line 66, ../sass/screen.scss */
+html, body {
+  font-family: 'Brandon Medium', sans-serif;
 }
 
-/* line 49, ../sass/screen.scss */
-#third {
-  margin-top: 20px;
-  width: 340px;
-  height: 225px;
-  background-image: url("../images/korean0.jpeg");
-  background-size: cover;
+/* line 162, ../sass/screen.scss */
+.breadcrumb {
+  background: white;
 }
 
-/* line 57, ../sass/screen.scss */
-#gateway {
-  padding: 110px 0 20px 0;
-  width: 87%;
-  margin: 0 auto;
-  display: flex;
+/* line 70, ../sass/screen.scss */
+.breadcrumb a {
+  color: #1cc28b !important;
 }
 
-/* line 64, ../sass/screen.scss */
-.transparent, .pale {
-  padding: 20px 0;
+/* line 74, ../sass/screen.scss */
+#top-bar {
+  height: 40px;
+  width: 100%;
+  z-index: 1000;
+  position: fixed;
+  background: #1cc28b;
+  /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #1cc28b 0%, #53cbf1 50%, #6495ed 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #1cc28b 0%, #53cbf1 50%, #6495ed 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #1cc28b 0%, #53cbf1 50%, #6495ed 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
-/* line 68, ../sass/screen.scss */
-.page-footer {
-  background-color: #F5F5F5 !important;
+/* line 86, ../sass/screen.scss */
+.blank {
+  height: 40px;
+}
+
+/* line 90, ../sass/screen.scss */
+#logo-container {
+  height: 100px;
+}
+
+/* line 95, ../sass/screen.scss */
+#menu {
+  top: 140;
+  height: 50px;
+  background-color: white;
+}
+/* line 100, ../sass/screen.scss */
+#menu.container {
+  background-color: white;
+}
+/* line 103, ../sass/screen.scss */
+#menu > ul > li {
+  display: block;
+}
+
+/* line 108, ../sass/screen.scss */
+.navigation {
+  height: 50px;
+  border-top: 1px;
+  border-bottom: 1px;
+  border-color: #EDEDEB;
+  border-style: solid;
+}
+/* line 114, ../sass/screen.scss */
+.navigation .fa {
+  color: #FF9891;
+}
+
+/* line 119, ../sass/screen.scss */
+#menu li {
+  display: inline-block;
+  line-height: 50px;
+  padding: 0 15px;
+  margin: 0;
+}
+
+/* line 126, ../sass/screen.scss */
+#main-nav li a {
+  color: black;
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.dropdown-menu li {
+  margin-bottom: 5px;    
+}
+
+/* line 134, ../sass/screen.scss */
+.navigation {
+  text-align: center;
+}
+
+/* line 138, ../sass/screen.scss */
+.fa {
+  margin-right: 10px;
+}
+
+/* line 143, ../sass/screen.scss */
+.sticky-wrapper {
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+/* line 148, ../sass/screen.scss */
+section {
+  margin-top: 4em;
+}
+/* line 150, ../sass/screen.scss */
+section header {
+  font-family: "Brandon Bold", sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-size: 20px;
+  margin-bottom: 0.8em;
+  font-size: 1.2em;
+  text-align: center;
+}
+/* line 159, ../sass/screen.scss */
+section .-content {
+  border-top: 2px solid rgba(28, 194, 139, 0.2);
+  padding-top: 1.4em;
+}
+
+#contact {
+  margin: 0;
+}
+
+/* line 199, ../sass/screen.scss */
+.spacer {
+  height: 20px;
+}
+
+/* line 170, ../sass/screen.scss */
+.box-item {
+  position: relative;
+}
+
+/* line 184, ../sass/screen.scss */
+.box-desc p {
+  margin-top: 15px;
+  text-align: justify;
+  line-height: 25px;
   color: black;
 }
 
-/* line 73, ../sass/screen.scss */
-#description-box {
-  margin: 30px 0;
-  max-width: 520px;
-  height: 560px;
-  background-color: white;
-  border: 5px solid #FEA3A3;
-  padding: 20px 40px;
+/* line 192, ../sass/screen.scss */
+.box-photo {
+  width: 100%;
+}
+
+/* line 196, ../sass/screen.scss */
+.box-title {
+  font-family: 'Graphik', sans-serif;
+  text-transform: uppercase;
+  color: #22C064;
+  display: block;
+  text-align: center;
+  font-size: 1.2em;
+  letter-spacing: 1px;
+}
+
+/* line 206, ../sass/screen.scss */
+.-space {
+  margin-top: 15px;
+}
+
+/* line 210, ../sass/screen.scss */
+.bold {
+  font-family: "Brandon Bold";
+}
+
+/* line 214, ../sass/screen.scss */
+.centered {
+  text-align: center;
+  display: block;
+}
+
+#product-related {
+  margin: 0;
+}
+
+/*another shot*/
+/* line 222, ../sass/screen.scss */
+.product {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.product .img-responsive {
+  min-height: 200px;
+  max-height: 275px;
+  padding: 2em;
+}
+
+/* line 229, ../sass/screen.scss */
+.product-brand {
+  font-family: 'Graphik Light', sans-serif;
+  font-size: 0.9em;
+  text-transform: uppercase;
+}
+
+/* line 236, ../sass/screen.scss */
+.product-name {
+  text-transform: capitalize;
+  font-weight: bold;
+  margin: 0.4em 0;
+  color: rgb(51, 51, 51);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: 'Graphik Bold', sans-serif;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  margin: 0.7em 0;
+}
+
+/* line 243, ../sass/screen.scss */
+.product-price {
+  color: black;
+  font-size: 1.2em;
+  margin-bottom: 0.4em;
+}
+
+.items-inside {
+  text-align: center;
+}
+
+/* line 373, ../sass/screen.scss */
+/* line 277, ../sass/screen.scss */
+.items-inside li {
+  display: inline-block;
+  max-width: 100px;
+  font-family: 'Brandon Medium';
+  padding: 0;
+  vertical-align: top;
+  margin-left: 10px;
+}
+
+/* line 256, ../sass/screen.scss */
+.highlight {
+  color: #1cc28b;
+  padding: 5px 10px;
+  margin: 0 10px 0 0;
+  font-size: 1.3em;
+}
+
+/* line 263, ../sass/screen.scss */
+.striked {
+  text-decoration: line-through;
+}
+
+/* line 267, ../sass/screen.scss */
+.tagged {
+  background-color: #FF9891;
+  color: white;
+  padding: 5px 10px;
+  margin: 0 10px 0 0;
+  font-size: 1.1em;
+  font-family: 'Brandon Bold';
+  border-radius: 25px;
+}
+
+/* line 278, ../sass/screen.scss */
+footer {
+  margin-top: 3em;
+  background-color: #F5F5F5;
+  padding: 2em 0;
+  line-height: 1.5;
+}
+
+/* line 286, ../sass/screen.scss */
+#payment-methods li {
+  display: inline-block;
+  color: black;
+}
+/* line 289, ../sass/screen.scss */
+#payment-methods li .fa {
+  color: black;
+  opacity: 0.5;
+}
+
+/* line 295, ../sass/screen.scss */
+#logo-container {
+  position: relative;
+}
+
+/* line 299, ../sass/screen.scss */
+#logo-container img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -25px;
+  margin-left: -25px;
+}
+
+/* line 307, ../sass/screen.scss */
+#top-bar li {
+  display: inline-block;
+  color: white;
+  padding: 10px 5px;
+  height: 40px;
+  text-transform: uppercase;
+  font-size: 0.8em;
   line-height: 20px;
+}
+/* line 315, ../sass/screen.scss */
+#top-bar li:first-child {
+  padding-left: 0;
+}
+/* line 318, ../sass/screen.scss */
+#top-bar li .fa {
+  margin-left: 0;
+  margin-right: 5px;
+}
+
+/* line 324, ../sass/screen.scss */
+#top-bar .fa {
+  color: white;
+}
+
+/* line 328, ../sass/screen.scss */
+.right-part li {
+  float: right;
+}
+
+.right-part li a {
+  color: white;
+}
+
+/* line 458, ../sass/screen.scss */
+input[type=text] {
+  font-family: 'Brandon Medium';
+}
+
+#contact .fa {
+  color: #F2DEDE;
+  margin: 0 10px;
+}
+
+.item-image {
+  background-size: cover !important;
+  background-position: center center !important;
+  position: relative;
+  display: block;
+}
+
+.blog {
+  height: 153px;
+  margin-bottom: 20px;
+}
+
+.blog:nth-last-child() {
+  margin-bottom: 0;
+}
+
+.blog-title {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7);
+  width: 100%;
+  font-size: 12px;
+  padding: 10px;
+  font-style: italic;
+  color: black;
+}
+
+.call-to-action {
+  margin-top: 30px;
+}
+/* line 463, ../sass/screen.scss */
+.breadcrumb {
+  margin-top: 4px;
+  margin-bottom: 10px !important;
+}
+
+/* line 476, ../sass/screen.scss */
+input[type=number] {
+  border: 1px solid #dcdcdc;
+  border-radius: 0;
+  -webkit-appearance: none;
+  text-align: center;
+  width: 120px;
+}
+
+/* line 478, ../sass/screen.scss */
+input[type=search] {
+  border: none;
+  border-radius: 0;
+  -webkit-appearance: none;
+  text-align: right;
+  padding: 0 5px;
+  color: black;
+  font-family: 'Brandon', fontawesome;
+}
+
+/* line 486, ../sass/screen.scss */
+.btn {
+  border-radius: 0 !important;
+}
+
+/* line 371, ../sass/screen.scss */
+.btn-primary {
+  border: none;
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+}
+
+/* line 378, ../sass/screen.scss */
+.btn-primary:hover {
+  border: none;
+  background-color: RGBA(28, 194, 139, 1);
+  color: white;
+  text-transform: uppercase;
+}
+
+/* line 385, ../sass/screen.scss */
+.btn-secondary {
+  border: 2px solid RGBA(28, 194, 139, 1);
+  background-color: white;
+  color: RGBA(28, 194, 139, 1);
+  text-transform: uppercase;
+}
+
+/* line 393, ../sass/screen.scss */
+.btn-secondary:hover {
+  border: 2px solid RGBA(28, 194, 139, 1);
+  background-color: RGBA(28, 194, 139, 1);
+  color: white;
+  text-transform: uppercase;
+}
+
+/*product individual*/
+/* line 402, ../sass/screen.scss */
+.brief-info {
+  line-height: 1.5;
+}
+
+/* line 406, ../sass/screen.scss */
+.rating li {
+  display: inline-block;
+}
+
+/* line 409, ../sass/screen.scss */
+.rating i {
+  margin: 0 !important;
+}
+
+#product_detail .img-circle {
+  cursor: pointer;
+}
+
+/* line 519, ../sass/screen.scss */
+/* line 441, ../sass/screen.scss */
+.product-options li {
+  display: inline-block;
+  margin-left: 0;
+  padding-left: 0;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.product-options li.active .option-color {
+  border: 1px solid black;
+}
+
+/* line 419, ../sass/screen.scss */
+.multiple-images-sm li {
+  margin-bottom: 1em;
+}
+
+/* line 423, ../sass/screen.scss */
+.viewer-sm {
+  margin-left: 0;
+  padding-left: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* line 430, ../sass/screen.scss */
+.product-title-light {
+  font-family: 'Graphik-Light', 'Brandon Medium', sans-serif;
+  font-size: 2em;
+}
+
+/* line 435, ../sass/screen.scss */
+.option-color {
+  width: 38.7px;
+  height: 38.7px;
+  border-radius: 90px;
+  margin: 0 auto;
+}
+
+.option-name {
+  text-align: center;
+  font-size: 12px;
+  max-width: 75px;
+}
+
+/* line 549, ../sass/screen.scss */
+.top-space {
+  margin-top: 0.8em;
+}
+
+/* line 447, ../sass/screen.scss */
+.left-aligned .highlight {
+  padding-left: 0 !important;
+}
+
+/* line 563, ../sass/screen.scss */
+.tabbed > input {
+  display: none;
+}
+
+/* line 567, ../sass/screen.scss */
+.tabbed > input:not(:checked) + section > div {
+  display: none;
+}
+
+/* line 571, ../sass/screen.scss */
+.tabbed > section > header {
+  float: left;
+}
+
+/* line 575, ../sass/screen.scss */
+.tabbed > section > header > label {
+  cursor: pointer;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+
+/* line 583, ../sass/screen.scss */
+.tabbed > input {
+  display: none;
+}
+
+/* line 587, ../sass/screen.scss */
+.tabbed > section > header {
+  float: left;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.5em 0.5em 0;
+  overflow: hidden;
+  font-size: 1em;
+  font-weight: normal;
+}
+
+/* line 597, ../sass/screen.scss */
+.tabbed > input:first-child + section > header {
+  padding-left: 1em;
+}
+
+/* line 601, ../sass/screen.scss */
+.tabbed > section > header > label {
+  display: block;
+  padding: 0.25em 0.75em 0.4em 0.75em;
+  border-bottom: none;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+
+/* line 616, ../sass/screen.scss */
+.tabbed > section > div {
+  position: relative;
+  z-index: 1;
+  float: right;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 2.3em 0 0 -100%;
+  padding: 2em;
+  border: 1px solid #ddd;
+  background: #fff;
+  line-height: 1.5;
+}
+
+/* line 631, ../sass/screen.scss */
+.tabbed > input:checked + section > header {
+  border-bottom: 3px solid #1cc28b;
+  color: #1cc28b;
+  position: relative;
+  z-index: 2;
+}
+
+/* line 638, ../sass/screen.scss */
+.tabbed > input:not(:checked) + section > div {
+  display: none;
+}
+
+#hall-of-fame .item-image {
+  height: 250px;
+}
+
+#reviews .review {
+  border: 1px solid #1cc28b;
+  padding: 10px 0;
+  margin-right: 20px;
+  overflow: hidden;
+  height: 250px;
+}
+
+#reviews .col-md-4:nth-last-child() {
+  margin-right: 0;
+}
+
+#reviews .review .text-center {
+  padding: 0;
+}
+
+#reviews .img-circle {
+  width: 40px;
+  height: 40px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+#reviews .name {
+  font-family: 'Brandon';
+  font-size: 14px;
+  color: #1cc28b;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#reviews .text {
+  font-family: 'Brandon';
+  font-size: 10px;
+  text-align: justify;
+}
+/* line 638, ../sass/screen.scss */
+/* line 643, ../sass/screen.scss */
+.review-content {
+  margin: 0.5em 0;
+  padding: 1.5em 0;
+  border-top: 1px solid #F5F5F5;
+}
+/* line 456, ../sass/screen.scss */
+.review-content p {
   text-align: justify;
 }
 
-/* line 84, ../sass/screen.scss */
-.pale {
-  background-color: #FAF7F4;
+/* line 461, ../sass/screen.scss */
+.no-top-border {
+  border-top: none;
 }
 
-/* line 88, ../sass/screen.scss */
-.wrapped {
-  width: 87%;
+/* line 465, ../sass/screen.scss */
+#mall-intro {
+  margin-top: 0 !important;
+  border-bottom: 1px solid #f2f2f2;
 }
 
-/* line 92, ../sass/screen.scss */
-.box-image {
-  width: 520px;
-  height: 560px;
-  background-image: url("../images/feelbeautiful.png");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+/* line 470, ../sass/screen.scss */
+.mall-intro-text {
+  padding: 0 5em 0 1em;
+}
+/* line 472, ../sass/screen.scss */
+.mall-intro-text p {
+  text-align: justify;
 }
 
-/* line 101, ../sass/screen.scss */
-.item_names {
-  margin: 10px 0;
-  position: relative;
-  border-top: 1px solid #F5F5F5;
-  border-bottom: 1px solid #F5F5F5;
+/* line 477, ../sass/screen.scss */
+.big-titled {
+  font-size: 2em;
+  color: #333;
+}
+
+/* line 481, ../sass/screen.scss */
+p {
+  line-height: 1.5;
+}
+
+#feed-latest .cover {
+  height: 290px;
+  background-size: cover !important;
+  background-position: center center !important;
+}
+
+#blog-posts .product .cover {
+  height: 200px;
+  background-size: cover !important;
+  background-position: center center !important;
+  margin-left: 15px;
+  width: calc(100% - 30px);
+}
+/* line 677, ../sass/screen.scss */
+/* line 597, ../sass/screen.scss */
+.cart-item {
+  padding: 1em;
+  border-bottom: 1px solid #E6E6E6;
+}
+/* line 489, ../sass/screen.scss */
+.cart-item:last-of-type {
+  border: none !important;
+}
+
+/* line 494, ../sass/screen.scss */
+.list-items {
+  padding: 0 1em;
+}
+
+/* line 498, ../sass/screen.scss */
+.cart-item-desc {
+  padding: 0 !important;
+}
+/* line 500, ../sass/screen.scss */
+.cart-item-desc span {
+  margin: inherit 0;
+  padding: 0;
+}
+
+/* line 511, ../sass/screen.scss */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#brands h1 {
+  font-family: "Brandon Bold", serif;
+  text-transform: uppercase;
+  color: #1CC28B;
+  margin: 15px 0;
+  font-size: 36px;
+  border-bottom: 2px solid #1CC28B;
+  padding-left: 20px;
+  text-align: left;
+}
+
+/* line 627, ../sass/screen.scss */
+h1 {
+  font-family: "Brandon Bold", serif;
+  margin: -15px 0 25px 0;
+  text-align: center;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  color: #1CC28B;
+}
+
+/* line 526, ../sass/screen.scss */
+.uppercase {
+  text-transform: uppercase;
+}
+
+/* line 531, ../sass/screen.scss */
+.price-summary {
+  margin: 1em 0;
+  border-top: 1px solid #E6E6E6;
+}
+
+/* line 537, ../sass/screen.scss */
+.final-items {
+  background: RGBA(28, 194, 139, 0.4);
+}
+
+/** PRODUCT RESPONSIVE **/
+/* line 544, ../sass/screen.scss */
+.tab-div {
+  display: none;
+  padding: 20px;
+  border-top: 1px solid #ddd;
+  margin-top: 0;
+}
+
+/* line 550, ../sass/screen.scss */
+section .tab-div {
+  margin-top: 0 !important;
+}
+
+/* line 554, ../sass/screen.scss */
+.tab {
+  display: none;
+}
+
+/* line 558, ../sass/screen.scss */
+.tab-icon {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px;
+  font-weight: 600;
+  text-align: center;
+  color: #bbb;
+  border: 1px solid transparent;
+}
+
+/* line 568, ../sass/screen.scss */
+.tab-icon:before {
+  font-family: fontawesome;
+  font-weight: normal;
+  margin-right: 10px;
+}
+
+#boxes .tab-icon[for*='1']:before { 
+  content: '#1';
+}
+
+#boxes .tab-icon[for*='2']:before { 
+  content: '#2'; 
+}
+
+/* line 604, ../sass/screen.scss */
+#boxes .tab-icon[for*='3']:before {
+  content: '#3';
+}
+
+#product_detail .tab-icon[for*='1']:before { 
+  content: '\f05a';
+}
+
+#product_detail .tab-icon[for*='2']:before { 
+  content: '\f278'; 
+}
+
+/* line 604, ../sass/screen.scss */
+#product_detail .tab-icon[for*='3']:before {
+  content: '\f05a';
+}
+
+/* line 578, ../sass/screen.scss */
+.tab-icon:hover {
+  color: #888;
+  cursor: pointer;
+}
+
+/* line 583, ../sass/screen.scss */
+input:checked + .tab-icon {
+  color: #555;
+  border-bottom: 4px solid #1CC28B;
+  border-top: 1px solid #fff;
+}
+
+/* line 589, ../sass/screen.scss */
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3 {
+  display: block;
+}
+
+@media screen and (max-width: 650px) {
+  /* line 596, ../sass/screen.scss */
+  .tab-icon {
+    font-size: 0;
+  }
+
+  /* line 599, ../sass/screen.scss */
+  .tab-icon:before {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 400px) {
+  /* line 606, ../sass/screen.scss */
+  .tab-icon {
+    padding: 15px 20px;
+  }
+  /* line 608, ../sass/screen.scss */
+  .tab-icon:first-of-type {
+    margin-left: 15px;
+  }
+}
+/* line 614, ../sass/screen.scss */
+nav {
+  background-color: white !important;
   text-transform: uppercase;
   font-size: 0.8em;
 }
 
-/* line 111, ../sass/screen.scss */
-.introducing {
-  margin: 0 auto;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-content: flex-start;
-  min-width: 0;
-  width: 87%;
+/* line 620, ../sass/screen.scss */
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  background-color: white !important;
+  color: black !important;
 }
 
-/* line 121, ../sass/screen.scss */
-.introducing article {
-  order: 999999;
-  min-width: 300px;
-  max-width: 340px;
-  min-height: 200px;
-  flex: 1 1 23vw;
-  border: 1px solid #F5F5F5;
-  padding: 20px 2vw;
-  margin: 0 0 20px 0;
-}
-
-/* line 131, ../sass/screen.scss */
-.introducing article.filler {
-  order: 9999999;
+/* line 625, ../sass/screen.scss */
+.navbar-default {
   border-color: transparent;
-  min-height: 0;
-  height: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-  margin-bottom: 0;
+}
+
+/* line 629, ../sass/screen.scss */
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  border-color: #f5f5f5 !important;
+}
+
+.navbar-brand {
+  padding: 10px 15px;
+}
+
+/* line 661, ../sass/screen.scss */
+.menu-border {
+  border-top: 2px solid #f5f5f5 !important;
+  border-bottom: 2px solid #f5f5f5 !important;
+}
+
+@media screen and (max-width: 850px) {
+  /* line 641, ../sass/screen.scss */
+  nav {
+    background: #1cc28b;
+    /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #1cc28b 0%, #53cbf1 50%, #6495ed 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #1cc28b 0%, #53cbf1 50%, #6495ed 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #1cc28b 0%, #53cbf1 50%, #6495ed 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  }
+
+  /* line 647, ../sass/screen.scss */
+  .navbar-default .navbar-nav > li > a {
+    color: white !important;
+  }
+
+  /* line 650, ../sass/screen.scss */
+  .navbar-default .navbar-toggle .icon-bar {
+    background-color: white;
+  }
+
+  /* line 654, ../sass/screen.scss */
+  .menu-border {
+    border-top: 0px !important;
+    border-bottom: 0px !important;
+  }
+}
+/* line 662, ../sass/screen.scss */
+#intro {
+  height: 420px;
+}
+
+/* line 668, ../sass/screen.scss */
+#one {
+  background: #1F54F8;
+  height: 420px;
+}
+
+/* line 674, ../sass/screen.scss */
+#two {
+  margin: 0 0 15px 15px;
+  background: #1CC28B;
+  height: 210px;
+}
+
+/* line 680, ../sass/screen.scss */
+#three {
+  margin: 0 0 0 15px;
+  height: 195px;
+}
+
+/* line 686, ../sass/screen.scss */
+.scale-fill {
+  background-size: cover;
+}
+
+/* line 691, ../sass/screen.scss */
+#about p {
+  font-size: 1.2em;
+  line-height: 2em;
+  margin-top: 3em;
+}
+
+/* line 697, ../sass/screen.scss */
+#about .fact {
+  margin-top: 3em;
+  line-height: 1.4em;
+}
+/* line 700, ../sass/screen.scss */
+#about .fact i {
+  color: #1cc28b;
+}
+
+/* line 705, ../sass/screen.scss */
+.fact-text {
+  margin-top: 1.5em;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .navbar-collapse {
+    text-align: center;
+  }
+
+  .navbar-nav {
+    float: none;
+    margin: 0 auto;
+    display: inline-block;
+  }
+
+  .dropdown-hover:hover .dropdown-menu {
+    display: block;
+  }
+
+  #dropdownMenu1 {
+    width: 600px;
+  }
+
+  #dropdownMenu2 {
+    width: 600px;
+  }  
+
+  .dropdown-menu a.subtitle {
+    font-size: 14px;
+    color: #333;
+  }
+
+  .dropdown-menu a {
+    font-size: 12px;
+    color: #777;
+  }
+
+  .box-item {
+    position: relative;
+    max-width: 1120px;
+    min-height: 400px;
+    height: 780px;
+  }
+
+  /* line 208, ../sass/screen.scss */
+  .box-desc {
+    position: absolute;
+    width: 420px;
+    opacity: 0.95;
+    background-color: white;
+    top: 20px;
+    right: 20px;
+    padding: 20px 25px;
+  }
+
+  .items-inside li img {
+    height: 100px;
+  }
+
+  .video {
+    height: 500px;  
+  }
+
+  #reviews .col-md-4 {
+    width: calc(33.33333333% - 20px) !important;
+  }
+
+  #reviews .img-responsive {
+    height: 240px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+  .navbar {
+    margin-bottom: 5px;
+  }
+
+  .dropdown-hover button {
+    border: none;
+    background: transparent;
+    color: white;
+    padding: 10px 15px;
+    text-transform: uppercase;
+  }
+
+  .dropdown-menu a.subtitle {
+    font-size: 1em;
+  }
+
+  .dropdown-menu a {
+    color: white !important;
+  }
+
+  #call-to-action {
+    margin-top: 0;
+  }
+
+  #main_banner {
+    padding: 0;
+  }
+
+  .facts {
+    margin-top: 15px;
+  }
+  
+  .facts a {
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+  }
+
+  .box-item {
+    background: none !important;
+  }
+
+  .box-item .scale-fill {
+    width: 100%;
+  }
+
+  .box-desc p {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .items-inside li {
+    max-width: 70px;
+  }
+
+  .items-inside li img {
+    width: 100%;
+  }
+
+  .prices .item_price.highlight {
+    font-size: 19px;
+  }
+
+  .prices .item_price.striked {
+    font-size: 12px;
+  }
+
+  .prices .tagged {
+    padding: 10px 5px;
+    font-size: 18px;
+  }
+
+  .items-inside li span {
+    font-size: 12px;
+  }  
+
+  .video {
+    height: 153px;
+    margin-bottom: 20px;  
+  }
+
+  #reviews .row {
+    margin: 0;
+  }
+
+  #reviews .review {
+    margin-bottom: 10px;
+  }
+
+  #reviews .img-responsive {
+    width: 100%;
+  }
+
+  #introducing .-content > .row, #individual .row {
+    margin: 0;
+  }
+
+  #contact {
+    text-align: center;
+  }
+
+  #contact .subtitle {
+    text-decoration: none;
+  }  
+
+  #contact .fa {
+    display: block;
+  }
+
+  #contact .fa-caret-square-o-down {
+    display: inline-block;
+    color: #333;
+  }  
+
+  section {
+    margin-top: 20px;
+  }
+
+  .product {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  #reviews .review {
+    height: auto;
+  }
+
+  #reviews .review .text-center {
+    padding: 0 10px;
+  }
+
+  #blog_post article iframe {
+    height: auto;
+  }
+}
+/* line 768, ../sass/screen.scss */
+#banner .desc-photo {
+  padding: 2em 0;
+  text-align: center;
+}
+/* line 770, ../sass/screen.scss */
+#banner .desc-photo img {
+  width: auto;
+  margin: 0 auto;
+}
+
+/* Preview Navbar */
+@media only screen and (min-width: 0) {
+
+  .preview-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 51px;
+    background-color: rgba(0,0,0,.7);
+    z-index: 1000;
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+  }
+  ul.preview-menu li {
+    display: inline-block;
+    padding: 2px 0;
+  }
+  .preview {
+    font-size: 1em;
+  }
+  .btn-preview {
+    font-size: 1em;
+    margin-left: 5px;
+    border: 2px solid #fff;
+    padding: 10px 20px;
+  }
+  .btn-preview:hover {
+    border: 2px solid #fff;
+    background-color: #fff;
+    color: #444 !important;
+  }
+  .preview-hide {
+    position: absolute;
+    left: 10px;
+    top: 51px;
+    border: 1px solid rgba(0,0,0,.7);
+    border-bottom-left-radius: .5em;
+    border-bottom-right-radius: .5em;
+    background-color: rgba(0,0,0,.7);
+  }
+  .hide-bar {
+    -webkit-transform: translate(0,-51px);
+    -moz-transform: translate(0,-51px);
+    -o-transform: translate(0,-51px);
+    -ms-transform: translate(0,-51px);
+    transform: translate(0,-51px);
+  }
+}
+/* line 710, ../sass/screen.scss */
+#banner {
+  margin-top: 20px;
+}
+/* line 712, ../sass/screen.scss */
+#banner:first-of-type {
+  margin-top: 0;
+}
+/* line 716, ../sass/screen.scss */
+#banner img {
+  width: auto;
+  margin: 0 auto;
+}
+
+/* line 722, ../sass/screen.scss */
+#post .title, #post .post-intro {
+  margin-top: 40px;
+}
+/* line 725, ../sass/screen.scss */
+#post .author {
+  text-align: left;
+}
+/* line 729, ../sass/screen.scss */
+#post .date-posted {
+  text-align: right;
+}
+/* line 733, ../sass/screen.scss */
+#post .post-intro {
+  font-family: 'Brandon Bold';
+  font-size: 1.1em;
+}
+/* line 738, ../sass/screen.scss */
+#post p {
+  margin-top: 20px;
+  line-height: 2;
+}
+
+/* line 746, ../sass/screen.scss */
+#faq .title {
+  margin-top: 40px;
+}
+/* line 749, ../sass/screen.scss */
+#faq .q {
+  margin: 20px auto;
+  font-family: 'Brandon Bold';
+  font-size: 1.1em;
+}
+/* line 754, ../sass/screen.scss */
+#faq p {
+  margin-top: 20px;
+  line-height: 2;
+}
+
+#blog_post article {
+  margin-bottom: 20px;
+}
+
+#blog_post article img {
+  max-width: 100%;
+}
+
+#blog_post article iframe {
+  width: 100%;
+}
+
+#blog_post .fb-share-button {
+    padding-right: 50px;
+}
+
+#blog_post #comments {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: dashed 1px #b3c2cf;
+}
+
+#blog_post textarea {
+  display: block;
 }

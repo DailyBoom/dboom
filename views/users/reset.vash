@@ -1,17 +1,21 @@
-@html.extend("layout-beta", function(model) {
+@html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
 		<div class="container" id="forgot">
 			<div class="row">
-				<form class="col s12 m6 offset-m1 l6 offset-l1" method="post" action="/reset/@model.token">
+				<form class="col-xs-12 col-md-6 col-md-offset-1" method="post" action="/reset/@model.token">
 					<div class="row">
 						<h4>Đặt Lại Mật Khẩu</h4>
 						<br />
-						<label for="password">Mật khẩu</label>
-						<input id="password" type="password" class="validate" name="password">
-						<label for="confirmpassword">Nhập lại mật khẩu</label>
-						<input id="confirmpassword" type="password" class="validate" name="confirmpassword">
+						<div class="form-group">
+							<label for="password">Mật khẩu</label>
+							<input id="password" type="password" class="validate" name="password">
+						</div>
+						<div class="form-group">
+							<label for="confirmpassword">Nhập lại mật khẩu</label>
+							<input id="confirmpassword" type="password" class="validate" name="confirmpassword">
+						</div>
 						<div class="row">
-							<button class="col s12 left" type="submit" name="action">
+							<button class="col-xs-12 pull-left" type="submit" name="action">
 								&nbsp;&nbsp;&nbsp;Đặt Lại&nbsp;&nbsp;&nbsp;
 							</button>
 						</div>

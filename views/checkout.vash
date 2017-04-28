@@ -1,149 +1,165 @@
-@html.extend("layout-beta", function(model) {
+@html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
-		<div id="checkout" class="container">
-            <div id="confirm_modal" class="modal">
-                <div class="modal-content">
-                    <div class="row">
-                        <div class="col s3">
-                            <img src="/images/confirm_checkout.svg" />
-                        </div>
-                        <div class="col s8 offset-s1">
-                            <span>Chúc mừng bạn đã đặt hàng thành công!</span>
-                        </div>
-                        <br>
-                        @if (model.user) {
-                            <a href="/myhistory">Đơn hàng của bạn</a>
-                        }
-                    </div>
-                </div>
-            </div>
-            <div id="confirm_transfer_modal" class="modal">
-                <div class="modal-content">
-                    <div class="row">
-                        <div class="col s3">
-                            <img src="/images/confirm_checkout.svg" />
-                        </div>
-                        <div class="col s8 offset-s1">
-                            <p>Hướng dẫn chuyển khoản sẽ được thông báo sau khi bạn hoàn tất đặt hàng trên website,  bằng hình thức qua tin nhắn hoặc gửi vào địa chỉ email.</p>
-                        </div>
-                        <br>
-                        @if (model.user) {
-                            <a href="/myhistory">Đơn hàng của bạn</a>
-                        }
-                    </div>
-                </div>
-            </div>
-            <div class="checkout-progress">
+<div id="confirm_modal" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
                 <div class="row">
-                    <div class="col s4">
-                        <h3><span class="hide-on-large-only">1. </span>ĐĂNG NHẬP</h3>
+                    <div class="col-xs-3">
+                        <img src="/images/confirm_checkout.svg" />
                     </div>
-                    <div class="col s4">
-                        <h3><span class="hide-on-large-only">2. </span>ĐỊA CHỈ</h3>
+                    <div class="col-xs-8 col-xs-offset-1">
+                        <span>Chúc mừng bạn đã đặt hàng thành công!</span>
+                        @if (model.user) {
+                            <a href="/myhistory">Đơn hàng của bạn</a>
+                        }
                     </div>
-                    <div class="col s4 active">
-                        <h3><span class="hide-on-large-only">3</span>THANH TOÁN</h3>
-                    </div>
+                    <br>
                 </div>
             </div>
-			<div class="row">
-				<div id="checkout_row" class="col s12 l3 offset-l1">
-                    <div class="payment">
-                        <span class="title">Chọn phương thức thanh toán:</span>
-                        <input type="radio" name="pay_method" id="delivery" value="0" checked /><label for="delivery">Thanh toán khi nhận hàng</label>
-                        <input type="radio" name="pay_method" id="transfer" value="1" /><label for="transfer">Thanh toán thông qua chuyển khoản</label>
-                        <!--<input type="radio" name="pay_method" id="atm" /><label for="atm">Thanh toán bằng thẻ ATM</label>
-                        <input type="radio" name="pay_method" id="card" /><label for="card">Thanh toán bằng thẻ tín dụng</label>-->
+        </div>
+    </div>
+</div>
+<div id="confirm_transfer_modal" class="modal">
+    <div class="modal-dialog" role="document">    
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <img src="/images/confirm_checkout.svg" />
                     </div>
-                    <div class="delivery">
-                        <span class="title">Chọn phương thức giao hàng:</span>
-                        <input type="radio" name="deliv_method" id="noon" value="0" checked /><label for="noon">Nhận Hàng trước 12h trưa.</label>
-                        <input type="radio" name="deliv_method" id="six" value="1" /><label for="six">Nhận hàng trước 6h chiều</label>
-                        <input type="radio" name="deliv_method" id="evening" value="2" /><label for="evening">Nhận hàng vào buổi tối</label>
+                    <div class="col-xs-8 col-xs-offset-1">
+                        <p>Hướng dẫn chuyển khoản sẽ được thông báo sau khi bạn hoàn tất đặt hàng trên website, bằng hình thức qua tin nhắn hoặc gửi vào địa chỉ email.</p>
+                        @if (model.user) {
+                            <a href="/myhistory">Đơn hàng của bạn</a>
+                        }
                     </div>
-                    <button id="checkout_btn">THANH TOÁN</button>
-				</div>
-				<div id="cart" class="col s12 l5 offset-l2">
-					<div class="shipping-header">
-						<a href="/shipping" class="right">SỬA</a>
-						<span class="sub">Địa chỉ giao hàng</span>
-					</div>
-					<div class="shipping-content">
-						<div class="full-name">@model.order.shipping.full_name</div>
-						<div class="address">@model.order.shipping.address</div>
-						<div class="city">@model.order.shipping.city</div>
-						<div class="city">@model.order.shipping.district</div>
-						<div class="city">@model.order.shipping.ward</div>
-						<div class="phone">@model.order.phone_number</div>
-					</div>
-                    <div class="cart-header">
-                        <a href="/cart" class="right">SỬA</a>
-                        <h4>THÔNG TIN ĐƠN HÀNG</h4>
-                        <span class="sub">(Có @model.cart.length Sản Phẩm Trong Giỏ Hàng Của Bạn)</span>
-                    </div>
-                    <div class="cart-content">
-                        <div class="content-header hide-on-med-and-down">
-                            <div class="col s5">
-                                TÊN SẢN PHẨM
-                            </div>
-                            <div class="col s3">
-                                SỐ LƯỢNG
-                            </div>
-                            <div class="col s4">
-                                GIÁ
-                            </div>
-                        </div>
-                        <div class="cart-products">
-                            @model.cart.forEach(function(item) {
-                                <div class="col s12">
-                                    <div class="col s5">
-                                        <div class="name">@item.product.name</div>
-                                        <div class="brand">@item.product.brand</div>
-                                    </div>
-                                    <div class="col s3">
-                                        <div class="quantity">@item.quantity</div>
-                                    </div>
-                                    <div class="col s4">
-                                        <div class="price">@(item.product.price * item.quantity)</div>                                             
-                                    </div>
-                                </div>
-                            })
-                        </div>
-                        <div class="cart-total">
-                            <div class="col s8">
-                                <div>Tổng tiền:</div>
-                                <div>Khuyến mãi:</div>
-                                <div>Phí vận chuyển:</div>
-                                <div class="amount">Thành tiền:</div>
-                                <span>(Đã bao gồm VAT)</span>
-                            </div>
-                            <div class="col s4">
-                                <div class="total">@model.cart_total</div>
-                                <div class="total-dc">- @model.order.discount</div>
-                                <div class="total-delivery">@model.order.shipping_cost</div>
-                                <div class="total-amount">@model.order.totalOrderAmt</div>                                
-                            </div>
-                            <div class="col s12 delivery-info">
-                            @if (model.order.shipping.city == "HỒ CHÍ MINH") {
-                                <div>* Giá Ship Được Tính Khi Đơn Hàng Có Trọng Lượng Từ 3kg trở xuống.</div>
-                                <div>* Nếu Trên 3kg, Thì Cứ 0,5kg Tiếp Theo Sẽ Cộng Thêm 10.000đ Trên Mỗi Đơn Hàng.</div>
-                                <div>* Nhân Viên Của Yppuna Sẽ Gọi Điện Xác Nhận Chính Xác Giá Ship Cho Quý Khách Hàng. Ngay Sau Khi Nhận Được Đơn Hàng.</div>
-                            }
-                            else if(model.order.shipping.city == "HÀ NỘI") {
-                                <div>* Từ 0,5 kg Tiếp Theo Là Cộng 10.000đ Trên Mỗi Đơn Hàng.</div>
-                                <div>* Nhân Viên Của Yppuna Sẽ Gọi Để Xác Nhận Chính Xác Giá Ship Cho Quý Khách Hàng. Ngay Sau Khi Yppuna Nhận Được Đơn Hàng.</div>
-                            }
-                            </div>
-                        </div>
-                    </div>
+                    <br>
                 </div>
-			</div>
-            <div class="">
-                
             </div>
-		</div>
+        </div>
+    </div>
+</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- progress indicator will come here -->
+        </div>
+        <div class="col-xs-12">
+          <div class="row">
+            <div class="col-xs-12 col-md-6 cart-items">
+              <section id="payment-choices">
+                <header>CHỌN PHƯƠNG THỨC THANH TOÁN</header>
+                <div class="-content">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <form>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="pay_method" id="delivery" value="0" checked>
+                            Thanh toán khi nhận hàng
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="pay_method" id="transfer" value="1">
+                            Thanh toán thông qua chuyển khoản
+                          </label>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section id="delivery-choices">
+                <header>CHỌN PHƯƠNG THỨC GIAO HÀNG</header>
+                <div class="-content">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <form>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="deliv_method" id="noon" value="0" checked>
+                            Nhận hàng trước 12 giờ trưa
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="deliv_method" id="six" value="1">
+                            Nhận hàng trước 6 giờ chiều
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="deliv_method" id="evening" value="2">
+                            Nhận hàng vào buổi tối
+                          </label>
+                        </div>
+                      </form>
+                      <button type="button" id="checkout_btn" class="btn btn-primary btn-block">Thanh toán</button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="col-md-1 hidden-xs">
+            </div>
+            <div class="col-xs-12 col-md-5 cart-summary">
+              <section id="price-summary">
+                <header>
+                  THÔNG TIN ĐƠN HÀNG
+                </header>
+                <div class="-content">
+                  <div class="row list-items final-items">
+                    @model.order.cart.forEach(function(item) {
+                    <div class="col-xs-12 cart-item">
+                      <div class="row">
+                        <div class="col-xs-2">
+                          <img class="img-responsive" src="@item.product.images[0]" alt="@item.product.name">
+                        </div>
+                        <div class="col-xs-6 cart-item-desc">
+                          <span class="col-xs-12 bold">@item.product.name</span>
+                          <span class="col-xs-12 cart-item-info top-space">@item.product.brand</span>
+                        </div>
+                        <div class="col-xs-1 cart-item-pieces">
+                          <span>@item.quantity</span>
+                        </div>
+                        <div class="col-xs-1 cart-item-price price">@item.product.price</div>
+                      </div>
+                      <!-- end of row -->
+                    </div>
+                    <!-- end of cart item -->
+                    })
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <span class="col-xs-12 bold top-space">Tổng tiền</span>
+                      <span class="col-xs-12 bold top-space">Khuyến mãi</span>
+                      <span class="col-xs-12 bold top-space">Phí vận chuyển</span>
+                    </div>
+                    <div class="col-xs-6 pull-right">
+                      <span class="col-xs-12 top-space price">@model.cart_total</span>
+                      <span class="col-xs-12 top-space price">-@model.order.discount</span>
+                      <span class="col-xs-12 top-space price">@model.order.shipping_cost</span>
+                    </div>
+                  </div>
+                  <div class="row price-summary">
+                    <div class="col-xs-6">
+                      <span class="col-xs-12 highlight top-space">Thành tiền</span>
+                    </div>
+                    <div class="col-xs-6">
+                      <span class="col-xs-12 highlight top-space price">@model.order.totalOrderAmt</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     })
-    @html.block("script", function(model) {
+	@html.block("script", function(model) {
 		<script>
 			$(document).ready(function(){
                 var shipping = 0;
@@ -160,14 +176,10 @@
                         },
                         success: function (res) {
                             if ($('#delivery').is(':checked')) {
-                                $('#confirm_modal').openModal({
-                                    complete: function() { window.location = '/home'; } // Callback for Modal close
-                                });
+                                $('#confirm_modal').modal('show');
                             }
                             else if ($('#transfer').is(':checked')) {
-                                $('#confirm_transfer_modal').openModal({
-                                    complete: function() { window.location = '/home'; } // Callback for Modal close
-                                });
+                                $('#confirm_transfer_modal').modal('show');
                             }
                         },
                         error: function (res) {
@@ -175,6 +187,9 @@
                         }
                     });
                 });
+                $('.modal').on('hidden.bs.modal', function (e) {
+                    window.location = '/home';
+                })
 			})
 		</script>
 	})

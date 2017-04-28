@@ -1,42 +1,47 @@
-@html.extend("layout-beta", function(model) {
+@html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
-		<div class="container">
-			<div class="row">
-				<div class="section">
-					@if (model.errors) {
-						<ul class="red-text center">
-							@model.errors.forEach(function(error) {
-								<li>@error</li>
-							})
-						</ul>
-					}
-					<div class="col l6 offset-l3">
-						<div id="login_row">
-							<div class="modal-header center">
-								<div class="col s6 active"><h3>@model.__('login')</h3></div>
-								<div class="col s6"><h3><a href="/signup">@model.__('signup')</a></h3></div>
-							</div>
-							<div class="modal-content">
-								<div class="row">
-									<form method="post" action="/login">
-										<label for="email">Email</label>
-										<input id="email" name="email" type="email" placeholder="Nhập email" />
-										<label for="password">Mật khẩu</label>
-										<input id="password" name="password" type="password" placeholder="Nhập mật khẩu" />
-										<div class="right"><a class="forgot" href="/forgot" >Quên mật khẩu?</a></div>
-										<button>ĐĂNG NHẬP</button>
-									</form>
-									<div id="c_facebook">Đăng nhập bằng Facebook</div>
-								</div><!-- .row -->
-							</div><!-- .modal-content -->
-							<div class="modal-footer blue-grey darken-1">
-								<a class="blue-grey-text text-lighten-5 left" href="/forgot">@model.__('forgot_pass')</a>
-								<a class="blue-grey-text text-lighten-5 right" href="/signup">@model.__('signup')</a>
-							</div>
-						</div><!-- .login -->
-					</div><!-- .col -->
-				</div><!-- .section -->
-			</div><!-- .row -->
-		</div><!-- .container -->
+	<div class="container">
+		<div class="breadcrumb">
+			<ol class="breadcrumb">
+				<li><a href="/"><i class="fa fa-home" aria-hidden="true"></i>Về trang chủ</a></li>
+			</ol>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 class="text-center">Đăng nhập</h1>
+			</div>
+			@if (model.errors) {
+				<ul class="red-text center">
+					@model.errors.forEach(function(error) {
+						<li>@error</li>
+					})
+				</ul>
+			}
+			<div class="col-xs-12 col-md-offset-4 col-md-4">
+				<form method="post" action="/login">
+					<div class="form-group">
+						<label for="exampleInputEmail1">Email</label>
+						<input name="email" type="email" class="form-control top-space" id="exampleInputEmail1" placeholder="Email">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Password</label>
+						<input name="password" type="password" class="form-control top-space" id="exampleInputPassword1" placeholder="Password">
+					</div>
+					<div class="pull-right" style="margin-bottom:15px;">
+						<label>
+							<a href="/forgot">Quên mật khẩu?</a>
+						</label>
+					</div>
+					<button type="submit" class="btn btn-primary btn-block top-space">Đăng nhập</button>
+					<div class="checkbox">
+						<label class="centered">
+							Hoặc là
+						</label>
+					</div>
+					<button id="c_facebook" type="button" class="btn btn-primary btn-block top-space" style="background-color:RGBA(72, 98, 163, 1.00);">Đăng nhập bằng Facebook</button>
+				</form>
+			</div>
+		</div>
+	</div>
   })
 })
