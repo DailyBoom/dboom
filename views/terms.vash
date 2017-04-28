@@ -211,6 +211,8 @@
 				</div><!-- .info-terms -->
 			</div><!-- .row -->
 		</div><!-- .container -->
+	})
+	@html.block("script", function(model) {
 		<script>
 			$(document).ready(function(){
 				$('.parallax').parallax();

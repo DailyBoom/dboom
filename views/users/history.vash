@@ -31,8 +31,8 @@
                                             <div class="title">@order.cart.length sản phẩm</div>
                                             <div class="sub">Xem chi tiết</div>
                                         </div>
-                                        <div class="col s4 price">
-                                            <span class="">@order.totalOrderAmt</span>
+                                        <div class="col s4">
+                                            <span class="price">@order.totalOrderAmt</span>
                                         </div>
                                     </div>
                                 </div>
@@ -162,10 +162,10 @@
 			</div>
 		</div>
     })
-	@html.block("script", function(model) {
+    @html.block("script", function(model) {
         <script>
             $(document).ready(function(){
-                $(".price, .total, .total-dc, .total-amount").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+                $(".price, .total, .total-dc, .total-amount").autoNumeric('init', autoNumericOptions);
             })
 		</script>
     })

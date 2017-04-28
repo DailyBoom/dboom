@@ -219,7 +219,7 @@
 		$(document).ready(function(){
 			var cw = $('.main-img').width();
 			$('.main-img').css({'height':cw+'px'});
-			$(".price, .old_price, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+			$(".price, .old_price, .prod_price").autoNumeric('init', autoNumericOptions);
 			var owl = $("#individual .row");
 			owl.owlCarousel({
 				items : 4,

@@ -7,7 +7,7 @@ var productSchema = new Schema({
   merchant_id: { type: Schema.Types.ObjectId, ref: 'User' },
   name: { type: String, required: true },
   url: String,
-  description: { type: String, required: true },
+  description: { type: String },
   how_to: { type: String },
   why_love: String,
   ingredients: String,
@@ -28,6 +28,8 @@ var productSchema = new Schema({
   delivery_price: { type: Number, default: 2500 },
   old_price: Number,
   wholesale_price: Number,
+  w_eu_price: Number,
+  w_cz_price: Number,
   quantity: Number,
   images: { type: Array },
   mobile_images: { type: Array },
@@ -52,7 +54,10 @@ var productSchema = new Schema({
   product_region: [Boolean],
   position: Number,
   position_group: Number,
-  rating: [{ user: { type: Schema.Types.ObjectId, ref: 'User' }, count: { type : Number, default : 0 } }]
+  rating: [{ user: { type: Schema.Types.ObjectId, ref: 'User' }, count: { type : Number, default : 0 } }],
+  tags: [String],
+  logs: [{ log: String, date: Date }],
+  inv_code: String,
 });
 
 productSchema.plugin(mongoosePaginate);

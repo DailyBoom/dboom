@@ -4,31 +4,6 @@
 	<div class="row">
 		<div class="col s12">
 			<h4 class="left">Products</h4>
-			<form method="get" id="type_form">
-				<div class="col s12 m1 right">
-					<div class="input-field">
-						<button class="btn"><i class="fa fa-search"></i></button>
-					</div>
-				</div>
-				<div class="col s12 m3 right">
-					<div class="input-field">
-						<select name="type" id="type">
-							<option value="" selected>All</option>
-							<option value="1">Box</option>
-							<option value="2">Mall</option>
-						</select>
-						<label for="type">Listing Type</label>
-					</div>
-				</div>
-				<div class="col s12 m3 right">
-					<div class="input-field">
-						<input type="search" id="s" name="s" />
-						<label for="s">Search</label>
-					</div>
-				</div>
-			</form>
-		</div><!-- .col -->
-		<div class="col s12">
 			<a class="btn right" href="/products/order">Change Order</a>
 		</div>
 	</div><!-- .row -->
@@ -51,29 +26,61 @@
 	<table class="responsive-table bordered highlight table-sm table-orders">
 	<thead class="blue-grey darken-2 blue-grey-text text-lighten-5">
 		<tr>
-			<th>ID</th>
+			<th>Inv. ID</th>
 			<th>Product Name</th>
+			<th>Line</th>
 			<th>Quantity</th>
 			<th>Price</th>
 			<th>Selling date</th>
+			<th>Type</th>
 			<th class="center">Manage</th>
 		</tr>
 	</thead>
 	<tbody>
+		<tr>
+			<form method="get">
+				<td><input type="text" id="id" name="id" /></td>
+				<td><input type="text" id="name" name="name" /></td>
+				<td><input type="text" id="line" name="line" /></td>
+				<td><input type="number" id="quantity" name="quantity" /></td>
+				<td><input type="text" id="price" name="price" /></td>
+				<td><input class="datepicker" type="date" id="scheduled_date" name="scheduled_date" /></td>
+				<td class="input-field">
+					<select id="type" name="type" class="browser-default">
+						<option value="" selected>All</option>
+						<option value="1">Box</option>
+						<option value="2">Mall</option>
+					</select>
+				</td>
+				<td><button class="btn">Search</button></td>
+			</form>
+		</tr>
+		@if (model.products) {
 		@model.products.forEach(function(product){
+			@product.options.forEach(function(item, index) {
 			<tr>
-				<td>@product.id <img class="list-img" src="@product.images[0]" /></td>
+				<td>@product.inv_code <img class="list-img" src="@product.images[0]" /></td>
 				<td>@product.name</td>
-				<td>@product.quantity</td>
+				@if (product.category.indexOf(59) >= 0 || product.category.indexOf(60) >= 0 || (product.category[0] >= 38 && product.category[0] <= 43)) {
+					<td>@product.options_skin[index]</td>
+				}
+				else {
+					<td></td>
+				}
+				<td>@item.quantity</td>
 				<td><span class="price">@product.price</span> (<span class="price">@product.old_price</span>)</td>
 				<td>@model.moment(product.scheduled_at).format("YYYY/MM/DD")</td>
+				<td>@product.extend</td>
 				<td>
 					<a class="users-link blue-grey-text" href="/products/preview/@product.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
 					<a class="users-link blue-grey-text" href="/products/edit/@product.id"><i class="fa fa-pencil-square-o fa-fw fa-1-5x"></i></a>
+					<a class="users-link blue-grey-text" href="/products/details/@product.id/@index"><i class="fa fa-info fa-fw fa-1-5x"></i></a>
 					<a class="users-link red-text" href="/products/delete/@product.id" onclick="return confirm('Delete Product?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
 				</td>
 			</tr>
+			})
 		})
+		}
 	</tbody>
 	</table>
 	</div><!-- .row -->
@@ -94,7 +101,12 @@
 </div><!-- .container -->
 <script>
 $(document).ready(function() {
-	$(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+	$('.datepicker').pickadate({
+		format: 'mm/dd/yyyy',
+		selectMonths: true, // Creates a dropdown to control month
+		selectYears: 15, // Creates a dropdown of 15 years to control year
+	});
+	$(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
 	$('select').material_select();
 	$('#type').on('change', function() {
 		$('#type_form').submit();

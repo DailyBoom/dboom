@@ -1,7 +1,7 @@
 @html.extend("layout", function(model) {
 	@html.block("body", function(model) {
    <div class="container min-h-lg">
-		<h3 class="blue-grey-text text-darken-3">Order list
+		<h3 class="blue-grey-text text-darken-3">Order @(model.shipping ? 'shipping' : 'list')
 			<div class="legend right right-align">
 				<span class="blue-grey-text text-darken-2">View Order <i class="fa fa-eye fa-fw"></i></span>
 				<span class="red-text text-darken-3">Cancel Order <i class="fa fa-ban fa-fw"></i></span>
@@ -14,58 +14,71 @@
 			}
 			</div>
 		</h3>
-		<form method="get">
-			<div class="row">
-				<div class="col s12 m3 l3">
-					<label for="order_date">주문 날짜 조희</label>
-					<input type="date" class="datepicker" id="order_date" name="order_date" value="">
-				</div><!-- .col -->
-				@if(model.user.admin == 1){
-					<div class="col s12 m3 l3">
-						<label for="order_date">주문 날짜 조희</label>
-						<select name="status" id="status">
-							<option value="Submitted">Submitted</option>
-							<option value="Waiting">Waiting</option>
-							<option value="Paid">Paid</option>
-							<option value="Sent">Sent</option>
-							<option value="Cancelled">Cancelled</option>
-						</select>
-					</div>
-				}
-				<div class="col s2 m2 l2">
-					<button type="submit" class="waves-effect waves-light btn btn-large blue-grey darken-2">
-						<i class="fa fa-search"></i>
-					</button>
-				</div><!-- .col -->
-				<div class="col s12 m4 l4 right">
-					<div class="fa-2x">
-						@if(model.user.role == 'merchant'){
-							<a href="/orders/merchants/export/@(model.date != '' ? '?date='+model.date : '')">Export Orders <i class="fa fa-floppy-o fa-fw"></i></a>
-						}
-						else {
-							<a href="/orders/export/@(model.date != '' ? '?date='+model.date : '')">Export Orders <i class="fa fa-floppy-o fa-fw"></i></a>
-						}
-					</div>
-				</div>
-			</div><!-- .row -->
-		</form>
+		@if (!model.shipping) {
+			<a href="@(model.wholesaler ? '/wholesalers/orders/new' : '/orders/new')" class="btn right">New Order</a>
+			<a href="/orders/shipping" class="btn right">Orders Shipping</a>
+		}
 		<table class="responsive-table bordered highlight table-sm table-orders">
 			<thead class="blue-grey darken-2 blue-grey-text text-lighten-5">
 				<tr>
+					<th>ID</th>
 					<th>Order Date</th>
 					<th>User Name</th>
-					<th>Quantity</th>
-					<th>Total</th>
 					<th>Status</th>
+					<th>Quantity</th>
+					<th>Type</th>
+					<th>Note</th>
 					<th class="center">Manage</th>
 				</tr>
 			</thead>
 
 			<tbody>
+				<form method="get">
+					<td><input type="text" id="s_id" name="s_id" /></td>
+					<td><input class="datepicker" type="date" id="s_date" name="s_date" /></td>
+					<td><input type="text" id="s_name" name="s_name" /></td>
+					<td>
+						<select id="s_status" name="s_status" class="browser-default">
+							<option value=""></option>
+							<option value="Submitted">Submitted</option>
+							<option value="Waiting">Waiting</option>
+							<option value="Paid">Paid</option>
+							<option value="Packing">Packing</option>
+							<option value="Sent">Sent</option>
+							<option value="Cancelled">Cancelled</option>
+						</select>
+					</td>
+					<td><input type="number" id="s_quantity" name="s_quantity" /></td>
+					<td>
+						<select id="s_type" name="s_type" class="browser-default">
+							<option value=""></option>
+							<option value="0">COD</option>
+							<option value="1">Bank Transfer</option>
+						</select>
+					</td>
+					<td></td>
+					<td><button class="btn">Search</button></td>
+				</form>
 				@model.orders.forEach(function(order) {
 				<tr>
+					<td>@order.id</td>
 					<td>&nbsp;@model.moment(order.created_at).format('l')</td>
 					<td>&nbsp;@order.shipping.full_name</td>
+					@if(order.status=='Sent'){
+						<td class="blue-text text-darken-3"><b>&nbsp;Sent</b></td>
+					}
+					else if(order.status=='Paid'){
+						<td class="green-text text-darken-3"><b>&nbsp;@order.status</b></td>
+					}
+					else if(order.status=='Submitted'){
+						<td class="blue-grey-text text-darken-3"><b>&nbsp;@order.status</b></td>
+					}
+					else if(order.status=='Cancelled'){
+						<td class="red-text text-darken-3"><b>&nbsp;@order.status</b></td>
+					}
+					else if(order.status=='Waiting'){
+						<td class="amber-text text-darken-3"><b>&nbsp;@order.status</b></td>
+					}
 				&nbsp;
 				@if(order.product) {
 					<td>&nbsp;@order.quantity</td>
@@ -77,30 +90,9 @@
 					})
 					<td>&nbsp;@qty</td>
 				}
-					<td>
-						&nbsp;
-                @if(order.totalOrderAmt) {
-                    <span class="product_price">@order.totalOrderAmt</span>
-                }
-                else if (order.product){
-                    <span class="product_price">@(order.quantity * order.product.price + order.product.delivery_price)</span>
-                }
-                </td>
-				@if(order.status=='Sent'){
-					<td class="blue-text text-darken-3"><b>&nbsp;Sent</b></td>
-				}
-				else if(order.status=='Paid'){
-					<td class="green-text text-darken-3"><b>&nbsp;@order.status</b></td>
-				}
-				else if(order.status=='Submitted'){
-					<td class="blue-grey-text text-darken-3"><b>&nbsp;@order.status</b></td>
-				}
-				else if(order.status=='Cancelled'){
-					<td class="red-text text-darken-3"><b>&nbsp;@order.status</b></td>
-				}
-				else if(order.status=='Waiting'){
-					<td class="amber-text text-darken-3"><b>&nbsp;@order.status</b></td>
-				}
+					<td>&nbsp;@(order.pay_method == 0 ? 'COD' : 'Bank Transfer')</td>
+					<td>&nbsp;@order.notes</td>
+
 					<td class="right">
 
 					@if(model.user.admin == 1){
@@ -113,6 +105,7 @@
 						<a class="users-link blue-grey-text text-darken-2" href="/orders/view/@order.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
 						<a class="users-link red-text text-darken-3" href="/orders/cancel_deposit/@order.id" onclick="return confirm('Are you sure?')"><i class="fa fa-ban fa-fw fa-1-5x"></i></a>
 					@if(model.user.admin == 1){
+						<a class="users-link blue-text text-darken-3" href="/orders/packing/@order.id" onclick="return confirm('Start packing this order?')"><i class="fa fa-archive fa-fw fa-1-5x"></i></a>
 						<a class="users-link red-text text-darken-3" href="/orders/delete/@order.id" onclick="return confirm('Are you sure?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
 					}
 					</td>

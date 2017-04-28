@@ -1,0 +1,110 @@
+@html.extend("layout", function(model) { 
+    @html.block("body", function(model) {
+    <div class="container" id="product_detail">
+        <div class="p_head">
+            <h1>@(model.product.extend == 4 ? 'Product' : 'Box') #@model.product.inv_code: @model.product.name</h1>
+            <div class="right">
+                <a href="/shipments/list?name=@model.product.name" class="btn">Shipments</a>
+                <a href="/products/edit/@model.product.id" class="btn">Edit Product</a>
+                <a href="/products/new" class="btn"><i class="fa fa-plus"></i> New Product</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 l7">
+                <div>All Product > @(model.product.extend == 4 ? 'Product' : 'Box') #@model.product.inv_code</div>
+                <div class="col s12 l7">
+                    <img src="@model.product.images[0]" class="p_image" />
+                </div>
+                <div class="col s12 l5">
+                    <div>
+                        <b>Line</b>: 
+                        @if (model.product.category.indexOf(59) >= 0 || model.product.category.indexOf(60) >= 0 || (model.product.category[0] >= 38 && model.product.category[0] <= 43)) {
+                            @model.product.options_skin[model.option]
+                        }
+                    </div>
+                    <div>
+                        <b>Categories</b>: @model.product.category.forEach(function(category, index) {
+                            @category
+                        })
+                    </div>
+                    <br/>
+                    <div><b>Price</b>: <span class="price">@model.product.price</span></div>
+                    <div><b>Market</b>: <span class="price">@model.product.old_price</span></div>
+                    <div><b>Wholesale</b>: <span class="price">@model.product.wholesale_price</span></div>
+                    <br/>
+                    <div><b>Sold</b>: @model.sold</div>
+                    <div><b>Stock</b>: @model.product.options[model.option].quantity</div>
+                    <div><b>Incoming</b>: @model.incoming</div>
+                </div>
+            </div>
+            <div class="col s12 l5">
+                <div>Sale vs Date</div>
+                <canvas id="saleChart"></canvas>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 l7">
+                <div><b>Description</b></div>
+                <div>@model.product.description</div>
+            </div>
+            <div class="col s12 l5">
+                <div><b>Box / Product contains</b></div>
+                <div>
+                    @if (model.product.extend == 3) {
+                        @model.product.boxProducts.forEach(function(item) {
+                            <div>@item.name</div>
+                        })
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 l7">
+                <div><b>Advertising Link</b></div>
+            </div>  
+            <div class="col s12 l5">
+                <div><b>Activity Log</b></div>
+                <div class="logs">
+                    @model.product.logs.forEach(function(item) {
+                        <div class="log">
+                            <span>@item.log</span><span class="right">@model.moment(item.date).format("ddd DD/M/YYYY")</span>
+                        </div>
+                    })
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+        });
+        var sales = @html.raw(model.sales)
+        var dates = [];
+        var count = [];
+        for (c = 0; c < sales.length; c++) {
+            dates.push(moment().year(sales[c]._id.year).month(sales[c]._id.month).date(sales[c]._id.day).format("DD/M/YY"));
+            count.push(sales[c].count);
+        }
+        console.log(dates);
+        var myChart = new Chart($("#saleChart"), {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: '# of sales',
+                    data: count,
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    })
+})

@@ -5,14 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>@model.__('title') - @model.__('about.title')</title>
-    <meta name="title" content="@model.__('title') - Mỹ Phẩm Hàn Quốc">
-    <meta itemprop="name" content="@model.__('title') - Mỹ Phẩm Hàn Quốc" />
-    <meta property="og:title" content="@model.__('title') - Mỹ Phẩm Hàn Quốc" />
+    <title>@model.__('title') - Son Hot, Mỹ Phẩm, Dưỡng Da, Trị Mụn, Skincare, Makeup</title>
+    <meta name="title" content="@model.__('title') - Son Hot, Mỹ Phẩm, Dưỡng Da, Trị Mụn, Skincare, Makeup">
+    <meta itemprop="name" content="@model.__('title') - Son Hot, Mỹ Phẩm, Dưỡng Da, Trị Mụn, Skincare, Makeup" />
+    <meta property="og:title" content="@model.__('title') - Son Hot, Mỹ Phẩm, Dưỡng Da, Trị Mụn, Skincare, Makeup" />
     <meta name="copyright" content="Copyright 2016 Yppuna">
-    <meta name="description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp.">
-    <meta itemprop="description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp." />
-    <meta property="og:description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp." />
+    <meta name="description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt ngày mùng 1 hàng tháng với giá cực kỳ ưu đãi. Tư vấn, chia sẻ cách chăm sóc da, làm đẹp.">
+    <meta itemprop="description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt ngày mùng 1 hàng tháng với giá cực kỳ ưu đãi. Tư vấn, chia sẻ cách chăm sóc da, làm đẹp." />
+    <meta property="og:description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt ngày mùng 1 hàng tháng với giá cực kỳ ưu đãi. Tư vấn, chia sẻ cách chăm sóc da, làm đẹp." />
     <meta itemprop="image" content="http://yppuna.vn/images/db_ko_05.png" />
     <meta property="og:image" content="http://yppuna.vn/images/db_ko_05.png" />
     <meta property="og:site_name" content="Yppuna">
@@ -49,7 +49,7 @@
             <div class="intro-title @(model.has_zone ? 'hide' : '')">
                 <span>yppuna</span>
             </div>
-            <img class="intro-logo" style="@(!model.has_zone ? 'display:none;' : '')" src="/images/logo.svg">
+            <img class="intro-logo" style="@(!model.has_zone ? 'display:none;' : '')" src="/images/old_logo.svg">
             <!--<video class="intro-video" width="400" muted style="display:none;">
                 <source src="/video/yppuna_logo.mp4" type="video/mp4">
             </video>-->

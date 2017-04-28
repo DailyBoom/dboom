@@ -45,9 +45,7 @@
                           </span>
                         </div>
                       </div>
-                      <div class="col-md-2 cart-item-price price hidden-xs">
-                        @item.product.price
-                      </div>
+                      <div class="col-md-2 cart-item-price price hidden-xs">@item.product.price</div>
                       <div class="col-xs-1">
                         <i class="fa fa-remove cart-remove" data-index="@index"></i>
                       </div>
@@ -77,7 +75,7 @@
                 </div>
                 <div class="col-xs-6">
                   <span class="col-xs-12 top-space price">@model.cart_total</span>
-                  <span class="col-xs-12 top-space price">- @model.order.discount</span>
+                  <span class="col-xs-12 top-space price">-@model.order.discount</span>
                 </div>
               </div>
               <div class="row price-summary">
@@ -110,7 +108,7 @@
   })
 	@html.block("script", function(model) {   
         <script>
-            $(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+            $(".price").autoNumeric('init', autoNumericOptions);
             $('.value-control').on("click", function() {
                 $quantity = $(this).parent().parent().find("input").val();
                 console.log($(this).data('action'));

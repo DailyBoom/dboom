@@ -276,8 +276,8 @@
 
 			var cw = $('.main-img').width();
 			$('.main-img').css({'height':cw+'px'});
-			$(".price, .old_price, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
 			var owl = $("#individual > .row");
+			$(".price, .old_price, .prod_price").autoNumeric('init', autoNumericOptions);
 			owl.owlCarousel({
 				items : 4,
 				itemsDesktop : [1200,4],

@@ -98,11 +98,8 @@
                     </div>
                 <!-- End of one post -->
                 })
-                
             </div>
-
             <div class="spacer">
-
             </div>
             <ul class="pagination pull-right">
                 @if(model.paginate.hasPreviousPages) {
@@ -123,14 +120,11 @@
                 }
             </ul>
           </div>
-
-
         </section>
-
       </div>
-
-
     </div>
+    })
+	@html.block("script", function(model) {
     <script>
         $(window).load(function() {
             var is_mobile = @model.is_mobile;

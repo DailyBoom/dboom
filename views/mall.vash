@@ -73,43 +73,45 @@
 
     </div>
 	})
-})
-<script>
-	$(".mall-price-o, .mall-price-n, .prod_price, .old_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
-	$(".add-cart").on("click", function() {
-		var id = $(this).data("id");
-		$.ajax({
-			type: "POST",
-			url: "/add_to_cart",
-			dataType: "json",
-			data: {
-				product_id: id,
-				quantity: 1,
-				option: '0'
-			},
-			success: function (res) {
-				window.location = '/cart';
-			},
-			error: function (res) {
-				Materialize.toast(res.responseJSON.message, 4000);
-			}
+	@html.block("script", function(model) {
+	<script>
+		$(".mall-price-o, .mall-price-n, .prod_price, .old_price").autoNumeric('init', autoNumericOptions);
+		$(".add_cart").on("click", function() {
+			var id = $(this).data("id");
+			$.ajax({
+				type: "POST",
+				url: "/add_to_cart",
+				dataType: "json",
+				data: {
+					product_id: id,
+					quantity: 1,
+					option: '0'
+				},
+				success: function (res) {
+					window.location = '/cart';
+				},
+				error: function (res) {
+					Materialize.toast(res.responseJSON.message, 4000);
+				}
+			});
 		});
-	});
-	var owl = $(".boxes .row");
-	owl.owlCarousel({
-		items : 3,
-		itemsDesktop : [1200, 3],
-		itemsDesktopSmall : [992,2],
-		itemsTablet: [600,1],
-		itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
-		navigation: true,
-		navigationText: ["<", ">"],
-		pagination: false,
-		responsive: true,
-		rewindNav: true,
-		autoPlay: true
-	});
-	$("#category_list").on("change", function() {
-		window.location = '/mall?category='+$("#category_list option:selected").val();
-	});
-</script>
+		var owl = $(".boxes .row");
+		owl.owlCarousel({
+			items : 3,
+			itemsDesktop : [1200, 3],
+			itemsDesktopSmall : [992,2],
+			itemsTablet: [600,2],
+			itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
+			navigation: true,
+			navigationText: ["<", ">"],
+			pagination: false,
+			responsive: true,
+			rewindNav: true,
+			autoPlay: true
+		});
+		$("#category_list").on("change", function() {
+			window.location = '/mall?category='+$("#category_list option:selected").val();
+		});
+	</script>
+	})
+})

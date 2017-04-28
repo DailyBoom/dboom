@@ -339,6 +339,9 @@ router.get('/home', function(req, res, next) {
 
 router.get('/shop/products/:url', function(req, res, next) {
   Product.findOne({ url: req.params.url }, function(err, product) {
+    if (!product) {
+      return res.redirect('/mall');
+    }
     Product.find({ extend: 4, is_published: true, is_hot: true }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
       Comment.find( { product: product.id }).populate('user').exec(function(err, comments) {
         var current_quantity = 0;
@@ -358,6 +361,8 @@ router.get('/shop/products/:url', function(req, res, next) {
 
 router.get('/shop/box/:url', function(req, res, next) {
   Product.findOne({ url: req.params.url }).populate('boxProducts').exec(function(err, product) {
+    if (!product)
+      return res.redirect('/');
     Product.find({ extend: 4, is_published: true, is_hot: true }).limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
       Comment.find( { product: product.id }).populate('user').exec(function(err, comments) {
         var current_quantity = 0;
@@ -582,13 +587,7 @@ router.get('/blog/:url', function(req, res, next) {
 router.get('/', function(req, res, next) {
   if (req.cookies.ypp_f_time && req.cookies.ypp_zone) {
     return res.redirect('/home');
-  }  
-  if (req.cookies.ypp_f_time && req.cookies.ypp_s_time && req.cookies.ypp_zone) {
-    return res.redirect('/home');
   }
-  if (req.cookies.ypp_f_time && !req.cookies.ypp_s_time) {
-    res.cookie('ypp_s_time', 'true', { maxAge: 31536000000, httpOnly: true, path: '/' });
-  } 
   if (!req.cookies.ypp_f_time) {
     res.cookie('ypp_f_time', 'true', { maxAge: 31536000000, httpOnly: true, path: '/' });
   }

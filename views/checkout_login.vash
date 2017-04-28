@@ -116,7 +116,7 @@
                     </div>
                     <div class="col-xs-6">
                       <span class="col-xs-12 top-space price">@model.cart_total</span>
-                      <span class="col-xs-12 top-space price">- @model.order.discount</span>
+                      <span class="col-xs-12 top-space price">-@model.order.discount</span>
                     </div>
                   </div>
                   <div class="row price-summary">
@@ -132,13 +132,11 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
     })
-	@html.block("script", function(model) {    
+	@html.block("script", function(model) {
         <script type="text/javascript">
             $(document).ready(function(){
-                $(".price, .total, .total-dc, .total-amount").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+                $(".price, .total, .total-dc, .total-amount").autoNumeric('init', autoNumericOptions);
                 if ($('#login_btn').is(':checked')) {
                     $('#c_login').removeClass('hide');
                     $('#c_signup').addClass('hide');

@@ -47,7 +47,7 @@ var orderSchema = new Schema({
 	totalOrderAmt: Number,
 	shipping_cost: Number,
 	cart_merchants: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-	cart: [{ product: { type: Schema.Types.ObjectId, ref: 'Product' }, quantity: Number, option: Number, is_preorder: Boolean }],
+	cart: [{ product: { type: Schema.Types.ObjectId, ref: 'Product' }, quantity: Number, option: Number, is_preorder: Boolean, packed: { type: Boolean, default: false } }],
 	wallet_dc: Number,
 	pickup_date: Date,
 	discount: Number,

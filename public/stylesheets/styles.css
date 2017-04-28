@@ -327,6 +327,32 @@ input[type=number]::-webkit-outer-spin-button {
   .st-blocks button:focus {
     background-color: transparent; 
   }
+
+  /* Product Detail */
+
+  #product_detail h1 {
+    font-size: 30px;
+    display: inline-block;
+  }
+
+  #product_detail img {
+    width: 100%;
+  }
+
+  #product_detail .logs {
+    border: 1px solid black;
+    height: 150px;
+    overflow-y: scroll;
+  }
+
+  #product_detail .log {
+    border-bottom: 1px solid black;
+    padding: 10px;
+  }
+
+  #product_detail .log .right {
+    font-size: 10px;
+  }  
 }
 @media only screen and (min-width: 601px) {
   .logo-d { display: block; }
@@ -715,10 +741,10 @@ input[type=number]::-webkit-outer-spin-button {
 
 /** Login Modal **/
 @media only screen and (min-width: 0) {
-  .modal {
+  /*.modal {
     width: 80%;
     max-height: 85%;
-  }
+  }*/
   .modal .modal-content-c {
     display: block;
     padding: 10px 10px 0px 10px;
@@ -749,9 +775,6 @@ input[type=number]::-webkit-outer-spin-button {
 @media only screen and (min-width: 601px) {
   img.responsive-img {
     width: 100%;
-  }
-  .modal {
-    width: 480px;
   }
   .modal .modal-content- {
     display: block;
@@ -806,9 +829,6 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 @media only screen and (min-width: 992px) {
-  .modal {
-    width: 480px;
-  }
   .modal .modal-content- {
     display: block;
     padding: 10px 20px;
@@ -2330,8 +2350,12 @@ input[type=number]::-webkit-outer-spin-button {
   .checkout-mall {
     position: relative;
   }
-  .checkout-mall h5 {
-    margin-top: 30px;
+  label.order-label {
+    font-size: 15px;
+  }
+  div.order-label {
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
   }
   .cart {
     padding: 0 !important;
@@ -2348,7 +2372,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .cart-item .product-name {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 15px;
   }
   .product-color {
     width: 20px;

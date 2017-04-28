@@ -1,6 +1,36 @@
 @html.extend("layout-beta", function(model) {
 	@html.block("body", function(model) {
 	<div class="container" id="homepage">
+		@if (model.extraBoxes.length > 0) {
+		<section id="individual" class="extra">
+			<h2>HỘP LÀM ĐẸP BÁN CHẠY NHẤT</h2>
+			<div class="row">
+			@model.extraBoxes.forEach(function(product) {
+				<div class="center mall-product">
+					<a href="/shop/box/@product.url"><img class="@(product.quantity == 0 ? 'sold-out' : '')" src="@product.images[0]" /></a>
+					<div class="prod_brand">@product.brand</div>
+					<div class="prod_name"><a href="/shop/box/@product.url">@product.name</a></div>
+					@if (product.quantity > 0) {
+						<span class="prod_price">@product.price</span>
+					}
+					else {
+						<span class="sold-out">
+							SOLD OUT	
+						</span>
+					}
+					@if (product.old_price) {
+						<span class="old_price">@product.old_price</span>
+						@{
+							var price =  product.old_price - product.price
+							var sale = price / product.old_price * 100; 
+						}							
+						<span class="sale">-@sale.toFixed(0)%</span>
+					}
+				</div>
+			})
+			</div>
+		</section>
+		}
 		<div id="boxes">
 		@if(model.products[0]) {
 		<section id="north">
@@ -102,17 +132,11 @@
 				<div class="col s12 l4" data-stellar-ratio="1.7" >
 					<img class="item_cover"  src="@model.products[1].box_header" />
 					<div class="item_names row center">
-						<div class="col s4">
-							<div class="item_name truncate">@model.products[1].brand</div>
-							<div class="item_type">NHÃN HIỆU</div>
+						<div class="col s12">
+							<div class="item_name truncate">@model.products[0].brand</div>
 						</div>
-						<div class="col s4 ">
-							<div class="item_name truncate">@model.products[1].origin</div>
-							<div class="item_type">SẢN XUẤT</div>
-						</div>
-						<div class="col s4">
-							<div class="item_name truncate">@model.products[1].special</div>
-							<div class="item_type">ĐẶC BIỆT</div>
+						<div class="col s12">
+							<div class="item_name truncate">@model.products[0].origin</div>
 						</div>
 					</div>
 					<div class="item_desc hide-on-med-and-down">
@@ -257,6 +281,7 @@
 		</section>
 		}
 		</div>
+		
 		<section id="individual">
 			<h2 class="wrapper">
 				<img class="svg g-52 hide-on-med-and-down" src="/images/group-52.svg" />
@@ -272,9 +297,7 @@
 					<div class="prod_brand">@product.brand</div>
 					<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
 					@if (product.quantity > 0) {
-						<span class="prod_price">
-							@product.price	
-						</span>
+						<span class="prod_price">@product.price</span>
 					}
 					else {
 						<span class="sold-out">
@@ -302,9 +325,7 @@
 					<div class="prod_brand">@product.brand</div>
 					<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
 					@if (product.quantity > 0) {
-						<span class="prod_price">
-							@product.price	
-						</span>
+						<span class="prod_price">@product.price</span>
 					}
 					else {
 						<span class="sold-out">
@@ -321,9 +342,11 @@
 					}
 				</div>
 			})
-		</div>
+			</div>
 		</section>
     </div><!-- .container-fluid -->
+	})
+	@html.block("script", function(model) {
 	<script type="text/javascript">
 		//var options = [
 		//	{selector: '#north', offset: 0, callback: "$('#side-menu, #slide-out').removeClass('central south').addClass('north');", repeat: true },
@@ -352,8 +375,8 @@
 				}
 			});
 		});
-		$(".item_price, .item_old_price, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
-		var owl = $("#individual .row");
+		$(".item_price, .item_old_price, .prod_price, .old_price").autoNumeric('init', autoNumericOptions);
+		var owl = $("#individual:not(.extra) .row");
 		owl.owlCarousel({
 			items : 4,
 			itemsDesktop : [1200,4],
@@ -365,7 +388,19 @@
 			pagination: false,
 			responsive: true,
 			rewindNav: true,
-			autoPlay: true
+			autoPlay: true,
+		});
+		$('.extra .row').owlCarousel({
+			items: 3,
+			itemsDesktop : [1200,3],
+			itemsDesktopSmall : [992,2],
+			itemsTablet: [600,1],
+			itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
+			navigation: true,
+			navigationText: ["<", ">"],
+			pagination: false,
+			responsive: true,
+			rewindNav: true,
 		});
 		if (!is_mobile) {
 			var isAnimating = false;

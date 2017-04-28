@@ -19,9 +19,9 @@
     }
     <meta name="copyright" content="Copyright 2016 Yppuna">
     @if(!model.description){
-      <meta name="description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp.">
-  		<meta itemprop="description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp." />
-      <meta property="og:description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt thứ 2 hàng tuần vợi giá cực kỹ khuyến mại. Tư vấn, chia xẻ chăm sóc da làm đẹp." />
+      <meta name="description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt ngày mùng 1 hàng tháng với giá cực kỳ ưu đãi. Tư vấn, chia sẻ cách chăm sóc da, làm đẹp.">
+  		<meta itemprop="description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt ngày mùng 1 hàng tháng với giá cực kỳ ưu đãi. Tư vấn, chia sẻ cách chăm sóc da, làm đẹp." />
+      <meta property="og:description" content="Yppuna - Mỹ phẩm mới, hot nhất gửi thẳng từ Hàn Quốc đến cửa nhà bạn. Box làm đẹp ra mắt ngày mùng 1 hàng tháng với giá cực kỳ ưu đãi. Tư vấn, chia sẻ cách chăm sóc da, làm đẹp." />
     }
     else {
       <meta name="description" content="@model.description">
@@ -84,7 +84,7 @@
 		<link rel="stylesheet" href="/stylesheets/theme.css">
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
     <link rel='stylesheet' href='/stylesheets/spectrum.css' />
-
+    
 		<!-- jQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script
@@ -104,11 +104,12 @@
 		<script src="/javascripts/moment-timezone-with-data.js"></script>
     <!-- Custom JS -->
     <script src='/javascripts/spectrum.js'></script>
-		<script src="/javascripts/formatCurrency/jquery.formatCurrency-1.4.0.min.js"></script>
+    <script src="/javascripts/formatCurrency/jquery.formatCurrency-1.4.0.min.js"></script>
 		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.ko-KR.js"></script>
 		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.vi-VN.js"></script>
     <script src="/javascripts/popOut.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="/javascripts/Chart.js"></script>
     <!-- Modernizr -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <!--[if IE 9]>
@@ -402,7 +403,7 @@
     }
     <script>
       $(document).ready(function(){
-        $(".cart-price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+        $(".cart-price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
         $(document).on('click', '.toast-close', function() {
             $(this).parent().fadeOut(function(){
                 $(this).remove();

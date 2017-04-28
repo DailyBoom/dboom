@@ -5,6 +5,8 @@ var multer  = require('multer');
 var multers3 = require('multer-s3');
 var moment = require("moment");
 var Product = require("../models/product");
+var Order = require("../models/order");
+var Shipment = require("../models/shipment");
 var User = require("../models/user");
 var i18n = require('i18n');
 var mime = require('mime-types');
@@ -13,6 +15,7 @@ var config = require('config-heroku');
 var paginate = require('express-paginate');
 var querystring = require('querystring');
 var getSlug = require('speakingurl');
+var mongoose = require('mongoose');
 var app = express();
 
 app.use(paginate.middleware(10, 50));
@@ -72,6 +75,8 @@ var isMerchantOrAdmin = function (req, res, next) {
 router.get('/products/list', isMerchantOrAdmin, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
   var query = {};
+  if (req.query.id)
+    query['_id'] = req.query.id;
   if (req.query.type == 1) {
     query['extend'] = { '$gte': 1, '$lte': 3 };
   }
@@ -81,10 +86,55 @@ router.get('/products/list', isMerchantOrAdmin, function(req, res) {
   if (req.query.s) {
     query['$or'] = [{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }];
   }
+  if (req.query.line)
+    query['line'] = req.query.line;
+  if (req.query.price)
+    query['price'] = req.query.price;
+  if (req.query.quantity)
+    query['quantity'] = req.query.quantity;
+  if (req.query.scheduled_date)
+    query['scheduled_at'] = req.query.scheduled_date;
   Product.paginate(query, { page: page, limit: 9, sort: { 'scheduled_at' : -1 } }).then(function(result) {
     res.render('products/index', { products: result.docs, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / 9) });
   });
 });
+
+router.get('/products/details/:id/:option', isMerchantOrAdmin, function(req, res) {
+  Product.findOne({ _id: req.params.id }).populate('boxProducts').exec(function(err, product) {
+    Order.find({ 'cart.product': req.params.id, 'cart.option': req.params.option }, function(err, orders) {
+      var sold = 0;
+      for (i = 0; i < orders.length; i++) {
+        for (j = 0; j < orders[i].cart.length; j++) {
+          if (orders[i].cart[j].product == req.params.id)
+            sold += orders[i].cart[j].quantity;
+        }
+      }
+      Shipment.find({ product: req.params.id }, function(err, shipments) {
+        var incoming = 0;
+        for (h = 0; h < shipments.length; h++) {
+          incoming += shipments[h].quantity;
+        }
+        console.log(incoming);
+        var now = moment().hours(0).minute(0).second(0);
+        var start = now.clone().subtract(1, 'year');
+        console.log(mongoose.mongo.ObjectId(req.params.id));
+        Order.aggregate([
+            {$match: {
+                created_at: { $lt: new Date(now), $gte: new Date(start) },
+                "cart.product": mongoose.mongo.ObjectId(req.params.id)
+            }},
+            {$group: {
+                _id: { year: { $year: "$created_at" }, month: { $month: "$created_at" }, day: { $dayOfMonth: "$created_at" } },
+                count: {$sum: 1}
+            }}
+        ], function(err, sales) {
+          console.log(JSON.stringify(sales));
+          res.render('products/detail', { product: product, option: req.params.option, sold: sold, incoming: incoming, sales: JSON.stringify(sales) });
+        })
+      })
+    })
+  })
+})
 
 router.get('/products/new', isMerchantOrAdmin, function(req, res) {
   res.render("products/new");
@@ -168,6 +218,8 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         price: req.body.price,
         old_price: req.body.oldPrice,
         wholesale_price: req.body.wholesale_price,
+        w_eu_price: req.body.w_eu_price,
+        w_cz_price: req.body.w_cz_price,
         quantity: quantity,
         images: paths,
         scheduled_at: req.body.selldate,
@@ -193,9 +245,10 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
         is_hot: req.body.is_hot,
         is_new: req.body.is_new,
         color: req.body.color,
-        boxProducts: req.body.extend == 3 && req.body.boxProducts[0] !== '' ? JSON.parse(JSON.stringify(req.body.boxProducts.filter(String))) : null,
+        boxProducts: (req.body.extend == 3 || req.body.extend == 5) && req.body.boxProducts[0] !== '' ? JSON.parse(JSON.stringify(req.body.boxProducts.filter(String))) : null,
         boxZone: req.body.boxZone,
-        product_region: req.body.product_region
+        product_region: req.body.product_region,
+        tags: req.body.tags
       });
     
       if(req.body.extend == 3) {
@@ -217,7 +270,10 @@ router.post('/products/new', isMerchantOrAdmin, upload.fields([{name: 'photosmai
     
       console.log(product);
       product.save(function(err) {
-        if (err) console.log(err), res.render('/products/new', { title: 'Index', error: err.errmsg });
+        if (err) {
+          console.log(err);
+          return res.render('/products/new', { title: 'Index', error: err.errmsg });
+        }
         else {
           res.redirect('/products/preview/'+product.id);
         }
@@ -250,8 +306,10 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
     product.ingredients = req.body.ingredients;
     product.category = req.body.category;
     product.price = req.body.price;
-    product.old_price = req.body.oldPrice,
-    product.wholesale_price = req.body.wholesale_price,
+    product.old_price = req.body.oldPrice;
+    product.wholesale_price = req.body.wholesale_price;
+    product.w_eu_price = req.body.w_eu_price;
+    product.w_cz_price = req.body.w_cz_price;
     product.scheduled_at = req.body.selldate;
     product.quantity = quantity;
     product.brand = req.body.brandname;
@@ -272,8 +330,9 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
     product.color = req.body.color;
     product.boxZone = req.body.boxZone;
     product.product_region = req.body.product_region;
+    product.tags = req.body.tags;
     console.log(req.body.boxProducts);
-    if(req.body.extend == 3) {
+    if(req.body.extend == 3 || req.body.extend == 5) {
       product.boxProducts = req.body.boxProducts[0] !== '' ? JSON.parse(JSON.stringify(req.body.boxProducts.filter(String))) : null;
       product.url = product.url + '-' + product.boxZone;
     }
@@ -317,7 +376,10 @@ router.post('/products/edit/:id', isMerchantOrAdmin, upload.fields([{name: 'phot
       product.box_header = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['box_background'][0].key;
     }
 
-    console.log(product);
+    product.modifiedPaths().forEach(function(item) {
+      product.logs.unshift({ log: req.user.username + " has modified " + item, date: moment() });
+    });
+    console.log(product.logs);
     product.save(function(err) {
       if (err) { 
         console.log(err);
@@ -434,8 +496,8 @@ router.get('/products/naver', function(req, res) {
 });
 
 router.post('/products/search', function(req, res) {
-  Product.find({ extend: 4 }, '_id name brand wholesale_price options').or([{ 'name': { $regex: req.body.term, $options: "i" } }, { 'brand': { $regex: req.body.term, $options: "i" } }]).exec(function(err, products) {
-    res.status(200).json({ products: products});
+  Product.find({ extend: 4 }, '_id name brand price wholesale_price options options_skin').or([{ 'name': { $regex: req.body.term, $options: "i" } }, { 'brand': { $regex: req.body.term, $options: "i" } }]).exec(function(err, products) {
+    res.status(200).json({ products: products });
   })
 })
 
@@ -449,7 +511,7 @@ router.get('/products/order', isMerchantOrAdmin, function(req, res) {
   var query = Product.find({ extend: 4 }, {}, { });
   var group = req.query.group ? req.query.group : null;
   if (req.query.group && req.query.group != '') {
-    query.where('category').in(category_group[req.query.group]);
+    query('category').in(category_group[req.query.group]);
     query.sort({ 'position_group' : 1 });
   }
   else {
@@ -483,6 +545,33 @@ router.get('/products/generateurl', function() {
     products.forEach(function(product) {
       product.url = product.url + '-' + product.boxZone;
       product.save();
+    });
+  });
+});
+
+router.get('/products/generatecode', function() {
+  Product.find({ }, function(err, products) {
+    var prev_brand = '';
+    var brand = '';
+    var i = 1;
+    var cat = '';
+    products.forEach(function(product) {
+      if (product.brand) {
+        if (prev_brand == product.brand)
+          i++;
+        else
+          i = 1;
+        if (category_group[0].indexOf(product.category[0]) >= 0)
+          cat = 'S';
+        else if (category_group[1].indexOf(product.category[0]) >= 0)
+          cat = 'M';
+        else if (category_group[2].indexOf(product.category[0]) >= 0)
+          cat = 'B';
+        brand = product.brand.replace(/ /g, '');
+        product.inv_code = brand[0].toUpperCase() + brand[brand.length - 2].toUpperCase() + brand[brand.length - 1].toUpperCase() + '_' + cat + ('0' + i).slice(-2);
+        prev_brand = product.brand;
+        product.save();
+      }
     });
   });
 });

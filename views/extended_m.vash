@@ -486,7 +486,7 @@
 		});
 		var lang = '@model.getLocale()';
 		if (lang == 'vi')
-			$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile, .ol-old-p, .ol-new-p").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+			$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile, .ol-old-p, .ol-new-p").autoNumeric('init', autoNumericOptions);
 		else
 			$("#product_price, #product_price_mobile, #old_price, #product_old_price_mobile, .ol-old-p, .ol-new-p").formatCurrency({region: 'ko-KR', roundToDecimalPlace: 0});
 		var owl = $("#db-past");

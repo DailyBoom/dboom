@@ -24,7 +24,7 @@
 							<input type="text" class="validate" id="from" name="from" />
 						</div>
 						<div class="col s12 l3">
-							<label for="est_date">Est. Arrived Date </label>
+							<label for="est_date">Est. Arr. Date </label>
 							<input type="date" class="datepicker validate" id="est_date" name="est_date" />
 						</div>
 						<div class="input-field col s12">
@@ -43,10 +43,26 @@
 			<div class="row">
 				<div class="col s12">
 					<form action="/shipments/edit" method="post">
-						<label for="name">Product Name</label>
-						<input type="text" class="search validate" id="name" name="name" readonly/>
-						<label for="line">Product Line</label>
-						<input type="text" id="line" name="line" class="validate" readonly>
+						<label for="e_name">Product Name</label>
+						<input type="text" class="search validate" id="e_name" name="e_name" readonly/>
+						<label for="e_line">Product Line</label>
+						<input type="text" id="e_line" name="e_line" class="validate" readonly>
+						<div class="col s12 l6">
+							<label for="e_quantity">Quantity</label>
+							<input type="text" class="validate" id="e_quantity" name="e_quantity" />
+						</div>
+						<div class="col s12 l6">
+							<label for="e_price">Price</label>
+							<input type="text" class="validate" id="e_price" name="e_price" />
+						</div>
+						<div class="col s12 l9">
+							<label for="e_from">From</label>
+							<input type="text" class="validate" id="e_from" name="e_from" />
+						</div>
+						<div class="col s12 l3">
+							<label for="e_est_date">Est. Arr. Date </label>
+							<input type="date" class="datepicker validate" id="e_est_date" name="e_est_date" />
+						</div>
 						<div class="col s12 l6">
 							<label for="rec_quantity">Received Quantity</label>
 							<input type="text" class="validate" id="rec_quantity" name="rec_quantity" />
@@ -64,8 +80,14 @@
 							<input type="date" class="datepicker validate" id="arr_date" name="arr_date" />
 						</div>
 						<div class="input-field col s12">
-							<textarea class="materialize-textarea" id="note" name="note"></textarea>
-							<label for="note">Note</label>
+							<textarea class="materialize-textarea" id="e_note" name="e_note"></textarea>
+							<label for="e_note">Note</label>
+						</div>
+						<div class="col s12">
+							<select id="e_status" name="e_status">
+								<option value="Shipping">Shipping</option>
+								<option value="Arrived">Arrived</option>
+							</select>
 						</div>
 						<button class="btn right">Update a shipment</button>
 					</form>
@@ -121,9 +143,8 @@
 				<td><input type="text" id="s_from" name="s_from" /></td>
 				<td><input class="datepicker" type="date" id="s_est_date" name="s_est_date" /></td>
 				<td>
-					<select id="s_status">
+					<select id="s_status" name="s_status" class="browser-default">
 						<option value=""></option>
-						<option value="Submitted">Submitted</option>
 						<option value="Shipping">Shipping</option>
 						<option value="Arrived">Arrived</option>
 					</select>
@@ -146,6 +167,13 @@
 					<a class="users-link blue-grey-text edit" href="#"><i class="fa fa-pencil-square-o fa-fw fa-1-5x"></i></a>
 					<a class="users-link red-text" href="/shipments/delete/@shipment.id" onclick="return confirm('Delete shipment?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
 				</td>
+				<input type="hidden" class="note" value="@shipment.note" />
+				@if (shipment.status == "Arrived") {
+					<input type="hidden" class="rec_quantity" value="@shipment.rec_quantity" />
+					<input type="hidden" class="brk_quantity" value="@shipment.brk_quantity" />
+					<input type="hidden" class="to" value="@shipment.to" />
+					<input type="hidden" class="arr_date" value="@model.moment(shipment.arr_date).format('YYYY/MM/DD')" />
+				}
 			</tr>
 		})
 	</tbody>
@@ -168,7 +196,7 @@
 </div><!-- .container -->
 <script>
 $(document).ready(function() {
-	$(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+	$(".price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
 	$('select').material_select();
 	$('#type').on('change', function() {
 		$('#type_form').submit();
@@ -217,9 +245,21 @@ $(document).ready(function() {
 		var form = $('#edit_modal form');
 		var ship = $(this).parent().parent();
 		form.attr('action', '/shipments/edit/'+ship.find('.id').html());
-		form.find('#name').val(ship.find('.name').html());
-		form.find('#line').val(ship.find('.line').html());
-		form.find('#e_note').val(ship.find('.note').html());
+		form.find('#e_name').val(ship.find('.name').html());
+		form.find('#e_line').val(ship.find('.line').html());
+		form.find('#e_quantity').val(ship.find('.quantity').html());
+		form.find('#e_price').val(parseInt(ship.find('.price').html()));
+		form.find('#e_from').val(ship.find('.from').html());
+		form.find('#e_est_date').val(ship.find('.est_date').html());
+		form.find('#rec_quantity').val(ship.find('.rec_quantity').val());
+		form.find('#brk_quantity').val(ship.find('.brk_quantity').val());
+		form.find('#to').val(ship.find('.to').val());
+		form.find('#arr_date').val(ship.find('.arr_date').val());
+		form.find('#e_note').html(ship.find('.note').val());
+		console.log(form.find('#e_status option:selected'));
+		form.find('#e_status').val([]);
+		form.find('#e_status option[value='+ship.find('.status').html()+']').attr('selected','selected');
+		$('select').material_select();		
 		$('#edit_modal').openModal();
 	});
 });

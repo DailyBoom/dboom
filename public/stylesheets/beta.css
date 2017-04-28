@@ -1,6 +1,6 @@
 /*  Daily Boom, Inc. All rights reserved.  */
 @import url(https://fonts.googleapis.com/css?family=Candal);
-@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(https://fonts.googleapis.com/earlyaccess/hanna.css);
 @font-face {
   font-family: '256bytes';
   src: url('/fonts/bulkypix.ttf'); /* IE9 Compat Modes */
@@ -1058,6 +1058,10 @@ header, main {
   height: 200px;
 }
 
+#individual.extra img {
+  height: 250px;
+}
+
 #individual .l3 {
   height: 300px;
   text-align: center;
@@ -1994,6 +1998,11 @@ header, main {
   font-stretch: normal;
   color: #5aa0d6;
   padding: 0 16px 14px;
+}
+
+#shipping .caret {
+  top: 13px;
+  right: 25px;
 }
 
 #shipping_row .info {
@@ -4072,13 +4081,17 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 0;
   }
 
+  #blog_post h1 {
+    font-size: 50px;
+  }  
+
   #blog_post > .row {
     padding: 0 35px;
   }
 
   #blog_post .title, #blog > .title {
     background-size: 100% !important;
-    padding: 67px 25px 56px;
+    padding: 150px 25px 56px;
     margin: 0;
   }
 

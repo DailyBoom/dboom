@@ -75,6 +75,8 @@
 				</div>
 			</div><!-- .row -->
 		</div><!-- .container -->
+	})
+	@html.block("script", function(model) {
 		<script>
 		$(document).ready(function(){
 			$('#new_comment').on("submit", function(event) {
@@ -97,7 +99,7 @@
 				});
 			});
 			$('.parallax').parallax();
-			$("#deposit_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+			$("#deposit_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
 		});
 		</script>
 	})

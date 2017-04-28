@@ -67,6 +67,8 @@ var isMerchant = function (req, res, next) {
 var hasShipping = function(obj) {
   if (!obj.shipping)
     return false;
+  if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.address && obj.shipping.city && obj.shipping.city == "KHÁC")
+    return true;
   if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.address && obj.shipping.city && obj.shipping.district && obj.shipping.ward)
     return true;
   return false;
@@ -90,58 +92,9 @@ var getOrderTotal = function(order) {
   }
 }
 
-var deliveryPrices = {
-    "HỒ CHÍ MINH": {
-        "QUẬN 1": 20000,
-        "QUẬN 2": 20000,
-        "QUẬN 3": 20000,
-        "QUẬN 4": 20000,
-        "QUẬN 5": 20000,
-        "QUẬN 6": 20000,
-        "QUẬN 7": 20000,
-        "QUẬN 8": 20000,
-        "QUẬN 9": 25000,
-        "QUẬN 10": 20000,
-        "QUẬN 11": 20000,
-        "QUẬN 12": 25000,
-        "QUẬN TÂN BÌNH": 20000,
-        "QUẬN THỦ ĐỨC": 25000,
-        "QUẬN BÌNH TÂN": 25000,
-        "QUẬN BÌNH THẠNH": 20000,
-        "QUẬN GÒ VẤP": 20000,
-        "QUẬN PHÚ NHUẬN": 20000,
-        "QUẬN TÂN PHÚ": 20000,
-        "HUYỆN CỦ CHI": 35000,
-        "HUYỆN NHÀ BÈ": 35000,
-        "HUYỆN HÓC MÔN": 35000,
-        "HUYỆN BÌNH CHÁNH": 35000,
-        "HUYỆN CẦN GIỜ": 35000
-    },
-    "HÀ NỘI": {
-        "BA ĐÌNH": 30000,
-        "HÀ ĐÔNG": 35000,
-        "QUẬN THANH XUÂN": 30000,
-        "HOÀNG MAI": 30000,
-        "HAI BÀ TRƯNG": 30000,
-        "ĐỐNG ĐA": 30000,
-        "CẦU GIẤY": 30000,
-        "LONG BIÊN": 35000,
-        "TÂY HỒ": 30000,
-        "QUẬN HOÀN KIẾM": 30000,
-        "TỪ LIÊM": 35000,
-        "CHƯƠNG MỸ": 45000,
-        "ĐAN PHƯỢNG": 45000,
-        "ĐÔNG ANH": 45000,
-        "GIA LÂM": 45000,
-        "HOÀI ĐỨC": 45000,
-        "MÊ LINH": 45000,
-        "THANH OAI": 45000,
-        "THANH TRÌ": 45000
-    }
-};
-
 var getOrderCartTotal = function(order) {
   order.totalOrderAmt = 0;
+  order.shipping_cost = 0;
   order.cart.forEach(function(item) {
     order.totalOrderAmt += item.product.price * item.quantity;
   });
@@ -151,7 +104,6 @@ var getOrderCartTotal = function(order) {
   else {
     order.shipping_cost = 20000;    
   }
-
   if (order.coupon && order.coupon.type == 2) {
     order.discount = order.shipping_cost;
   }
@@ -211,13 +163,44 @@ router.get('/orders/shipped', isAdmin, function(req, res) {
 router.get('/orders/list', isAdmin, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
   var query = {};
-  if (req.query.order_date)
-    query['created_at'] = { '$gte': req.query.order_date, '$lt': moment(req.query.order_date).add(1, 'days') };
-  if (req.query.status)
-    query['status'] = req.query.status;
+    if (req.query.s_date)
+    query['created_at'] = { '$gte': req.query.s_date, '$lt': moment(req.query.s_date).add(1, 'days') };
+  if (req.query.s_status)
+    query['status'] = req.query.s_status;
+  if (req.query.s_quantity)
+    query['cart.quantity'] = req.query.s_quantity;
+  if (req.query.s_type)
+    query['pay_method'] = req.query.s_type;
+  if (req.query.s_id)
+    query['_id'] = req.query.s_id;
+  if (req.query.s_name) {
+    query['shipping.full_name'] = { $regex: req.query.s_name, $options: "i" };
+  }
   var option = { page: page, limit: 10, sort: { 'created_at': -1 }, populate: 'populate' };
   Order.paginate(query, option).then(function(result) {
     res.render('orders/list', { orders: result.docs, pages: paginate.getArrayPages(req)(3, Math.ceil(result.total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
+  });
+});
+
+router.get('/orders/shipping', isAdmin, function(req, res) {
+  var page = req.query.page ? req.query.page : 1;
+  var query = { status: { $in: ["Waiting", "Paid"] } };
+  var option = { sort: { 'created_at': -1 } , populate: 'product' };
+  if (req.query.s_date)
+    query['created_at'] = { '$gte': req.query.s_date, '$lt': moment(req.query.s_date).add(1, 'days') };
+  if (req.query.s_status)
+    query['status'] = req.query.s_status;
+  if (req.query.s_quantity)
+    query['cart.quantity'] = req.query.s_quantity;
+  if (req.query.s_type)
+    query['pay_method'] = req.query.s_type;
+  if (req.query.s_id)
+    query['_id'] = req.query.s_id;
+  if (req.query.s_name) {
+    query['shipping.full_name'] = { $regex: req.query.s_name, $options: "i" };
+  }
+  query.paginate(query, option).then(function(result) {
+    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '', shipping: true });
   });
 });
 
@@ -251,6 +234,11 @@ router.post('/wholesalers/orders/new', isMerchantOrAdmin, function(req, res) {
     getOrderCartRecap(order);
     console.log(order.totalOrderAmt);
     order.save(function(err) {
+      order.cart.forEach(function(item) {
+        item.product.options[item.option].quantity -= item.quantity;
+        item.product.markModified('options');
+        item.product.save();
+      });
       return res.redirect('/wholesalers/orders');
     });
   });
@@ -331,7 +319,7 @@ router.post('/add_to_cart', function(req, res) {
       order.save(function(err) {
         if (err) {
           console.log(err);          
-          return res.status(500).json({ error: "Error with order" });          
+          return res.status(500).json({ error: "Error with order 1" });          
         }
         req.session.cart_order = order._id;
         return res.status(200).json({ success: true, message: "Product added" });
@@ -340,7 +328,7 @@ router.post('/add_to_cart', function(req, res) {
     else {
       Order.findOne({ _id: req.session.cart_order }, function(err, order) {
         if (err) {
-          console.log(err);
+          console.log(err);          
           return res.status(500).json({ error: "Error with order 2" });          
         }
         if (!order) {
@@ -565,171 +553,6 @@ router.post('/deposit_checkout', function(req, res) {
   }
 });
 
-router.all('/payco_callback', function (req, res) {
-  var resp;
-  if (req.query.code) {
-    resp = req.query;
-  }
-  else {
-    resp = req.body;
-  }
-  console.log(resp);
-  if (resp.code == 0) {
-    var payco = {
-      "sellerKey": config.Payco.sellerKey,
-      "reserveOrderNo": resp.reserveOrderNo,
-      "sellerOrderReferenceKey": resp.sellerOrderReferenceKey,
-      "paymentCertifyToken": resp.paymentCertifyToken,
-      "totalPaymentAmt": resp.totalPaymentAmt
-    }
-    request.post(
-      config.Payco.host + '/outseller/payment/approval',
-      { json: payco },
-      function (error, response, body) {
-        console.log(body)
-        if (!error && body.code == 0) {
-          Order.findOne({ _id: resp.order_id }).populate('user product coupon').exec(function (err, order) {
-            if (req.user)
-              order.shipping = req.user.shipping;
-            order.payco.orderNo = body.result.orderNo;
-            order.payco.sellerOrderReferenceKey = body.result.sellerOrderReferenceKey;
-            order.payco.orderCertifyKey = body.result.orderCertifyKey;
-            order.payco.totalOrderAmt = body.result.totalOrderAmt;
-            order.payco.paymentDetails = body.result.paymentDetails;
-            order.merchant_id = order.product.merchant_id;
-            order.created_at = Date.now();
-            order.status = "Paid";
-            if (order.coupon) {
-              order.coupon.used = true;
-              order.coupon.save();
-            }
-            if (order.user && order.wallet_dc) {
-              order.user.wallet -= order.wallet_dc;
-              order.user.save();
-            }
-            order.save(function (err) {
-              Product.findOne({ _id: order.product.id }, function (err, product) {
-                product.options.forEach(function (option) {
-                  if (option.name === order.option)
-                    option.quantity -= order.quantity;
-                });
-                product.markModified('options');
-                product.save(function (err) {
-
-                  fs.readFile('./views/mailer/buy_success.vash', "utf8", function (err, file) {
-                    if (err) {
-                      //handle errors
-                      console.log('ERROR!');
-                      return res.send('ERROR!');
-                    }
-                    var html = vash.compile(file);
-                    transporter.sendMail({
-                      from: 'Yppuna <hello@yppuna.vn>',
-                      to: order.user ? order.user.email : order.email,
-                      subject: '데일리 붐 구매 안내.',
-                      html: html({ full_name: order.user ? order.user.shipping.full_name : order.shipping.full_name, i18n: i18n })
-                    }, function (err, info) {
-                      if (err) { console.log(err); }
-                      //console.log('Message sent: ' + info.response);
-                      transporter.close();
-                      res.render('payco_callback', { code: resp.code });
-                    });
-                  });
-                });
-              });
-            });
-          });
-        }
-        else {
-          res.render('payco_callback', { msg: body.message, code: resp.code });
-        }
-      }
-      );
-  }
-  else {
-    res.render('payco_callback', { msg: resp.message, code: resp.code });
-  }
-});
-
-// Callback for payco on a mall checkout
-router.all('/mall/payco_callback', function (req, res) {
-  var resp;
-  if (req.query.code) {
-    resp = req.query;
-  }
-  else {
-    resp = req.body;
-  }
-  console.log(resp);
-  if (resp.code == 0) {
-    var payco = {
-      "sellerKey": config.Payco.sellerKey,
-      "reserveOrderNo": resp.reserveOrderNo,
-      "sellerOrderReferenceKey": resp.sellerOrderReferenceKey,
-      "paymentCertifyToken": resp.paymentCertifyToken,
-      "totalPaymentAmt": resp.totalPaymentAmt
-    }
-    request.post(
-      config.Payco.host + '/outseller/payment/approval',
-      { json: payco },
-      function (error, response, body) {
-        console.log(body)
-        if (!error && body.code == 0) {
-          Order.findOne({ _id: resp.order_id }).populate('user cart.product coupon').exec(function (err, order) {
-            if (req.user)
-              order.shipping = req.user.shipping;
-            order.payco.orderNo = body.result.orderNo;
-            order.payco.sellerOrderReferenceKey = body.result.sellerOrderReferenceKey;
-            order.payco.orderCertifyKey = body.result.orderCertifyKey;
-            order.payco.totalOrderAmt = body.result.totalOrderAmt;
-            order.payco.paymentDetails = body.result.paymentDetails;
-            order.merchant_id = order.product.merchant_id;
-            order.status = "Paid";
-            order.created_at = Date.now();
-            if (order.coupon) {
-              order.coupon.used = true;
-              order.coupon.save();
-            }
-            order.save(function (err) {
-              order.cart.forEach(function (item) {
-                item.product.options[item.option].quantity -= item.quantity;
-                item.product.markModified('options');
-                item.product.save();
-              });
-
-              fs.readFile('./views/mailer/buy_success.vash', "utf8", function (err, file) {
-                if (err) {
-                  //handle errors
-                  console.log('ERROR!');
-                  return res.send('ERROR!');
-                }
-                var html = vash.compile(file);
-                transporter.sendMail({
-                  from: 'Yppuna <hello@yppuna.vn>',
-                  to: order.user ? order.user.email : order.email,
-                  subject: '데일리 붐 구매 안내.',
-                  html: html({ full_name: order.user ? order.user.shipping.full_name : order.shipping.full_name, i18n: i18n })
-                }, function (err, info) {
-                  if (err) { console.log(err); }
-                  //console.log('Message sent: ' + info.response);
-                  transporter.close();
-                  res.render('payco_callback', { code: resp.code });
-                });
-              });
-            });
-          });
-        }
-        else {
-          res.render('payco_callback', { msg: body.message, code: resp.code });
-        }
-      }
-      );
-  }
-  else {
-    res.render('payco_callback', { msg: resp.message, code: resp.code });
-  }
-});
-
 router.get('/success', function(req, res) {
   if (!req.session.order && !req.session.cart_order)
     return res.redirect('/');
@@ -832,6 +655,23 @@ router.get('/orders/cart_paid/:id', isAdmin, function(req, res) {
           });
         });
       });
+  });
+});
+
+router.get('/orders/packing', isMerchantOrAdmin, function(req, res) {
+  Order.find({ status: "Packing" }, function(err, orders) {
+    res.render('orders/packing', { orders: orders })
+  });
+});
+
+router.get('/orders/packing/:id', isMerchantOrAdmin, function(req, res) {
+  Order.findOne({_id: req.params.id}).populate('user').exec(function(err, order) {
+    if (err)
+      console.log(err);
+    order.status = "Packing";
+    order.save(function(err) {
+      res.redirect('/orders/packing');
+    });
   });
 });
 
@@ -1191,6 +1031,12 @@ router.post('/shipping', function(req, res) {
           }
         });
       }
+  });
+});
+
+router.post('/orders/get_products', function(req, res) {
+  Order.findOne({ _id: req.body.id }, 'cart').populate('cart.product').exec(function(err, order) {
+    res.status(200).json({ order: order });
   });
 });
 
