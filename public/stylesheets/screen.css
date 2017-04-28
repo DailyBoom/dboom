@@ -1216,6 +1216,10 @@ nav {
     padding: 0;
   }
 
+  #main_banner .item-image img {
+    width: 100%;
+  }
+
   .facts {
     margin-top: 15px;
   }

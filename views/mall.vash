@@ -6,6 +6,9 @@
 					@if (model.title) {
           	<li><a href="#">@model.title</a></li>
 					}
+					@if (model.category_title) {
+          	<li>@model.category_title</li>						
+					}
         </ol>
       </div>
 

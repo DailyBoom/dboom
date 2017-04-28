@@ -32,13 +32,13 @@
                       <div class="form-group">
                         <label for="district">Quận/Huyện</label>
                         <select id="district" name="district" class="form-control top-space">
-                          <option value="">Lua Chon</option>
+                          <option value="">Lựa chọn</option>
                         </select>
                       </div>
                       <div class="form-group">
                         <label for="ward">Phường/Xã</label>
                         <select id="ward" name="ward" class="form-control top-space">
-                          <option>Lua Chon</option>
+                          <option>Lựa chọn</option>
                         </select>
                       </div>
                       <div class="form-group">

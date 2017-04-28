@@ -76,9 +76,9 @@ var isMerchantOrAdmin = function (req, res, next) {
 }
 
 var group = [
-  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
-  [26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 49, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 50, 48],
-  [51, 52]
+  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+  [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 49, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 50, 48],
+  [109, 110, 111]
 ];
 
 var group_name = [
@@ -88,69 +88,49 @@ var group_name = [
 ]
 
 var category = {
-    "53": "Sản phẩm rửa mặt",
-    "1": "Nước rửa mặt",
-    "2": "Rửa mặt dạng bọt",
+    "100": "Sản phẩm rửa mặt",
+    "1": "Tẩy trang mặt",
+    "2": "Tẩy trang mắt & môi",
     "3": "Sữa rửa mặt",
-    "4": "Rửa Mặt Dạng Dầu",
-    "5": "Xà phòng rửa mặt",
-    "6": "Tẩy trang dành cho mặt",
-    "7": "Tẩy trang cho mắt và môi",
-    "8": "Tẩy da chết",
-    "9": "Nước hoa hồng",
-    "10": "Dầu tẩy trang",
-    "11": "Dụng cụ rửa mặt",
-    "54": "Dưỡng ẩm cho da mặt",
-    "12": "Kem dưỡng ẩm",
-    "13": "Sữa dưỡng cho da",
-    "14": "Gel dưỡng cho da",
-    "15": "Dầu dưỡng cho da",
-    "16": "Kem dưỡng cho vùng mắt",
-    "17": "Xịt khoáng",
-    "18": "BB/CC",
-    "55": "Kem chống nắng",
+    "4": "Tẩy da chết",
+    "5": "Nước hoa hồng / Xịt khoáng",
+    "101": "Sản phẩm dưỡng ẩm",
+    "6": "Tinh chất",
+    "7": "Sữa dưỡng",
+    "8": "Dầu dưỡng",
+    "9": "Gel / Kem dưỡng",
+    "10": "Kem dưỡng vùng mắt",
+    "11": "Mặt nạ",
+    "102": "Phụ kiện dưỡng da",
+    "12": "Kem chống nắng",
+    "13": "Mút rửa mặt",
+    "14": "Máy rửa mặt",
+    "15": "Bông tẩy trang",
+    "16": "Giấy thấm dầu",
+    "103": "Tất cả sản phẩm",
+    "104": "Mặt",
+    "17": "Kem lót",
+    "18": "Kem / Phấn nền",
     "19": "Kem chống nắng cho da mặt",
-    "56": "Sản phẩm trị liệu",
-    "20": "Sản phẩm trị mụn",
-    "21": "Sản phẩm trị nám",
-    "22": "Tinh chất",
-    "23": "Dưỡng mắt",
-    "57": "Mặt nạ",
-    "24": "Mặt nạ giấy",
-    "25": "Mặt nạ khác",
-    "58": "Trang điểm cho mắt",
-    "26": "Lót mắt",
-    "27": "Phấn mắt",
-    "28": "Mascara",
+    "20": "Kem che khuyết điểm",
+    "21": "Phấn phủ",
+    "22": "Má hồng",
+    "23": "Bắt sáng/ Tạo khối",
+    "105": "Mắt",
+    "24": "Lót mắt",
+    "25": "Phấn mắt",
+    "26": "Mascara",
     "29": "Kẻ mắt",
-    "30": "Kẻ chân mày",
-    "31": "Tẩy trang mắt",
-    "59": "Trang điểm cho mặt",
-    "32": "Kem lót",
-    "33": "Kem/Phấn nền",
-    "34": "BB/CC (kem đa năng)",
-    "35": "Kem che khuyết điểm",
-    "36": "Phấn phủ",
-    "37": "Má hồng",
-    "49": "Tạo khối",
-    "60": "Sản phẩm dành cho môi",
-    "38": "Son môi",
-    "39": "Son bóng",
-    "40": "Son lì",
-    "41": "Son dưỡng",
-    "42": "Son lỏng",
-    "43": "Son kẻ viền môi",
-    "61": "Phụ Kiện",
-    "44": "Mút Rửa Mặt",
-    "45": "Máy Rửa Mặt",
-    "46": "Giấy Thấm Dầu",
-    "47": "Bông Rửa Mặt",
-    "50": "Bông Trang Điểm",
-    "62": "Sản Phẩm Cho Nam",
-    "48": "Sản Phẩm Đa Công Dụng",
-    "51": "Sữa tắm",
-    "63": "Sản phẩm cho tóc",
-    "52": "Dầu gội",
+    "30": "Chân mày",
+    "106": "Môi",
+    "31": "Son môi",
+    "107": "Phụ kiện trang điểm",
+    "32": "Son dưỡng & điều trị",
+    "33": "Mút / Cọ trang điểm",
+    "108": "Tất cả sản phẩm",
+    "109": "Chăm sóc tóc",
+    "110": "Chăm sóc cơ thể",
+    "111": "Sản phẩm cho Nam",
 }
 
 router.get('/mall', function(req, res, next) {
@@ -160,6 +140,7 @@ router.get('/mall', function(req, res, next) {
   var per_page = res.locals.is_mobile ? 8 : 16;
   var option = { page: page, limit: per_page, sort: { 'position' : 1 } };
   var title = "Sản Phẩm Bán Chạy Nhất";
+  var category_title = null;
   if (req.query.group) {
     query['category'] = { $in: group[req.query.group] };
     option.sort = { 'position_group': 1 };
@@ -168,6 +149,7 @@ router.get('/mall', function(req, res, next) {
   }
   if (req.query.category) {
     query['category'] = req.query.category;
+    category_title = category[req.query.category];
   }
   if (req.query.s) {
     query['$or'] = [{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }];
@@ -177,7 +159,7 @@ router.get('/mall', function(req, res, next) {
     Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
       Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
         Mall.findOne({ category: mall }, function(err, mall) {
-          res.render('mall', { title: title, description: "", products: result.docs, hotProducts: hotProducts, boxes: boxes, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / per_page), mall: mall, group: group_name });
+          res.render('mall', { title: title, category_title: category_title, description: "", products: result.docs, hotProducts: hotProducts, boxes: boxes, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / per_page), mall: mall, group: group_name });
         });
       });
     });

@@ -67,8 +67,8 @@ window.onload = function () {
     }
     stateSel.onchange = function () {
         if (this.selectedIndex == 4) {
-            $(countySel).parent().parent().addClass("hide");
-            $(citySel).parent().parent().addClass("hide");
+            $(countySel).parent().addClass("hide");
+            $(citySel).parent().addClass("hide");
             // $(this).parent().replaceWith("<input class='col s12 l8' id='city' name='city' type='text' />");
             // $(countySel).parent().replaceWith("<input class='col s12 l8' id='district' name='district' type='text' />");
             // $(citySel).parent().replaceWith("<input class='col s12 l8' id='ward' name='ward' type='text' />");
@@ -76,8 +76,8 @@ window.onload = function () {
             return;
         }
         else {
-            $(countySel).parent().parent().removeClass("hide");
-            $(citySel).parent().parent().removeClass("hide");
+            $(countySel).parent().removeClass("hide");
+            $(citySel).parent().removeClass("hide");
             $('.other-city').addClass("hide");
         }
         countySel.length = 1; // remove all options bar first
