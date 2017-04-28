@@ -9,10 +9,10 @@
 							<a href="/banner?type=main"><img src="@model.homepage.main_banner.banner" class="img-responsive"></a>
 						</div>
 						@if (model.is_mobile) {
-							<div class="item-image">
+							<div class="item-image hide">
 								<a href="/banner?type=right_1"><img src="@model.homepage.right_1_banner.banner" class="img-responsive"></a>
 							</div>
-							<div class="item-image">
+							<div class="item-image hide">
 								<a href="/banner?type=right_2"><img src="@model.homepage.right_2_banner.banner" class="img-responsive"></a>
 							</div>
 						}
@@ -243,7 +243,10 @@
 				pagination: false,
 				responsive: true,
 				rewindNav: true,
-				autoPlay: true
+				autoPlay: true,
+				afterInit: function() {
+					$('#main_banner .item-image').removeClass('hide');
+				}
 			});
 		}
 		$(".add-cart").on("click", function(e) {
