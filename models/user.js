@@ -1,6 +1,6 @@
 // grab the things we need
 var mongoose = require('mongoose');
-var bcrypt = require("bcrypt");
+var bcrypt = require("bcrypt-nodejs");
 var uniqueValidator = require('mongoose-unique-validator');
 var i18nPlugin = require("mongoose-i18n");
 var Schema = mongoose.Schema;

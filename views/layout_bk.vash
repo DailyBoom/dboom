@@ -367,7 +367,7 @@
             <div class="-content @(model.is_mobile ? 'collapse' : '')" id="contact-collapse">
             <div class="row">
               <div class="col-xs-12 col-md-3">
-              <span class="subtitle"><i class="fa fa-anchor fa-2x" aria-hidden="true"></i> HỘP LÀM ĐẸP</span>
+              <span class="subtitle"><i class="fa fa-anchor fa-2x" aria-hidden="true"></i> ĐỊA CHỈ</span>
               <p class="top">Quan Binh Thanh <br>
                 Ho Chi Minh City <br>
                 Vietnam
