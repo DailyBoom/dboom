@@ -615,7 +615,7 @@
           $(".product-price").autoNumeric('init', autoNumericOptions);
           moment().locale('vi');
           $("#birthday, .birthday").combodate({
-              firtItem: 'name',
+              firstItem: 'name',
               template: "DD MM YYYY",
               format: "MM/DD/YYYY",
               smartDays: true,

@@ -1,136 +1,62 @@
-@html.extend("layout-beta", function(model) {
+@html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
-		<div class="container mall" id="individual">
-			<div class="banner">
-				<a href="/mall/sale"><img src="/images/banner.png" /></a>
-			</div>
-			<h2 class="title wrapper">
-				@model.title.toUpperCase()
-				<img class="svg g-49 hide-on-med-and-down" src="/images/group-49.svg" />
-				<img class="svg g-50 hide-on-med-and-down" src="/images/group-50.svg" />
-				<img class="svg g-51 hide-on-med-and-down" src="/images/group-51.svg" />
-				<img class="svg p-1 hide-on-med-and-down" src="/images/page-1.svg" />
-				<img class="svg p-2 hide-on-med-and-down" src="/images/page-2.svg" />
-			</h2>
-			<div class="row">
-				<select class="col s12 hide-on-large-only category" id="category_list">
-					<option value="" selected disabled>Chọn Danh Mục Sản Phẩm</option>
-					<optgroup label="Chăm sóc da"></optgroup>
-					<optgroup label="Sản phẩm rửa mặt - Rửa mặt">
-						<option value="1">Nước rửa mặt</option>
-						<option value="2">Rửa mặt dạng bọt</option>
-						<option value="3">Sữa rửa mặt</option>
-						<option value="4">Rửa Mặt Dạng Dầu</option>
-						<option value="5">Xà phòng rửa mặt</option>
-					</optgroup>
-					<optgroup label="Sản phẩm rửa mặt - Tẩy trang">
-						<option value="6">Tẩy trang dành cho mặt</option>							
-						<option value="7">Tẩy trang cho mắt và môi</option>							
-						<option value="8">Tẩy da chết</option>							
-						<option value="9">Nước hoa hồng</option>							
-						<option value="10">Dầu tẩy trang</option>							
-						<option value="11">Dụng cụ rửa mặt</option>							
-					</optgroup>
-					<optgroup label="Dưỡng ẩm cho da mặt">
-						<option value="12">Kem dưỡng ẩm</option>							
-						<option value="13">Sữa dưỡng cho da</option>							
-						<option value="14">Gel dưỡng cho da</option>							
-						<option value="15">Dầu dưỡng cho da</option>							
-						<option value="16">Kem dưỡng cho vùng mắt</option>							
-						<option value="17">Xịt khoáng</option>							
-						<option value="18">BB/CC</option>							
-					</optgroup>
-					<optgroup label="Kem chống nắng">
-						<option value="19">Kem chống nắng cho da mặt</option>
-					</optgroup>
-					<optgroup label="Sản phẩm trị liệu">
-						<option value="20">Sản phẩm trị mụn</option>							
-						<option value="21">Sản phẩm trị nám</option>							
-						<option value="22">Tinh chất</option>							
-						<option value="23">Dưỡng mắt</option>							
-					</optgroup>
-					<optgroup label="Mặt nạ">
-						<option value="24">Mặt nạ giấy</option>
-						<option value="25">Mặt nạ khác</option>
-					</optgroup>
-					<optgroup label="Trang điểm"></optgroup>
-					<optgroup label="Trang điểm cho mắt">
-						<option value="26">Lót mắt</option>
-						<option value="27">Phấn mắt</option>
-						<option value="28">Mascara</option>
-						<option value="29">Kẻ mắt</option>
-						<option value="30">Kẻ chân mày</option>
-						<option value="31">Tẩy trang mắt</option>
-					</optgroup>
-					<optgroup label="Trang điểm cho mặt">
-						<option value="32">Kem lót</option>
-						<option value="33">Kem/Phấn nền</option>
-						<option value="34">BB/CC (kem đa năng)</option>
-						<option value="35">Kem che khuyết điểm</option>
-						<option value="36">Phấn phủ</option>
-						<option value="37">Má hồng</option>
-						<option value="49">Tạo khối</option>
-					</optgroup>
-					<optgroup label="Sản phẩm dành cho môi">
-						<option value="38">Son môi</option>
-						<option value="39">Son bóng</option>
-						<option value="40">Son lì</option>
-						<option value="41">Son dưỡng</option>
-						<option value="42">Son lỏng</option>
-						<option value="43">Son kẻ viền môi</option>
-					</optgroup>
-					<optgroup label="Phụ Kiện">
-						<option value="44">Mút Rửa Mặt</option>
-						<option value="45">Máy Rửa Mặt</option>
-						<option value="46">Giấy Thấm Dầu</option>
-						<option value="47">Bông Rửa Mặt</option>
-						<option value="50">Bông Trang Điểm</option>
-					</optgroup>
-					<optgroup label="Sản Phẩm Cho Nam">
-						<option value="48">Sản Phẩm Đa Công Dụng</option>
-					</optgroup>
-					<optgroup label="Sản Phẩm Dưỡng Thể"></optgroup>
-					<optgroup label="Sữa tắm">
-						<option value="51">Sữa tắm</option>
-					</optgroup>
-					<optgroup label="Sữa tắm">
-						<option value="52">Dầu gội</option>
-					</optgroup>
-				</select>
-				<div class="col s12 l11 offset-l1">
+		<div class="container">
+      <div class="breadcrumb">
+        <ol class="breadcrumb">
+					@if (model.title) {
+          	<li><a href="#">@model.title</a></li>
+					}
+        </ol>
+      </div>
+
+      <div class="row">
+				@if (model.mall) {
+        <section id="mall-intro" class="col-xs-12">
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 mall-intro-text">
+              <span class="big-titled">@model.mall.title</span>
+              <div class="spacer">
+
+              </div>
+              <p class="top-space">@model.mall.text</p>
+
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <img class="img-responsive" src="@model.mall.banner" alt="">
+            </div>
+          </div>
+        </section>
+				}
+        <section id="product-related" class="col-xs-12">
+            <div class="row">
 				@model.products.forEach(function(product) {
-					<div class="col s6 l3 mall-product">
-						<a href="/shop/products/@product.url"><img class="@(product.quantity == 0 ? 'sold-out' : '')" src="@product.images[0]" /></a>
-						<div class="prod_brand">@product.brand</div>
-						<div class="prod_name"><a href="/shop/products/@product.url">@product.name</a></div>
-						@if (product.quantity > 0) {
-						<span class="prod_price">@product.price</span>
-						}
-						else {
-							<span class="sold-out">
-								SOLD OUT	
-							</span>
-						}
-						@if (product.old_price && product.quantity > 0) {
-							<span class="old_price">@product.old_price</span>
-							@{
-								var price =  product.old_price - product.price
-								var sale = price / product.old_price * 100; 
-							}							
-							<span class="sale">-@sale.toFixed(0)%</span>
-						}
-					</div>
+              <!-- One product -->
+              <div class="col-xs-12 col-md-3 product">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <a href="/shop/products/@product.url"><img class="img-responsive" src="@product.images[0]" alt="@product.name"></a>
+                  </div>
+                  <span class="col-xs-12 product-brand">@product.brand</span>
+                  <a href="/shop/products/@product.url"><span class="col-xs-12 product-name">@product.name</span></a>
+                  <span class="col-xs-12 product-price">
+                    @product.price
+                  </span>
+                  <div class="col-xs-12 product-add top-space">
+                    <button class="btn btn-secondary add-cart" data-id="@product.id" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
+                  </div>
+
+                </div>
+              </div>
+              <!-- End of one product -->
 				})
-				
-				</div>
-				<ul class="pagination right">
+				<ul class="pagination pull-right">
 					@if(model.paginate.hasPreviousPages) {
-						<li class="previous"><i class="fa fa-caret-left"></i></li>
+						<li class="previous"><a href="/mall?page=@(model.currentPage - 1)"><i class="fa fa-caret-left"></i></a></li>
 					}
 					<!-- -->
 					@model.pages.forEach(function(page) {
 						@if(model.currentPage == page.number) {
-							<li class="active">@page.number</li>
+							<li class="active"><a href="#">@page.number</a></li>
 						}
 						else {
 							<li class="waves-effect"><a href="@page.url">@page.number</a></li>
@@ -138,44 +64,14 @@
 					})
 					<!-- -->
 					@if(model.paginate.hasNextPages(model.lastPage)) {
-						<li class="next"><i class="fa fa-caret-right"></i></li>
+						<li class="next"><a href="/mall?page=@(model.currentPage + 1)"><i class="fa fa-caret-right"></i></a></li>
 					}
 				</ul>
-				<div class="boxes col s12">
-					<h3 class="center wrapper">
-						XEM CÁC BOX KHÍ HẬU
-						<img class="svg g-52 hide-on-med-and-down" src="/images/group-52.svg" />
-						<img class="svg g-53 hide-on-med-and-down" src="/images/group-53.svg" />
-						<img class="svg g-55 hide-on-med-and-down" src="/images/group-55.svg" />
-						<img class="svg g-56 hide-on-med-and-down" src="/images/group-56.svg" />
-					</h3>
-					<div class="row">
-						@model.boxes.forEach(function(product) {
-							<div class="box">
-								<a href="/shop/box/@product.url"><img src="@product.images[0]" /></a>
-								@if(product.boxZone == 0) {
-									<div class="center north">Miền Bắc</div>
-								}
-								else if (product.boxZone == 1) {
-									<div class="center central">Miền Trung</div>
-								}
-								else if (product.boxZone == 2) {
-									<div class="center south">Miền Nam</div>
-								}
-								<div class="prod_name"><a href="/shop/box/@product.url">@product.name</a></div>
-								@if (model.moment().isAfter(model.moment(product.scheduled_at), 'week')) {
-									<span class="prod_price">@product.old_price</span>
-								}
-								else {
-									<span class="prod_price">@product.price</span>
-									<span class="old_price">@product.old_price</span>
-								}
-							</div>
-						})
-					</div>
-				</div>
 			</div>
-		</div><!-- container -->
+        </section>
+      </div>
+
+    </div>
 	})
 	@html.block("script", function(model) {
 	<script>

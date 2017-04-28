@@ -1,8 +1,8 @@
-@html.extend("layout-beta", function(model) {
+@html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
 		<div class="container min-h-lg" id="forgot">
 			<div class="row">
-				<form class="col s12 m6 offset-m3 l6 offset-l3" method="post" action="/forgot">
+				<form class="col-xs-12 col-md-6 col-md-offset-3" method="post" action="/forgot">
 					@if (model.message) {
 						<div class="card">
 							<div class="card-content">
@@ -16,8 +16,10 @@
 						<br />
 						<br />
 						<br />
-						<label for="email">Email</label>
-						<input id="email" type="email" class="validate" name="email">
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input id="email" type="email" class="validate" name="email">
+						</div>
 						<br>
 						<button class="waves-effect waves-light btn btn-large blue-grey darken-2 right" type="submit" name="action">
 							Đặt Lại <i class="fa fa-refresh right"></i>

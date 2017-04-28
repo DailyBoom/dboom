@@ -1258,6 +1258,12 @@ input[type=number]::-webkit-outer-spin-button {
       background-size: 100%;
       height: 400px; 
   }
+
+  .review, .main {
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 30px;
+  }
 }
 @media only screen and (max-width: 600px) {
   .responsive-table {
@@ -2741,6 +2747,7 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 5px;
     margin-right: 5px;
   }
+
 }
 
 @media only screen and (min-width: 992px) {
@@ -2761,7 +2768,6 @@ input[type=number]::-webkit-outer-spin-button {
     display: inline-block;
     width: 100%;
   }
-
 
 }
 

@@ -1,80 +1,273 @@
 @html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
-		<div id="gateway">
-			<div class="row">
-				<div class="col s12 m8">
-				<article class="box" id="first">
-				</article>
-				</div>
-				<div class="col s12 m4">
-				<div class="row" id="right">
-					<article class="box col s12" id="second">
-					</article>
-					<article class="box col s12" id="third">
-
-					</article>
-				</div>
-				</div>
-
-			</div>
-
-		</div>
-		<div id="box" class="pale">
-			<div class="row wrapped">
-				<div class="col s12 m6">
-				<section id="description-box">
-					<h1>Box of the month</h1>
-					<h2>Feel Beautiful</h2>
-					<div class="item_names row center">
-						<div class="col s12">
-						Skinmiso
+	<div id="homepage">
+		<div class="container">
+			<section id="call-to-action">
+				<div class="row">
+					<div class="col-xs-12 col-md-8" id="main_banner">
+						<div class="">
+							<a href="/banner?type=main"><img src="@model.homepage.main_banner.banner" class="img-responsive"></a>
 						</div>
-						<div class="col s12">
-						Hàn Quốc
-						</div>
-
+						@if (model.is_mobile) {
+							<div class="item-image">
+								<a href="/banner?type=right_1"><img src="@model.homepage.right_1_banner.banner" class="img-responsive"></a>
+							</div>
+							<div class="item-image">
+								<a href="/banner?type=right_2"><img src="@model.homepage.right_2_banner.banner" class="img-responsive"></a>
+							</div>
+						}
 					</div>
-					<p>Đẹp là khi một người phụ nữ biết yêu và nâng niu bản thân mình. Hãy bắt đầu yêu và năng niu làn da, một phần vô cùng quan trọng trên của cơ thể của người phụ nữ, với những sản phẩm chăm sóc da uy tín và hiệu quả. Box làm đẹp tháng này với 2 sản phẩm đặc trị cho mụn và lỗ chân lông của Skinmiso cùng rất rất nhiều mẫu thử của Klairs, da bạn sẽ chính thức sáng, sạch, mịn và đẹp hơn từng ngày.</p>
-				</section>
-
+					@if (!model.is_mobile) {
+					<div class="col-xs-12 col-md-4 hide-on-small-only">
+						<div class="col col-xs-12">
+						<div class="row">
+							<div class="item-image">
+								<a href="/banner?type=right_1"><img src="@model.homepage.right_1_banner.banner" class="img-responsive"></a>
+							</div>
+						</div>
+						<div class="spacer">
+						</div>
+						</div>
+						<div class="col-xs-12">
+						<div class="row">
+							<div class="item-image">
+								<a href="/banner?type=right_2"><img src="@model.homepage.right_2_banner.banner" class="img-responsive"></a>
+							</div>
+						</div>
+						</div>
+					</div>
+					}
 				</div>
-				<div class="col s12 m6">
-				<div class="box-image">
-
+			</section>
+			<section id="boxes">
+				<header>HỘP LÀM ĐẸP</header>
+				<div class="-content tabbed">
+					@model.products.forEach(function(box, index) {
+						<input class="tab" id="tab@(index + 1)" type="radio" name="tabs" checked>
+          				<label class="tab-icon" for="tab@(index + 1)">@box.name</label>						
+					})
+					@model.products.forEach(function(box, index) {					
+					<div class="box-item tab-div scale-fill" style="background-image: url(@box.images[0]);" id="content@(index + 1)">
+						@if (model.is_mobile) {
+							<img class="scale-fill" src="@box.images[0]" alt="@box.name" />
+						}
+						<div class="box-desc">
+							<span class="box-title center">@box.name</span>
+							<p>@box.description</p>
+							<div class="-space">
+								<span class="bold">Bộ sản phẩm bao gồm:</span>
+								<div class="-space">
+								<ul class="items-inside">
+									@box.boxProducts.forEach(function(product, index) {
+									<li>
+										<div class="row">
+											<div class="col-xs-12 mini"><img src="@product.images[0]"></div>
+											<div class="col-xs-12"><span class="-space item">@(index +1). @product.name</span></div>
+										</div>
+									</li>
+									})
+								</ul>
+								</div>
+							</div>
+							<div class="-space prices">
+								@{
+									var price =  box.old_price - box.price
+									var sale = price / box.old_price * 100; 
+								}
+								<span class="tagged"> -@sale.toFixed(0)%</span>
+								<span class="item_price highlight">@box.price</span>
+								<span class="item_price striked">@box.old_price</span>
+							</div>
+							<div class="call-to-action">
+								<button class="btn btn-default add-cart" type="button" name="button" data-id="@box.id">THÊM VÀO GIỎ HÀNG</button>
+								<a href="/shop/box/@box.url" class="btn btn-default">XEM CHI TIẾT</a>
+							</div>
+						</div>
+					</div>
+					})
+				</div>
+			</section>
+			<section id="introducing">
+				<header>
+					<span class="centered">Sản phẩm bán chạy nhất <i class="fa fa-hand-peace-o" aria-hidden="true"></i></span>
+				</header>
+				<div class="-content">
+					<div class="row">
+						@model.hotProducts.forEach(function(product) {
+						<!-- One product -->
+						<div class="product">
+							<div class="row">
+								<a href="/shop/products/@product.url" class="col-xs-12">
+									<img class="img-responsive" src="@product.images[0]" alt="@product.name">
+								</a>
+								<span class="col-xs-12 product-brand">@product.brand</span>
+								<a href="/shop/products/@product.url" class="col-xs-12 product-name">@product.name</a>
+								<span class="col-xs-12 product-price">
+									@product.price
+								</span>
+								<div class="col-xs-12 product-add">
+								<button class="btn btn-secondary add-cart" data-id="@product.id" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
+								</div>
+							</div>
+						</div>
+						<!-- End of one product -->
+						})
+					</div>
+					<div class="spacer"></div>
+					<header>
+						<span class="centered">Sản phẩm mới <i class="fa fa-cubes" aria-hidden="true"></i></span>
+					</header>
+					<div class="row">
+						@model.newProducts.forEach(function(product) {
+						<!-- One product -->
+						<div class="product">
+							<div class="row">
+								<a href="/shop/products/@product.url" class="col-xs-12">
+									<img class="img-responsive" src="@product.images[0]" alt="@product.name">
+								</a>
+								<span class="col-xs-12 product-brand">@product.brand</span>
+								<a href="/shop/products/@product.url" class="col-xs-12 product-name">@product.name</a>
+								<span class="col-xs-12 product-price">@product.price</span>
+								<div class="col-xs-12 product-add">
+								<button class="btn btn-secondary add-cart" data-id="@product.id" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
+								</div>
+							</div>
+						</div>
+						<!-- End of one product -->
+						})
+					</div>
+				</div>
+			</section>
+			<section id="feed">
+				<header>YPPUNA BLOG & VIDEO</header>
+				<div class="-content">
+					<div class="row">
+						<div class="col-xs-12 col-md-8">
+						<a href="/blog/@model.video.url" class="item-image video" style="background: url(https://yppuna.vn@model.video.cover) no-repeat;">
+						</a>
+						</div>
+						<div class="col-xs-12 col-md-4 hide-on-small-only">
+							@model.articles.forEach(function(article) {
+								<div class="col col-xs-12">
+									<div class="row">
+										<a href="/blog/@article.url" class="item-image blog" style="background: url(https://yppuna.vn@article.cover) no-repeat;">
+											<div class="blog-title">@article.title</div>
+										</a>
+									</div>
+								</div>
+							})
+						</div>
+					</div>
+				</div>
+			</section>
+			<section id="reviews">
+				<header>
+				NHẬN XÉT VỀ YPPUNA
+				</header>
+				<div class="-content">
+					<div class="row">
+						@model.homepage.reviews.forEach(function(review) {
+						<div class="review col-xs-12">
+							<div class="item-image col-xs-12 col-md-8">
+								<img src="@review.banner" class="img-responsive" alt="">
+							</div>
+							<div class="col-xs-12 col-md-4 text-center">
+								<img src="@review.avatar" class="img-circle" />
+								<div class="name">@review.name</div>
+								<div class="text">@review.text</div>
+							</div>
+						</div>
+						})
+					</div>
+				</div>
+			</section>
+			<section id="hall-of-fame">
+				<div class="-content">
+				<div class="row">
+					<div class="col-xs-12">
+						<a href="/mall/boxes" class="item-image" style="background: url(@model.homepage.deal_banner) no-repeat;">
+						</a>
+					</div>
+					<div class="col-xs-12">
+						<a href="/mall/sale" class="item-image" style="background: url(@model.homepage.fav_banner) no-repeat">
+						</a>
+					</div>
+					<div class="col-xs-12">
+						<a href="/organic" class="item-image" style="background: url(@model.homepage.organic_banner) no-repeat;">
+						</a>
+					</div>
 				</div>
 				</div>
-
-			</div>
-
+			</section>
 		</div>
-		<div id="introducing" class="transparent">
-		<h1>Gioi Thieu</h1>
-		<section class="introducing">
-			<article>
-			<h1>Bestsellers</h1>
-			</article>
-			<article>
-			<h1>Newest items</h1>
-			</article>
-			<article>
-			<h1>Sales</h1>
-			</article>
-		</section>
-		</div>
-
-		<div id="videofeed" class="pale">
-		<h1>Video</h1>
-		</div>
-
-		<div id="community" class="transparent">
-		<h1>Yppuna community</h1>
-		</div>
-
-		<div id="blogfeed" class="pale">
-		<h1>Blog</h1>
-		</div>
-
-		<div class="contact" class="transparent">
-		</div>
+	</div>
+	})
+	@html.block("script", function(model) {
+	<script type="text/javascript">
+		$(".item_price, .item_old_price, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+		var owl = $("#introducing .-content > .row");
+		owl.owlCarousel({
+			items : 4,
+			itemsDesktop : [1200,4],
+			itemsDesktopSmall : [992,2],
+			itemsTablet: [600,1],
+			itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
+			navigation: true,
+			navigationText: ["<", ">"],
+			pagination: false,
+			responsive: true,
+			rewindNav: true,
+			autoPlay: true
+		});
+		$("#reviews .-content > .row, #hall-of-fame .-content > .row").owlCarousel({
+			items : 3,
+			itemsDesktop : [1200, 3],
+			itemsDesktopSmall : [992, 3],
+			itemsTablet: [600,1],
+			itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
+			navigation: true,
+			navigationText: ["<", ">"],
+			pagination: false,
+			responsive: true,
+			rewindNav: true,
+			autoPlay: true
+		});
+		var is_mobile = @model.is_mobile;
+		if (is_mobile) {
+			$("#main_banner").owlCarousel({
+				items : 3,
+				itemsDesktop : [1200, 3],
+				itemsDesktopSmall : [992, 3],
+				itemsTablet: [600,1],
+				itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
+				navigation: true,
+				navigationText: ["<", ">"],
+				pagination: false,
+				responsive: true,
+				rewindNav: true,
+				autoPlay: true
+			});
+		}
+		$(".add-cart").on("click", function(e) {
+			e.preventDefault();
+			var id = $(this).data("id");
+			$.ajax({
+				type: "POST",
+				url: "/add_to_cart",
+				dataType: "json",
+				data: {
+					product_id: id,
+					quantity: 1,
+					option: '0'
+				},
+				success: function (res) {
+					window.location = '/cart';
+				},
+				error: function (res) {
+					Materialize.toast(res.responseJSON.message, 4000);
+				}
+			});
+		});
+	</script>
 	})
 })

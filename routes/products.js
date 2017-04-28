@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var aws = require('aws-sdk');
 var multer  = require('multer');
-var s3 = require('multer-s3');
+var multers3 = require('multer-s3');
 var moment = require("moment");
 var Product = require("../models/product");
 var Order = require("../models/order");
@@ -17,16 +18,23 @@ var getSlug = require('speakingurl');
 var mongoose = require('mongoose');
 var app = express();
 
-var storage = s3({
-    dirname: 'uploads',
+app.use(paginate.middleware(10, 50));
+
+var s3 = new aws.S3({
+    aws_secret_access_key: config.Amazon.secretAccessKey,
+    aws_access_key_id: config.Amazon.accessKeyId,
+    region: 'ap-northeast-2'
+});
+
+var storage = multers3({
+    s3: s3,
     bucket: 'dailyboom',
-    secretAccessKey: config.Amazon.secretAccessKey,
-    accessKeyId: config.Amazon.accessKeyId,
-    region: 'ap-northeast-2',
-    cacheControl: 'max-age=2592000',
-    filename: function (req, file, cb) {
-        console.log(file);
-        cb(null, Date.now() + file.originalname.replace(/ /g,"-"));
+    cacheControl: 'max-age=31536000',
+    metadata: function (req, file, cb) {
+      cb(null, {fieldName: file.fieldname});
+    },
+    key: function (req, file, cb) {
+      cb(null, Date.now().toString() + file.originalname)
     }
 })
 
@@ -43,6 +51,12 @@ var storage = s3({
 
 var upload = multer({ storage: storage });
 
+var isAuthenticated = function (req, res, next) {
+  if (req.isAuthenticated())
+    return next();
+  req.session.redirect_to = req.originalUrl;
+  res.redirect('/login');
+}
 
 var isAdmin = function (req, res, next) {
   if (req.isAuthenticated() && req.user.admin === true)
@@ -59,29 +73,29 @@ var isMerchantOrAdmin = function (req, res, next) {
 }
 
 router.get('/products/list', isMerchantOrAdmin, function(req, res) {
-  var query = Product.find({}, {}, { sort: { 'scheduled_at' : -1 } });
   var page = req.query.page ? req.query.page : 1;
+  var query = {};
   if (req.query.id)
-    query.where('_id').equals(req.query.id);
+    query['_id'] = req.query.id;
   if (req.query.type == 1) {
-    query.where('extend').gte(1).lte(3);
+    query['extend'] = { '$gte': 1, '$lte': 3 };
   }
   else if (req.query.type == 2) {
-    query.where('extend').equals(4);
+    query['extend'] = 4;
   }
-  if (req.query.name) {
-    query.or([{ 'name': { $regex: req.query.name, $options: "i" } }, { 'brand': { $regex: req.query.name, $options: "i" } }])
+  if (req.query.s) {
+    query['$or'] = [{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }];
   }
   if (req.query.line)
-    query.where('line').equals(req.query.line);
+    query['line'] = req.query.line;
   if (req.query.price)
-    query.where('price').equals(req.query.price);
+    query['price'] = req.query.price;
   if (req.query.quantity)
-    query.where('quantity').equals(req.query.quantity);
+    query['quantity'] = req.query.quantity;
   if (req.query.scheduled_date)
-    query.where('scheduled_at').equals(req.query.scheduled_date);
-  query.paginate(page, 9, function(err, Products, total) {
-    res.render('products/index', { products: Products, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 9), page), currentPage: page, lastPage: Math.ceil(total / 9) });
+    query['scheduled_at'] = req.query.scheduled_date;
+  Product.paginate(query, { page: page, limit: 9, sort: { 'scheduled_at' : -1 } }).then(function(result) {
+    res.render('products/index', { products: result.docs, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / 9) });
   });
 });
 
@@ -431,6 +445,32 @@ router.get('/products/publish/:id', isMerchantOrAdmin, function(req, res) {
   });
 });
 
+router.post('/products/rate', isAuthenticated, function(req, res) {
+  Product.findOne({ _id: req.body.product_id }, function(err, product) {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ message: 'error' });
+    }
+    console.log(product.rating);
+    var index = product.rating.findIndex(function(rating) { console.log(rating); return rating.user == req.user.id; });
+    console.log(index);
+    if (index >= 0) {
+      product.rating[index].count = req.body.rating;
+    }
+    else {
+      product.rating.push({ user: req.user.id, count: req.body.rating });
+    }
+    product.save(function(err) {
+      var avg = 0;
+      for (i = 0; i < product.rating.length; i++) {
+        avg += product.rating[i].count;
+      }
+      avg = avg / product.rating.length;
+      return res.status(200).json({ avg: avg });
+    });
+  });
+});
+
 router.post('/products/wanna_buy', function(req, res) {
   if (!req.isAuthenticated())
     return res.status(500).json({ message: '로그인이 필요합니다' });
@@ -471,7 +511,7 @@ router.get('/products/order', isMerchantOrAdmin, function(req, res) {
   var query = Product.find({ extend: 4 }, {}, { });
   var group = req.query.group ? req.query.group : null;
   if (req.query.group && req.query.group != '') {
-    query.where('category').in(category_group[req.query.group]);
+    query('category').in(category_group[req.query.group]);
     query.sort({ 'position_group' : 1 });
   }
   else {

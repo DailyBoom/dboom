@@ -4,18 +4,25 @@ var Partner = require("../models/partner");
 var multer  = require('multer');
 var config = require('config-heroku');
 var mime = require('mime-types');
-var s3 = require('multer-s3');
+var multers3 = require('multer-s3');
 var crypto = require("crypto");
+var aws = require('aws-sdk');
 
-var storage = s3({
-    dirname: 'uploads',
+var s3 = new aws.S3({
+    aws_secret_access_key: config.Amazon.secretAccessKey,
+    aws_access_key_id: config.Amazon.accessKeyId,
+    region: 'ap-northeast-2'
+});
+
+var storage = multers3({
+    s3: s3,
     bucket: 'dailyboom',
-    secretAccessKey: config.Amazon.secretAccessKey,
-    accessKeyId: config.Amazon.accessKeyId,
-    region: 'ap-northeast-2',
-    filename: function (req, file, cb) {
-        console.log(file);
-        cb(null, Date.now() + file.originalname);
+    cacheControl: 'max-age=31536000',
+    metadata: function (req, file, cb) {
+      cb(null, {fieldName: file.fieldname});
+    },
+    key: function (req, file, cb) {
+      cb(null, Date.now().toString() + file.originalname)
     }
 })
 

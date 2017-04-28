@@ -1,0 +1,73 @@
+@html.extend("layout_bk", function(model) {
+	@html.block("body", function(model) {
+    <div class="container">
+      <div class="breadcrumb">
+        <ol class="breadcrumb">
+          <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i>Về trang chủ</a></li>
+        </ol>
+      </div>
+      <div id="banner" class="row">
+        <div class="col-xs-12">
+          <h1>@model.banner.title</h1>
+        </div>
+        <div class="col-xs-12 desc-photo text-center">
+          <img class="img-responsive" src="@model.banner.banner" alt="">
+        </div>
+        <div class="col-xs-12">
+        </div>
+        <section id="product-related" class="col-xs-12">
+          <header>Shop now</header>
+          <div class="-content">
+            <div class="row">
+            @model.banner.products.forEach(function(product) {
+              <!-- One product -->
+              <div class="col-xs-12 col-md-3 product">
+                <div class="row">
+                  <div class="col-xs-12">
+                    @if (product.images) {
+                    <a href="/shop/products/@product.url" class="col-xs-12">
+                        <img class="img-responsive" src="@product.images[0]" alt="@product.name">
+                    </a>
+                    }
+                  </div>
+                  <span class="col-xs-12 product-brand">@product.brand</span>
+                  <a href="/shop/products/@product.url" class="col-xs-12"><span class="col-xs-12 product-name">@product.name</span></a>
+                  <span class="col-xs-12 product-price">@product.price</span>
+                  <div class="col-xs-12 product-add top-space">
+                    <button data-id="@product.id" class="add-cart btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
+                  </div>
+                </div>
+              </div>
+              <!-- End of one product -->
+            })
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    })
+	@html.block("script", function(model) {
+        <script type="text/javascript">
+            $(".add-cart").on("click", function(e) {
+                e.preventDefault();
+                var id = $(this).data("id");
+                $.ajax({
+                    type: "POST",
+                    url: "/add_to_cart",
+                    dataType: "json",
+                    data: {
+                        product_id: id,
+                        quantity: 1,
+                        option: '0'
+                    },
+                    success: function (res) {
+                        window.location = '/cart';
+                    },
+                    error: function (res) {
+                        Materialize.toast(res.responseJSON.message, 4000);
+                    }
+                });
+            });
+        </script>
+    })
+})

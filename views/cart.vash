@@ -1,95 +1,125 @@
-@html.extend("layout-beta", function(model) {
+@html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
-        <div id="cart_recap" class="container">
-            <div class="row">
-                <div class="col offset-l1">
-                    <h2>GIỎ HÀNG CỦA BẠN GỒM</h2>
-                    <div class="col s12 l8 cart-products">
-                        <div class="cart-header hide-on-med-and-down">
-                            <div class="col s5">
-                                @model.order.cart.length sản phẩm 
-                            </div>
-                            <div class="col s3">
-                                Giá mua
-                            </div>
-                            <div class="col s3">
-                                Số lượng
-                            </div>
-                        </div>
-                        <form method="POST" action="/mall/update_cart">
-                            @model.order.cart.forEach(function(item, index) {
-                            <div class="cart-product">
-                                <div class="col s4 l2">
-                                    <img src="@item.product.images[0]" />
-                                    @if (model.is_mobile) {
-                                        <div class="col s12 product-quantity hide-on-large-only">
-                                            <i class="fa fa-minus col s4"></i>
-                                            <input type="text" value="@item.quantity" class="col s4 quantity" name="quantity" id="quantity_@index" >
-                                            <i class="fa fa-plus col s4"></i>
-                                        </div>
-                                    }
-                                </div>
-                                <div class="col s7 l3">
-                                    <div class="truncate product-name"><a href="/shop/products/@item.product.url" class="truncate">@item.product.name</a></div>
-                                    <div class="product-brand">@item.product.brand</div>
-                                    @if (item.product.options[item.option].name !== '') {
-                                        <div class="product-color" style="background-color: @item.product.options[item.option].name"></div>
-										@if (item.product.category[0] == 60 || (item.product.category[0] >= 38 && item.product.category[0] <= 43)) {
-											<div class="option-name">@item.product.options_skin[item.option]</div>
-										}
-                                    }
-                                    <!-- -->
-                                    <div class="product-price hide-on-large-only">@(item.product.price * item.quantity)</div>                                             
-                                </div>
-                                <div class="col s3 hide-on-med-and-down">
-                                    <div class="product-price">@(item.product.price * item.quantity)</div>                                             
-                                </div>
-                                @if (!model.is_mobile) {                                
-                                    <div class="col s3 product-quantity hide-on-med-and-down">
-                                        <i class="fa fa-minus col s4"></i>
-                                        <input type="text" value="@item.quantity" class="col s4 quantity" name="quantity" id="quantity_@index" >
-                                        <i class="fa fa-plus col s4"></i>
-                                    </div>
-                                }
-                                <div class="col s1">
-                                    <i class="fa fa-times fa-fw cart-remove" data-index="@index"></i>
-                                </div>
-                            </div>
-                            })
-                            <button class="right">Update</button>
-                        </form>
-                    </div>
-                    <div class="col s12 l3">
-                        <div class="cart-total">
-                            <div>Tổng tiền: <span class="right total">@model.cart_total</span></div>
-                            <div class="discount">Khuyến mãi: <span class="right total-dc">- @model.order.discount</span></div>
-                            <div>Thành tiền: <span class="right total-amount">@model.order.totalOrderAmt</span></div>
-                            <span class="vat">(Đã bao gồm VAT)</span>
-                        </div>
-                        <form method="post" action="/orders/apply_code" class="col s12" id="code_form">
-                            <label for="code" class="col s12">Mã giảm giá</label>
-                            <input id="code" name="code" class="col s7" type="text" />
-                            <button class="col s5 ybtn">XÁC NHẬN</button>
-                        </form>
-                        <a class="ybtn col s12" href="/checkout/login">THANH TOÁN</a>
-                    </div>
-                </div>
-            </div>
+<div class="container" id="cart">
+  <div class="breadcrumb">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li class="active">Giỏ hàng của bạn</li>
+    </ol>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Giỏ hàng của bạn</h1>
         </div>
-    })
-    @html.block("script", function(model) {
+        <div class="col-xs-12 col-md-7 cart-items">
+          <section id="cart">
+            <header>
+              Sản phẩm (@model.order.cart.length)
+            </header>
+            <div class="-content">
+              <div class="row list-items">
+                <form method="POST" action="/mall/update_cart">
+                @model.order.cart.forEach(function(item, index) {
+                  <div class="col-xs-12 cart-item">
+                    <div class="row">
+                      <div class="col-xs-2">
+                        <img class="img-responsive" src="@item.product.images[0]" alt="@item.product.name">
+                      </div>
+                      <div class="col-xs-8 col-md-4 cart-item-desc">
+                        <span class="col-xs-12">@item.product.name</span>
+                        @if (item.product.options[item.option].name !== '') {
+                          <div class="product-color" style="background-color: @item.product.options[item.option].name"></div>
+                          @if (item.product.category[0] == 60 || (item.product.category[0] >= 38 && item.product.category[0] <= 43)) {
+                            <div class="option-name">@item.product.options_skin[item.option]</div>
+                          }
+                        }
+                      </div>
+                      <div class="col-md-3 cart-item-pieces hidden-xs">
+                        <div class="input-group">
+                          <span class="input-group-btn"><button type="button" class="btn btn-default value-control" data-action="minus" data-target="font-size"><span class="glyphicon glyphicon-minus"></span></button>
+                          </span>
+                          <input type="text" value="@item.quantity" class="form-control" name="quantity" id="quantity_@index">
+                          <span class="input-group-btn"><button type="button" class="btn btn-default value-control" data-action="plus" data-target="font-size"><span class="glyphicon glyphicon-plus"></span></button>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-md-2 cart-item-price price hidden-xs">@item.product.price</div>
+                      <div class="col-xs-1">
+                        <i class="fa fa-remove cart-remove" data-index="@index"></i>
+                      </div>
+                    </div>
+                    <!-- end of row -->
+                    </div>
+                    <!-- end of cart item -->
+                    })
+                      <button class="btn pull-right">Cập nhật</button>
+                  </form>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="col-md-1 hidden-xs">
+        </div>
+        <div class="col-xs-12 col-md-4 cart-summary">
+          <section id="price-summary">
+            <header>
+              Tổng tiền
+            </header>
+            <div class="-content">
+              <div class="row">
+                <div class="col-xs-6">
+                  <span class="col-xs-12 bold top-space">Tổng tiền</span>
+                  <span class="col-xs-12 bold top-space">Khuyến mãi</span>
+                </div>
+                <div class="col-xs-6">
+                  <span class="col-xs-12 top-space price">@model.cart_total</span>
+                  <span class="col-xs-12 top-space price">-@model.order.discount</span>
+                </div>
+              </div>
+              <div class="row price-summary">
+                <div class="col-xs-6">
+                  <span class="col-xs-12 highlight top-space">Thành tiền</span>
+                </div>
+                <div class="col-xs-6">
+                  <span class="col-xs-12 highlight top-space price">@model.order.totalOrderAmt</span>
+                </div>
+              </div>
+              <form method="post" action="/orders/apply_code" class="col-xs-12" id="code_form">
+                  <div class="form-group">
+                    <label for="code" class="col-xs-12">Mã giảm giá</label>
+                    <input id="code" name="code" class="col-xs-7" type="text" />
+                  </div>
+                  <button class="col-xs-5 btn">XÁC NHẬN</button>
+              </form>
+              <div class="row">
+                <div class="col-xs-12 top-space">
+                  <a href="/checkout/login" class="btn btn-primary btn-block">Thanh toán</a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  })
+	@html.block("script", function(model) {   
         <script>
-            $(".total, .total-dc, .total-amount").autoNumeric('init', autoNumericOptions);
-            $('.product-quantity .fa').on("click", function() {
-                $quantity = $(this).parent().find("input").val();
-                if ($(this).hasClass('fa-minus')) {
+            $(".price").autoNumeric('init', autoNumericOptions);
+            $('.value-control').on("click", function() {
+                $quantity = $(this).parent().parent().find("input").val();
+                console.log($(this).data('action'));
+                if ($(this).data('action') == 'minus') {
                     if (parseFloat($quantity) > 1)
                         $quantity = parseFloat($quantity) - 1;
                 }
-                else if ($(this).hasClass('fa-plus')) {
+                else if ($(this).data('action') == 'plus') {
                     $quantity = parseFloat($quantity) + 1;
                 }
-                $(this).parent().find("input").val($quantity);
+                $(this).parent().parent().find("input").val($quantity);
             })
         </script>
     })

@@ -46,14 +46,16 @@ var stateObject = {
         "THANH OAI": ["THỊ TRẤN KIM BÀI", "Bích Hòa", "Bình Minh", "Cao Dương", "Cao Viên", "Cự Khê", "Dân Hòa", "Đỗ Động", "Hồng Dương", "Kim An", "Kim Thư", "Liên Châu", "Mỹ Hưng", "Phương Trung", "Tam Hưng", "Tân Ước", "Thanh Cao", "Thanh Mai", "Thanh Thùy", "Thanh Văn", "Xuân Dương"],
         "THANH TRÌ": ["THỊ TRẤN VĂN ĐIỂN", "Duyên Hà", "Đại Áng", "Đông Mỹ", "Hữu Hòa", "Liên Ninh", "Ngọc Hồi", "Ngũ Hiệp", "Tả Thanh Oai", "Tam Hiệp", "Tân Triều", "Thanh Liệt", "Tứ Hiệp", "Vạn Phúc", "Vĩnh Quỳnh", "Yên Mỹ"]
     },
+    "ĐÀ NẴNG": {
+        "Cẩm Lệ": ["Phường Khuê Trung", "Phường Hòa An", "Phường Hòa Thọ Đông", "Phường Hòa Xuân", "Phường Hòa Phát", "Phường Hòa Thọ Tây" ],
+        "Thanh Khê": ["Phường Hòa Khê", "Phường An Khê" , "Phường Thanh Khê Đông" , "Phường Xuân Hà" , "Phường Tam Thuận" , "Phường Tân Chính" , "Phường Thạc Gián" , "Phường Chính Gián" , "Phường Vĩnh Trung" , "Phường Thanh Khê Tây" ],
+        "Hải Châu": ["Phường Thanh Bình" , "Phường Thuận Phước" , "Phường Thạch Thang" , "Phường hải Châu 1" ,  "Phường Hải Châu 2" , "Phường Phước Ninh" , "Phường Hòa Thuận Tây" , "Phường Hòa Thuận Đông" , "Phường Nam Dương" , "Phường Bình Hiên" , "Phường Bình Thuận" , "Phường Hòa Cường Bắc", "Phường Hòa Cường Nam" ],
+        "Ngũ Hành Sơn": ["Phường Hòa Hải", "Phường Hòa Quý" , "Phường Khuê Mỹ" , "Phường Mỹ An" ],
+        "Sơn Trà": ["Phường An Hải Bắc" , "Phường An Hải Đông" , "Phường An Hải Tây" , "Phường Mân Thái" , "Phường Nại Hiên Đông" , "Phường Phước Mỹ" , "Phường Thọ Quang"],
+        "Liên Chiểu": ["Phường Hòa Hiệp Bắc" , "Phường Hòa Hiệp Nam" , "Phường Hòa Khánh Bắc" , "Phường Hòa Khánh Nam" , "Phường Hòa Minh"],
+        "Huyện Hòa Vang": ["Xã Hòa Bắc" , "Xã Hòa Châu" , "Xã Hòa Khương" , "Xã Hòa Liên" , "Xã Hòa Nhơn" , "Xã Hòa Ninh" , "Xã Hòa Phong" , "Xã Hòa Phú" , "Xã Hòa Phước" , "Xã Hòa Sơn" , "Xã Hòa Tiến"]
+    },
     "KHÁC": {
-    //     "Cẩm Lệ": ["Phường Khuê Trung", "Phường Hòa An", "Phường Hòa Thọ Đông", "Phường Hòa Xuân", "Phường Hòa Phát", "Phường Hòa Thọ Tây" ],
-    //     "Thanh Khê": ["Phường Hòa Khê", "Phường An Khê" , "Phường Thanh Khê Đông" , "Phường Xuân Hà" , "Phường Tam Thuận" , "Phường Tân Chính" , "Phường Thạc Gián" , "Phường Chính Gián" , "Phường Vĩnh Trung" , "Phường Thanh Khê Tây" ],
-    //     "Hải Châu": ["Phường Thanh Bình" , "Phường Thuận Phước" , "Phường Thạch Thang" , "Phường hải Châu 1" ,  "Phường Hải Châu 2" , "Phường Phước Ninh" , "Phường Hòa Thuận Tây" , "Phường Hòa Thuận Đông" , "Phường Nam Dương" , "Phường Bình Hiên" , "Phường Bình Thuận" , "Phường Hòa Cường Bắc", "Phường Hòa Cường Nam" ],
-    //     "Ngũ Hành Sơn": ["Phường Hòa Hải", "Phường Hòa Quý" , "Phường Khuê Mỹ" , "Phường Mỹ An" ],
-    //     "Sơn Trà": ["Phường An Hải Bắc" , "Phường An Hải Đông" , "Phường An Hải Tây" , "Phường Mân Thái" , "Phường Nại Hiên Đông" , "Phường Phước Mỹ" , "Phường Thọ Quang"],
-    //     "Liên Chiểu": ["Phường Hòa Hiệp Bắc" , "Phường Hòa Hiệp Nam" , "Phường Hòa Khánh Bắc" , "Phường Hòa Khánh Nam" , "Phường Hòa Minh"],
-    //     "Huyện Hòa Vang": ["Xã Hòa Bắc" , "Xã Hòa Châu" , "Xã Hòa Khương" , "Xã Hòa Liên" , "Xã Hòa Nhơn" , "Xã Hòa Ninh" , "Xã Hòa Phong" , "Xã Hòa Phú" , "Xã Hòa Phước" , "Xã Hòa Sơn" , "Xã Hòa Tiến"]
     }
 }
 window.onload = function () {
@@ -63,9 +65,8 @@ window.onload = function () {
     for (var state in stateObject) {
         stateSel.options[stateSel.options.length] = new Option(state, state);
     }
-    $('select').material_select();
     stateSel.onchange = function () {
-        if (this.selectedIndex == 3) {
+        if (this.selectedIndex == 4) {
             $(countySel).parent().parent().addClass("hide");
             $(citySel).parent().parent().addClass("hide");
             // $(this).parent().replaceWith("<input class='col s12 l8' id='city' name='city' type='text' />");
@@ -82,25 +83,21 @@ window.onload = function () {
         countySel.length = 1; // remove all options bar first
         citySel.length = 1; // remove all options bar first
         if (this.selectedIndex < 1) {
-            $('select').material_select();
             return; // done
         }
         for (var county in stateObject[this.value]) {
             countySel.options[countySel.options.length] = new Option(county, county);
         }
-        $('select').material_select();
     }
     stateSel.onchange(); // reset in case page is reloaded
     countySel.onchange = function () {
         citySel.length = 1; // remove all options bar first
         if (this.selectedIndex < 1) {
-            $('select').material_select();
             return; // done
         }   
         var cities = stateObject[stateSel.value][this.value];
         for (var i = 0; i < cities.length; i++) {
             citySel.options[citySel.options.length] = new Option(cities[i], cities[i]);
         }
-        $('select').material_select();
     }
 }

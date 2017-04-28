@@ -10,6 +10,8 @@ var Comment = require('../models/comment');
 var Partner = require('../models/partner');
 var Article = require('../models/article');
 var Behavior = require('../models/behavior');
+var Homepage = require('../models/homepage');
+var Mall = require('../models/mall');
 var smtpTransport = require('nodemailer-smtp-transport');
 var config = require('config-heroku');
 var fs = require("fs");
@@ -73,121 +75,170 @@ var isMerchantOrAdmin = function (req, res, next) {
   res.redirect('/login');
 }
 
-/* GET Home Page */
-router.get('/beta', function(req, res, next) {
-  var date = moment().startOf('isoweek').format("MM/DD/YYYY");
-  Product.findOne({scheduled_at: date, is_published: true }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
-    Product.find({ is_published: true, extend: 4 }, {}, { sort : { 'created_at' : -1 } }, function(err, mallProducts) {
-      if (!product) {
-        Product.findOne({ _id: "57d27619e4af52823a8a073c" }, {}, { sort: { 'scheduled_at' : 1 }}, function (err, product) {
-          var current_quantity = 0;
-          product.options.forEach(function(option) {
-            current_quantity += parseInt(option.quantity);
-          });
-          var progress = (product.quantity - current_quantity) / product.quantity * 100;
-          var sale = (product.old_price - product.price) / product.old_price * 100;
-          Partner.find({}, function(err, partners) {
-            res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, partners: partners, mallProducts: mallProducts });
-          });
-        });
-      }
-      else {
-        var current_quantity = 0;
-        product.options.forEach(function(option) {
-          current_quantity += parseInt(option.quantity);
-        });
-        var progress = (product.quantity - current_quantity) / product.quantity * 100;
-        var sale = (product.old_price - product.price) / product.old_price * 100;
-        Partner.find({}, function(err, partners) {
-          res.render('index', { progress: progress.toFixed(0), sale: sale.toFixed(0), product: product, partners: partners, date: date, mallProducts: mallProducts });
-        });
-      }
-    });
-  });
-});
-
 var group = [
   [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
   [26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 49, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 50, 48],
   [51, 52]
 ];
 
+var group_name = [
+  'Chăm sóc da',
+  'Trang điểm',
+  'Cơ thể'
+]
+
+var category = {
+    "53": "Sản phẩm rửa mặt",
+    "1": "Nước rửa mặt",
+    "2": "Rửa mặt dạng bọt",
+    "3": "Sữa rửa mặt",
+    "4": "Rửa Mặt Dạng Dầu",
+    "5": "Xà phòng rửa mặt",
+    "6": "Tẩy trang dành cho mặt",
+    "7": "Tẩy trang cho mắt và môi",
+    "8": "Tẩy da chết",
+    "9": "Nước hoa hồng",
+    "10": "Dầu tẩy trang",
+    "11": "Dụng cụ rửa mặt",
+    "54": "Dưỡng ẩm cho da mặt",
+    "12": "Kem dưỡng ẩm",
+    "13": "Sữa dưỡng cho da",
+    "14": "Gel dưỡng cho da",
+    "15": "Dầu dưỡng cho da",
+    "16": "Kem dưỡng cho vùng mắt",
+    "17": "Xịt khoáng",
+    "18": "BB/CC",
+    "55": "Kem chống nắng",
+    "19": "Kem chống nắng cho da mặt",
+    "56": "Sản phẩm trị liệu",
+    "20": "Sản phẩm trị mụn",
+    "21": "Sản phẩm trị nám",
+    "22": "Tinh chất",
+    "23": "Dưỡng mắt",
+    "57": "Mặt nạ",
+    "24": "Mặt nạ giấy",
+    "25": "Mặt nạ khác",
+    "58": "Trang điểm cho mắt",
+    "26": "Lót mắt",
+    "27": "Phấn mắt",
+    "28": "Mascara",
+    "29": "Kẻ mắt",
+    "30": "Kẻ chân mày",
+    "31": "Tẩy trang mắt",
+    "59": "Trang điểm cho mặt",
+    "32": "Kem lót",
+    "33": "Kem/Phấn nền",
+    "34": "BB/CC (kem đa năng)",
+    "35": "Kem che khuyết điểm",
+    "36": "Phấn phủ",
+    "37": "Má hồng",
+    "49": "Tạo khối",
+    "60": "Sản phẩm dành cho môi",
+    "38": "Son môi",
+    "39": "Son bóng",
+    "40": "Son lì",
+    "41": "Son dưỡng",
+    "42": "Son lỏng",
+    "43": "Son kẻ viền môi",
+    "61": "Phụ Kiện",
+    "44": "Mút Rửa Mặt",
+    "45": "Máy Rửa Mặt",
+    "46": "Giấy Thấm Dầu",
+    "47": "Bông Rửa Mặt",
+    "50": "Bông Trang Điểm",
+    "62": "Sản Phẩm Cho Nam",
+    "48": "Sản Phẩm Đa Công Dụng",
+    "51": "Sữa tắm",
+    "63": "Sản phẩm cho tóc",
+    "52": "Dầu gội",
+}
+
 router.get('/mall', function(req, res, next) {
-  var query = Product.find({ extend: 4, is_published: true }, {}, {});
+  var mall = null;
+  var query = { extend: 4, is_published: true };
   var page = req.query.page ? req.query.page : 1;
-  var per_page = req.is_mobile ? 8 : 16;
+  var per_page = res.locals.is_mobile ? 8 : 16;
+  var option = { page: page, limit: per_page, sort: { 'position' : 1 } };
+  var title = "Sản Phẩm Bán Chạy Nhất";
   if (req.query.group) {
-    query.where('category').in(group[req.query.group]);
-    query.sort({ 'position_group' : 1 });
-  }
-  else {
-    query.sort({ 'position' : 1 });
+    query['category'] = { $in: group[req.query.group] };
+    option.sort = { 'position_group': 1 };
+    mall = req.query.group;
+    title = group_name[req.query.group];
   }
   if (req.query.category) {
-    query.where('category', req.query.category);
+    query['category'] = req.query.category;
   }
   if (req.query.s) {
-    query.or([{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }, { 'tags' : req.query.s }])
+    query['$or'] = [{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }];
   }
   //query.where('product_region.'+req.session.zone, true);
-  query.paginate(page, per_page, function(err, products, total) {
+  Product.paginate(query, option).then(function(result) {
     Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
       Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
-        res.render('mall', { title: "Sản Phẩm Bán Chạy Nhất", description: "", products: products, hotProducts: hotProducts, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });
+        Mall.findOne({ category: mall }, function(err, mall) {
+          res.render('mall', { title: title, description: "", products: result.docs, hotProducts: hotProducts, boxes: boxes, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / per_page), mall: mall, group: group_name });
+        });
+      });
+    });
+  });
+});
+
+router.get('/mall/boxes', function(req, res, next) {
+  var mall = null;
+  var query = { $or: [{ extend: 3, scheduled_at: moment().date(1).hour(config.Timezone).minute(0).second(0).millisecond(0) }, { extend: 5 }], is_published: true };
+  var page = req.query.page ? req.query.page : 1;
+  var per_page = res.locals.is_mobile ? 8 : 16;
+  var option = { page: page, limit: per_page, sort: { 'position' : 1 } };
+  Product.paginate(query, option).then(function(result) {
+    Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
+      Mall.findOne({ category: mall }, function(err, mall) {
+        res.render('mall', { title: "Box", description: "", products: result.docs, hotProducts: hotProducts, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / per_page), mall: mall });
       });
     });
   });
 });
 
 router.get('/mall/new', function(req, res, next) {
-  var query = Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }, {}, { sort: { 'position' : 1 }});
+  var query = { extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] };
   var page = req.query.page ? req.query.page : 1;
-  var per_page = req.is_mobile ? 8 : 16;
-  query.where('product_region.'+req.session.zone, true);
-  query.paginate(page, per_page, function(err, products, total) {
-  Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
-      res.render('mall', { title: "Mua Lẻ Mới Nhất", description: "", products: products, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });      
+  var per_page = res.locals.is_mobile ? 8 : 16;
+  var option = { page: page, limit: per_page, sort: { 'position' : 1 } };
+  Product.paginate(query, option).then(function(result) {
+    Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
+      res.render('mall', { title: "Mua Lẻ Mới Nhất", description: "", products: result.docs, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(result.total / per_page), page), currentPage: page, lastPage: Math.ceil(result.total / per_page) });      
     });
   });
 });
 
 router.get('/mall/sale', function(req, res, next) {
-  var query = Product.find({ extend: 4, is_published: true, old_price: { $exists: true, $ne: null } }, {}, { sort: { 'position' : 1 }});
+  var query = { extend: 4, is_published: true, old_price: { $exists: true, $ne: null } };
   var page = req.query.page ? req.query.page : 1;
-  var per_page = req.is_mobile ? 8 : 16;
-  query.paginate(page, per_page, function(err, products, total) {
-  console.log(products);
-  Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
-      res.render('mall', { title: "Happy Tết Sale", description: "", products: products, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });      
+  var per_page = res.locals.is_mobile ? 8 : 16;
+  var option = { page: page, limit: per_page, sort: { 'position' : 1 } };
+  Product.paginate(query, option).then(function(result) {
+    Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
+      res.render('mall', { title: "Happy Tết Sale", description: "", products: result.docs, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(result.total / per_page), page), currentPage: page, lastPage: Math.ceil(result.total / per_page) });
     });
   });
 });
 
-// router.get('/wholesale/:brand', function(req, res, next) {
-//   Product.find({ brand: req.params.brand, extend: 4, is_published: true }, {}, { sort: { 'created_at' : -1 }}, function(err, products) {
-//     if (err)
-//       console.log(err);
-//     if (!products || products.length == 0)
-//       return res.redirect('/wholesale');
-//     res.render('mall', { title: "데일리 붐 쇼핑 몰", description: "데일리 붐은 ‘매일 폭탄 가격’이라는 뜻으로, 매일 한 가지의 상품을 한정된 시간 내에만 특가로 판매하는 웹사이트입니다.", products: products, merchant: req.params.brand, cover: products[0].brand_logo });
-//   });
-// });
+router.get('/banner', function(req, res, next) {
+  Homepage.findOne({}, 'main_banner right_1_banner right_2_banner').populate('main_banner.products right_1_banner.products right_2_banner.products').exec(function(err, homepage) {  
+    var banner;
+    if (req.query.type == "main")
+      banner = homepage.main_banner;
+    else if (req.query.type == "right_1")
+      banner = homepage.right_1_banner;
+    else if (req.query.type == "right_2")
+      banner = homepage.right_2_banner;
+    res.render('banner', { banner: banner });
+  });
+});
 
-router.get('/mall/:product_id', function(req, res, next) {
-  Product.findOne({ extend: 4, _id: req.params.product_id, is_published: true }, function(err, product) {
-    if (!product)
-      return res.redirect('/mall');
-    if (err)
-      console.log(err);
-    if (!product || product.length == 0)
-      return res.redirect('/mall');
-    var current_quantity = 0;
-    product.options.forEach(function(option) {
-      current_quantity += parseInt(option.quantity);
-    });
-    var progress = (product.quantity - current_quantity) / product.quantity * 100;
-    var sale = (product.old_price - product.price) / product.old_price * 100;
-    res.render('extended_m', { product: product, title: product.brand + ' - ' + product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: true, ext_cover: product.images[0], mall: true });
+router.get('/organic', function(req, res, next) {
+  Homepage.findOne({}, 'organic_banner').populate('organic_banner.products').exec(function(err, homepage) {  
+    res.render('organic', { banner: homepage.organic_banner });
   });
 });
 
@@ -197,6 +248,10 @@ router.get('/about', function(req, res, next) {
 
 router.get('/contact', function(req, res, next) {
   res.render('contact', { title: 'LIÊN HỆ' });
+});
+
+router.get('/careers', function(req, res, next) {
+  res.render('careers', { title: 'LIÊN HỆ' });
 });
 
 router.get('/privacy', function(req, res, next) {
@@ -225,6 +280,20 @@ router.post('/advertise', function(req, res, next) {
   });
 });
 
+router.post('/careers', function(req, res, next) {
+  transporter.sendMail({
+    from: req.body.email,
+    to: 'hello@yppuna.vn',
+    subject: 'Careers',
+    html: '<p>Tên: '+req.body.username+'</p><p>Email: '+req.body.email+'</p><p>Số điện thoại: '+req.body.phone_number+'</p><p>message: '+req.body.message+'</p>'
+  }, function (err, info) {
+      if (err) { console.log(err); res.status(500).json({ message: ''}); }
+      //console.log('Message sent: ' + info.response);
+      transporter.close();
+      res.status(200).json({ message: 'Xin cảm ơn quý khách. Chúng tôi sẽ trả lời sớm nhất có thể'});
+  });
+});
+
 router.post('/contact', function(req, res, next) {
   transporter.sendMail({
     from: req.body.email,
@@ -248,18 +317,23 @@ router.get('/home', function(req, res, next) {
     });
     behavior.save();
   }
-  Product.find({ boxZone: req.session.zone, scheduled_at: moment().date(1).hour(config.Timezone).minute(0).second(0).millisecond(0) }, {}, {sort : { 'created_at' : -1 }}).populate('boxProducts').exec(function (err, products) {
-    Product.find({ extend: 5 }, {}, {sort : { 'created_at' : -1 }}, function (err, extraBoxes) {
-      var query = Product.find({ extend: 4, is_published: true, is_hot: true });
-      //query.where('product_region.'+req.session.zone, true);
-      query.limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
-        Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }).where('product_region.'+req.session.zone, true).exec(function(err, newProducts) {
-          Comment.find( { product: products[0] ? products[0].id : null }).populate('user').exec(function(err, comments) {
-            res.render('beta', { products: products, extraBoxes: extraBoxes, hotProducts: hotProducts, newProducts: newProducts, comments: comments });
+  Product.find({ scheduled_at: moment().date(1).hour(config.Timezone).minute(0).second(0).millisecond(0) }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts').exec(function (err, products) {
+    // console.log(products);
+    var query = Product.find({ extend: 4, is_published: true, is_hot: true });
+    // query.where('product_region.'+req.session.zone, true);
+    query.limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
+      Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }).where('product_region.'+req.session.zone, true).exec(function(err, newProducts) {
+      //     Comment.find( { product: products[0].id }).populate('user').exec(function(err, comments) {
+        Article.find({ published: true, video: {$in: [null, false]} }, 'title url cover', { sort: { 'created_at': -1 } }).limit(3).exec(function(err, articles) {
+          Article.findOne({ published: true, video: true }, 'title url cover', { sort: { 'created_at': -1 } }).exec(function(err, video) {
+            Homepage.findOne({}, function(err, homepage) {
+              res.render('index', { products: products, articles: articles, video: video, hotProducts: hotProducts, newProducts: newProducts, homepage: homepage });
+            })
           });
         });
       });
     });
+    // });
   });
 });
 
@@ -274,9 +348,12 @@ router.get('/shop/products/:url', function(req, res, next) {
         product.options.forEach(function(option) {
           current_quantity += parseInt(option.quantity);
         });
-        var progress = (product.quantity - current_quantity) / product.quantity * 100;
-        var sale = (product.old_price - product.price) / product.old_price * 100;
-        res.render('extended', { product: product, title: product.name, description: product.description, progress: progress.toFixed(0), sale: sale.toFixed(0), date: product.extend == 1 ? product.scheduled_at : false, no_time: product.extend == 2, ext_cover: product.images[0], comments: comments, hotProducts: hotProducts });
+        var avg = 0;
+        for (i = 0; i < product.rating.length; i++) {
+          avg += product.rating[i].count;
+        }
+        avg = avg / product.rating.length;
+        res.render('extended', { product: product, title: product.name, description: product.description, ext_cover: product.images[0], comments: comments, hotProducts: hotProducts, category: category, avg: avg });
       });
     });
   });
@@ -343,19 +420,14 @@ var smart_substr = function(str, len) {
 }
 
 router.get('/blog', function(req, res, next) {
-  var query = Article.find({ published: true, video: {$in: [null, false]} }, {}, { sort: { 'created_at': -1 } });
   if (req.query.tag) {
     query.where('tags', req.query.tag);
   }
   var page = req.query.page ? req.query.page : 1;
-  var per_page = 9;
-  query.paginate(page, per_page, function(err, articles, total) {
-    if (err) {
-      console.log(err);
-    }
-    Article.find({ published: true, video: true }, {}, { sort: { 'created_at': -1 } }).limit(3).exec(function(err, videos) {
-      console.log(articles.length);
-      res.render('articles/index', { articles: articles, videos: videos, striptags: striptags, pages: paginate.getArrayPages(req)(3, Math.ceil(total / per_page), page), currentPage: page, lastPage: Math.ceil(total / per_page) });
+  var per_page = 10;
+  Article.paginate({ published: true, video: {$in: [null, false]} }, { page: page, limit: per_page, sort: { 'created_at' : -1 } }).then(function(result) {
+    Article.findOne({ published: true, video: true }, {}, { sort: { 'created_at': -1 } }).exec(function(err, video) {
+      res.render('articles/index', { articles: result.docs, video: video, striptags: striptags, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / per_page) });
     });
   });
 });

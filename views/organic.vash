@@ -1,0 +1,167 @@
+@html.extend("layout_bk", function(model) {
+	@html.block("body", function(model) {
+    <div class="container">
+      <div class="row">
+        <div id="banner" class="col-xs-12">
+          <img class="img-responsive" src="@model.banner" alt="">
+        </div>
+        <div id="about" class="col-xs-12 col-md-offset-1 col-md-10">
+          <p>Vegan and gluten free products are our speciality. We have categorised every product on our shelves and our drop-down filters will help you find them. Among the GF and vegan skincare at Nourished Life, you’ll find gorgeous serums and nightly repair nectar from La Mav. Whether you’re looking to hydrate, plump, brighten or smooth you’ll be delighted with the results. Follow in Cleopatra’s footsteps with our best-selling Egyptian Magic All-Purpose Cream. </p>
+        </div>
+      </div>
+      <div class="row">
+        <section id="product-related" class="col-xs-12">
+          <header>
+            Shop now
+          </header>
+          <div class="-content">
+            <div class="row">
+              <!-- One product -->
+              <div class="col-xs-6 col-md-3 product">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <img class="img-responsive" src="/images/laneige.png" alt="Laneige Clear">
+                  </div>
+                  <span class="col-xs-12 product-brand">Laneige</span>
+                  <span class="col-xs-12 product-name">Laneige Clear</span>
+                  <span class="col-xs-12 product-price">
+                    550.000
+                  </span>
+                  <div class="col-xs-12 product-add top-space">
+                    <button class="btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ</button>
+                  </div>
+
+                </div>
+              </div>
+              <!-- End of one product -->
+              <!-- One product -->
+              <div class="col-xs-6 col-md-3 product">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <img class="img-responsive" src="/images/laneige.png" alt="Laneige">
+                  </div>
+                  <span class="col-xs-12 product-brand">Laneige</span>
+                  <span class="col-xs-12 product-name">Laneige Eye Cream</span>
+                  <span class="col-xs-12 product-price">
+                    550.000
+                  </span>
+                  <div class="col-xs-12 product-add top-space">
+                    <button class="btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ</button>
+                  </div>
+
+                </div>
+              </div>
+              <!-- End of one product -->
+              <!-- One product -->
+              <div class="col-xs-6 col-md-3 product">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <img class="img-responsive" src="/images/laneige.png" alt="Laneige Clear">
+                  </div>
+                  <span class="col-xs-12 product-brand">Laneige</span>
+                  <span class="col-xs-12 product-name">Micro-fit cushion</span>
+                  <span class="col-xs-12 product-price">
+                    550.000
+                  </span>
+                  <div class="col-xs-12 product-add top-space">
+                    <button class="btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ</button>
+                  </div>
+                </div>
+              </div>
+              <!-- End of one product -->
+              <!-- One product -->
+              <div class="col-xs-6 col-md-3 product">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <img class="img-responsive" src="/images/laneige.png" alt="Laneige Clear">
+                  </div>
+                  <span class="col-xs-12 product-brand">Moonshot</span>
+                  <span class="col-xs-12 product-name">Micro-fit cushion</span>
+                  <span class="col-xs-12 product-price">
+                    550.000
+                  </span>
+                  <div class="col-xs-12 product-add top-space">
+                    <button class="btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ</button>
+                  </div>
+                </div>
+              </div>
+              <!-- End of one product -->
+            </div>
+            <div class="row">
+              <!-- One product -->
+              <div class="col-xs-6 col-md-3 product">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <img class="img-responsive" src="/images/laneige.png" alt="Laneige Clear">
+                  </div>
+                  <span class="col-xs-12 product-brand">Laneige</span>
+                  <span class="col-xs-12 product-name">Laneige Clear</span>
+                  <span class="col-xs-12 product-price">
+                    550.000
+                  </span>
+                  <div class="col-xs-12 product-add top-space">
+                    <button class="btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ</button>
+                  </div>
+
+                </div>
+              </div>
+              <!-- End of one product -->
+              <!-- One product -->
+              <div class="col-xs-6 col-md-3 product">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <img class="img-responsive" src="/images/laneige.png" alt="Laneige">
+                  </div>
+                  <span class="col-xs-12 product-brand">Laneige</span>
+                  <span class="col-xs-12 product-name">Laneige Eye Cream</span>
+                  <span class="col-xs-12 product-price">
+                    550.000
+                  </span>
+                  <div class="col-xs-12 product-add top-space">
+                    <button class="btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ</button>
+                  </div>
+
+                </div>
+              </div>
+              <!-- End of one product -->
+              <!-- One product -->
+              <div class="col-xs-6 col-md-3 product">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <img class="img-responsive" src="/images/laneige.png" alt="Laneige Clear">
+                  </div>
+                  <span class="col-xs-12 product-brand">Laneige</span>
+                  <span class="col-xs-12 product-name">Micro-fit cushion</span>
+                  <span class="col-xs-12 product-price">
+                    550.000
+                  </span>
+                  <div class="col-xs-12 product-add top-space">
+                    <button class="btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ</button>
+                  </div>
+                </div>
+              </div>
+              <!-- End of one product -->
+              <!-- One product -->
+              <div class="col-xs-6 col-md-3 product">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <img class="img-responsive" src="/images/laneige.png" alt="Laneige Clear">
+                  </div>
+                  <span class="col-xs-12 product-brand">Moonshot</span>
+                  <span class="col-xs-12 product-name">Micro-fit cushion</span>
+                  <span class="col-xs-12 product-price">
+                    550.000
+                  </span>
+                  <div class="col-xs-12 product-add top-space">
+                    <button class="btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ</button>
+                  </div>
+                </div>
+              </div>
+              <!-- End of one product -->
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    })
+})

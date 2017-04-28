@@ -1,119 +1,136 @@
-@html.extend("layout-beta", function(model) {
+@html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
-        <div id="checkout_login" class="container">
-            <div class="checkout-progress">
-                <div class="row">
-                    <div class="col s4 active">
-                        <h3><span class="hide-on-large-only">1</span>ĐĂNG NHẬP</h3>
+        <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- here will come progress indicator -->
+        </div>
+        <div class="col-xs-12">
+          <div class="row">
+            <div class="col-xs-12 col-md-6 cart-items">
+              <section id="cart">
+                <header>BẠN ĐÃ CÓ TÀI KHOẢN YPPUNA ?</header>
+                <div class="-content">
+                  <div class="row list-items">
+                    <div class="col-xs-12 col-md-6">
+                      <div class="radio">
+                        <label>
+                          <input type="radio" id="login_btn" name="login" value="option1" checked>
+                          Tôi đã có tài khoản Yppuna
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" id="signup_btn" name="login" value="option2">
+                          Tôi là khách hàng mới
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" id="no_login_btn" name="login" value="option2">
+                          Tôi muốn mua hàng không cần đăng nhập
+                        </label>
+                      </div>
                     </div>
-                    <div class="col s4">
-                        <h3><span class="hide-on-large-only">2. </span>ĐỊA CHỈ</h3>
-                    </div>
-                    <div class="col s4">
-                        <h3><span class="hide-on-large-only">3. </span>THANH TOÁN</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div id="login_row" class="col s12 l3 offset-l1">
-                    @if (model.errors) {
-						<ul class="red-text center">
-							@model.errors.forEach(function(error) {
-								<li>@error</li>
-							})
-						</ul>
-					}
-                    <div class="radios">
-                        <div class="radio"><input type="radio" id="login_btn" name="login" checked/><label for="login_btn">Tôi là thành viên Yppuna.vn</label></div>
-                        <div class="radio"><input type="radio" id="signup_btn" name="login" /><label for="signup_btn">Tôi là khách hàng mới</label></div>
-                        <div class="radio"><input type="radio" id="no_login_btn" name="login" /><label for="no_login_btn">Mua Hàng Không Cần Đăng Nhập</label></div>
-                    </div>
-                    <div id="c_login">
-                        <form method="post" action="/checkout/login">
-                            <label for="email">Đăng nhập nhanh gọn</label>
-                            <input id="email" name="email" type="email" placeholder="Vui lòng nhâp email" />
-                            <input id="password" name="password" type="password" placeholder="Vui lòng nhập mật khẩu" />
-                            <div class="right"><a class="forgot" href="/forgot" >Quên mật khẩu?</a></div>
-                            <button>TIẾP TỤC</button>
-                        </form>
-                        <div id="c_facebook" data-mall="true">Đăng nhập bằng Facebook</div>
-                    </div>
-                    <div id="c_signup" class="hide">
-                        <form method="post" action="/checkout/signup">
-                            <label for="username">Họ và tên</label>
-                            <input id="username" name="username" type="text" placeholder="Họ và tên" />
+                    <div class="col-xs-12 col-md-6" id="c_login">
+                      <form action="/checkout/login" method="post">
+                        <div class="form-group">
                             <label for="email">Email</label>
-                            <input id="email" name="email" type="email" placeholder="Nhập email" />
+                            <input id="email" name="email" type="email" placeholder="Nhập email" class="form-control top-space" />
+                        </div>
+                        <div class="form-group">
                             <label for="password">Mật khẩu</label>
-                            <input id="password" name="password" type="password" placeholder="Mật khẩu trên 6 ký tự" />
+                            <input id="password" name="password" type="password" placeholder="Mật khẩu trên 6 ký tự" class="form-control top-space" />
+                        </div>                    
+                        <button class="btn btn-primary btn-block">TIẾP TỤC</button>
+                      </form>
+                    </div>
+                    <div class="col-xs-12 col-md-6" id="c_no_login">
+                        <a href="/shipping" class="btn btn-primary btn-block">TIẾP TỤC</a>                        
+                    </div>
+                    <div class="col-xs-12 col-md-6 hide" id="c_signup">
+                      <form action="/checkout/signup" method="post">
+                        <div class="form-group">
+                            <label for="username">Họ và tên</label>
+                            <input id="username" name="username" type="text" placeholder="Họ và tên" class="form-control top-space" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" placeholder="Nhập email" class="form-control top-space" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Mật khẩu</label>
+                            <input id="password" name="password" type="password" placeholder="Mật khẩu trên 6 ký tự" class="form-control top-space" />
+                        </div>
+                        <div class="form-group">
                             <label for="confirm_password">Nhập lại mật khẩu</label>
-                            <input id="confirm_password" name="confirmpassword" type="password" placeholder="Nhập lại mật khẩu" />
-                            <label for="birthday" class="bday">Ngày sinh</label>
-                            <input id="birthday" class="birthday" name="birthday" type="text" />
-                            <div class="gender">
-                                <label>Giới tính</label><input name="gender" type="radio" value="0" id="c_male" /><label for="c_male" class="sub">Nam</label><input name="gender" type="radio" value="0" id="c_female" /><label for="c_female" class="sub">Nữ</label>
-                            </div>
-                            <div class="terms">
-                                Khi nhấn đăng ký, bạn đã đồng ý thực hiện mọi giao dịch mua bán theo <a href="/terms">điều kiện sử dụng và chính sách</a> và chính sách
-                            </div>
-                            <button>ĐĂNG KÝ</button>
-                            <div id="c_facebook">Đăng nhập bằng Facebook</div>
-                        </form>
+                            <input id="confirm_password" name="confirmpassword" type="password" placeholder="Nhập lại mật khẩu" class="form-control top-space" />
+                        </div>
+                        <div class="form-group">
+                            <label for="birthday" class="bday">Ngày sinh</label><br/>
+                            <input id="birthday" class="birthday" name="birthday" type="text" class="form-control top-space" />
+                        </div>
+                        <div class="form-group">
+                            <label>Giới tính</label><input name="gender" type="radio" value="0" id="c_male" /><label for="c_male" class="sub">Nam</label><input name="gender" type="radio" value="0" id="c_female" /><label for="c_female" class="sub">Nữ</label>
+                        </div>                        
+                        <button class="btn btn-primary btn-block">TIẾP TỤC</button>
+                      </form>
                     </div>
-                    <div id="c_no_login">
-                        <a href="/shipping" class="ybtn">TIẾP TỤC</a>                        
-                    </div>
+                  </div>
                 </div>
-                <div id="cart" class="col s12 l4 offset-l2">
-                    <div class="cart-header">
-                        <a href="/cart" class="right">SỬA</a>
-                        <h4>THÔNG TIN ĐƠN HÀNG</h4>
-                        <span class="sub">(@model.order.cart.length sản phẩm trong giỏ hàng của bạn)</span>
-                    </div>
-                    <div class="cart-content">
-                        <div class="content-header hide-on-med-and-down">
-                            <div class="col s5">
-                                TÊN SẢN PHẨM
-                            </div>
-                            <div class="col s3">
-                                SỐ LƯỢNG
-                            </div>
-                            <div class="col s4">
-                                GIÁ
-                            </div>
-                        </div>
-                        <div class="cart-products">
-                            @model.order.cart.forEach(function(item) {
-                                <div class="col s12">
-                                    <div class="col s5">
-                                        <div class="name">@item.product.name</div>
-                                        <div class="brand">@item.product.brand</div>
-                                    </div>
-                                    <div class="col s3">
-                                        <div class="quantity">@item.quantity</div>
-                                    </div>
-                                    <div class="col s4">
-                                        <div class="price">@(item.product.price * item.quantity)</div>                                             
-                                    </div>
-                                </div>
-                            })
-                        </div>
-                        <div class="cart-total">
-                            <div class="col s8">
-                                <div>Tổng tiền:</div>
-                                <div>Khuyến mãi:</div>
-                                <div class="amount">Thành tiền:</div>
-                                <span>(Đã bao gồm VAT)</span>
-                            </div>
-                            <div class="col s4">
-                                <div class="total">@model.cart_total</div>
-                                <div class="total-dc">- @model.order.discount</div>
-                                <div class="total-amount">@model.order.totalOrderAmt</div>                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </section>
             </div>
+            <div class="col-md-1 hidden-xs">
+            </div>
+            <div class="col-xs-12 col-md-5 cart-summary">
+              <section id="price-summary">
+                <header>
+                  THÔNG TIN ĐƠN HÀNG
+                </header>
+                <div class="-content">
+                  <div class="row list-items final-items">
+                    @model.order.cart.forEach(function(item) {
+                    <div class="col-xs-12 cart-item">
+                      <div class="row">
+                        <div class="col-xs-2">
+                          <img class="img-responsive" src="@item.product.images[0]" alt="@item.product.name">
+                        </div>
+                        <div class="col-xs-6 cart-item-desc">
+                          <span class="col-xs-12">@item.product.name</span>
+                          <span class="col-xs-12 top-space">@item.product.brand</span>
+                        </div>
+                        <div class="col-xs-1 cart-item-pieces">
+                          <span>@item.quantity</span>
+                        </div>
+                        <div class="col-xs-1 cart-item-price price">@item.product.price</div>
+                      </div>
+                      <!-- end of row -->
+                    </div>
+                    <!-- end of cart item -->
+                    })
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <span class="col-xs-12 bold top-space">Tổng tiền</span>
+                      <span class="col-xs-12 bold top-space">Khuyến mãi</span>
+                    </div>
+                    <div class="col-xs-6">
+                      <span class="col-xs-12 top-space price">@model.cart_total</span>
+                      <span class="col-xs-12 top-space price">-@model.order.discount</span>
+                    </div>
+                  </div>
+                  <div class="row price-summary">
+                    <div class="col-xs-6">
+                      <span class="col-xs-12 highlight top-space">Thành tiền</span>
+                    </div>
+                    <div class="col-xs-6">
+                      <span class="col-xs-12 highlight top-space price">@model.order.totalOrderAmt</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
         </div>
     })
 	@html.block("script", function(model) {
