@@ -206,7 +206,7 @@
     <div class="blank hidden-xs" >
     </div>
     <div id="logo-container" class="hidden-xs">
-      <img src="/images/logo.png" alt="logo" height="70px" >
+      <img src="/images/logo.jpg" alt="logo" height="70px" >
     </div>
     <nav class="navbar navbar-default">
       <div class="container menu-border">
@@ -244,9 +244,97 @@
             }
             <li><a href="/">TRANG CHỦ</a></li>
             <li><a href="/mall/boxes">HỘP LÀM ĐẸP <i class="fa fa-heart-o"></i></a></li>
-            <li><a href="/mall?group=0">Chăm sóc da</a></li>
-            <li><a href="/mall?group=1">Trang điểm</a></li>
-            <li><a href="/mall?group=2">Cơ thể</a></li>
+            <li class="dropdown-hover">
+              @if (model.is_mobile) {
+                 <button class="dropdown-toggle" type="button" id="dropdownButton1" data-toggle="dropdown">
+                  Chăm sóc da<span class="caret"></span>
+                 </button>
+              }
+              else {
+                <a href="/mall?group=0">Chăm sóc da</a>
+              }
+              <ul class="dropdown-menu row" id="dropdownMenu1">
+                <div class="col-xs-12 col-md-4">
+                  <li><a class="subtitle" href="/mall?category=100">Sản phẩm rửa mặt</a></li>
+                  <li><a href="/mall?category=1">Tẩy trang mặt</a></li>
+                  <li><a href="/mall?category=2">Tẩy trang mắt & môi</a></li>
+                  <li><a href="/mall?category=3">Sữa rửa mặt</a></li>
+                  <li><a href="/mall?category=4">Tẩy da chết</a></li>
+                  <li><a href="/mall?category=5">Nước hoa hồng / Xịt khoáng</a></li>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                  <li><a class="subtitle" href="/mall?category=101">Sản phẩm dưỡng ẩm</a></li>
+                  <li><a href="/mall?category=6">Tinh chất</a></li>
+                  <li><a href="/mall?category=7">Sữa dưỡng</a></li>
+                  <li><a href="/mall?category=8">Dầu dưỡng</a></li>
+                  <li><a href="/mall?category=9">Gel / Kem dưỡng</a></li>
+                  <li><a href="/mall?category=10">Kem dưỡng vùng mắt</a></li>
+                  <li><a href="/mall?category=11">Mặt nạ</a></li>
+                  <li><a href="/mall?category=12">Kem chống nắng</a></li>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                  <li><a class="subtitle" href="/mall?category=102">Phụ kiện dưỡng da</a></li>
+                  <li><a href="/mall?category=13">Mút rửa mặt</a></li>
+                  <li><a href="/mall?category=14">Máy rửa mặt</a></li>
+                  <li><a href="/mall?category=15">Bông tẩy trang</a></li>
+                  <li><a href="/mall?category=16">Giấy thấm dầu</a></li>
+                  <li><a class="subtitle" href="/mall?category=103">Tất cả sản phẩm</a></li>
+                </div>
+              </ul>
+            </li>
+            <li class="dropdown-hover">
+              @if (model.is_mobile) {
+                 <button class="dropdown-toggle" type="button" id="dropdownButton2" data-toggle="dropdown">
+                  Trang điểm<span class="caret"></span>
+                 </button>
+              }
+              else {
+                <a href="/mall?group=1">Trang điểm</a>
+              }
+              <ul class="dropdown-menu row" id="dropdownMenu2">
+                  <div class="col-xs-12 col-md-4">
+                  <li><a class="subtitle" href="/mall?category=104">Mặt</a></li>
+                  <li><a href="/mall?category=17">Kem lót</a></li>
+                  <li><a href="/mall?category=18">Kem / Phấn nền</a></li>
+                  <li><a href="/mall?category=19">BB Cream & CC Cream</a></li>
+                  <li><a href="/mall?category=20">Kem che khuyết điểm</a></li>
+                  <li><a href="/mall?category=21">Phấn phủ</a></li>
+                  <li><a href="/mall?category=22">Má hồng</a></li>
+                  <li><a href="/mall?category=23">Bắt sáng/ Tạo khối</a></li>
+                  </div>
+                  <div class="col-xs-12 col-md-4">
+                  <li><a class="subtitle" href="/mall?category=105">Mắt</a></li>
+                  <li><a href="/mall?category=24">Lót mắt</a></li>
+                  <li><a href="/mall?category=25">Phấn mắt</a></li>
+                  <li><a href="/mall?category=26">Mascara</a></li>
+                  <li><a href="/mall?category=29">Kẻ mắt</a></li>
+                  <li><a href="/mall?category=30">Chân mày</a></li>
+                  </div>
+                  <div class="col-xs-12 col-md-4">
+                  <li><a class="subtitle" href="/mall?category=106">Môi</a></li>
+                  <li><a href="/mall?category=31">Son môi</a></li>
+                  <li><a href="/mall?category=32">Son dưỡng & điều trị</a></li>
+                  <li><a class="subtitle" href="/mall?category=107">Phụ kiện trang điểm</a></li>
+                  <li><a href="/mall?category=33">Mút / Cọ trang điểm</a></li>
+                  <li><a class="subtitle" href="/mall?category=108">Tất cả sản phẩm</a></li>
+                  </div>
+              </ul>
+            </li>
+            <li class="dropdown-hover">
+              @if (model.is_mobile) {
+                 <button class="dropdown-toggle" type="button" id="dropdownButton3" data-toggle="dropdown">
+                  Cơ thể<span class="caret"></span>
+                 </button>
+              }
+              else {
+                <a href="/mall?group=2">Cơ thể</a>
+              }
+              <ul class="dropdown-menu row" id="dropdownMenu3">
+                  <li><a class="subtitle" href="/mall?category=109">Chăm sóc tóc</a></li>
+                  <li><a class="subtitle" href="/mall?category=110">Chăm sóc cơ thể</a></li>
+                  <li><a class="subtitle" href="/mall?category=111">Sản phẩm cho Nam</a></li>
+              </ul>
+            </li>
             <li><a href="/brands">NhÃn hiỆu</a></li>
             <li><a href="/about">GiỚi thiỆu <i class="fa fa-star-o"></i></a></li>
             <li><a href="/blog">BLOG & VIDEO</a></li>
@@ -288,18 +376,15 @@
               </div>
               <div class="col-xs-12 col-md-3">
               <span class="subtitle"><i class="fa fa-phone fa-2x" aria-hidden="true"></i> Hotline hỗ trợ</span>
-              <p class="top">01699 876 023
-              </p>
+              <p class="top">0971-875-539</p>
               </div>
               <div class="col-xs-12 col-md-3">
               <span class="subtitle"><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i> Phản hồi qua email</span>
-              <p class="top">hello@yppuna.vn
-              </p>
+              <p class="top">hello@yppuna.vn</p>
               </div>
               <div class="col-xs-12 col-md-3">
               <span class="subtitle"><i class="fa fa-send-o fa-2x" aria-hidden="true"></i> Đăng ký nhận tin</span>
-              <p class="top">hello@yppuna.vn
-              </p>
+              <p class="top">hello@yppuna.vn</p>
               </div>
             </div>
             </div>
@@ -308,16 +393,15 @@
           <div class="row">
             <div class="col-xs-12 col-md-4">
               <ul>
-                <li>Yppuna</li>
-                <li class="hide">FAQ</li>
+                <li class="hide">><a href="/faq">FAQ</a></li>
                 <li><a href="/careers">Careers</a></li>
               </ul>
             </div>
             <div class="col-md-4 footer-social-links row center">
               <ul>
-                <li><a href="#"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a></li>
+                <li><a href="https://www.facebook.com/yppuna"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a></li>
+                <li><a href="http://instagram.com/yppuna"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></li>
+                <li><a href="https://www.youtube.com/channel/UCqFV0hp7cnYA0tZMAGq9paA"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a></li>
               </ul>
             </div>
             <div class="col-xs-12 col-md-4">

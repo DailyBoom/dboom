@@ -456,7 +456,6 @@ footer {
 /* line 328, ../sass/screen.scss */
 .right-part li {
   float: right;
-  margin: 0 10px;
 }
 
 .right-part li a {
@@ -1120,9 +1119,31 @@ nav {
   }
 
   .navbar-nav {
-      float: none;
-      margin: 0 auto;
-      display: inline-block;
+    float: none;
+    margin: 0 auto;
+    display: inline-block;
+  }
+
+  .dropdown-hover:hover .dropdown-menu {
+    display: block;
+  }
+
+  #dropdownMenu1 {
+    width: 600px;
+  }
+
+  #dropdownMenu2 {
+    width: 600px;
+  }  
+
+  .dropdown-menu a.subtitle {
+    font-size: 14px;
+    color: #333;
+  }
+
+  .dropdown-menu a {
+    font-size: 12px;
+    color: #777;
   }
 
   .box-item {
@@ -1165,6 +1186,26 @@ nav {
 
   .navbar {
     margin-bottom: 5px;
+  }
+
+  .dropdown-hover button {
+    border: none;
+    background: transparent;
+    color: white;
+    padding: 10px 15px;
+    text-transform: uppercase;
+  }
+
+  .dropdown-menu li {
+    margin-bottom: 5px;    
+  }
+
+  .dropdown-menu a.subtitle {
+    font-size: 1em;
+  }
+
+  .dropdown-menu a {
+    color: white !important;
   }
 
   #call-to-action {
