@@ -206,7 +206,7 @@
     <div class="blank hidden-xs" >
     </div>
     <div id="logo-container" class="hidden-xs">
-      <img src="/images/logo.jpg" alt="logo" height="70px" >
+      <a href="/"><img src="/images/logo.jpg" alt="logo" height="70px" ></a>
     </div>
     <nav class="navbar navbar-default">
       <div class="container menu-border">

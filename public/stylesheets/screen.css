@@ -220,6 +220,10 @@ html, body {
   cursor: pointer;
 }
 
+.dropdown-menu li {
+  margin-bottom: 5px;    
+}
+
 /* line 134, ../sass/screen.scss */
 .navigation {
   text-align: center;
@@ -1194,10 +1198,6 @@ nav {
     color: white;
     padding: 10px 15px;
     text-transform: uppercase;
-  }
-
-  .dropdown-menu li {
-    margin-bottom: 5px;    
   }
 
   .dropdown-menu a.subtitle {
