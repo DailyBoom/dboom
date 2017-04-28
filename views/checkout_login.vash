@@ -1,6 +1,6 @@
 @html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
-        <div class="container">
+    <div class="container">
       <div class="row">
         <div class="col-xs-12">
           <!-- here will come progress indicator -->
@@ -132,6 +132,8 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
     })
 	@html.block("script", function(model) {
         <script type="text/javascript">
