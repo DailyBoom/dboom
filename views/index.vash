@@ -5,7 +5,7 @@
 			<section id="call-to-action">
 				<div class="">
 				<div class="row">
-					<div class="col-xs-12 col-md-8">
+					<div class="col-xs-12 col-md-8" id="main_banner">
 						<div class="">
 							<a href="/banner?type=main"><img src="@model.homepage.main_banner.banner" class="img-responsive"></a>
 						</div>
@@ -162,7 +162,7 @@
 				<div class="-content">
 					<div class="row">
 						@model.homepage.reviews.forEach(function(review) {
-						<div class="col-xs-12 col-md-4 review">
+						<div class="review col-xs-12">
 							<div class="item-image col-xs-12 col-md-8">
 								<img src="@review.banner" class="img-responsive" alt="">
 							</div>
@@ -179,15 +179,15 @@
 			<section id="hall-of-fame">
 				<div class="-content">
 				<div class="row">
-					<div class="col-xs-12 col-md-4">
+					<div class="col-xs-12">
 						<div class="item-image" style="background: url(@model.homepage.deal_banner) no-repeat;">
 						</div>
 					</div>
-					<div class="col-xs-12 col-md-4">
+					<div class="col-xs-12">
 						<div class="item-image" style="background: url(@model.homepage.fav_banner) no-repeat">
 						</div>
 					</div>
-					<div class="col-xs-12 col-md-4">
+					<div class="col-xs-12">
 						<div class="item-image" style="background: url(@model.homepage.organic_banner) no-repeat;">
 						</div>
 					</div>
@@ -214,6 +214,19 @@
 			rewindNav: true,
 			autoPlay: true
 		});
+		$("#reviews .-content > .row, #hall-of-fame .-content > .row").owlCarousel({
+			items : 3,
+			itemsDesktop : [1200, 3],
+			itemsDesktopSmall : [992, 3],
+			itemsTablet: [600,1],
+			itemsMobile : false, // itemsMobile disabled - inherit from itemsTablet option
+			navigation: true,
+			navigationText: ["<", ">"],
+			pagination: false,
+			responsive: true,
+			rewindNav: true,
+			autoPlay: true
+		});		
 		$(".add-cart").on("click", function(e) {
 			e.preventDefault();
 			var id = $(this).data("id");

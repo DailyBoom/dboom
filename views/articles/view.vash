@@ -1,4 +1,5 @@
-@html.extend("layout-beta", function(model) { @html.block("body", function(model) {
+@html.extend("layout_bk", function(model) {
+    @html.block("body", function(model) {
     <div id="fb-root"></div>
 	<script>(function(d, s, id) {
 	  var js, fjs = d.getElementsByTagName(s)[0];
@@ -7,47 +8,63 @@
 	  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.7";
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
-    <div class="container@(model.is_mobile ? '-fluid' : '')" id="blog_post">
-        <div class="title" style="background: @(!model.is_mobile ? 'linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),' : '') url(@model.article.cover) no-repeat;">
-            <h1 class="center">@model.article.title</h1>
-            <div class="date center"><i class="fa fa-calendar"></i> @model.moment(model.article.created_at).format("DD.MM.YYYY")</div>
+    <div class="container" id="blog_post">
+      <div id="post" class="row">
+        <div id="banner" class="col-xs-12 col-md-offset-2 col-md-8">
+          <img class="img-responsive" src="https://yppuna.vn@model.article.cover" alt="">
         </div>
-        <article class="row">
+
+        <div class="title col-xs-12 col-md-offset-2 col-md-8">
+          <h1>@model.article.title</h1>
+        </div>
+        <div class="col-xs-12 col-md-offset-2 col-md-8 text-center">
+          <span class="author hide"><i class="fa fa-user-o"></i> Author</span>
+          <span class="date-posted"><i class="fa fa-clock-o"></i> @model.moment(model.article.created_at).format("DD.MM.YYYY")</span>
+        </div>
+
+        <article class="col-xs-12 col-md-offset-2 col-md-8">
             @html.raw(model.article.content)
         </article>
-        <div class="fb-share-button" data-href="http://yppuna.vn@model.url" data-layout="button" data-size="large" data-mobile-iframe="true">
-            <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yppuna.vn@model.url">@model.__('blog.share')</a>
-        </div>
-        <span class="total-comments"><i class="fa fa-commenting-o"></i> @model.comments.length @model.__('blog.comments')</span>        
-        <div id="comments" class="row">
-            @if(model.user) {
-                <form id="new_comment">
-                    <label for="comment">@model.__('blog.new_comment')</label>
-                    <input id="comment" name="comment" type="text"/>
-                    <button class="right">@model.__('blog.submit')</button>
-                </form>
-            }
-            else {
-                <span>@html.raw(model.__('blog.login'))</span>
-            }
-            <div class="col s12 comment_list">
-                @model.comments.forEach(function(comment) {
-                    <div class="comment">
-                        <div class="com_info">
-                            <span class="username core-text">@comment.user.username</span>
-                            <span class="time">@model.moment(comment.created_at).fromNow()</span>
-                            @if(model.user && model.user.admin) {
-                                <a href="/blog/comments/delete/@comment.id" class="right">@model.__('blog.delete')</a>
-                            }
+        <div class="col-xs-12 col-md-offset-2 col-md-8">
+            <div class="fb-share-button" data-href="https://yppuna.vn@model.url" data-layout="button" data-size="large" data-mobile-iframe="true">
+                <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yppuna.vn@model.url">@model.__('blog.share')</a>
+            </div>
+            <span class="total-comments"><i class="fa fa-commenting-o"></i> @model.comments.length @model.__('blog.comments')</span>        
+            <div id="comments" class="row">
+                @if(model.user) {
+                    <form id="new_comment">
+                        <div class="form-group">
+                            <label for="comment">@model.__('blog.new_comment')</label>
+                            <textarea rows="3" id="comment" name="comment" cols="30"></textarea>
                         </div>
-                        <div class="com_text">
-                            <span class="">@comment.body</span>
+                        <button class="right">@model.__('blog.submit')</button>
+                    </form>
+                }
+                else {
+                    <span>@html.raw(model.__('blog.login'))</span>
+                }
+                <div class="col s12 comment_list">
+                    @model.comments.forEach(function(comment) {
+                        <div class="comment">
+                            <div class="com_info">
+                                <span class="username core-text">@comment.user.username</span>
+                                <span class="time">@model.moment(comment.created_at).fromNow()</span>
+                                @if(model.user && model.user.admin) {
+                                    <a href="/blog/comments/delete/@comment.id" class="right">@model.__('blog.delete')</a>
+                                }
+                            </div>
+                            <div class="com_text">
+                                <span class="">@comment.body</span>
+                            </div>
                         </div>
-                    </div>
-                })
+                    })
+                </div>
             </div>
         </div>
+      </div>
     </div>
+    })
+    @html.block("script", function(model) {
     <script type="text/javascript">
         $(document).ready(function() {
             moment().locale('vi');

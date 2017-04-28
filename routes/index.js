@@ -236,6 +236,12 @@ router.get('/banner', function(req, res, next) {
   });
 });
 
+router.get('/organic', function(req, res, next) {
+  Homepage.findOne({}, 'organic_banner').populate('organic_banner.products').exec(function(err, homepage) {  
+    res.render('organic', { banner: homepage.organic_banner });
+  });
+});
+
 router.get('/about', function(req, res, next) {
   res.render('about', { title: req.__('about'), description: req.__('about.text_1') });
 });
@@ -311,7 +317,7 @@ router.get('/home', function(req, res, next) {
     });
     behavior.save();
   }
-  Product.find({ scheduled_at: moment().day(1).hour(config.Timezone).minute(0).second(0).millisecond(0) }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts').exec(function (err, products) {
+  Product.find({ scheduled_at: moment().date(1).hour(config.Timezone).minute(0).second(0).millisecond(0) }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts').exec(function (err, products) {
     // console.log(products);
     var query = Product.find({ extend: 4, is_published: true, is_hot: true });
     // query.where('product_region.'+req.session.zone, true);

@@ -249,7 +249,7 @@
             <li><a href="/mall?group=2">Cơ thể</a></li>
             <li><a href="/brands">NhÃn hiỆu</a></li>
             <li><a href="/about">GiỚi thiỆu <i class="fa fa-star-o"></i></a></li>
-            <li><a href="/blog">Feed</a></li>
+            <li><a href="/blog">BLOG & VIDEO</a></li>
           </ul>
           @if(model.cart) {          
             <ul class="nav navbar-nav navbar-right visible-xs-block">
