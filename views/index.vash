@@ -55,7 +55,7 @@
 							<span class="box-title center">@box.name</span>
 							<p>@box.description</p>
 							<div class="-space">
-								<span class="bold">What's included in the box:</span>
+								<span class="bold">Bộ sản phẩm bao gồm:</span>
 								<div class="-space">
 								<ul class="items-inside">
 									@box.boxProducts.forEach(function(product, index) {
