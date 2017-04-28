@@ -9,16 +9,14 @@
           <div class="row">
             <div class="col-xs-12 col-md-6 cart-items">
               <section id="cart">
-                <header>
-                  Choosing way
-                </header>
+                <header>BẠN ĐÃ CÓ TÀI KHOẢN YPPUNA ?</header>
                 <div class="-content">
                   <div class="row list-items">
                     <div class="col-xs-12 col-md-6">
                       <div class="radio">
                         <label>
                           <input type="radio" id="login_btn" name="login" value="option1" checked>
-                          Tôi là thành viên Yppuna.vn
+                          Tôi đã có tài khoản Yppuna
                         </label>
                       </div>
                       <div class="radio">
@@ -30,7 +28,7 @@
                       <div class="radio">
                         <label>
                           <input type="radio" id="no_login_btn" name="login" value="option2">
-                          Mua hàng không cần đăng nhập
+                          Tôi muốn mua hàng không cần đăng nhập
                         </label>
                       </div>
                     </div>

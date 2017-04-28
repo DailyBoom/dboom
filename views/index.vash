@@ -79,7 +79,7 @@
 								<span class="item_price striked">@box.old_price</span>
 							</div>
 							<div class="call-to-action">
-								<button class="btn btn-default add-cart" type="button" name="button" data-id="@box.id">THÊM BOX VÀO GIỎ HÀNG</button>
+								<button class="btn btn-default add-cart" type="button" name="button" data-id="@box.id">THÊM VÀO GIỎ HÀNG</button>
 								<a href="/shop/box/@box.url" class="btn btn-default">XEM CHI TIẾT</a>
 							</div>
 						</div>

@@ -38,12 +38,12 @@
 					<div class="item_detail hide-on-med-and-down left">
 						@if (model.products[0].options[0].quantity > 0) {
 						<a href="#" class="add-cart" data-id="@model.products[0].id">
-							THÊM BOX VÀO GIỎ HÀNG
+							THÊM VÀO GIỎ HÀNG
 						</a><br/><br/>
 						}
 						else {
 							<a href="#" data-id="@model.products[0].id" onclick="alert('Chúng tôi xin lỗi hộp làm đẹp bạn muốn đặt đã hết hàng.');" >
-								THÊM BOX VÀO GIỎ HÀNG
+								THÊM VÀO GIỎ HÀNG
 							</a><br/><br/>
 						}
 						<a href="/shop/box/@model.products[0].url">
@@ -56,7 +56,7 @@
 					<div class="item_detail hide-on-large-only">
 						@if (model.products[0].options[0].quantity > 0) {
 						<a href="#" class="add-cart" data-id="@model.products[0].id">
-							THÊM BOX VÀO GIỎ HÀNG
+							THÊM VÀO GIỎ HÀNG
 						</a><br/><br/>
 						}
 						<a href="/shop/box/@model.products[0].url">
@@ -131,7 +131,7 @@
 					</div>
 					<div class="col s12 item_detail hide-on-med-and-down">
 						<a href="#" class="add-cart" data-id="@model.products[1].id">
-							THÊM BOX VÀO GIỎ HÀNG
+							THÊM VÀO GIỎ HÀNG
 						</a><br/><br/>
 						<a href="/shop/box/@model.products[1].url">
 							XEM CHI TIẾT
@@ -142,7 +142,7 @@
 					<div class="item_img"><img src="@model.products[1].images[0]"/></div>
 					<div class="item_detail hide-on-large-only">
 						<a href="#" class="add-cart" data-id="@model.products[1].id">
-							THÊM BOX VÀO GIỎ HÀNG
+							THÊM VÀO GIỎ HÀNG
 						</a><br/><br/>
 						<a href="/shop/box/@model.products[1].url">
 							XEM CHI TIẾT

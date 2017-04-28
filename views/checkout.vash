@@ -49,9 +49,7 @@
           <div class="row">
             <div class="col-xs-12 col-md-6 cart-items">
               <section id="payment-choices">
-                <header>
-                  Chon phuong thuc thanh toan
-                </header>
+                <header>CHỌN PHƯƠNG THỨC THANH TOÁN</header>
                 <div class="-content">
                   <div class="row">
                     <div class="col-xs-12">
@@ -59,13 +57,13 @@
                         <div class="radio">
                           <label>
                             <input type="radio" name="pay_method" id="delivery" value="0" checked>
-                            Thanh toan khi nhan hang
+                            Thanh toán khi nhận hàng
                           </label>
                         </div>
                         <div class="radio">
                           <label>
                             <input type="radio" name="pay_method" id="transfer" value="1">
-                            Thanh toan thong qua chuyen khoan
+                            Thanh toán thông qua chuyển khoản
                           </label>
                         </div>
                       </form>
@@ -74,9 +72,7 @@
                 </div>
               </section>
               <section id="delivery-choices">
-                <header>
-                  Chon phuong thuc giao hang
-                </header>
+                <header>CHỌN PHƯƠNG THỨC GIAO HÀNG</header>
                 <div class="-content">
                   <div class="row">
                     <div class="col-xs-12">
@@ -84,19 +80,19 @@
                         <div class="radio">
                           <label>
                             <input type="radio" name="deliv_method" id="noon" value="0" checked>
-                            Nhan truoc 12 gio trua
+                            Nhận hàng trước 12 giờ trưa
                           </label>
                         </div>
                         <div class="radio">
                           <label>
                             <input type="radio" name="deliv_method" id="six" value="1">
-                            Nhan truoc 6 gio chieu
+                            Nhận hàng trước 6 giờ chiều
                           </label>
                         </div>
                         <div class="radio">
                           <label>
                             <input type="radio" name="deliv_method" id="evening" value="2">
-                            Nhan hang vao buoi toi
+                            Nhận hàng vào buổi tối
                           </label>
                         </div>
                       </form>

@@ -56,7 +56,7 @@
                     </div>
                     <!-- end of cart item -->
                     })
-                      <button class="btn pull-right">Update</button>
+                      <button class="btn pull-right">Cập nhật</button>
                   </form>
               </div>
             </div>
@@ -67,7 +67,7 @@
         <div class="col-xs-12 col-md-4 cart-summary">
           <section id="price-summary">
             <header>
-              Price summary
+              Tổng tiền
             </header>
             <div class="-content">
               <div class="row">
