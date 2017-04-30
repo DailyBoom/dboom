@@ -398,9 +398,9 @@
             </div>
             <div class="col-md-4 footer-social-links row center">
               <ul>
-                <li><a href="https://www.facebook.com/yppuna"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a></li>
-                <li><a href="http://instagram.com/yppuna"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></li>
-                <li><a href="https://www.youtube.com/channel/UCqFV0hp7cnYA0tZMAGq9paA"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a></li>
+                <li><a target="_blank" href="https://www.facebook.com/yppuna"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a></li>
+                <li><a target="_blank" href="http://instagram.com/yppuna"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></li>
+                <li><a target="_blank" href="https://www.youtube.com/channel/UCqFV0hp7cnYA0tZMAGq9paA"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a></li>
               </ul>
             </div>
             <div class="col-xs-12 col-md-4">

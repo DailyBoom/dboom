@@ -41,10 +41,16 @@
                   </div>
                   <span class="col-xs-12 product-brand">@product.brand</span>
                   <a href="/shop/products/@product.url"><span class="col-xs-12 product-name">@product.name</span></a>
-                  <span class="col-xs-12 product-price">
-                    @product.price
-                  </span>
-                  <div class="col-xs-12 product-add top-space">
+                  <span class="product-price">@product.price</span>
+                  @if (product.old_price) {
+										@{
+											var price =  product.old_price - product.price
+											var sale = price / product.old_price * 100; 
+										}
+										<span class="product-price striked">@product.old_price</span>
+										<span class="sale">-@sale.toFixed(0)%</span>
+									}
+									<div class="col-xs-12 product-add top-space">
                     <button class="btn btn-secondary add-cart" data-id="@product.id" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
                   </div>
 

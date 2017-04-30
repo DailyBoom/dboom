@@ -80,7 +80,7 @@ router.get('/products/list', isMerchantOrAdmin, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
   var query = {};
   if (req.query.id)
-    query['_id'] = req.query.id;
+    query['inv_code'] = { $regex: req.query.id, $options: "i" };
   if (req.query.type == 1) {
     query['extend'] = { '$gte': 1, '$lte': 3 };
   }

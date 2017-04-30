@@ -73,7 +73,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   font-size: 0.8em;
   font-weight: 600;
   text-transform: uppercase;
-  text-decoration: underline;
 }
 
 /* line 14, ../sass/screen.scss */
@@ -323,12 +322,33 @@ section .-content {
 .product {
   text-align: center;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .product .img-responsive {
   min-height: 200px;
   max-height: 275px;
   padding: 2em;
+}
+
+.product .sale {
+  position: absolute;
+  font-family: 'Brandon Medium';
+  font-size: 17px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  top: 30px;
+  right: 30px;
+  background-color: #f19996;
+  border-radius: 90px;
+  padding: 21px 0;
+  height: 64px;
+  width: 64px;
+  text-align: center;
 }
 
 /* line 229, ../sass/screen.scss */
@@ -358,6 +378,11 @@ section .-content {
   color: black;
   font-size: 1.2em;
   margin-bottom: 0.4em;
+}
+
+.product-price.striked {
+  color: #777;
+  font-size: 10px;
 }
 
 .items-inside {
