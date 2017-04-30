@@ -1315,6 +1315,14 @@ nav {
     margin-bottom: 10px;
   }
 
+  .product .img-responsive {
+    margin: 0 auto;
+  }
+
+  .item-image {
+    background-size: 100% !important;
+  }
+
   #reviews .review {
     height: auto;
   }
