@@ -79,7 +79,7 @@
 	@html.block("script", function(model) {
 	<script>
 		$(".mall-price-o, .mall-price-n, .prod_price, .old_price").autoNumeric('init', autoNumericOptions);
-		$(".add_cart").on("click", function() {
+		$(".add-cart").on("click", function() {
 			var id = $(this).data("id");
 			$.ajax({
 				type: "POST",
