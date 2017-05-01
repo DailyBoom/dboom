@@ -43,7 +43,7 @@
 				<header>HỘP LÀM ĐẸP</header>
 				<div class="-content tabbed">
 					@model.products.forEach(function(box, index) {
-						<input class="tab" id="tab@(index + 1)" type="radio" name="tabs" checked>
+						<input class="tab" id="tab@(index + 1)" type="radio" name="tabs" @(index == 0 ? 'checked' : '')>
           				<label class="tab-icon" for="tab@(index + 1)">@box.name</label>						
 					})
 					@model.products.forEach(function(box, index) {					
