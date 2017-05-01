@@ -87,8 +87,8 @@ router.get('/products/list', isMerchantOrAdmin, function(req, res) {
   else if (req.query.type == 2) {
     query['extend'] = 4;
   }
-  if (req.query.s) {
-    query['$or'] = [{ 'name': { $regex: req.query.s, $options: "i" } }, { 'brand': { $regex: req.query.s, $options: "i" } }];
+  if (req.query.name) {
+    query['$or'] = [{ 'name': { $regex: req.query.name, $options: "i" } }, { 'brand': { $regex: req.query.name, $options: "i" } }];
   }
   if (req.query.line)
     query['line'] = req.query.line;
