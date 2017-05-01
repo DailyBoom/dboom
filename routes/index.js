@@ -175,7 +175,7 @@ router.get('/mall/boxes', function(req, res, next) {
   Product.paginate(query, option).then(function(result) {
     Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
       Mall.findOne({ category: mall }, function(err, mall) {
-        res.render('mall', { title: "Box", description: "", products: result.docs, hotProducts: hotProducts, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / per_page), mall: mall });
+        res.render('mall', { title: "Hộp làm đẹp", description: "", products: result.docs, hotProducts: hotProducts, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / per_page), mall: mall });
       });
     });
   });

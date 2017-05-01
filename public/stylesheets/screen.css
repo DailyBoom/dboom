@@ -328,7 +328,12 @@ section .-content {
 .product .img-responsive {
   min-height: 200px;
   max-height: 275px;
-  padding: 2em;
+  height: 250px;
+  margin: 0 auto;
+}
+
+.box .img-responsive {
+  height: 200px !important;
 }
 
 .product .sale {

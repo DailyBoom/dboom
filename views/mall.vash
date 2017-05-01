@@ -34,7 +34,7 @@
             <div class="row">
 				@model.products.forEach(function(product) {
               <!-- One product -->
-              <div class="col-xs-12 col-md-3 product">
+              <div class="col-xs-12 col-md-3 product @(product.extend == 3 || product.extend == 5 ? 'box' : '')">
                 <div class="row">
                   <div class="col-xs-12">
                     <a href="/shop/products/@product.url"><img class="img-responsive" src="@product.images[0]" alt="@product.name"></a>
