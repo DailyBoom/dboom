@@ -22,6 +22,7 @@ time, mark, audio, video {
   font: inherit;
   font-size: 100%;
   vertical-align: baseline;
+  font-family: 'Brandon Medium'
 }
 
 /* line 22, ../../../../usr/local/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
@@ -110,7 +111,12 @@ a, a:hover {
 /** NEW LAYOUT **/
 @font-face {
   font-family: 'Brandon Medium';
-  src: url(/fonts/BrandonText-Medium.ttf);
+  src: url(/fonts/BrandonText-Medium.eot);
+  src: url('/fonts/BrandonText-Medium.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/BrandonText-Medium.woff2') format('woff2'),
+       url('/fonts/BrandonText-Medium.woff') format('woff'),
+       url('/fonts/BrandonText-Medium.ttf') format('truetype'),
+       url('/fonts/BrandonText-Medium.svg') format('svg');
   font-weight: normal;
 }
 @font-face {
