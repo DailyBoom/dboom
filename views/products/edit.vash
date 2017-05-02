@@ -376,7 +376,7 @@
 				</div>
 				<div class="input-field col s12 m6 l6">
 					<i class="fa fa-krw prefix"></i>
-					<input id="w_eu_price" type="number" class="validate" name="w_eu_price" value="@model.product.w_eu_price">
+					<input id="w_eu_price" type="text" class="validate" name="w_eu_price" value="@model.product.w_eu_price">
 					<label for="w_eu_price">EU Wholesale price *</label>
 				</div>
 				<div class="input-field col s12 m6 l6">
