@@ -1528,3 +1528,7 @@ nav {
 #blog_post textarea {
   display: block;
 }
+
+.coupon {
+  padding: 3px 12px;
+}

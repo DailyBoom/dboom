@@ -91,7 +91,7 @@
                     <label for="code" class="col-xs-12">Mã giảm giá</label>
                     <input id="code" name="code" class="col-xs-7" type="text" />
                   </div>
-                  <button class="col-xs-5 btn">XÁC NHẬN</button>
+                  <button class="col-xs-5 btn coupon">XÁC NHẬN</button>
               </form>
               <div class="row">
                 <div class="col-xs-12 top-space">
