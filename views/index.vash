@@ -218,7 +218,7 @@
 	})
 	@html.block("script", function(model) {
 	<script type="text/javascript">
-		$(".item_price, .item_old_price, .prod_price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0});
+		$(".item_price, .item_old_price, .prod_price").autoNumeric('init', autoNumericOptions);
 		var owl = $("#introducing .-content > .row");
 		owl.owlCarousel({
 			items : 4,

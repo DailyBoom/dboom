@@ -489,7 +489,7 @@
             $('.area-header a.zone-hide').first().toggleClass('zone-view-first');
             $('.area-header a.zone-hide').nextAll('.zone-hide').toggleClass('zone-view-second');
           });
-          $(".product-price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+          $(".product-price").autoNumeric('init', autoNumericOptions);
           moment().locale('vi');
           $("#birthday, .birthday").combodate({
               firtItem: 'name',
