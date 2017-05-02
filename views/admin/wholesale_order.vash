@@ -67,7 +67,7 @@
                                         label: item.name + ' - ' + item.brand,
                                         value: item._id,
                                         price: item.wholesale_price,
-                                        eu_price: item.w_eu_price,
+                                        eu_price: parseFloat(item.w_eu_price),
                                         cz_price: item.w_cz_price,
                                         options: item.options_skin
                                     };

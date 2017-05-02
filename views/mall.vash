@@ -57,26 +57,26 @@
                 </div>
               </div>
               <!-- End of one product -->
-				})
-				<ul class="pagination pull-right">
-					@if(model.paginate.hasPreviousPages) {
-						<li class="previous"><a href="/mall?page=@(model.currentPage - 1)"><i class="fa fa-caret-left"></i></a></li>
-					}
-					<!-- -->
-					@model.pages.forEach(function(page) {
-						@if(model.currentPage == page.number) {
-							<li class="active"><a href="#">@page.number</a></li>
-						}
-						else {
-							<li class="waves-effect"><a href="@page.url">@page.number</a></li>
-						}
 					})
-					<!-- -->
-					@if(model.paginate.hasNextPages(model.lastPage)) {
-						<li class="next"><a href="/mall?page=@(model.currentPage + 1)"><i class="fa fa-caret-right"></i></a></li>
-					}
-				</ul>
-			</div>
+					</div>
+					<ul class="pagination pull-right">
+						@if(model.paginate.hasPreviousPages) {
+							<li class="previous"><a href="/mall?page=@(model.currentPage - 1)"><i class="fa fa-caret-left"></i></a></li>
+						}
+						<!-- -->
+						@model.pages.forEach(function(page) {
+							@if(model.currentPage == page.number) {
+								<li class="active"><a href="#">@page.number</a></li>
+							}
+							else {
+								<li class="waves-effect"><a href="@page.url">@page.number</a></li>
+							}
+						})
+						<!-- -->
+						@if(model.paginate.hasNextPages(model.lastPage)) {
+							<li class="next"><a href="/mall?page=@(model.currentPage + 1)"><i class="fa fa-caret-right"></i></a></li>
+						}
+					</ul>
         </section>
       </div>
 
