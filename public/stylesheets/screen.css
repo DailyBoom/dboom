@@ -1224,6 +1224,19 @@ nav {
 /* Mobile */
 @media (max-width: 768px) {
 
+  .owl-theme .owl-controls .owl-buttons div {
+    position: absolute;
+    top: 39%;
+  }
+
+  .owl-theme .owl-controls .owl-buttons .owl-prev {
+    left: 0;
+  }
+
+  .owl-theme .owl-controls .owl-buttons .owl-next {
+    right: 0;
+  }  
+
   .navbar {
     margin-bottom: 5px;
   }
@@ -1365,6 +1378,10 @@ nav {
 
   #reviews .review .text-center {
     padding: 0 10px;
+  }
+
+  #hall-of-fame .row {
+    margin: 0 auto;
   }
 
   #blog_post article iframe {
