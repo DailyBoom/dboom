@@ -145,6 +145,7 @@
                 @for (x = 0; x < 3; x++) {
                     <div class="review">
                         <input type="hidden" name="reviews[@x][banner]" value="@model.homepage.reviews[x].banner" />
+                        <input type="hidden" name="reviews[@x][avatar]" value="@model.homepage.reviews[x].avatar" />
                         <div class="file-field input-field">
                             <br>
                             <span class="hide-on-med-and-down"><br></span>

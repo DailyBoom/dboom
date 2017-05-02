@@ -199,11 +199,11 @@
 				<div class="-content">
 				<div class="row">
 					<div class="col-xs-12">
-						<a href="/mall/boxes" class="item-image" style="background: url(@model.homepage.deal_banner) no-repeat;">
+						<a href="/mall/sale" class="item-image" style="background: url(@model.homepage.deal_banner) no-repeat;">
 						</a>
 					</div>
 					<div class="col-xs-12">
-						<a href="/mall/sale" class="item-image" style="background: url(@model.homepage.fav_banner) no-repeat">
+						<a href="/mall/boxes" class="item-image" style="background: url(@model.homepage.fav_banner) no-repeat">
 						</a>
 					</div>
 					<div class="col-xs-12">
