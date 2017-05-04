@@ -98,7 +98,11 @@ var getOrderCartTotal = function(order) {
   order.cart.forEach(function(item) {
     order.totalOrderAmt += item.product.price * item.quantity;
   });
-  if (order.shipping.city.toUpperCase() == "KHÁC") {
+
+  if (order.totalOrderAmt >= 900000) {
+    order.shipping_cost = 0;
+  }
+  else if (order.shipping.city.toUpperCase() == "KHÁC") {
     order.shipping_cost = 30000;
   }
   else {
