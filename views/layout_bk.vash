@@ -277,7 +277,7 @@
                   <li><a href="/mall?category=14">Máy rửa mặt</a></li>
                   <li><a href="/mall?category=15">Bông tẩy trang</a></li>
                   <li><a href="/mall?category=16">Giấy thấm dầu</a></li>
-                  <li><a class="subtitle" href="/mall?category=103">Tất cả sản phẩm</a></li>
+                  <li><a class="subtitle" href="/mall?group=0">Tất cả sản phẩm</a></li>
                 </div>
               </ul>
             </li>
@@ -315,7 +315,7 @@
                   <li><a href="/mall?category=32">Son dưỡng & điều trị</a></li>
                   <li><a class="subtitle" href="/mall?category=107">Phụ kiện trang điểm</a></li>
                   <li><a href="/mall?category=33">Mút / Cọ trang điểm</a></li>
-                  <li><a class="subtitle" href="/mall?category=108">Tất cả sản phẩm</a></li>
+                  <li><a class="subtitle" href="/mall?group=1">Tất cả sản phẩm</a></li>
                   </div>
               </ul>
             </li>
@@ -332,6 +332,7 @@
                   <li><a class="subtitle" href="/mall?category=109">Chăm sóc tóc</a></li>
                   <li><a class="subtitle" href="/mall?category=110">Chăm sóc cơ thể</a></li>
                   <li><a class="subtitle" href="/mall?category=111">Sản phẩm cho Nam</a></li>
+                  <li><a class="subtitle" href="/mall?group=2">Tất cả sản phẩm</a></li>
               </ul>
             </li>
             <li><a href="/brands">NhÃn hiỆu</a></li>

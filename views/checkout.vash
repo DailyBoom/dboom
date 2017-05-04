@@ -110,6 +110,15 @@
                   THÔNG TIN ĐƠN HÀNG
                 </header>
                 <div class="-content">
+                  <div class="row shipping">
+                    <div class="col-xs-12">@model.order.shipping.full_name</div>
+                    <div class="col-xs-12">@model.order.shipping.address</div>
+                    <div class="col-xs-12">@model.order.shipping.ward</div>
+                    <div class="col-xs-12">@model.order.shipping.district</div>
+                    <div class="col-xs-12">@model.order.shipping.city</div>
+                    <div class="col-xs-12">@model.order.shipping.phone_number</div>
+                    <div class="col-xs-12">@model.order.email</div>
+                  </div>
                   <div class="row list-items final-items">
                     @model.order.cart.forEach(function(item) {
                     <div class="col-xs-12 cart-item">

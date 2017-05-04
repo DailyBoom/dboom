@@ -199,8 +199,8 @@ router.get('/orders/shipping', isAdmin, function(req, res) {
   if (req.query.s_name) {
     query['shipping.full_name'] = { $regex: req.query.s_name, $options: "i" };
   }
-  query.paginate(query, option).then(function(result) {
-    res.render('orders/list', { orders: orders, pages: paginate.getArrayPages(req)(3, Math.ceil(total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '', shipping: true });
+  Order.paginate(query, option).then(function(result) {
+    res.render('orders/list', { orders: result.docs, pages: paginate.getArrayPages(req)(3, Math.ceil(result.total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '', shipping: true });
   });
 });
 
@@ -252,6 +252,32 @@ router.post('/orders/view/:id', isMerchantOrAdmin, function(req, res) {
     });
   });
 });
+
+router.get('/orders/new', isAdmin, function(req, res) {
+  res.render('orders/new');
+});
+
+router.post('/orders/new', isAdmin, function(req, res) {
+  var order = new Order({
+    shipping : {
+      full_name: req.body.full_name,
+      phone_number: req.body.phone,
+      address: req.body.address
+    },
+    email: req.body.email,
+    status: req.body.status,
+    pay_method: req.body.pay_method,
+    created_at: req.body.created_at,
+    notes: req.body.notes,
+    cart: req.body.products
+  });
+
+  order.save(function(err) {
+
+    return res.redirect('/orders/list');
+  });
+});
+
 
 router.get('/orders/view/:id', isMerchantOrAdmin, function(req, res) {
   Order.findOne({ _id: req.params.id }).populate('product user cart.product coupon').exec(function(err, order) {
