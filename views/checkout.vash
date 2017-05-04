@@ -106,9 +106,8 @@
             </div>
             <div class="col-xs-12 col-md-5 cart-summary">
               <section id="price-summary">
-                <header>
-                  THÔNG TIN ĐƠN HÀNG
-                </header>
+                <div><a href="/shipping" class="btn pull-right">SỬA</a></div>
+                <header>ĐỊA CHỈ GIAO HÀNG</header>
                 <div class="-content">
                   <div class="row shipping">
                     <div class="col-xs-12">@model.order.shipping.full_name</div>
@@ -119,6 +118,10 @@
                     <div class="col-xs-12">@model.order.shipping.phone_number</div>
                     <div class="col-xs-12">@model.order.email</div>
                   </div>
+                </div>
+                <div><a href="/cart" class="btn pull-right">SỬA</a></div>
+                <header>THÔNG TIN ĐƠN HÀNG</header>
+                <div class="-content">
                   <div class="row list-items final-items">
                     @model.order.cart.forEach(function(item) {
                     <div class="col-xs-12 cart-item">

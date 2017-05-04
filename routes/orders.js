@@ -476,6 +476,9 @@ router.get('/checkout/login', function(req, res) {
     return res.redirect('/');
   }
   Order.findOne({ _id: req.session.cart_order }).populate('cart.product coupon').exec(function(err, order) {
+    if (hasShipping(order)) {
+      return res.redirect('/checkout');
+    }
     getOrderCartRecap(order);
     res.render('checkout_login', { order: order });
   });
@@ -491,8 +494,6 @@ router.post('/checkout', function(req, res) {
         order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price;
         if (req.body.coupon)
           order.coupon = req.body.coupon;
-        if (req.body.wallet_dc && req.body.wallet_dc <= req.user.wallet && req.body.wallet_dc > 0)
-          order.wallet_dc = req.body.wallet_dc;
         order.save(function(err) {
           if (!req.session.product)
             req.session.product = order.product.id;
