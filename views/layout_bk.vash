@@ -344,11 +344,11 @@
               <li><a href="/cart"><i class="fa fa-shopping-bag"></i>GIỎ HÀNG (@model.cart.length)</a></li>
             </ul>
           }
-          <form action="/mall" method="get" class="navbar-form navbar-right visible-xs-block">
-            <div class="form-group">
+          <form action="/mall" method="get" class="row navbar-form navbar-right visible-xs-block">
+            <div class="form-group col-xs-10">
               <input name="s" type="search" class="form-control" placeholder="Tìm kiếm">
             </div>
-            <button type="submit" class="btn btn-primary">Go</button>
+            <button type="submit" class="col-xs-2 btn btn-primary">Go</button>
           </form>
         </div>
         <!-- /.navbar-collapse -->
@@ -397,7 +397,7 @@
                 <li><a href="/careers">Việc làm</a></li>
               </ul>
             </div>
-            <div class="col-md-4 footer-social-links row center">
+            <div class="col-xs-12 col-md-4 footer-social-links row center">
               <ul>
                 <li><a target="_blank" href="https://www.facebook.com/yppuna"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a></li>
                 <li><a target="_blank" href="http://instagram.com/yppuna"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></li>

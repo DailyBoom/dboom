@@ -1241,6 +1241,10 @@ nav {
     margin-bottom: 5px;
   }
 
+  .navbar-form .form-group {
+    padding-left: 0;
+  }
+
   .dropdown-hover button {
     border: none;
     background: transparent;

@@ -1,15 +1,14 @@
-@html.extend("layout-beta", function(model) {
+@html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
 <div class="container-fluid" id="notfound">
 	<div class="row">
 		<div class="container">
 			<div class="row">
-				<div class="col s12 center">
+				<div class="col-xs-12 text-center">
 					<div class="error-template white-text">
 						<div class="icon-error"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 						<div class="error-details">
 							<br>
-							<span class="hide error-title">서버에 오류가 났습니다.</span>
 							<br>
 							Chúng tôi rất xin lỗi, vì trang mà bạn đang tìm kiếm hiện không thể kết nối được. Bạn vui lòng thử lại trong vài phút sau.
 						</div>

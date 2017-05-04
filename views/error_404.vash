@@ -1,10 +1,10 @@
-@html.extend("layout-beta", function(model) {
+@html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
 <div class="container-fluid" id="notfound">
 	<div class="row">
 		<div class="container">
 			<div class="row">
-				<div class="col s12 center">
+				<div class="col-xs-12 text-center">
 					<div class="error-template">
 						<div class="icon-error"><i class="fa fa-exclamation-circle fa-fw"></i></div>
 						<div class="error-details">

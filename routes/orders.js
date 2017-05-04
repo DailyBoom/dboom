@@ -208,6 +208,8 @@ router.get('/orders/shipping', isAdmin, function(req, res) {
   });
 });
 
+
+
 router.get('/wholesalers/orders', isMerchantOrAdmin, function(req, res) {
   var page = req.query.page ? req.query.page : 1;
   var query = { type: 'wholesale' };
