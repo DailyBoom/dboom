@@ -712,11 +712,16 @@ router.post('/orders/packed/:id', isMerchantOrAdmin, function(req, res) {
   Order.findOne({ _id: req.params.id }).populate('user').exec(function(err, order) {
     if (err)
       console.log(err);
-    console.log(req.body);
-//    order.status = "Packed";
-//    order.save(function(err) {
+    console.log(req.body.cart.length);
+    if (req.body.cart.length != order.cart.length) {
       res.redirect('/orders/packing');
-//    });
+    }
+    else {
+      order.status = "Packed";
+      order.save(function(err) {
+        res.redirect('/orders/list');
+      });
+    }
   });
 });
 

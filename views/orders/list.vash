@@ -79,6 +79,9 @@
 					else if(order.status=='Waiting'){
 						<td class="amber-text text-darken-3"><b>&nbsp;@order.status</b></td>
 					}
+					else if(order.status=='Packed'){
+						<td class="brown-text text-darken-3"><b>&nbsp;@order.status</b></td>
+					}
 				&nbsp;
 				@if(order.product) {
 					<td>&nbsp;@order.quantity</td>

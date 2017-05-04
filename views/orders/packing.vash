@@ -75,7 +75,7 @@
                                 var checked = "";
                                 if (item.checked)
                                     checked = "checked";
-                                body.append('<tr><td>'+item.product.inv_code+'</td><td>'+item.product.name+'</td><td class="center">'+item.quantity+'</td><td class="center"><input type="checkbox" name="packed['+index+']" id="packed_'+index+'" '+checked+'/><label for="packed_'+index+'"></label></td></tr>');
+                                body.append('<tr><td>'+item.product.inv_code+'</td><td>'+item.product.name+'</td><td class="center">'+item.quantity+'</td><td class="center"><input type="checkbox" name="cart['+index+'][packed]" id="packed_'+index+'" '+checked+'/><label for="packed_'+index+'"></label></td></tr>');
                             });
                             order = data.order;
                             $('#packing_modal').openModal();
