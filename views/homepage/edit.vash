@@ -60,14 +60,14 @@
                             <a id="remove_product" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>remove product</a>
                         </div>
                         @if (model.homepage.right_1_banner.products) {
-                        @model.homepage.right_1_banner.products.forEach(function(product, index) {
-                            <div class="product-row">
-                                <div class="input-field product">
-                                    <input id="p_name_@index" type="text" class="validate" name="right_1_banner[products][@index]" value="@product">
-                                    <label for="p_name_@index">Product</label>
+                            @model.homepage.right_1_banner.products.forEach(function(product, index) {
+                                <div class="product-row">
+                                    <div class="input-field product">
+                                        <input id="p_name_@index" type="text" class="validate" name="right_1_banner[products][@index]" value="@product">
+                                        <label for="p_name_@index">Product</label>
+                                    </div>
                                 </div>
-                            </div>
-                        })
+                            })
                         }
                     </div>
                 </div>
@@ -95,51 +95,108 @@
                             <a id="remove_product" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>remove product</a>
                         </div>
                         @if (model.homepage.right_2_banner.products) {
-                        @model.homepage.right_2_banner.products.forEach(function(product, index) {
-                            <div class="product-row">
-                                <div class="input-field product">
-                                    <input id="p_name_@index" type="text" class="validate" name="right_2_banner[products][@index]" value="@product">
-                                    <label for="p_name_@index">Product</label>
+                            @model.homepage.right_2_banner.products.forEach(function(product, index) {
+                                <div class="product-row">
+                                    <div class="input-field product">
+                                        <input id="p_name_@index" type="text" class="validate" name="right_2_banner[products][@index]" value="@product">
+                                        <label for="p_name_@index">Product</label>
+                                    </div>
                                 </div>
-                            </div>
-                        })
+                            })
                         }
                     </div>
                 </div>
-                <div class="file-field input-field">
-                    <br>
-                    <span class="hide-on-med-and-down"><br></span>
-                    <label for="deal_banner" class="input-file-mod grey-text">Deal Banner</label>
-                    <div class="btn blue-grey darken-2">
-                        <span><i class="fa fa-image left"></i>Choose</span>
-                        <input id="deal_banner" type="file" class="validate" name="deal_banner">
+                <div class="main">
+                    <input type="hidden" name="deal_banner[banner]" value="@(model.homepage.deal_banner.banner ? model.homepage.deal_banner.banner : model.homepage.deal_banner)" />
+                    <div class="file-field input-field">
+                        <br>
+                        <span class="hide-on-med-and-down"><br></span>
+                        <label for="deal_banner" class="input-file-mod grey-text">Deal Banner</label>
+                        <div class="btn blue-grey darken-2">
+                            <span><i class="fa fa-image left"></i>Choose</span>
+                            <input id="deal_banner" type="file" class="validate" name="deal_banner">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
                     </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
+                    <div id="product_wrapper">
+                         <div class="">
+                            <a id="" data-type="deal_banner" class="add_product waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>add product</a>
+                            <a id="remove_product" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>remove product</a>
+                        </div>
+                        @if (model.homepage.deal_banner.products) {
+                            @model.homepage.deal_banner.products.forEach(function(product, index) {
+                                <div class="product-row">
+                                    <div class="input-field product">
+                                        <input id="p_name_@index" type="text" class="validate" name="deal_banner[products][@index]" value="@product">
+                                        <label for="p_name_@index">Product</label>
+                                    </div>
+                                </div>
+                            })
+                        }
                     </div>
                 </div>
-                <div class="file-field input-field">
-                    <br>
-                    <span class="hide-on-med-and-down"><br></span>
-                    <label for="fav_banner" class="input-file-mod grey-text">Favorites Banner</label>
-                    <div class="btn blue-grey darken-2">
-                        <span><i class="fa fa-image left"></i>Choose</span>
-                        <input id="fav_banner" type="file" class="validate" name="fav_banner">
+                <div class="main">
+                    <input type="hidden" name="fav_banner[banner]" value="@(model.homepage.fav_banner.banner ? model.homepage.fav_banner.banner : model.homepage.fav_banner)" />
+                    <div class="file-field input-field">
+                        <br>
+                        <span class="hide-on-med-and-down"><br></span>
+                        <label for="fav_banner" class="input-file-mod grey-text">Favorites Banner</label>
+                        <div class="btn blue-grey darken-2">
+                            <span><i class="fa fa-image left"></i>Choose</span>
+                            <input id="fav_banner" type="file" class="validate" name="fav_banner">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
                     </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
+                    <div id="product_wrapper">
+                         <div class="">
+                            <a id="" data-type="fav_banner" class="add_product waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>add product</a>
+                            <a id="remove_product" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>remove product</a>
+                        </div>
+                        @if (model.homepage.fav_banner.products) {
+                            @model.homepage.fav_banner.products.forEach(function(product, index) {
+                                <div class="product-row">
+                                    <div class="input-field product">
+                                        <input id="p_name_@index" type="text" class="validate" name="fav_banner[products][@index]" value="@product">
+                                        <label for="p_name_@index">Product</label>
+                                    </div>
+                                </div>
+                            })
+                        }
                     </div>
                 </div>
-                <div class="file-field input-field">
-                    <br>
-                    <span class="hide-on-med-and-down"><br></span>
-                    <label for="organic_banner" class="input-file-mod grey-text">Organic Banner</label>
-                    <div class="btn blue-grey darken-2">
-                        <span><i class="fa fa-image left"></i>Choose</span>
-                        <input id="organic_banner" type="file" class="validate" name="organic_banner">
+                <div class="main">
+                    <input type="hidden" name="organic_banner[banner]" value="@(model.homepage.organic_banner.banner ? model.homepage.organic_banner.banner : model.homepage.organic_banner)" />
+                    <div class="file-field input-field">
+                        <br>
+                        <span class="hide-on-med-and-down"><br></span>
+                        <label for="organic_banner" class="input-file-mod grey-text">Organic Banner</label>
+                        <div class="btn blue-grey darken-2">
+                            <span><i class="fa fa-image left"></i>Choose</span>
+                            <input id="organic_banner" type="file" class="validate" name="organic_banner">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
                     </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
+                    <div id="product_wrapper">
+                         <div class="">
+                            <a id="" data-type="fav_banner" class="add_product waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>add product</a>
+                            <a id="remove_product" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>remove product</a>
+                        </div>
+                        @if (model.homepage.organic_banner.products) {
+                            @model.homepage.organic_banner.products.forEach(function(product, index) {
+                                <div class="product-row">
+                                    <div class="input-field product">
+                                        <input id="p_name_@index" type="text" class="validate" name="organic_banner[products][@index]" value="@product">
+                                        <label for="p_name_@index">Product</label>
+                                    </div>
+                                </div>
+                            })
+                        }
                     </div>
                 </div>
                 @for (x = 0; x < 3; x++) {

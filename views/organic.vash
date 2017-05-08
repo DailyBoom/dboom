@@ -6,7 +6,10 @@
           <img class="img-responsive" src="@model.banner" alt="">
         </div>
         <div id="about" class="col-xs-12 col-md-offset-1 col-md-10">
-          <p>Vegan and gluten free products are our speciality. We have categorised every product on our shelves and our drop-down filters will help you find them. Among the GF and vegan skincare at Nourished Life, you’ll find gorgeous serums and nightly repair nectar from La Mav. Whether you’re looking to hydrate, plump, brighten or smooth you’ll be delighted with the results. Follow in Cleopatra’s footsteps with our best-selling Egyptian Magic All-Purpose Cream. </p>
+          <p>Chúng ta đang sống trong môi trường khói bụi, có đầy chất độc hại xung quanh, ảnh hưởng nghiêm trọng đến sức khỏe và làn da. Vì vậy giữa muôn vàn các mỹ phẩm làm đẹp hiện nay, mỹ phẩm hữu cơ đang dần được mọi người quan tâm đến và sử dụng nhiều hơn. Vậy mỹ phẩm hữu cơ là gì?</p>
+          <p>Mỹ phẩm hữu cơ là những loại mỹ phẩm mà trong đó các thành phần chính làm nên sản phẩm đều từ các sản phẩm hữu cơ tự nhiên, không chứa bất kỳ chất hóa học và chất bảo quản nào, tránh được các bệnh nguy hiểm như ung thư do Paraben hay ảnh hưởng đến phát triển trí não do Phthalte, hoàn toàn an toàn cho mọi loại da kể cả làn da nhạy cảm nhất.</p>
+          <p>Để được công nhận là một mỹ phẩm hữu cơ cần phải trải qua nhiều công đoạn kiểm duyệt nghiêm ngặt và tốn chi phí cao. Cách nhận biết sản phẩm hữu cơ là trên bao bì sản phẩm đó phải có dán tem USDA Organic (Bộ Nông nghiệp Mỹ), ECOCERT (Pháp), COSMOS (một số nước Châu Âu).</p>
+          <p>YPPUNA chuyên cung cấp các mỹ phẩm hữu cơ nhập khẩu trực tiếp từ các nhãn hàng uy tín, có xuất xứ, nguồn gốc rõ ràng. YPPUNA tự tin rằng sẽ luôn mang đến những sản phẩm tốt nhất, đảm bảo rằng giá sẽ luôn tương xứng với chất lượng sản phẩm bạn nhận được.</p>
         </div>
       </div>
       <div class="row">
@@ -31,130 +34,6 @@
                     <button class="btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ</button>
                   </div>
 
-                </div>
-              </div>
-              <!-- End of one product -->
-              <!-- One product -->
-              <div class="col-xs-6 col-md-3 product">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <img class="img-responsive" src="/images/laneige.png" alt="Laneige">
-                  </div>
-                  <span class="col-xs-12 product-brand">Laneige</span>
-                  <span class="col-xs-12 product-name">Laneige Eye Cream</span>
-                  <span class="col-xs-12 product-price">
-                    550.000
-                  </span>
-                  <div class="col-xs-12 product-add top-space">
-                    <button class="btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ</button>
-                  </div>
-
-                </div>
-              </div>
-              <!-- End of one product -->
-              <!-- One product -->
-              <div class="col-xs-6 col-md-3 product">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <img class="img-responsive" src="/images/laneige.png" alt="Laneige Clear">
-                  </div>
-                  <span class="col-xs-12 product-brand">Laneige</span>
-                  <span class="col-xs-12 product-name">Micro-fit cushion</span>
-                  <span class="col-xs-12 product-price">
-                    550.000
-                  </span>
-                  <div class="col-xs-12 product-add top-space">
-                    <button class="btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ</button>
-                  </div>
-                </div>
-              </div>
-              <!-- End of one product -->
-              <!-- One product -->
-              <div class="col-xs-6 col-md-3 product">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <img class="img-responsive" src="/images/laneige.png" alt="Laneige Clear">
-                  </div>
-                  <span class="col-xs-12 product-brand">Moonshot</span>
-                  <span class="col-xs-12 product-name">Micro-fit cushion</span>
-                  <span class="col-xs-12 product-price">
-                    550.000
-                  </span>
-                  <div class="col-xs-12 product-add top-space">
-                    <button class="btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ</button>
-                  </div>
-                </div>
-              </div>
-              <!-- End of one product -->
-            </div>
-            <div class="row">
-              <!-- One product -->
-              <div class="col-xs-6 col-md-3 product">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <img class="img-responsive" src="/images/laneige.png" alt="Laneige Clear">
-                  </div>
-                  <span class="col-xs-12 product-brand">Laneige</span>
-                  <span class="col-xs-12 product-name">Laneige Clear</span>
-                  <span class="col-xs-12 product-price">
-                    550.000
-                  </span>
-                  <div class="col-xs-12 product-add top-space">
-                    <button class="btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ</button>
-                  </div>
-
-                </div>
-              </div>
-              <!-- End of one product -->
-              <!-- One product -->
-              <div class="col-xs-6 col-md-3 product">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <img class="img-responsive" src="/images/laneige.png" alt="Laneige">
-                  </div>
-                  <span class="col-xs-12 product-brand">Laneige</span>
-                  <span class="col-xs-12 product-name">Laneige Eye Cream</span>
-                  <span class="col-xs-12 product-price">
-                    550.000
-                  </span>
-                  <div class="col-xs-12 product-add top-space">
-                    <button class="btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ</button>
-                  </div>
-
-                </div>
-              </div>
-              <!-- End of one product -->
-              <!-- One product -->
-              <div class="col-xs-6 col-md-3 product">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <img class="img-responsive" src="/images/laneige.png" alt="Laneige Clear">
-                  </div>
-                  <span class="col-xs-12 product-brand">Laneige</span>
-                  <span class="col-xs-12 product-name">Micro-fit cushion</span>
-                  <span class="col-xs-12 product-price">
-                    550.000
-                  </span>
-                  <div class="col-xs-12 product-add top-space">
-                    <button class="btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ</button>
-                  </div>
-                </div>
-              </div>
-              <!-- End of one product -->
-              <!-- One product -->
-              <div class="col-xs-6 col-md-3 product">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <img class="img-responsive" src="/images/laneige.png" alt="Laneige Clear">
-                  </div>
-                  <span class="col-xs-12 product-brand">Moonshot</span>
-                  <span class="col-xs-12 product-name">Micro-fit cushion</span>
-                  <span class="col-xs-12 product-price">
-                    550.000
-                  </span>
-                  <div class="col-xs-12 product-add top-space">
-                    <button class="btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ</button>
-                  </div>
                 </div>
               </div>
               <!-- End of one product -->

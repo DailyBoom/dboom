@@ -296,7 +296,7 @@ router.get('/', function(req, res, next) {
     var query = Product.find({ extend: 4, is_published: true, is_hot: true });
     // query.where('product_region.'+req.session.zone, true);
     query.limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
-      Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }).where('product_region.'+req.session.zone, true).exec(function(err, newProducts) {
+      Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }).exec(function(err, newProducts) {
       //     Comment.find( { product: products[0].id }).populate('user').exec(function(err, comments) {
         Article.find({ published: true, video: {$in: [null, false]} }, 'title url cover', { sort: { 'created_at': -1 } }).limit(3).exec(function(err, articles) {
           Article.findOne({ published: true, video: true }, 'title url cover', { sort: { 'created_at': -1 } }).exec(function(err, video) {

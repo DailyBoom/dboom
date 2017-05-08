@@ -133,17 +133,24 @@
 								</a>
 								<span class="col-xs-12 product-brand">@product.brand</span>
 								<a href="/shop/products/@product.url" class="col-xs-12 product-name">@product.name</a>
-								<span class="product-price">@product.price</span>
-								@if (product.old_price) {
-									@{
-										var price =  product.old_price - product.price
-										var sale = price / product.old_price * 100; 
+								@if (product.quantity > 0) {
+									<span class="product-price">@product.price</span>
+									@if (product.old_price) {
+										@{
+											var price =  product.old_price - product.price
+											var sale = price / product.old_price * 100; 
+										}
+										<span class="product-price striked">@product.old_price</span>
+										<span class="sale">-@sale.toFixed(0)%</span>
 									}
-									<span class="product-price striked">@product.old_price</span>
-									<span class="sale">-@sale.toFixed(0)%</span>
+								}
+								else {
+									<span class="sold-out">
+										SOLD OUT	
+									</span>
 								}
 								<div class="col-xs-12 product-add">
-								<button class="btn btn-secondary add-cart" data-id="@product.id" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
+									<button class="btn btn-secondary add-cart" data-id="@product.id" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
 								</div>
 							</div>
 						</div>
@@ -199,15 +206,15 @@
 				<div class="-content">
 				<div class="row">
 					<div class="col-xs-12">
-						<a href="/mall/sale" class="item-image" style="background: url(@model.homepage.deal_banner) no-repeat;">
+						<a href="/mall/sale" class="item-image" style="background: url(@model.homepage.deal_banner.banner) no-repeat;">
 						</a>
 					</div>
 					<div class="col-xs-12">
-						<a href="/mall/boxes" class="item-image" style="background: url(@model.homepage.fav_banner) no-repeat">
+						<a href="/mall/boxes" class="item-image" style="background: url(@model.homepage.fav_banner.banner) no-repeat">
 						</a>
 					</div>
 					<div class="col-xs-12">
-						<a href="/organic" class="item-image" style="background: url(@model.homepage.organic_banner) no-repeat;">
+						<a href="/organic" class="item-image" style="background: url(@model.homepage.organic_banner.banner) no-repeat;">
 						</a>
 					</div>
 				</div>

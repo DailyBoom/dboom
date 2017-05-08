@@ -68,18 +68,26 @@
 				<span class="subtitle">Giá</span>
 			</div>
 			<div class="col-xs-12 left-aligned top-space">
-				<span class="highlight price">@model.product.price</span>
+				@if (model.product.quantity > 0) {
+					<span class="highlight price">@model.product.price</span>
+				}
+				else {
+					<span class="sold-out">
+						SOLD OUT	
+					</span>
+				}
 			</div>
+			@if (model.product.quantity > 0) {			
 			<div class="col-xs-12 top-space">
 				<span class="subtitle">Số lượng</span>
 			</div>
-
 			<div class="col-xs-12 col-sm-3 top-space">
 				<input type="number" name="quantity" id="quantity" value="1">
 			</div>
 			<div class="col-xs-12 col-sm-9 top-space">
 				<button data-id="@model.product.id" type="button" name="button" class="add_cart btn btn-primary">THÊM VÀO GIỎ HÀNG</button>
 			</div>
+			}
 			@if (!(model.product.options.length == 1 && model.product.options[0].name == '')) {
 			<div class="col-xs-12 top-space">
 				<span class="subtitle">MÀU SẮC</span>

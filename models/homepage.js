@@ -5,9 +5,9 @@ var homepageSchema = new Schema({
     main_banner: { banner: String, title: String, products: [{ type: Schema.Types.ObjectId, ref: 'Product' }] },
     right_1_banner: { banner: String, title: String, products: [{ type: Schema.Types.ObjectId, ref: 'Product' }] },
     right_2_banner: { banner: String, title: String, products: [{ type: Schema.Types.ObjectId, ref: 'Product' }] },
-    deal_banner: String,
-    fav_banner: String,
-    organic_banner: String,
+    deal_banner: { banner: String, products: [{ type: Schema.Types.ObjectId, ref: 'Product' }] },
+    fav_banner: { banner: String, products: [{ type: Schema.Types.ObjectId, ref: 'Product' }] },
+    organic_banner: { banner: String, products: [{ type: Schema.Types.ObjectId, ref: 'Product' }] },
     reviews: [{ banner: String, name: String, avatar: String, text: String}]
 });
 

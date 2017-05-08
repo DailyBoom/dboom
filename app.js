@@ -163,7 +163,7 @@ if (app.get('env') === 'production') {
     hostname: 'http://yppuna.vn',
     cacheTime: 600000,        // 600 sec - cache purge period 
     urls: [
-      { url: '/', priority: 0.7 },
+      { url: '/', priority: 1 },
       { url: '/mall', priority: 0.9 },
       { url: '/mall?group=0', priority: 0.7 },
       { url: '/mall?group=1', priority: 0.7 },

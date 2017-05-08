@@ -52,6 +52,9 @@ router.post('/homepage/edit', isAdmin, upload.fields([{ name: "main_banner" }, {
         homepage.main_banner = req.body.main_banner;
         homepage.right_1_banner = req.body.right_1_banner;
         homepage.right_2_banner = req.body.right_2_banner;
+        homepage.deal_banner = req.body.deal_banner;
+        homepage.fav_banner = req.body.fav_banner;
+        homepage.organic_banner = req.body.organic_banner;
 
         if (req.files['main_banner'])
             homepage.main_banner.banner = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['main_banner'][0].key
@@ -60,11 +63,11 @@ router.post('/homepage/edit', isAdmin, upload.fields([{ name: "main_banner" }, {
         if (req.files['right_2_banner'])
             homepage.right_2_banner.banner = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['right_2_banner'][0].key
         if (req.files['deal_banner'])
-            homepage.deal_banner = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['deal_banner'][0].key
+            homepage.deal_banner.banner = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['deal_banner'][0].key
         if (req.files['fav_banner'])
-            homepage.fav_banner = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['fav_banner'][0].key
+            homepage.fav_banner.banner = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['fav_banner'][0].key
         if (req.files['organic_banner'])
-            homepage.organic_banner = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['organic_banner'][0].key
+            homepage.organic_banner.banner = "https://s3.ap-northeast-2.amazonaws.com/dailyboom/" + req.files['organic_banner'][0].key
 
         console.log(req.body);
         homepage.reviews = req.body.reviews;

@@ -1857,3 +1857,7 @@ nav {
 .tab-pane.active {
   display: block;
 }
+
+.collapsed {
+  cursor: pointer;
+}
