@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div id="banner" class="col-xs-12">
-          <img class="img-responsive" src="@model.banner" alt="">
+          <img class="img-responsive" src="@model.banner.banner" alt="">
         </div>
         <div id="about" class="col-xs-12 col-md-offset-1 col-md-10">
           <p>Chúng ta đang sống trong môi trường khói bụi, có đầy chất độc hại xung quanh, ảnh hưởng nghiêm trọng đến sức khỏe và làn da. Vì vậy giữa muôn vàn các mỹ phẩm làm đẹp hiện nay, mỹ phẩm hữu cơ đang dần được mọi người quan tâm đến và sử dụng nhiều hơn. Vậy mỹ phẩm hữu cơ là gì?</p>
@@ -19,28 +19,62 @@
           </header>
           <div class="-content">
             <div class="row">
+            @model.banner.products.forEach(function(product) {
               <!-- One product -->
               <div class="col-xs-6 col-md-3 product">
                 <div class="row">
                   <div class="col-xs-12">
-                    <img class="img-responsive" src="/images/laneige.png" alt="Laneige Clear">
+                    <a href="/shop/products/@product.url" class="col-xs-12">
+                      <img class="img-responsive" src="@product.images[0]" alt="@product.name">
+                    </a>
                   </div>
-                  <span class="col-xs-12 product-brand">Laneige</span>
-                  <span class="col-xs-12 product-name">Laneige Clear</span>
-                  <span class="col-xs-12 product-price">
-                    550.000
-                  </span>
+                  <span class="col-xs-12 product-brand">@product.brand</span>
+                  <a href="/shop/products/@product.url" class="col-xs-12"><span class="col-xs-12 product-name">@product.name</span></a>
+                  <span class="col-xs-12 product-price">@product.price</span>
+                  @if (product.old_price) {
+										@{
+											var price =  product.old_price - product.price
+											var sale = price / product.old_price * 100; 
+										}
+										<span class="product-price striked">@product.old_price</span>
+										<span class="sale">-@sale.toFixed(0)%</span>
+									}
                   <div class="col-xs-12 product-add top-space">
-                    <button class="btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ</button>
+                    <button data-id="@product.id" class="add-cart btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ</button>
                   </div>
 
                 </div>
               </div>
               <!-- End of one product -->
+            })
             </div>
           </div>
         </section>
       </div>
     </div>
+    })
+    @html.block("script", function(model) {
+        <script type="text/javascript">
+            $(".add-cart").on("click", function(e) {
+                e.preventDefault();
+                var id = $(this).data("id");
+                $.ajax({
+                    type: "POST",
+                    url: "/add_to_cart",
+                    dataType: "json",
+                    data: {
+                        product_id: id,
+                        quantity: 1,
+                        option: '0'
+                    },
+                    success: function (res) {
+                        window.location = '/cart';
+                    },
+                    error: function (res) {
+                        Materialize.toast(res.responseJSON.message, 4000);
+                    }
+                });
+            });
+        </script>
     })
 })
