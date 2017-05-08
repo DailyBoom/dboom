@@ -21,6 +21,10 @@
                         <label for="main_banner_title">Campaign Title</label>
                         <input type="text" name="main_banner[title]" id="main_banner_title" value="@model.homepage.main_banner.title" />
                     </div>
+                    <div class="">
+                        <input type="checkbox" id="all_product" name="main_banner[all_product]" @(model.homepage.main_banner.all_product ? 'checked' : '')/>
+                        <label for="all_product">All Product</label>
+                    </div>
                     <div id="product_wrapper">
                          <div class="">
                             <a id="" data-type="main_banner" class="add_product waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>add product</a>

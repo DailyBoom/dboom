@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var homepageSchema = new Schema({
-    main_banner: { banner: String, title: String, products: [{ type: Schema.Types.ObjectId, ref: 'Product' }] },
+    main_banner: { banner: String, title: String, products: [{ type: Schema.Types.ObjectId, ref: 'Product' }], all_product: Boolean },
     right_1_banner: { banner: String, title: String, products: [{ type: Schema.Types.ObjectId, ref: 'Product' }] },
     right_2_banner: { banner: String, title: String, products: [{ type: Schema.Types.ObjectId, ref: 'Product' }] },
     deal_banner: { banner: String, products: [{ type: Schema.Types.ObjectId, ref: 'Product' }] },

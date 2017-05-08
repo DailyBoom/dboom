@@ -1861,3 +1861,7 @@ nav {
 .collapsed {
   cursor: pointer;
 }
+
+.sold-out {
+  font-size: 1.2em;
+}

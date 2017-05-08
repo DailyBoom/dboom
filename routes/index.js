@@ -214,7 +214,20 @@ router.get('/banner', function(req, res, next) {
       banner = homepage.right_1_banner;
     else if (req.query.type == "right_2")
       banner = homepage.right_2_banner;
-    res.render('banner', { banner: banner });
+    if (banner.all_product) {
+      var mall = null;
+      var query = { extend: 4, is_published: true };
+      var page = req.query.page ? req.query.page : 1;
+      var per_page = res.locals.is_mobile ? 8 : 16;
+      var option = { page: page, limit: per_page, sort: { 'position' : 1 } };
+      Product.paginate(query, option).then(function(result) {
+        banner.products = result.docs;
+        return res.render('banner', { banner: banner, pages: paginate.getArrayPages(req)(3, Math.ceil(result.total / per_page), page), currentPage: page, lastPage: Math.ceil(result.total / per_page) });
+      })
+    }
+    else {
+      return res.render('banner', { banner: banner });
+    }
   });
 });
 

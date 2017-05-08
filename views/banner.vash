@@ -32,14 +32,21 @@
                   </div>
                   <span class="col-xs-12 product-brand">@product.brand</span>
                   <a href="/shop/products/@product.url" class="col-xs-12"><span class="col-xs-12 product-name">@product.name</span></a>
-                  <span class="product-price">@product.price</span>
-                  @if (product.old_price) {
-										@{
-											var price =  product.old_price - product.price
-											var sale = price / product.old_price * 100; 
-										}
-										<span class="product-price striked">@product.old_price</span>
-										<span class="sale">-@sale.toFixed(0)%</span>
+									@if (product.quantity > 0) {
+                    <span class="product-price">@product.price</span>
+                    @if (product.old_price) {
+                      @{
+                        var price =  product.old_price - product.price
+                        var sale = price / product.old_price * 100; 
+                      }
+                      <span class="product-price striked">@product.old_price</span>
+                      <span class="sale">-@sale.toFixed(0)%</span>
+                    }
+                  }
+                  else {
+										<span class="sold-out">
+											SOLD OUT	
+										</span>
 									}
                   <div class="col-xs-12 product-add top-space">
                     <button data-id="@product.id" class="add-cart btn btn-secondary btn-block" type="button" name="button">THÊM VÀO GIỎ HÀNG</button>
@@ -50,6 +57,26 @@
             })
             </div>
           </div>
+          @if (model.pages) {
+					<ul class="pagination pull-right">
+						@if(model.paginate.hasPreviousPages) {
+							<li class="previous"><a href="/mall?page=@(model.currentPage - 1)"><i class="fa fa-caret-left"></i></a></li>
+						}
+						<!-- -->
+						@model.pages.forEach(function(page) {
+							@if(model.currentPage == page.number) {
+								<li class="active"><a href="#">@page.number</a></li>
+							}
+							else {
+								<li class="waves-effect"><a href="@page.url">@page.number</a></li>
+							}
+						})
+						<!-- -->
+						@if(model.paginate.hasNextPages(model.lastPage)) {
+							<li class="next"><a href="/mall?page=@(model.currentPage + 1)"><i class="fa fa-caret-right"></i></a></li>
+						}
+					</ul>
+					}
         </section>
       </div>
     </div>
