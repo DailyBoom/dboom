@@ -225,7 +225,7 @@ router.get('/wholesalers/orders', isMerchantOrAdmin, function(req, res) {
     query['status'] = req.query.status;
   var option = { page: page, limit: 10, sort: { 'created_at': -1 }, populate: 'populate' };
   Order.paginate(query, option).then(function(result) {
-    res.render('orders/list', { orders: result.docs, pages: paginate.getArrayPages(req)(3, Math.ceil(result.total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '' });
+    res.render('orders/list', { orders: result.docs, pages: paginate.getArrayPages(req)(3, Math.ceil(result.total / 10), page), currentPage: page, date: req.query.order_date ? req.query.order_date : '', wholesaler: true });
   });
 });
 
