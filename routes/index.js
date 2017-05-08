@@ -193,15 +193,15 @@ router.get('/mall/new', function(req, res, next) {
   });
 });
 
-router.get('/mall/sale', function(req, res, next) {
-  var query = { extend: 4, is_published: true, old_price: { $exists: true, $ne: null } };
-  var page = req.query.page ? req.query.page : 1;
-  var per_page = res.locals.is_mobile ? 8 : 16;
-  var option = { page: page, limit: per_page, sort: { 'position' : 1 } };
-  Product.paginate(query, option).then(function(result) {
-    Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
-      res.render('mall', { title: "Happy Tết Sale", description: "", products: result.docs, boxes: boxes, pages: paginate.getArrayPages(req)(3, Math.ceil(result.total / per_page), page), currentPage: page, lastPage: Math.ceil(result.total / per_page) });
-    });
+router.get('/fav_boxes', function(req, res, next) {
+  Homepage.findOne({}, 'fav_banner').populate('fav_banner.products').exec(function(err, homepage) {
+    res.render('mall', { title: "Favorite Boxes", description: "", products: homepage.fav_banner.products });
+  });
+});
+
+router.get('/deals', function(req, res, next) {
+  Homepage.findOne({}, 'deal_banner').populate('deal_banner.products').exec(function(err, homepage) {
+    res.render('mall', { title: "Daily Hot Deals", description: "", products: homepage.deal_banner.products });
   });
 });
 
@@ -220,7 +220,7 @@ router.get('/banner', function(req, res, next) {
 
 router.get('/organic', function(req, res, next) {
   Homepage.findOne({}, 'organic_banner').populate('organic_banner.products').exec(function(err, homepage) {  
-    res.render('organic', { banner: homepage.organic_banner });
+    res.render('organic', { banner: homepage.organic_banner, description: "Chúng ta đang sống trong môi trường khói bụi, có đầy chất độc hại xung quanh, ảnh hưởng nghiêm trọng đến sức khỏe và làn da. Vì vậy giữa muôn vàn các mỹ phẩm làm đẹp hiện nay, mỹ phẩm hữu cơ đang dần được mọi người quan tâm đến và sử dụng nhiều hơn. Vậy mỹ phẩm hữu cơ là gì?", title: "Organic Skincare" });
   });
 });
 

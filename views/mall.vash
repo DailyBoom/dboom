@@ -66,6 +66,7 @@
               <!-- End of one product -->
 					})
 					</div>
+					@if (model.pages) {
 					<ul class="pagination pull-right">
 						@if(model.paginate.hasPreviousPages) {
 							<li class="previous"><a href="/mall?page=@(model.currentPage - 1)"><i class="fa fa-caret-left"></i></a></li>
@@ -84,6 +85,7 @@
 							<li class="next"><a href="/mall?page=@(model.currentPage + 1)"><i class="fa fa-caret-right"></i></a></li>
 						}
 					</ul>
+					}
         </section>
       </div>
 
