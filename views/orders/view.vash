@@ -129,7 +129,15 @@
 								</div>
 								<div class="col s3 center">
 									@if (model.order.type == "wholesale") {
-										<p class="product-price">@(item.product.price * item.quantity)</p>
+										@if (model.order.shipping.country == 'vi-VN') {
+											<p class="product-price">@(item.product.wholesale_price * item.quantity)</p>
+										}
+										else if (model.order.shipping.country == 'eu-ES') {
+											<p class="product-price">@(item.product.w_eu_price * item.quantity)</p>
+										}
+										else if (model.order.shipping.country == 'cs-CZ') {
+											<p class="product-price">@(item.product.w_cz_price * item.quantity)</p>
+										}
 									}
 									else {
 										<p class="product-price">@(item.product.price * item.quantity)</p>
@@ -150,7 +158,8 @@
    </div><!-- .container -->
 	 <script>
 	 $(document).ready(function(){
-		$("#product_price, #product_price_mobile, #delivery_price, .product-price, .price").formatCurrency({region: 'vi-VN', roundToDecimalPlace: 0 });
+		var country = '@(model.order.shipping.country ? model.order.shipping.country : "vi-VN")'
+		$("#product_price, #product_price_mobile, #delivery_price, .product-price, .price").formatCurrency({region: country, roundToDecimalPlace: 0 });
 
 	 });
 	 </script>

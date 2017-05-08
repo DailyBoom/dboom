@@ -107,6 +107,8 @@
     <script src="/javascripts/formatCurrency/jquery.formatCurrency-1.4.0.min.js"></script>
 		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.ko-KR.js"></script>
 		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.vi-VN.js"></script>
+    <script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.eu-ES.js"></script>
+		<script src="/javascripts/formatCurrency/i18n/jquery.formatCurrency.cs-CZ.js"></script>
     <script src="/javascripts/popOut.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script src="/javascripts/Chart.js"></script>

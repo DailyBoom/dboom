@@ -127,8 +127,14 @@ var getOrderCartTotal = function(order) {
 var getOrderCartRecap = function(order) {
   order.totalOrderAmt = 0;
   order.cart.forEach(function(item) {
-    if (order.type == "wholesale")
-      order.totalOrderAmt += item.product.wholesale_price * item.quantity;
+    if (order.type == "wholesale") {
+      if (order.shipping.country == 'vi-VN')
+        order.totalOrderAmt += item.product.wholesale_price * item.quantity;
+      else if (order.shipping.country == 'eu-ES')
+        order.totalOrderAmt += parseFloat(item.product.w_eu_price) * item.quantity;
+      else if (order.shipping.country == 'cs-CZ')
+        order.totalOrderAmt += item.product.w_cz_price * item.quantity;
+    }
     else
       order.totalOrderAmt += item.product.price * item.quantity;
   });
@@ -236,9 +242,9 @@ router.post('/wholesalers/orders/new', isMerchantOrAdmin, function(req, res) {
     status: "Waiting",
     type: "wholesale"
   });
-  order.populate('cart.product', function(err) {
+  order.populate('cart.product user', function(err) {
+    order.shipping = JSON.parse(JSON.stringify(order.user.shipping));
     getOrderCartRecap(order);
-    console.log(order.totalOrderAmt);
     order.save(function(err) {
       order.cart.forEach(function(item) {
         item.product.options[item.option].quantity -= item.quantity;
@@ -346,7 +352,7 @@ router.post('/add_to_cart', function(req, res) {
       if (req.user) {
         order.user = req.user.id;
         if (req.user.shipping)
-          order.shipping = req.user.shipping;
+          order.shipping = JSON.parse(JSON.stringify(req.user.shipping));
       }
       order.save(function(err) {
         if (err) {

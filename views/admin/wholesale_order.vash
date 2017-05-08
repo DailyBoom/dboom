@@ -77,16 +77,18 @@
                     },
                     select: function(event, ui) {
                         var input = $(this);
-                        $(this).attr("data-price", ui.item.price);
                         var current_price = parseInt($('.price').html().replace(/[^0-9]+/g,""));
                         if (country == 'vi-VN') {
                             $('.price').html(current_price + ui.item.price);
+                            $(this).attr("data-price", ui.item.price);
                         }
                         else if (country == 'eu-ES') {
                             $('.price').html(current_price + ui.item.eu_price);
+                            $(this).attr("data-price", ui.item.eu_price);
                         }
                         else if (country == 'cs-CZ') {
                             $('.price').html(current_price + ui.item.cz_price);
+                            $(this).attr("data-price", ui.item.cz_price);
                         }
                         $(".price").formatCurrency({region: country, roundToDecimalPlace: 0 });
                         $.each(ui.item.options, function(index, value) {

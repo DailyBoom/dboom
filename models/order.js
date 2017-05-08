@@ -26,7 +26,8 @@ var orderSchema = new Schema({
 		zipcode: String,
 		phone_number: String,
 		district: String,
-    	ward: String
+    	ward: String,
+		country: String
   	},
 	email: String,
 	imp: Object,
