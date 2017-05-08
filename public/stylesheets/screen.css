@@ -1540,3 +1540,31 @@ nav {
 .shipping {
   margin-bottom: 10px;
 }
+
+#mypage .username {
+  font-size: 22px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  margin-bottom: 19px;
+}
+
+#mypage .account {
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 17px;
+}
+
+#mypage .history {
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.29;
+  text-align: center;
+}

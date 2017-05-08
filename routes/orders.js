@@ -244,6 +244,7 @@ router.post('/wholesalers/orders/new', isMerchantOrAdmin, function(req, res) {
   });
   order.populate('cart.product user', function(err) {
     order.shipping = JSON.parse(JSON.stringify(order.user.shipping));
+    order.shipping.full_name = order.user.username;
     getOrderCartRecap(order);
     order.save(function(err) {
       order.cart.forEach(function(item) {

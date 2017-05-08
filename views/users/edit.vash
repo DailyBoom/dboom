@@ -1,43 +1,63 @@
-@html.extend("layout-beta", function(model) {
+@html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
 		<div class="container user-edit" id="mypage">
 			<div class="row">
-				<div class="col l2 offset-l1 hide-on-med-and-down">
+				<div class="col-md-2 col-md-offset-1 visible-lg-block">
 					<div class="username">@model.user.username</div>
 					<div class="account"><a href="/mypage">Thông tin tài khoản</a></div>
 					<div class="history"><a href="/history">Đơn hàng của bạn</a></div>
 				</div>
 				<form method="post">
-					<div class="col l5 s12 offset-l1">
-						<div class="col s12">
+					<div class="col-md-5 col-xs-12 col-md-offset-1">
+						<div class="col-xs-12">
 							<h2>Thông tin cá nhân</h2>
 						</div>
-						<div class="user-info col s12">
-							<span class="col l4 s12 title">Họ và tên:</span><input type="text" placeholder="Văn Phạm Nhật Lan" class="content col l7 s12" value="@model.user.username" name="username" />
-							<span class="col l4 s12 title">Email:</span><input type="text" placeholder="nhatlanvan@gmail.com" class="content col l7 s12" value="@model.user.email" name="email" />
-							<div class="gender col s12"><span class="title col s4">Giới tính:</span><input name="gender" type="radio" value="0" id="c_male" /><label for="c_male" class="sub">Nam</label><input name="gender" type="radio" value="0" id="c_female" /><label for="c_female" class="sub">Nữ</label></div>
-							<span class="title col s12 l4">Ngày sinh:</span><input type="text" class="birthday" name="birthday" />
+						<div class="user-info col-xs-12">
+            				<div class="form-group col-xs-12">
+								<span class="col-md-4 col-xs-12 title">Họ và tên:</span><input type="text" placeholder="Văn Phạm Nhật Lan" class="content col-md-7 col-xs-12" value="@model.user.username" name="username" />
+            				</div>
+				            <div class="form-group col-xs-12">
+								<span class="col-md-4 col-xs-12 title">Email:</span><input type="text" placeholder="nhatlanvan@gmail.com" class="content col-md-7 col-xs-12" value="@model.user.email" name="email" />
+            				</div>
+            				<div class="form-group col-xs-12">
+								<div class="gender col-xs-12"><span class="title col-xs-4">Giới tính:</span><input name="gender" type="radio" value="0" id="c_male" /><label for="c_male" class="sub">Nam</label><input name="gender" type="radio" value="0" id="c_female" /><label for="c_female" class="sub">Nữ</label></div>
+            				</div>
+            				<div class="form-group col-xs-12">
+								<span class="title col-xs-12 col-md-4">Ngày sinh:</span><input type="text" class="birthday" name="birthday" />
+            				</div>
 						</div>
-						<div class="col s12">
+						<div class="col-xs-12">
 							<h2>Địa chỉ giao hàng</h2>
 						</div>
-						<div class="user-shipping col s12">
-							<span class="col l4 s12 title">Tên:</span><input type="text" placeholder="Họ và tên" class="content col l7 s12" value="@model.user.shipping.full_name" name="full_name" />
-							<span class="col l4 s12 title">Tỉnh/Thành phố:</span>
-							<select class="col s12 l7" id="city" name="city">
-								<option value="Hồ Chí Minh">Hồ Chí Minh</option>
-							</select>
-							<span class="col l4 s12 title">Quận/Huyện:</span>
-							<select class="col s12 l7" id="district" name="district">
-								<option value="1">Lựa chọn</option>
-							</select>
-							<span class="title col l4 s12">Phường/Xã:</span>
-							<select class="col s12 l7" id="ward" name="ward">
-								<option value="1">Lựa chọn</option>
-							</select>
-							<span class="title col l4 s12">Địa chỉ:</span><textarea name="address" class="content col l7 s12" placeholder="35a Trần Quốc Toản">@model.user.shipping.address</textarea>
-							<span class="title col l4 s12">Ngày sinh:</span><input placeholder="01225 985 446" class="content col l7 s12" value="@model.user.shipping.phone_number" name="phone_number"/>
-							<button class="right col s12">LƯU THAY ĐỔI</button>
+						<div class="user-shipping col-xs-12">
+            				<div class="form-group col-xs-12">
+								<span class="col-md-4 col-xs-12 title">Tên:</span><input type="text" placeholder="Họ và tên" class="content col-md-7 col-xs-12" value="@model.user.shipping.full_name" name="full_name" />
+							</div>
+            				<div class="form-group col-xs-12">
+							<span class="col-md-4 col-xs-12 title">Tỉnh/Thành phố:</span>
+								<select class="col-xs-12 col-md-7" id="city" name="city">
+									<option value="Hồ Chí Minh">Hồ Chí Minh</option>
+								</select>
+							</div>
+            				<div class="form-group col-xs-12">
+								<span class="col-md-4 col-xs-12 title">Quận/Huyện:</span>
+								<select class="col-xs-12 col-md-7" id="district" name="district">
+									<option value="1">Lựa chọn</option>
+								</select>
+							</div>
+            				<div class="form-group col-xs-12">
+								<span class="title col-md-4 col-xs-12">Phường/Xã:</span>
+								<select class="col-xs-12 col-md-7" id="ward" name="ward">
+									<option value="1">Lựa chọn</option>
+								</select>
+							</div>
+            				<div class="form-group col-xs-12">
+								<span class="title col-md-4 col-xs-12">Địa chỉ:</span><textarea name="address" class="content col-md-7 col-xs-12" placeholder="35a Trần Quốc Toản">@model.user.shipping.address</textarea>
+							</div>
+            				<div class="form-group col-xs-12">
+								<span class="title col-md-4 col-xs-12">Ngày sinh:</span><input placeholder="01225 985 446" class="content col-md-7 col-xs-12" value="@model.user.shipping.phone_number" name="phone_number"/>
+							</div>
+							<button class="right col-xs-12">LƯU THAY ĐỔI</button>
 						</div>
 					</div>
 				</form>
