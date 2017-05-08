@@ -99,7 +99,7 @@ var getOrderCartTotal = function(order) {
     order.totalOrderAmt += item.product.price * item.quantity;
   });
 
-  if (order.totalOrderAmt >= 900000) {
+  if (order.totalOrderAmt >= 200000) {
     order.shipping_cost = 0;
   }
   else if (order.shipping.city.toUpperCase() == "KHÁC") {

@@ -1,41 +1,41 @@
-@html.extend("layout-beta", function(model) {
+@html.extend("layout_bk", function(model) {
 	@html.block("body", function(model) {
 		<div class="container" id="mypage">
 			<div class="row">
-				<div class="col l2 offset-l1 hide-on-med-and-down">
+				<div class="col-md-2 col-md-offset-1 visible-lg-block">
 					<div class="username">@model.user.username</div>
 					<div class="account"><a href="/mypage">Thông tin tài khoản</a></div>
 					<div class="history"><a href="/myhistory">Đơn hàng của bạn</a></div>
 				</div>
-				<div class="col l5 s12 offset-l1">
-					<div class="col l6 s12">
+				<div class="col-md-5 col-xs-12 col-md-offset-1">
+					<div class="col-md-6 col-xs-12">
 						<h2>Thông tin cá nhân</h2>
 					</div>
-					<div class="col s5 edit hide-on-med-and-down">
+					<div class="col-xs-5 edit visible-lg-block">
 						<a href="/users/edit">THAY ĐỔI THÔNG TIN</a>
 					</div>
-					<div class="user-info col s12">
-						<div><span class="col s4 title">Họ và tên:</span><span class="content col s6">@model.user.username</span></div>
-						<div><span class="col s4 title">Email:</span><span class="content col s6 ">@model.user.email</span></div>
-						<div><span class="title col s4">Giới tính:</span><span class="content col s6 ">@(model.user.gender == 0 ? 'Nam' : 'Nữ')</span></div>
-						<div><span class="title col s4">Ngày sinh:</span><span class="content col s6 ">@model.moment(model.user.birthday).format('DD - MM - YYYY')</span></div>
+					<div class="user-info col-xs-12">
+						<div><span class="col-xs-4 title">Họ và tên:</span><span class="content col-xs-6">@model.user.username</span></div>
+						<div><span class="col-xs-4 title">Email:</span><span class="content col-xs-6 ">@model.user.email</span></div>
+						<div><span class="title col-xs-4">Giới tính:</span><span class="content col-xs-6 ">@(model.user.gender == 0 ? 'Nam' : 'Nữ')</span></div>
+						<div><span class="title col-xs-4">Ngày sinh:</span><span class="content col-xs-6 ">@model.moment(model.user.birthday).format('DD - MM - YYYY')</span></div>
 						@if (model.user.role == "wholesaler") {
-							<div><span class="title col s4">Website:</span><a href="@model.user.website" class="content col s6 ">@model.user.website</a></div>
-							<div><span class="title col s4">Facebook page:</span><span class="content col s6 ">@model.user.facebook</span></div>							
+							<div><span class="title col-xs-4">Website:</span><a href="@model.user.website" class="content col-xs-6 ">@model.user.website</a></div>
+							<div><span class="title col-xs-4">Facebook page:</span><span class="content col-xs-6 ">@model.user.facebook</span></div>							
 						}
 					</div>
-					<div class="col s12">
+					<div class="col-xs-12">
 						<h2>Địa chỉ giao hàng</h2>
 					</div>
-					<div class="user-shipping col s12">
-						<div><span class="col s4 title">Tên:</span><span class="content col s6">@model.user.shipping.full_name</span></div>
-						<div><span class="col s4 title">Tỉnh/ Thành phố:</span><span class="content col s6">@model.user.shipping.city</span></div>
-						<div><span class="col s4 title">Quận/Huyện:</span><span class="content col s6">@model.user.shipping.district</span></div>
-						<div><span class="title col s4">Phường/Xã:</span><span class="content col s6">@model.user.shipping.ward</span></div>
-						<div><span class="title col s4">Địa chỉ:</span><span class="content col s6">@model.user.shipping.address</span></div>
-						<div><span class="title col s4">Ngày sinh:</span><span class="content col s6">@model.user.shipping.phone_number</span></div>
+					<div class="user-shipping col-xs-12">
+						<div><span class="col-xs-4 title">Tên:</span><span class="content col-xs-6">@model.user.shipping.full_name</span></div>
+						<div><span class="col-xs-4 title">Tỉnh/ Thành phố:</span><span class="content col-xs-6">@model.user.shipping.city</span></div>
+						<div><span class="col-xs-4 title">Quận/Huyện:</span><span class="content col-xs-6">@model.user.shipping.district</span></div>
+						<div><span class="title col-xs-4">Phường/Xã:</span><span class="content col-xs-6">@model.user.shipping.ward</span></div>
+						<div><span class="title col-xs-4">Địa chỉ:</span><span class="content col-xs-6">@model.user.shipping.address</span></div>
+						<div><span class="title col-xs-4">Ngày sinh:</span><span class="content col-xs-6">@model.user.shipping.phone_number</span></div>
 					</div>
-					<div class="col l5 s12 edit hide-on-large-only">
+					<div class="col-md-5 col-xs-12 edit hidden-lg">
 						<a href="/users/edit">THAY ĐỔI THÔNG TIN</a>
 					</div>
 				</div>

@@ -1590,3 +1590,270 @@ nav {
 #mypage .user-shipping {
   margin-top: 30px;
 }
+
+#mypage .user-info div, #mypage .user-shipping div {
+    display: inline-block;
+    width: 100%;
+}
+
+#mypage .edit {
+  border-radius: 35px;
+  background-color: #1cc28b;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #ffffff;
+  padding: 6px 0 5px;
+}
+
+#mypage .edit a {
+  color: white;
+}
+
+#mypage.history .order-info {
+  padding: 10px 18px 10px 32px;
+}
+
+#mypage.history .order-id-title {
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.29;
+  color: #5aa0d6;
+}
+
+#mypage.history .order-id {
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: left;
+  color: #1cc28b;
+}
+
+
+#mypage.history .order-date {
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: right;
+  color: #2074bd;
+}
+
+#mypage.history .order {
+  display: inline-block;
+  width: 100%;
+  border-radius: 2px;
+  background-color: #f4faff;
+  padding: 12px 17px 11px 31px;
+}
+
+#mypage.history .title {
+  text-align: left;
+  margin-bottom: 2px;
+}
+
+#mypage.history .sub {
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+  line-height: 1;
+}
+
+#mypage.history .price {
+  text-align: right;
+  font-size: 22px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #1cc28b;
+  line-height: 1;
+}
+
+#mypage.history .cart {
+  margin: 0;
+}
+
+#mypage.history .cart .cart-products, #mypage.history .cart .cart-total {
+  display: inline-block;
+  width: 100%;
+}
+
+#mypage.history .cart .cart-total .col {
+  padding: 0;
+}
+
+#mypage.history .cart .delivery-info {
+  padding: 0 20px 28px;
+  margin-bottom: 28px;
+}
+
+#mypage.history .cart .label {
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #b3c2cf;
+}
+
+#mypage.history .cart .order-cancel {
+  padding: 9px 21px;
+  font-size: 13px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #ffffff;
+  border-radius: 100px;
+  background-color: red;
+}
+
+#mypage.history .cart .cart-content .content-header, #mypage.history .cart .cart-content .cart-products, #mypage.history .cart .cart-content .cart-total {
+  width: 100%;
+  display: inline-block;
+}
+
+#mypage.history .cart .cart-content .content-header {
+  padding: 13px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.29;
+  color: #b3c2cf;
+}
+
+#mypage.history .cart .cart-content .col {
+  padding: 0;
+}
+
+#mypage.history .cart .cart-content .content-header .s3 {
+  text-align: center;
+}
+
+#mypage.history .cart .cart-content .content-header .s4 {
+  text-align: right;
+  padding-right: 8px;
+}
+
+#mypage.history .cart .cart-products, #mypage.history .cart .shipping-content {
+  border-radius: 2px;
+  background-color: #f4faff;
+  padding: 15px 21px;
+}
+
+#mypage.history .cart .cart-products .name {
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: left;
+  color: #2074bd;
+}
+
+#mypage.history .cart .cart-products .brand {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #b3c2cf;
+}
+
+#mypage.history .cart .cart-products .quantity {
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  color: #b3c2cf;
+}
+
+#mypage.history .cart .cart-products .price {
+  font-size: 22px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: right;
+  color: #1cc28b;
+}
+
+#mypage.history .cart .cart-total {
+  padding: 22px 20px;
+}
+
+#mypage.history .cart .cart-total .col-xs-8 div {
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  text-align: left;
+  color: #2074bd;
+}
+
+#mypage.history .cart .cart-total .amount {
+  margin-top: 32px;
+}
+
+#mypage.history .cart .cart-total .col-xs-8 span {
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+}
+
+#mypage.history .cart .cart-total .total, #mypage.history .cart .cart-total .total-delivery {
+  font-size: 22px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #b3c2cf;
+  text-align: right;
+  line-height: 1;
+}
+
+#mypage.history .cart .cart-total .total-delivery {
+  border-bottom:  dashed 1px #b3c2cf;
+}
+
+#mypage.history .cart .cart-total .total-dc {
+  font-size: 22px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #b3c2cf;
+  padding-bottom: 3px;
+  text-align: right;
+  line-height: 1;
+}
+
+#mypage.history .cart .cart-total .total-amount {
+  margin-top: 15px;
+  font-size: 22px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #1cc28b;
+  text-align: right;
+}
+
+#mypage.history .cart .cart-total .delivery-info {
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #5aa0d6;
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
