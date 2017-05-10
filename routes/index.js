@@ -304,23 +304,15 @@ router.post('/contact', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-  Product.find({ scheduled_at: moment().date(1).hour(config.Timezone).minute(0).second(0).millisecond(0) }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts').exec(function (err, products) {
-    // console.log(products);
-    var query = Product.find({ extend: 4, is_published: true, is_hot: true });
-    // query.where('product_region.'+req.session.zone, true);
-    query.limit(4).sort({ 'created_at' : -1 }).exec(function (err, hotProducts) {
-      Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }).exec(function(err, newProducts) {
-      //     Comment.find( { product: products[0].id }).populate('user').exec(function(err, comments) {
-        Article.find({ published: true, video: {$in: [null, false]} }, 'title url cover', { sort: { 'created_at': -1 } }).limit(3).exec(function(err, articles) {
-          Article.findOne({ published: true, video: true }, 'title url cover', { sort: { 'created_at': -1 } }).exec(function(err, video) {
-            Homepage.findOne({}, function(err, homepage) {
-              res.render('index', { products: products, articles: articles, video: video, hotProducts: hotProducts, newProducts: newProducts, homepage: homepage });
-            })
-          });
-        });
-      });
-    });
-    // });
+  Promise.all([
+    Product.find({ scheduled_at: moment().date(1).hour(config.Timezone).minute(0).second(0).millisecond(0) }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts'), //.exec(function (err, products) {
+    Product.find({ extend: 4, is_published: true, is_hot: true }).limit(4).sort({ 'created_at' : -1 }), //.exec(function (err, hotProducts) {
+    Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }),//.exec(function(err, newProducts) {
+    Article.find({ published: true, video: {$in: [null, false]} }, 'title url cover', { sort: { 'created_at': -1 } }).limit(3),//.exec(function(err, articles) {
+    Article.findOne({ published: true, video: true }, 'title url cover', { sort: { 'created_at': -1 } }),//.exec(function(err, video) {
+    Homepage.findOne({})//, function(err, homepage) {
+  ]).then(function(result) {
+      res.render('index', { products: result[0], articles: result[3], video: result[4], hotProducts: result[1], newProducts: result[2], homepage: result[5] });
   });
 });
 

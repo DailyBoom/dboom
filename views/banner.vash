@@ -45,7 +45,7 @@
                   }
                   else {
 										<span class="sold-out">
-											SOLD OUT	
+											SOLD OUT
 										</span>
 									}
                   <div class="col-xs-12 product-add top-space">
