@@ -33,7 +33,7 @@
 						<div><span class="col-xs-4 title">Quận/Huyện:</span><span class="content col-xs-6">@model.user.shipping.district</span></div>
 						<div><span class="title col-xs-4">Phường/Xã:</span><span class="content col-xs-6">@model.user.shipping.ward</span></div>
 						<div><span class="title col-xs-4">Địa chỉ:</span><span class="content col-xs-6">@model.user.shipping.address</span></div>
-						<div><span class="title col-xs-4">Ngày sinh:</span><span class="content col-xs-6">@model.user.shipping.phone_number</span></div>
+						<div><span class="title col-xs-4">Số điện thoại:</span><span class="content col-xs-6">@model.user.shipping.phone_number</span></div>
 					</div>
 					<div class="col-md-5 col-xs-12 edit hidden-lg">
 						<a href="/users/edit">THAY ĐỔI THÔNG TIN</a>

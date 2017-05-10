@@ -90,7 +90,7 @@
                             $('.price').html(current_price + ui.item.cz_price);
                             $(this).attr("data-price", ui.item.cz_price);
                         }
-                        $(".price").formatCurrency({region: country, roundToDecimalPlace: 0 });
+                        $(".price").formatCurrency({region: country, roundToDecimalPlace: 2 });
                         $.each(ui.item.options, function(index, value) {
                             input.parent().parent().find('.option').find('select').append('<option value="'+index+'">'+value+'</option>');
                             $('select').material_select();                
