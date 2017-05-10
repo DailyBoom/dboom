@@ -188,7 +188,7 @@
                     </div>
                     <div id="product_wrapper">
                          <div class="">
-                            <a id="" data-type="fav_banner" class="add_product waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>add product</a>
+                            <a id="" data-type="organic_banner" class="add_product waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>add product</a>
                             <a id="remove_product" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>remove product</a>
                         </div>
                         @if (model.homepage.organic_banner.products) {
