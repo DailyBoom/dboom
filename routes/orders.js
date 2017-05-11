@@ -67,7 +67,7 @@ var isMerchant = function (req, res, next) {
 var hasShipping = function(obj) {
   if (!obj.shipping)
     return false;
-  if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.address && obj.shipping.city && obj.shipping.city == "KHÁC")
+  if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.address && obj.shipping.city && obj.shipping.city == "KHÁC") // When user the Other City option
     return true;
   if (obj.shipping.full_name && obj.shipping.phone_number && obj.shipping.address && obj.shipping.city && obj.shipping.district && obj.shipping.ward)
     return true;
@@ -76,9 +76,6 @@ var hasShipping = function(obj) {
 
 var getOrderTotal = function(order) {
   order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price;
-  console.log(order.quantity);
-  console.log(order.product.delivery_price);
-  console.log(order.product.price);
   if (order.coupon) {
     if (order.coupon.type == 1)
       order.totalOrderAmt -= order.product.delivery_price;
@@ -117,7 +114,7 @@ var getOrderCartTotal = function(order) {
   }
   else if (order.coupon && order.coupon.type == 3) {
     order.discount = order.totalOrderAmt * (order.coupon.percentage / 100);
-    order.totalOrderAmt -= order.totalOrderAmt * (order.coupon.percentage / 100);
+    order.totalOrderAmt -= order.discount;
   }
   if (!order.coupon || order.coupon && order.coupon.type != 1) {
     order.totalOrderAmt += order.shipping_cost;
@@ -160,14 +157,6 @@ router.post('/orders/apply_code', function(req, res) {
       });
     });    
   });
-});
-
-router.get('/orders/success', isAdmin, function(req, res) {
-  res.render('mailer/buy_success');
-});
-
-router.get('/orders/shipped', isAdmin, function(req, res) {
-  res.render('mailer/shipped');
 });
 
 router.get('/orders/list', isAdmin, function(req, res) {
@@ -246,6 +235,10 @@ router.post('/wholesalers/orders/new', isMerchantOrAdmin, function(req, res) {
     order.shipping = JSON.parse(JSON.stringify(order.user.shipping));
     order.shipping.full_name = order.user.username;
     getOrderCartRecap(order);
+    if (req.body.discount && parseInt(req.body.discount) > 0) {
+      order.discount = order.totalOrderAmt * (parseInt(req.body.discount) / 100);
+      order.totalOrderAmt -= order.discount; 
+    }
     order.save(function(err) {
       order.cart.forEach(function(item) {
         item.product.options[item.option].quantity -= item.quantity;
@@ -391,13 +384,6 @@ router.get('/checkout', function(req, res) {
     return res.redirect('/mall');
   }
   else {
-    // if (req.query.no_login && req.query.no_login == 1) {
-    //     console.log(req.query.no_login);
-    //     req.session.no_login = true;
-    // }
-    // if (!req.user && !req.session.no_login) {
-    //     return res.redirect('/mall/login');
-    // }
     Order.findOne({ _id: req.session.cart_order }).populate('cart.product coupon').exec(function(err, order) {
       if (err)
         console.log(err);
@@ -431,6 +417,7 @@ router.get('/cart', function(req, res, next) {
   });
 });
 
+// Update quantities for products in user cart
 router.post('/mall/update_cart', function(req, res) {
   if (typeof req.session.cart_order === 'undefined' || !req.session.cart_order) {
     return res.redirect('/cart');
@@ -457,6 +444,7 @@ router.post('/mall/update_cart', function(req, res) {
   }
 });
 
+// Remove a product from user cart
 router.post('/mall/remove_from_cart', function(req, res) {
   if (typeof req.session.cart_order === 'undefined' || !req.session.cart_order) {
     return res.status(500).json({});
@@ -476,7 +464,7 @@ router.post('/mall/remove_from_cart', function(req, res) {
   }
 });
 
-
+// For login during the checkout process
 router.get('/checkout/login', function(req, res) {
   if (req.user) {
     return res.redirect('/checkout');
@@ -491,42 +479,6 @@ router.get('/checkout/login', function(req, res) {
     getOrderCartRecap(order);
     res.render('checkout_login', { order: order });
   });
-});
-
-router.post('/checkout', function(req, res) {
-  if (req.session.order) {
-    Order.findOne({ '_id': req.session.order }).populate('product user coupon').exec(function(err, order) {
-        if (err)
-          console.log(err);
-        order.option = req.body.order_option;
-        order.quantity = parseInt(req.body.order_quantity);
-        order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price;
-        if (req.body.coupon)
-          order.coupon = req.body.coupon;
-        order.save(function(err) {
-          if (!req.session.product)
-            req.session.product = order.product.id;
-          order.populate('coupon', function(err, order) {
-            getOrderTotal(order);
-            var leftQuantity;
-            order.product.options.forEach(function(option){
-              if (option.name === order.option)
-                leftQuantity = parseInt(option.quantity);
-            });
-            if (req.user) {
-              Coupon.find({ user: req.user.id, expires_at: { $gte: moment().format("MM/DD/YYYY") }, used: false }, function(err, coupons) {
-                res.render('checkout', { order: order, leftQuantity: leftQuantity, title: req.__('payment'), coupons: coupons });
-              });
-            }
-            else
-              res.render('checkout', { order: order, leftQuantity: leftQuantity, title: req.__('payment') });
-        });
-      });
-    });
-  }
-  else {
-    res.redirect('/');
-  }
 });
 
 router.post('/deposit_checkout', function(req, res) {
@@ -545,10 +497,6 @@ router.post('/deposit_checkout', function(req, res) {
         if (order.coupon) {
           order.coupon.used = true;
           order.coupon.save();
-        }
-        if (order.user && order.wallet_dc) {
-          order.user.wallet -= order.wallet_dc;
-          order.user.save();
         }
         order.save(function(err) {
           if (err)
@@ -593,48 +541,8 @@ router.post('/deposit_checkout', function(req, res) {
   }
 });
 
-router.get('/success', function(req, res) {
-  if (!req.session.order && !req.session.cart_order)
-    return res.redirect('/');
-  Order.findOne({_id: req.session.order || req.session.cart_order, status: {$in : ['Paid', 'Waiting']}}).populate('product cart.product user').exec(function(err, order) {
-    if (err)
-      console.log(err)
-    if (!order)
-      return res.redirect('/');
-    delete req.session.order;
-    delete req.session.cart_order;
-    if (app.get("env") === "production") {
-      slack.send({
-        channel: '#new-order',
-        icon_url: 'http://yppuna.vn/images/favicon/favicon-96x96.png',
-        text: 'New order <http://yppuna.vn/orders/view/' + order._id + '>',
-        unfurl_links: 1,
-        username: 'Yppuna-bot'
-      });
-    }
-    fs.readFile('./views/mailer/admin_buy_success.vash', "utf8", function(err, file) {
-      if(err){
-        //handle errors
-        console.log('ERROR!');
-        return res.send('ERROR!');
-      }
-      var html = vash.compile(file);
-      moment.locale('vi');
-      transporter.sendMail({
-        from: 'Yppuna <hello@yppuna.vn>',
-        to: "hello@yppuna.vn",
-        subject: 'You received a new order',
-        html: html({ order: order, moment: moment, i18n: i18n })
-      }, function (err, info) {
-          if (err) { console.log(err); }
-          //console.log('Message sent: ' + info.response);
-          transporter.close();
-          res.status(200).json({ success: true });
-      });
-    });
-  });
-});
 
+// Confirmation for Paid Order from the Admin
 router.get('/orders/paid/:id', isAdmin, function(req, res) {
   Order.findOne({ '_id': req.params.id }).populate('product user cart.product').exec(function(err, order) {
     if (err)
@@ -658,46 +566,6 @@ router.get('/orders/paid/:id', isAdmin, function(req, res) {
   });
 });
 
-// When a mall cart gets paid
-router.get('/orders/cart_paid/:id', isAdmin, function(req, res) {
-  Order.findOne({ '_id': req.params.id }).populate('cart.product user coupon').exec(function(err, order) {
-      if (err)
-        console.log(err);
-      if (!order)
-        return res.redirect('/mypage');
-      order.merchant_id = order.product.merchant_id;
-      order.status = "Paid";
-      order.save(function(err) {
-        if (err)
-          console.log(err);
-        order.cart.forEach(function(item){
-          item.product.options[item.option].quantity -= item.quantity;          
-          item.product.save();
-        });
-        fs.readFile('./views/mailer/buy_success.vash', "utf8", function(err, file) {
-          if(err){
-            //handle errors
-            console.log('ERROR!');
-            return res.send('ERROR!');
-          }
-          var html = vash.compile(file);
-          moment.locale('vi');
-          transporter.sendMail({
-            from: 'Yppuna <hello@yppuna.vn>',
-            to: order.user ? order.user.email : order.email,
-            subject: '데일리 붐 구매 안내.',
-            html: html({ full_name : order.user ? order.user.shipping.full_name : order.shipping.full_name, moment: moment, i18n: i18n })
-          }, function (err, info) {
-              if (err) { console.log(err); }
-              //console.log('Message sent: ' + info.response);
-              transporter.close();
-              res.redirect('/orders/list');
-          });
-        });
-      });
-  });
-});
-
 router.get('/orders/packing', isMerchantOrAdmin, function(req, res) {
   Order.find({ status: "Packing" }, function(err, orders) {
     res.render('orders/packing', { orders: orders })
@@ -715,6 +583,8 @@ router.get('/orders/packing/:id', isMerchantOrAdmin, function(req, res) {
   });
 });
 
+// Confirmation that order has been packed.
+// Only confirms if all product in order have been packed
 router.post('/orders/packed/:id', isMerchantOrAdmin, function(req, res) {
   Order.findOne({ _id: req.params.id }).populate('user').exec(function(err, order) {
     if (err)
@@ -732,6 +602,8 @@ router.post('/orders/packed/:id', isMerchantOrAdmin, function(req, res) {
   });
 });
 
+
+// Confirmation for Sent Order and notification to the user
 router.post('/orders/send/:id', isMerchantOrAdmin, function(req, res) {
   Order.findOne({_id: req.params.id}).populate('user').exec(function(err, order) {
     if (err)
@@ -771,58 +643,17 @@ router.get('/orders/cancel/:id', function(req, res) {
       console.log(err);
     if (!order || moment().isAfter(order.created_at, 'days'))
       return res.redirect('/mypage');
-    var payco = {
-      "sellerKey" : config.Payco.sellerKey,
-      "orderNo" : order.payco.orderNo,
-      "sellerOrderReferenceKey": order.payco.sellerOrderReferenceKey,
-      "orderCertifyKey" : order.payco.orderCertifyKey,
-      "cancelTotalAmt": order.payco.totalOrderAmt
-    };
-    request.post(
-      config.Payco.host+'/outseller/order/cancel',
-      { json: payco },
-      function (error, response, body) {
-        console.log(body);
-        if (!error && body.code == 0) {
-          order.status = "Cancelled";
-          order.payco.cancelTradeSeq = body.result.cancelTradeSeq;
-          order.payco.cancelPaymentDetails = body.result.cancelPaymentDetails;
-          order.save(function(err) {
-            if (err)
-              console.log(err);
-            Product.findOne({ _id: order.product }, function(err, product) {
-              product.options.forEach(function(option){
-                if (option.name === order.option)
-                  option.quantity += order.quantity;
-              });
-              product.markModified('options');                          
-              product.save(function(err) {
-
-                fs.readFile('./views/mailer/order_cancelled.vash', "utf8", function(err, file) {
-                  if(err){
-                    //handle errors
-                    console.log('ERROR!');
-                    return res.send('ERROR!');
-                  }
-                  var html = vash.compile(file);
-                  moment.locale('vi');
-                  transporter.sendMail({
-                    from: 'Yppuna <hello@yppuna.vn>',
-                    to: order.user ? order.user.email : order.email,
-                    subject: '데일리 붐 주문 취소 안내',
-                    html: html({ moment: moment, order: order, accounting: accounting })
-                  }, function (err, info) {
-                      if (err) { console.log(err);}
-                      //console.log('Message sent: ' + info.response);
-                      transporter.close();
-                      res.redirect('/mypage');
-                  });
-                });
-              });
-            });
-          });
-        }
+    order.status = "Cancelled";
+    order.save(function(err) {
+      if (err)
+        console.log(err);
+      order.cart.forEach(function(item) {
+        item.product.options[item.option].quantity += item.quantity;
+        item.product.markModified('options');
+        item.product.save();
       });
+      res.redirect('/mypage');
+    });
   });
 });
 
@@ -839,41 +670,21 @@ router.get('/orders/cancel_deposit/:id', function(req, res) {
     order.save(function(err) {
       if (err)
         console.log(err);
-
-      fs.readFile('./views/mailer/order_cancelled.vash', "utf8", function(err, file) {
-        if(err){
-          //handle errors
-          console.log('ERROR!');
-          return res.send('ERROR!');
-        }
-        var html = vash.compile(file);
-        moment.locale('vi');
-        transporter.sendMail({
-          from: 'Yppuna <hello@yppuna.vn>',
-          to: order.user ? order.user.email : order.email,
-          subject: '데일리 붐 주문 취소 안내',
-          html: html({ moment: moment, order: order, accounting: accounting })
-        }, function (err, info) {
-            if (err) { console.log(err);}
-            //console.log('Message sent: ' + info.response);
-            transporter.close();
-            res.redirect('/mypage');
-        });
-      });
+      res.redirect('/mypage');
     });
   });
 });
 
 router.get('/shipping', function(req, res) {
   if (!req.session.order && !req.session.cart_order)
-    res.redirect('/');
+    return res.redirect('/');
   else
     Order.findOne({ '_id': req.session.cart_order }).populate('cart.product coupon').exec(function(err, order) {
       if (req.user && hasShipping(req.user) && !hasShipping(order)) {
         order.shipping = JSON.parse(JSON.stringify(req.user.shipping));
       }
       getOrderCartRecap(order);
-      res.render('shipping', { title: req.__('shipping'), order: order });
+      return res.render('shipping', { title: req.__('shipping'), order: order });
     });
 });
 
@@ -895,124 +706,15 @@ router.post('/shipping', function(req, res) {
       .validate('address', i18n.__('user.address1'), {
         required: true
       })
-      // .validate('zipcode', i18n.__('user.zipcode'), {
-      //   numeric: true
-      // })
       .validate('city', i18n.__('user.city'), {
         required: true
       });
-
-      // if (req.body.add_id && !req.user) {
-      //     req.Validator.validate('username', i18n.__('user.username'), {
-      //       length: {
-      //         min: 3,
-      //         max: 20
-      //       },
-      //       required: true
-      //     })
-      //     .validate('email', i18n.__('user.email'), {
-      //       required: true
-      //     })
-      //     .validate('password', i18n.__('user.password'), {
-      //       length: {
-      //         min: 8,
-      //         max: 15
-      //       },
-      //       required: true
-      //     })
-      //     .validate('confirmpassword', i18n.__('user.confirmPassword'), {
-      //       length: {
-      //         min: 8,
-      //         max: 15
-      //       },
-      //       isConfirm: function(field, fieldName, value, fn) {
-      //         var errors;
-      //         if (value !== req.body.password) {
-      //           errors = i18n.__('passNotConfirmed', fieldName, i18n.__('user.password'));
-      //         }
-      //         fn(errors);
-      //       },
-      //       required: true
-      //     })
-      //     .validate('agree-terms-1', i18n.__('user.agreeTerms1'), {
-      //       required: true
-      //     })
-      //     .validate('agree-terms-3', i18n.__('user.agreeTerms3'), {
-      //       required: true
-      //     });
-
-      //     req.Validator.getErrors(function(errors){
-      //       if (errors.length > 0) {
-      //         res.render('shipping', { errors: errors, order: order });
-      //       }
-      //       else {
-      //         var user = new User({
-      //           username: req.body.username,
-      //           password: req.body.password,
-      //           email: req.body.email,
-      //           role: 'user',
-      //           shipping: {
-      //             full_name: req.body.full_name,
-      //             address: req.body.address1,
-      //             country: req.body.country,
-      //             city: req.body.city,
-      //             zipcode: req.body.zipcode,
-      //             phone_number: req.body.phone_number
-      //           },
-      //           wallet: 100
-      //         });
-      //         user.save(function(err) {
-      //           if (err) {
-      //             console.log(err);
-      //             var errors = [];
-      //             for (var path in err.errors) {
-      //               errors.push(i18n.__("unique", i18n.__("user."+path)));
-      //             }
-      //             res.render('shipping', { errors: errors, title: req.__('shipping'), order: order });
-      //           }
-      //           else {
-      //             order.user = user.id;
-      //             order.shipping = JSON.parse(JSON.stringify(user.shipping));
-      //             order.save(function(err) {
-      //               fs.readFile('./views/mailer/signup.vash', "utf8", function(err, file) {
-      //                 if(err){
-      //                   //handle errors
-      //                   console.log('ERROR!');
-      //                   return res.send('ERROR!');
-      //                 }
-      //                 var html = vash.compile(file);
-      //                 transporter.sendMail({
-      //                   from: 'Yppuna <hello@yppuna.vn>',
-      //                   to: user.email,
-      //                   subject: user.username+'님 회원가입을 축하드립니다.',
-      //                   html: html({ user : user, i18n: i18n })
-      //                 }, function (err, info) {
-      //                     if (err) { console.log(err); }
-      //                     //console.log('Message sent: ' + info.response);
-      //                     req.login(user, function(err) {
-      //                       if (err) {
-      //                         console.log(err);
-      //                       }
-      //                       if (req.session.cart_order)
-      //                         return res.redirect('/mall/checkout')
-      //                       else
-      //                         return res.redirect('/checkout');
-      //                     });
-      //                 });
-      //               });
-      //             });
-      //           }
-      //         });
-      //       }
-      //     });
-      // }
       if (req.user) {
         if (!req.user.email) {
           req.Validator.validate('email', i18n.__('user.email'), {
             required: true
           })
         }
-
         req.Validator.getErrors(function(errors){
           if (errors.length > 0) {
             res.render('shipping', { errors: errors, title: req.__('shipping'), order: order });

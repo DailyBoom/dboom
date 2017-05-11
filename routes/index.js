@@ -38,7 +38,6 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
-
 var transporter = nodemailer.createTransport(smtpTransport({
     service: 'gmail',
     auth: {
@@ -156,12 +155,8 @@ router.get('/mall', function(req, res, next) {
   }
   //query.where('product_region.'+req.session.zone, true);
   Product.paginate(query, option).then(function(result) {
-    Product.find({ extend: 3, scheduled_at: moment().date(1).hour(0).minute(0).second(0).millisecond(0) }, {}, {}, function(err, boxes) {
-      Product.find({ extend: 4, is_hot: true, is_published: true }).populate('merchant_id').exec(function(err, hotProducts) {
-        Mall.findOne({ category: mall }, function(err, mall) {
-          res.render('mall', { title: title, category_title: category_title, description: "", products: result.docs, hotProducts: hotProducts, boxes: boxes, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / per_page), mall: mall, group: group_name });
-        });
-      });
+    Mall.findOne({ category: mall }, function(err, mall) {
+      res.render('mall', { title: title, category_title: category_title, description: "", products: result.docs, pages: paginate.getArrayPages(req)(3, result.pages, page), currentPage: page, lastPage: Math.ceil(result.total / per_page), mall: mall, group: group_name });
     });
   });
 });
@@ -305,12 +300,12 @@ router.post('/contact', function(req, res, next) {
 
 router.get('/', function(req, res, next) {
   Promise.all([
-    Product.find({ scheduled_at: moment().date(1).hour(config.Timezone).minute(0).second(0).millisecond(0) }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts'), //.exec(function (err, products) {
-    Product.find({ extend: 4, is_published: true, is_hot: true }).limit(4).sort({ 'created_at' : -1 }), //.exec(function (err, hotProducts) {
-    Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }),//.exec(function(err, newProducts) {
-    Article.find({ published: true, video: {$in: [null, false]} }, 'title url cover', { sort: { 'created_at': -1 } }).limit(3),//.exec(function(err, articles) {
-    Article.findOne({ published: true, video: true }, 'title url cover', { sort: { 'created_at': -1 } }),//.exec(function(err, video) {
-    Homepage.findOne({})//, function(err, homepage) {
+    Product.find({ scheduled_at: moment().date(1).hour(config.Timezone).minute(0).second(0).millisecond(0) }, {}, {sort : { 'scheduled_at' : 1 }}).populate('boxProducts'), // Boxes
+    Product.find({ extend: 4, is_published: true, is_hot: true }).limit(4).sort({ 'created_at' : -1 }), // Best Sellers
+    Product.find({ extend: 4, is_published: true, $or: [ { created_at: { $gte: moment().subtract(2, 'weeks') } }, { is_new: true } ] }),// New Items
+    Article.find({ published: true, video: {$in: [null, false]} }, 'title url cover', { sort: { 'created_at': -1 } }).limit(3),// Blog Posts
+    Article.findOne({ published: true, video: true }, 'title url cover', { sort: { 'created_at': -1 } }),// Video Post
+    Homepage.findOne({})// Homepage banners
   ]).then(function(result) {
       res.render('index', { products: result[0], articles: result[3], video: result[4], hotProducts: result[1], newProducts: result[2], homepage: result[5] });
   });
@@ -384,10 +379,6 @@ router.get('/coupons/delete/:id', isMerchantOrAdmin, function(req, res, next) {
   Coupon.findOneAndRemove({ _id: req.params.id }).exec(function(err, coupon) {
     res.redirect('/coupons/list');
   });
-});
-
-router.get('/test_iamport', function(req, res, next) {
-  res.render('test_iamport');
 });
 
 var smart_substr = function(str, len) {
@@ -562,22 +553,6 @@ router.get('/blog/:url', function(req, res, next) {
     });
   });
 });
-
-// router.get('/', function(req, res, next) {
-//   if (req.cookies.ypp_f_time && req.cookies.ypp_zone) {
-//     return res.redirect('/home');
-//   }
-//   if (!req.cookies.ypp_f_time) {
-//     res.cookie('ypp_f_time', 'true', { maxAge: 31536000000, httpOnly: true, path: '/' });
-//   }
-//   var has_zone = false
-//   if (typeof req.session.zone !== 'undefined' || req.cookies.ypp_s_time)
-//   {
-//      has_zone = true;
-//   }
-//   console.log(req.cookies);
-//   res.render('intro', { has_zone : true });
-// });
 
 router.get('/brands', function(req, res, next) {
   res.render('brand');

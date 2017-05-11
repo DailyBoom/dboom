@@ -34,6 +34,10 @@
                             </div>  
                         </div>
                     </div>
+                    <div class="discount input-field col s12 m4">
+                        <label for="discount">Discount</label>
+                        <input type="number" min="0" max="100" id="discount" name="discount" />
+                    </div>
                     <div id="total">
                         Total: <span class="price">0</span>
                     </div>
@@ -46,6 +50,7 @@
         <script>
 	        $(document).ready(function() {
                 var country = 'vi-VN';
+                var discount = 0;
                 $(".price").formatCurrency({region: country, roundToDecimalPlace: 0 });
                 $('select').material_select();
                 $("#username").on("change", function() {
@@ -90,6 +95,10 @@
                             $('.price').html(current_price + ui.item.cz_price);
                             $(this).attr("data-price", ui.item.cz_price);
                         }
+                        if (discount > 0) {
+                            current_price = parseInt($('.price').html().replace(/[^0-9]+/g,""));
+                            $('.price').html(current_price - (current_price * (discount / 100)));
+                        }
                         $(".price").formatCurrency({region: country, roundToDecimalPlace: 2 });
                         $.each(ui.item.options, function(index, value) {
                             input.parent().parent().find('.option').find('select').append('<option value="'+index+'">'+value+'</option>');
@@ -105,6 +114,9 @@
                         var price = parseInt($(this).prev('.product').find('input').attr('data-price'));
                         total += price * quantity;
                     }).promise().done(function () {
+                        if (discount > 0) {
+                            total -= total * (discount / 100);
+                        }
                         $('.price').html(total);
                         $(".price").formatCurrency({region: country, roundToDecimalPlace: 0 });
                     });
@@ -126,7 +138,8 @@
                     x++;
                     $('select').material_select();
                 });
-                $(document).on("change", '.quantity input', function() {
+                $(document).on("change", '.quantity input, #discount', function() {
+                    discount = parseInt($('#discount').val());
                     update_total();
                 });
             });
