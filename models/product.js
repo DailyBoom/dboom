@@ -58,6 +58,7 @@ var productSchema = new Schema({
   tags: [String],
   logs: [{ log: String, date: Date }],
   inv_code: String,
+  exp_date: [Date]
 });
 
 productSchema.plugin(mongoosePaginate);

@@ -336,6 +336,22 @@
 					})
 				}
 			</div>
+			<div class="row" id="exp_dates">
+				<div class="col s12 m12 l12">
+					<a id="add_exp_date" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>Add expiration date</a>
+					<a id="remove_exp_date" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>Remove last expiration date</a>
+				</div>
+				@if(model.product.exp_date) {
+					@model.product.exp_date.forEach(function(item, i) {
+					<div class="exp_date_row">
+						<div class="input-field col s12 m12 l12">
+							<input id="exp_date_@i" type="date" class="datepicker" name="exp_date[@i]" value="@model.moment(item).format('MM/DD/YYYY')">
+							<label for="exp_date_@i" style="margin-top: -1.75rem;">Expiration Date</label>
+						</div>
+					</div>
+					})
+				}
+			</div>
 			<br>
 			<div class="row @(model.product.extend == 3 ? 'hide' : '')" id="productRegion">
 				<label style="display:block;">VÙNG MIỀN</label>
@@ -478,8 +494,9 @@
 		var wrapper_skin    = $("#options_skin_wrapper"); //Fields wrapper
 		var add_button      = $("#add_option"); //Add button ID
 		var add_button_skin = $("#add_option_skin"); //Add button ID
-		var x = 0; //initlal text box count
-		var x_s = 0; //initlal text box count
+		var x = @(model.product.options ? model.product.options.length - 1 : 0); //initlal text box count
+		var x_s = @(model.product.options_skin ? model.product.options_skin.length - 1 : 0); //initlal text box count
+		var y = @(model.product.exp_date ? model.product.exp_date.length - 1 : 0);
 		$(add_button).click(function(e){ //on add input button click
 			e.preventDefault();
 			if(x++ < max_fields) { //max input box allowed
@@ -495,6 +512,18 @@
 			e.preventDefault();
 			if(x_s++ < max_fields) { //max input box allowed
 				$(wrapper_skin).append('<div class="row options_row"><div class="input-field col s12 m6 l6"><input id="option_skin_name'+x_s+'" type="text" class="validate" name="options_skin['+x_s+']"><label for="option_name'+x_s+'">@model.__("product.optionName")</label></div></div>'); //add input box
+			}
+		});
+		$("#add_exp_date").click(function(e){ //on add input button click
+			e.preventDefault();
+			if(y++ < max_fields) { //max input box allowed
+				$("#exp_dates").append('<div class="exp_date_row"><div class="input-field col s12 m12 l12"><input id="exp_date_'+y+'" type="date" class="datepicker" name="exp_date['+y+']"><label for="exp_date_'+y+'" style="margin-top: -1.75rem;">Expiration Date</label></div></div>'); //add input box
+				$('.datepicker').pickadate({
+					format: 'mm/dd/yyyy',
+					min: true,
+					selectMonths: true, // Creates a dropdown to control month
+					selectYears: 15, // Creates a dropdown of 15 years to control year
+				});
 			}
 		});
 		$(wrapper).on("click","#remove_option", function(e){ //user click on remove text

@@ -411,7 +411,7 @@ router.post('/signup', function(req, res) {
                   if (err) {
                     console.log(err);
                   }
-                  return res.redirect('/home');
+                  return res.redirect('/');
                 });
             });
           });

@@ -239,6 +239,18 @@
 					<label for="selldate" style="margin-top: -1.75rem;">@model.__('product.sellDate') *</label>
 				</div>
 			</div>
+			<div class="row" id="exp_dates">
+				<div class="col s12 m12 l12">
+					<a id="add_exp_date" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>Add expiration date</a>
+					<a id="remove_exp_date" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>Remove last expiration date</a>
+				</div>
+				<div class="exp_date_row">
+					<div class="input-field col s12 m12 l12">
+						<input id="exp_date_0" type="date" class="datepicker" name="exp_date[0]">
+						<label for="exp_date_0" style="margin-top: -1.75rem;">Expiration Date</label>
+					</div>
+				</div>
+			</div>
 			<div id="boxProducts" class="row">
 				<div class="input-field col s12 m12 l12">
 					<input id="boxProduct1" type="text" class="validate" name="boxProducts[0]" >
@@ -345,7 +357,7 @@
 			</div>
 			<br>
 			<button class="btn btn-large waves-effect waves-light green darken-3 add-margin-bottom-md" type="submit" name="action">
-				등록하기 <i class="fa fa-send fa-fw right"></i>
+				Submit <i class="fa fa-send fa-fw right"></i>
 			</button>
 		</form>
 	</div>
@@ -377,6 +389,7 @@
 		var add_button_skin = $("#add_option_skin"); //Add button ID
 		var x = 0; //initlal text box count
 		var x_s = 0; //initlal text box count
+		var y = 0;
 		$(add_button).click(function(e){ //on add input button click
 			e.preventDefault();
 			if(x++ < max_fields) { //max input box allowed
@@ -393,6 +406,18 @@
 				$(wrapper_skin).append('<div class="row options_row"><div class="input-field col s12 m6 l6"><input id="option_name'+x_s+'" type="text" class="validate" name="options['+x_s+']"><label for="option_name'+x_s+'">@model.__("product.optionName")</label></div></div>'); //add input box
 			}
 		});
+		$("#add_exp_date").click(function(e){ //on add input button click
+			e.preventDefault();
+			if(y++ < max_fields) { //max input box allowed
+				$("#exp_dates").append('<div class="exp_date_row"><div class="input-field col s12 m12 l12"><input id="exp_date_'+y+'" type="date" class="datepicker" name="exp_date['+y+']"><label for="exp_date_'+y+'" style="margin-top: -1.75rem;">Expiration Date</label></div></div>'); //add input box
+				$('.datepicker').pickadate({
+					format: 'mm/dd/yyyy',
+					min: true,
+					selectMonths: true, // Creates a dropdown to control month
+					selectYears: 15, // Creates a dropdown of 15 years to control year
+				});
+			}
+		});
 		$(wrapper).on("click","#remove_option", function(e){ //user click on remove text
 			e.preventDefault();
 			if (x >= 1) {
@@ -401,11 +426,16 @@
 		});
 		$(wrapper_skin).on("click","#remove_option_skin", function(e){ //user click on remove text
 			e.preventDefault();
-			if (x >= 1) {
+			if (x_s >= 1) {
 				$('.options_row').last().remove(); x--;
 			}
 		});
-
+		$(wrapper).on("click","#remove_exp_date", function(e){ //user click on remove text
+			e.preventDefault();
+			if (y >= 1) {
+				$('.exp_date_row').last().remove(); x--;
+			}
+		});
 		var addReq = $('#j_pickdate').find('#selldate');
 
 		$('input[type=radio][name=extend]').change(function() {

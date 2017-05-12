@@ -46,6 +46,12 @@
             <div class="col s12 l7">
                 <div><b>Description</b></div>
                 <div>@model.product.description</div>
+                <div><b>Expiration Date</b></div>
+                @if(model.product.exp_date) {
+					@model.product.exp_date.forEach(function(item, i) {
+                        <div>@model.moment(item).format('MM/DD/YYYY')</div>
+                    })
+                }
             </div>
             <div class="col s12 l5">
                 <div><b>Box / Product contains</b></div>
