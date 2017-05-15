@@ -345,7 +345,7 @@
 					@model.product.exp_date.forEach(function(item, i) {
 					<div class="exp_date_row">
 						<div class="input-field col s12 m12 l12">
-							<input id="exp_date_@i" type="date" class="datepicker" name="exp_date[@i]" value="@model.moment(item).format('MM/DD/YYYY')">
+							<input id="exp_date_@i" type="date" class="datepicker" name="exp_date[@i]" value="@model.moment(item).format('YYYY-MM-DD')">
 							<label for="exp_date_@i" style="margin-top: -1.75rem;">Expiration Date</label>
 						</div>
 					</div>
