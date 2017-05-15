@@ -402,34 +402,6 @@
 			<!-- .row -->
 			<br>
 			<div class="row">
-				<div class="input-field col s12">
-					<select id="color" class="validate" name="color">
-						<option @(model.product.color=='white' ? 'selected' : '') value="white">White (default)</option>
-						<option @(model.product.color=='light-blue' ? 'selected' : '') value="light-blue">Light Blue</option>
-						<option @(model.product.color=='red' ? 'selected' : '') value="red">Red</option>
-						<option @(model.product.color=='pink' ? 'selected' : '') value="pink">Pink</option>
-						<option @(model.product.color=='purple' ? 'selected' : '') value="purple">Purple</option>
-						<option @(model.product.color=='deep-purple' ? 'selected' : '') value="deep-purple">Deep Purple</option>
-						<option @(model.product.color=='indigo' ? 'selected' : '') value="indigo">Indigo</option>
-						<option @(model.product.color=='blue' ? 'selected' : '') value="blue">Blue</option>
-						<option @(model.product.color=='cyan' ? 'selected' : '') value="cyan">Cyan</option>
-						<option @(model.product.color=='teal' ? 'selected' : '') value="teal">Teal</option>
-						<option @(model.product.color=='green' ? 'selected' : '') value="green">Green</option>
-						<option @(model.product.color=='light-green' ? 'selected' : '') value="light-green">Light Green</option>
-						<option @(model.product.color=='lime' ? 'selected' : '') value="lime">Lime</option>
-						<option @(model.product.color=='yellow' ? 'selected' : '') value="yellow">Yellow</option>
-						<option @(model.product.color=='amber' ? 'selected' : '') value="amber">Amber</option>
-						<option @(model.product.color=='orange' ? 'selected' : '') value="orange">Orange</option>
-						<option @(model.product.color=='deep-orange' ? 'selected' : '') value="deep-orange">Deep Orange</option>
-						<option @(model.product.color=='brown' ? 'selected' : '') value="brown">Brown</option>
-						<option @(model.product.color=='blue-grey' ? 'selected' : '') value="blue-grey">Blue Grey</option>
-						<option @(model.product.color=='grey' ? 'selected' : '') value="grey">Grey</option>
-						<option @(model.product.color=='white' ? 'selected' : '') value="white">White</option>
-					</select>
-					<label for="color">테마 색상</label>
-				</div>
-			</div>
-			<div class="row">
 				<div class="input-field col s12 m12 l12">
 					<input id="videoUrl" name="videoUrl" type="text" class="validate" value="@model.product.video">
 					<label for="videoUrl">동영상 링크 (YouTube Video ID)</label>
@@ -529,13 +501,22 @@
 		$(wrapper).on("click","#remove_option", function(e){ //user click on remove text
 			e.preventDefault();
 			if (x >= 1) {
-				$('.options_row').last().remove(); x--;
+				$('.options_row').last().remove(); 
+				x--;
 			}
 		});
 		$(wrapper_skin).on("click","#remove_option_skin", function(e){ //user click on remove text
 			e.preventDefault();
 			if (x >= 1) {
-				$('.options_row').last().remove(); x--;
+				$('.options_row').last().remove(); 
+				x--;
+			}
+		});
+		$("#exp_dates").on("click","#remove_exp_date", function(e){ //user click on remove text
+			e.preventDefault();
+			if (y >= 1) {
+				$('.exp_date_row').last().remove(); 
+				y--;
 			}
 		});
 		// check db or mall

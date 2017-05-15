@@ -86,7 +86,7 @@
 							<span class="hide-on-med-and-down"><br></span>
 							<span for="o_photo_0" class="input-file-mod grey-text">Color photo</span>
 							<div class="btn blue-grey darken-2">
-								<span><i class="fa fa-image left"></i>선택</span>
+								<span><i class="fa fa-image left"></i>Choose</span>
 								<input id="o_photo_0" type="file" class="validate" name="options[photo]">
 							</div>
 							<div class="file-path-wrapper">
@@ -118,7 +118,7 @@
 				<span class="hide-on-med-and-down"><br></span>
 				<span for="photosmain" class="input-file-mod grey-text">@model.__('product.photosMain') (Max: 4) * (1 image: 1900x800px, 2~4 images: 750x460px)</span>
 				<div class="btn blue-grey darken-2">
-					<span><i class="fa fa-image left"></i>선택</span>
+					<span><i class="fa fa-image left"></i>Choose</span>
 					<input id="photosmain" type="file" class="validate" name="photosmain" multiple >
 				</div>
 				<div class="file-path-wrapper">
@@ -269,7 +269,7 @@
 				<span class="hide-on-large-only"><br></span>
 				<span for="box_header" class="input-file-mod grey-text">Box Header *</span>
 				<div class="btn blue-grey darken-2">
-					<span>선택 <i class="fa fa-image right"></i></span>
+					<span>Choose <i class="fa fa-image right"></i></span>
 					<input type="file" id="box_header" name="box_header">
 				</div>
 				<div class="file-path-wrapper">
@@ -285,7 +285,7 @@
 					<span class="hide-on-large-only"><br></span>
 					<span for="brandlogo" class="input-file-mod grey-text">@model.__('product.brandLogo') *</span>
 					<div class="btn blue-grey darken-2">
-						<span>선택 <i class="fa fa-image right"></i></span>
+						<span>Choose <i class="fa fa-image right"></i></span>
 						<input type="file" id="brandlogo" name="brandlogo">
 					</div>
 					<div class="file-path-wrapper">
@@ -393,7 +393,7 @@
 		$(add_button).click(function(e){ //on add input button click
 			e.preventDefault();
 			if(x++ < max_fields) { //max input box allowed
-				$(wrapper).append('<div class="row options_row"><div class="input-field col s12 m4 l4"><input id="option_name_'+x+'" type="text" class="validate color-select" name="options['+x+'][name]"><label for="option_name_'+x+'">@model.__("product.optionName")</label></div><div class="input-field col s12 m4 l4"><input id="o_quatity_'+x+'" type="number" class="validate" name="options['+x+'][quantity]"><label for="o_quantity_'+x+'">@model.__("product.optionQuantity") *</label></div><div class="input-field col s12 m4 l4"><div class="file-field input-field"><br><span class="hide-on-med-and-down"><br></span><span for="o_photo_'+x+'" class="input-file-mod grey-text">Color photo</span><div class="btn blue-grey darken-2"><span><i class="fa fa-image left"></i>선택</span><input id="o_photo_'+x+'" type="file" class="validate" name="options[photo]"></div><div class="file-path-wrapper"><input class="file-path validate" type="text"></div></div></div></div>'); //add input box
+				$(wrapper).append('<div class="row options_row"><div class="input-field col s12 m4 l4"><input id="option_name_'+x+'" type="text" class="validate color-select" name="options['+x+'][name]"><label for="option_name_'+x+'">@model.__("product.optionName")</label></div><div class="input-field col s12 m4 l4"><input id="o_quatity_'+x+'" type="number" class="validate" name="options['+x+'][quantity]"><label for="o_quantity_'+x+'">@model.__("product.optionQuantity") *</label></div><div class="input-field col s12 m4 l4"><div class="file-field input-field"><br><span class="hide-on-med-and-down"><br></span><span for="o_photo_'+x+'" class="input-file-mod grey-text">Color photo</span><div class="btn blue-grey darken-2"><span><i class="fa fa-image left"></i>Choose</span><input id="o_photo_'+x+'" type="file" class="validate" name="options[photo]"></div><div class="file-path-wrapper"><input class="file-path validate" type="text"></div></div></div></div>'); //add input box
 				$('.color-select').spectrum({
 					preferredFormat: "hex",
 					showInput: true,
@@ -430,7 +430,7 @@
 				$('.options_row').last().remove(); x--;
 			}
 		});
-		$(wrapper).on("click","#remove_exp_date", function(e){ //user click on remove text
+		$("#exp_dates").on("click","#remove_exp_date", function(e){ //user click on remove text
 			e.preventDefault();
 			if (y >= 1) {
 				$('.exp_date_row').last().remove(); x--;
