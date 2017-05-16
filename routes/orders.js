@@ -122,18 +122,25 @@ var getOrderCartTotal = function(order) {
 };
 
 var getOrderCartRecap = function(order) {
+  var price;
   order.totalOrderAmt = 0;
   order.cart.forEach(function(item) {
     if (order.type == "wholesale") {
       if (order.shipping.country == 'vi-VN')
-        order.totalOrderAmt += item.product.wholesale_price * item.quantity;
+        price = item.product.wholesale_price;
       else if (order.shipping.country == 'eu-ES')
-        order.totalOrderAmt += parseFloat(item.product.w_eu_price) * item.quantity;
+        price = parseFloat(item.product.w_eu_price);
       else if (order.shipping.country == 'cs-CZ')
-        order.totalOrderAmt += item.product.w_cz_price * item.quantity;
+        price = item.product.w_cz_price;
     }
     else
-      order.totalOrderAmt += item.product.price * item.quantity;
+      price = item.product.price;
+    if (item.discount) {
+      order.totalOrderAmt += (price - (price * (item.discount / 100))) * item.quantity;
+    }
+    else {
+      order.totalOrderAmt += price * item.quantity;      
+    }
   });
   if (order.coupon && order.coupon.type == 2) {
     order.totalOrderAmt -= order.coupon.price;

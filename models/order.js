@@ -30,16 +30,6 @@ var orderSchema = new Schema({
 		country: String
   	},
 	email: String,
-	imp: Object,
-	payco: {
-		orderNo: String,
-		sellerOrderReferenceKey: String,
-		orderCertifyKey: String,
-		totalOrderAmt: Number,
-		paymentDetails: Object,
-		cancelTradeSeq: Number,
-		cancelPaymentDetails: Object
-	},
 	deposit_name: String,
 	pay_method: Number,
 	deliv_method: Number,
@@ -47,8 +37,7 @@ var orderSchema = new Schema({
 	coupon: { type: Schema.Types.ObjectId, ref: 'Coupon' },
 	totalOrderAmt: Number,
 	shipping_cost: Number,
-	cart_merchants: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-	cart: [{ product: { type: Schema.Types.ObjectId, ref: 'Product' }, quantity: Number, option: Number, is_preorder: Boolean, packed: { type: Boolean, default: false } }],
+	cart: [{ product: { type: Schema.Types.ObjectId, ref: 'Product' }, quantity: Number, option: Number, is_preorder: Boolean, packed: { type: Boolean, default: false }, discount: Number }],
 	wallet_dc: Number,
 	pickup_date: Date,
 	discount: Number,

@@ -23,9 +23,13 @@
                                 <input id="p_name_0" type="text" class="validate" name="products[0][product]" value="">
                                 <label for="p_name_0">Product</label>
                             </div>
-                            <div class="input-field col s12 m4 l4 quantity">
+                            <div class="input-field col s12 m2 l2 quantity">
                                 <input id="p_quantity_0" type="number" class="validate" name="products[0][quantity]" value="1" min="1">
                                 <label for="p_quantity_0">Quantity *</label>
+                            </div>
+                            <div class="input-field col s12 m2 l2 discount">
+                                <input id="p_discount_0" type="number" class="validate" name="products[0][discount]" min="1" max="100">
+                                <label for="p_discount_0">Product discount</label>
                             </div>
                             <div class="input-field col s12 m4 l4 option">
                                 <select id="p_option_0" name="products[0][option]">
@@ -112,7 +116,13 @@
                     $('.quantity').each(function(index) {
                         var quantity = parseInt($(this).find('input').val());
                         var price = parseInt($(this).prev('.product').find('input').attr('data-price'));
-                        total += price * quantity;
+                        var p_discount = parseInt($(this).next('.discount').find('input').val());
+                        console.log(p_discount);
+                        if (!isNaN(p_discount)) {
+                            total += (price - (price * (p_discount / 100))) * quantity
+                        }
+                        else
+                            total += price * quantity;
                     }).promise().done(function () {
                         if (discount > 0) {
                             total -= total * (discount / 100);
@@ -132,13 +142,13 @@
                     }
                 });
                 $("#add_product").click(function(e){ //on add input button click
-                    var new_p = $('<div class="product-row"><div class="input-field col s12 m4 l4 product"><input id="p_name_'+x+'" type="text" class="validate" name="products['+x+'][product]"><label for="p_name_'+x+'">Product</label></div><div class="input-field col s12 m4 l4 quantity"><input id="p_quantity_'+x+'" type="number" class="validate" name="products['+x+'][quantity]" value="1"><label for="p_quantity_'+x+'">Quantity *</label></div><div class="input-field col s12 m4 l4 option"><select id="p_option_'+x+'" name="products['+x+'][option]"></select><label for="p_option_'+x+'">Option *</label></div></div>');
+                    var new_p = $('<div class="product-row"><div class="input-field col s12 m4 l4 product"><input id="p_name_'+x+'" type="text" class="validate" name="products['+x+'][product]"><label for="p_name_'+x+'">Product</label></div><div class="input-field col s12 m2 l2 quantity"><input id="p_quantity_'+x+'" type="number" class="validate" name="products['+x+'][quantity]" value="1"><label for="p_quantity_'+x+'">Quantity *</label></div><div class="input-field col s12 m2 l2 discount"><input id="p_discount_'+x+'" type="number" class="validate" name="products['+x+'][discount]" min="1" max="100"><label for="p_discount_'+x+'">Product discount *</label></div><div class="input-field col s12 m4 l4 option"><select id="p_option_'+x+'" name="products['+x+'][option]"></select><label for="p_option_'+x+'">Option *</label></div></div>');
                     $("#product_wrapper").append(new_p);
                     $('.product input').autocomplete(autocomp_opt);
                     x++;
                     $('select').material_select();
                 });
-                $(document).on("change", '.quantity input, #discount', function() {
+                $(document).on("change", '.quantity input, #discount, .discount', function() {
                     discount = parseInt($('#discount').val());
                     update_total();
                 });
