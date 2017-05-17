@@ -164,7 +164,6 @@
 				<td class="status">@shipment.status</td>
 				<td>
 					<a class="users-link blue-grey-text text-darken-2" href="/shipments/view/@shipment.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
-					<a class="users-link blue-grey-text edit" href="#"><i class="fa fa-pencil-square-o fa-fw fa-1-5x"></i></a>
 					<a class="users-link red-text" href="/shipments/delete/@shipment.id" onclick="return confirm('Delete shipment?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
 				</td>
 				<input type="hidden" class="note" value="@shipment.note" />
