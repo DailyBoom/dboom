@@ -126,7 +126,9 @@ var getOrderCartRecap = function(order) {
   order.totalOrderAmt = 0;
   order.cart.forEach(function(item) {
     if (order.type == "wholesale") {
-      if (order.shipping.country == 'vi-VN')
+      if (item.extra_product)
+        price = item.extra_product.price;
+      else if (order.shipping.country == 'vi-VN')
         price = item.product.wholesale_price;
       else if (order.shipping.country == 'eu-ES')
         price = parseFloat(item.product.w_eu_price);
@@ -248,9 +250,11 @@ router.post('/wholesalers/orders/new', isMerchantOrAdmin, function(req, res) {
     }
     order.save(function(err) {
       order.cart.forEach(function(item) {
-        item.product.options[item.option].quantity -= item.quantity;
-        item.product.markModified('options');
-        item.product.save();
+        if (!item.extra_product) {
+          item.product.options[item.option].quantity -= item.quantity;
+          item.product.markModified('options');
+          item.product.save();
+        }
       });
       return res.redirect('/wholesalers/orders');
     });

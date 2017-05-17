@@ -13,29 +13,16 @@
                         </select>
                         <label for="username">@model.__('user.username')</label>
                     </div>
-                    <div id="product_wrapper">
-                         <div class="col s12 m12 l12">
+                    <div id="product_wrapper" class="row">
+                        <div class="col s12 m12 l12">
                             <a id="add_product" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>add product</a>
                             <a id="remove_product" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>remove product</a>
                         </div>
-                        <div class="product-row">
-                            <div class="input-field col s12 m4 l4 product">
-                                <input id="p_name_0" type="text" class="validate" name="products[0][product]" value="">
-                                <label for="p_name_0">Product</label>
-                            </div>
-                            <div class="input-field col s12 m2 l2 quantity">
-                                <input id="p_quantity_0" type="number" class="validate" name="products[0][quantity]" value="1" min="1">
-                                <label for="p_quantity_0">Quantity *</label>
-                            </div>
-                            <div class="input-field col s12 m2 l2 discount">
-                                <input id="p_discount_0" type="number" class="validate" name="products[0][discount]" min="1" max="100">
-                                <label for="p_discount_0">Product discount</label>
-                            </div>
-                            <div class="input-field col s12 m4 l4 option">
-                                <select id="p_option_0" name="products[0][option]">
-                                </select>
-                                <label for="p_option_0">Option *</label>
-                            </div>  
+                    </div>
+                    <div id="extra_product_wrapper" class="row">
+                        <div class="col s12 m12 l12">
+                            <a id="add_extra_product" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-plus right"></i>add extra product</a>
+                            <a id="remove_extra_product" class="waves-effect waves-light btn blue-grey darken-2" href="#!"><i class="fa fa-minus right"></i>remove extra product</a>
                         </div>
                     </div>
                     <div class="discount input-field col s12 m4">
@@ -117,25 +104,40 @@
                         var quantity = parseInt($(this).find('input').val());
                         var price = parseInt($(this).prev('.product').find('input').attr('data-price'));
                         var p_discount = parseInt($(this).next('.discount').find('input').val());
-                        console.log(p_discount);
-                        if (!isNaN(p_discount)) {
-                            total += (price - (price * (p_discount / 100))) * quantity
+                        if (!isNaN(price)) {
+                            if (!isNaN(p_discount)) {
+                                total += (price - (price * (p_discount / 100))) * quantity
+                            }
+                            else
+                                total += price * quantity;
                         }
-                        else
-                            total += price * quantity;
                     }).promise().done(function () {
-                        if (discount > 0) {
-                            total -= total * (discount / 100);
-                        }
-                        $('.price').html(total);
-                        $(".price").formatCurrency({region: country, roundToDecimalPlace: 0 });
+                        $('.ep_quantity').each(function(index) {
+                            var quantity = parseInt($(this).find('input').val());
+                            var price = parseInt($(this).nextAll('.ep_price').find('input').val());
+                            var p_discount = parseInt($(this).next('.discount').find('input').val());
+                            if (!isNaN(price)) {
+                                if (!isNaN(p_discount)) {
+                                    total += (price - (price * (p_discount / 100))) * quantity
+                                }
+                                else
+                                    total += price * quantity;
+                            }
+                            console.log(quantity);
+                        }).promise().done(function () {
+                            if (discount > 0) {
+                                total -= total * (discount / 100);
+                            }
+                            $('.price').html(total);
+                            $(".price").formatCurrency({region: country, roundToDecimalPlace: 0 });
+                        });
                     });
                 }
                 $(".product input").autocomplete(autocomp_opt);
-                var x = 1;
+                var x = 0;
                 $('#product_wrapper').on("click", "#remove_product", function(e){ //user click on remove text
                     e.preventDefault();
-                    if (x > 1) {
+                    if (x >= 0) {
                         $('.product-row').last().remove();
                         update_total();
                         x--;
@@ -148,7 +150,20 @@
                     x++;
                     $('select').material_select();
                 });
-                $(document).on("change", '.quantity input, #discount, .discount', function() {
+                $('#product_wrapper').on("click", "#remove_extra_product", function(e){ //user click on remove text
+                    e.preventDefault();
+                    if (x >= 0) {
+                        $('.extra_product-row').last().remove();
+                        update_total();
+                        x--;
+                    }
+                });
+                $("#add_extra_product").click(function(e){ //on add input button click
+                    var new_p = $('<div class="extra_product-row"><div class="input-field col s12 m4 l4 extra_product"><input id="ep_name_'+x+'" type="text" class="validate" name="products['+x+'][extra_product][name]"><label for="ep_name_'+x+'">Extra Product</label></div><div class="input-field col s12 m2 l2 ep_quantity"><input id="ep_quantity_'+x+'" type="number" class="validate" name="products['+x+'][quantity]" value="1"><label for="ep_quantity_'+x+'">Quantity *</label></div><div class="input-field col s12 m2 l2 discount"><input id="ep_discount_'+x+'" type="number" class="validate" name="products['+x+'][discount]" min="1" max="100"><label for="ep_discount_'+x+'">Product discount *</label></div><div class="input-field col s12 m4 l4 ep_price"><input type="text" id="ep_price_'+x+'" name="products['+x+'][extra_product][price]"><label for="ep_price_'+x+'">Price *</label></div></div>');
+                    $("#extra_product_wrapper").append(new_p);
+                    x++;
+                });
+                $(document).on("change", '.quantity input, #discount, .discount input, .ep_quantity input, .ep_price input', function() {
                     discount = parseInt($('#discount').val());
                     update_total();
                 });
