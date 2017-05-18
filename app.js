@@ -7,11 +7,15 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var validate = require('form-validate');
 var config = require("config-heroku");
+var slack = require('slack-notify')(config.Slack.webhookUrl);
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 var moment = require("moment-timezone");
 var crypto = require('crypto');
 var sm = require('sitemap');
 var i18n = require('i18n');
 var querystring = require('querystring');
+var CronJob = require('cron').CronJob;
 i18n.configure({
     defaultLocale: 'vi',
     locales: ['ko', 'en', 'vi'],
@@ -19,6 +23,14 @@ i18n.configure({
     cookie: 'dboom_locale'
 });
 var app = express();
+
+var transporter = nodemailer.createTransport(smtpTransport({
+    service: 'gmail',
+    auth: {
+        user: config.Nodemailer.auth.user,
+        pass: config.Nodemailer.auth.pass
+    }
+}));
 
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
@@ -385,6 +397,58 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+//Expiration Date Job
+var job = new CronJob({
+  cronTime: '00 00 03 * * *',
+  onTick: function() {
+    Product.find({ extend: 4 }, function(err, products) {
+      products.forEach(function(product) {
+        if (product.exp_date) {
+          product.exp_date.forEach(function(date) {
+            var notif = false;
+            var time;
+            var diff = moment(date).diff(moment().hours(0).minutes(0).seconds(0).milliseconds(0), 'months', true);
+            if (diff == 12) {
+              time = 'one year';
+              notif = true;
+            }
+            else if (diff == 8) {
+              time = '8 months';
+              notif = true;
+            }
+            else if (diff == 6) {
+              time = '6 months';
+              notif = true;
+            }
+            if (notif == true) {
+              transporter.sendMail({
+                from: 'hello@yppuna.vn',
+                to: '',
+                subject: 'Expiration date notification',
+                html: '<p>Product '+ product.name + 'expiration date is in '+ time + '.</p><a href="http://128.199.183.150:3000/products/details/'+product.id+'">Click here for product details</a>',
+              }, function (err, info) {
+                  if (err) { console.log(err); }
+                //console.log('Message sent: ' + info.response);
+                  transporter.close();
+                  slack.send({
+                    channel: '#new-order',
+                    icon_url: 'http://yppuna.vn/images/favicon/favicon-96x96.png',
+                    text: 'Product '+ product.name + 'expiration date is in '+ time + '. <http://128.199.183.150:3000/products/details/'+product.id+'>',
+                    unfurl_links: 1,
+                    username: 'Yppuna-bot'
+                  });
+              });
+            }
+          });
+        }
+      });
+    });
+  },
+  start: false,
+  timeZone: 'Asia/Ho_Chi_Minh'
+});
+job.start();
 
 
 module.exports = app;

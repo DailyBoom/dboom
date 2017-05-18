@@ -514,7 +514,7 @@
 		});
 		$("#exp_dates").on("click","#remove_exp_date", function(e){ //user click on remove text
 			e.preventDefault();
-			if (y >= 1) {
+			if (y >= 0) {
 				$('.exp_date_row').last().remove(); 
 				y--;
 			}

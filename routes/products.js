@@ -582,4 +582,25 @@ router.get('/products/generatecode', function() {
   });
 });
 
+router.get('/products/test_exp_date', function() {
+  Product.find({ extend: 4 }, function(err, products) {
+    products.forEach(function(product) {
+      if (product.exp_date) {
+        product.exp_date.forEach(function(date) {
+          var diff = moment(date).diff(moment().hours(0).minutes(0).seconds(0).milliseconds(0), 'months', true);
+          if (diff == 12) {
+            console.log('12 '+ product.name);
+          }
+          else if (diff == 8) {
+            console.log('8');
+          }
+          else if (diff == 6) {
+            console.log('6');
+          }
+        });
+      }
+    });
+  });
+})
+
 module.exports = router;
