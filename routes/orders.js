@@ -728,7 +728,7 @@ router.post('/shipping', function(req, res) {
         }
         req.Validator.getErrors(function(errors){
           if (errors.length > 0) {
-            res.render('shipping', { errors: errors, title: req.__('shipping'), order: order });
+            return res.render('shipping', { errors: errors, title: req.__('shipping'), order: order });
           }
           else {
              User.findOne({ _id: req.user._id }, {}, function(err, user) {
@@ -751,14 +751,14 @@ router.post('/shipping', function(req, res) {
                     for (var path in err.errors) {
                       errors.push(i18n.__("unique", i18n.__("user."+path)));
                     }
-                  res.render('shipping', { errors: errors, title: req.__('shipping'), order: order });
+                  return res.render('shipping', { errors: errors, title: req.__('shipping'), order: order });
                 }
                 else {
                   order.user = user.id;
                   order.shipping = JSON.parse(JSON.stringify(user.shipping));
                   order.save(function(err) {
                     if (err) {
-                      res.render('shipping', { errors: err, title: req.__('shipping'), order: order });
+                      return res.render('shipping', { errors: err, title: req.__('shipping'), order: order });
                     }
                     else {
                       return res.redirect('/checkout');
@@ -777,7 +777,7 @@ router.post('/shipping', function(req, res) {
 
         req.Validator.getErrors(function(errors){
           if (errors.length > 0) {
-            res.render('shipping', { errors: errors, title: req.__('shipping'), order: order });
+            return res.render('shipping', { errors: errors, title: req.__('shipping'), order: order });
           }
           else {
             order.shipping = {
@@ -791,11 +791,11 @@ router.post('/shipping', function(req, res) {
             order.email = req.body.email;
             order.save(function(err) {
               if (err) {
-                res.render('shipping', { errors: err, title: req.__('shipping'), order: order });
+                return res.render('shipping', { errors: err, title: req.__('shipping'), order: order });
               }
               else {
                 console.log(order);
-                  return res.redirect('/checkout');
+                return res.redirect('/checkout');
               }
             });
           }
