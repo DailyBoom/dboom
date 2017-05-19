@@ -699,7 +699,7 @@ router.get('/shipping', function(req, res) {
 router.post('/shipping', function(req, res) {
   if (!req.session.order && !req.session.cart_order)
     return res.redirect('/');
-  Order.findOne({ '_id': req.session.order || req.session.cart_order }, function(err, order) {
+  Order.findOne({ '_id': req.session.order || req.session.cart_order }).populate('cart.product').exec(function(err, order) {
     if (err) {
       console.log(err);
       return res.redirect('/');

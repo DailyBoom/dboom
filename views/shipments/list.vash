@@ -28,8 +28,8 @@
 							<input type="date" class="datepicker validate" id="est_date" name="est_date" />
 						</div>
 						<div class="input-field col s12">
-							<textarea class="materialize-textarea" id="e_note" name="e_note"></textarea>
-							<label for="e_note">Note</label>
+							<textarea class="materialize-textarea" id="note" name="note"></textarea>
+							<label for="note">Note</label>
 						</div>
 						<button class="btn right">Create a shipment</button>
 					</form>
@@ -164,6 +164,7 @@
 				<td class="status">@shipment.status</td>
 				<td>
 					<a class="users-link blue-grey-text text-darken-2" href="/shipments/view/@shipment.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
+					<a class="users-link blue-grey-text edit" href="#"><i class="fa fa-pencil-square-o fa-fw fa-1-5x"></i></a>
 					<a class="users-link red-text" href="/shipments/delete/@shipment.id" onclick="return confirm('Delete shipment?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
 				</td>
 				<input type="hidden" class="note" value="@shipment.note" />

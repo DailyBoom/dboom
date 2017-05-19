@@ -13,6 +13,13 @@
                   Địa chỉ giao hàng của quý khách
                 </header>
                 <div class="-content">
+                  @if (model.errors) {
+                    <ul class="error text-center">
+                      @model.errors.forEach(function(error) {
+                        <li>@error</li>
+                      })
+                    </ul>
+                  }
                   <div class="row list-items">
                     <form action="/shipping" method="post">
                       <div class="form-group">
