@@ -44,6 +44,7 @@
 							<option value="Waiting">Waiting</option>
 							<option value="Paid">Paid</option>
 							<option value="Packing">Packing</option>
+							<option value="Packed">Packed</option>
 							<option value="Sent">Sent</option>
 							<option value="Cancelled">Cancelled</option>
 						</select>

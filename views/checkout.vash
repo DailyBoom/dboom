@@ -71,36 +71,6 @@
                   </div>
                 </div>
               </section>
-              <section id="delivery-choices">
-                <header>CHỌN PHƯƠNG THỨC GIAO HÀNG</header>
-                <div class="-content">
-                  <div class="row">
-                    <div class="col-xs-12">
-                      <form>
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="deliv_method" id="noon" value="0" checked>
-                            Nhận hàng trước 12 giờ trưa
-                          </label>
-                        </div>
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="deliv_method" id="six" value="1">
-                            Nhận hàng trước 6 giờ chiều
-                          </label>
-                        </div>
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="deliv_method" id="evening" value="2">
-                            Nhận hàng vào buổi tối
-                          </label>
-                        </div>
-                      </form>
-                      <button type="button" id="checkout_btn" class="btn btn-primary btn-block">Thanh toán</button>
-                    </div>
-                  </div>
-                </div>
-              </section>
             </div>
             <div class="col-md-1 hidden-xs">
             </div>

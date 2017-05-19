@@ -13,10 +13,10 @@
 		 <div class="row">
 			@if(model.user.admin){
 				<a href="/orders/edit/@model.order.id" class="btn right">EDIT</a>
-				@if(model.order.status=='Waiting' || model.order.status == "Sent"){
+				@if(model.order.status=='Waiting' || model.order.status == "Sent" || model.order.status == "Packed"){
 					<a href="/orders/paid/@model.order.id" class="orange btn right" onclick="return confirm('Order has been paid?')">PAID</a>
 				}
-				@if(model.order.status == 'Waiting' || model.order.status == "Paid"){
+				@if(model.order.status == 'Waiting' || model.order.status == "Paid" || model.order.status == "Packed"){
 					<a href="#shipping_modal" class="green btn right modal-trigger">SENT</a>
 				}
 			}

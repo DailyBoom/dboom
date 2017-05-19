@@ -74,21 +74,6 @@ var hasShipping = function(obj) {
   return false;
 }
 
-var getOrderTotal = function(order) {
-  order.totalOrderAmt = order.product.price * order.quantity + order.product.delivery_price;
-  if (order.coupon) {
-    if (order.coupon.type == 1)
-      order.totalOrderAmt -= order.product.delivery_price;
-    else if (order.coupon.type == 2)
-      order.totalOrderAmt -= order.coupon.price;
-    else if (order.coupon.type == 3)
-      order.totalOrderAmt -= order.totalOrderAmt * (order.coupon.percentage / 100);
-  }
-  if (order.user && order.wallet_dc && order.wallet_dc <= order.user.wallet) {
-      order.totalOrderAmt -= order.wallet_dc;    
-  }
-}
-
 var getOrderCartTotal = function(order) {
   order.totalOrderAmt = 0;
   order.shipping_cost = 0;
@@ -96,7 +81,7 @@ var getOrderCartTotal = function(order) {
     order.totalOrderAmt += item.product.price * item.quantity;
   });
 
-  if (order.totalOrderAmt >= 200000) {
+  if (order.totalOrderAmt >= 900000) {
     order.shipping_cost = 0;
   }
   else if (order.shipping.city.toUpperCase() == "KHÁC") {
@@ -105,7 +90,7 @@ var getOrderCartTotal = function(order) {
   else {
     order.shipping_cost = 20000;    
   }
-  if (order.coupon && order.coupon.type == 2) {
+  if (order.coupon && order.coupon.type == 1) {
     order.discount = order.shipping_cost;
   }
   else if (order.coupon && order.coupon.type == 2) {
@@ -117,6 +102,7 @@ var getOrderCartTotal = function(order) {
     order.totalOrderAmt -= order.discount;
   }
   if (!order.coupon || order.coupon && order.coupon.type != 1) {
+    console.log(order.shipping_cost);
     order.totalOrderAmt += order.shipping_cost;
   }
 };
