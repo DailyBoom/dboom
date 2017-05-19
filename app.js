@@ -424,7 +424,7 @@ var job = new CronJob({
             if (notif == true) {
               transporter.sendMail({
                 from: 'hello@yppuna.vn',
-                to: '',
+                to: 'ngoc@yppuna.vn;hiep@yppuna.vn',
                 subject: 'Expiration date notification',
                 html: '<p>Product '+ product.name + 'expiration date is in '+ time + '.</p><a href="http://128.199.183.150:3000/products/details/'+product.id+'">Click here for product details</a>',
               }, function (err, info) {
