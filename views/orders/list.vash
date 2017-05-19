@@ -109,7 +109,9 @@
 						<a class="users-link blue-grey-text text-darken-2" href="/orders/view/@order.id"><i class="fa fa-eye fa-fw fa-1-5x"></i></a>
 						<a class="users-link red-text text-darken-3" href="/orders/cancel_deposit/@order.id" onclick="return confirm('Are you sure?')"><i class="fa fa-ban fa-fw fa-1-5x"></i></a>
 					@if(model.user.admin == 1){
-						<a class="users-link blue-text text-darken-3" href="/orders/packing/@order.id" onclick="return confirm('Start packing this order?')"><i class="fa fa-archive fa-fw fa-1-5x"></i></a>
+						@if(order.status != 'Packing' || order.status != 'Packed'){
+							<a class="users-link blue-text text-darken-3" href="/orders/packing/@order.id" onclick="return confirm('Start packing this order?')"><i class="fa fa-archive fa-fw fa-1-5x"></i></a>
+						}
 						<a class="users-link red-text text-darken-3" href="/orders/delete/@order.id" onclick="return confirm('Are you sure?')"><i class="fa fa-times fa-fw fa-1-5x"></i></a>
 					}
 					</td>

@@ -570,12 +570,23 @@ router.get('/orders/packing', isMerchantOrAdmin, function(req, res) {
 });
 
 router.get('/orders/packing/:id', isMerchantOrAdmin, function(req, res) {
-  Order.findOne({_id: req.params.id}).populate('user').exec(function(err, order) {
+  Order.findOne({_id: req.params.id}, function(err, order) {
     if (err)
       console.log(err);
     order.status = "Packing";
     order.save(function(err) {
       res.redirect('/orders/packing');
+    });
+  });
+});
+
+router.get('/orders/back_to_shipping/:id', isMerchantOrAdmin, function(req, res) {
+  Order.findOne({_id: req.params.id}, function(err, order) {
+    if (err)
+      console.log(err);
+    order.status = "Waiting";
+    order.save(function(err) {
+      res.redirect('/orders/shipping');
     });
   });
 });

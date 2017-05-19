@@ -47,7 +47,7 @@
                         <td>&nbsp;@order.notes</td>
                         <td>
                             <div><a href="#" data-id="@order.id" class="btn right pack">Start Packing</a></div>
-                            <div><a href="#back_ship_modal" data-id="@order.id" class="btn right">Back to Shipping</a></div>
+                            <div><a href="/orders/back_to_shipping/@order.id" class="btn right">Back to Shipping</a></div>
                         </td>
                     </tr>
                     })
@@ -75,7 +75,10 @@
                                 var checked = "";
                                 if (item.checked)
                                     checked = "checked";
-                                body.append('<tr><td>'+item.product.inv_code+'</td><td>'+item.product.name+'</td><td class="center">'+item.quantity+'</td><td class="center"><input type="checkbox" name="cart['+index+'][packed]" id="packed_'+index+'" '+checked+'/><label for="packed_'+index+'"></label></td></tr>');
+                                if (item.extra_product)
+                                    body.append('<tr><td>Extra</td><td>'+item.extra_product.name+'</td><td class="center">'+item.quantity+'</td><td class="center"><input type="checkbox" name="cart['+index+'][packed]" id="packed_'+index+'" '+checked+'/><label for="packed_'+index+'"></label></td></tr>');
+                                else
+                                    body.append('<tr><td>'+item.product.inv_code+'</td><td>'+item.product.name+'</td><td class="center">'+item.quantity+'</td><td class="center"><input type="checkbox" name="cart['+index+'][packed]" id="packed_'+index+'" '+checked+'/><label for="packed_'+index+'"></label></td></tr>');
                             });
                             order = data.order;
                             $('#packing_modal').openModal();
